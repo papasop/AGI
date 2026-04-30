@@ -1,9 +1,9 @@
 """
 fetch_data.py
 =============
-Fetch OHLC data for the 5 AI Global Index components plus the historical
-CNY/USD and HKD/USD spot rates, and write data.json next to
-ai_global_index.html.
+Fetch OHLC data for the Leading China AI Index components plus the
+historical CNY/USD and HKD/USD spot rates, and write data.json next to
+index.html.
 
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
@@ -19,14 +19,14 @@ Calendar handling
 -----------------
 Each component trades on a different exchange with a different holiday
 calendar, and 曦智科技 (Lightelligence) IPO'd literally days ago. The
-anchor calendar is BYD ∩ NYT (the two anchors with full 14-year history);
+anchor calendar is BYD ∩ NYT (two liquid anchors with full history);
 all other components are reindexed to that calendar.
 
 For components whose listing post-dates the start of the anchor calendar
 (Piotech 2022, Lightelligence 2026), pre-IPO dates are back-filled with
 the first known close. This means those components contribute a CONSTANT
 value to the index until they actually start trading. The distortion is
-bounded by their weight (2.5% each) and clearly documented in the JSON
+bounded by their weight (10% each) and clearly documented in the JSON
 meta payload.
 
 Usage:
@@ -36,6 +36,7 @@ Usage:
 import argparse
 import json
 from datetime import date
+from pathlib import Path
 
 import pandas as pd
 import yfinance as yf
@@ -50,6 +51,48 @@ COMPONENTS = [
     ("\u62d3\u8346\u79d1\u6280", "Piotech",       "688072.SS", 0.10, "CNY"),
     ("\u7eb1\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.50, "USD"),
 ]
+
+SYNTHETIC_FALLBACKS = {
+    # Yahoo Finance may not expose this newly listed HK ticker yet.
+    "01879.HK": {
+        "seed": 11,
+        "base": 30,
+        "vol": 0.028,
+        "drift": 0.00220,
+        "start": "2026-04-28",
+        "note": "Synthetic fallback used because yfinance returned no data.",
+    },
+}
+
+
+def mulberry32(seed: int):
+    def rand() -> float:
+        nonlocal seed
+        seed = (seed + 0x6D2B79F5) & 0xFFFFFFFF
+        t = seed
+        t = (t ^ (t >> 15)) * (t | 1)
+        t &= 0xFFFFFFFF
+        t ^= (t + ((t ^ (t >> 7)) * (t | 61))) & 0xFFFFFFFF
+        t &= 0xFFFFFFFF
+        return ((t ^ (t >> 14)) & 0xFFFFFFFF) / 4294967296
+    return rand
+
+
+def generate_synthetic_ohlc(index: pd.Index, seed: int, base: float,
+                            daily_vol: float, drift: float) -> pd.DataFrame:
+    rng = mulberry32(seed)
+    close = base
+    rows = []
+    for idx in index:
+        ret = (rng() - 0.5) * 2 * daily_vol + drift
+        open_ = close * (1 + (rng() - 0.5) * 0.004)
+        new_close = open_ * (1 + ret)
+        wick_frac = (rng() * 0.5 + 0.2) * daily_vol
+        high = max(open_, new_close) * (1 + wick_frac)
+        low = min(open_, new_close) * (1 - wick_frac)
+        rows.append({"Open": open_, "High": high, "Low": low, "Close": new_close})
+        close = new_close
+    return pd.DataFrame(rows, index=index)
 
 
 def fetch_ohlc(ticker: str, start: str, end: str) -> pd.DataFrame:
@@ -87,11 +130,12 @@ def to_records(df: pd.DataFrame) -> list:
 
 
 def main():
+    script_dir = Path(__file__).resolve().parent
     ap = argparse.ArgumentParser()
     ap.add_argument("--start", default="2022-11-30",
                     help="Index inception (default: ChatGPT public launch)")
     ap.add_argument("--end",   default=date.today().isoformat())
-    ap.add_argument("--out",   default="data.json")
+    ap.add_argument("--out",   default=str(script_dir / "data.json"))
     args = ap.parse_args()
 
     # 1) Fetch all stock OHLC
@@ -100,7 +144,7 @@ def main():
         print(f"Fetching {short:15s} ({ticker:12s}, {ccy}) ...")
         fetched[ticker] = fetch_ohlc(ticker, args.start, args.end)
 
-    # 2) Anchor calendar = BYD \u2229 NYT (longest-history components)
+    # 2) Anchor calendar = BYD \u2229 NYT (liquid full-history anchors)
     byd = fetched["002594.SZ"]
     nyt = fetched["NYT"]
     if byd.empty or nyt.empty:
@@ -119,8 +163,19 @@ def main():
 
     # 4) Align each component; back/forward-fill late-IPO gaps
     components_out = []
+    fallback_notes = {}
     for name, short, ticker, weight, ccy in COMPONENTS:
         df = fetched[ticker]
+        if df.empty and ticker in SYNTHETIC_FALLBACKS:
+            fb = SYNTHETIC_FALLBACKS[ticker]
+            fb_index = common[common >= fb["start"]]
+            if len(fb_index) == 0:
+                fb_index = common[-1:]
+            df = generate_synthetic_ohlc(
+                fb_index, fb["seed"], fb["base"], fb["vol"], fb["drift"]
+            )
+            fallback_notes[ticker] = fb["note"]
+            print(f"  {short:15s}: using synthetic fallback from {fb_index[0]}")
         inception = df.index.min() if len(df) else None
         # Reindex to common, then ffill (post-IPO holidays) + bfill (pre-IPO)
         df_aligned = df.reindex(common).ffill().bfill()
@@ -130,6 +185,7 @@ def main():
             "name": name, "short": short, "ticker": ticker,
             "weight": weight, "ccy": ccy,
             "inception": inception,
+            "synthetic_fallback": fallback_notes.get(ticker),
             "data": to_records(df_aligned),
         })
         late = " (back-filled pre-IPO!)" if inception and inception > common[0] else ""
@@ -149,6 +205,7 @@ def main():
                      "back-filled with their first known close. The index "
                      "therefore inherits a constant contribution from those "
                      "components prior to their actual IPO."),
+            "synthetic_fallbacks": fallback_notes,
         },
         "components": components_out,
         "fx": {
