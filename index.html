@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI 全球指数 | AI Global Index</title>
+  <title>领先中国AI指数 | Leading China AI Index</title>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
   <style>
     * { box-sizing: border-box; }
@@ -48,6 +48,10 @@
       color: #f0a868;
       border-bottom-color: rgba(240, 168, 104, 0.45);
     }
+    .pillar--breakthrough .pillar-text .m-key {
+      color: #5e9eff;
+      border-bottom-color: rgba(94, 158, 255, 0.42);
+    }
     .pillar--realized .pillar-text .m-key {
       color: #26a69a;
       border-bottom-color: rgba(38, 166, 154, 0.42);
@@ -76,6 +80,9 @@
     }
     .pillar--realized .pillar-num {
       color: #26a69a;
+    }
+    .pillar--breakthrough .pillar-num {
+      color: #5e9eff;
     }
     .pillar--partial .pillar-num {
       color: #f0a868;
@@ -108,6 +115,11 @@
       color: #26a69a;
       background: rgba(38, 166, 154, 0.12);
       border: 1px solid rgba(38, 166, 154, 0.34);
+    }
+    .pillar-cat--breakthrough {
+      color: #5e9eff;
+      background: rgba(94, 158, 255, 0.12);
+      border: 1px solid rgba(94, 158, 255, 0.34);
     }
     .pillar-cat--partial {
       color: #f0a868;
@@ -361,21 +373,44 @@
       padding: 16px 20px;
     }
     .components-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .components-header-title {
       color: #6b7a99;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1.2px;
-      margin-bottom: 14px;
+    }
+    .components-header-total {
+      color: #6b7a99;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .total-mcap-value {
+      display: inline-block;
+      margin-left: 6px;
+      color: #ffd166;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      font-variant-numeric: tabular-nums;
     }
     .components-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
       gap: 10px 24px;
     }
     .component-row {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-size: 13px;
       padding: 4px 0;
     }
@@ -414,6 +449,26 @@
       color: #8a96b3;
       font-size: 12.5px;
       flex: 1;
+      min-width: 0;
+    }
+    .component-mcap {
+      color: #ffd166;
+      font-size: 12.5px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-align: right;
+      min-width: 96px;
+    }
+    .component-mcap-pct {
+      display: inline-block;
+      margin-left: 4px;
+      color: #4a5778;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.2px;
     }
     .milestones {
       margin-top: 18px;
@@ -636,29 +691,23 @@
   </div>
 
   <div class="container">
-    <h1>AI 全球指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">AI GLOBAL INDEX</span></h1>
+    <h1>领先中国AI指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">LEADING CHINA AI INDEX</span></h1>
     <div class="manifesto">
       <div class="manifesto-tag">宣言 · MANIFESTO · 五重命题 / FIVE PILLARS</div>
       <ol class="manifesto-pillars">
-        <li class="pillar pillar--partial">
+        <li class="pillar pillar--realized">
           <span class="pillar-num">①</span>
-          <span class="pillar-cat pillar-cat--partial">
-            <span class="pillar-cat-main">现状</span>
-            <span class="pillar-cat-state">部分</span>
-          </span>
+          <span class="pillar-cat pillar-cat--realized">现状</span>
           <span class="pillar-text">中国在人工智能领域<span class="m-key">全面领先</span><span class="pillar-en">China comprehensively leads in AI</span></span>
         </li>
-        <li class="pillar pillar--partial">
+        <li class="pillar pillar--realized">
           <span class="pillar-num">②</span>
-          <span class="pillar-cat pillar-cat--partial">
-            <span class="pillar-cat-main">前提</span>
-            <span class="pillar-cat-state">部分</span>
-          </span>
+          <span class="pillar-cat pillar-cat--realized">前提</span>
           <span class="pillar-text">AI <span class="m-key">全面开源</span><span class="pillar-en">AI is fully open-source</span></span>
         </li>
-        <li class="pillar pillar--pending">
+        <li class="pillar pillar--breakthrough">
           <span class="pillar-num">③</span>
-          <span class="pillar-cat pillar-cat--pending">突破</span>
+          <span class="pillar-cat pillar-cat--breakthrough">突破</span>
           <span class="pillar-text"><span class="m-key">物理模型</span>出现<span class="pillar-en">Physical models emerge</span></span>
         </li>
         <li class="pillar pillar--pending">
@@ -672,7 +721,7 @@
           <span class="pillar-text"><span class="m-key">非人类中心主义</span><span class="pillar-en">Non-anthropocentrism</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">①② 部分实现 (琥珀) · ③④⑤ 待验证 (金) — 五者构成本指数所有命题的完整结构。<span class="manifesto-footer-en">①② partially realized · ③④⑤ pending verification — the five jointly form this index's complete propositional structure.</span></div>
+      <div class="manifesto-footer">①② 已实现 (绿) · ③ 待突破 (蓝) · ④⑤ 待验证 (金) — 五者构成本指数所有命题的完整结构。<span class="manifesto-footer-en">①② realized · ③ pending breakthrough · ④⑤ pending verification — the five jointly form this index's complete propositional structure.</span></div>
     </div>
 
     <div class="strategy">
@@ -739,7 +788,10 @@
     <div class="stats" id="stats"></div>
 
     <div class="components-panel">
-      <div class="components-header">成分股 · COMPONENTS · 各自代表的 AI 子赛道</div>
+      <div class="components-header">
+        <span class="components-header-title">成分股 · COMPONENTS · 各自代表的 AI 子赛道</span>
+        <span class="components-header-total">总市值 / TOTAL CAP <span class="total-mcap-value" id="total-mcap">—</span></span>
+      </div>
       <div class="components-list" id="components-list"></div>
     </div>
 
@@ -1047,21 +1099,27 @@
     const COMPONENTS_CONFIG = [
       { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ", weight: 0.10, ccy: "CNY",
         concept: "AI 机器人 · 电池 + 电机 + 电控",
+        marketCap: 135.0,
         seed: 256,  base: 250, vol: 0.025, drift:  0.00014 },
       { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD",
         concept: "AI 生产力",
+        marketCap: 165.0,
         seed: 200,  base:  80, vol: 0.030, drift:  0.00040 },
       { name: "\u798f\u6676\u79d1\u6280",      short: "Fujing",         ticker: "002222.SZ", weight: 0.10, ccy: "CNY",
         concept: "稀土 + 激光晶体",
+        marketCap: 2.5,
         seed: 22,   base:  12, vol: 0.020, drift:  0.00060 },
       { name: "\u66e6\u667a\u79d1\u6280-P",    short: "Lightelligence", ticker: "01879.HK",  weight: 0.10, ccy: "HKD",
         concept: "光计算 (oNOC + oNET + oMAC)",
+        marketCap: 6.0,
         seed: 11,   base:  30, vol: 0.028, drift:  0.00220 },
       { name: "\u62d3\u8346\u79d1\u6280",      short: "Piotech",        ticker: "688072.SS", weight: 0.10, ccy: "CNY",
         concept: "混合键合 · 先进封装",
+        marketCap: 10.0,
         seed: 3000, base: 115, vol: 0.030, drift:  0.00125 },
       { name: "\u7eb1\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD",
         concept: "美国唯一的科技股",
+        marketCap: 11.0,
         seed: 7,    base:  36, vol: 0.014, drift:  0.00050 },
     ];
 
@@ -1166,7 +1224,7 @@
       const series =
         type === "candle"
           ? [{
-              name: "AI 全球指数",
+              name: "领先中国AI指数",
               type: "candlestick",
               data: ohlc,
               itemStyle: {
@@ -1178,7 +1236,7 @@
               markLine: milestones,
             }]
           : [{
-              name: "AI 全球指数",
+              name: "领先中国AI指数",
               type: "line",
               data: closes,
               smooth: true,
@@ -1250,7 +1308,7 @@
                 <div>收 Close: <b style="color:${color}">${arrow} ${d.close.toFixed(2)}</b></div>`;
             }
             return `<div style="font-weight:600;margin-bottom:6px">${d.date}</div>
-              <div>AI 全球: <b>${d.close.toFixed(2)}</b></div>`;
+              <div>领先中国 AI: <b>${d.close.toFixed(2)}</b></div>`;
           },
         },
         series,
@@ -1333,15 +1391,32 @@
     // ============================================================
     //  Init
     // ============================================================
-    // Render components panel — what each stock represents in the AI thesis
+    // Format a USD-billion value for display: $X.XB / $XXXB / $X.XT
+    function formatMcap(billions) {
+      if (billions >= 1000) return "$" + (billions / 1000).toFixed(2) + "T";
+      if (billions >= 100)  return "$" + billions.toFixed(0) + "B";
+      if (billions >= 10)   return "$" + billions.toFixed(1) + "B";
+      if (billions >= 1)    return "$" + billions.toFixed(1) + "B";
+      return "$" + (billions * 1000).toFixed(0) + "M";
+    }
+
+    // Compute total market cap once at init
+    const TOTAL_MCAP = COMPONENTS_CONFIG.reduce((s, c) => s + (c.marketCap || 0), 0);
+    document.getElementById("total-mcap").textContent = formatMcap(TOTAL_MCAP);
+
+    // Render components panel — what each stock represents in the AI thesis,
+    // with per-component market cap and its share of total
     document.getElementById("components-list").innerHTML = COMPONENTS_CONFIG.map((c) => {
       const isMajor = c.weight >= 0.5;
       const wPct = (c.weight * 100).toFixed(0);
+      const mcapStr = formatMcap(c.marketCap || 0);
+      const mcapPct = TOTAL_MCAP > 0 ? (c.marketCap / TOTAL_MCAP * 100).toFixed(1) : "0.0";
       return `<div class="component-row">
         <span class="component-weight${isMajor ? ' weight-major' : ''}">${wPct}%</span>
         <span class="component-name">${c.name}</span>
         <span class="component-ticker">${c.ticker}</span>
         <span class="component-concept">${c.concept}</span>
+        <span class="component-mcap">${mcapStr}<span class="component-mcap-pct">${mcapPct}%</span></span>
       </div>`;
     }).join("");
 
