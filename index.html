@@ -380,11 +380,49 @@
       flex-wrap: wrap;
       margin-bottom: 14px;
     }
+    .components-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: min(100%, 320px);
+    }
     .components-header-title {
       color: #6b7a99;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1.2px;
+    }
+    .components-rank-toggle {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      background: #0f1525;
+      border: 1px solid #1d2740;
+      border-radius: 8px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .components-rank-toggle button {
+      background: transparent;
+      border: none;
+      color: #8a96b3;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      transition: all 0.15s ease;
+    }
+    .components-rank-toggle button:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .components-rank-toggle button.active {
+      background: rgba(94, 158, 255, 0.18);
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.3);
     }
     .components-header-total {
       color: #6b7a99;
@@ -413,6 +451,20 @@
       gap: 10px;
       font-size: 13px;
       padding: 4px 0;
+    }
+    .component-rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      color: #6b7a99;
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
     }
     .component-weight {
       display: inline-flex;
@@ -468,6 +520,27 @@
       color: #4a5778;
       font-size: 10.5px;
       font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+    .component-metric {
+      color: #ffd166;
+      font-size: 12.5px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-align: right;
+      min-width: 112px;
+    }
+    .component-metric.up { color: #ef5350; }
+    .component-metric.down { color: #26a69a; }
+    .component-metric-label {
+      display: inline-block;
+      margin-left: 5px;
+      color: #4a5778;
+      font-size: 10px;
+      font-weight: 600;
       letter-spacing: 0.2px;
     }
     .milestones {
@@ -789,7 +862,14 @@
 
     <div class="components-panel">
       <div class="components-header">
-        <span class="components-header-title">成分股 · COMPONENTS · 各自代表的 AI 子赛道</span>
+        <div class="components-title-block">
+          <span class="components-header-title">成分股 · COMPONENTS · 各自代表的 AI 子赛道</span>
+          <div class="components-rank-toggle" id="components-rank-group" aria-label="Components ranking mode">
+            <button data-rank="mcap" class="active">市值</button>
+            <button data-rank="return">总涨幅</button>
+            <button data-rank="contribution">贡献</button>
+          </div>
+        </div>
         <span class="components-header-total">总市值 / TOTAL CAP <span class="total-mcap-value" id="total-mcap">—</span></span>
       </div>
       <div class="components-list" id="components-list"></div>
@@ -1157,6 +1237,7 @@
     let currentCurrency = "USD"; // industry-standard default for global indices
     let currentRebalance = "PERIODIC";
     let currentPeriodDays = 5;          // 5 trading days = 1 calendar week
+    let currentComponentRank = "mcap";
 
     // Default zoom per period — show full window in all modes so T₀
     // (ChatGPT inception, leftmost bar) is always visible by default.
@@ -1360,6 +1441,7 @@
       const data = aggregate(dailyIndex, currentPeriod);
       chart.setOption(buildOption(data, currentType), true);
       updateStats(data);
+      renderComponentsPanel();
     }
 
     document.getElementById("period-group").addEventListener("click", (e) => {
@@ -1378,6 +1460,14 @@
       currentType = btn.dataset.type;
       render();
     });
+    document.getElementById("components-rank-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-rank]");
+      if (!btn) return;
+      document.querySelectorAll("#components-rank-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentComponentRank = btn.dataset.rank;
+      renderComponentsPanel();
+    });
     window.addEventListener("resize", () => chart.resize());
 
     // ============================================================
@@ -1392,25 +1482,79 @@
       return "$" + (billions * 1000).toFixed(0) + "M";
     }
 
-    // Compute total market cap once at init
-    const TOTAL_MCAP = COMPONENTS_CONFIG.reduce((s, c) => s + (c.marketCap || 0), 0);
-    document.getElementById("total-mcap").textContent = formatMcap(TOTAL_MCAP);
+    function formatSignedPct(v) {
+      const sign = v >= 0 ? "+" : "";
+      return sign + v.toFixed(1) + "%";
+    }
 
-    // Render components panel — what each stock represents in the AI thesis,
-    // with per-component market cap and its share of total
-    document.getElementById("components-list").innerHTML = COMPONENTS_CONFIG.map((c) => {
-      const isMajor = c.weight >= 0.5;
-      const wPct = (c.weight * 100).toFixed(0);
-      const mcapStr = formatMcap(c.marketCap || 0);
-      const mcapPct = TOTAL_MCAP > 0 ? (c.marketCap / TOTAL_MCAP * 100).toFixed(1) : "0.0";
-      return `<div class="component-row">
-        <span class="component-weight${isMajor ? ' weight-major' : ''}">${wPct}%</span>
-        <span class="component-name">${c.name}</span>
-        <span class="component-ticker">${c.ticker}</span>
-        <span class="component-concept">${c.concept}</span>
-        <span class="component-mcap">${mcapStr}<span class="component-mcap-pct">${mcapPct}%</span></span>
-      </div>`;
-    }).join("");
+    function formatContribution(v) {
+      const sign = v >= 0 ? "+" : "";
+      return sign + v.toFixed(2) + "pt";
+    }
+
+    const CONFIG_BY_TICKER = Object.fromEntries(COMPONENTS_CONFIG.map((c) => [c.ticker, c]));
+
+    function componentCloseInCurrency(component, idx) {
+      const bar = component.data[idx];
+      return bar.close * convRate(component.ccy, currentCurrency, rawData.fx, idx);
+    }
+
+    function getComponentRows() {
+      const source = rawData?.components?.length ? rawData.components : COMPONENTS_CONFIG;
+      const totalMcap = COMPONENTS_CONFIG.reduce((s, c) => s + (c.marketCap || 0), 0);
+      return source.map((component) => {
+        const config = CONFIG_BY_TICKER[component.ticker] || {};
+        const merged = { ...config, ...component };
+        const mcap = config.marketCap || 0;
+        let totalReturn = 0;
+        let contribution = 0;
+        if (rawData?.fx && component.data?.length) {
+          const first = componentCloseInCurrency(component, 0);
+          const last = componentCloseInCurrency(component, component.data.length - 1);
+          totalReturn = first ? (last / first - 1) * 100 : 0;
+          contribution = merged.weight * totalReturn;
+        }
+        return {
+          ...merged,
+          marketCap: mcap,
+          mcapPct: totalMcap > 0 ? (mcap / totalMcap) * 100 : 0,
+          totalReturn,
+          contribution,
+        };
+      });
+    }
+
+    function renderComponentsPanel() {
+      const rows = getComponentRows();
+      const totalMcap = rows.reduce((s, c) => s + (c.marketCap || 0), 0);
+      const sorters = {
+        mcap: (a, b) => b.marketCap - a.marketCap,
+        return: (a, b) => b.totalReturn - a.totalReturn,
+        contribution: (a, b) => b.contribution - a.contribution,
+      };
+      rows.sort(sorters[currentComponentRank] || sorters.mcap);
+      document.getElementById("total-mcap").textContent = formatMcap(totalMcap);
+      document.getElementById("components-list").innerHTML = rows.map((c, i) => {
+        const isMajor = c.weight >= 0.5;
+        const wPct = (c.weight * 100).toFixed(0);
+        const metric =
+          currentComponentRank === "return"
+            ? `<span class="component-metric ${c.totalReturn >= 0 ? 'up' : 'down'}">${formatSignedPct(c.totalReturn)}<span class="component-metric-label">总涨幅</span></span>`
+            : currentComponentRank === "contribution"
+              ? `<span class="component-metric ${c.contribution >= 0 ? 'up' : 'down'}">${formatContribution(c.contribution)}<span class="component-metric-label">贡献</span></span>`
+              : `<span class="component-metric">${formatMcap(c.marketCap)}<span class="component-metric-label">${c.mcapPct.toFixed(1)}%</span></span>`;
+        return `<div class="component-row">
+          <span class="component-rank">${i + 1}</span>
+          <span class="component-weight${isMajor ? ' weight-major' : ''}">${wPct}%</span>
+          <span class="component-name">${c.name}</span>
+          <span class="component-ticker">${c.ticker}</span>
+          <span class="component-concept">${c.concept || ''}</span>
+          ${metric}
+        </div>`;
+      }).join("");
+    }
+
+    renderComponentsPanel();
 
     // Render milestones legend below the chart (static, no per-render redraw)
     document.getElementById("milestones-list").innerHTML = AI_MILESTONES.map((m, i) =>
