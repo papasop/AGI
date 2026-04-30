@@ -590,7 +590,6 @@
     .milestone-category--infra { color: #8a96b3; }
     .milestone-category--paper { color: #ffd166; }
     .milestone-category--remarks { color: #f0a868; }
-    .milestone-category--twitter { color: #d46cff; }
     .milestones-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -911,7 +910,6 @@
         <button data-event="physical"><span class="btn-main">物理</span><span class="btn-sub">World</span></button>
         <button data-event="paper"><span class="btn-main">论文</span><span class="btn-sub">Paper</span></button>
         <button data-event="remarks"><span class="btn-main">言论</span><span class="btn-sub">Remarks</span></button>
-        <button data-event="twitter"><span class="btn-main">话题热度</span><span class="btn-sub">X Topic</span></button>
       </div>
     </div>
 
@@ -1241,38 +1239,10 @@
         bg: "rgba(240, 168, 104, 0.16)",
         line: "rgba(240, 168, 104, 0.34)",
       },
-      twitter: {
-        zh: "推特话题热度",
-        en: "X Topic Heat",
-        color: "#d46cff",
-        bg: "rgba(212, 108, 255, 0.16)",
-        line: "rgba(212, 108, 255, 0.34)",
-      },
     };
 
     function milestoneCategory(key) {
       return MILESTONE_CATEGORIES[key] || MILESTONE_CATEGORIES.llm;
-    }
-
-    async function loadHeatEvents() {
-      try {
-        const r = await fetch("heat_events.json", { cache: "no-store" });
-        if (!r.ok) throw new Error("no heat_events.json");
-        const events = await r.json();
-        if (!Array.isArray(events)) return;
-        const normalized = events
-          .filter((event) => event && event.date && event.label)
-          .map((event) => ({
-            category: "twitter",
-            model: "x_trending_topic",
-            en: event.label,
-            desc: "",
-            desc_en: event.desc || "",
-            ...event,
-          }));
-        AI_MILESTONES.push(...normalized);
-        AI_MILESTONES.sort((a, b) => new Date(a.date) - new Date(b.date));
-      } catch (_) {}
     }
 
     const AI_MILESTONES = [
@@ -1537,7 +1507,6 @@
       document.querySelector('#event-group button[data-event="physical"] .btn-main').textContent = t("物理", "World");
       document.querySelector('#event-group button[data-event="paper"] .btn-main').textContent = t("论文", "Paper");
       document.querySelector('#event-group button[data-event="remarks"] .btn-main').textContent = t("言论", "Remarks");
-      document.querySelector('#event-group button[data-event="twitter"] .btn-main').textContent = t("话题热度", "Topic");
 
       document.querySelector(".components-header-title").textContent = t("成分股 · 各自代表的 AI 子赛道", "COMPONENTS · AI subsector represented by each holding");
       document.querySelector('[data-rank="weight"]').textContent = t("权重", "Weight");
@@ -2049,15 +2018,6 @@
       });
     }
 
-    function heatModelText(m) {
-      if (m.category !== "twitter") return "";
-      const score = Number.isFinite(m.heatScore) ? ` · ${t("热度分", "Score")} ${m.heatScore}` : "";
-      return "\n\n" + t(
-        `建模口径: 以 X / Twitter 火爆话题为指标,综合讨论人数、帖子密度、话题标签扩散、转发链路和跨圈层传播${score}。`,
-        `Model: based on X / Twitter trending topics, combining participant count, post density, hashtag/topic spread, repost chains, and cross-community diffusion${score}.`
-      );
-    }
-
     function populatePopover(i) {
       const m = AI_MILESTONES[i];
       if (!m) return;
@@ -2069,11 +2029,11 @@
       if (popoverLang === "en") {
         document.getElementById("popover-title").textContent = m.en;
         document.getElementById("popover-en").textContent   = "";
-        document.getElementById("popover-desc").textContent = (m.desc_en || m.desc) + heatModelText(m);
+        document.getElementById("popover-desc").textContent = m.desc_en || m.desc;
       } else {
         document.getElementById("popover-title").textContent = m.label;
         document.getElementById("popover-en").textContent   = "";
-        document.getElementById("popover-desc").textContent = m.desc + heatModelText(m);
+        document.getElementById("popover-desc").textContent = m.desc;
       }
     }
 
@@ -2166,9 +2126,8 @@
       }
     });
 
-    Promise.all([loadData(), loadHeatEvents()]).then(([d]) => {
+    loadData().then((d) => {
       rawData = d;
-      renderMilestoneList();
       render();
     });
   </script>
