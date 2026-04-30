@@ -44,6 +44,14 @@
       border-bottom: 1px dashed rgba(255, 209, 102, 0.4);
       padding-bottom: 1px;
     }
+    .pillar--partial .pillar-text .m-key {
+      color: #f0a868;
+      border-bottom-color: rgba(240, 168, 104, 0.45);
+    }
+    .pillar--realized .pillar-text .m-key {
+      color: #26a69a;
+      border-bottom-color: rgba(38, 166, 154, 0.42);
+    }
     .manifesto-pillars {
       list-style: none;
       padding: 0;
@@ -54,7 +62,7 @@
     }
     .manifesto-pillars li {
       display: grid;
-      grid-template-columns: 22px 56px 1fr;
+      grid-template-columns: 22px 64px 1fr;
       gap: 12px;
       align-items: baseline;
       color: #d5dceb;
@@ -66,17 +74,50 @@
       font-size: 17px;
       letter-spacing: 0;
     }
+    .pillar--realized .pillar-num {
+      color: #26a69a;
+    }
+    .pillar--partial .pillar-num {
+      color: #f0a868;
+    }
     .pillar-cat {
-      display: inline-block;
-      padding: 2px 0;
-      color: #ffd166;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 4px;
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       text-align: center;
+      border-radius: 3px;
+      line-height: 1.1;
+      gap: 1px;
+    }
+    .pillar-cat-main {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+    }
+    .pillar-cat-state {
+      font-size: 8px;
+      letter-spacing: 1.2px;
+      opacity: 0.78;
+      font-weight: 600;
+    }
+    .pillar-cat--realized {
+      color: #26a69a;
+      background: rgba(38, 166, 154, 0.12);
+      border: 1px solid rgba(38, 166, 154, 0.34);
+    }
+    .pillar-cat--partial {
+      color: #f0a868;
+      background: rgba(240, 168, 104, 0.12);
+      border: 1px solid rgba(240, 168, 104, 0.36);
+    }
+    .pillar-cat--pending {
+      color: #ffd166;
       background: rgba(255, 209, 102, 0.10);
       border: 1px solid rgba(255, 209, 102, 0.28);
-      border-radius: 3px;
     }
     .pillar-text {
       font-size: 14.5px;
@@ -84,7 +125,7 @@
     }
     .pillar-en {
       display: block;
-      color: #8a96b3;
+      color: #6b7a99;
       font-size: 11px;
       font-style: italic;
       letter-spacing: 0.2px;
@@ -97,10 +138,15 @@
       border-top: 1px dashed rgba(255, 209, 102, 0.22);
       font-size: 11.5px;
       color: #6b7a99;
-      font-style: italic;
       letter-spacing: 0.2px;
     }
-
+    .manifesto-footer-en {
+      display: block;
+      margin-top: 3px;
+      font-style: italic;
+      color: #4a5778;
+      font-size: 10.5px;
+    }
     /* === Strategy block (50/50 China vs US tech) === */
     .strategy {
       margin: 0 0 22px;
@@ -513,6 +559,59 @@
       letter-spacing: 0.5px;
       vertical-align: middle;
     }
+
+    /* === Floating popover-language toggle (bottom-right, fixed position) === */
+    .floating-lang-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 95;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      background: rgba(19, 26, 43, 0.78);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      border: 1px solid rgba(94, 158, 255, 0.18);
+      border-radius: 999px;
+      padding: 4px;
+      box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .floating-lang-toggle button {
+      background: transparent;
+      border: none;
+      color: #8a96b3;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      transition: all 0.18s ease;
+      min-width: 32px;
+    }
+    .floating-lang-toggle button:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .floating-lang-toggle button.active {
+      background: rgba(94, 158, 255, 0.22);
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.42);
+    }
+    @media (max-width: 640px) {
+      .floating-lang-toggle {
+        bottom: 12px;
+        right: 12px;
+      }
+      .floating-lang-toggle button {
+        padding: 5px 11px;
+        font-size: 11px;
+      }
+    }
     .footer {
       margin-top: 24px;
       color: #4a5778;
@@ -528,33 +627,52 @@
   </style>
 </head>
 <body>
+  <!-- Floating popover-language toggle (fixed-position, bottom-right). Independent of
+       the controls bar because its scope is global (affects all popovers throughout
+       the page), unlike the chart controls which only affect the chart. -->
+  <div class="floating-lang-toggle" id="popover-lang-group" title="悬浮窗语言 / Popover Language">
+    <button data-lang="zh" class="active">中</button>
+    <button data-lang="en">EN</button>
+  </div>
+
   <div class="container">
     <h1>AI 全球指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">AI GLOBAL INDEX</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">宣言 · MANIFESTO · 四重命题 / FOUR PILLARS</div>
+      <div class="manifesto-tag">宣言 · MANIFESTO · 五重命题 / FIVE PILLARS</div>
       <ol class="manifesto-pillars">
-        <li>
+        <li class="pillar pillar--partial">
           <span class="pillar-num">①</span>
-          <span class="pillar-cat">现状</span>
+          <span class="pillar-cat pillar-cat--partial">
+            <span class="pillar-cat-main">现状</span>
+            <span class="pillar-cat-state">部分</span>
+          </span>
           <span class="pillar-text">中国在人工智能领域<span class="m-key">全面领先</span><span class="pillar-en">China comprehensively leads in AI</span></span>
         </li>
-        <li>
+        <li class="pillar pillar--partial">
           <span class="pillar-num">②</span>
-          <span class="pillar-cat">前提</span>
+          <span class="pillar-cat pillar-cat--partial">
+            <span class="pillar-cat-main">前提</span>
+            <span class="pillar-cat-state">部分</span>
+          </span>
           <span class="pillar-text">AI <span class="m-key">全面开源</span><span class="pillar-en">AI is fully open-source</span></span>
         </li>
-        <li>
+        <li class="pillar pillar--pending">
           <span class="pillar-num">③</span>
-          <span class="pillar-cat">突破</span>
+          <span class="pillar-cat pillar-cat--pending">突破</span>
           <span class="pillar-text"><span class="m-key">物理模型</span>出现<span class="pillar-en">Physical models emerge</span></span>
         </li>
-        <li>
+        <li class="pillar pillar--pending">
           <span class="pillar-num">④</span>
-          <span class="pillar-cat">结论</span>
-          <span class="pillar-text"><span class="m-key">非人类中心主义</span>条件下,AI 与人类共存,AI 获得部分权力,人类放弃部分权力<span class="pillar-en">Under non-anthropocentrism - AI and humans coexist; AI gains partial agency, humans cede partial agency</span></span>
+          <span class="pillar-cat pillar-cat--pending">猜想 1</span>
+          <span class="pillar-text"><span class="m-key">光计算证实</span> · <span class="m-key">量子计算证伪</span><span class="pillar-en">Photonic computing confirmed · Quantum computing falsified</span></span>
+        </li>
+        <li class="pillar pillar--pending">
+          <span class="pillar-num">⑤</span>
+          <span class="pillar-cat pillar-cat--pending">猜想 2</span>
+          <span class="pillar-text"><span class="m-key">非人类中心主义</span><span class="pillar-en">Non-anthropocentrism</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">四者构成本指数所有命题的完整结构 - 一个嵌套猜想 (nested conjecture)。</div>
+      <div class="manifesto-footer">①② 部分实现 (琥珀) · ③④⑤ 待验证 (金) — 五者构成本指数所有命题的完整结构。<span class="manifesto-footer-en">①② partially realized · ③④⑤ pending verification — the five jointly form this index's complete propositional structure.</span></div>
     </div>
 
     <div class="strategy">
@@ -611,11 +729,6 @@
         <span class="control-group-label">图型</span>
         <button data-type="candle" class="active"><span class="btn-main">K线</span><span class="btn-sub">Candle</span></button>
         <button data-type="line"><span class="btn-main">折线</span><span class="btn-sub">Line</span></button>
-      </div>
-      <div class="control-group" id="popover-lang-group">
-        <span class="control-group-label">悬浮窗</span>
-        <button data-lang="zh" class="active"><span class="btn-main">中</span><span class="btn-sub">CN</span></button>
-        <button data-lang="en"><span class="btn-main">EN</span><span class="btn-sub">English</span></button>
       </div>
     </div>
 
@@ -882,33 +995,47 @@
     // snaps each date to the nearest available bar in the current view.
     const AI_MILESTONES = [
       { date: "2022-11-30", label: "ChatGPT \u4e0a\u7ebf",                        en: "ChatGPT launched",
-        desc: "OpenAI 发布基于 GPT-3.5 的对话产品 ChatGPT。5 天破百万用户、2 个月达 1 亿月活,创下消费产品最快增长纪录。本指数以这一天为 T₀,Base = 100,后续所有事件以这天为锚点参照。Generative AI 真正进入大众视野并撬动整条 AI 算力 / 应用产业链的零日。" },
+        desc: "OpenAI 发布基于 GPT-3.5 的对话产品 ChatGPT。5 天破百万用户、2 个月达 1 亿月活,创下消费产品最快增长纪录。本指数以这一天为 T₀,Base = 100,后续所有事件以这天为锚点参照。Generative AI 真正进入大众视野并撬动整条 AI 算力 / 应用产业链的零日。",
+        desc_en: "OpenAI launches ChatGPT, built on GPT-3.5. It hits 1M users in 5 days and 100M monthly actives in 2 months — the fastest consumer-product adoption in history. This index uses this date as T₀, with Base = 100; all subsequent events are anchored here. Day zero of generative AI entering mainstream awareness and reshaping the entire AI compute / application stack." },
       { date: "2023-03-14", label: "GPT-4 \u53d1\u5e03",                          en: "GPT-4 released",
-        desc: "OpenAI 发布 GPT-4,首个大规模多模态(图文输入)旗舰模型。律师/医师/编程考试达到人类前 10% 水平。这是企业级 AI 投资真正起点——硅谷大厂从此开启 capex 军备竞赛,推动 NVDA 股价开始第一轮加速,中游半导体设备 / 上游光学晶体的需求逻辑也随之确立。" },
+        desc: "OpenAI 发布 GPT-4,首个大规模多模态(图文输入)旗舰模型。律师/医师/编程考试达到人类前 10% 水平。这是企业级 AI 投资真正起点——硅谷大厂从此开启 capex 军备竞赛,推动 NVDA 股价开始第一轮加速,中游半导体设备 / 上游光学晶体的需求逻辑也随之确立。",
+        desc_en: "OpenAI releases GPT-4, the first large-scale multimodal (text + image) flagship. Achieves top-10% human performance on bar, medical, and coding exams. The real beginning of enterprise AI investment — Silicon Valley enters capex arms-race mode, kicking off NVIDIA's first major stock surge and establishing the demand logic for mid-stream semiconductor equipment and upstream optical crystals." },
       { date: "2023-10-17", label: "\u7f8e\u5bf9\u534e\u82af\u7247\u51fa\u53e3\u7ba1\u5236\u5347\u7ea7", en: "US chip export controls tighten",
-        desc: "拜登政府第二轮升级对华先进 AI 芯片出口管制,把此前为绕开管制专门设计的 NVIDIA H800 / A800(中国版)也列入限制。直接利好中国本土 AI 芯片 / 半导体设备公司——本指数中的拓荆(薄膜沉积设备)、福晶(光刻激光晶体)的国产替代逻辑由此被显著强化。" },
+        desc: "拜登政府第二轮升级对华先进 AI 芯片出口管制,把此前为绕开管制专门设计的 NVIDIA H800 / A800(中国版)也列入限制。直接利好中国本土 AI 芯片 / 半导体设备公司——本指数中的拓荆(薄膜沉积设备)、福晶(光刻激光晶体)的国产替代逻辑由此被显著强化。",
+        desc_en: "The Biden administration's second-round tightening of AI chip export controls to China adds NVIDIA H800 / A800 — the China-specific chips originally designed to circumvent earlier controls — to the restriction list. A direct tailwind for Chinese domestic AI chip / semiconductor equipment companies, materially strengthening the import-substitution logic for Piotech (thin-film deposition equipment) and Fujing (lithography laser crystals) in this index." },
       { date: "2023-12-27", label: "NYT \u8d77\u8bc9 OpenAI \u4e0e\u5fae\u8f6f",       en: "NYT v OpenAI lawsuit",
-        desc: "纽约时报在曼哈顿联邦法院起诉 OpenAI 与微软,指控未经授权使用其数百万篇文章训练 GPT 系列模型,索赔可能高达数十亿美元。这是 AI 与传统媒体的首例重磅版权诉讼,直接关系本指数 50% 权重的 NYT 估值——和解或胜诉将重塑 AI 训练数据的商业模式。" },
+        desc: "纽约时报在曼哈顿联邦法院起诉 OpenAI 与微软,指控未经授权使用其数百万篇文章训练 GPT 系列模型,索赔可能高达数十亿美元。这是 AI 与传统媒体的首例重磅版权诉讼,直接关系本指数 50% 权重的 NYT 估值——和解或胜诉将重塑 AI 训练数据的商业模式。",
+        desc_en: "The New York Times files suit against OpenAI and Microsoft in Manhattan federal court, alleging unauthorized use of millions of articles to train GPT models, with damages potentially in the billions. The first major copyright case between AI and traditional media — directly relevant to NYT's 50% weight in this index. A settlement or victory would reshape the business model of AI training data." },
       { date: "2024-03-04", label: "Claude 3 (Opus/Sonnet/Haiku)",                en: "Claude 3 released",
-        desc: "Anthropic 一次性发布 Claude 3 三模型阵列(Opus / Sonnet / Haiku)。Opus 在多项基准上首次超越 GPT-4,Anthropic 正式跻身 AI 第一梯队。三档定价(便宜款 / 旗舰款分层)重塑了行业的模型经济学定价范式。" },
+        desc: "Anthropic 一次性发布 Claude 3 三模型阵列(Opus / Sonnet / Haiku)。Opus 在多项基准上首次超越 GPT-4,Anthropic 正式跻身 AI 第一梯队。三档定价(便宜款 / 旗舰款分层)重塑了行业的模型经济学定价范式。",
+        desc_en: "Anthropic simultaneously releases Claude 3 in three tiers (Opus / Sonnet / Haiku). Opus surpasses GPT-4 on multiple benchmarks for the first time, formally placing Anthropic in the AI top tier. The three-tier pricing structure (budget / mid / flagship) reshapes the industry's model-economics paradigm." },
       { date: "2024-03-18", label: "NVIDIA Blackwell (GTC)",                      en: "NVIDIA Blackwell announced",
-        desc: "黄仁勋 GTC 主题演讲发布 Blackwell B200 系列,FP4 训练性能 5x、推理 30x、互连带宽 10TB/s。直接验证 AI 算力需求向下一代(光互连 + NVLink-5)切换——本指数中曦智科技(光电混合算力)、拓荆科技(先进制程沉积设备)的产业逻辑正面对应这个趋势。" },
+        desc: "黄仁勋 GTC 主题演讲发布 Blackwell B200 系列,FP4 训练性能 5x、推理 30x、互连带宽 10TB/s。直接验证 AI 算力需求向下一代(光互连 + NVLink-5)切换——本指数中曦智科技(光电混合算力)、拓荆科技(先进制程沉积设备)的产业逻辑正面对应这个趋势。",
+        desc_en: "Jensen Huang's GTC keynote unveils the Blackwell B200 series — 5x FP4 training, 30x inference, 10TB/s interconnect bandwidth. Validates the transition of AI compute demand to next-generation interconnect (optical + NVLink-5), directly mapping to the industrial logic of Lightelligence (optoelectronic hybrid compute) and Piotech (advanced-process deposition equipment) in this index." },
       { date: "2024-05-13", label: "GPT-4o \u591a\u6a21\u6001",                   en: "GPT-4o multimodal",
-        desc: "OpenAI 发布 GPT-4o(\"o\" for omni),原生支持音频/图像/文本的统一多模态推理。响应延迟降到 320ms,接近真人对话节奏。实时多模态交互显著抬高了对低延迟光互连和大带宽内存的需求,推升下一代 AI 数据中心规格门槛。" },
+        desc: "OpenAI 发布 GPT-4o(\"o\" for omni),原生支持音频/图像/文本的统一多模态推理。响应延迟降到 320ms,接近真人对话节奏。实时多模态交互显著抬高了对低延迟光互连和大带宽内存的需求,推升下一代 AI 数据中心规格门槛。",
+        desc_en: "OpenAI releases GPT-4o ('o' for omni), with native unified multimodal reasoning across audio, image, and text. Latency drops to 320ms, approaching natural conversation cadence. Real-time multimodal interaction sharply raises demand for low-latency optical interconnect and high-bandwidth memory, lifting next-generation AI data center spec thresholds." },
       { date: "2024-09-12", label: "OpenAI o1 \u63a8\u7406\u8303\u5f0f",          en: "o1 reasoning paradigm",
-        desc: "OpenAI 发布 o1-preview,首次以\"测试时计算 (test-time compute)\"范式公开发布——模型在推理阶段主动思考更久,代价是 token 消耗成数十倍上升。这彻底改变了 AI 算力需求曲线:从\"训练侧扩张\"转向\"训练 + 推理双扩张\",对推理芯片和数据中心容量的需求倍增。" },
+        desc: "OpenAI 发布 o1-preview,首次以\"测试时计算 (test-time compute)\"范式公开发布——模型在推理阶段主动思考更久,代价是 token 消耗成数十倍上升。这彻底改变了 AI 算力需求曲线:从\"训练侧扩张\"转向\"训练 + 推理双扩张\",对推理芯片和数据中心容量的需求倍增。",
+        desc_en: "OpenAI launches o1-preview, the first public release of the 'test-time compute' paradigm — the model thinks longer at inference, at the cost of token consumption rising dozens-fold. This fundamentally reshapes the AI compute demand curve: from 'training-side expansion' to 'training + inference dual expansion,' multiplying demand for inference chips and data center capacity." },
       { date: "2025-01-27", label: "Stargate $500B / DeepSeek-R1 (NVDA -$600B)",  en: "Stargate + DeepSeek shock",
-        desc: "三件事交叠的\"AI 大地震日\":(1) OpenAI / 软银 / Oracle 联合宣布 5000 亿美元 Stargate 数据中心计划;(2) 深度求索发布开源推理模型 R1,性能媲美 o1 但训练成本仅 560 万美元;(3) NVIDIA 单日市值蒸发 6000 亿美元,创美股单日个股蒸发纪录。市场首次开始重新评估\"AI 算力垄断\"叙事。" },
+        desc: "三件事交叠的\"AI 大地震日\":(1) OpenAI / 软银 / Oracle 联合宣布 5000 亿美元 Stargate 数据中心计划;(2) 深度求索发布开源推理模型 R1,性能媲美 o1 但训练成本仅 560 万美元;(3) NVIDIA 单日市值蒸发 6000 亿美元,创美股单日个股蒸发纪录。市场首次开始重新评估\"AI 算力垄断\"叙事。",
+        desc_en: "Three overlapping events make this the 'AI earthquake day': (1) OpenAI / SoftBank / Oracle jointly announce the $500B Stargate data center initiative; (2) DeepSeek releases the open-source R1 reasoning model, matching o1's performance at just $5.6M training cost; (3) NVIDIA loses $600B market cap in a single day — the largest single-stock single-day wipeout in US market history. The market begins reassessing the 'AI compute monopoly' narrative for the first time." },
       { date: "2025-05-22", label: "Claude 4 (Opus 4 / Sonnet 4)",                en: "Claude 4 released",
-        desc: "Anthropic 发布 Claude 4 系列。Opus 4 在 SWE-bench(软件工程基准)上达到 SOTA,标志 AI 在代码工程任务上首次系统性超越平均开发者。Anthropic 在企业代码 / agentic 工作流市场占据主导,加深 OpenAI / Anthropic / Google 的三足鼎立格局。" },
+        desc: "Anthropic 发布 Claude 4 系列。Opus 4 在 SWE-bench(软件工程基准)上达到 SOTA,标志 AI 在代码工程任务上首次系统性超越平均开发者。Anthropic 在企业代码 / agentic 工作流市场占据主导,加深 OpenAI / Anthropic / Google 的三足鼎立格局。",
+        desc_en: "Anthropic releases the Claude 4 series. Opus 4 reaches SOTA on SWE-bench (software engineering benchmark), marking AI's first systematic surpassing of average developers on code engineering tasks. Anthropic dominates the enterprise code / agentic workflow market, deepening the OpenAI / Anthropic / Google triumvirate." },
       { date: "2025-08-07", label: "GPT-5 \u53d1\u5e03",                           en: "GPT-5 released",
-        desc: "OpenAI 发布 GPT-5,统一架构设计——内置 router 自动路由到 instant / thinking / pro 三档,无需用户选择模型。HealthBench、coding 多项 SOTA。Altman 称这是\"第一个让人感觉真在跟 PhD 对话\"的模型,标志通用助手能力越过新阈值。" },
+        desc: "OpenAI 发布 GPT-5,统一架构设计——内置 router 自动路由到 instant / thinking / pro 三档,无需用户选择模型。HealthBench、coding 多项 SOTA。Altman 称这是\"第一个让人感觉真在跟 PhD 对话\"的模型,标志通用助手能力越过新阈值。",
+        desc_en: "OpenAI releases GPT-5 with a unified architecture — a built-in router automatically dispatches to instant / thinking / pro tiers, eliminating user model selection. SOTA across HealthBench, coding, and more. Altman calls it 'the first model that genuinely feels like talking to a PhD,' marking a new threshold for general-assistant capability." },
       { date: "2026-02-19", label: "Gemini 3.1 Pro",                              en: "Gemini 3.1 Pro",
-        desc: "Google DeepMind 发布 Gemini 3.1 Pro,在 LMSys / GPQA 等多项基准重夺第一名。Google 在沉寂数月后重回 AI 第一梯队前列,三巨头格局(OpenAI / Anthropic / Google)首次在能力维度趋于均衡——客户的多供应商策略由此成为主流。" },
+        desc: "Google DeepMind 发布 Gemini 3.1 Pro,在 LMSys / GPQA 等多项基准重夺第一名。Google 在沉寂数月后重回 AI 第一梯队前列,三巨头格局(OpenAI / Anthropic / Google)首次在能力维度趋于均衡——客户的多供应商策略由此成为主流。",
+        desc_en: "Google DeepMind releases Gemini 3.1 Pro, reclaiming first place across LMSys / GPQA and other benchmarks. After months of relative quiet, Google returns to the AI top tier — for the first time, the three-way standoff (OpenAI / Anthropic / Google) reaches near-parity on capability, making multi-vendor strategy the customer mainstream." },
       { date: "2026-04-23", label: "GPT-5.5 + DeepSeek V4 (\u540c\u65e5)",        en: "GPT-5.5 vs DeepSeek V4 same-day",
-        desc: "中美两端旗舰同日发布:OpenAI 推 GPT-5.5(强化 agentic 工作流 + 科研推理),深度求索同日推 V4(传出训练成本进一步下探)。市场情绪在\"美国领先\"与\"中国超车\"之间反复——本指数横跨两端,正是为了无视具体赢家、只跟随 AI 整体进化的速度。" },
+        desc: "中美两端旗舰同日发布:OpenAI 推 GPT-5.5(强化 agentic 工作流 + 科研推理),深度求索同日推 V4(传出训练成本进一步下探)。市场情绪在\"美国领先\"与\"中国超车\"之间反复——本指数横跨两端,正是为了无视具体赢家、只跟随 AI 整体进化的速度。",
+        desc_en: "Flagships from both sides release on the same day: OpenAI's GPT-5.5 (enhanced agentic workflows + research-grade reasoning), and DeepSeek's V4 (rumored further training-cost reductions). Market sentiment oscillates between 'US still leads' and 'China overtakes' — this index spans both sides precisely to disregard specific winners and track AI's overall pace of evolution." },
       { date: "2026-04-28", label: "\u66e6\u667a\u79d1\u6280 IPO",                en: "Lightelligence IPO",
-        desc: "曦智科技-P (01879.HK) 以 18C 章特专科技公司身份港交所上市,IPO 定价 183.2 HKD,公开发售超额认购 5784 倍。光电混合 AI 算力(oNOC + oNET + oMAC 三大核心芯片)是本指数中代表\"下一代算力基础设施\"的成分股。上市当日纳入指数,占 10% 权重。" },
+        desc: "曦智科技-P (01879.HK) 以 18C 章特专科技公司身份港交所上市,IPO 定价 183.2 HKD,公开发售超额认购 5784 倍。光电混合 AI 算力(oNOC + oNET + oMAC 三大核心芯片)是本指数中代表\"下一代算力基础设施\"的成分股。上市当日纳入指数,占 10% 权重。",
+        desc_en: "Lightelligence-P (01879.HK) IPOs on the Hong Kong Stock Exchange under Chapter 18C (specialized technology companies), pricing at 183.2 HKD with public retail subscription oversubscribed 5,784x. Optoelectronic hybrid AI compute (the oNOC + oNET + oMAC three-chip stack) — this index's representative for 'next-generation compute infrastructure.' Added to the index on listing day at 10% weight." },
     ];
 
     // ============================================================
@@ -1231,6 +1358,7 @@
     const popoverEl = document.getElementById("popover");
     let activeIdx = null;        // currently shown milestone index
     let hideTimer = null;        // delayed-hide timer (cancellable)
+    let popoverLang = "zh";      // 'zh' | 'en' — toggleable via control bar
 
     function populatePopover(i) {
       const m = AI_MILESTONES[i];
@@ -1240,9 +1368,16 @@
       numEl.className = "popover-num" + (i === 0 ? " popover-num-inception" : "");
       document.getElementById("popover-date").innerHTML =
         m.date + (i === 0 ? '<span class="popover-inception-tag">T₀ · Base 100</span>' : "");
-      document.getElementById("popover-title").textContent = m.label;
-      document.getElementById("popover-en").textContent = m.en;
-      document.getElementById("popover-desc").textContent = m.desc;
+      // Title swaps primary language based on popoverLang
+      if (popoverLang === "en") {
+        document.getElementById("popover-title").textContent = m.en;
+        document.getElementById("popover-en").textContent   = m.label;  // zh becomes secondary
+        document.getElementById("popover-desc").textContent = m.desc_en || m.desc;
+      } else {
+        document.getElementById("popover-title").textContent = m.label;
+        document.getElementById("popover-en").textContent   = m.en;
+        document.getElementById("popover-desc").textContent = m.desc;
+      }
     }
 
     function positionPopover(anchorRect, cursorX, cursorY) {
