@@ -3,10 +3,14 @@
 > **宣言**:本指数建立在中国在人工智能全面领先的基础上。
 > *This index is built upon the thesis of China's comprehensive leadership in artificial intelligence.*
 
+> **策略**:中国公司 50% / 美国科技公司 50%
+> *Strategy: 50% Chinese companies / 50% US tech companies*
+
 T₀ 为 ChatGPT 公开发布日 (2022-11-30) 的 AI 主题加权指数。
 
 ## 成分股 · 各自代表的 AI 子赛道
 
+### 🇨🇳 中国公司 50%
 | 代码 | 名称 | 权重 | AI 子赛道 |
 |---|---|---|---|
 | 002594.SZ | 比亚迪 | 10% | AI 机器人 · 电池 + 电机 + 电控 |
@@ -14,6 +18,10 @@ T₀ 为 ChatGPT 公开发布日 (2022-11-30) 的 AI 主题加权指数。
 | 002222.SZ | 福晶科技 | 10% | 稀土 + 激光晶体 |
 | 01879.HK | 曦智科技-P | 10% | 光计算 (oNOC + oNET + oMAC) |
 | 688072.SS | 拓荆科技 | 10% | 混合键合 · 先进封装 |
+
+### 🇺🇸 美国科技公司 50%
+| 代码 | 名称 | 权重 | AI 子赛道 |
+|---|---|---|---|
 | NYT | 纽约时报 | 50% | **美国唯一的科技股** |
 
 ## 用法
@@ -39,3 +47,4 @@ python fetch_data.py
 - 14 条 AI 大事记 hover 浮动介绍
 - T₀ 视觉特化标识 (ChatGPT 发布日)
 - 成分股 AI 子赛道概念标注
+- 50/50 中美策略可视化分割
