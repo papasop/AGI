@@ -1254,6 +1254,26 @@
       return MILESTONE_CATEGORIES[key] || MILESTONE_CATEGORIES.llm;
     }
 
+    async function loadHeatEvents() {
+      try {
+        const r = await fetch("heat_events.json", { cache: "no-store" });
+        if (!r.ok) throw new Error("no heat_events.json");
+        const events = await r.json();
+        if (!Array.isArray(events)) return;
+        const normalized = events
+          .filter((event) => event && event.date && event.label)
+          .map((event) => ({
+            category: "twitter",
+            en: event.label,
+            desc: "",
+            desc_en: event.desc || "",
+            ...event,
+          }));
+        AI_MILESTONES.push(...normalized);
+        AI_MILESTONES.sort((a, b) => new Date(a.date) - new Date(b.date));
+      } catch (_) {}
+    }
+
     const AI_MILESTONES = [
       { date: "2022-11-30", category: "llm", label: "ChatGPT \u4e0a\u7ebf",                        en: "ChatGPT launched",
         desc: "OpenAI 发布基于 GPT-3.5 的对话产品 ChatGPT。5 天破百万用户、2 个月达 1 亿月活,创下消费产品最快增长纪录。本指数以这一天为 T₀,Base = 100,后续所有事件以这天为锚点参照。Generative AI 真正进入大众视野并撬动整条 AI 算力 / 应用产业链的零日。",
@@ -1300,9 +1320,6 @@
       { date: "2025-01-27", category: "llm", label: "Stargate $500B / DeepSeek-R1 (NVDA -$600B)",  en: "Stargate + DeepSeek shock",
         desc: "三件事交叠的\"AI 大地震日\":(1) OpenAI / 软银 / Oracle 联合宣布 5000 亿美元 Stargate 数据中心计划;(2) 深度求索发布开源推理模型 R1,性能媲美 o1 但训练成本仅 560 万美元;(3) NVIDIA 单日市值蒸发 6000 亿美元,创美股单日个股蒸发纪录。市场首次开始重新评估\"AI 算力垄断\"叙事。",
         desc_en: "Three overlapping events make this the 'AI earthquake day': (1) OpenAI / SoftBank / Oracle jointly announce the $500B Stargate data center initiative; (2) DeepSeek releases the open-source R1 reasoning model, matching o1's performance at just $5.6M training cost; (3) NVIDIA loses $600B market cap in a single day — the largest single-stock single-day wipeout in US market history. The market begins reassessing the 'AI compute monopoly' narrative for the first time." },
-      { date: "2025-01-28", category: "twitter", label: "DeepSeek-R1 推特热度峰值", en: "DeepSeek-R1 X heat spike",
-        desc: "DeepSeek-R1 发布后 24 小时内引发 X / Twitter 上的全球 AI 讨论峰值。本事件把“热度”视为一种市场事件: 由讨论人数、帖子密度、话题标签扩散、转发链路和跨圈层传播共同构成。它不代表单一新闻,而代表注意力从模型圈扩散到投资圈、政策圈和大众科技舆论场的瞬间。",
-        desc_en: "Within 24 hours of DeepSeek-R1's release, X / Twitter discussion reaches a global AI attention spike. This event treats attention as a market event: a composite of participant count, post density, topic/hashtag spread, repost chains, and cross-community diffusion. It is not a single headline; it marks the moment attention moves from model builders into investors, policy circles, and mainstream tech discourse." },
       { date: "2025-05-22", category: "llm", label: "Claude 4 (Opus 4 / Sonnet 4)",                en: "Claude 4 released",
         desc: "Anthropic 发布 Claude 4 系列。Opus 4 在 SWE-bench(软件工程基准)上达到 SOTA,标志 AI 在代码工程任务上首次系统性超越平均开发者。Anthropic 在企业代码 / agentic 工作流市场占据主导,加深 OpenAI / Anthropic / Google 的三足鼎立格局。",
         desc_en: "Anthropic releases the Claude 4 series. Opus 4 reaches SOTA on SWE-bench (software engineering benchmark), marking AI's first systematic surpassing of average developers on code engineering tasks. Anthropic dominates the enterprise code / agentic workflow market, deepening the OpenAI / Anthropic / Google triumvirate." },
@@ -2139,8 +2156,9 @@
       }
     });
 
-    loadData().then((d) => {
+    Promise.all([loadData(), loadHeatEvents()]).then(([d]) => {
       rawData = d;
+      renderMilestoneList();
       render();
     });
   </script>
