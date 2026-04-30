@@ -346,6 +346,16 @@
       padding: 20px;
       border: 1px solid #1d2740;
     }
+    .chart-top-controls {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .chart-top-controls .control-group {
+      flex-shrink: 0;
+    }
     #chart { height: 720px; }
     .stats {
       display: grid;
@@ -952,16 +962,6 @@
         <button data-type="candle" class="active"><span class="btn-main">K线</span><span class="btn-sub">Candle</span></button>
         <button data-type="line"><span class="btn-main">折线</span><span class="btn-sub">Line</span></button>
       </div>
-      <div class="control-group" id="asset-group">
-        <span class="control-group-label">标的</span>
-        <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
-        <button data-asset="002594.SZ"><span class="btn-main">BYD</span><span class="btn-sub">10%</span></button>
-        <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">10%</span></button>
-        <button data-asset="002222.SZ"><span class="btn-main">福晶</span><span class="btn-sub">10%</span></button>
-        <button data-asset="01879.HK"><span class="btn-main">曦智</span><span class="btn-sub">10%</span></button>
-        <button data-asset="688072.SS"><span class="btn-main">拓荆</span><span class="btn-sub">10%</span></button>
-        <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">50%</span></button>
-      </div>
       <div class="control-group" id="event-group">
         <span class="control-group-label">事件</span>
         <button data-event="all" class="active"><span class="btn-main">全部</span><span class="btn-sub">All</span></button>
@@ -971,6 +971,18 @@
     </div>
 
     <div class="chart-container">
+      <div class="chart-top-controls">
+        <div class="control-group" id="asset-group">
+          <span class="control-group-label">标的</span>
+          <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
+          <button data-asset="002594.SZ"><span class="btn-main">BYD</span><span class="btn-sub">10%</span></button>
+          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">10%</span></button>
+          <button data-asset="002222.SZ"><span class="btn-main">福晶</span><span class="btn-sub">10%</span></button>
+          <button data-asset="01879.HK"><span class="btn-main">曦智</span><span class="btn-sub">10%</span></button>
+          <button data-asset="688072.SS"><span class="btn-main">拓荆</span><span class="btn-sub">10%</span></button>
+          <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">50%</span></button>
+        </div>
+      </div>
       <div id="chart"></div>
     </div>
 
