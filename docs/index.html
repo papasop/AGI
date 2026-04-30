@@ -337,7 +337,7 @@
       padding: 20px;
       border: 1px solid #1d2740;
     }
-    #chart { height: 600px; }
+    #chart { height: 720px; }
     .stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -1091,6 +1091,20 @@
       return generateOHLC(seed, basePrice, dailyVol, drift, dates);
     }
 
+    function generateYieldPath(seed, baseYield, dailyVol, drift, dates, floor, ceiling) {
+      const rng = mulberry32(seed);
+      let close = baseYield;
+      return dates.map((date) => {
+        const change = (rng() - 0.5) * 2 * dailyVol + drift;
+        const open = close + (rng() - 0.5) * dailyVol * 0.35;
+        close = Math.min(ceiling, Math.max(floor, open + change));
+        const wick = (rng() * 0.5 + 0.2) * dailyVol;
+        const high = Math.min(ceiling, Math.max(open, close) + wick);
+        const low = Math.max(floor, Math.min(open, close) - wick);
+        return { date, open, high, low, close };
+      });
+    }
+
     // ============================================================
     //  Aggregation (D -> W / M)
     // ============================================================
@@ -1235,6 +1249,18 @@
             data: generateBenchmark(909, 10500, 0.016, 0.00045, dates),
           },
         },
+        yields: {
+          CN10Y: {
+            name: "中国10年国债",
+            ticker: "CN10Y",
+            data: generateYieldPath(1010, 2.85, 0.025, -0.0005, dates, 1.5, 4.0),
+          },
+          US10Y: {
+            name: "美国10年国债",
+            ticker: "^TNX",
+            data: generateYieldPath(2026, 3.7, 0.035, 0.0002, dates, 2.0, 6.0),
+          },
+        },
       };
     }
 
@@ -1308,17 +1334,29 @@
       };
     }
 
+    function getYieldData(period) {
+      const cn = rawData?.yields?.CN10Y?.data?.length ? aggregate(rawData.yields.CN10Y.data, period) : [];
+      const us = rawData?.yields?.US10Y?.data?.length ? aggregate(rawData.yields.US10Y.data, period) : [];
+      return {
+        cn: cn.map((d) => +d.close.toFixed(3)),
+        us: us.map((d) => +d.close.toFixed(3)),
+      };
+    }
+
     function buildOption(data, type) {
       const xs = data.map((d) => d.date);
       const ohlc = data.map((d) => [d.open, d.close, d.low, d.high]);
       const closes = data.map((d) => +d.close.toFixed(2));
       const milestones = buildMilestoneMarkLine(xs);
+      const yields = getYieldData(currentPeriod);
 
       const series =
         type === "candle"
           ? [{
               name: "领先中国AI指数",
               type: "candlestick",
+              xAxisIndex: 0,
+              yAxisIndex: 0,
               data: ohlc,
               itemStyle: {
                 color: "#ef5350",
@@ -1331,6 +1369,8 @@
           : [{
               name: "领先中国AI指数",
               type: "line",
+              xAxisIndex: 0,
+              yAxisIndex: 0,
               data: closes,
               smooth: true,
               symbol: "none",
@@ -1347,28 +1387,95 @@
               markLine: milestones,
             }];
 
+      series.push(
+        {
+          name: "中国10Y",
+          type: "line",
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          data: yields.cn,
+          smooth: true,
+          symbol: "none",
+          lineStyle: { color: "#ffd166", width: 1.6 },
+        },
+        {
+          name: "美国10Y",
+          type: "line",
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          data: yields.us,
+          smooth: true,
+          symbol: "none",
+          lineStyle: { color: "#26a69a", width: 1.6 },
+        }
+      );
+
       return {
         backgroundColor: "transparent",
         animation: true,
         animationDuration: 400,
-        grid: { left: 60, right: 30, top: 30, bottom: 70 },
-        xAxis: {
-          type: "category",
-          data: xs,
-          axisLine: { lineStyle: { color: "#2a3654" } },
-          axisLabel: { color: "#8a96b3" },
-          splitLine: { show: false },
+        legend: {
+          right: 24,
+          top: 500,
+          itemWidth: 16,
+          itemHeight: 8,
+          textStyle: { color: "#8a96b3", fontSize: 11 },
+          data: ["中国10Y", "美国10Y"],
         },
-        yAxis: {
-          scale: true,
-          axisLine: { show: false },
-          axisLabel: { color: "#8a96b3", formatter: (v) => v.toFixed(0) },
-          splitLine: { lineStyle: { color: "#1d2740" } },
-        },
+        graphic: [{
+          type: "text",
+          left: 60,
+          top: 500,
+          style: {
+            text: "中美10年国债收益率 · 10Y GOVERNMENT YIELDS",
+            fill: "#6b7a99",
+            font: "700 11px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+            letterSpacing: 1,
+          },
+        }],
+        grid: [
+          { left: 60, right: 30, top: 30, height: 455 },
+          { left: 60, right: 30, top: 525, height: 105 },
+        ],
+        xAxis: [
+          {
+            type: "category",
+            data: xs,
+            gridIndex: 0,
+            axisLine: { lineStyle: { color: "#2a3654" } },
+            axisLabel: { color: "#8a96b3" },
+            splitLine: { show: false },
+          },
+          {
+            type: "category",
+            data: xs,
+            gridIndex: 1,
+            axisLine: { lineStyle: { color: "#2a3654" } },
+            axisLabel: { color: "#8a96b3" },
+            splitLine: { show: false },
+          },
+        ],
+        yAxis: [
+          {
+            scale: true,
+            gridIndex: 0,
+            axisLine: { show: false },
+            axisLabel: { color: "#8a96b3", formatter: (v) => v.toFixed(0) },
+            splitLine: { lineStyle: { color: "#1d2740" } },
+          },
+          {
+            scale: true,
+            gridIndex: 1,
+            axisLine: { show: false },
+            axisLabel: { color: "#8a96b3", formatter: (v) => v.toFixed(1) + "%" },
+            splitLine: { lineStyle: { color: "#1d2740" } },
+          },
+        ],
         dataZoom: [
-          { type: "inside", start: ZOOM_DEFAULTS[currentPeriod].start, end: ZOOM_DEFAULTS[currentPeriod].end },
+          { type: "inside", xAxisIndex: [0, 1], start: ZOOM_DEFAULTS[currentPeriod].start, end: ZOOM_DEFAULTS[currentPeriod].end },
           {
             type: "slider",
+            xAxisIndex: [0, 1],
             show: true,
             backgroundColor: "transparent",
             fillerColor: "rgba(94,158,255,0.12)",
@@ -1388,9 +1495,15 @@
           borderColor: "#2a3654",
           textStyle: { color: "#e0e6f0" },
           formatter: (params) => {
-            const p = params[0];
+            const p = params.find((item) => item.seriesName === "领先中国AI指数") || params[0];
             const d = data[p.dataIndex];
             if (!d) return "";
+            const cn10 = yields.cn[p.dataIndex];
+            const us10 = yields.us[p.dataIndex];
+            const yieldRows = `<div style="margin-top:7px;padding-top:6px;border-top:1px solid rgba(42,54,84,0.8)">
+              <div>中国10Y: <b style="color:#ffd166">${Number.isFinite(cn10) ? cn10.toFixed(3) : "—"}%</b></div>
+              <div>美国10Y: <b style="color:#26a69a">${Number.isFinite(us10) ? us10.toFixed(3) : "—"}%</b></div>
+            </div>`;
             if (type === "candle") {
               const arrow = d.close >= d.open ? "▲" : "▼";
               const color = d.close >= d.open ? "#ef5350" : "#26a69a";
@@ -1398,10 +1511,12 @@
                 <div>开 Open : <b>${d.open.toFixed(2)}</b></div>
                 <div>高 High : <b>${d.high.toFixed(2)}</b></div>
                 <div>低 Low  : <b>${d.low.toFixed(2)}</b></div>
-                <div>收 Close: <b style="color:${color}">${arrow} ${d.close.toFixed(2)}</b></div>`;
+                <div>收 Close: <b style="color:${color}">${arrow} ${d.close.toFixed(2)}</b></div>
+                ${yieldRows}`;
             }
             return `<div style="font-weight:600;margin-bottom:6px">${d.date}</div>
-              <div>领先中国 AI: <b>${d.close.toFixed(2)}</b></div>`;
+              <div>领先中国 AI: <b>${d.close.toFixed(2)}</b></div>
+              ${yieldRows}`;
           },
         },
         series,
