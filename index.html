@@ -434,11 +434,22 @@
       box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.3);
     }
     .components-header-total {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      min-width: min(100%, 260px);
       color: #6b7a99;
       font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
+    }
+    .components-total-label {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: flex-end;
+      white-space: nowrap;
     }
     .total-mcap-value {
       display: inline-block;
@@ -448,6 +459,22 @@
       font-weight: 700;
       letter-spacing: 0.4px;
       font-variant-numeric: tabular-nums;
+    }
+    .total-cap-bar {
+      position: relative;
+      width: 100%;
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+    }
+    .total-cap-bar-fill {
+      display: block;
+      height: 100%;
+      width: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(255, 209, 102, 0.42), #ffd166);
     }
     .components-list {
       display: flex;
@@ -950,7 +977,10 @@
             <button data-rank="contribution">贡献</button>
           </div>
         </div>
-        <span class="components-header-total">总市值 / TOTAL CAP <span class="total-mcap-value" id="total-mcap">—</span></span>
+        <span class="components-header-total">
+          <span class="components-total-label"><span id="total-mcap-label">总市值 / TOTAL CAP</span><span class="total-mcap-value" id="total-mcap">—</span></span>
+          <span class="total-cap-bar" aria-hidden="true"><span class="total-cap-bar-fill"></span></span>
+        </span>
       </div>
       <div class="components-list" id="components-list"></div>
     </div>
@@ -1527,7 +1557,7 @@
       document.querySelector('[data-rank="mcap"]').textContent = t("市值", "Market Cap");
       document.querySelector('[data-rank="return"]').textContent = t("总涨幅", "Return");
       document.querySelector('[data-rank="contribution"]').textContent = t("贡献", "Contribution");
-      document.querySelector(".components-header-total").firstChild.textContent = t("总市值 / TOTAL CAP ", "TOTAL MARKET CAP ");
+      document.getElementById("total-mcap-label").textContent = t("总市值 / TOTAL CAP", "TOTAL MARKET CAP");
       document.querySelector(".milestones-header").textContent = t("AI 大事记", "AI Era Milestones");
       document.querySelector(".footer").innerHTML = t(
         'Data: 内置合成示例数据 (synthetic seeded sample, 含 CNY/USD) · 替换真实数据请用 <code>fetch_data.py</code> 生成 <code>data.json</code>',
@@ -1947,9 +1977,11 @@
         if (currentComponentRank === "contribution") return Math.abs(c.contribution);
         return c.weight * 100;
       };
-      const maxMetric = Math.max(...rows.map(metricValue), 0.0001);
+      const maxMetric = currentComponentRank === "mcap"
+        ? Math.max(totalMcap, 0.0001)
+        : Math.max(...rows.map(metricValue), 0.0001);
       const metricBar = (c, valueText, labelText, toneClass = "") => {
-        const pct = Math.max(3, Math.min(100, (metricValue(c) / maxMetric) * 100));
+        const pct = Math.max(0, Math.min(100, (metricValue(c) / maxMetric) * 100));
         return `<span class="component-metric ${toneClass}" style="--bar-pct:${pct.toFixed(1)}%">
           <span class="component-metric-main"><span>${valueText}</span><span class="component-metric-label">${labelText}</span></span>
           <span class="component-bar" aria-hidden="true"><span class="component-bar-fill"></span></span>
