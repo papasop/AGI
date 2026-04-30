@@ -391,6 +391,14 @@
       border-radius: 12px;
       padding: 16px 20px;
     }
+    .chart-container .components-panel {
+      margin-top: 18px;
+      padding: 18px 0 0;
+      background: transparent;
+      border: none;
+      border-top: 1px solid #1d2740;
+      border-radius: 0;
+    }
     .components-header {
       display: flex;
       justify-content: space-between;
@@ -984,28 +992,27 @@
         </div>
       </div>
       <div id="chart"></div>
+      <div class="components-panel">
+        <div class="components-header">
+          <div class="components-title-block">
+            <span class="components-header-title">成分股 · COMPONENTS · 各自代表的 AI 子赛道</span>
+            <div class="components-rank-toggle" id="components-rank-group" aria-label="Components ranking mode">
+              <button data-rank="weight" class="active">权重</button>
+              <button data-rank="mcap">市值</button>
+              <button data-rank="return">总涨幅</button>
+              <button data-rank="contribution">贡献</button>
+            </div>
+          </div>
+          <span class="components-header-total">
+            <span class="components-total-label"><span id="total-mcap-label">总市值 / TOTAL CAP</span><span class="total-mcap-value" id="total-mcap">—</span></span>
+            <span class="total-cap-bar" aria-hidden="true"><span class="total-cap-bar-fill"></span></span>
+          </span>
+        </div>
+        <div class="components-list" id="components-list"></div>
+      </div>
     </div>
 
     <div class="stats" id="stats"></div>
-
-    <div class="components-panel">
-      <div class="components-header">
-        <div class="components-title-block">
-          <span class="components-header-title">成分股 · COMPONENTS · 各自代表的 AI 子赛道</span>
-          <div class="components-rank-toggle" id="components-rank-group" aria-label="Components ranking mode">
-            <button data-rank="weight" class="active">权重</button>
-            <button data-rank="mcap">市值</button>
-            <button data-rank="return">总涨幅</button>
-            <button data-rank="contribution">贡献</button>
-          </div>
-        </div>
-        <span class="components-header-total">
-          <span class="components-total-label"><span id="total-mcap-label">总市值 / TOTAL CAP</span><span class="total-mcap-value" id="total-mcap">—</span></span>
-          <span class="total-cap-bar" aria-hidden="true"><span class="total-cap-bar-fill"></span></span>
-        </span>
-      </div>
-      <div class="components-list" id="components-list"></div>
-    </div>
 
     <div class="milestones">
       <div class="milestones-header">AI 大事记 · AI Era Milestones</div>
