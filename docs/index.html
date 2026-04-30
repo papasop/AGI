@@ -909,6 +909,14 @@
         <button data-type="candle" class="active"><span class="btn-main">K线</span><span class="btn-sub">Candle</span></button>
         <button data-type="line"><span class="btn-main">折线</span><span class="btn-sub">Line</span></button>
       </div>
+      <div class="control-group" id="event-group">
+        <span class="control-group-label">事件</span>
+        <button data-event="all" class="active"><span class="btn-main">全部</span><span class="btn-sub">All</span></button>
+        <button data-event="llm"><span class="btn-main">LLM</span><span class="btn-sub">LLM</span></button>
+        <button data-event="physical"><span class="btn-main">物理</span><span class="btn-sub">Physics</span></button>
+        <button data-event="paper"><span class="btn-main">论文</span><span class="btn-sub">Paper</span></button>
+        <button data-event="remarks"><span class="btn-main">言论</span><span class="btn-sub">Remarks</span></button>
+      </div>
     </div>
 
     <div class="chart-container">
@@ -1390,6 +1398,7 @@
     let currentRebalance = "PERIODIC";
     let currentPeriodDays = 5;          // 5 trading days = 1 calendar week
     let currentComponentRank = "weight";
+    let currentEventCategory = "all";
     let popoverLang = (() => {
       try {
         return localStorage.getItem("aiIndexPopoverLang") || "zh";
@@ -1484,6 +1493,12 @@
       document.querySelector("#type-group .control-group-label").textContent = t("图型", "Chart");
       document.querySelector('#type-group button[data-type="candle"] .btn-main').textContent = t("K线", "Candle");
       document.querySelector('#type-group button[data-type="line"] .btn-main').textContent = t("折线", "Line");
+      document.querySelector("#event-group .control-group-label").textContent = t("事件", "Events");
+      document.querySelector('#event-group button[data-event="all"] .btn-main').textContent = t("全部", "All");
+      document.querySelector('#event-group button[data-event="llm"] .btn-main').textContent = "LLM";
+      document.querySelector('#event-group button[data-event="physical"] .btn-main').textContent = t("物理", "Physical");
+      document.querySelector('#event-group button[data-event="paper"] .btn-main').textContent = t("论文", "Paper");
+      document.querySelector('#event-group button[data-event="remarks"] .btn-main').textContent = t("言论", "Remarks");
 
       document.querySelector(".components-header-title").textContent = t("成分股 · 各自代表的 AI 子赛道", "COMPONENTS · AI subsector represented by each holding");
       document.querySelector('[data-rank="weight"]').textContent = t("权重", "Weight");
@@ -1512,6 +1527,12 @@
       return best;
     }
 
+    function visibleMilestones() {
+      return AI_MILESTONES
+        .map((m, i) => ({ m, i }))
+        .filter(({ m }) => currentEventCategory === "all" || m.category === currentEventCategory);
+    }
+
     // Build the markLine config for AI milestones, snapped to the
     // current data's date axis.
     function buildMilestoneMarkLine(dates) {
@@ -1519,7 +1540,7 @@
         silent: false,
         symbol: ["none", "none"],
         animation: false,
-        data: AI_MILESTONES.map((m, i) => {
+        data: visibleMilestones().map(({ m, i }) => {
           // First milestone (ChatGPT) is the index inception — render it
           // distinctively: solid gold line + "T₀" badge instead of a number.
           const isInception = i === 0;
@@ -1811,6 +1832,17 @@
       currentType = btn.dataset.type;
       render();
     });
+    document.getElementById("event-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-event]");
+      if (!btn) return;
+      document.querySelectorAll("#event-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentEventCategory = btn.dataset.event;
+      activeIdx = null;
+      hidePopover();
+      renderMilestoneList();
+      if (rawData) render();
+    });
     document.getElementById("components-rank-group").addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-rank]");
       if (!btn) return;
@@ -1912,16 +1944,6 @@
 
     renderComponentsPanel();
 
-    // Render milestones legend below the chart (static, no per-render redraw)
-	    document.getElementById("milestones-list").innerHTML = AI_MILESTONES.map((m, i) =>
-	      `<div class="milestone" data-idx="${i}">
-	         <span class="milestone-num${i === 0 ? ' milestone-num-inception' : ''}">${i === 0 ? 'T\u2080' : i + 1}</span>
-	         <span class="milestone-date">${m.date}</span>
-	         <span class="milestone-category-slot"></span>
-	         <span class="milestone-title"></span>
-	       </div>`
-	    ).join("");
-
     // ----- Hover popover for milestone descriptions -----
     const popoverEl = document.getElementById("popover");
     const popoverLangGroup = document.getElementById("popover-lang-group");
@@ -1942,6 +1964,18 @@
         .join("");
     }
 
+    function renderMilestoneList() {
+      document.getElementById("milestones-list").innerHTML = visibleMilestones().map(({ i }) =>
+        `<div class="milestone" data-idx="${i}">
+           <span class="milestone-num${i === 0 ? ' milestone-num-inception' : ''}">${i === 0 ? 'T\u2080' : i + 1}</span>
+           <span class="milestone-date">${AI_MILESTONES[i].date}</span>
+           <span class="milestone-category-slot"></span>
+           <span class="milestone-title"></span>
+         </div>`
+      ).join("");
+      renderMilestoneTitles();
+    }
+
     function setPopoverLanguage(lang) {
       popoverLang = lang === "en" ? "en" : "zh";
       try {
@@ -1954,7 +1988,7 @@
       renderStaticLanguage();
       if (rawData) render();
       else renderComponentsPanel();
-      renderMilestoneTitles();
+      renderMilestoneList();
       if (activeIdx !== null) populatePopover(activeIdx);
     }
 
