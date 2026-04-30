@@ -719,7 +719,7 @@
       font-weight: 600;
       letter-spacing: 0.4px;
       transition: all 0.18s ease;
-      min-width: 32px;
+      min-width: 58px;
     }
     .floating-lang-toggle button:hover {
       color: #fff;
@@ -759,8 +759,8 @@
        the controls bar because its scope is global (affects all popovers throughout
        the page), unlike the chart controls which only affect the chart. -->
   <div class="floating-lang-toggle" id="popover-lang-group" title="悬浮窗语言 / Popover Language">
-    <button data-lang="zh" class="active">中</button>
-    <button data-lang="en">EN</button>
+    <button data-lang="zh" class="active">中文</button>
+    <button data-lang="en">English</button>
   </div>
 
   <div class="container">
@@ -1690,13 +1690,13 @@
     renderComponentsPanel();
 
     // Render milestones legend below the chart (static, no per-render redraw)
-    document.getElementById("milestones-list").innerHTML = AI_MILESTONES.map((m, i) =>
-      `<div class="milestone" data-idx="${i}">
-         <span class="milestone-num${i === 0 ? ' milestone-num-inception' : ''}">${i === 0 ? 'T\u2080' : i + 1}</span>
-         <span class="milestone-date">${m.date}</span>
-         <span>${m.label}${i === 0 ? ' <em style="color:#ffd166;font-style:normal;font-weight:600">· 指数起点</em>' : ''}</span>
-       </div>`
-    ).join("");
+	    document.getElementById("milestones-list").innerHTML = AI_MILESTONES.map((m, i) =>
+	      `<div class="milestone" data-idx="${i}">
+	         <span class="milestone-num${i === 0 ? ' milestone-num-inception' : ''}">${i === 0 ? 'T\u2080' : i + 1}</span>
+	         <span class="milestone-date">${m.date}</span>
+	         <span class="milestone-title"></span>
+	       </div>`
+	    ).join("");
 
     // ----- Hover popover for milestone descriptions -----
     const popoverEl = document.getElementById("popover");
@@ -1720,6 +1720,7 @@
       popoverLangGroup.querySelectorAll("button").forEach((btn) => {
         btn.classList.toggle("active", btn.dataset.lang === popoverLang);
       });
+      renderMilestoneTitles();
       if (activeIdx !== null) populatePopover(activeIdx);
     }
 
@@ -1732,6 +1733,20 @@
 
     function isPopoverControlTarget(node) {
       return Boolean(node && popoverLangGroup.contains(node));
+    }
+
+    function renderMilestoneTitles() {
+      document.querySelectorAll("#milestones-list .milestone").forEach((row) => {
+        const idx = parseInt(row.dataset.idx, 10);
+        const m = AI_MILESTONES[idx];
+        const titleEl = row.querySelector(".milestone-title");
+        if (!m || !titleEl) return;
+        const primary = popoverLang === "en" ? m.en : m.label;
+        const inception = idx === 0
+          ? (popoverLang === "en" ? ' <em style="color:#ffd166;font-style:normal;font-weight:600">· Index Start</em>' : ' <em style="color:#ffd166;font-style:normal;font-weight:600">· 指数起点</em>')
+          : "";
+        titleEl.innerHTML = primary + inception;
+      });
     }
 
     function populatePopover(i) {
