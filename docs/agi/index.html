@@ -53,6 +53,66 @@
       font-style: italic;
     }
 
+    /* === Strategy block (50/50 China vs US tech) === */
+    .strategy {
+      margin: 0 0 22px;
+    }
+    .strategy-tag {
+      color: #6b7a99;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      margin-bottom: 8px;
+    }
+    .strategy-bar {
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #1d2740;
+      min-height: 78px;
+    }
+    .strategy-bar-cn,
+    .strategy-bar-us {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px 22px;
+      gap: 6px;
+    }
+    .strategy-bar-cn {
+      background: linear-gradient(135deg, rgba(239, 83, 80, 0.22) 0%, rgba(239, 83, 80, 0.04) 100%);
+      border-right: 1px solid #2a3654;
+    }
+    .strategy-bar-us {
+      background: linear-gradient(135deg, rgba(94, 158, 255, 0.04) 0%, rgba(94, 158, 255, 0.22) 100%);
+    }
+    .strategy-bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .strategy-bar-label {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .strategy-bar-pct {
+      font-size: 24px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.5px;
+    }
+    .strategy-bar-cn .strategy-bar-pct { color: #ef5350; }
+    .strategy-bar-us .strategy-bar-pct { color: #5e9eff; }
+    .strategy-bar-detail {
+      font-size: 11px;
+      color: #8a96b3;
+      letter-spacing: 0.2px;
+    }
+
     /* === Meta strip (replaces subtitle) === */
     .meta-strip {
       display: grid;
@@ -427,6 +487,27 @@
       <div class="manifesto-zh">本指数建立在中国在人工智能全面领先的基础上。</div>
       <div class="manifesto-en">This index is built upon the thesis of China's comprehensive leadership in artificial intelligence.</div>
     </div>
+
+    <div class="strategy">
+      <div class="strategy-tag">策略 · STRATEGY · 50 / 50 SPLIT</div>
+      <div class="strategy-bar">
+        <div class="strategy-bar-cn">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇨🇳 中国公司</span>
+            <span class="strategy-bar-pct">50%</span>
+          </div>
+          <div class="strategy-bar-detail">BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10%</div>
+        </div>
+        <div class="strategy-bar-us">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇺🇸 美国科技公司</span>
+            <span class="strategy-bar-pct">50%</span>
+          </div>
+          <div class="strategy-bar-detail">NYT 50% · 唯一权重</div>
+        </div>
+      </div>
+    </div>
+
     <div class="meta-strip">
       <div class="meta-item">
         <div class="meta-label">起点 INCEPTION</div>
