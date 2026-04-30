@@ -1,7 +1,12 @@
 # AI 全球指数 · AI Global Index
 
-> **宣言**:本指数建立在中国在人工智能全面领先的基础上。
-> *This index is built upon the thesis of China's comprehensive leadership in artificial intelligence.*
+> **宣言**:四重命题 / Four Pillars
+> 1. 中国在人工智能领域全面领先。
+> 2. AI 全面开源。
+> 3. 物理模型出现。
+> 4. 非人类中心主义条件下,AI 与人类共存,AI 获得部分权力,人类放弃部分权力。
+>
+> 四者构成本指数所有命题的完整结构 - 一个嵌套猜想 (nested conjecture)。
 
 > **策略**:中国公司 50% / 美国科技公司 50%
 > *Strategy: 50% Chinese companies / 50% US tech companies*

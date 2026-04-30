@@ -38,19 +38,67 @@
       letter-spacing: 2.5px;
       margin-bottom: 6px;
     }
-    .manifesto-zh {
-      color: #fff;
-      font-size: 17px;
-      font-weight: 500;
-      line-height: 1.4;
-      letter-spacing: 0.3px;
+    .pillar-text .m-key {
+      color: #ffd166;
+      font-weight: 600;
+      border-bottom: 1px dashed rgba(255, 209, 102, 0.4);
+      padding-bottom: 1px;
     }
-    .manifesto-en {
+    .manifesto-pillars {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .manifesto-pillars li {
+      display: grid;
+      grid-template-columns: 22px 56px 1fr;
+      gap: 12px;
+      align-items: baseline;
+      color: #d5dceb;
+      line-height: 1.5;
+    }
+    .pillar-num {
+      color: #ffd166;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    .pillar-cat {
+      display: inline-block;
+      padding: 2px 0;
+      color: #ffd166;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-align: center;
+      background: rgba(255, 209, 102, 0.10);
+      border: 1px solid rgba(255, 209, 102, 0.28);
+      border-radius: 3px;
+    }
+    .pillar-text {
+      font-size: 14.5px;
+      color: #fff;
+    }
+    .pillar-en {
+      display: block;
       color: #8a96b3;
-      font-size: 11.5px;
-      margin-top: 4px;
-      letter-spacing: 0.2px;
+      font-size: 11px;
       font-style: italic;
+      letter-spacing: 0.2px;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+    .manifesto-footer {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 209, 102, 0.22);
+      font-size: 11.5px;
+      color: #6b7a99;
+      font-style: italic;
+      letter-spacing: 0.2px;
     }
 
     /* === Strategy block (50/50 China vs US tech) === */
@@ -483,9 +531,30 @@
   <div class="container">
     <h1>AI 全球指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">AI GLOBAL INDEX</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">宣言 · MANIFESTO</div>
-      <div class="manifesto-zh">本指数建立在中国在人工智能全面领先的基础上。</div>
-      <div class="manifesto-en">This index is built upon the thesis of China's comprehensive leadership in artificial intelligence.</div>
+      <div class="manifesto-tag">宣言 · MANIFESTO · 四重命题 / FOUR PILLARS</div>
+      <ol class="manifesto-pillars">
+        <li>
+          <span class="pillar-num">①</span>
+          <span class="pillar-cat">现状</span>
+          <span class="pillar-text">中国在人工智能领域<span class="m-key">全面领先</span><span class="pillar-en">China comprehensively leads in AI</span></span>
+        </li>
+        <li>
+          <span class="pillar-num">②</span>
+          <span class="pillar-cat">前提</span>
+          <span class="pillar-text">AI <span class="m-key">全面开源</span><span class="pillar-en">AI is fully open-source</span></span>
+        </li>
+        <li>
+          <span class="pillar-num">③</span>
+          <span class="pillar-cat">突破</span>
+          <span class="pillar-text"><span class="m-key">物理模型</span>出现<span class="pillar-en">Physical models emerge</span></span>
+        </li>
+        <li>
+          <span class="pillar-num">④</span>
+          <span class="pillar-cat">结论</span>
+          <span class="pillar-text"><span class="m-key">非人类中心主义</span>条件下,AI 与人类共存,AI 获得部分权力,人类放弃部分权力<span class="pillar-en">Under non-anthropocentrism - AI and humans coexist; AI gains partial agency, humans cede partial agency</span></span>
+        </li>
+      </ol>
+      <div class="manifesto-footer">四者构成本指数所有命题的完整结构 - 一个嵌套猜想 (nested conjecture)。</div>
     </div>
 
     <div class="strategy">
@@ -543,16 +612,10 @@
         <button data-type="candle" class="active"><span class="btn-main">K线</span><span class="btn-sub">Candle</span></button>
         <button data-type="line"><span class="btn-main">折线</span><span class="btn-sub">Line</span></button>
       </div>
-      <div class="control-group" id="ccy-group">
-        <span class="control-group-label">计价</span>
-        <button data-ccy="USD" class="active"><span class="btn-main">USD</span><span class="btn-sub">美元</span></button>
-        <button data-ccy="CNY"><span class="btn-main">CNY</span><span class="btn-sub">人民币</span></button>
-        <button data-ccy="LOCAL"><span class="btn-main">Local</span><span class="btn-sub">本币</span></button>
-      </div>
-      <div class="control-group" id="rebal-group">
-        <span class="control-group-label">再平衡</span>
-        <button data-rebal="PERIODIC" data-period="5" class="active"><span class="btn-main">每周</span><span class="btn-sub">Weekly</span></button>
-        <button data-rebal="PERIODIC" data-period="21"><span class="btn-main">每月</span><span class="btn-sub">Monthly</span></button>
+      <div class="control-group" id="popover-lang-group">
+        <span class="control-group-label">悬浮窗</span>
+        <button data-lang="zh" class="active"><span class="btn-main">中</span><span class="btn-sub">CN</span></button>
+        <button data-lang="en"><span class="btn-main">EN</span><span class="btn-sub">English</span></button>
       </div>
     </div>
 
@@ -1129,33 +1192,14 @@
       currentType = btn.dataset.type;
       render();
     });
-    document.getElementById("ccy-group").addEventListener("click", (e) => {
+    document.getElementById("popover-lang-group").addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
-      document.querySelectorAll("#ccy-group button").forEach((b) => b.classList.remove("active"));
+      document.querySelectorAll("#popover-lang-group button").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-      currentCurrency = btn.dataset.ccy;
-      document.getElementById("ccy-display").textContent = currentCurrency;
-      const detail = document.getElementById("ccy-detail");
-      if (detail) detail.textContent =
-        currentCurrency === "LOCAL" ? "本币混合 · 不折算汇率" :
-        currentCurrency === "CNY"   ? "全部折算为人民币" :
-                                      "全部折算为美元 (FX 历史汇率)";
-      render();
-    });
-    document.getElementById("rebal-group").addEventListener("click", (e) => {
-      const btn = e.target.closest("button");
-      if (!btn) return;
-      document.querySelectorAll("#rebal-group button").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      currentRebalance = btn.dataset.rebal;
-      currentPeriodDays = parseInt(btn.dataset.period || "0", 10);
-      const r = document.getElementById("rebal-display");
-      const d = document.getElementById("rebal-detail");
-      if (r) r.textContent = currentPeriodDays === 5 ? "Weekly" : "Monthly";
-      if (d) d.textContent = currentPeriodDays === 5
-        ? "每 5 个交易日重置权重" : "每 21 个交易日重置权重";
-      render();
+      popoverLang = btn.dataset.lang;
+      // If a popover is currently showing, refresh its content immediately
+      if (activeIdx !== null) populatePopover(activeIdx);
     });
     window.addEventListener("resize", () => chart.resize());
 
