@@ -1117,7 +1117,7 @@
         concept: "混合键合 · 先进封装",
         marketCap: 10.0,
         seed: 3000, base: 115, vol: 0.030, drift:  0.00125 },
-      { name: "\u7eb1\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD",
+      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD",
         concept: "美国唯一的科技股",
         marketCap: 11.0,
         seed: 7,    base:  36, vol: 0.014, drift:  0.00050 },
@@ -1210,6 +1210,7 @@
               type:  isInception ? "solid"  : "dashed",
               width: isInception ? 2        : 1,
             },
+            milestoneIdx: i,
           };
         }),
       };
@@ -1377,15 +1378,6 @@
       currentType = btn.dataset.type;
       render();
     });
-    document.getElementById("popover-lang-group").addEventListener("click", (e) => {
-      const btn = e.target.closest("button");
-      if (!btn) return;
-      document.querySelectorAll("#popover-lang-group button").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      popoverLang = btn.dataset.lang;
-      // If a popover is currently showing, refresh its content immediately
-      if (activeIdx !== null) populatePopover(activeIdx);
-    });
     window.addEventListener("resize", () => chart.resize());
 
     // ============================================================
@@ -1431,9 +1423,39 @@
 
     // ----- Hover popover for milestone descriptions -----
     const popoverEl = document.getElementById("popover");
+    const popoverLangGroup = document.getElementById("popover-lang-group");
     let activeIdx = null;        // currently shown milestone index
     let hideTimer = null;        // delayed-hide timer (cancellable)
-    let popoverLang = "zh";      // 'zh' | 'en' — toggleable via control bar
+    let popoverLang = (() => {
+      try {
+        return localStorage.getItem("aiIndexPopoverLang") || "zh";
+      } catch (_) {
+        return "zh";
+      }
+    })();
+
+    function setPopoverLanguage(lang) {
+      popoverLang = lang === "en" ? "en" : "zh";
+      try {
+        localStorage.setItem("aiIndexPopoverLang", popoverLang);
+      } catch (_) {}
+      document.documentElement.dataset.popoverLang = popoverLang;
+      popoverLangGroup.querySelectorAll("button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === popoverLang);
+      });
+      if (activeIdx !== null) populatePopover(activeIdx);
+    }
+
+    popoverLangGroup.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-lang]");
+      if (!btn) return;
+      setPopoverLanguage(btn.dataset.lang);
+    });
+    setPopoverLanguage(popoverLang);
+
+    function isPopoverControlTarget(node) {
+      return Boolean(node && popoverLangGroup.contains(node));
+    }
 
     function populatePopover(i) {
       const m = AI_MILESTONES[i];
@@ -1487,7 +1509,6 @@
 
     function showPopover(i, opts) {
       clearTimeout(hideTimer);
-      const sameAsActive = (activeIdx === i);
       activeIdx = i;
       populatePopover(i);
       // Make visible (display:block) so we can measure offsetWidth/Height
@@ -1521,6 +1542,7 @@
       const row = e.target.closest(".milestone");
       if (!row) return;
       // Only hide if the cursor truly left the row (and not into a child)
+      if (isPopoverControlTarget(e.relatedTarget)) return;
       if (!e.relatedTarget || !row.contains(e.relatedTarget)) hidePopover();
     });
 
@@ -1530,11 +1552,18 @@
         const ev = params.event && params.event.event;
         const cx = ev ? ev.clientX : window.innerWidth / 2;
         const cy = ev ? ev.clientY : window.innerHeight / 2;
-        showPopover(params.dataIndex, { cursorX: cx, cursorY: cy });
+        const idx = params.data && Number.isInteger(params.data.milestoneIdx)
+          ? params.data.milestoneIdx
+          : params.dataIndex;
+        showPopover(idx, { cursorX: cx, cursorY: cy });
       }
     });
     chart.on("mouseout", (params) => {
-      if (params.componentType === "markLine") hidePopover();
+      if (params.componentType === "markLine") {
+        const ev = params.event && params.event.event;
+        if (ev && isPopoverControlTarget(ev.relatedTarget)) return;
+        hidePopover();
+      }
     });
 
     loadData().then((d) => {

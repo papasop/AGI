@@ -49,7 +49,7 @@ COMPONENTS = [
     ("\u798f\u6676\u79d1\u6280", "Fujing",        "002222.SZ", 0.10, "CNY"),
     ("\u66e6\u667a\u79d1\u6280-P", "Lightelligence", "01879.HK",  0.10, "HKD"),
     ("\u62d3\u8346\u79d1\u6280", "Piotech",       "688072.SS", 0.10, "CNY"),
-    ("\u7eb1\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.50, "USD"),
+    ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.50, "USD"),
 ]
 
 SYNTHETIC_FALLBACKS = {
