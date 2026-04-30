@@ -818,35 +818,30 @@
   <div class="container">
     <h1>领先中国AI指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">LEADING CHINA AI INDEX</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">宣言 · MANIFESTO · 五重命题 / FIVE PILLARS</div>
+      <div class="manifesto-tag">宣言 · MANIFESTO · 四组证实 / 证伪 / FOUR TESTS</div>
       <ol class="manifesto-pillars">
         <li class="pillar pillar--realized">
           <span class="pillar-num">①</span>
-          <span class="pillar-cat pillar-cat--realized">前提</span>
-          <span class="pillar-text">中国在人工智能领域<span class="m-key">全面领先</span><span class="pillar-en">China comprehensively leads in AI</span></span>
+          <span class="pillar-cat pillar-cat--realized">格局</span>
+          <span class="pillar-text"><span class="m-key">中国崛起证实</span> · <span class="m-key">美国单极证伪</span><span class="pillar-en">China's rise confirmed · US unipolarity falsified</span></span>
         </li>
         <li class="pillar pillar--breakthrough">
           <span class="pillar-num">②</span>
-          <span class="pillar-cat pillar-cat--breakthrough">突破</span>
-          <span class="pillar-text"><span class="m-key">物理模型</span>出现<span class="pillar-en">Physical models emerge</span></span>
+          <span class="pillar-cat pillar-cat--breakthrough">范式</span>
+          <span class="pillar-text"><span class="m-key">物理模型证实</span> · <span class="m-key">纯 LLM 证伪</span><span class="pillar-en">Physical models confirmed · pure LLM paradigm falsified</span></span>
         </li>
         <li class="pillar pillar--pending">
           <span class="pillar-num">③</span>
-          <span class="pillar-cat pillar-cat--pending">猜想 1</span>
-          <span class="pillar-text">AI <span class="m-key">全面开源</span><span class="pillar-en">AI is fully open-source</span></span>
-        </li>
-        <li class="pillar pillar--pending">
-          <span class="pillar-num">④</span>
-          <span class="pillar-cat pillar-cat--pending">猜想 2</span>
+          <span class="pillar-cat pillar-cat--pending">算力</span>
           <span class="pillar-text"><span class="m-key">光计算证实</span> · <span class="m-key">量子计算证伪</span><span class="pillar-en">Photonic computing confirmed · Quantum computing falsified</span></span>
         </li>
         <li class="pillar pillar--pending">
-          <span class="pillar-num">⑤</span>
-          <span class="pillar-cat pillar-cat--pending">猜想 3</span>
-          <span class="pillar-text"><span class="m-key">非人类中心主义</span><span class="pillar-en">Non-anthropocentrism</span></span>
+          <span class="pillar-num">④</span>
+          <span class="pillar-cat pillar-cat--pending">哲学</span>
+          <span class="pillar-text"><span class="m-key">非人类中心证实</span> · <span class="m-key">人类中心证伪</span><span class="pillar-en">Non-anthropocentrism confirmed · anthropocentrism falsified</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">① 前提 (绿) · ② 待突破 (蓝) · ③④⑤ 三重猜想 (金) — 1 前提 + 1 突破 + 3 猜想 = 五重命题。<span class="manifesto-footer-en">① premise · ② pending breakthrough · ③④⑤ three conjectures — 1 + 1 + 3 = the five pillars.</span></div>
+      <div class="manifesto-footer">四组命题构成本指数的证实 / 证伪框架 — 地缘格局、模型范式、算力路径与主体哲学。<span class="manifesto-footer-en">The four tests define the index's confirmation / falsification frame: geopolitics, model paradigm, compute path, and agency philosophy.</span></div>
     </div>
 
     <div class="strategy">
@@ -1434,32 +1429,27 @@
         'Leading China AI Index <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">领先中国AI指数</span>'
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("宣言 · 五重命题", "MANIFESTO · FIVE PILLARS");
+      document.querySelector(".manifesto-tag").textContent = t("宣言 · 四组证实 / 证伪", "MANIFESTO · FOUR TESTS");
       const pillars = [
         {
-          cat: ["前提", "Premise"],
-          text: ['中国在人工智能领域<span class="m-key">全面领先</span>', 'China <span class="m-key">comprehensively leads</span> in AI'],
-          en: ["China comprehensively leads in AI", "中国在人工智能领域全面领先"],
+          cat: ["格局", "Order"],
+          text: ['<span class="m-key">中国崛起证实</span> · <span class="m-key">美国单极证伪</span>', '<span class="m-key">China’s rise confirmed</span> · <span class="m-key">US unipolarity falsified</span>'],
+          en: ["China's rise confirmed · US unipolarity falsified", "中国崛起证实 · 美国单极证伪"],
         },
         {
-          cat: ["突破", "Breakthrough"],
-          text: ['<span class="m-key">物理模型</span>出现', '<span class="m-key">Physical models</span> emerge'],
-          en: ["Physical models emerge", "物理模型出现"],
+          cat: ["范式", "Paradigm"],
+          text: ['<span class="m-key">物理模型证实</span> · <span class="m-key">纯 LLM 证伪</span>', '<span class="m-key">Physical models confirmed</span> · <span class="m-key">pure LLM paradigm falsified</span>'],
+          en: ["Physical models confirmed · pure LLM paradigm falsified", "物理模型证实 · 纯 LLM 证伪"],
         },
         {
-          cat: ["猜想 1", "Conjecture 1"],
-          text: ['AI <span class="m-key">全面开源</span>', 'AI becomes <span class="m-key">fully open-source</span>'],
-          en: ["AI is fully open-source", "AI 全面开源"],
+          cat: ["算力", "Compute"],
+          text: ['<span class="m-key">光计算证实</span> · <span class="m-key">量子计算证伪</span>', '<span class="m-key">Photonic computing confirmed</span> · <span class="m-key">quantum computing falsified</span>'],
+          en: ["Photonic computing confirmed · quantum computing falsified", "光计算证实 · 量子计算证伪"],
         },
         {
-          cat: ["猜想 2", "Conjecture 2"],
-          text: ['<span class="m-key">光计算证实</span> · <span class="m-key">量子计算证伪</span>', '<span class="m-key">Photonic computing confirmed</span> · <span class="m-key">Quantum computing falsified</span>'],
-          en: ["Photonic computing confirmed · Quantum computing falsified", "光计算证实 · 量子计算证伪"],
-        },
-        {
-          cat: ["猜想 3", "Conjecture 3"],
-          text: ['<span class="m-key">非人类中心主义</span>', '<span class="m-key">Non-anthropocentrism</span>'],
-          en: ["Non-anthropocentrism", "非人类中心主义"],
+          cat: ["哲学", "Agency"],
+          text: ['<span class="m-key">非人类中心证实</span> · <span class="m-key">人类中心证伪</span>', '<span class="m-key">Non-anthropocentrism confirmed</span> · <span class="m-key">anthropocentrism falsified</span>'],
+          en: ["Non-anthropocentrism confirmed · anthropocentrism falsified", "非人类中心证实 · 人类中心证伪"],
         },
       ];
       document.querySelectorAll(".manifesto-pillars li").forEach((row, i) => {
@@ -1469,8 +1459,8 @@
         row.querySelector(".pillar-text").innerHTML = `${t(p.text[0], p.text[1])}<span class="pillar-en">${t(p.en[0], p.en[1])}</span>`;
       });
       document.querySelector(".manifesto-footer").innerHTML = t(
-        '① 前提 (绿) · ② 待突破 (蓝) · ③④⑤ 三重猜想 (金) — 1 前提 + 1 突破 + 3 猜想 = 五重命题。<span class="manifesto-footer-en">① premise · ② pending breakthrough · ③④⑤ three conjectures — 1 + 1 + 3 = the five pillars.</span>',
-        '① Premise (green) · ② pending breakthrough (blue) · ③④⑤ three conjectures (gold) — 1 premise + 1 breakthrough + 3 conjectures = five pillars.<span class="manifesto-footer-en">① 前提 · ② 待突破 · ③④⑤ 三重猜想 — 五重命题。</span>'
+        '四组命题构成本指数的证实 / 证伪框架 — 地缘格局、模型范式、算力路径与主体哲学。<span class="manifesto-footer-en">Geopolitics · model paradigm · compute path · agency philosophy.</span>',
+        'The four tests define the index’s confirmation / falsification frame: geopolitics, model paradigm, compute path, and agency philosophy.<span class="manifesto-footer-en">四组命题构成本指数的证实 / 证伪框架。</span>'
       );
 
       document.querySelector(".strategy-tag").textContent = t("策略 · 50 / 50 配置", "STRATEGY · 50 / 50 SPLIT");
