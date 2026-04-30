@@ -1,0 +1,18 @@
+[
+  {
+    "date": "2025-01-28",
+    "category": "twitter",
+    "label": "DeepSeek-R1 推特热度峰值",
+    "en": "DeepSeek-R1 X heat spike",
+    "heatScore": 95,
+    "metrics": {
+      "participants": "very_high",
+      "postVolume": "very_high",
+      "topicSpread": "global",
+      "repostChain": "high",
+      "crossCircle": true
+    },
+    "desc": "DeepSeek-R1 发布后 24 小时内引发 X / Twitter 上的全球 AI 讨论峰值。本事件把“热度”视为一种市场事件: 由讨论人数、帖子密度、话题标签扩散、转发链路和跨圈层传播共同构成。它不代表单一新闻,而代表注意力从模型圈扩散到投资圈、政策圈和大众科技舆论场的瞬间。",
+    "desc_en": "Within 24 hours of DeepSeek-R1's release, X / Twitter discussion reaches a global AI attention spike. This event treats attention as a market event: a composite of participant count, post density, topic/hashtag spread, repost chains, and cross-community diffusion. It is not a single headline; it marks the moment attention moves from model builders into investors, policy circles, and mainstream tech discourse."
+  }
+]
