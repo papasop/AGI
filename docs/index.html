@@ -952,6 +952,16 @@
         <button data-type="candle" class="active"><span class="btn-main">K线</span><span class="btn-sub">Candle</span></button>
         <button data-type="line"><span class="btn-main">折线</span><span class="btn-sub">Line</span></button>
       </div>
+      <div class="control-group" id="asset-group">
+        <span class="control-group-label">标的</span>
+        <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
+        <button data-asset="002594.SZ"><span class="btn-main">BYD</span><span class="btn-sub">10%</span></button>
+        <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">10%</span></button>
+        <button data-asset="002222.SZ"><span class="btn-main">福晶</span><span class="btn-sub">10%</span></button>
+        <button data-asset="01879.HK"><span class="btn-main">曦智</span><span class="btn-sub">10%</span></button>
+        <button data-asset="688072.SS"><span class="btn-main">拓荆</span><span class="btn-sub">10%</span></button>
+        <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">50%</span></button>
+      </div>
       <div class="control-group" id="event-group">
         <span class="control-group-label">事件</span>
         <button data-event="all" class="active"><span class="btn-main">全部</span><span class="btn-sub">All</span></button>
@@ -1456,6 +1466,7 @@
     let currentCurrency = "USD"; // industry-standard default for global indices
     let currentRebalance = "PERIODIC";
     let currentPeriodDays = 5;          // 5 trading days = 1 calendar week
+    let currentChartAsset = "INDEX";
     let currentComponentRank = "weight";
     let currentEventCategory = "all";
     let popoverLang = (() => {
@@ -1547,6 +1558,12 @@
       document.querySelector("#type-group .control-group-label").textContent = t("图型", "Chart");
       document.querySelector('#type-group button[data-type="candle"] .btn-main').textContent = t("K线", "Candle");
       document.querySelector('#type-group button[data-type="line"] .btn-main').textContent = t("折线", "Line");
+      document.querySelector("#asset-group .control-group-label").textContent = t("标的", "Asset");
+      document.querySelector('#asset-group button[data-asset="INDEX"] .btn-main').textContent = t("指数", "Index");
+      document.querySelector('#asset-group button[data-asset="INDEX"] .btn-sub').textContent = t("Index", "Index");
+      document.querySelector('#asset-group button[data-asset="002222.SZ"] .btn-main').textContent = t("福晶", "Fujing");
+      document.querySelector('#asset-group button[data-asset="01879.HK"] .btn-main').textContent = t("曦智", "Light");
+      document.querySelector('#asset-group button[data-asset="688072.SS"] .btn-main').textContent = t("拓荆", "Piotech");
       document.querySelector("#event-group .control-group-label").textContent = t("事件", "Events");
       document.querySelector('#event-group button[data-event="all"] .btn-main').textContent = t("全部", "All");
       document.querySelector('#event-group button[data-event="paper"] .btn-main').textContent = t("论文", "Paper");
@@ -1631,13 +1648,58 @@
       };
     }
 
-    function buildOption(data, type) {
+    function convertedComponentIndex(component) {
+      if (!component?.data?.length) return [];
+      const firstClose = componentCloseInCurrency(component, 0);
+      return component.data.map((bar, i) => {
+        const r = convRate(component.ccy, currentCurrency, rawData.fx, i);
+        const scale = firstClose ? 100 / firstClose : 1;
+        return {
+          date: bar.date,
+          open: bar.open * r * scale,
+          high: bar.high * r * scale,
+          low: bar.low * r * scale,
+          close: bar.close * r * scale,
+        };
+      });
+    }
+
+    function chartAssetLabel(assetKey) {
+      if (assetKey === "INDEX") return t("领先中国AI指数", "Leading China AI Index");
+      const config = CONFIG_BY_TICKER[assetKey] || {};
+      const component = rawData?.components?.find((c) => c.ticker === assetKey);
+      const name = config.name || component?.name || assetKey;
+      const short = config.short || component?.short || assetKey;
+      return `${t(name, short)} · ${assetKey}`;
+    }
+
+    function getChartData() {
+      if (currentChartAsset === "INDEX") {
+        return {
+          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays), currentPeriod),
+          label: chartAssetLabel("INDEX"),
+        };
+      }
+      const component = rawData.components.find((c) => c.ticker === currentChartAsset);
+      if (!component) {
+        return {
+          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays), currentPeriod),
+          label: chartAssetLabel("INDEX"),
+        };
+      }
+      return {
+        data: aggregate(convertedComponentIndex(component), currentPeriod),
+        label: chartAssetLabel(currentChartAsset),
+      };
+    }
+
+    function buildOption(data, type, chartLabel) {
       const xs = data.map((d) => d.date);
       const ohlc = data.map((d) => [d.open, d.close, d.low, d.high]);
       const closes = data.map((d) => +d.close.toFixed(2));
       const milestones = buildMilestoneMarkLine(xs);
       const yields = getYieldData(currentPeriod);
-      const indexSeriesName = t("领先中国AI指数", "Leading China AI Index");
+      const indexSeriesName = chartLabel || t("领先中国AI指数", "Leading China AI Index");
       const cnYieldName = t("中国10Y", "China 10Y");
       const usYieldName = t("美国10Y", "US 10Y");
 
@@ -1806,7 +1868,7 @@
                 ${yieldRows}`;
             }
             return `<div style="font-weight:600;margin-bottom:6px">${d.date}</div>
-              <div>${t("领先中国 AI", "Leading China AI")}: <b>${d.close.toFixed(2)}</b></div>
+              <div>${indexSeriesName}: <b>${d.close.toFixed(2)}</b></div>
               ${yieldRows}`;
           },
         },
@@ -1860,9 +1922,9 @@
     }
 
     function render() {
-      const dailyIndex = buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays);
-      const data = aggregate(dailyIndex, currentPeriod);
-      chart.setOption(buildOption(data, currentType), true);
+      const chartData = getChartData();
+      const data = chartData.data;
+      chart.setOption(buildOption(data, currentType, chartData.label), true);
       updateStats(data);
       renderComponentsPanel();
     }
@@ -1881,6 +1943,14 @@
       document.querySelectorAll("#type-group button").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
       currentType = btn.dataset.type;
+      render();
+    });
+    document.getElementById("asset-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-asset]");
+      if (!btn) return;
+      document.querySelectorAll("#asset-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentChartAsset = btn.dataset.asset;
       render();
     });
     document.getElementById("event-group").addEventListener("click", (e) => {
