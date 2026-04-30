@@ -536,25 +536,49 @@
       letter-spacing: 0.2px;
     }
     .component-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex-shrink: 0;
+      min-width: 220px;
       color: #ffd166;
+    }
+    .component-metric-main {
+      display: flex;
+      align-items: baseline;
+      justify-content: flex-end;
+      gap: 5px;
       font-size: 12.5px;
       font-weight: 700;
       font-variant-numeric: tabular-nums;
       letter-spacing: 0.3px;
       white-space: nowrap;
-      flex-shrink: 0;
-      text-align: right;
-      min-width: 112px;
     }
     .component-metric.up { color: #ef5350; }
     .component-metric.down { color: #26a69a; }
     .component-metric-label {
-      display: inline-block;
-      margin-left: 5px;
       color: #4a5778;
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.2px;
+    }
+    .component-bar {
+      position: relative;
+      width: 100%;
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+    }
+    .component-bar-fill {
+      display: block;
+      height: 100%;
+      width: var(--bar-pct, 0%);
+      min-width: 3px;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(94, 158, 255, 0.56), currentColor);
+      transition: width 0.28s ease;
     }
     .milestones {
       margin-top: 18px;
@@ -782,6 +806,8 @@
       }
       .component-metric {
         margin-left: auto;
+        min-width: 160px;
+        flex: 1 1 160px;
       }
       .floating-lang-toggle {
         bottom: 12px;
@@ -1914,18 +1940,33 @@
         contribution: (a, b) => b.contribution - a.contribution,
       };
       rows.sort(sorters[currentComponentRank] || sorters.weight);
+      const metricValue = (c) => {
+        if (currentComponentRank === "weight") return c.weight * 100;
+        if (currentComponentRank === "mcap") return c.marketCap;
+        if (currentComponentRank === "return") return Math.abs(c.totalReturn);
+        if (currentComponentRank === "contribution") return Math.abs(c.contribution);
+        return c.weight * 100;
+      };
+      const maxMetric = Math.max(...rows.map(metricValue), 0.0001);
+      const metricBar = (c, valueText, labelText, toneClass = "") => {
+        const pct = Math.max(3, Math.min(100, (metricValue(c) / maxMetric) * 100));
+        return `<span class="component-metric ${toneClass}" style="--bar-pct:${pct.toFixed(1)}%">
+          <span class="component-metric-main"><span>${valueText}</span><span class="component-metric-label">${labelText}</span></span>
+          <span class="component-bar" aria-hidden="true"><span class="component-bar-fill"></span></span>
+        </span>`;
+      };
       document.getElementById("total-mcap").textContent = formatMcap(totalMcap);
       document.getElementById("components-list").innerHTML = rows.map((c, i) => {
         const isMajor = c.weight >= 0.5;
         const wPct = (c.weight * 100).toFixed(0);
         const metric =
           currentComponentRank === "weight"
-            ? `<span class="component-metric">${wPct}%<span class="component-metric-label">${t("权重", "Weight")}</span></span>`
+            ? metricBar(c, `${wPct}%`, t("权重", "Weight"))
             : currentComponentRank === "return"
-            ? `<span class="component-metric ${c.totalReturn >= 0 ? 'up' : 'down'}">${formatSignedPct(c.totalReturn)}<span class="component-metric-label">${t("总涨幅", "Return")}</span></span>`
+            ? metricBar(c, formatSignedPct(c.totalReturn), t("总涨幅", "Return"), c.totalReturn >= 0 ? "up" : "down")
             : currentComponentRank === "contribution"
-              ? `<span class="component-metric ${c.contribution >= 0 ? 'up' : 'down'}">${formatContribution(c.contribution)}<span class="component-metric-label">${t("贡献", "Contribution")}</span></span>`
-              : `<span class="component-metric">${formatMcap(c.marketCap)}<span class="component-metric-label">${c.mcapPct.toFixed(1)}%</span></span>`;
+              ? metricBar(c, formatContribution(c.contribution), t("贡献", "Contribution"), c.contribution >= 0 ? "up" : "down")
+              : metricBar(c, formatMcap(c.marketCap), `${c.mcapPct.toFixed(1)}%`);
         return `<div class="component-row">
           <span class="component-rank">${i + 1}</span>
           <span class="component-weight${isMajor ? ' weight-major' : ''}">${wPct}%</span>
