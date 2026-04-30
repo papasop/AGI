@@ -670,6 +670,10 @@
       letter-spacing: 0.2px;
       margin-bottom: 10px;
     }
+    .popover-en:empty {
+      display: none;
+      margin-bottom: 0;
+    }
     .popover-desc {
       color: #c5cdde;
       font-size: 12.5px;
@@ -1757,14 +1761,13 @@
       numEl.className = "popover-num" + (i === 0 ? " popover-num-inception" : "");
       document.getElementById("popover-date").innerHTML =
         m.date + (i === 0 ? '<span class="popover-inception-tag">T₀ · Base 100</span>' : "");
-      // Title swaps primary language based on popoverLang
       if (popoverLang === "en") {
         document.getElementById("popover-title").textContent = m.en;
-        document.getElementById("popover-en").textContent   = m.label;  // zh becomes secondary
+        document.getElementById("popover-en").textContent   = "";
         document.getElementById("popover-desc").textContent = m.desc_en || m.desc;
       } else {
         document.getElementById("popover-title").textContent = m.label;
-        document.getElementById("popover-en").textContent   = m.en;
+        document.getElementById("popover-en").textContent   = "";
         document.getElementById("popover-desc").textContent = m.desc;
       }
     }
