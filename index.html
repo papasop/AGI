@@ -441,16 +441,20 @@
       font-variant-numeric: tabular-nums;
     }
     .components-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
-      gap: 10px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
     .component-row {
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 13px;
-      padding: 4px 0;
+      padding: 9px 0;
+      border-top: 1px solid rgba(42, 54, 84, 0.48);
+    }
+    .component-row:first-child {
+      border-top: none;
     }
     .component-rank {
       display: inline-flex;
@@ -735,6 +739,17 @@
       box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.42);
     }
     @media (max-width: 640px) {
+      .component-row {
+        flex-wrap: wrap;
+        gap: 7px 9px;
+      }
+      .component-concept {
+        flex-basis: 100%;
+        padding-left: 70px;
+      }
+      .component-metric {
+        margin-left: auto;
+      }
       .floating-lang-toggle {
         bottom: 12px;
         right: 12px;
