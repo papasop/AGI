@@ -591,8 +591,7 @@
       border: 1px solid currentColor;
       background: rgba(255, 255, 255, 0.04);
     }
-    .milestone-category--meta { color: #5e9eff; }
-    .milestone-category--llm { color: #7aa7ff; }
+    .milestone-category--llm { color: #5e9eff; }
     .milestone-category--physical { color: #26a69a; }
     .milestone-category--infra { color: #8a96b3; }
     .milestone-category--paper { color: #ffd166; }
@@ -914,7 +913,6 @@
       <div class="control-group" id="event-group">
         <span class="control-group-label">事件</span>
         <button data-event="all" class="active"><span class="btn-main">全部</span><span class="btn-sub">All</span></button>
-        <button data-event="meta"><span class="btn-main">元事件</span><span class="btn-sub">GPT</span></button>
         <button data-event="physical"><span class="btn-main">物理</span><span class="btn-sub">World</span></button>
         <button data-event="paper"><span class="btn-main">论文</span><span class="btn-sub">Paper</span></button>
         <button data-event="remarks"><span class="btn-main">言论</span><span class="btn-sub">Remarks</span></button>
@@ -1213,19 +1211,12 @@
     // appears in the legend below. Edit freely — buildMilestoneMarkLine
     // snaps each date to the nearest available bar in the current view.
     const MILESTONE_CATEGORIES = {
-      meta: {
-        zh: "元事件",
-        en: "Meta",
-        color: "#5e9eff",
-        bg: "rgba(94, 158, 255, 0.16)",
-        line: "rgba(94, 158, 255, 0.34)",
-      },
       llm: {
         zh: "LLM",
         en: "LLM",
-        color: "#7aa7ff",
-        bg: "rgba(122, 167, 255, 0.14)",
-        line: "rgba(122, 167, 255, 0.30)",
+        color: "#5e9eff",
+        bg: "rgba(94, 158, 255, 0.16)",
+        line: "rgba(94, 158, 255, 0.34)",
       },
       physical: {
         zh: "物理世界",
@@ -1262,10 +1253,10 @@
     }
 
     const AI_MILESTONES = [
-      { date: "2022-11-30", category: "meta", metaEvent: true, label: "ChatGPT \u4e0a\u7ebf",                        en: "ChatGPT launched",
+      { date: "2022-11-30", category: "llm", label: "ChatGPT \u4e0a\u7ebf",                        en: "ChatGPT launched",
         desc: "OpenAI 发布基于 GPT-3.5 的对话产品 ChatGPT。5 天破百万用户、2 个月达 1 亿月活,创下消费产品最快增长纪录。本指数以这一天为 T₀,Base = 100,后续所有事件以这天为锚点参照。Generative AI 真正进入大众视野并撬动整条 AI 算力 / 应用产业链的零日。",
         desc_en: "OpenAI launches ChatGPT, built on GPT-3.5. It hits 1M users in 5 days and 100M monthly actives in 2 months — the fastest consumer-product adoption in history. This index uses this date as T₀, with Base = 100; all subsequent events are anchored here. Day zero of generative AI entering mainstream awareness and reshaping the entire AI compute / application stack." },
-      { date: "2023-03-14", category: "meta", metaEvent: true, label: "GPT-4 \u53d1\u5e03",                          en: "GPT-4 released",
+      { date: "2023-03-14", category: "llm", label: "GPT-4 \u53d1\u5e03",                          en: "GPT-4 released",
         desc: "OpenAI 发布 GPT-4,首个大规模多模态(图文输入)旗舰模型。律师/医师/编程考试达到人类前 10% 水平。这是企业级 AI 投资真正起点——硅谷大厂从此开启 capex 军备竞赛,推动 NVDA 股价开始第一轮加速,中游半导体设备 / 上游光学晶体的需求逻辑也随之确立。",
         desc_en: "OpenAI releases GPT-4, the first large-scale multimodal (text + image) flagship. Achieves top-10% human performance on bar, medical, and coding exams. The real beginning of enterprise AI investment — Silicon Valley enters capex arms-race mode, kicking off NVIDIA's first major stock surge and establishing the demand logic for mid-stream semiconductor equipment and upstream optical crystals." },
       { date: "2023-03-22", category: "paper", label: "Sparks of AGI 论文", en: "Sparks of AGI paper",
@@ -1292,10 +1283,10 @@
       { date: "2024-05-08", category: "physical", label: "AlphaFold 3", en: "AlphaFold 3",
         desc: "Google DeepMind 与 Isomorphic Labs 发布 AlphaFold 3,可预测生命分子结构及相互作用。它把 AI 从文本/代码/图像进一步推向生命科学中的物理结构建模,是“AI 物理模型化”的关键样本。",
         desc_en: "Google DeepMind and Isomorphic Labs introduce AlphaFold 3, which predicts the structure and interactions of life's molecules. It pushes AI beyond text, code, and images into physical structure modeling in life sciences, a key example of AI becoming a physical-modeling layer." },
-      { date: "2024-05-13", category: "meta", metaEvent: true, label: "GPT-4o \u591a\u6a21\u6001",                   en: "GPT-4o multimodal",
+      { date: "2024-05-13", category: "llm", label: "GPT-4o \u591a\u6a21\u6001",                   en: "GPT-4o multimodal",
         desc: "OpenAI 发布 GPT-4o(\"o\" for omni),原生支持音频/图像/文本的统一多模态推理。响应延迟降到 320ms,接近真人对话节奏。实时多模态交互显著抬高了对低延迟光互连和大带宽内存的需求,推升下一代 AI 数据中心规格门槛。",
         desc_en: "OpenAI releases GPT-4o ('o' for omni), with native unified multimodal reasoning across audio, image, and text. Latency drops to 320ms, approaching natural conversation cadence. Real-time multimodal interaction sharply raises demand for low-latency optical interconnect and high-bandwidth memory, lifting next-generation AI data center spec thresholds." },
-      { date: "2024-09-12", category: "meta", metaEvent: true, label: "OpenAI o1 \u63a8\u7406\u8303\u5f0f",          en: "o1 reasoning paradigm",
+      { date: "2024-09-12", category: "llm", label: "OpenAI o1 \u63a8\u7406\u8303\u5f0f",          en: "o1 reasoning paradigm",
         desc: "OpenAI 发布 o1-preview,首次以\"测试时计算 (test-time compute)\"范式公开发布——模型在推理阶段主动思考更久,代价是 token 消耗成数十倍上升。这彻底改变了 AI 算力需求曲线:从\"训练侧扩张\"转向\"训练 + 推理双扩张\",对推理芯片和数据中心容量的需求倍增。",
         desc_en: "OpenAI launches o1-preview, the first public release of the 'test-time compute' paradigm — the model thinks longer at inference, at the cost of token consumption rising dozens-fold. This fundamentally reshapes the AI compute demand curve: from 'training-side expansion' to 'training + inference dual expansion,' multiplying demand for inference chips and data center capacity." },
       { date: "2024-09-13", category: "physical", label: "李飞飞 World Labs", en: "Fei-Fei Li's World Labs",
@@ -1313,7 +1304,7 @@
       { date: "2025-06-11", category: "physical", label: "杨立坤 V-JEPA 2", en: "Yann LeCun V-JEPA 2",
         desc: "Meta 发布 V-JEPA 2,延续杨立坤 JEPA/世界模型路线,强调通过视频学习物理世界表征,让机器人和智能体预测行动后的世界变化。它把“不是下一个 token,而是预测世界状态”推到主线叙事。",
         desc_en: "Meta introduces V-JEPA 2, extending Yann LeCun's JEPA/world-model program. The model learns physical-world representations from video so robots and agents can predict how the world changes after actions. It pushes the narrative from 'predicting the next token' toward predicting future world states." },
-      { date: "2025-08-07", category: "meta", metaEvent: true, label: "GPT-5 \u53d1\u5e03",                           en: "GPT-5 released",
+      { date: "2025-08-07", category: "llm", label: "GPT-5 \u53d1\u5e03",                           en: "GPT-5 released",
         desc: "OpenAI 发布 GPT-5,统一架构设计——内置 router 自动路由到 instant / thinking / pro 三档,无需用户选择模型。HealthBench、coding 多项 SOTA。Altman 称这是\"第一个让人感觉真在跟 PhD 对话\"的模型,标志通用助手能力越过新阈值。",
         desc_en: "OpenAI releases GPT-5 with a unified architecture — a built-in router automatically dispatches to instant / thinking / pro tiers, eliminating user model selection. SOTA across HealthBench, coding, and more. Altman calls it 'the first model that genuinely feels like talking to a PhD,' marking a new threshold for general-assistant capability." },
       { date: "2025-11-17", category: "physical", label: "Project Prometheus", en: "Project Prometheus",
@@ -1322,7 +1313,7 @@
       { date: "2026-02-19", category: "llm", label: "Gemini 3.1 Pro",                              en: "Gemini 3.1 Pro",
         desc: "Google DeepMind 发布 Gemini 3.1 Pro,在 LMSys / GPQA 等多项基准重夺第一名。Google 在沉寂数月后重回 AI 第一梯队前列,三巨头格局(OpenAI / Anthropic / Google)首次在能力维度趋于均衡——客户的多供应商策略由此成为主流。",
         desc_en: "Google DeepMind releases Gemini 3.1 Pro, reclaiming first place across LMSys / GPQA and other benchmarks. After months of relative quiet, Google returns to the AI top tier — for the first time, the three-way standoff (OpenAI / Anthropic / Google) reaches near-parity on capability, making multi-vendor strategy the customer mainstream." },
-      { date: "2026-04-23", category: "meta", metaEvent: true, label: "GPT-5.5 + DeepSeek V4 (\u540c\u65e5)",        en: "GPT-5.5 vs DeepSeek V4 same-day",
+      { date: "2026-04-23", category: "llm", label: "GPT-5.5 + DeepSeek V4 (\u540c\u65e5)",        en: "GPT-5.5 vs DeepSeek V4 same-day",
         desc: "中美两端旗舰同日发布:OpenAI 推 GPT-5.5(强化 agentic 工作流 + 科研推理),深度求索同日推 V4(传出训练成本进一步下探)。市场情绪在\"美国领先\"与\"中国超车\"之间反复——本指数横跨两端,正是为了无视具体赢家、只跟随 AI 整体进化的速度。",
         desc_en: "Flagships from both sides release on the same day: OpenAI's GPT-5.5 (enhanced agentic workflows + research-grade reasoning), and DeepSeek's V4 (rumored further training-cost reductions). Market sentiment oscillates between 'US still leads' and 'China overtakes' — this index spans both sides precisely to disregard specific winners and track AI's overall pace of evolution." },
       { date: "2026-04-28", category: "infra", label: "\u66e6\u667a\u79d1\u6280 IPO",                en: "Lightelligence IPO",
@@ -1520,7 +1511,6 @@
       document.querySelector('#type-group button[data-type="line"] .btn-main').textContent = t("折线", "Line");
       document.querySelector("#event-group .control-group-label").textContent = t("事件", "Events");
       document.querySelector('#event-group button[data-event="all"] .btn-main').textContent = t("全部", "All");
-      document.querySelector('#event-group button[data-event="meta"] .btn-main').textContent = t("元事件", "Meta");
       document.querySelector('#event-group button[data-event="physical"] .btn-main').textContent = t("物理", "World");
       document.querySelector('#event-group button[data-event="paper"] .btn-main').textContent = t("论文", "Paper");
       document.querySelector('#event-group button[data-event="remarks"] .btn-main').textContent = t("言论", "Remarks");
@@ -1555,11 +1545,7 @@
     function visibleMilestones() {
       return AI_MILESTONES
         .map((m, i) => ({ m, i }))
-        .filter(({ m }) => {
-          if (currentEventCategory === "all") return true;
-          if (currentEventCategory === "meta") return Boolean(m.metaEvent);
-          return m.category === currentEventCategory;
-        });
+        .filter(({ m }) => currentEventCategory === "all" || m.category === currentEventCategory);
     }
 
     // Build the markLine config for AI milestones, snapped to the
