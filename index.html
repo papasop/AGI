@@ -1087,6 +1087,10 @@
       });
     }
 
+    function generateBenchmark(seed, basePrice, dailyVol, drift, dates) {
+      return generateOHLC(seed, basePrice, dailyVol, drift, dates);
+    }
+
     // ============================================================
     //  Aggregation (D -> W / M)
     // ============================================================
@@ -1223,6 +1227,13 @@
         fx: {
           CNY: generateFX(2024, 7.05, 0.0035, 0.000020, dates),  // CNY per USD: 7.05 -> ~7.15
           HKD: generateFX(2022, 7.80, 0.0008, 0,        dates),  // HKD/USD peg: ~7.80
+        },
+        benchmarks: {
+          NASDAQ: {
+            name: "Nasdaq Composite",
+            ticker: "^IXIC",
+            data: generateBenchmark(909, 10500, 0.016, 0.00045, dates),
+          },
         },
       };
     }
@@ -1402,15 +1413,21 @@
       const prev = data[data.length - 2] || last;
       const change = last.close - prev.close;
       const pct = (change / prev.close) * 100;
-      const recent = data.slice(-Math.min(52, data.length));
-      const hi = Math.max(...recent.map((d) => d.high));
-      const lo = Math.min(...recent.map((d) => d.low));
       const since = data[0].close;
       const totalPct = ((last.close - since) / since) * 100;
+      const benchmark = rawData?.benchmarks?.NASDAQ?.data?.length
+        ? aggregate(rawData.benchmarks.NASDAQ.data, currentPeriod)
+        : [];
+      const benchmarkFirst = benchmark[0]?.close || 0;
+      const benchmarkLast = benchmark[benchmark.length - 1]?.close || 0;
+      const benchmarkPct = benchmarkFirst ? ((benchmarkLast - benchmarkFirst) / benchmarkFirst) * 100 : 0;
+      const spreadPct = totalPct - benchmarkPct;
 
       const cls = change >= 0 ? "up" : "down";
       const arrow = change >= 0 ? "▲" : "▼";
       const totalCls = totalPct >= 0 ? "up" : "down";
+      const benchmarkCls = benchmarkPct >= 0 ? "up" : "down";
+      const spreadText = `${spreadPct >= 0 ? "+" : ""}${spreadPct.toFixed(2)}pt vs Index`;
 
       document.getElementById("stats").innerHTML = `
         <div class="stat">
@@ -1422,16 +1439,13 @@
           <div class="stat-value ${cls}">${arrow} ${Math.abs(change).toFixed(2)} (${pct.toFixed(2)}%)</div>
         </div>
         <div class="stat">
-          <div class="stat-label">区间高 Period High</div>
-          <div class="stat-value">${hi.toFixed(2)}</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">区间低 Period Low</div>
-          <div class="stat-value">${lo.toFixed(2)}</div>
-        </div>
-        <div class="stat">
           <div class="stat-label">累计 Since Start</div>
           <div class="stat-value ${totalCls}">${totalPct >= 0 ? "+" : ""}${totalPct.toFixed(2)}%</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">NASDAQ 同期</div>
+          <div class="stat-value ${benchmarkCls}">${benchmarkPct >= 0 ? "+" : ""}${benchmarkPct.toFixed(2)}%</div>
+          <div class="meta-detail">${spreadText}</div>
         </div>
       `;
     }

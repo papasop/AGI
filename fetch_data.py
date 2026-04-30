@@ -161,6 +161,15 @@ def main():
     fx_cny = fx_cny.reindex(common).ffill().bfill()
     fx_hkd = fx_hkd.reindex(common).ffill().bfill()
 
+    # 3b) Fetch benchmark, aligned to the same anchor calendar.
+    print("Fetching benchmark NASDAQ (^IXIC) ...")
+    nasdaq = fetch_ohlc("^IXIC", args.start, args.end)
+    if nasdaq.empty:
+        print("  WARNING: empty benchmark result for ^IXIC")
+    nasdaq_aligned = nasdaq.reindex(common).ffill().bfill()
+    if nasdaq_aligned.isna().any().any():
+        raise SystemExit("NASDAQ benchmark data missing; cannot align ^IXIC.")
+
     # 4) Align each component; back/forward-fill late-IPO gaps
     components_out = []
     fallback_notes = {}
@@ -212,6 +221,13 @@ def main():
             "CNY": [{"date": idx, "rate": float(r)} for idx, r in fx_cny.items()],
             "HKD": [{"date": idx, "rate": float(r)} for idx, r in fx_hkd.items()],
         },
+        "benchmarks": {
+            "NASDAQ": {
+                "name": "Nasdaq Composite",
+                "ticker": "^IXIC",
+                "data": to_records(nasdaq_aligned),
+            },
+        },
     }
     with open(args.out, "w") as f:
         json.dump(payload, f, separators=(",", ":"))
@@ -223,6 +239,9 @@ def main():
           f"({(fx_cny.iloc[-1]/fx_cny.iloc[0] - 1) * 100:+.2f}%)")
     print(f"  HKD/USD:    {fx_hkd.iloc[0]:.4f} \u2192 {fx_hkd.iloc[-1]:.4f}  "
           f"({(fx_hkd.iloc[-1]/fx_hkd.iloc[0] - 1) * 100:+.2f}%)")
+    print(f"  NASDAQ:     {nasdaq_aligned['Close'].iloc[0]:.2f} \u2192 "
+          f"{nasdaq_aligned['Close'].iloc[-1]:.2f}  "
+          f"({(nasdaq_aligned['Close'].iloc[-1]/nasdaq_aligned['Close'].iloc[0] - 1) * 100:+.2f}%)")
 
 
 if __name__ == "__main__":
