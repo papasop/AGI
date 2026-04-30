@@ -23,50 +23,148 @@
       font-size: 28px;
       letter-spacing: 0.5px;
     }
-    .subtitle {
-      color: #6b7a99;
-      margin-bottom: 24px;
-      font-size: 14px;
+    /* === Manifesto block === */
+    .manifesto {
+      margin: 4px 0 20px;
+      padding: 16px 22px;
+      background: linear-gradient(90deg, rgba(255, 209, 102, 0.10) 0%, rgba(255, 209, 102, 0.02) 100%);
+      border-left: 3px solid #ffd166;
+      border-radius: 6px;
     }
+    .manifesto-tag {
+      color: #ffd166;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      margin-bottom: 6px;
+    }
+    .manifesto-zh {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.3px;
+    }
+    .manifesto-en {
+      color: #8a96b3;
+      font-size: 11.5px;
+      margin-top: 4px;
+      letter-spacing: 0.2px;
+      font-style: italic;
+    }
+
+    /* === Meta strip (replaces subtitle) === */
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 4px 0 22px;
+    }
+    .meta-item {
+      background: linear-gradient(180deg, #131a2b 0%, #10172690 100%);
+      border: 1px solid #1d2740;
+      border-radius: 10px;
+      padding: 14px 18px;
+      transition: border-color 0.18s ease;
+    }
+    .meta-item:hover { border-color: #2a3654; }
+    .meta-label {
+      color: #6b7a99;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      margin-bottom: 8px;
+    }
+    .meta-value {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+    .meta-value sub {
+      font-size: 0.7em;
+      color: #ffd166;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .meta-detail {
+      color: #4a5778;
+      font-size: 11px;
+      margin-top: 5px;
+      letter-spacing: 0.2px;
+    }
+
+    /* === Controls (capsule pills with grouped label + buttons) === */
     .controls {
       display: flex;
-      gap: 16px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 24px;
       flex-wrap: wrap;
       align-items: center;
     }
     .control-group {
-      display: flex;
-      gap: 4px;
-      background: #131a2b;
-      padding: 4px;
-      border-radius: 10px;
+      display: inline-flex;
+      align-items: stretch;
+      background: #0f1525;
       border: 1px solid #1d2740;
+      border-radius: 10px;
+      padding: 4px;
+      gap: 2px;
+    }
+    .control-group-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 14px 0 10px;
+      color: #4a5778;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      border-right: 1px solid #1d2740;
+      margin-right: 2px;
+      text-transform: uppercase;
     }
     .control-group button {
       background: transparent;
       border: none;
       color: #8a96b3;
-      padding: 8px 18px;
+      padding: 6px 14px;
+      border-radius: 6px;
       cursor: pointer;
-      border-radius: 7px;
-      font-size: 14px;
       font-family: inherit;
-      transition: all 0.18s ease;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.1;
+      gap: 1px;
+      min-width: 56px;
     }
-    .control-group button:hover { color: #fff; }
-    .control-group button.active {
-      background: #2a3654;
+    .control-group button:hover {
       color: #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      background: rgba(255, 255, 255, 0.04);
     }
-    .control-label {
-      color: #6b7a99;
-      font-size: 12px;
+    .control-group button.active {
+      background: rgba(94, 158, 255, 0.18);
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.3);
+    }
+    .btn-main {
+      font-size: 13px;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    .btn-sub {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.7px;
+      color: #4a5778;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-right: 4px;
+      pointer-events: none;
     }
+    .control-group button.active .btn-sub { color: #6b7a99; }
+    .control-group button:hover .btn-sub { color: #6b7a99; }
     .chart-container {
       background: #131a2b;
       border-radius: 14px;
@@ -101,6 +199,68 @@
     }
     .stat-value.up { color: #ef5350; }
     .stat-value.down { color: #26a69a; }
+    .components-panel {
+      margin-top: 18px;
+      background: #131a2b;
+      border: 1px solid #1d2740;
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .components-header {
+      color: #6b7a99;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 14px;
+    }
+    .components-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 10px 24px;
+    }
+    .component-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      padding: 4px 0;
+    }
+    .component-weight {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      min-width: 38px;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 4px;
+      background: rgba(94, 158, 255, 0.15);
+      color: #5e9eff;
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .component-weight.weight-major {
+      background: rgba(255, 209, 102, 0.18);
+      color: #ffd166;
+    }
+    .component-name {
+      color: #fff;
+      font-weight: 500;
+      flex-shrink: 0;
+      min-width: 86px;
+    }
+    .component-ticker {
+      color: #4a5778;
+      font-size: 10px;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+    .component-concept {
+      color: #8a96b3;
+      font-size: 12.5px;
+      flex: 1;
+    }
     .milestones {
       margin-top: 18px;
       background: #131a2b;
@@ -262,32 +422,56 @@
 <body>
   <div class="container">
     <h1>AI 全球指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">AI GLOBAL INDEX</span></h1>
-    <div class="subtitle">
-      BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10% · NYT 50% · Base = 100 · 自 ChatGPT (2022-11-30) 起算 · 计价 <span id="ccy-display" style="color:#5e9eff;font-weight:600">USD</span> · 再平衡 <span id="rebal-display" style="color:#ffd166;font-weight:600">Weekly (每周)</span>
+    <div class="manifesto">
+      <div class="manifesto-tag">宣言 · MANIFESTO</div>
+      <div class="manifesto-zh">本指数建立在中国在人工智能全面领先的基础上。</div>
+      <div class="manifesto-en">This index is built upon the thesis of China's comprehensive leadership in artificial intelligence.</div>
+    </div>
+    <div class="meta-strip">
+      <div class="meta-item">
+        <div class="meta-label">起点 INCEPTION</div>
+        <div class="meta-value">T<sub>0</sub> · 2022-11-30</div>
+        <div class="meta-detail">ChatGPT 公开发布日</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">基准 BASE</div>
+        <div class="meta-value">100.00</div>
+        <div class="meta-detail">归一化起点</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">计价 QUOTE</div>
+        <div class="meta-value" id="ccy-display">USD</div>
+        <div class="meta-detail" id="ccy-detail">FX 历史汇率折算</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">再平衡 REBALANCE</div>
+        <div class="meta-value" id="rebal-display">Weekly</div>
+        <div class="meta-detail" id="rebal-detail">每 5 个交易日重置权重</div>
+      </div>
     </div>
 
     <div class="controls">
-      <span class="control-label">周期 Period</span>
       <div class="control-group" id="period-group">
-        <button data-period="D" class="active">日 Day</button>
-        <button data-period="W">周 Week</button>
-        <button data-period="M">月 Month</button>
+        <span class="control-group-label">周期</span>
+        <button data-period="D" class="active"><span class="btn-main">日</span><span class="btn-sub">Day</span></button>
+        <button data-period="W"><span class="btn-main">周</span><span class="btn-sub">Week</span></button>
+        <button data-period="M"><span class="btn-main">月</span><span class="btn-sub">Month</span></button>
       </div>
-      <span class="control-label">图型 Type</span>
       <div class="control-group" id="type-group">
-        <button data-type="candle" class="active">K线 Candle</button>
-        <button data-type="line">折线 Line</button>
+        <span class="control-group-label">图型</span>
+        <button data-type="candle" class="active"><span class="btn-main">K线</span><span class="btn-sub">Candle</span></button>
+        <button data-type="line"><span class="btn-main">折线</span><span class="btn-sub">Line</span></button>
       </div>
-      <span class="control-label">计价 Quote</span>
       <div class="control-group" id="ccy-group">
-        <button data-ccy="USD" class="active">美元 USD</button>
-        <button data-ccy="CNY">人民币 CNY</button>
-        <button data-ccy="LOCAL">本币 Local</button>
+        <span class="control-group-label">计价</span>
+        <button data-ccy="USD" class="active"><span class="btn-main">USD</span><span class="btn-sub">美元</span></button>
+        <button data-ccy="CNY"><span class="btn-main">CNY</span><span class="btn-sub">人民币</span></button>
+        <button data-ccy="LOCAL"><span class="btn-main">Local</span><span class="btn-sub">本币</span></button>
       </div>
-      <span class="control-label">再平衡 Rebalance</span>
       <div class="control-group" id="rebal-group">
-        <button data-rebal="PERIODIC" data-period="5" class="active">每周 Weekly</button>
-        <button data-rebal="PERIODIC" data-period="21">每月 Monthly</button>
+        <span class="control-group-label">再平衡</span>
+        <button data-rebal="PERIODIC" data-period="5" class="active"><span class="btn-main">每周</span><span class="btn-sub">Weekly</span></button>
+        <button data-rebal="PERIODIC" data-period="21"><span class="btn-main">每月</span><span class="btn-sub">Monthly</span></button>
       </div>
     </div>
 
@@ -296,6 +480,11 @@
     </div>
 
     <div class="stats" id="stats"></div>
+
+    <div class="components-panel">
+      <div class="components-header">成分股 · COMPONENTS · 各自代表的 AI 子赛道</div>
+      <div class="components-list" id="components-list"></div>
+    </div>
 
     <div class="milestones">
       <div class="milestones-header">AI 大事记 · AI Era Milestones</div>
@@ -586,16 +775,22 @@
     // ============================================================
     const COMPONENTS_CONFIG = [
       { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ", weight: 0.10, ccy: "CNY",
+        concept: "AI 机器人 · 电池 + 电机 + 电控",
         seed: 256,  base: 250, vol: 0.025, drift:  0.00014 },
       { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD",
+        concept: "AI 生产力",
         seed: 200,  base:  80, vol: 0.030, drift:  0.00040 },
       { name: "\u798f\u6676\u79d1\u6280",      short: "Fujing",         ticker: "002222.SZ", weight: 0.10, ccy: "CNY",
+        concept: "稀土 + 激光晶体",
         seed: 22,   base:  12, vol: 0.020, drift:  0.00060 },
       { name: "\u66e6\u667a\u79d1\u6280-P",    short: "Lightelligence", ticker: "01879.HK",  weight: 0.10, ccy: "HKD",
+        concept: "光计算 (oNOC + oNET + oMAC)",
         seed: 11,   base:  30, vol: 0.028, drift:  0.00220 },
       { name: "\u62d3\u8346\u79d1\u6280",      short: "Piotech",        ticker: "688072.SS", weight: 0.10, ccy: "CNY",
+        concept: "混合键合 · 先进封装",
         seed: 3000, base: 115, vol: 0.030, drift:  0.00125 },
       { name: "\u7eb1\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD",
+        concept: "美国唯一的科技股",
         seed: 7,    base:  36, vol: 0.014, drift:  0.00050 },
     ];
 
@@ -838,36 +1033,47 @@
     }
 
     document.getElementById("period-group").addEventListener("click", (e) => {
-      if (e.target.tagName !== "BUTTON") return;
+      const btn = e.target.closest("button");
+      if (!btn) return;
       document.querySelectorAll("#period-group button").forEach((b) => b.classList.remove("active"));
-      e.target.classList.add("active");
-      currentPeriod = e.target.dataset.period;
+      btn.classList.add("active");
+      currentPeriod = btn.dataset.period;
       render();
     });
     document.getElementById("type-group").addEventListener("click", (e) => {
-      if (e.target.tagName !== "BUTTON") return;
+      const btn = e.target.closest("button");
+      if (!btn) return;
       document.querySelectorAll("#type-group button").forEach((b) => b.classList.remove("active"));
-      e.target.classList.add("active");
-      currentType = e.target.dataset.type;
+      btn.classList.add("active");
+      currentType = btn.dataset.type;
       render();
     });
     document.getElementById("ccy-group").addEventListener("click", (e) => {
-      if (e.target.tagName !== "BUTTON") return;
+      const btn = e.target.closest("button");
+      if (!btn) return;
       document.querySelectorAll("#ccy-group button").forEach((b) => b.classList.remove("active"));
-      e.target.classList.add("active");
-      currentCurrency = e.target.dataset.ccy;
-      document.getElementById("ccy-display").textContent =
-        currentCurrency === "LOCAL" ? "Local (本币混合)" : currentCurrency;
+      btn.classList.add("active");
+      currentCurrency = btn.dataset.ccy;
+      document.getElementById("ccy-display").textContent = currentCurrency;
+      const detail = document.getElementById("ccy-detail");
+      if (detail) detail.textContent =
+        currentCurrency === "LOCAL" ? "本币混合 · 不折算汇率" :
+        currentCurrency === "CNY"   ? "全部折算为人民币" :
+                                      "全部折算为美元 (FX 历史汇率)";
       render();
     });
     document.getElementById("rebal-group").addEventListener("click", (e) => {
-      if (e.target.tagName !== "BUTTON") return;
+      const btn = e.target.closest("button");
+      if (!btn) return;
       document.querySelectorAll("#rebal-group button").forEach((b) => b.classList.remove("active"));
-      e.target.classList.add("active");
-      currentRebalance = e.target.dataset.rebal;
-      currentPeriodDays = parseInt(e.target.dataset.period || "0", 10);
+      btn.classList.add("active");
+      currentRebalance = btn.dataset.rebal;
+      currentPeriodDays = parseInt(btn.dataset.period || "0", 10);
       const r = document.getElementById("rebal-display");
-      if (r) r.textContent = currentPeriodDays === 5 ? "Weekly (每周)" : "Monthly (每月)";
+      const d = document.getElementById("rebal-detail");
+      if (r) r.textContent = currentPeriodDays === 5 ? "Weekly" : "Monthly";
+      if (d) d.textContent = currentPeriodDays === 5
+        ? "每 5 个交易日重置权重" : "每 21 个交易日重置权重";
       render();
     });
     window.addEventListener("resize", () => chart.resize());
@@ -875,6 +1081,18 @@
     // ============================================================
     //  Init
     // ============================================================
+    // Render components panel — what each stock represents in the AI thesis
+    document.getElementById("components-list").innerHTML = COMPONENTS_CONFIG.map((c) => {
+      const isMajor = c.weight >= 0.5;
+      const wPct = (c.weight * 100).toFixed(0);
+      return `<div class="component-row">
+        <span class="component-weight${isMajor ? ' weight-major' : ''}">${wPct}%</span>
+        <span class="component-name">${c.name}</span>
+        <span class="component-ticker">${c.ticker}</span>
+        <span class="component-concept">${c.concept}</span>
+      </div>`;
+    }).join("");
+
     // Render milestones legend below the chart (static, no per-render redraw)
     document.getElementById("milestones-list").innerHTML = AI_MILESTONES.map((m, i) =>
       `<div class="milestone" data-idx="${i}">
