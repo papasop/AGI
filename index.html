@@ -697,31 +697,31 @@
       <ol class="manifesto-pillars">
         <li class="pillar pillar--realized">
           <span class="pillar-num">①</span>
-          <span class="pillar-cat pillar-cat--realized">现状</span>
+          <span class="pillar-cat pillar-cat--realized">前提</span>
           <span class="pillar-text">中国在人工智能领域<span class="m-key">全面领先</span><span class="pillar-en">China comprehensively leads in AI</span></span>
         </li>
-        <li class="pillar pillar--realized">
-          <span class="pillar-num">②</span>
-          <span class="pillar-cat pillar-cat--realized">前提</span>
-          <span class="pillar-text">AI <span class="m-key">全面开源</span><span class="pillar-en">AI is fully open-source</span></span>
-        </li>
         <li class="pillar pillar--breakthrough">
-          <span class="pillar-num">③</span>
+          <span class="pillar-num">②</span>
           <span class="pillar-cat pillar-cat--breakthrough">突破</span>
           <span class="pillar-text"><span class="m-key">物理模型</span>出现<span class="pillar-en">Physical models emerge</span></span>
         </li>
         <li class="pillar pillar--pending">
-          <span class="pillar-num">④</span>
+          <span class="pillar-num">③</span>
           <span class="pillar-cat pillar-cat--pending">猜想 1</span>
+          <span class="pillar-text">AI <span class="m-key">全面开源</span><span class="pillar-en">AI is fully open-source</span></span>
+        </li>
+        <li class="pillar pillar--pending">
+          <span class="pillar-num">④</span>
+          <span class="pillar-cat pillar-cat--pending">猜想 2</span>
           <span class="pillar-text"><span class="m-key">光计算证实</span> · <span class="m-key">量子计算证伪</span><span class="pillar-en">Photonic computing confirmed · Quantum computing falsified</span></span>
         </li>
         <li class="pillar pillar--pending">
           <span class="pillar-num">⑤</span>
-          <span class="pillar-cat pillar-cat--pending">猜想 2</span>
+          <span class="pillar-cat pillar-cat--pending">猜想 3</span>
           <span class="pillar-text"><span class="m-key">非人类中心主义</span><span class="pillar-en">Non-anthropocentrism</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">①② 已实现 (绿) · ③ 待突破 (蓝) · ④⑤ 待验证 (金) — 五者构成本指数所有命题的完整结构。<span class="manifesto-footer-en">①② realized · ③ pending breakthrough · ④⑤ pending verification — the five jointly form this index's complete propositional structure.</span></div>
+      <div class="manifesto-footer">① 前提 (绿) · ② 待突破 (蓝) · ③④⑤ 三重猜想 (金) — 1 前提 + 1 突破 + 3 猜想 = 五重命题。<span class="manifesto-footer-en">① premise · ② pending breakthrough · ③④⑤ three conjectures — 1 + 1 + 3 = the five pillars.</span></div>
     </div>
 
     <div class="strategy">
@@ -732,7 +732,7 @@
             <span class="strategy-bar-label">🇨🇳 中国公司</span>
             <span class="strategy-bar-pct">50%</span>
           </div>
-          <div class="strategy-bar-detail">BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10%</div>
+          <div class="strategy-bar-detail">茅台 + 拼多多 各 15% · BYD + 福晶 + 曦智-P + 拓荆 各 5%</div>
         </div>
         <div class="strategy-bar-us">
           <div class="strategy-bar-row">
@@ -1097,23 +1097,27 @@
     //  ChatGPT-launch day and today.
     // ============================================================
     const COMPONENTS_CONFIG = [
-      { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ", weight: 0.10, ccy: "CNY",
-        concept: "AI 机器人 · 电池 + 电机 + 电控",
-        marketCap: 135.0,
-        seed: 256,  base: 250, vol: 0.025, drift:  0.00014 },
-      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD",
+      { name: "\u8d35\u5dde\u8302\u53f0",      short: "Moutai",         ticker: "600519.SS", weight: 0.15, ccy: "CNY",
+        concept: "国民第一股 · 消费旗舰 · 通缩概念",
+        marketCap: 280.0,
+        seed: 519,  base: 1700, vol: 0.014, drift:  0.00020 },
+      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.15, ccy: "USD",
         concept: "AI 生产力",
         marketCap: 165.0,
         seed: 200,  base:  80, vol: 0.030, drift:  0.00040 },
-      { name: "\u798f\u6676\u79d1\u6280",      short: "Fujing",         ticker: "002222.SZ", weight: 0.10, ccy: "CNY",
+      { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ", weight: 0.05, ccy: "CNY",
+        concept: "AI 机器人 · 电池 + 电机 + 电控",
+        marketCap: 135.0,
+        seed: 256,  base: 250, vol: 0.025, drift:  0.00014 },
+      { name: "\u798f\u6676\u79d1\u6280",      short: "Fujing",         ticker: "002222.SZ", weight: 0.05, ccy: "CNY",
         concept: "稀土 + 激光晶体",
         marketCap: 2.5,
         seed: 22,   base:  12, vol: 0.020, drift:  0.00060 },
-      { name: "\u66e6\u667a\u79d1\u6280-P",    short: "Lightelligence", ticker: "01879.HK",  weight: 0.10, ccy: "HKD",
+      { name: "\u66e6\u667a\u79d1\u6280-P",    short: "Lightelligence", ticker: "01879.HK",  weight: 0.05, ccy: "HKD",
         concept: "光计算 (oNOC + oNET + oMAC)",
         marketCap: 6.0,
         seed: 11,   base:  30, vol: 0.028, drift:  0.00220 },
-      { name: "\u62d3\u8346\u79d1\u6280",      short: "Piotech",        ticker: "688072.SS", weight: 0.10, ccy: "CNY",
+      { name: "\u62d3\u8346\u79d1\u6280",      short: "Piotech",        ticker: "688072.SS", weight: 0.05, ccy: "CNY",
         concept: "混合键合 · 先进封装",
         marketCap: 10.0,
         seed: 3000, base: 115, vol: 0.030, drift:  0.00125 },
@@ -1131,7 +1135,7 @@
         if (j.components && j.components.length && j.fx) return j;
       } catch (_) {}
 
-      // Synthetic fallback. All 5 components & both FX series share
+      // Synthetic fallback. All components & both FX series share
       // the same trading-date axis (from ChatGPT launch through today).
       const dates = generateTradingDates(INCEPTION_DATE);
       const components = COMPONENTS_CONFIG.map((c) => ({
