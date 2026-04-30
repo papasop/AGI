@@ -1,28 +1,1292 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=./agi/" />
-  <title>Entropy-AI</title>
+  <title>AI 全球指数 | AI Global Index</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
   <style>
+    * { box-sizing: border-box; }
     body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
+      padding: 24px;
       background: #0a0e1a;
       color: #e0e6f0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
     }
-    a {
-      color: #7db2ff;
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 {
+      color: #fff;
+      font-weight: 300;
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+    /* === Manifesto block === */
+    .manifesto {
+      margin: 4px 0 20px;
+      padding: 16px 22px;
+      background: linear-gradient(90deg, rgba(255, 209, 102, 0.10) 0%, rgba(255, 209, 102, 0.02) 100%);
+      border-left: 3px solid #ffd166;
+      border-radius: 6px;
+    }
+    .manifesto-tag {
+      color: #ffd166;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      margin-bottom: 6px;
+    }
+    .manifesto-zh {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.3px;
+    }
+    .manifesto-en {
+      color: #8a96b3;
+      font-size: 11.5px;
+      margin-top: 4px;
+      letter-spacing: 0.2px;
+      font-style: italic;
+    }
+
+    /* === Strategy block (50/50 China vs US tech) === */
+    .strategy {
+      margin: 0 0 22px;
+    }
+    .strategy-tag {
+      color: #6b7a99;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      margin-bottom: 8px;
+    }
+    .strategy-bar {
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #1d2740;
+      min-height: 78px;
+    }
+    .strategy-bar-cn,
+    .strategy-bar-us {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px 22px;
+      gap: 6px;
+    }
+    .strategy-bar-cn {
+      background: linear-gradient(135deg, rgba(239, 83, 80, 0.22) 0%, rgba(239, 83, 80, 0.04) 100%);
+      border-right: 1px solid #2a3654;
+    }
+    .strategy-bar-us {
+      background: linear-gradient(135deg, rgba(94, 158, 255, 0.04) 0%, rgba(94, 158, 255, 0.22) 100%);
+    }
+    .strategy-bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .strategy-bar-label {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .strategy-bar-pct {
+      font-size: 24px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.5px;
+    }
+    .strategy-bar-cn .strategy-bar-pct { color: #ef5350; }
+    .strategy-bar-us .strategy-bar-pct { color: #5e9eff; }
+    .strategy-bar-detail {
+      font-size: 11px;
+      color: #8a96b3;
+      letter-spacing: 0.2px;
+    }
+
+    /* === Meta strip (replaces subtitle) === */
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 4px 0 22px;
+    }
+    .meta-item {
+      background: linear-gradient(180deg, #131a2b 0%, #10172690 100%);
+      border: 1px solid #1d2740;
+      border-radius: 10px;
+      padding: 14px 18px;
+      transition: border-color 0.18s ease;
+    }
+    .meta-item:hover { border-color: #2a3654; }
+    .meta-label {
+      color: #6b7a99;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      margin-bottom: 8px;
+    }
+    .meta-value {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+    .meta-value sub {
+      font-size: 0.7em;
+      color: #ffd166;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .meta-detail {
+      color: #4a5778;
+      font-size: 11px;
+      margin-top: 5px;
+      letter-spacing: 0.2px;
+    }
+
+    /* === Controls (capsule pills with grouped label + buttons) === */
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .control-group {
+      display: inline-flex;
+      align-items: stretch;
+      background: #0f1525;
+      border: 1px solid #1d2740;
+      border-radius: 10px;
+      padding: 4px;
+      gap: 2px;
+    }
+    .control-group-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 14px 0 10px;
+      color: #4a5778;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      border-right: 1px solid #1d2740;
+      margin-right: 2px;
+      text-transform: uppercase;
+    }
+    .control-group button {
+      background: transparent;
+      border: none;
+      color: #8a96b3;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.1;
+      gap: 1px;
+      min-width: 56px;
+    }
+    .control-group button:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .control-group button.active {
+      background: rgba(94, 158, 255, 0.18);
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.3);
+    }
+    .btn-main {
+      font-size: 13px;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    .btn-sub {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.7px;
+      color: #4a5778;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+    .control-group button.active .btn-sub { color: #6b7a99; }
+    .control-group button:hover .btn-sub { color: #6b7a99; }
+    .chart-container {
+      background: #131a2b;
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid #1d2740;
+    }
+    #chart { height: 600px; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .stat {
+      background: #131a2b;
+      padding: 16px 18px;
+      border-radius: 10px;
+      border: 1px solid #1d2740;
+    }
+    .stat-label {
+      color: #6b7a99;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .stat-value {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-value.up { color: #ef5350; }
+    .stat-value.down { color: #26a69a; }
+    .components-panel {
+      margin-top: 18px;
+      background: #131a2b;
+      border: 1px solid #1d2740;
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .components-header {
+      color: #6b7a99;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 14px;
+    }
+    .components-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 10px 24px;
+    }
+    .component-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      padding: 4px 0;
+    }
+    .component-weight {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      min-width: 38px;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 4px;
+      background: rgba(94, 158, 255, 0.15);
+      color: #5e9eff;
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .component-weight.weight-major {
+      background: rgba(255, 209, 102, 0.18);
+      color: #ffd166;
+    }
+    .component-name {
+      color: #fff;
+      font-weight: 500;
+      flex-shrink: 0;
+      min-width: 86px;
+    }
+    .component-ticker {
+      color: #4a5778;
+      font-size: 10px;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+    .component-concept {
+      color: #8a96b3;
+      font-size: 12.5px;
+      flex: 1;
+    }
+    .milestones {
+      margin-top: 18px;
+      background: #131a2b;
+      border: 1px solid #1d2740;
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .milestones-header {
+      color: #6b7a99;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 10px;
+    }
+    .milestones-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 8px 18px;
+    }
+    .milestone {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #c5cdde;
+      cursor: pointer;
+      padding: 6px 8px;
+      margin: -6px -8px;
+      border-radius: 6px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    .milestone:hover {
+      background: rgba(94, 158, 255, 0.10);
+    }
+    .milestone:active {
+      transform: scale(0.98);
+    }
+    .milestone-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #5e9eff;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .milestone-num-inception {
+      background: #ffd166;
+      color: #0a0e1a;
+      font-weight: 700;
+      width: 28px;
+      box-shadow: 0 0 0 1px rgba(255, 209, 102, 0.3), 0 0 8px rgba(255, 209, 102, 0.15);
+    }
+    .milestone-date {
+      color: #6b7a99;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      min-width: 70px;
+    }
+    /* === Hover popover (event description) === */
+    .popover {
+      position: fixed;
+      z-index: 100;
+      background: #131a2b;
+      border: 1px solid #2a3654;
+      border-radius: 10px;
+      padding: 14px 18px 16px;
+      max-width: 380px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(2px);
+      transition: opacity 0.12s ease, transform 0.12s ease;
+    }
+    .popover.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .popover-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .popover-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #5e9eff;
+      color: #fff;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .popover-num.popover-num-inception {
+      background: #ffd166;
+      color: #0a0e1a;
+      width: 32px;
+      box-shadow: 0 0 0 1px rgba(255, 209, 102, 0.25), 0 0 10px rgba(255, 209, 102, 0.2);
+    }
+    .popover-date {
+      color: #ffd166;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .popover-title {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 2px;
+    }
+    .popover-en {
+      color: #6b7a99;
+      font-size: 11px;
+      letter-spacing: 0.2px;
+      margin-bottom: 10px;
+    }
+    .popover-desc {
+      color: #c5cdde;
+      font-size: 12.5px;
+      line-height: 1.65;
+    }
+    .popover-inception-tag {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 6px;
+      background: rgba(255, 209, 102, 0.15);
+      color: #ffd166;
+      font-size: 10px;
+      font-weight: 600;
+      border-radius: 3px;
+      letter-spacing: 0.5px;
+      vertical-align: middle;
+    }
+    .footer {
+      margin-top: 24px;
+      color: #4a5778;
+      font-size: 12px;
+      text-align: center;
+    }
+    .footer code {
+      background: #131a2b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #8a96b3;
     }
   </style>
 </head>
 <body>
-  <main>
-    <p>Opening <a href="./agi/">AI Global Index</a>...</p>
-  </main>
+  <div class="container">
+    <h1>AI 全球指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">AI GLOBAL INDEX</span></h1>
+    <div class="manifesto">
+      <div class="manifesto-tag">宣言 · MANIFESTO</div>
+      <div class="manifesto-zh">本指数建立在中国在人工智能全面领先的基础上。</div>
+      <div class="manifesto-en">This index is built upon the thesis of China's comprehensive leadership in artificial intelligence.</div>
+    </div>
+
+    <div class="strategy">
+      <div class="strategy-tag">策略 · STRATEGY · 50 / 50 SPLIT</div>
+      <div class="strategy-bar">
+        <div class="strategy-bar-cn">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇨🇳 中国公司</span>
+            <span class="strategy-bar-pct">50%</span>
+          </div>
+          <div class="strategy-bar-detail">BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10%</div>
+        </div>
+        <div class="strategy-bar-us">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇺🇸 美国科技公司</span>
+            <span class="strategy-bar-pct">50%</span>
+          </div>
+          <div class="strategy-bar-detail">NYT 50% · 唯一权重</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meta-strip">
+      <div class="meta-item">
+        <div class="meta-label">起点 INCEPTION</div>
+        <div class="meta-value">T<sub>0</sub> · 2022-11-30</div>
+        <div class="meta-detail">ChatGPT 公开发布日</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">基准 BASE</div>
+        <div class="meta-value">100.00</div>
+        <div class="meta-detail">归一化起点</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">计价 QUOTE</div>
+        <div class="meta-value" id="ccy-display">USD</div>
+        <div class="meta-detail" id="ccy-detail">FX 历史汇率折算</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">再平衡 REBALANCE</div>
+        <div class="meta-value" id="rebal-display">Weekly</div>
+        <div class="meta-detail" id="rebal-detail">每 5 个交易日重置权重</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="control-group" id="period-group">
+        <span class="control-group-label">周期</span>
+        <button data-period="D" class="active"><span class="btn-main">日</span><span class="btn-sub">Day</span></button>
+        <button data-period="W"><span class="btn-main">周</span><span class="btn-sub">Week</span></button>
+        <button data-period="M"><span class="btn-main">月</span><span class="btn-sub">Month</span></button>
+      </div>
+      <div class="control-group" id="type-group">
+        <span class="control-group-label">图型</span>
+        <button data-type="candle" class="active"><span class="btn-main">K线</span><span class="btn-sub">Candle</span></button>
+        <button data-type="line"><span class="btn-main">折线</span><span class="btn-sub">Line</span></button>
+      </div>
+      <div class="control-group" id="ccy-group">
+        <span class="control-group-label">计价</span>
+        <button data-ccy="USD" class="active"><span class="btn-main">USD</span><span class="btn-sub">美元</span></button>
+        <button data-ccy="CNY"><span class="btn-main">CNY</span><span class="btn-sub">人民币</span></button>
+        <button data-ccy="LOCAL"><span class="btn-main">Local</span><span class="btn-sub">本币</span></button>
+      </div>
+      <div class="control-group" id="rebal-group">
+        <span class="control-group-label">再平衡</span>
+        <button data-rebal="PERIODIC" data-period="5" class="active"><span class="btn-main">每周</span><span class="btn-sub">Weekly</span></button>
+        <button data-rebal="PERIODIC" data-period="21"><span class="btn-main">每月</span><span class="btn-sub">Monthly</span></button>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div id="chart"></div>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="components-panel">
+      <div class="components-header">成分股 · COMPONENTS · 各自代表的 AI 子赛道</div>
+      <div class="components-list" id="components-list"></div>
+    </div>
+
+    <div class="milestones">
+      <div class="milestones-header">AI 大事记 · AI Era Milestones</div>
+      <div class="milestones-list" id="milestones-list"></div>
+    </div>
+
+    <div class="footer">
+      Data: 内置合成示例数据 (synthetic seeded sample, 含 CNY/USD) · 替换真实数据请用 <code>fetch_data.py</code> 生成 <code>data.json</code>
+    </div>
+  </div>
+
+  <!-- Hover popover for milestone descriptions. Shown on mouseenter of any
+       legend row or any chart marker; hidden on mouseleave. Position is
+       computed dynamically near the hovered element / cursor. -->
+  <div class="popover" id="popover">
+    <div class="popover-header">
+      <span class="popover-num" id="popover-num">1</span>
+      <span class="popover-date" id="popover-date">2022-11-30</span>
+    </div>
+    <div class="popover-title" id="popover-title">Title</div>
+    <div class="popover-en" id="popover-en">English</div>
+    <div class="popover-desc" id="popover-desc">Description</div>
+  </div>
+
+  <script>
+    // ============================================================
+    //  Data layer
+    //  ------------------------------------------------------------
+    //  By default uses seeded synthetic OHLC data so the file is
+    //  self-contained. To use REAL data, run fetch_data.py to
+    //  generate data.json next to this file, and the chart will
+    //  load it automatically.
+    // ============================================================
+
+    function mulberry32(seed) {
+      return function () {
+        let t = (seed += 0x6d2b79f5);
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+
+    function generateOHLC(seed, basePrice, dailyVol, drift, dates) {
+      const rng = mulberry32(seed);
+      let close = basePrice;
+      const data = [];
+      for (const date of dates) {
+        const ret = (rng() - 0.5) * 2 * dailyVol + drift;
+        const open = close * (1 + (rng() - 0.5) * 0.004);
+        const newClose = open * (1 + ret);
+        const wickFrac = (rng() * 0.5 + 0.2) * dailyVol;
+        const hi = Math.max(open, newClose) * (1 + wickFrac);
+        const lo = Math.min(open, newClose) * (1 - wickFrac);
+        data.push({ date, open, high: hi, low: lo, close: newClose });
+        close = newClose;
+      }
+      return data;
+    }
+
+    function generateTradingDates(startDateStr, endDate) {
+      // Returns all weekdays from startDateStr (inclusive) through endDate
+      // (default: today). Date strings in ISO format (YYYY-MM-DD).
+      const out = [];
+      const d = new Date(startDateStr);
+      const end = endDate ? new Date(endDate) : new Date();
+      while (d <= end) {
+        const wd = d.getUTCDay();
+        if (wd !== 0 && wd !== 6) out.push(d.toISOString().slice(0, 10));
+        d.setUTCDate(d.getUTCDate() + 1);
+      }
+      return out;
+    }
+
+    // ============================================================
+    //  Composite index: weighted blend of N components, normalized
+    //  to 100 at start, optionally FX-adjusted to a target currency.
+    // ============================================================
+    //
+    //  components: [{ weight, ccy: "CNY"|"HKD"|"USD", data: [bar, ...] }, ...]
+    //  fx:         { CNY: [{date, rate}], HKD: [{date, rate}] }
+    //              rate is units-per-USD (yfinance convention for X=Y tickers)
+    //  currency:   "USD" | "CNY" | "LOCAL"
+    //
+    function convRate(fromCcy, toCcy, fx, i) {
+      // Returns: how many `toCcy` per 1 `fromCcy` on day i.
+      // In LOCAL mode no conversion happens (rate is 1) — each component
+      // is normalized in its native currency and blended.
+      if (toCcy === "LOCAL") return 1;
+      if (fromCcy === toCcy) return 1;
+      const fromToUSD = fromCcy === "USD" ? 1 : 1 / fx[fromCcy][i].rate;
+      const usdToTo   = toCcy   === "USD" ? 1 : fx[toCcy][i].rate;
+      return fromToUSD * usdToTo;
+    }
+
+    // ============================================================
+    //  Build index under one of three rebalancing methodologies:
+    //
+    //    "BUYHOLD"   — fix initial weights, let them drift forever.
+    //                  Index_t = Σ w_i_0 · (P_i_t / P_i_0) · 100
+    //                  Behavior: a passive portfolio. Winners take over.
+    //
+    //    "PERIODIC"  — reset weights to target every `periodDays`.
+    //                  Between rebalances, behaves like BUYHOLD from
+    //                  the last rebalance; at rebalance, weights reset.
+    //                  Used by: most thematic ETFs (quarterly = ~63d).
+    //
+    //    "DAILY"     — reset weights every trading day.
+    //                  Index daily return = Σ w_i · r_i_daily, compounded.
+    //                  Used by: leveraged ETFs, fixed-weight strategy
+    //                  indices. Path-dependent (volatility drag).
+    //
+    //  All three start at base = 100 on the inception day.
+    // ============================================================
+    function buildIndex(components, fx, currency, rebalanceMode, periodDays) {
+      const N = components[0].data.length;
+      const dates = components[0].data.map((d) => d.date);
+
+      // FX conversion (shared across modes)
+      const conv = components.map((c) =>
+        c.data.map((bar, i) => {
+          const r = convRate(c.ccy, currency, fx, i);
+          return { open: bar.open*r, high: bar.high*r, low: bar.low*r, close: bar.close*r };
+        })
+      );
+
+      // Helper: weighted blend of (P_i_t / P_i_anchor) for any anchor index.
+      const blendVsAnchor = (i, anchorIdx) => {
+        let O = 0, H = 0, L = 0, C = 0;
+        components.forEach((c, k) => {
+          const a = conv[k][anchorIdx].close;  // anchor close as base
+          const b = conv[k][i];
+          O += c.weight * (b.open  / a);
+          H += c.weight * (b.high  / a);
+          L += c.weight * (b.low   / a);
+          C += c.weight * (b.close / a);
+        });
+        return { O, H, L, C };
+      };
+
+      // BUYHOLD ===
+      if (rebalanceMode === "BUYHOLD") {
+        return dates.map((date, i) => {
+          const r = blendVsAnchor(i, 0);
+          return { date, open: r.O*100, high: r.H*100, low: r.L*100, close: r.C*100 };
+        });
+      }
+
+      // PERIODIC === (period >= 2; reset weights every periodDays bars)
+      if (rebalanceMode === "PERIODIC") {
+        const out = new Array(N);
+        let anchorIdx = 0;
+        let anchorValue = 100;
+        for (let i = 0; i < N; i++) {
+          const r = blendVsAnchor(i, anchorIdx);
+          out[i] = {
+            date: dates[i],
+            open:  r.O * anchorValue,
+            high:  r.H * anchorValue,
+            low:   r.L * anchorValue,
+            close: r.C * anchorValue,
+          };
+          // Rebalance after this bar if interval reached
+          if (i > 0 && i - anchorIdx >= periodDays) {
+            anchorValue = out[i].close;
+            anchorIdx = i;
+          }
+        }
+        return out;
+      }
+
+      // DAILY === (rebalance every bar — index daily return is fixed-weight)
+      if (rebalanceMode === "DAILY") {
+        const out = new Array(N);
+        out[0] = { date: dates[0], open: 100, high: 100, low: 100, close: 100 };
+        for (let i = 1; i < N; i++) {
+          let dO = 0, dH = 0, dL = 0, dC = 0;
+          components.forEach((c, k) => {
+            const today = conv[k][i];
+            const yC    = conv[k][i-1].close;
+            dO += c.weight * (today.open  / yC - 1);
+            dH += c.weight * (today.high  / yC - 1);
+            dL += c.weight * (today.low   / yC - 1);
+            dC += c.weight * (today.close / yC - 1);
+          });
+          const prev = out[i-1].close;
+          out[i] = {
+            date: dates[i],
+            open:  prev * (1 + dO),
+            high:  prev * (1 + dH),
+            low:   prev * (1 + dL),
+            close: prev * (1 + dC),
+          };
+        }
+        return out;
+      }
+
+      throw new Error("Unknown rebalanceMode: " + rebalanceMode);
+    }
+
+    // ============================================================
+    //  Synthetic CNY/USD and HKD/USD paths
+    // ============================================================
+    function generateFX(seed, baseRate, dailyVol, drift, dates) {
+      const rng = mulberry32(seed);
+      let rate = baseRate;
+      return dates.map((date) => {
+        const ret = (rng() - 0.5) * 2 * dailyVol + drift;
+        rate = rate * (1 + ret);
+        return { date, rate };
+      });
+    }
+
+    // ============================================================
+    //  Aggregation (D -> W / M)
+    // ============================================================
+    function isoWeekKey(dateStr) {
+      const d = new Date(dateStr);
+      const dn = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() + 4 - dn);
+      const yStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      const wk = Math.ceil(((d - yStart) / 86400000 + 1) / 7);
+      return d.getUTCFullYear() + "-W" + String(wk).padStart(2, "0");
+    }
+
+    function aggregate(data, period) {
+      if (period === "D") return data;
+      const groups = new Map();
+      for (const d of data) {
+        const key = period === "W" ? isoWeekKey(d.date) : d.date.slice(0, 7);
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(d);
+      }
+      return [...groups.values()].map((items) => ({
+        date: items[items.length - 1].date,
+        open: items[0].open,
+        high: Math.max(...items.map((x) => x.high)),
+        low:  Math.min(...items.map((x) => x.low)),
+        close: items[items.length - 1].close,
+      }));
+    }
+
+    // ============================================================
+    //  Index inception: ChatGPT public launch (2022-11-30) — base = 100
+    // ============================================================
+    const INCEPTION_DATE = "2022-11-30";
+
+    // AI milestones to annotate on the chart. Each event is a vertical
+    // marker line; numbers are rendered on the chart and the full text
+    // appears in the legend below. Edit freely — buildMilestoneMarkLine
+    // snaps each date to the nearest available bar in the current view.
+    const AI_MILESTONES = [
+      { date: "2022-11-30", label: "ChatGPT \u4e0a\u7ebf",                        en: "ChatGPT launched",
+        desc: "OpenAI 发布基于 GPT-3.5 的对话产品 ChatGPT。5 天破百万用户、2 个月达 1 亿月活,创下消费产品最快增长纪录。本指数以这一天为 T₀,Base = 100,后续所有事件以这天为锚点参照。Generative AI 真正进入大众视野并撬动整条 AI 算力 / 应用产业链的零日。" },
+      { date: "2023-03-14", label: "GPT-4 \u53d1\u5e03",                          en: "GPT-4 released",
+        desc: "OpenAI 发布 GPT-4,首个大规模多模态(图文输入)旗舰模型。律师/医师/编程考试达到人类前 10% 水平。这是企业级 AI 投资真正起点——硅谷大厂从此开启 capex 军备竞赛,推动 NVDA 股价开始第一轮加速,中游半导体设备 / 上游光学晶体的需求逻辑也随之确立。" },
+      { date: "2023-10-17", label: "\u7f8e\u5bf9\u534e\u82af\u7247\u51fa\u53e3\u7ba1\u5236\u5347\u7ea7", en: "US chip export controls tighten",
+        desc: "拜登政府第二轮升级对华先进 AI 芯片出口管制,把此前为绕开管制专门设计的 NVIDIA H800 / A800(中国版)也列入限制。直接利好中国本土 AI 芯片 / 半导体设备公司——本指数中的拓荆(薄膜沉积设备)、福晶(光刻激光晶体)的国产替代逻辑由此被显著强化。" },
+      { date: "2023-12-27", label: "NYT \u8d77\u8bc9 OpenAI \u4e0e\u5fae\u8f6f",       en: "NYT v OpenAI lawsuit",
+        desc: "纽约时报在曼哈顿联邦法院起诉 OpenAI 与微软,指控未经授权使用其数百万篇文章训练 GPT 系列模型,索赔可能高达数十亿美元。这是 AI 与传统媒体的首例重磅版权诉讼,直接关系本指数 50% 权重的 NYT 估值——和解或胜诉将重塑 AI 训练数据的商业模式。" },
+      { date: "2024-03-04", label: "Claude 3 (Opus/Sonnet/Haiku)",                en: "Claude 3 released",
+        desc: "Anthropic 一次性发布 Claude 3 三模型阵列(Opus / Sonnet / Haiku)。Opus 在多项基准上首次超越 GPT-4,Anthropic 正式跻身 AI 第一梯队。三档定价(便宜款 / 旗舰款分层)重塑了行业的模型经济学定价范式。" },
+      { date: "2024-03-18", label: "NVIDIA Blackwell (GTC)",                      en: "NVIDIA Blackwell announced",
+        desc: "黄仁勋 GTC 主题演讲发布 Blackwell B200 系列,FP4 训练性能 5x、推理 30x、互连带宽 10TB/s。直接验证 AI 算力需求向下一代(光互连 + NVLink-5)切换——本指数中曦智科技(光电混合算力)、拓荆科技(先进制程沉积设备)的产业逻辑正面对应这个趋势。" },
+      { date: "2024-05-13", label: "GPT-4o \u591a\u6a21\u6001",                   en: "GPT-4o multimodal",
+        desc: "OpenAI 发布 GPT-4o(\"o\" for omni),原生支持音频/图像/文本的统一多模态推理。响应延迟降到 320ms,接近真人对话节奏。实时多模态交互显著抬高了对低延迟光互连和大带宽内存的需求,推升下一代 AI 数据中心规格门槛。" },
+      { date: "2024-09-12", label: "OpenAI o1 \u63a8\u7406\u8303\u5f0f",          en: "o1 reasoning paradigm",
+        desc: "OpenAI 发布 o1-preview,首次以\"测试时计算 (test-time compute)\"范式公开发布——模型在推理阶段主动思考更久,代价是 token 消耗成数十倍上升。这彻底改变了 AI 算力需求曲线:从\"训练侧扩张\"转向\"训练 + 推理双扩张\",对推理芯片和数据中心容量的需求倍增。" },
+      { date: "2025-01-27", label: "Stargate $500B / DeepSeek-R1 (NVDA -$600B)",  en: "Stargate + DeepSeek shock",
+        desc: "三件事交叠的\"AI 大地震日\":(1) OpenAI / 软银 / Oracle 联合宣布 5000 亿美元 Stargate 数据中心计划;(2) 深度求索发布开源推理模型 R1,性能媲美 o1 但训练成本仅 560 万美元;(3) NVIDIA 单日市值蒸发 6000 亿美元,创美股单日个股蒸发纪录。市场首次开始重新评估\"AI 算力垄断\"叙事。" },
+      { date: "2025-05-22", label: "Claude 4 (Opus 4 / Sonnet 4)",                en: "Claude 4 released",
+        desc: "Anthropic 发布 Claude 4 系列。Opus 4 在 SWE-bench(软件工程基准)上达到 SOTA,标志 AI 在代码工程任务上首次系统性超越平均开发者。Anthropic 在企业代码 / agentic 工作流市场占据主导,加深 OpenAI / Anthropic / Google 的三足鼎立格局。" },
+      { date: "2025-08-07", label: "GPT-5 \u53d1\u5e03",                           en: "GPT-5 released",
+        desc: "OpenAI 发布 GPT-5,统一架构设计——内置 router 自动路由到 instant / thinking / pro 三档,无需用户选择模型。HealthBench、coding 多项 SOTA。Altman 称这是\"第一个让人感觉真在跟 PhD 对话\"的模型,标志通用助手能力越过新阈值。" },
+      { date: "2026-02-19", label: "Gemini 3.1 Pro",                              en: "Gemini 3.1 Pro",
+        desc: "Google DeepMind 发布 Gemini 3.1 Pro,在 LMSys / GPQA 等多项基准重夺第一名。Google 在沉寂数月后重回 AI 第一梯队前列,三巨头格局(OpenAI / Anthropic / Google)首次在能力维度趋于均衡——客户的多供应商策略由此成为主流。" },
+      { date: "2026-04-23", label: "GPT-5.5 + DeepSeek V4 (\u540c\u65e5)",        en: "GPT-5.5 vs DeepSeek V4 same-day",
+        desc: "中美两端旗舰同日发布:OpenAI 推 GPT-5.5(强化 agentic 工作流 + 科研推理),深度求索同日推 V4(传出训练成本进一步下探)。市场情绪在\"美国领先\"与\"中国超车\"之间反复——本指数横跨两端,正是为了无视具体赢家、只跟随 AI 整体进化的速度。" },
+      { date: "2026-04-28", label: "\u66e6\u667a\u79d1\u6280 IPO",                en: "Lightelligence IPO",
+        desc: "曦智科技-P (01879.HK) 以 18C 章特专科技公司身份港交所上市,IPO 定价 183.2 HKD,公开发售超额认购 5784 倍。光电混合 AI 算力(oNOC + oNET + oMAC 三大核心芯片)是本指数中代表\"下一代算力基础设施\"的成分股。上市当日纳入指数,占 10% 权重。" },
+    ];
+
+    // ============================================================
+    //  Index components & calibrated synthetic parameters.
+    //  Calibrated for window 2022-11-30 to today (~890 trading days).
+    //  Endpoints chosen to match approximate real-world prices on
+    //  ChatGPT-launch day and today.
+    // ============================================================
+    const COMPONENTS_CONFIG = [
+      { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ", weight: 0.10, ccy: "CNY",
+        concept: "AI 机器人 · 电池 + 电机 + 电控",
+        seed: 256,  base: 250, vol: 0.025, drift:  0.00014 },
+      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD",
+        concept: "AI 生产力",
+        seed: 200,  base:  80, vol: 0.030, drift:  0.00040 },
+      { name: "\u798f\u6676\u79d1\u6280",      short: "Fujing",         ticker: "002222.SZ", weight: 0.10, ccy: "CNY",
+        concept: "稀土 + 激光晶体",
+        seed: 22,   base:  12, vol: 0.020, drift:  0.00060 },
+      { name: "\u66e6\u667a\u79d1\u6280-P",    short: "Lightelligence", ticker: "01879.HK",  weight: 0.10, ccy: "HKD",
+        concept: "光计算 (oNOC + oNET + oMAC)",
+        seed: 11,   base:  30, vol: 0.028, drift:  0.00220 },
+      { name: "\u62d3\u8346\u79d1\u6280",      short: "Piotech",        ticker: "688072.SS", weight: 0.10, ccy: "CNY",
+        concept: "混合键合 · 先进封装",
+        seed: 3000, base: 115, vol: 0.030, drift:  0.00125 },
+      { name: "\u7eb1\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD",
+        concept: "美国唯一的科技股",
+        seed: 7,    base:  36, vol: 0.014, drift:  0.00050 },
+    ];
+
+    async function loadData() {
+      try {
+        const r = await fetch("data.json", { cache: "no-store" });
+        if (!r.ok) throw new Error("no data.json");
+        const j = await r.json();
+        if (j.components && j.components.length && j.fx) return j;
+      } catch (_) {}
+
+      // Synthetic fallback. All 5 components & both FX series share
+      // the same trading-date axis (from ChatGPT launch through today).
+      const dates = generateTradingDates(INCEPTION_DATE);
+      const components = COMPONENTS_CONFIG.map((c) => ({
+        name: c.name, short: c.short, ticker: c.ticker, weight: c.weight, ccy: c.ccy,
+        data: generateOHLC(c.seed, c.base, c.vol, c.drift, dates),
+      }));
+      return {
+        components,
+        fx: {
+          CNY: generateFX(2024, 7.05, 0.0035, 0.000020, dates),  // CNY per USD: 7.05 -> ~7.15
+          HKD: generateFX(2022, 7.80, 0.0008, 0,        dates),  // HKD/USD peg: ~7.80
+        },
+      };
+    }
+
+    // ============================================================
+    //  Chart
+    // ============================================================
+    const chart = echarts.init(document.getElementById("chart"), null, { renderer: "canvas" });
+    let rawData = null;          // {byd, nyt, fx} — recomputed-from source
+    let currentPeriod = "D";
+    let currentType = "candle";
+    let currentCurrency = "USD"; // industry-standard default for global indices
+    let currentRebalance = "PERIODIC";
+    let currentPeriodDays = 5;          // 5 trading days = 1 calendar week
+
+    // Default zoom per period — show full window in all modes so T₀
+    // (ChatGPT inception, leftmost bar) is always visible by default.
+    const ZOOM_DEFAULTS = {
+      D: { start: 0, end: 100 },
+      W: { start: 0, end: 100 },
+      M: { start: 0, end: 100 },
+    };
+
+    // For markLine xAxis on a category axis, the date string must match
+    // an existing category. After D->W/M aggregation the dates change;
+    // snapDate finds the closest available date.
+    function snapDate(target, dates) {
+      const t = new Date(target).getTime();
+      let best = dates[0], bestDelta = Math.abs(new Date(best).getTime() - t);
+      for (let i = 1; i < dates.length; i++) {
+        const dt = Math.abs(new Date(dates[i]).getTime() - t);
+        if (dt < bestDelta) { bestDelta = dt; best = dates[i]; }
+      }
+      return best;
+    }
+
+    // Build the markLine config for AI milestones, snapped to the
+    // current data's date axis.
+    function buildMilestoneMarkLine(dates) {
+      return {
+        silent: false,
+        symbol: ["none", "none"],
+        animation: false,
+        data: AI_MILESTONES.map((m, i) => {
+          // First milestone (ChatGPT) is the index inception — render it
+          // distinctively: solid gold line + "T₀" badge instead of a number.
+          const isInception = i === 0;
+          return {
+            xAxis: snapDate(m.date, dates),
+            label: {
+              show: true,
+              formatter: isInception ? "T\u2080" : String(i + 1),
+              position: "insideEndTop",
+              color: isInception ? "#0a0e1a" : "#fff",
+              fontSize: isInception ? 11 : 10,
+              fontWeight: 700,
+              backgroundColor: isInception ? "#ffd166" : "#5e9eff",
+              padding: [3, 6, 3, 6],
+              borderRadius: 9,
+              align: "center",
+              distance: -2,
+            },
+            lineStyle: {
+              color: isInception ? "rgba(255, 209, 102, 0.65)" : "rgba(94, 158, 255, 0.30)",
+              type:  isInception ? "solid"  : "dashed",
+              width: isInception ? 2        : 1,
+            },
+          };
+        }),
+      };
+    }
+
+    function buildOption(data, type) {
+      const xs = data.map((d) => d.date);
+      const ohlc = data.map((d) => [d.open, d.close, d.low, d.high]);
+      const closes = data.map((d) => +d.close.toFixed(2));
+      const milestones = buildMilestoneMarkLine(xs);
+
+      const series =
+        type === "candle"
+          ? [{
+              name: "AI 全球指数",
+              type: "candlestick",
+              data: ohlc,
+              itemStyle: {
+                color: "#ef5350",
+                color0: "#26a69a",
+                borderColor: "#ef5350",
+                borderColor0: "#26a69a",
+              },
+              markLine: milestones,
+            }]
+          : [{
+              name: "AI 全球指数",
+              type: "line",
+              data: closes,
+              smooth: true,
+              symbol: "none",
+              lineStyle: { color: "#5e9eff", width: 2 },
+              areaStyle: {
+                color: {
+                  type: "linear", x: 0, y: 0, x2: 0, y2: 1,
+                  colorStops: [
+                    { offset: 0, color: "rgba(94,158,255,0.32)" },
+                    { offset: 1, color: "rgba(94,158,255,0)" },
+                  ],
+                },
+              },
+              markLine: milestones,
+            }];
+
+      return {
+        backgroundColor: "transparent",
+        animation: true,
+        animationDuration: 400,
+        grid: { left: 60, right: 30, top: 30, bottom: 70 },
+        xAxis: {
+          type: "category",
+          data: xs,
+          axisLine: { lineStyle: { color: "#2a3654" } },
+          axisLabel: { color: "#8a96b3" },
+          splitLine: { show: false },
+        },
+        yAxis: {
+          scale: true,
+          axisLine: { show: false },
+          axisLabel: { color: "#8a96b3", formatter: (v) => v.toFixed(0) },
+          splitLine: { lineStyle: { color: "#1d2740" } },
+        },
+        dataZoom: [
+          { type: "inside", start: ZOOM_DEFAULTS[currentPeriod].start, end: ZOOM_DEFAULTS[currentPeriod].end },
+          {
+            type: "slider",
+            show: true,
+            backgroundColor: "transparent",
+            fillerColor: "rgba(94,158,255,0.12)",
+            borderColor: "#2a3654",
+            textStyle: { color: "#6b7a99" },
+            handleStyle: { color: "#5e9eff", borderColor: "#5e9eff" },
+            moveHandleStyle: { color: "#5e9eff" },
+            start: ZOOM_DEFAULTS[currentPeriod].start,
+            end: ZOOM_DEFAULTS[currentPeriod].end,
+            height: 22, bottom: 14,
+          },
+        ],
+        tooltip: {
+          trigger: "axis",
+          axisPointer: { type: "cross", lineStyle: { color: "#5e9eff", type: "dashed" } },
+          backgroundColor: "rgba(19,26,43,0.95)",
+          borderColor: "#2a3654",
+          textStyle: { color: "#e0e6f0" },
+          formatter: (params) => {
+            const p = params[0];
+            const d = data[p.dataIndex];
+            if (!d) return "";
+            if (type === "candle") {
+              const arrow = d.close >= d.open ? "▲" : "▼";
+              const color = d.close >= d.open ? "#ef5350" : "#26a69a";
+              return `<div style="font-weight:600;margin-bottom:6px">${d.date}</div>
+                <div>开 Open : <b>${d.open.toFixed(2)}</b></div>
+                <div>高 High : <b>${d.high.toFixed(2)}</b></div>
+                <div>低 Low  : <b>${d.low.toFixed(2)}</b></div>
+                <div>收 Close: <b style="color:${color}">${arrow} ${d.close.toFixed(2)}</b></div>`;
+            }
+            return `<div style="font-weight:600;margin-bottom:6px">${d.date}</div>
+              <div>AI 全球: <b>${d.close.toFixed(2)}</b></div>`;
+          },
+        },
+        series,
+      };
+    }
+
+    function updateStats(data) {
+      const last = data[data.length - 1];
+      const prev = data[data.length - 2] || last;
+      const change = last.close - prev.close;
+      const pct = (change / prev.close) * 100;
+      const recent = data.slice(-Math.min(52, data.length));
+      const hi = Math.max(...recent.map((d) => d.high));
+      const lo = Math.min(...recent.map((d) => d.low));
+      const since = data[0].close;
+      const totalPct = ((last.close - since) / since) * 100;
+
+      const cls = change >= 0 ? "up" : "down";
+      const arrow = change >= 0 ? "▲" : "▼";
+      const totalCls = totalPct >= 0 ? "up" : "down";
+
+      document.getElementById("stats").innerHTML = `
+        <div class="stat">
+          <div class="stat-label">最新 Latest</div>
+          <div class="stat-value">${last.close.toFixed(2)}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">变化 Change</div>
+          <div class="stat-value ${cls}">${arrow} ${Math.abs(change).toFixed(2)} (${pct.toFixed(2)}%)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">区间高 Period High</div>
+          <div class="stat-value">${hi.toFixed(2)}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">区间低 Period Low</div>
+          <div class="stat-value">${lo.toFixed(2)}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">累计 Since Start</div>
+          <div class="stat-value ${totalCls}">${totalPct >= 0 ? "+" : ""}${totalPct.toFixed(2)}%</div>
+        </div>
+      `;
+    }
+
+    function render() {
+      const dailyIndex = buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays);
+      const data = aggregate(dailyIndex, currentPeriod);
+      chart.setOption(buildOption(data, currentType), true);
+      updateStats(data);
+    }
+
+    document.getElementById("period-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      document.querySelectorAll("#period-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentPeriod = btn.dataset.period;
+      render();
+    });
+    document.getElementById("type-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      document.querySelectorAll("#type-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentType = btn.dataset.type;
+      render();
+    });
+    document.getElementById("ccy-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      document.querySelectorAll("#ccy-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentCurrency = btn.dataset.ccy;
+      document.getElementById("ccy-display").textContent = currentCurrency;
+      const detail = document.getElementById("ccy-detail");
+      if (detail) detail.textContent =
+        currentCurrency === "LOCAL" ? "本币混合 · 不折算汇率" :
+        currentCurrency === "CNY"   ? "全部折算为人民币" :
+                                      "全部折算为美元 (FX 历史汇率)";
+      render();
+    });
+    document.getElementById("rebal-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      document.querySelectorAll("#rebal-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentRebalance = btn.dataset.rebal;
+      currentPeriodDays = parseInt(btn.dataset.period || "0", 10);
+      const r = document.getElementById("rebal-display");
+      const d = document.getElementById("rebal-detail");
+      if (r) r.textContent = currentPeriodDays === 5 ? "Weekly" : "Monthly";
+      if (d) d.textContent = currentPeriodDays === 5
+        ? "每 5 个交易日重置权重" : "每 21 个交易日重置权重";
+      render();
+    });
+    window.addEventListener("resize", () => chart.resize());
+
+    // ============================================================
+    //  Init
+    // ============================================================
+    // Render components panel — what each stock represents in the AI thesis
+    document.getElementById("components-list").innerHTML = COMPONENTS_CONFIG.map((c) => {
+      const isMajor = c.weight >= 0.5;
+      const wPct = (c.weight * 100).toFixed(0);
+      return `<div class="component-row">
+        <span class="component-weight${isMajor ? ' weight-major' : ''}">${wPct}%</span>
+        <span class="component-name">${c.name}</span>
+        <span class="component-ticker">${c.ticker}</span>
+        <span class="component-concept">${c.concept}</span>
+      </div>`;
+    }).join("");
+
+    // Render milestones legend below the chart (static, no per-render redraw)
+    document.getElementById("milestones-list").innerHTML = AI_MILESTONES.map((m, i) =>
+      `<div class="milestone" data-idx="${i}">
+         <span class="milestone-num${i === 0 ? ' milestone-num-inception' : ''}">${i === 0 ? 'T\u2080' : i + 1}</span>
+         <span class="milestone-date">${m.date}</span>
+         <span>${m.label}${i === 0 ? ' <em style="color:#ffd166;font-style:normal;font-weight:600">· 指数起点</em>' : ''}</span>
+       </div>`
+    ).join("");
+
+    // ----- Hover popover for milestone descriptions -----
+    const popoverEl = document.getElementById("popover");
+    let activeIdx = null;        // currently shown milestone index
+    let hideTimer = null;        // delayed-hide timer (cancellable)
+
+    function populatePopover(i) {
+      const m = AI_MILESTONES[i];
+      if (!m) return;
+      const numEl = document.getElementById("popover-num");
+      numEl.textContent = i === 0 ? "T\u2080" : (i + 1);
+      numEl.className = "popover-num" + (i === 0 ? " popover-num-inception" : "");
+      document.getElementById("popover-date").innerHTML =
+        m.date + (i === 0 ? '<span class="popover-inception-tag">T₀ · Base 100</span>' : "");
+      document.getElementById("popover-title").textContent = m.label;
+      document.getElementById("popover-en").textContent = m.en;
+      document.getElementById("popover-desc").textContent = m.desc;
+    }
+
+    function positionPopover(anchorRect, cursorX, cursorY) {
+      // Prefer placing the popover to the right of the anchor element. If that
+      // overflows the viewport, place it to the left. Vertically clamp inside.
+      const margin = 12;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const pw = popoverEl.offsetWidth;
+      const ph = popoverEl.offsetHeight;
+
+      let left, top;
+      if (anchorRect) {
+        // Anchored to a DOM element (legend row): place to its right, vertically centered
+        left = anchorRect.right + margin;
+        top  = anchorRect.top + anchorRect.height / 2 - ph / 2;
+        if (left + pw > vw - margin) left = anchorRect.left - pw - margin; // flip to left side
+      } else {
+        // Anchored to a cursor position (chart marker)
+        left = cursorX + 16;
+        top  = cursorY - ph / 2;
+        if (left + pw > vw - margin) left = cursorX - pw - 16;
+      }
+      // Vertical clamp
+      if (top < margin) top = margin;
+      if (top + ph > vh - margin) top = vh - ph - margin;
+      // Horizontal clamp
+      if (left < margin) left = margin;
+      popoverEl.style.left = left + "px";
+      popoverEl.style.top  = top + "px";
+    }
+
+    function showPopover(i, opts) {
+      clearTimeout(hideTimer);
+      const sameAsActive = (activeIdx === i);
+      activeIdx = i;
+      populatePopover(i);
+      // Make visible (display:block) so we can measure offsetWidth/Height
+      popoverEl.style.display = "block";
+      // Reposition after one paint so dimensions are accurate
+      requestAnimationFrame(() => {
+        positionPopover(opts?.anchorRect, opts?.cursorX, opts?.cursorY);
+        popoverEl.classList.add("show");
+      });
+    }
+
+    function hidePopover() {
+      activeIdx = null;
+      popoverEl.classList.remove("show");
+      // Defer display:none until fade completes so the transition plays
+      hideTimer = setTimeout(() => {
+        if (activeIdx === null) popoverEl.style.display = "none";
+      }, 140);
+    }
+
+    // ---- Hover on legend rows ----
+    const listEl = document.getElementById("milestones-list");
+    listEl.addEventListener("mouseover", (e) => {
+      const row = e.target.closest(".milestone");
+      if (!row) return;
+      const idx = parseInt(row.dataset.idx, 10);
+      if (idx === activeIdx) return;            // already showing
+      showPopover(idx, { anchorRect: row.getBoundingClientRect() });
+    });
+    listEl.addEventListener("mouseout", (e) => {
+      const row = e.target.closest(".milestone");
+      if (!row) return;
+      // Only hide if the cursor truly left the row (and not into a child)
+      if (!e.relatedTarget || !row.contains(e.relatedTarget)) hidePopover();
+    });
+
+    // ---- Hover on chart markers (markLine) ----
+    chart.on("mouseover", (params) => {
+      if (params.componentType === "markLine" && typeof params.dataIndex === "number") {
+        const ev = params.event && params.event.event;
+        const cx = ev ? ev.clientX : window.innerWidth / 2;
+        const cy = ev ? ev.clientY : window.innerHeight / 2;
+        showPopover(params.dataIndex, { cursorX: cx, cursorY: cy });
+      }
+    });
+    chart.on("mouseout", (params) => {
+      if (params.componentType === "markLine") hidePopover();
+    });
+
+    loadData().then((d) => {
+      rawData = d;
+      render();
+    });
+  </script>
 </body>
 </html>

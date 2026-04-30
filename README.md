@@ -5,12 +5,12 @@ Entropy AI
 
 Interactive HTML visualization:
 
-- [AI Global Index](docs/agi/index.html)
+- [AI Global Index](docs/index.html)
 
 The page can run directly with built-in synthetic data. To generate real market data, run:
 
 ```bash
-cd docs/agi
+cd docs
 pip install yfinance pandas
 python fetch_data.py
 ```
