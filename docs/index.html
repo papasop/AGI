@@ -570,12 +570,6 @@
       letter-spacing: 1.2px;
       margin-bottom: 10px;
     }
-    .milestones-category-key {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
     .milestone-category {
       display: inline-flex;
       align-items: center;
@@ -943,7 +937,6 @@
 
     <div class="milestones">
       <div class="milestones-header">AI 大事记 · AI Era Milestones</div>
-      <div class="milestones-category-key" id="milestones-category-key"></div>
       <div class="milestones-list" id="milestones-list"></div>
     </div>
 
@@ -1522,7 +1515,6 @@
       document.querySelector('[data-rank="contribution"]').textContent = t("贡献", "Contribution");
       document.querySelector(".components-header-total").firstChild.textContent = t("总市值 / TOTAL CAP ", "TOTAL MARKET CAP ");
       document.querySelector(".milestones-header").textContent = t("AI 大事记", "AI Era Milestones");
-      renderMilestoneCategoryKey();
       document.querySelector(".footer").innerHTML = t(
         'Data: 内置合成示例数据 (synthetic seeded sample, 含 CNY/USD) · 替换真实数据请用 <code>fetch_data.py</code> 生成 <code>data.json</code>',
         'Data: built-in synthetic seeded sample with CNY/USD · generate <code>data.json</code> via <code>fetch_data.py</code> to use real data'
@@ -1969,14 +1961,6 @@
       const category = milestoneCategory(categoryKey);
       const label = t(category.zh, category.en);
       return `<span class="milestone-category milestone-category--${categoryKey || 'llm'} ${extraClass}" style="background:${category.bg};color:${category.color}">${label}</span>`;
-    }
-
-    function renderMilestoneCategoryKey() {
-      const keyEl = document.getElementById("milestones-category-key");
-      if (!keyEl) return;
-      keyEl.innerHTML = Object.keys(MILESTONE_CATEGORIES)
-        .map((key) => categoryBadge(key))
-        .join("");
     }
 
     function renderMilestoneList() {
