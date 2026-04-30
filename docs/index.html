@@ -1202,26 +1202,32 @@
     const COMPONENTS_CONFIG = [
       { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD",
         concept: "AI 生产力",
+        conceptEn: "AI productivity",
         marketCap: 165.0,
         seed: 200,  base:  80, vol: 0.030, drift:  0.00040 },
       { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ", weight: 0.10, ccy: "CNY",
         concept: "AI 机器人 · 电池 + 电机 + 电控",
+        conceptEn: "AI robotics · battery + motor + control",
         marketCap: 135.0,
         seed: 256,  base: 250, vol: 0.025, drift:  0.00014 },
       { name: "\u798f\u6676\u79d1\u6280",      short: "Fujing",         ticker: "002222.SZ", weight: 0.10, ccy: "CNY",
         concept: "稀土 + 激光晶体",
+        conceptEn: "Rare earths + laser crystals",
         marketCap: 2.5,
         seed: 22,   base:  12, vol: 0.020, drift:  0.00060 },
       { name: "\u66e6\u667a\u79d1\u6280-P",    short: "Lightelligence", ticker: "01879.HK",  weight: 0.10, ccy: "HKD",
         concept: "光计算 (oNOC + oNET + oMAC)",
+        conceptEn: "Photonic computing (oNOC + oNET + oMAC)",
         marketCap: 6.0,
         seed: 11,   base:  30, vol: 0.028, drift:  0.00220 },
       { name: "\u62d3\u8346\u79d1\u6280",      short: "Piotech",        ticker: "688072.SS", weight: 0.10, ccy: "CNY",
         concept: "混合键合 · 先进封装",
+        conceptEn: "Hybrid bonding · advanced packaging",
         marketCap: 10.0,
         seed: 3000, base: 115, vol: 0.030, drift:  0.00125 },
       { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD",
         concept: "美国唯一的科技股",
+        conceptEn: "The sole US tech stock",
         marketCap: 11.0,
         seed: 7,    base:  36, vol: 0.014, drift:  0.00050 },
     ];
@@ -1280,6 +1286,13 @@
     let currentRebalance = "PERIODIC";
     let currentPeriodDays = 5;          // 5 trading days = 1 calendar week
     let currentComponentRank = "weight";
+    let popoverLang = (() => {
+      try {
+        return localStorage.getItem("aiIndexPopoverLang") || "zh";
+      } catch (_) {
+        return "zh";
+      }
+    })();
 
     // Default zoom per period — show full window in all modes so T₀
     // (ChatGPT inception, leftmost bar) is always visible by default.
@@ -1288,6 +1301,98 @@
       W: { start: 0, end: 100 },
       M: { start: 0, end: 100 },
     };
+
+    function t(zh, en) {
+      return popoverLang === "en" ? en : zh;
+    }
+
+    function renderStaticLanguage() {
+      document.querySelector(".floating-lang-toggle").title = t("页面语言 / 悬浮窗语言", "Page Language / Popover Language");
+      document.querySelector("h1").innerHTML = t(
+        '领先中国AI指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">LEADING CHINA AI INDEX</span>',
+        'Leading China AI Index <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">领先中国AI指数</span>'
+      );
+
+      document.querySelector(".manifesto-tag").textContent = t("宣言 · 五重命题", "MANIFESTO · FIVE PILLARS");
+      const pillars = [
+        {
+          cat: ["前提", "Premise"],
+          text: ['中国在人工智能领域<span class="m-key">全面领先</span>', 'China <span class="m-key">comprehensively leads</span> in AI'],
+          en: ["China comprehensively leads in AI", "中国在人工智能领域全面领先"],
+        },
+        {
+          cat: ["突破", "Breakthrough"],
+          text: ['<span class="m-key">物理模型</span>出现', '<span class="m-key">Physical models</span> emerge'],
+          en: ["Physical models emerge", "物理模型出现"],
+        },
+        {
+          cat: ["猜想 1", "Conjecture 1"],
+          text: ['AI <span class="m-key">全面开源</span>', 'AI becomes <span class="m-key">fully open-source</span>'],
+          en: ["AI is fully open-source", "AI 全面开源"],
+        },
+        {
+          cat: ["猜想 2", "Conjecture 2"],
+          text: ['<span class="m-key">光计算证实</span> · <span class="m-key">量子计算证伪</span>', '<span class="m-key">Photonic computing confirmed</span> · <span class="m-key">Quantum computing falsified</span>'],
+          en: ["Photonic computing confirmed · Quantum computing falsified", "光计算证实 · 量子计算证伪"],
+        },
+        {
+          cat: ["猜想 3", "Conjecture 3"],
+          text: ['<span class="m-key">非人类中心主义</span>', '<span class="m-key">Non-anthropocentrism</span>'],
+          en: ["Non-anthropocentrism", "非人类中心主义"],
+        },
+      ];
+      document.querySelectorAll(".manifesto-pillars li").forEach((row, i) => {
+        const p = pillars[i];
+        if (!p) return;
+        row.querySelector(".pillar-cat").textContent = t(p.cat[0], p.cat[1]);
+        row.querySelector(".pillar-text").innerHTML = `${t(p.text[0], p.text[1])}<span class="pillar-en">${t(p.en[0], p.en[1])}</span>`;
+      });
+      document.querySelector(".manifesto-footer").innerHTML = t(
+        '① 前提 (绿) · ② 待突破 (蓝) · ③④⑤ 三重猜想 (金) — 1 前提 + 1 突破 + 3 猜想 = 五重命题。<span class="manifesto-footer-en">① premise · ② pending breakthrough · ③④⑤ three conjectures — 1 + 1 + 3 = the five pillars.</span>',
+        '① Premise (green) · ② pending breakthrough (blue) · ③④⑤ three conjectures (gold) — 1 premise + 1 breakthrough + 3 conjectures = five pillars.<span class="manifesto-footer-en">① 前提 · ② 待突破 · ③④⑤ 三重猜想 — 五重命题。</span>'
+      );
+
+      document.querySelector(".strategy-tag").textContent = t("策略 · 50 / 50 配置", "STRATEGY · 50 / 50 SPLIT");
+      document.querySelector(".strategy-bar-cn .strategy-bar-label").textContent = t("🇨🇳 中国公司", "🇨🇳 China Companies");
+      document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t("BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10%", "BYD · PDD · Fujing · Lightelligence-P · Piotech, 10% each");
+      document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 美国科技公司", "🇺🇸 US Tech Company");
+      document.querySelector(".strategy-bar-us .strategy-bar-detail").textContent = t("NYT 50% · 唯一权重", "NYT 50% · sole allocation");
+
+      const metaLabels = document.querySelectorAll(".meta-label");
+      const metaDetails = document.querySelectorAll(".meta-detail");
+      if (metaLabels.length >= 4) {
+        metaLabels[0].textContent = t("起点", "INCEPTION");
+        metaLabels[1].textContent = t("基准", "BASE");
+        metaLabels[2].textContent = t("计价", "QUOTE");
+        metaLabels[3].textContent = t("再平衡", "REBALANCE");
+      }
+      if (metaDetails.length >= 4) {
+        metaDetails[0].textContent = t("ChatGPT 公开发布日", "ChatGPT public launch date");
+        metaDetails[1].textContent = t("归一化起点", "Normalized starting point");
+        metaDetails[2].textContent = t("FX 历史汇率折算", "Converted with historical FX");
+        metaDetails[3].textContent = t("每 5 个交易日重置权重", "Weights reset every 5 trading days");
+      }
+
+      document.querySelector("#period-group .control-group-label").textContent = t("周期", "Period");
+      document.querySelector('#period-group button[data-period="D"] .btn-main').textContent = t("日", "Day");
+      document.querySelector('#period-group button[data-period="W"] .btn-main').textContent = t("周", "Week");
+      document.querySelector('#period-group button[data-period="M"] .btn-main').textContent = t("月", "Month");
+      document.querySelector("#type-group .control-group-label").textContent = t("图型", "Chart");
+      document.querySelector('#type-group button[data-type="candle"] .btn-main').textContent = t("K线", "Candle");
+      document.querySelector('#type-group button[data-type="line"] .btn-main').textContent = t("折线", "Line");
+
+      document.querySelector(".components-header-title").textContent = t("成分股 · 各自代表的 AI 子赛道", "COMPONENTS · AI subsector represented by each holding");
+      document.querySelector('[data-rank="weight"]').textContent = t("权重", "Weight");
+      document.querySelector('[data-rank="mcap"]').textContent = t("市值", "Market Cap");
+      document.querySelector('[data-rank="return"]').textContent = t("总涨幅", "Return");
+      document.querySelector('[data-rank="contribution"]').textContent = t("贡献", "Contribution");
+      document.querySelector(".components-header-total").firstChild.textContent = t("总市值 / TOTAL CAP ", "TOTAL MARKET CAP ");
+      document.querySelector(".milestones-header").textContent = t("AI 大事记", "AI Era Milestones");
+      document.querySelector(".footer").innerHTML = t(
+        'Data: 内置合成示例数据 (synthetic seeded sample, 含 CNY/USD) · 替换真实数据请用 <code>fetch_data.py</code> 生成 <code>data.json</code>',
+        'Data: built-in synthetic seeded sample with CNY/USD · generate <code>data.json</code> via <code>fetch_data.py</code> to use real data'
+      );
+    }
 
     // For markLine xAxis on a category axis, the date string must match
     // an existing category. After D->W/M aggregation the dates change;
@@ -1354,11 +1459,14 @@
       const closes = data.map((d) => +d.close.toFixed(2));
       const milestones = buildMilestoneMarkLine(xs);
       const yields = getYieldData(currentPeriod);
+      const indexSeriesName = t("领先中国AI指数", "Leading China AI Index");
+      const cnYieldName = t("中国10Y", "China 10Y");
+      const usYieldName = t("美国10Y", "US 10Y");
 
       const series =
         type === "candle"
           ? [{
-              name: "领先中国AI指数",
+              name: indexSeriesName,
               type: "candlestick",
               xAxisIndex: 0,
               yAxisIndex: 0,
@@ -1372,7 +1480,7 @@
               markLine: milestones,
             }]
           : [{
-              name: "领先中国AI指数",
+              name: indexSeriesName,
               type: "line",
               xAxisIndex: 0,
               yAxisIndex: 0,
@@ -1394,7 +1502,7 @@
 
       series.push(
         {
-          name: "中国10Y",
+          name: cnYieldName,
           type: "line",
           xAxisIndex: 1,
           yAxisIndex: 1,
@@ -1404,7 +1512,7 @@
           lineStyle: { color: "#ffd166", width: 1.6 },
         },
         {
-          name: "美国10Y",
+          name: usYieldName,
           type: "line",
           xAxisIndex: 1,
           yAxisIndex: 1,
@@ -1425,14 +1533,14 @@
           itemWidth: 16,
           itemHeight: 8,
           textStyle: { color: "#8a96b3", fontSize: 11 },
-          data: ["中国10Y", "美国10Y"],
+          data: [cnYieldName, usYieldName],
         },
         graphic: [{
           type: "text",
           left: 60,
           top: 500,
           style: {
-            text: "中美10年国债收益率 · 10Y GOVERNMENT YIELDS",
+            text: t("中美10年国债收益率", "10Y GOVERNMENT YIELDS · China vs US"),
             fill: "#6b7a99",
             font: "700 11px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
             letterSpacing: 1,
@@ -1500,27 +1608,27 @@
           borderColor: "#2a3654",
           textStyle: { color: "#e0e6f0" },
           formatter: (params) => {
-            const p = params.find((item) => item.seriesName === "领先中国AI指数") || params[0];
+            const p = params.find((item) => item.seriesName === indexSeriesName) || params[0];
             const d = data[p.dataIndex];
             if (!d) return "";
             const cn10 = yields.cn[p.dataIndex];
             const us10 = yields.us[p.dataIndex];
             const yieldRows = `<div style="margin-top:7px;padding-top:6px;border-top:1px solid rgba(42,54,84,0.8)">
-              <div>中国10Y: <b style="color:#ffd166">${Number.isFinite(cn10) ? cn10.toFixed(3) : "—"}%</b></div>
-              <div>美国10Y: <b style="color:#26a69a">${Number.isFinite(us10) ? us10.toFixed(3) : "—"}%</b></div>
+              <div>${t("中国10Y", "China 10Y")}: <b style="color:#ffd166">${Number.isFinite(cn10) ? cn10.toFixed(3) : "—"}%</b></div>
+              <div>${t("美国10Y", "US 10Y")}: <b style="color:#26a69a">${Number.isFinite(us10) ? us10.toFixed(3) : "—"}%</b></div>
             </div>`;
             if (type === "candle") {
               const arrow = d.close >= d.open ? "▲" : "▼";
               const color = d.close >= d.open ? "#ef5350" : "#26a69a";
               return `<div style="font-weight:600;margin-bottom:6px">${d.date}</div>
-                <div>开 Open : <b>${d.open.toFixed(2)}</b></div>
-                <div>高 High : <b>${d.high.toFixed(2)}</b></div>
-                <div>低 Low  : <b>${d.low.toFixed(2)}</b></div>
-                <div>收 Close: <b style="color:${color}">${arrow} ${d.close.toFixed(2)}</b></div>
+                <div>${t("开", "Open")}: <b>${d.open.toFixed(2)}</b></div>
+                <div>${t("高", "High")}: <b>${d.high.toFixed(2)}</b></div>
+                <div>${t("低", "Low")}: <b>${d.low.toFixed(2)}</b></div>
+                <div>${t("收", "Close")}: <b style="color:${color}">${arrow} ${d.close.toFixed(2)}</b></div>
                 ${yieldRows}`;
             }
             return `<div style="font-weight:600;margin-bottom:6px">${d.date}</div>
-              <div>领先中国 AI: <b>${d.close.toFixed(2)}</b></div>
+              <div>${t("领先中国 AI", "Leading China AI")}: <b>${d.close.toFixed(2)}</b></div>
               ${yieldRows}`;
           },
         },
@@ -1547,23 +1655,26 @@
       const arrow = change >= 0 ? "▲" : "▼";
       const totalCls = totalPct >= 0 ? "up" : "down";
       const benchmarkCls = benchmarkPct >= 0 ? "up" : "down";
-      const spreadText = `${spreadPct >= 0 ? "+" : ""}${spreadPct.toFixed(2)}pt vs Index`;
+      const spreadText = t(
+        `相对指数 ${spreadPct >= 0 ? "+" : ""}${spreadPct.toFixed(2)}pt`,
+        `${spreadPct >= 0 ? "+" : ""}${spreadPct.toFixed(2)}pt vs Index`
+      );
 
       document.getElementById("stats").innerHTML = `
         <div class="stat">
-          <div class="stat-label">最新 Latest</div>
+          <div class="stat-label">${t("最新", "Latest")}</div>
           <div class="stat-value">${last.close.toFixed(2)}</div>
         </div>
         <div class="stat">
-          <div class="stat-label">变化 Change</div>
+          <div class="stat-label">${t("变化", "Change")}</div>
           <div class="stat-value ${cls}">${arrow} ${Math.abs(change).toFixed(2)} (${pct.toFixed(2)}%)</div>
         </div>
         <div class="stat">
-          <div class="stat-label">累计 Since Start</div>
+          <div class="stat-label">${t("累计", "Since Start")}</div>
           <div class="stat-value ${totalCls}">${totalPct >= 0 ? "+" : ""}${totalPct.toFixed(2)}%</div>
         </div>
         <div class="stat">
-          <div class="stat-label">NASDAQ 同期</div>
+          <div class="stat-label">${t("NASDAQ 同期", "NASDAQ Same Period")}</div>
           <div class="stat-value ${benchmarkCls}">${benchmarkPct >= 0 ? "+" : ""}${benchmarkPct.toFixed(2)}%</div>
           <div class="meta-detail">${spreadText}</div>
         </div>
@@ -1650,6 +1761,8 @@
         }
         return {
           ...merged,
+          displayName: t(merged.name, merged.short || merged.name),
+          displayConcept: t(merged.concept || "", merged.conceptEn || merged.concept || ""),
           marketCap: mcap,
           mcapPct: totalMcap > 0 ? (mcap / totalMcap) * 100 : 0,
           totalReturn,
@@ -1674,18 +1787,18 @@
         const wPct = (c.weight * 100).toFixed(0);
         const metric =
           currentComponentRank === "weight"
-            ? `<span class="component-metric">${wPct}%<span class="component-metric-label">权重</span></span>`
+            ? `<span class="component-metric">${wPct}%<span class="component-metric-label">${t("权重", "Weight")}</span></span>`
             : currentComponentRank === "return"
-            ? `<span class="component-metric ${c.totalReturn >= 0 ? 'up' : 'down'}">${formatSignedPct(c.totalReturn)}<span class="component-metric-label">总涨幅</span></span>`
+            ? `<span class="component-metric ${c.totalReturn >= 0 ? 'up' : 'down'}">${formatSignedPct(c.totalReturn)}<span class="component-metric-label">${t("总涨幅", "Return")}</span></span>`
             : currentComponentRank === "contribution"
-              ? `<span class="component-metric ${c.contribution >= 0 ? 'up' : 'down'}">${formatContribution(c.contribution)}<span class="component-metric-label">贡献</span></span>`
+              ? `<span class="component-metric ${c.contribution >= 0 ? 'up' : 'down'}">${formatContribution(c.contribution)}<span class="component-metric-label">${t("贡献", "Contribution")}</span></span>`
               : `<span class="component-metric">${formatMcap(c.marketCap)}<span class="component-metric-label">${c.mcapPct.toFixed(1)}%</span></span>`;
         return `<div class="component-row">
           <span class="component-rank">${i + 1}</span>
           <span class="component-weight${isMajor ? ' weight-major' : ''}">${wPct}%</span>
-          <span class="component-name">${c.name}</span>
+          <span class="component-name">${c.displayName}</span>
           <span class="component-ticker">${c.ticker}</span>
-          <span class="component-concept">${c.concept || ''}</span>
+          <span class="component-concept">${c.displayConcept || ''}</span>
           ${metric}
         </div>`;
       }).join("");
@@ -1707,13 +1820,6 @@
     const popoverLangGroup = document.getElementById("popover-lang-group");
     let activeIdx = null;        // currently shown milestone index
     let hideTimer = null;        // delayed-hide timer (cancellable)
-    let popoverLang = (() => {
-      try {
-        return localStorage.getItem("aiIndexPopoverLang") || "zh";
-      } catch (_) {
-        return "zh";
-      }
-    })();
 
     function setPopoverLanguage(lang) {
       popoverLang = lang === "en" ? "en" : "zh";
@@ -1724,6 +1830,9 @@
       popoverLangGroup.querySelectorAll("button").forEach((btn) => {
         btn.classList.toggle("active", btn.dataset.lang === popoverLang);
       });
+      renderStaticLanguage();
+      if (rawData) render();
+      else renderComponentsPanel();
       renderMilestoneTitles();
       if (activeIdx !== null) populatePopover(activeIdx);
     }
