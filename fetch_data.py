@@ -62,6 +62,14 @@ SYNTHETIC_FALLBACKS = {
         "start": "2026-04-28",
         "note": "Synthetic fallback used because yfinance returned no data.",
     },
+    "688072.SS": {
+        "seed": 3000,
+        "base": 115,
+        "vol": 0.030,
+        "drift": 0.00125,
+        "start": "2022-11-30",
+        "note": "Synthetic fallback used because yfinance returned no data.",
+    },
 }
 
 
@@ -95,8 +103,26 @@ def generate_synthetic_ohlc(index: pd.Index, seed: int, base: float,
     return pd.DataFrame(rows, index=index)
 
 
+def generate_synthetic_yield(index: pd.Index, seed: int, base: float,
+                             daily_vol: float, drift: float,
+                             floor: float, ceiling: float) -> pd.DataFrame:
+    rng = mulberry32(seed)
+    close = base
+    rows = []
+    for _ in index:
+        change = (rng() - 0.5) * 2 * daily_vol + drift
+        open_ = close + (rng() - 0.5) * daily_vol * 0.35
+        close = min(ceiling, max(floor, open_ + change))
+        wick = (rng() * 0.5 + 0.2) * daily_vol
+        high = min(ceiling, max(open_, close) + wick)
+        low = max(floor, min(open_, close) - wick)
+        rows.append({"Open": open_, "High": high, "Low": low, "Close": close})
+    return pd.DataFrame(rows, index=index)
+
+
 def fetch_ohlc(ticker: str, start: str, end: str) -> pd.DataFrame:
-    df = yf.download(ticker, start=start, end=end, progress=False, auto_adjust=False)
+    df = yf.download(ticker, start=start, end=end, progress=False,
+                     auto_adjust=False, threads=False)
     if df.empty:
         print(f"  WARNING: empty result for {ticker}")
         return pd.DataFrame(columns=["Open", "High", "Low", "Close"])
@@ -108,7 +134,8 @@ def fetch_ohlc(ticker: str, start: str, end: str) -> pd.DataFrame:
 
 
 def fetch_fx(ticker: str, start: str, end: str) -> pd.Series:
-    df = yf.download(ticker, start=start, end=end, progress=False, auto_adjust=False)
+    df = yf.download(ticker, start=start, end=end, progress=False,
+                     auto_adjust=False, threads=False)
     if df.empty:
         raise SystemExit(f"FX series unavailable: {ticker}")
     if hasattr(df.columns, "nlevels") and df.columns.nlevels > 1:
@@ -127,6 +154,16 @@ def to_records(df: pd.DataFrame) -> list:
          "close": float(r["Close"])}
         for idx, r in df.iterrows()
     ]
+
+
+def normalize_tnx(df: pd.DataFrame) -> pd.DataFrame:
+    # Yahoo's ^TNX is often quoted as yield * 10 (e.g. 43.5 = 4.35%).
+    if df.empty:
+        return df
+    out = df.copy()
+    if out["Close"].median() > 20:
+        out[["Open", "High", "Low", "Close"]] = out[["Open", "High", "Low", "Close"]] / 10.0
+    return out
 
 
 def main():
@@ -169,6 +206,20 @@ def main():
     nasdaq_aligned = nasdaq.reindex(common).ffill().bfill()
     if nasdaq_aligned.isna().any().any():
         raise SystemExit("NASDAQ benchmark data missing; cannot align ^IXIC.")
+
+    # 3c) Macro yield pane. US10Y uses Yahoo ^TNX when available; CN10Y
+    # is a local synthetic curve because yfinance does not expose a stable
+    # China 10Y government-bond ticker.
+    print("Fetching yield US10Y (^TNX) ...")
+    us10y = normalize_tnx(fetch_ohlc("^TNX", args.start, args.end))
+    if us10y.empty:
+        print("  WARNING: empty yield result for ^TNX; using synthetic fallback")
+        us10y = generate_synthetic_yield(common, 2026, 3.70, 0.035, 0.0002, 2.0, 6.0)
+    us10y_aligned = us10y.reindex(common).ffill().bfill()
+    if us10y_aligned.isna().any().any():
+        raise SystemExit("US10Y yield data missing; cannot align ^TNX.")
+    print("Building yield CN10Y synthetic curve ...")
+    cn10y_aligned = generate_synthetic_yield(common, 1010, 2.85, 0.025, -0.0005, 1.5, 4.0)
 
     # 4) Align each component; back/forward-fill late-IPO gaps
     components_out = []
@@ -228,6 +279,19 @@ def main():
                 "data": to_records(nasdaq_aligned),
             },
         },
+        "yields": {
+            "CN10Y": {
+                "name": "China 10Y Government Bond Yield",
+                "ticker": "CN10Y_SYNTH",
+                "synthetic_fallback": "Synthetic local curve; yfinance has no stable China 10Y ticker.",
+                "data": to_records(cn10y_aligned),
+            },
+            "US10Y": {
+                "name": "US 10Y Treasury Yield",
+                "ticker": "^TNX",
+                "data": to_records(us10y_aligned),
+            },
+        },
     }
     with open(args.out, "w") as f:
         json.dump(payload, f, separators=(",", ":"))
@@ -242,6 +306,10 @@ def main():
     print(f"  NASDAQ:     {nasdaq_aligned['Close'].iloc[0]:.2f} \u2192 "
           f"{nasdaq_aligned['Close'].iloc[-1]:.2f}  "
           f"({(nasdaq_aligned['Close'].iloc[-1]/nasdaq_aligned['Close'].iloc[0] - 1) * 100:+.2f}%)")
+    print(f"  CN10Y:      {cn10y_aligned['Close'].iloc[0]:.3f}% \u2192 "
+          f"{cn10y_aligned['Close'].iloc[-1]:.3f}%")
+    print(f"  US10Y:      {us10y_aligned['Close'].iloc[0]:.3f}% \u2192 "
+          f"{us10y_aligned['Close'].iloc[-1]:.3f}%")
 
 
 if __name__ == "__main__":
