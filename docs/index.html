@@ -935,7 +935,7 @@
             <span class="strategy-bar-label">🇨🇳 中国公司</span>
             <span class="strategy-bar-pct">50%</span>
           </div>
-          <div class="strategy-bar-detail">BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10% · 长鑫预上市</div>
+          <div class="strategy-bar-detail">贵州茅台 25% · BYD/PDD/福晶/曦智-P/拓荆 平分 25% · 长鑫预上市</div>
         </div>
         <div class="strategy-bar-us">
           <div class="strategy-bar-row">
@@ -995,11 +995,12 @@
         <div class="control-group" id="asset-group">
           <span class="control-group-label">标的</span>
           <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
-          <button data-asset="002594.SZ"><span class="btn-main">BYD</span><span class="btn-sub">10%</span></button>
-          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">10%</span></button>
-          <button data-asset="002222.SZ"><span class="btn-main">福晶</span><span class="btn-sub">10%</span></button>
-          <button data-asset="01879.HK"><span class="btn-main">曦智</span><span class="btn-sub">10%</span></button>
-          <button data-asset="688072.SS"><span class="btn-main">拓荆</span><span class="btn-sub">10%</span></button>
+          <button data-asset="600519.SS"><span class="btn-main">茅台</span><span class="btn-sub">25%</span></button>
+          <button data-asset="002594.SZ"><span class="btn-main">BYD</span><span class="btn-sub">5%</span></button>
+          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">5%</span></button>
+          <button data-asset="002222.SZ"><span class="btn-main">福晶</span><span class="btn-sub">5%</span></button>
+          <button data-asset="01879.HK"><span class="btn-main">曦智</span><span class="btn-sub">5%</span></button>
+          <button data-asset="688072.SS"><span class="btn-main">拓荆</span><span class="btn-sub">5%</span></button>
           <button data-asset="KCB:A06978" disabled><span class="btn-main">长鑫</span><span class="btn-sub">预上市</span></button>
           <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">50%</span></button>
         </div>
@@ -1413,6 +1414,11 @@
     //  ChatGPT-launch day and today.
     // ============================================================
     const COMPONENTS_CONFIG = [
+      { name: "\u8d35\u5dde\u8305\u53f0",      short: "Moutai",         ticker: "600519.SS", weight: 0.25, ccy: "CNY", sleeve: "STABLE", status: "active",
+        concept: "指数稳定计 · 消费旗舰",
+        conceptEn: "Index stabilizer · consumption flagship",
+        marketCap: 280.0,
+        seed: 519, base: 1700, vol: 0.014, drift: 0.00020 },
       { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD", sleeve: "CN", status: "active",
         concept: "AI 生产力",
         conceptEn: "AI productivity",
@@ -1539,10 +1545,10 @@
     function normalizeComponentWeights(components) {
       const merged = components.map(mergedComponentMeta);
       const activeChina = merged.filter((c) => c.sleeve === "CN" && c.status !== "prelist" && hasTradableData(c));
-      const chinaWeight = activeChina.length ? 0.50 / activeChina.length : 0;
+      const chinaWeight = activeChina.length ? 0.25 / activeChina.length : 0;
       return merged.map((c) => ({
         ...c,
-        weight: c.sleeve === "US" ? 0.50 : c.sleeve === "CN" ? chinaWeight : c.weight,
+        weight: c.sleeve === "US" ? 0.50 : c.sleeve === "STABLE" ? 0.25 : c.sleeve === "CN" ? chinaWeight : c.weight,
       }));
     }
 
@@ -1594,8 +1600,8 @@
       document.querySelector(".strategy-tag").textContent = t("策略 · 50 / 50 配置", "STRATEGY · 50 / 50 SPLIT");
       document.querySelector(".strategy-bar-cn .strategy-bar-label").textContent = t("🇨🇳 中国公司", "🇨🇳 China Companies");
       document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t(
-        "BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10% · 长鑫预上市",
-        "BYD · PDD · Fujing · Lightelligence-P · Piotech, 10% each · CXMT pre-listing"
+        "贵州茅台 25% · BYD/PDD/福晶/曦智-P/拓荆 平分 25% · 长鑫预上市",
+        "Moutai 25% · BYD/PDD/Fujing/Lightelligence-P/Piotech split 25% · CXMT pre-listing"
       );
       document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 美国科技公司", "🇺🇸 US Tech Company");
       document.querySelector(".strategy-bar-us .strategy-bar-detail").textContent = t("NYT 50% · 唯一权重", "NYT 50% · sole allocation");
@@ -1625,11 +1631,13 @@
       document.querySelector("#asset-group .control-group-label").textContent = t("标的", "Asset");
       document.querySelector('#asset-group button[data-asset="INDEX"] .btn-main').textContent = t("指数", "Index");
       document.querySelector('#asset-group button[data-asset="INDEX"] .btn-sub').textContent = t("Index", "Index");
+      document.querySelector('#asset-group button[data-asset="600519.SS"] .btn-main').textContent = t("茅台", "Moutai");
       document.querySelector('#asset-group button[data-asset="002222.SZ"] .btn-main').textContent = t("福晶", "Fujing");
       document.querySelector('#asset-group button[data-asset="01879.HK"] .btn-main').textContent = t("曦智", "Light");
       document.querySelector('#asset-group button[data-asset="688072.SS"] .btn-main').textContent = t("拓荆", "Piotech");
       document.querySelector('#asset-group button[data-asset="KCB:A06978"] .btn-main').textContent = t("长鑫", "CXMT");
       document.querySelector('#asset-group button[data-asset="KCB:A06978"] .btn-sub').textContent = t("预上市", "Pre");
+      updateAssetControls();
       document.querySelector("#event-group .control-group-label").textContent = t("事件", "Events");
       document.querySelector('#event-group button[data-event="all"] .btn-main').textContent = t("全部", "All");
       document.querySelector('#event-group button[data-event="paper"] .btn-main').textContent = t("论文", "Paper");
@@ -1712,6 +1720,25 @@
         cn: cn.map((d) => +d.close.toFixed(3)),
         us: us.map((d) => +d.close.toFixed(3)),
       };
+    }
+
+    function updateAssetControls() {
+      if (!rawData?.components?.length) return;
+      document.querySelectorAll("#asset-group button[data-asset]").forEach((btn) => {
+        const ticker = btn.dataset.asset;
+        if (ticker === "INDEX") return;
+        const component = rawData.components.find((c) => c.ticker === ticker);
+        const config = CONFIG_BY_TICKER[ticker] || {};
+        const isTradable = Boolean(component?.data?.length && component.status !== "prelist");
+        btn.disabled = !isTradable;
+        const sub = btn.querySelector(".btn-sub");
+        if (!sub) return;
+        if (isTradable) {
+          sub.textContent = ((component.weight || 0) * 100).toFixed(component.weight < 0.1 ? 2 : 0).replace(/\.00$/, "") + "%";
+        } else if (config.status === "prelist") {
+          sub.textContent = t("预上市", "Pre");
+        }
+      });
     }
 
     function convertedComponentIndex(component) {
@@ -1993,6 +2020,7 @@
       chart.setOption(buildOption(data, currentType, chartData.label), true);
       updateStats(data);
       renderComponentsPanel();
+      updateAssetControls();
     }
 
     document.getElementById("period-group").addEventListener("click", (e) => {
