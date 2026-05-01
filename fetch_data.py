@@ -8,6 +8,7 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
+    贵州茅台        600519.SS    CNY    25.0%
     比亚迪          002594.SZ    CNY    10.0%
     拼多多          PDD          USD    10.0%
     福晶科技        002222.SZ    CNY    10.0%
@@ -45,8 +46,9 @@ import yfinance as yf
 
 COMPONENTS = [
     # CN names, short, ticker, currency, sleeve, status.
-    # Weight is assigned dynamically: NYT stays 50%; active China-sleeve
-    # components split the other 50% equally.
+    # Weight is assigned dynamically: NYT stays 50%; Moutai stays 25%;
+    # active China-sleeve components split the remaining 25% equally.
+    {"name": "\u8d35\u5dde\u8305\u53f0", "short": "Moutai", "ticker": "600519.SS", "ccy": "CNY", "sleeve": "STABLE", "status": "active"},
     {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
     {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
     {"name": "\u798f\u6676\u79d1\u6280", "short": "Fujing", "ticker": "002222.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
@@ -277,10 +279,12 @@ def main():
               f"real history from {inception}{late}")
 
     active_china = [c for c in components_out if c.get("sleeve") == "CN" and c.get("status") == "active"]
-    china_weight = 0.50 / len(active_china) if active_china else 0.0
+    china_weight = 0.25 / len(active_china) if active_china else 0.0
     for component in components_out:
         if component.get("sleeve") == "US":
             component["weight"] = 0.50
+        elif component.get("sleeve") == "STABLE":
+            component["weight"] = 0.25
         elif component.get("sleeve") == "CN":
             component["weight"] = china_weight
 
@@ -299,7 +303,7 @@ def main():
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
             "pending_components": pending_components,
-            "weighting_policy": "NYT fixed at 50%; active China-sleeve components split the other 50% equally. Pre-listing watch codes are excluded until exchange data exists.",
+            "weighting_policy": "NYT fixed at 50%; Moutai fixed at 25%; active China-sleeve components split the remaining 25% equally. Pre-listing watch codes are excluded until exchange data exists.",
         },
         "components": components_out,
         "fx": {
