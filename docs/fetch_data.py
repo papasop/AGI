@@ -13,6 +13,7 @@ Index composition:
     福晶科技        002222.SZ    CNY    10.0%
     曦智科技-P      01879.HK     HKD    10.0%   (IPO'd 2026-04-28)
     拓荆科技        688072.SS    CNY    10.0%
+    长鑫科技        KCB:A06978   CNY    pre-listing watch; included after data exists
     纽约时报        NYT          USD    50.0%
 
 Calendar handling
@@ -43,13 +44,16 @@ import yfinance as yf
 
 
 COMPONENTS = [
-    # (CN name,    short,            ticker,         weight, ccy)
-    ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.10, "CNY"),
-    ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.10, "USD"),
-    ("\u798f\u6676\u79d1\u6280", "Fujing",        "002222.SZ", 0.10, "CNY"),
-    ("\u66e6\u667a\u79d1\u6280-P", "Lightelligence", "01879.HK",  0.10, "HKD"),
-    ("\u62d3\u8346\u79d1\u6280", "Piotech",       "688072.SS", 0.10, "CNY"),
-    ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.50, "USD"),
+    # CN names, short, ticker, currency, sleeve, status.
+    # Weight is assigned dynamically: NYT stays 50%; active China-sleeve
+    # components split the other 50% equally.
+    {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
+    {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
+    {"name": "\u798f\u6676\u79d1\u6280", "short": "Fujing", "ticker": "002222.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
+    {"name": "\u66e6\u667a\u79d1\u6280-P", "short": "Lightelligence", "ticker": "01879.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
+    {"name": "\u62d3\u8346\u79d1\u6280", "short": "Piotech", "ticker": "688072.SS", "ccy": "CNY", "sleeve": "CN", "status": "active"},
+    {"name": "\u957f\u946b\u79d1\u6280", "short": "CXMT", "ticker": "KCB:A06978", "ccy": "CNY", "sleeve": "CN", "status": "prelist"},
+    {"name": "\u7ebd\u7ea6\u65f6\u62a5", "short": "NYT", "ticker": "NYT", "ccy": "USD", "sleeve": "US", "status": "active"},
 ]
 
 SYNTHETIC_FALLBACKS = {
@@ -177,7 +181,8 @@ def main():
 
     # 1) Fetch all stock OHLC
     fetched = {}
-    for name, short, ticker, weight, ccy in COMPONENTS:
+    for component in COMPONENTS:
+        name, short, ticker, ccy = component["name"], component["short"], component["ticker"], component["ccy"]
         print(f"Fetching {short:15s} ({ticker:12s}, {ccy}) ...")
         fetched[ticker] = fetch_ohlc(ticker, args.start, args.end)
 
@@ -223,9 +228,26 @@ def main():
 
     # 4) Align each component; back/forward-fill late-IPO gaps
     components_out = []
+    pending_components = []
     fallback_notes = {}
-    for name, short, ticker, weight, ccy in COMPONENTS:
+    for component in COMPONENTS:
+        name, short, ticker, ccy = component["name"], component["short"], component["ticker"], component["ccy"]
+        status = component.get("status", "active")
         df = fetched[ticker]
+        if status == "prelist" and df.empty:
+            pending_components.append({
+                "name": name,
+                "short": short,
+                "ticker": ticker,
+                "ccy": ccy,
+                "sleeve": component.get("sleeve"),
+                "status": "prelist",
+                "note": "Pre-listing watch code; excluded until exchange data exists.",
+            })
+            print(f"  {short:15s}: pre-listing watch only; excluded until data exists")
+            continue
+        if status == "prelist" and not df.empty:
+            status = "active"
         if df.empty and ticker in SYNTHETIC_FALLBACKS:
             fb = SYNTHETIC_FALLBACKS[ticker]
             fb_index = common[common >= fb["start"]]
@@ -243,7 +265,9 @@ def main():
             raise SystemExit(f"Could not back-fill {ticker} \u2014 series is empty?")
         components_out.append({
             "name": name, "short": short, "ticker": ticker,
-            "weight": weight, "ccy": ccy,
+            "weight": 0.0, "ccy": ccy,
+            "sleeve": component.get("sleeve"),
+            "status": status,
             "inception": inception,
             "synthetic_fallback": fallback_notes.get(ticker),
             "data": to_records(df_aligned),
@@ -251,6 +275,14 @@ def main():
         late = " (back-filled pre-IPO!)" if inception and inception > common[0] else ""
         print(f"  {short:15s}: aligned to {len(df_aligned)} days, "
               f"real history from {inception}{late}")
+
+    active_china = [c for c in components_out if c.get("sleeve") == "CN" and c.get("status") == "active"]
+    china_weight = 0.50 / len(active_china) if active_china else 0.0
+    for component in components_out:
+        if component.get("sleeve") == "US":
+            component["weight"] = 0.50
+        elif component.get("sleeve") == "CN":
+            component["weight"] = china_weight
 
     # 5) Write JSON
     payload = {
@@ -266,6 +298,8 @@ def main():
                      "therefore inherits a constant contribution from those "
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
+            "pending_components": pending_components,
+            "weighting_policy": "NYT fixed at 50%; active China-sleeve components split the other 50% equally. Pre-listing watch codes are excluded until exchange data exists.",
         },
         "components": components_out,
         "fx": {

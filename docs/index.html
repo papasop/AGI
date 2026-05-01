@@ -325,6 +325,10 @@
       color: #fff;
       box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.3);
     }
+    .control-group button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
     .btn-main {
       font-size: 13px;
       font-weight: 600;
@@ -510,6 +514,9 @@
     .component-row:first-child {
       border-top: none;
     }
+    .component-row--prelist {
+      opacity: 0.72;
+    }
     .component-rank {
       display: inline-flex;
       align-items: center;
@@ -542,6 +549,11 @@
     .component-weight.weight-major {
       background: rgba(255, 209, 102, 0.18);
       color: #ffd166;
+    }
+    .component-weight.weight-prelist {
+      background: rgba(255, 209, 102, 0.10);
+      color: #ffd166;
+      border: 1px solid rgba(255, 209, 102, 0.24);
     }
     .component-name {
       color: #fff;
@@ -923,7 +935,7 @@
             <span class="strategy-bar-label">🇨🇳 中国公司</span>
             <span class="strategy-bar-pct">50%</span>
           </div>
-          <div class="strategy-bar-detail">BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10%</div>
+          <div class="strategy-bar-detail">BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10% · 长鑫预上市</div>
         </div>
         <div class="strategy-bar-us">
           <div class="strategy-bar-row">
@@ -988,6 +1000,7 @@
           <button data-asset="002222.SZ"><span class="btn-main">福晶</span><span class="btn-sub">10%</span></button>
           <button data-asset="01879.HK"><span class="btn-main">曦智</span><span class="btn-sub">10%</span></button>
           <button data-asset="688072.SS"><span class="btn-main">拓荆</span><span class="btn-sub">10%</span></button>
+          <button data-asset="KCB:A06978" disabled><span class="btn-main">长鑫</span><span class="btn-sub">预上市</span></button>
           <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">50%</span></button>
         </div>
       </div>
@@ -1400,32 +1413,39 @@
     //  ChatGPT-launch day and today.
     // ============================================================
     const COMPONENTS_CONFIG = [
-      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD",
+      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD", sleeve: "CN", status: "active",
         concept: "AI 生产力",
         conceptEn: "AI productivity",
         marketCap: 165.0,
         seed: 200,  base:  80, vol: 0.030, drift:  0.00040 },
-      { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ", weight: 0.10, ccy: "CNY",
+      { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ", weight: 0.10, ccy: "CNY", sleeve: "CN", status: "active",
         concept: "AI 机器人 · 电池 + 电机 + 电控",
         conceptEn: "AI robotics · battery + motor + control",
         marketCap: 135.0,
         seed: 256,  base: 250, vol: 0.025, drift:  0.00014 },
-      { name: "\u798f\u6676\u79d1\u6280",      short: "Fujing",         ticker: "002222.SZ", weight: 0.10, ccy: "CNY",
+      { name: "\u798f\u6676\u79d1\u6280",      short: "Fujing",         ticker: "002222.SZ", weight: 0.10, ccy: "CNY", sleeve: "CN", status: "active",
         concept: "稀土 + 激光晶体",
         conceptEn: "Rare earths + laser crystals",
         marketCap: 2.5,
         seed: 22,   base:  12, vol: 0.020, drift:  0.00060 },
-      { name: "\u66e6\u667a\u79d1\u6280-P",    short: "Lightelligence", ticker: "01879.HK",  weight: 0.10, ccy: "HKD",
+      { name: "\u66e6\u667a\u79d1\u6280-P",    short: "Lightelligence", ticker: "01879.HK",  weight: 0.10, ccy: "HKD", sleeve: "CN", status: "active",
         concept: "光计算 (oNOC + oNET + oMAC)",
         conceptEn: "Photonic computing (oNOC + oNET + oMAC)",
         marketCap: 6.0,
         seed: 11,   base:  30, vol: 0.028, drift:  0.00220 },
-      { name: "\u62d3\u8346\u79d1\u6280",      short: "Piotech",        ticker: "688072.SS", weight: 0.10, ccy: "CNY",
+      { name: "\u62d3\u8346\u79d1\u6280",      short: "Piotech",        ticker: "688072.SS", weight: 0.10, ccy: "CNY", sleeve: "CN", status: "active",
         concept: "混合键合 · 先进封装",
         conceptEn: "Hybrid bonding · advanced packaging",
         marketCap: 10.0,
         seed: 3000, base: 115, vol: 0.030, drift:  0.00125 },
-      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD",
+      { name: "\u957f\u946b\u79d1\u6280",      short: "CXMT",           ticker: "KCB:A06978", weight: 0.00, ccy: "CNY", sleeve: "CN", status: "prelist",
+        concept: "国产存储 · HBM / DRAM",
+        conceptEn: "Domestic memory · HBM / DRAM",
+        marketCap: 0,
+        preListingNote: "预上市代码 · 上市后自动进入中国篮子平权",
+        preListingNoteEn: "Pre-listing code · joins the China sleeve equally after listing",
+        seed: 6978, base: 50, vol: 0.026, drift: 0.00055 },
+      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD", sleeve: "US", status: "active",
         concept: "美国唯一的科技股",
         conceptEn: "The sole US tech stock",
         marketCap: 11.0,
@@ -1437,18 +1457,21 @@
         const r = await fetch("data.json", { cache: "no-store" });
         if (!r.ok) throw new Error("no data.json");
         const j = await r.json();
-        if (j.components && j.components.length && j.fx) return j;
+        if (j.components && j.components.length && j.fx) {
+          return { ...j, components: normalizeComponentWeights(j.components) };
+        }
       } catch (_) {}
 
       // Synthetic fallback. All components & both FX series share
       // the same trading-date axis (from ChatGPT launch through today).
       const dates = generateTradingDates(INCEPTION_DATE);
-      const components = COMPONENTS_CONFIG.map((c) => ({
+      const activeConfigs = COMPONENTS_CONFIG.filter((c) => c.status !== "prelist");
+      const components = activeConfigs.map((c) => ({
         name: c.name, short: c.short, ticker: c.ticker, weight: c.weight, ccy: c.ccy,
         data: generateOHLC(c.seed, c.base, c.vol, c.drift, dates),
       }));
       return {
-        components,
+        components: normalizeComponentWeights(components),
         fx: {
           CNY: generateFX(2024, 7.05, 0.0035, 0.000020, dates),  // CNY per USD: 7.05 -> ~7.15
           HKD: generateFX(2022, 7.80, 0.0008, 0,        dates),  // HKD/USD peg: ~7.80
@@ -1504,6 +1527,25 @@
       M: { start: 0, end: 100 },
     };
 
+    function hasTradableData(component) {
+      return Array.isArray(component?.data) && component.data.length > 0;
+    }
+
+    function mergedComponentMeta(component) {
+      const config = COMPONENTS_CONFIG.find((c) => c.ticker === component.ticker) || {};
+      return { ...config, ...component };
+    }
+
+    function normalizeComponentWeights(components) {
+      const merged = components.map(mergedComponentMeta);
+      const activeChina = merged.filter((c) => c.sleeve === "CN" && c.status !== "prelist" && hasTradableData(c));
+      const chinaWeight = activeChina.length ? 0.50 / activeChina.length : 0;
+      return merged.map((c) => ({
+        ...c,
+        weight: c.sleeve === "US" ? 0.50 : c.sleeve === "CN" ? chinaWeight : c.weight,
+      }));
+    }
+
     function t(zh, en) {
       return popoverLang === "en" ? en : zh;
     }
@@ -1551,7 +1593,10 @@
 
       document.querySelector(".strategy-tag").textContent = t("策略 · 50 / 50 配置", "STRATEGY · 50 / 50 SPLIT");
       document.querySelector(".strategy-bar-cn .strategy-bar-label").textContent = t("🇨🇳 中国公司", "🇨🇳 China Companies");
-      document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t("BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10%", "BYD · PDD · Fujing · Lightelligence-P · Piotech, 10% each");
+      document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t(
+        "BYD · PDD · 福晶 · 曦智-P · 拓荆 各 10% · 长鑫预上市",
+        "BYD · PDD · Fujing · Lightelligence-P · Piotech, 10% each · CXMT pre-listing"
+      );
       document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 美国科技公司", "🇺🇸 US Tech Company");
       document.querySelector(".strategy-bar-us .strategy-bar-detail").textContent = t("NYT 50% · 唯一权重", "NYT 50% · sole allocation");
 
@@ -1583,6 +1628,8 @@
       document.querySelector('#asset-group button[data-asset="002222.SZ"] .btn-main').textContent = t("福晶", "Fujing");
       document.querySelector('#asset-group button[data-asset="01879.HK"] .btn-main').textContent = t("曦智", "Light");
       document.querySelector('#asset-group button[data-asset="688072.SS"] .btn-main').textContent = t("拓荆", "Piotech");
+      document.querySelector('#asset-group button[data-asset="KCB:A06978"] .btn-main').textContent = t("长鑫", "CXMT");
+      document.querySelector('#asset-group button[data-asset="KCB:A06978"] .btn-sub').textContent = t("预上市", "Pre");
       document.querySelector("#event-group .control-group-label").textContent = t("事件", "Events");
       document.querySelector('#event-group button[data-event="all"] .btn-main').textContent = t("全部", "All");
       document.querySelector('#event-group button[data-event="paper"] .btn-main').textContent = t("论文", "Paper");
@@ -2023,7 +2070,10 @@
     }
 
     function getComponentRows() {
-      const source = rawData?.components?.length ? rawData.components : COMPONENTS_CONFIG;
+      const rawComponents = rawData?.components?.length ? rawData.components : [];
+      const seenTickers = new Set(rawComponents.map((c) => c.ticker));
+      const pendingConfigs = COMPONENTS_CONFIG.filter((c) => c.status === "prelist" && !seenTickers.has(c.ticker));
+      const source = rawComponents.length ? [...rawComponents, ...pendingConfigs] : COMPONENTS_CONFIG;
       const totalMcap = COMPONENTS_CONFIG.reduce((s, c) => s + (c.marketCap || 0), 0);
       return source.map((component) => {
         const config = CONFIG_BY_TICKER[component.ticker] || {};
@@ -2031,7 +2081,7 @@
         const mcap = config.marketCap || 0;
         let totalReturn = 0;
         let contribution = 0;
-        if (rawData?.fx && component.data?.length) {
+        if (rawData?.fx && component.data?.length && merged.status !== "prelist") {
           const first = componentCloseInCurrency(component, 0);
           const last = componentCloseInCurrency(component, component.data.length - 1);
           totalReturn = first ? (last / first - 1) * 100 : 0;
@@ -2053,10 +2103,10 @@
       const rows = getComponentRows();
       const totalMcap = rows.reduce((s, c) => s + (c.marketCap || 0), 0);
       const sorters = {
-        weight: (a, b) => b.weight - a.weight || b.marketCap - a.marketCap,
-        mcap: (a, b) => b.marketCap - a.marketCap,
-        return: (a, b) => b.totalReturn - a.totalReturn,
-        contribution: (a, b) => b.contribution - a.contribution,
+        weight: (a, b) => (a.status === "prelist") - (b.status === "prelist") || b.weight - a.weight || b.marketCap - a.marketCap,
+        mcap: (a, b) => (a.status === "prelist") - (b.status === "prelist") || b.marketCap - a.marketCap,
+        return: (a, b) => (a.status === "prelist") - (b.status === "prelist") || b.totalReturn - a.totalReturn,
+        contribution: (a, b) => (a.status === "prelist") - (b.status === "prelist") || b.contribution - a.contribution,
       };
       rows.sort(sorters[currentComponentRank] || sorters.weight);
       const metricValue = (c) => {
@@ -2079,18 +2129,21 @@
       document.getElementById("total-mcap").textContent = formatMcap(totalMcap);
       document.getElementById("components-list").innerHTML = rows.map((c, i) => {
         const isMajor = c.weight >= 0.5;
+        const isPrelist = c.status === "prelist";
         const wPct = (c.weight * 100).toFixed(0);
-        const metric =
-          currentComponentRank === "weight"
+        const prelistLabel = t(c.preListingNote || "预上市代码", c.preListingNoteEn || "Pre-listing code");
+        const metric = isPrelist
+          ? metricBar(c, t("预上市", "Pre-listing"), prelistLabel)
+          : currentComponentRank === "weight"
             ? metricBar(c, `${wPct}%`, t("权重", "Weight"))
             : currentComponentRank === "return"
             ? metricBar(c, formatSignedPct(c.totalReturn), t("总涨幅", "Return"), c.totalReturn >= 0 ? "up" : "down")
             : currentComponentRank === "contribution"
               ? metricBar(c, formatContribution(c.contribution), t("贡献", "Contribution"), c.contribution >= 0 ? "up" : "down")
               : metricBar(c, formatMcap(c.marketCap), `${c.mcapPct.toFixed(1)}%`);
-        return `<div class="component-row">
+        return `<div class="component-row${isPrelist ? ' component-row--prelist' : ''}">
           <span class="component-rank">${i + 1}</span>
-          <span class="component-weight${isMajor ? ' weight-major' : ''}">${wPct}%</span>
+          <span class="component-weight${isMajor ? ' weight-major' : ''}${isPrelist ? ' weight-prelist' : ''}">${isPrelist ? t("候选", "Watch") : wPct + "%"}</span>
           <span class="component-name">${c.displayName}</span>
           <span class="component-ticker">${c.ticker}</span>
           <span class="component-concept">${c.displayConcept || ''}</span>
