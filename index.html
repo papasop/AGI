@@ -168,7 +168,7 @@
       color: #4a5778;
       font-size: 10.5px;
     }
-    /* === Strategy block (equal thirds) === */
+    /* === Strategy block (30/30/30/10) === */
     .strategy {
       margin: 0 0 22px;
     }
@@ -187,6 +187,7 @@
       min-height: 78px;
     }
     .strategy-bar-stable,
+    .strategy-bar-core,
     .strategy-bar-cn,
     .strategy-bar-us {
       flex: 1;
@@ -197,11 +198,15 @@
       gap: 6px;
     }
     .strategy-bar-cn {
-      background: linear-gradient(135deg, rgba(239, 83, 80, 0.22) 0%, rgba(239, 83, 80, 0.04) 100%);
+      background: linear-gradient(135deg, rgba(239, 83, 80, 0.18) 0%, rgba(239, 83, 80, 0.035) 100%);
       border-right: 1px solid #2a3654;
     }
     .strategy-bar-stable {
       background: linear-gradient(135deg, rgba(255, 209, 102, 0.18) 0%, rgba(255, 209, 102, 0.04) 100%);
+      border-right: 1px solid #2a3654;
+    }
+    .strategy-bar-core {
+      background: linear-gradient(135deg, rgba(38, 166, 154, 0.16) 0%, rgba(38, 166, 154, 0.035) 100%);
       border-right: 1px solid #2a3654;
     }
     .strategy-bar-us {
@@ -228,6 +233,7 @@
     }
     .strategy-bar-cn .strategy-bar-pct { color: #ef5350; }
     .strategy-bar-stable .strategy-bar-pct { color: #ffd166; }
+    .strategy-bar-core .strategy-bar-pct { color: #26a69a; }
     .strategy-bar-us .strategy-bar-pct { color: #5e9eff; }
     .strategy-bar-detail {
       font-size: 11px;
@@ -935,28 +941,35 @@
     </div>
 
     <div class="strategy">
-      <div class="strategy-tag">策略 · STRATEGY · EQUAL THIRDS</div>
+      <div class="strategy-tag">策略 · STRATEGY · 30 / 30 / 30 / 10</div>
       <div class="strategy-bar">
         <div class="strategy-bar-us">
           <div class="strategy-bar-row">
             <span class="strategy-bar-label">🇺🇸 纽约时报</span>
-            <span class="strategy-bar-pct">1/3</span>
+            <span class="strategy-bar-pct">30%</span>
           </div>
           <div class="strategy-bar-detail">NYT · AI 稳定计</div>
         </div>
         <div class="strategy-bar-stable">
           <div class="strategy-bar-row">
             <span class="strategy-bar-label">🇨🇳 贵州茅台</span>
-            <span class="strategy-bar-pct">1/3</span>
+            <span class="strategy-bar-pct">30%</span>
           </div>
           <div class="strategy-bar-detail">600519.SS · 指数稳定计</div>
+        </div>
+        <div class="strategy-bar-core">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇨🇳 拼多多</span>
+            <span class="strategy-bar-pct">30%</span>
+          </div>
+          <div class="strategy-bar-detail">PDD · AI 生产力</div>
         </div>
         <div class="strategy-bar-cn">
           <div class="strategy-bar-row">
             <span class="strategy-bar-label">🇨🇳 其他中国公司</span>
-            <span class="strategy-bar-pct">1/3</span>
+            <span class="strategy-bar-pct">10%</span>
           </div>
-          <div class="strategy-bar-detail">BYD/PDD/福晶/曦智-P/拓荆 平分 1/3 · 长鑫预上市</div>
+          <div class="strategy-bar-detail">BYD/福晶/曦智-P/拓荆 平分 10% · 长鑫预上市</div>
         </div>
       </div>
     </div>
@@ -1009,14 +1022,14 @@
         <div class="control-group" id="asset-group">
           <span class="control-group-label">标的</span>
           <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
-          <button data-asset="600519.SS"><span class="btn-main">茅台</span><span class="btn-sub">33.33%</span></button>
-          <button data-asset="002594.SZ"><span class="btn-main">BYD</span><span class="btn-sub">6.67%</span></button>
-          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">6.67%</span></button>
-          <button data-asset="002222.SZ"><span class="btn-main">福晶</span><span class="btn-sub">6.67%</span></button>
-          <button data-asset="01879.HK"><span class="btn-main">曦智</span><span class="btn-sub">6.67%</span></button>
-          <button data-asset="688072.SS"><span class="btn-main">拓荆</span><span class="btn-sub">6.67%</span></button>
+          <button data-asset="600519.SS"><span class="btn-main">茅台</span><span class="btn-sub">30%</span></button>
+          <button data-asset="002594.SZ"><span class="btn-main">BYD</span><span class="btn-sub">2.5%</span></button>
+          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">30%</span></button>
+          <button data-asset="002222.SZ"><span class="btn-main">福晶</span><span class="btn-sub">2.5%</span></button>
+          <button data-asset="01879.HK"><span class="btn-main">曦智</span><span class="btn-sub">2.5%</span></button>
+          <button data-asset="688072.SS"><span class="btn-main">拓荆</span><span class="btn-sub">2.5%</span></button>
           <button data-asset="KCB:A06978" disabled><span class="btn-main">长鑫</span><span class="btn-sub">预上市</span></button>
-          <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">33.33%</span></button>
+          <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">30%</span></button>
         </div>
       </div>
       <div id="chart"></div>
@@ -1369,8 +1382,8 @@
         desc: "拜登政府第二轮升级对华先进 AI 芯片出口管制,把此前为绕开管制专门设计的 NVIDIA H800 / A800(中国版)也列入限制。直接利好中国本土 AI 芯片 / 半导体设备公司——本指数中的拓荆(薄膜沉积设备)、福晶(光刻激光晶体)的国产替代逻辑由此被显著强化。",
         desc_en: "The Biden administration's second-round tightening of AI chip export controls to China adds NVIDIA H800 / A800 — the China-specific chips originally designed to circumvent earlier controls — to the restriction list. A direct tailwind for Chinese domestic AI chip / semiconductor equipment companies, materially strengthening the import-substitution logic for Piotech (thin-film deposition equipment) and Fujing (lithography laser crystals) in this index." },
       { date: "2023-12-27", category: "llm", label: "NYT \u8d77\u8bc9 OpenAI \u4e0e\u5fae\u8f6f",       en: "NYT v OpenAI lawsuit",
-        desc: "纽约时报在曼哈顿联邦法院起诉 OpenAI 与微软,指控未经授权使用其数百万篇文章训练 GPT 系列模型,索赔可能高达数十亿美元。这是 AI 与传统媒体的首例重磅版权诉讼,直接关系本指数 1/3 权重的 NYT 估值——和解或胜诉将重塑 AI 训练数据的商业模式。",
-        desc_en: "The New York Times files suit against OpenAI and Microsoft in Manhattan federal court, alleging unauthorized use of millions of articles to train GPT models, with damages potentially in the billions. The first major copyright case between AI and traditional media — directly relevant to NYT's one-third weight in this index. A settlement or victory would reshape the business model of AI training data." },
+        desc: "纽约时报在曼哈顿联邦法院起诉 OpenAI 与微软,指控未经授权使用其数百万篇文章训练 GPT 系列模型,索赔可能高达数十亿美元。这是 AI 与传统媒体的首例重磅版权诉讼,直接关系本指数 30% 权重的 NYT 估值——和解或胜诉将重塑 AI 训练数据的商业模式。",
+        desc_en: "The New York Times files suit against OpenAI and Microsoft in Manhattan federal court, alleging unauthorized use of millions of articles to train GPT models, with damages potentially in the billions. The first major copyright case between AI and traditional media — directly relevant to NYT's 30% weight in this index. A settlement or victory would reshape the business model of AI training data." },
       { date: "2024-02-15", category: "physical", label: "Sora 世界模拟器论文", en: "Sora world-simulator report",
         desc: "OpenAI 发布 Sora 技术报告《Video generation models as world simulators》,把视频生成明确连接到“通用物理世界模拟器”的路线。它让物理一致性、时空 patch、长视频生成成为 AI 叙事中的核心变量。",
         desc_en: "OpenAI publishes the Sora technical report, 'Video generation models as world simulators,' explicitly tying video generation to the path toward general-purpose physical-world simulators. It pushes physical consistency, spacetime patches, and long-form video generation into the center of the AI narrative." },
@@ -1428,12 +1441,12 @@
     //  ChatGPT-launch day and today.
     // ============================================================
     const COMPONENTS_CONFIG = [
-      { name: "\u8d35\u5dde\u8305\u53f0",      short: "Moutai",         ticker: "600519.SS", weight: 1 / 3, ccy: "CNY", sleeve: "STABLE", status: "active",
+      { name: "\u8d35\u5dde\u8305\u53f0",      short: "Moutai",         ticker: "600519.SS", weight: 0.30, ccy: "CNY", sleeve: "STABLE", status: "active",
         concept: "指数稳定计 · 消费旗舰",
         conceptEn: "Index stabilizer · consumption flagship",
         marketCap: 280.0,
         seed: 519, base: 1700, vol: 0.014, drift: 0.00020 },
-      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD", sleeve: "CN", status: "active",
+      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.30, ccy: "USD", sleeve: "CORE", status: "active",
         concept: "AI 生产力",
         conceptEn: "AI productivity",
         marketCap: 165.0,
@@ -1465,7 +1478,7 @@
         preListingNote: "预上市代码 · 上市后自动进入中国篮子平权",
         preListingNoteEn: "Pre-listing code · joins the China sleeve equally after listing",
         seed: 6978, base: 50, vol: 0.026, drift: 0.00055 },
-      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 1 / 3, ccy: "USD", sleeve: "US", status: "active",
+      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.30, ccy: "USD", sleeve: "US", status: "active",
         concept: "AI 稳定计",
         conceptEn: "AI stabilizer",
         marketCap: 11.0,
@@ -1559,11 +1572,11 @@
     function normalizeComponentWeights(components) {
       const merged = components.map(mergedComponentMeta);
       const activeChina = merged.filter((c) => c.sleeve === "CN" && c.status !== "prelist" && hasTradableData(c));
-      const third = 1 / 3;
-      const chinaWeight = activeChina.length ? third / activeChina.length : 0;
+      const otherChinaWeight = 0.10;
+      const chinaWeight = activeChina.length ? otherChinaWeight / activeChina.length : 0;
       return merged.map((c) => ({
         ...c,
-        weight: c.sleeve === "US" ? third : c.sleeve === "STABLE" ? third : c.sleeve === "CN" ? chinaWeight : c.weight,
+        weight: c.sleeve === "US" ? 0.30 : c.sleeve === "STABLE" ? 0.30 : c.sleeve === "CORE" ? 0.30 : c.sleeve === "CN" ? chinaWeight : c.weight,
       }));
     }
 
@@ -1612,15 +1625,17 @@
         'The four tests define the index’s confirmation / falsification frame: geopolitics, model paradigm, compute path, and agency philosophy.<span class="manifesto-footer-en">四组命题构成本指数的证实 / 证伪框架。</span>'
       );
 
-      document.querySelector(".strategy-tag").textContent = t("策略 · 三分配置", "STRATEGY · EQUAL THIRDS");
+      document.querySelector(".strategy-tag").textContent = t("策略 · 30 / 30 / 30 / 10", "STRATEGY · 30 / 30 / 30 / 10");
       document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 纽约时报", "🇺🇸 New York Times");
       document.querySelector(".strategy-bar-us .strategy-bar-detail").textContent = t("NYT · AI 稳定计", "NYT · AI stabilizer");
       document.querySelector(".strategy-bar-stable .strategy-bar-label").textContent = t("🇨🇳 贵州茅台", "🇨🇳 Moutai");
       document.querySelector(".strategy-bar-stable .strategy-bar-detail").textContent = t("600519.SS · 指数稳定计", "600519.SS · Index stabilizer");
+      document.querySelector(".strategy-bar-core .strategy-bar-label").textContent = t("🇨🇳 拼多多", "🇨🇳 PDD");
+      document.querySelector(".strategy-bar-core .strategy-bar-detail").textContent = t("PDD · AI 生产力", "PDD · AI productivity");
       document.querySelector(".strategy-bar-cn .strategy-bar-label").textContent = t("🇨🇳 其他中国公司", "🇨🇳 Other China Companies");
       document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t(
-        "BYD/PDD/福晶/曦智-P/拓荆 平分 1/3 · 长鑫预上市",
-        "BYD/PDD/Fujing/Lightelligence-P/Piotech split 1/3 · CXMT pre-listing"
+        "BYD/福晶/曦智-P/拓荆 平分 10% · 长鑫预上市",
+        "BYD/Fujing/Lightelligence-P/Piotech split 10% · CXMT pre-listing"
       );
 
       const metaLabels = document.querySelectorAll(".meta-label");

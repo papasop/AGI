@@ -8,14 +8,14 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    贵州茅台        600519.SS    CNY    33.3%
+    贵州茅台        600519.SS    CNY    30.0%
     比亚迪          002594.SZ    CNY    other-China equal weight
-    拼多多          PDD          USD    other-China equal weight
+    拼多多          PDD          USD    30.0%
     福晶科技        002222.SZ    CNY    other-China equal weight
     曦智科技-P      01879.HK     HKD    other-China equal weight (IPO'd 2026-04-28)
     拓荆科技        688072.SS    CNY    other-China equal weight
     长鑫科技        KCB:A06978   CNY    pre-listing watch; included after data exists
-    纽约时报        NYT          USD    33.3%
+    纽约时报        NYT          USD    30.0%
 
 Calendar handling
 -----------------
@@ -46,11 +46,11 @@ import yfinance as yf
 
 COMPONENTS = [
     # CN names, short, ticker, currency, sleeve, status.
-    # Weight is assigned dynamically: NYT, Moutai, and the other-China basket each stay at one third;
-    # active China-sleeve components split the other-China third equally.
+    # Weight is assigned dynamically: NYT, Moutai, and PDD each stay at 30%;
+    # active China-sleeve components split the remaining 10% equally.
     {"name": "\u8d35\u5dde\u8305\u53f0", "short": "Moutai", "ticker": "600519.SS", "ccy": "CNY", "sleeve": "STABLE", "status": "active"},
     {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
-    {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
+    {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CORE", "status": "active"},
     {"name": "\u798f\u6676\u79d1\u6280", "short": "Fujing", "ticker": "002222.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
     {"name": "\u66e6\u667a\u79d1\u6280-P", "short": "Lightelligence", "ticker": "01879.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
     {"name": "\u62d3\u8346\u79d1\u6280", "short": "Piotech", "ticker": "688072.SS", "ccy": "CNY", "sleeve": "CN", "status": "active"},
@@ -279,13 +279,15 @@ def main():
               f"real history from {inception}{late}")
 
     active_china = [c for c in components_out if c.get("sleeve") == "CN" and c.get("status") == "active"]
-    third = 1.0 / 3.0
-    china_weight = third / len(active_china) if active_china else 0.0
+    other_china_weight = 0.10
+    china_weight = other_china_weight / len(active_china) if active_china else 0.0
     for component in components_out:
         if component.get("sleeve") == "US":
-            component["weight"] = third
+            component["weight"] = 0.30
         elif component.get("sleeve") == "STABLE":
-            component["weight"] = third
+            component["weight"] = 0.30
+        elif component.get("sleeve") == "CORE":
+            component["weight"] = 0.30
         elif component.get("sleeve") == "CN":
             component["weight"] = china_weight
 
@@ -304,7 +306,7 @@ def main():
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
             "pending_components": pending_components,
-            "weighting_policy": "NYT, Moutai, and the other-China basket are each fixed at one third; active China-sleeve components split the other-China third equally. Pre-listing watch codes are excluded until exchange data exists.",
+            "weighting_policy": "NYT, Moutai, and PDD are each fixed at 30%; active China-sleeve components split the remaining 10% equally. Pre-listing watch codes are excluded until exchange data exists.",
         },
         "components": components_out,
         "fx": {
