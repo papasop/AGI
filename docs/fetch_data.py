@@ -28,7 +28,7 @@ For components whose listing post-dates the start of the anchor calendar
 (Piotech 2022, Lightelligence 2026), pre-IPO dates are back-filled with
 the first known close. This means those components contribute a CONSTANT
 value to the index until they actually start trading. The distortion is
-bounded by their weight (10% each) and clearly documented in the JSON
+bounded by their dynamic index weight and clearly documented in the JSON
 meta payload.
 
 Usage:
@@ -46,9 +46,9 @@ import yfinance as yf
 
 COMPONENTS = [
     # CN names, short, ticker, currency, sleeve, status.
-    # Weight is assigned dynamically: NYT, Moutai, and PDD each stay at 30%;
-    # active China-sleeve components split the remaining 10% equally.
-    {"name": "\u8d35\u5dde\u8305\u53f0", "short": "Moutai", "ticker": "600519.SS", "ccy": "CNY", "sleeve": "STABLE", "status": "active"},
+    # Weight is assigned dynamically: NYT and PDD each stay at 1/3;
+    # all other active components split the remaining 1/3 equally.
+    {"name": "\u8d35\u5dde\u8305\u53f0", "short": "Moutai", "ticker": "600519.SS", "ccy": "CNY", "sleeve": "CN", "status": "active"},
     {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
     {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CORE", "status": "active"},
     {"name": "\u798f\u6676\u79d1\u6280", "short": "Fujing", "ticker": "002222.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
@@ -278,18 +278,21 @@ def main():
         print(f"  {short:15s}: aligned to {len(df_aligned)} days, "
               f"real history from {inception}{late}")
 
-    active_china = [c for c in components_out if c.get("sleeve") == "CN" and c.get("status") == "active"]
-    other_china_weight = 0.10
-    china_weight = other_china_weight / len(active_china) if active_china else 0.0
+    active_other = [
+        c for c in components_out
+        if c.get("sleeve") not in ("US", "CORE") and c.get("status") == "active"
+    ]
+    anchor_weight = 1 / 3
+    other_weight = (1 / 3) / len(active_other) if active_other else 0.0
     for component in components_out:
         if component.get("sleeve") == "US":
-            component["weight"] = 0.30
-        elif component.get("sleeve") == "STABLE":
-            component["weight"] = 0.30
+            component["weight"] = anchor_weight
         elif component.get("sleeve") == "CORE":
-            component["weight"] = 0.30
-        elif component.get("sleeve") == "CN":
-            component["weight"] = china_weight
+            component["weight"] = anchor_weight
+        elif component.get("status") == "active":
+            component["weight"] = other_weight
+        else:
+            component["weight"] = 0.0
 
     # 5) Write JSON
     payload = {
@@ -306,7 +309,7 @@ def main():
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
             "pending_components": pending_components,
-            "weighting_policy": "NYT, Moutai, and PDD are each fixed at 30%; active China-sleeve components split the remaining 10% equally. Pre-listing watch codes are excluded until exchange data exists.",
+            "weighting_policy": "NYT and PDD are each fixed at one third; all other active components split the remaining one third equally. Pre-listing watch codes are excluded until exchange data exists.",
         },
         "components": components_out,
         "fx": {
