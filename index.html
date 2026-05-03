@@ -168,7 +168,7 @@
       color: #4a5778;
       font-size: 10.5px;
     }
-    /* === Strategy block (30/30/30/10) === */
+    /* === Strategy block (PDD 50 / NYT 50) === */
     .strategy {
       margin: 0 0 22px;
     }
@@ -941,21 +941,21 @@
     </div>
 
     <div class="strategy">
-      <div class="strategy-tag">策略 · STRATEGY · 50 / 50</div>
+      <div class="strategy-tag">策略 · STRATEGY · PDD 50 / NYT 50</div>
       <div class="strategy-bar">
+        <div class="strategy-bar-cn">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇨🇳 拼多多</span>
+            <span class="strategy-bar-pct">50%</span>
+          </div>
+          <div class="strategy-bar-detail">PDD · AI 生产力</div>
+        </div>
         <div class="strategy-bar-us">
           <div class="strategy-bar-row">
             <span class="strategy-bar-label">🇺🇸 纽约时报</span>
             <span class="strategy-bar-pct">50%</span>
           </div>
           <div class="strategy-bar-detail">NYT · AI 稳定计</div>
-        </div>
-        <div class="strategy-bar-cn">
-          <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🌐 其他成分股</span>
-            <span class="strategy-bar-pct">50%</span>
-          </div>
-          <div class="strategy-bar-detail">PDD/BYD/福晶/曦智-P/拓荆 平分 50% · 长鑫预上市</div>
         </div>
       </div>
     </div>
@@ -1008,12 +1008,7 @@
         <div class="control-group" id="asset-group">
           <span class="control-group-label">标的</span>
           <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
-          <button data-asset="002594.SZ"><span class="btn-main">BYD</span><span class="btn-sub">10%</span></button>
-          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">10%</span></button>
-          <button data-asset="002222.SZ"><span class="btn-main">福晶</span><span class="btn-sub">10%</span></button>
-          <button data-asset="01879.HK"><span class="btn-main">曦智</span><span class="btn-sub">10%</span></button>
-          <button data-asset="688072.SS"><span class="btn-main">拓荆</span><span class="btn-sub">10%</span></button>
-          <button data-asset="KCB:A06978" disabled><span class="btn-main">长鑫</span><span class="btn-sub">预上市</span></button>
+          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">50%</span></button>
           <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">50%</span></button>
         </div>
       </div>
@@ -1364,8 +1359,8 @@
         desc: "OpenAI CEO Sam Altman 出席美国参议院 AI 监管听证,公开支持为高能力 AI 建立许可、审计与监管框架。这是 AI 公司负责人首次以近似行业代言人的方式进入国家监管议程。",
         desc_en: "OpenAI CEO Sam Altman testifies before the U.S. Senate on AI oversight and publicly supports licensing, auditing, and regulatory frameworks for high-capability AI systems. It marks the moment an AI company leader enters the national regulatory agenda as a de facto industry spokesperson." },
       { date: "2023-10-17", category: "infra", label: "\u7f8e\u5bf9\u534e\u82af\u7247\u51fa\u53e3\u7ba1\u5236\u5347\u7ea7", en: "US chip export controls tighten",
-        desc: "拜登政府第二轮升级对华先进 AI 芯片出口管制,把此前为绕开管制专门设计的 NVIDIA H800 / A800(中国版)也列入限制。直接利好中国本土 AI 芯片 / 半导体设备公司——本指数中的拓荆(薄膜沉积设备)、福晶(光刻激光晶体)的国产替代逻辑由此被显著强化。",
-        desc_en: "The Biden administration's second-round tightening of AI chip export controls to China adds NVIDIA H800 / A800 — the China-specific chips originally designed to circumvent earlier controls — to the restriction list. A direct tailwind for Chinese domestic AI chip / semiconductor equipment companies, materially strengthening the import-substitution logic for Piotech (thin-film deposition equipment) and Fujing (lithography laser crystals) in this index." },
+        desc: "拜登政府第二轮升级对华先进 AI 芯片出口管制,把此前为绕开管制专门设计的 NVIDIA H800 / A800(中国版)也列入限制。它强化了中国本土 AI 芯片与半导体设备产业的国产替代逻辑。",
+        desc_en: "The Biden administration's second-round tightening of AI chip export controls to China adds NVIDIA H800 / A800 — the China-specific chips originally designed to circumvent earlier controls — to the restriction list, strengthening the import-substitution logic for Chinese domestic AI chips and semiconductor equipment." },
       { date: "2023-12-27", category: "llm", label: "NYT \u8d77\u8bc9 OpenAI \u4e0e\u5fae\u8f6f",       en: "NYT v OpenAI lawsuit",
         desc: "纽约时报在曼哈顿联邦法院起诉 OpenAI 与微软,指控未经授权使用其数百万篇文章训练 GPT 系列模型,索赔可能高达数十亿美元。这是 AI 与传统媒体的首例重磅版权诉讼,直接关系本指数 50% 权重的 NYT 估值——和解或胜诉将重塑 AI 训练数据的商业模式。",
         desc_en: "The New York Times files suit against OpenAI and Microsoft in Manhattan federal court, alleging unauthorized use of millions of articles to train GPT models, with damages potentially in the billions. The first major copyright case between AI and traditional media — directly relevant to NYT's 50% weight in this index. A settlement or victory would reshape the business model of AI training data." },
@@ -1376,8 +1371,8 @@
         desc: "Anthropic 一次性发布 Claude 3 三模型阵列(Opus / Sonnet / Haiku)。Opus 在多项基准上首次超越 GPT-4,Anthropic 正式跻身 AI 第一梯队。三档定价(便宜款 / 旗舰款分层)重塑了行业的模型经济学定价范式。",
         desc_en: "Anthropic simultaneously releases Claude 3 in three tiers (Opus / Sonnet / Haiku). Opus surpasses GPT-4 on multiple benchmarks for the first time, formally placing Anthropic in the AI top tier. The three-tier pricing structure (budget / mid / flagship) reshapes the industry's model-economics paradigm." },
       { date: "2024-03-18", category: "infra", label: "NVIDIA Blackwell (GTC)",                      en: "NVIDIA Blackwell announced",
-        desc: "黄仁勋 GTC 主题演讲发布 Blackwell B200 系列,FP4 训练性能 5x、推理 30x、互连带宽 10TB/s。直接验证 AI 算力需求向下一代(光互连 + NVLink-5)切换——本指数中曦智科技(光电混合算力)、拓荆科技(先进制程沉积设备)的产业逻辑正面对应这个趋势。",
-        desc_en: "Jensen Huang's GTC keynote unveils the Blackwell B200 series — 5x FP4 training, 30x inference, 10TB/s interconnect bandwidth. Validates the transition of AI compute demand to next-generation interconnect (optical + NVLink-5), directly mapping to the industrial logic of Lightelligence (optoelectronic hybrid compute) and Piotech (advanced-process deposition equipment) in this index." },
+        desc: "黄仁勋 GTC 主题演讲发布 Blackwell B200 系列,FP4 训练性能 5x、推理 30x、互连带宽 10TB/s。它验证了 AI 算力需求向下一代互连(光互连 + NVLink-5)切换的趋势。",
+        desc_en: "Jensen Huang's GTC keynote unveils the Blackwell B200 series — 5x FP4 training, 30x inference, 10TB/s interconnect bandwidth. It validates the transition of AI compute demand toward next-generation interconnects, including optical interconnect and NVLink-5." },
       { date: "2024-05-08", category: "physical", label: "AlphaFold 3", en: "AlphaFold 3",
         desc: "Google DeepMind 与 Isomorphic Labs 发布 AlphaFold 3,可预测生命分子结构及相互作用。它把 AI 从文本/代码/图像进一步推向生命科学中的物理结构建模,是“AI 物理模型化”的关键样本。",
         desc_en: "Google DeepMind and Isomorphic Labs introduce AlphaFold 3, which predicts the structure and interactions of life's molecules. It pushes AI beyond text, code, and images into physical structure modeling in life sciences, a key example of AI becoming a physical-modeling layer." },
@@ -1415,8 +1410,8 @@
         desc: "中美两端旗舰同日发布:OpenAI 推 GPT-5.5(强化 agentic 工作流 + 科研推理),深度求索同日推 V4(传出训练成本进一步下探)。市场情绪在\"美国领先\"与\"中国超车\"之间反复——本指数横跨两端,正是为了无视具体赢家、只跟随 AI 整体进化的速度。",
         desc_en: "Flagships from both sides release on the same day: OpenAI's GPT-5.5 (enhanced agentic workflows + research-grade reasoning), and DeepSeek's V4 (rumored further training-cost reductions). Market sentiment oscillates between 'US still leads' and 'China overtakes' — this index spans both sides precisely to disregard specific winners and track AI's overall pace of evolution." },
       { date: "2026-04-28", category: "infra", label: "\u66e6\u667a\u79d1\u6280 IPO",                en: "Lightelligence IPO",
-        desc: "曦智科技-P (01879.HK) 以 18C 章特专科技公司身份港交所上市,IPO 定价 183.2 HKD,公开发售超额认购 5784 倍。光电混合 AI 算力(oNOC + oNET + oMAC 三大核心芯片)是本指数中代表\"下一代算力基础设施\"的成分股。上市当日纳入其他成分股篮子,与 PDD、BYD、福晶、拓荆共同平分 50% 权重。",
-        desc_en: "Lightelligence-P (01879.HK) IPOs on the Hong Kong Stock Exchange under Chapter 18C (specialized technology companies), pricing at 183.2 HKD with public retail subscription oversubscribed 5,784x. Optoelectronic hybrid AI compute (the oNOC + oNET + oMAC three-chip stack) — this index's representative for 'next-generation compute infrastructure.' Added to the other-components basket, sharing 50% with PDD, BYD, Fujing, and Piotech." },
+        desc: "曦智科技-P (01879.HK) 以 18C 章特专科技公司身份港交所上市,IPO 定价 183.2 HKD,公开发售超额认购 5784 倍。光电混合 AI 算力(oNOC + oNET + oMAC 三大核心芯片)是下一代算力基础设施的重要产业信号。",
+        desc_en: "Lightelligence-P (01879.HK) IPOs on the Hong Kong Stock Exchange under Chapter 18C (specialized technology companies), pricing at 183.2 HKD with public retail subscription oversubscribed 5,784x. Optoelectronic hybrid AI compute (the oNOC + oNET + oMAC three-chip stack) is an important industrial signal for next-generation compute infrastructure." },
     ];
 
     // ============================================================
@@ -1426,38 +1421,11 @@
     //  ChatGPT-launch day and today.
     // ============================================================
     const COMPONENTS_CONFIG = [
-      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.10, ccy: "USD", sleeve: "CN", status: "active",
+      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.50, ccy: "USD", sleeve: "CN", status: "active",
         concept: "AI 生产力",
         conceptEn: "AI productivity",
         marketCap: 165.0,
         seed: 200,  base:  80, vol: 0.030, drift:  0.00040 },
-      { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ", weight: 0.10, ccy: "CNY", sleeve: "CN", status: "active",
-        concept: "AI 机器人 · 电池 + 电机 + 电控",
-        conceptEn: "AI robotics · battery + motor + control",
-        marketCap: 135.0,
-        seed: 256,  base: 250, vol: 0.025, drift:  0.00014 },
-      { name: "\u798f\u6676\u79d1\u6280",      short: "Fujing",         ticker: "002222.SZ", weight: 0.10, ccy: "CNY", sleeve: "CN", status: "active",
-        concept: "稀土 + 激光晶体",
-        conceptEn: "Rare earths + laser crystals",
-        marketCap: 2.5,
-        seed: 22,   base:  12, vol: 0.020, drift:  0.00060 },
-      { name: "\u66e6\u667a\u79d1\u6280-P",    short: "Lightelligence", ticker: "01879.HK",  weight: 0.10, ccy: "HKD", sleeve: "CN", status: "active",
-        concept: "光计算 (oNOC + oNET + oMAC)",
-        conceptEn: "Photonic computing (oNOC + oNET + oMAC)",
-        marketCap: 6.0,
-        seed: 11,   base:  30, vol: 0.028, drift:  0.00220 },
-      { name: "\u62d3\u8346\u79d1\u6280",      short: "Piotech",        ticker: "688072.SS", weight: 0.10, ccy: "CNY", sleeve: "CN", status: "active",
-        concept: "混合键合 · 先进封装",
-        conceptEn: "Hybrid bonding · advanced packaging",
-        marketCap: 10.0,
-        seed: 3000, base: 115, vol: 0.030, drift:  0.00125 },
-      { name: "\u957f\u946b\u79d1\u6280",      short: "CXMT",           ticker: "KCB:A06978", weight: 0.00, ccy: "CNY", sleeve: "CN", status: "prelist",
-        concept: "国产存储 · HBM / DRAM",
-        conceptEn: "Domestic memory · HBM / DRAM",
-        marketCap: 0,
-        preListingNote: "预上市代码 · 上市后自动进入中国篮子平权",
-        preListingNoteEn: "Pre-listing code · joins the China sleeve equally after listing",
-        seed: 6978, base: 50, vol: 0.026, drift: 0.00055 },
       { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD", sleeve: "US", status: "active",
         concept: "AI 稳定计",
         conceptEn: "AI stabilizer",
@@ -1560,13 +1528,12 @@
     }
 
     function normalizeComponentWeights(components) {
-      const merged = components.map(mergedComponentMeta);
-      const activeOther = merged.filter((c) => c.sleeve !== "US" && c.status !== "prelist" && hasTradableData(c));
-      const anchorWeight = 0.50;
-      const otherWeight = activeOther.length ? 0.50 / activeOther.length : 0;
-      return merged.map((c) => ({
+      return components
+        .map(mergedComponentMeta)
+        .filter((c) => ["PDD", "NYT"].includes(c.ticker) && c.status !== "prelist")
+        .map((c) => ({
         ...c,
-        weight: c.sleeve === "US" ? anchorWeight : activeOther.some((x) => x.ticker === c.ticker) ? otherWeight : 0,
+        weight: hasTradableData(c) ? 0.50 : 0,
       }));
     }
 
@@ -1615,14 +1582,11 @@
         'The four tests define the index’s confirmation / falsification frame: geopolitics, model paradigm, compute path, and agency philosophy.<span class="manifesto-footer-en">四组命题构成本指数的证实 / 证伪框架。</span>'
       );
 
-      document.querySelector(".strategy-tag").textContent = t("策略 · 50 / 50", "STRATEGY · 50 / 50");
+      document.querySelector(".strategy-tag").textContent = t("策略 · PDD 50 / NYT 50", "STRATEGY · PDD 50 / NYT 50");
+      document.querySelector(".strategy-bar-cn .strategy-bar-label").textContent = t("🇨🇳 拼多多", "🇨🇳 PDD");
+      document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t("PDD · AI 生产力", "PDD · AI productivity");
       document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 纽约时报", "🇺🇸 New York Times");
       document.querySelector(".strategy-bar-us .strategy-bar-detail").textContent = t("NYT · AI 稳定计", "NYT · AI stabilizer");
-      document.querySelector(".strategy-bar-cn .strategy-bar-label").textContent = t("🌐 其他成分股", "🌐 Other Components");
-      document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t(
-        "PDD/BYD/福晶/曦智-P/拓荆 平分 50% · 长鑫预上市",
-        "PDD/BYD/Fujing/Lightelligence-P/Piotech split 50% · CXMT pre-listing"
-      );
 
       const metaLabels = document.querySelectorAll(".meta-label");
       const metaDetails = document.querySelectorAll(".meta-detail");
@@ -1649,11 +1613,6 @@
       document.querySelector("#asset-group .control-group-label").textContent = t("标的", "Asset");
       document.querySelector('#asset-group button[data-asset="INDEX"] .btn-main').textContent = t("指数", "Index");
       document.querySelector('#asset-group button[data-asset="INDEX"] .btn-sub').textContent = t("Index", "Index");
-      document.querySelector('#asset-group button[data-asset="002222.SZ"] .btn-main').textContent = t("福晶", "Fujing");
-      document.querySelector('#asset-group button[data-asset="01879.HK"] .btn-main').textContent = t("曦智", "Light");
-      document.querySelector('#asset-group button[data-asset="688072.SS"] .btn-main').textContent = t("拓荆", "Piotech");
-      document.querySelector('#asset-group button[data-asset="KCB:A06978"] .btn-main').textContent = t("长鑫", "CXMT");
-      document.querySelector('#asset-group button[data-asset="KCB:A06978"] .btn-sub').textContent = t("预上市", "Pre");
       updateAssetControls();
       document.querySelector("#event-group .control-group-label").textContent = t("事件", "Events");
       document.querySelector('#event-group button[data-event="all"] .btn-main').textContent = t("全部", "All");
