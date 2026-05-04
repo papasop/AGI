@@ -20,7 +20,7 @@ Additional portfolio data pool:
     贵州茅台                600519.SS  CNY
     TRON                    TRX-USD    USD
     Hyperliquid             HYPE32196-USD USD
-    Sky                     SKY-USD    USD
+    Sky Protocol            SKY33038-USD USD
 
 Calendar handling
 -----------------
@@ -58,7 +58,7 @@ COMPONENTS = [
     {"name": "\u8d35\u5dde\u8305\u53f0", "short": "MOUTAI", "ticker": "600519.SS", "ccy": "CNY", "sleeve": "CN", "status": "active"},
     {"name": "TRON", "short": "TRX", "ticker": "TRX-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
     {"name": "Hyperliquid", "short": "HYPE", "ticker": "HYPE32196-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
-    {"name": "Sky", "short": "SKY", "ticker": "SKY-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
+    {"name": "Sky Protocol", "short": "SKY", "ticker": "SKY33038-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
     {"name": "Tesla", "short": "TSLA", "ticker": "TSLA", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "NIO", "short": "NIO", "ticker": "NIO", "ccy": "USD", "sleeve": "CN", "status": "active"},
     {"name": "\u96f6\u8dd1\u6c7d\u8f66", "short": "\u96f6\u8dd1", "ticker": "9863.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
@@ -78,7 +78,7 @@ TARGET_WEIGHTS = {
     "600519.SS": 0.0,
     "TRX-USD": 0.0,
     "HYPE32196-USD": 0.0,
-    "SKY-USD": 0.0,
+    "SKY33038-USD": 0.0,
     "TSLA": 0.0,
     "NIO": 0.0,
     "9863.HK": 0.0,
