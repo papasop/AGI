@@ -926,7 +926,7 @@
   <div class="container">
     <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 5 PORTFOLIOS</div>
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 6 PORTFOLIOS</div>
       <ol class="manifesto-pillars">
         <li class="pillar pillar--realized active" data-portfolio="drone">
           <span class="pillar-num">①</span>
@@ -953,8 +953,13 @@
           <span class="pillar-cat pillar-cat--realized">组合</span>
           <span class="pillar-text"><span class="m-key">电动车指数</span><span class="pillar-en">Electric Vehicle Index</span></span>
         </li>
+        <li class="pillar pillar--breakthrough" data-portfolio="battery">
+          <span class="pillar-num">⑥</span>
+          <span class="pillar-cat pillar-cat--breakthrough">组合</span>
+          <span class="pillar-text"><span class="m-key">电池指数</span><span class="pillar-en">Battery Index</span></span>
+        </li>
       </ol>
-      <div class="manifesto-footer">先推出五个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching five portfolio channels first, with room for more themes later.</span></div>
+      <div class="manifesto-footer">先推出六个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching six portfolio channels first, with room for more themes later.</span></div>
     </div>
 
     <div class="strategy">
@@ -1594,6 +1599,26 @@
             seed: 175, base: 12, vol: 0.030, drift: 0.00020 },
         ],
       },
+      "battery": {
+        name: "电池指数",
+        nameEn: "Battery Index",
+        tag: "策略 · BYD / 宁德时代 · 各 50%",
+        tagEn: "STRATEGY · BYD / CATL · 50 EACH",
+        footer: "两只股票等权配置，聚焦中国动力电池与新能源车产业链核心龙头。",
+        footerEn: "Equal-weight exposure to China's battery and EV supply-chain leaders.",
+        components: [
+          { name: "比亚迪",                         short: "BYD",            ticker: "002594.SZ", weight: 0.50, ccy: "CNY", sleeve: "CN", status: "active",
+            concept: "电池 + 电动车垂直整合",
+            conceptEn: "Battery + EV vertical integration",
+            marketCap: 118.0,
+            seed: 2594, base: 250, vol: 0.024, drift: 0.00035 },
+          { name: "宁德时代",                       short: "宁德时代",       ticker: "300750.SZ", weight: 0.50, ccy: "CNY", sleeve: "CN", status: "active",
+            concept: "全球动力电池龙头",
+            conceptEn: "Global power-battery leader",
+            marketCap: 150.0,
+            seed: 300750, base: 180, vol: 0.026, drift: 0.00030 },
+        ],
+      },
     };
     let currentPortfolioKey = "drone";
     let COMPONENTS_CONFIG = PORTFOLIOS[currentPortfolioKey].components;
@@ -1801,7 +1826,7 @@
         `${portfolio.nameEn} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.name}</span>`
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 5 个组合", "PORTFOLIO CHANNELS · 5 PORTFOLIOS");
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 6 个组合", "PORTFOLIO CHANNELS · 6 PORTFOLIOS");
       const pillars = [
         {
           cat: ["组合", "Portfolio"],
@@ -1827,6 +1852,11 @@
           cat: ["组合", "Portfolio"],
           text: ['<span class="m-key">电动车指数</span>', '<span class="m-key">Electric Vehicle Index</span>'],
           en: ["Electric Vehicle Index", "电动车指数"],
+        },
+        {
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">电池指数</span>', '<span class="m-key">Battery Index</span>'],
+          en: ["Battery Index", "电池指数"],
         },
       ];
       document.querySelectorAll(".manifesto-pillars li").forEach((row, i) => {
