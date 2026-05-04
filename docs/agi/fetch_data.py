@@ -92,6 +92,8 @@ COMPONENTS = [
     ("Apple",                  "Apple",         "AAPL",     0.0, "USD"),
     ("Coca-Cola",              "可口可乐",      "KO",       0.0, "USD"),
     ("\u6ce1\u6ce1\u739b\u7279", "泡泡玛特",      "9992.HK",  0.0, "HKD"),
+    ("\u745e\u58eb\u6cd5\u90ce", "CHF",           "CHF=X",    0.0, "USD"),
+    ("\u4ee5\u8272\u5217\u8c22\u514b\u5c14", "ILS", "ILS=X", 0.0, "USD"),
 ]
 
 
