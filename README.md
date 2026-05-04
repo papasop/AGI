@@ -1,4 +1,4 @@
-# 领先中国AI指数 · Leading China AI Index
+# 全球AI对冲 · Global AI Hedge
 
 ## 宣言 · Manifesto · 五重命题
 

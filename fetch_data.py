@@ -1,7 +1,7 @@
 """
 fetch_data.py
 =============
-Fetch OHLC data for the Leading China AI Index components plus the
+Fetch OHLC data for the Global AI Hedge components plus the
 historical CNY/USD and HKD/USD spot rates, and write data.json next to
 index.html.
 
