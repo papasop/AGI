@@ -90,7 +90,7 @@ COMPONENTS = [
     {"name": "\u6c47\u4e30\u63a7\u80a1", "short": "\u6c47\u4e30", "ticker": "0005.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
     {"name": "\u6e23\u6253\u96c6\u56e2", "short": "\u6e23\u6253", "ticker": "2888.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
     {"name": "Agora", "short": "API", "ticker": "API", "ccy": "USD", "sleeve": "CN", "status": "active"},
-    {"name": "\u4e2d\u56fd\u6709\u8d5e", "short": "\u6709\u8d5e", "ticker": "8083.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
+    {"name": "\u6709\u8d5e", "short": "\u6709\u8d5e", "ticker": "6051.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
     {"name": "Bitcoin", "short": "Bitcoin", "ticker": "BTC-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
     {"name": "Ethereum", "short": "ETH", "ticker": "ETH-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
     {"name": "SPDR Gold Shares", "short": "GLD", "ticker": "GLD", "ccy": "USD", "sleeve": "US", "status": "active"},
@@ -144,7 +144,7 @@ TARGET_WEIGHTS = {
     "0005.HK": 0.0,
     "2888.HK": 0.0,
     "API": 0.0,
-    "8083.HK": 0.0,
+    "6051.HK": 0.0,
     "BTC-USD": 0.0,
     "ETH-USD": 0.0,
     "GLD": 0.0,
@@ -156,6 +156,12 @@ TARGET_WEIGHTS = {
 }
 
 SYNTHETIC_FALLBACKS = {}
+
+TICKER_CONTINUATIONS = {
+    # Youzan transferred from GEM 8083.HK to the main board as 6051.HK.
+    # Keep pre-transfer history and append the main-board quote stream.
+    "6051.HK": ["8083.HK", "6051.HK"],
+}
 
 
 def mulberry32(seed: int):
@@ -216,6 +222,18 @@ def fetch_ohlc(ticker: str, start: str, end: str) -> pd.DataFrame:
     df = df[["Open", "High", "Low", "Close"]].dropna()
     df.index = df.index.strftime("%Y-%m-%d")
     return df
+
+
+def fetch_component_ohlc(ticker: str, start: str, end: str) -> pd.DataFrame:
+    tickers = TICKER_CONTINUATIONS.get(ticker, [ticker])
+    parts = []
+    for source_ticker in tickers:
+        df = fetch_ohlc(source_ticker, start, end)
+        if not df.empty:
+            parts.append(df)
+    if not parts:
+        return pd.DataFrame(columns=["Open", "High", "Low", "Close"])
+    return pd.concat(parts).sort_index().groupby(level=0).last()
 
 
 def fetch_fx(ticker: str, start: str, end: str) -> pd.Series:
@@ -297,7 +315,7 @@ def main():
     for component in COMPONENTS:
         name, short, ticker, ccy = component["name"], component["short"], component["ticker"], component["ccy"]
         print(f"Fetching {short:15s} ({ticker:12s}, {ccy}) ...")
-        fetched[ticker] = fetch_ohlc(ticker, args.start, args.end)
+        fetched[ticker] = fetch_component_ohlc(ticker, args.start, args.end)
 
     # 2) Anchor calendar = ONDS
     anchor = fetched["ONDS"]

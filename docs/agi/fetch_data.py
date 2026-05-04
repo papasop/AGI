@@ -90,7 +90,7 @@ COMPONENTS = [
     ("\u6c47\u4e30\u63a7\u80a1", "汇丰",          "0005.HK",  0.0, "HKD"),
     ("\u6e23\u6253\u96c6\u56e2", "渣打",          "2888.HK",  0.0, "HKD"),
     ("Agora",                  "API",           "API",      0.0, "USD"),
-    ("\u4e2d\u56fd\u6709\u8d5e", "有赞",          "8083.HK",  0.0, "HKD"),
+    ("\u6709\u8d5e",           "有赞",          "6051.HK",  0.0, "HKD"),
     ("Bitcoin",                "Bitcoin",       "BTC-USD",  0.0, "USD"),
     ("Ethereum",               "ETH",           "ETH-USD",  0.0, "USD"),
     ("SPDR Gold Shares",       "GLD",           "GLD",      0.0, "USD"),
@@ -100,6 +100,12 @@ COMPONENTS = [
     ("\u745e\u58eb\u6cd5\u90ce", "CHF",           "CHF=X",    0.0, "USD"),
     ("\u4ee5\u8272\u5217\u8c22\u514b\u5c14", "ILS", "ILS=X", 0.0, "USD"),
 ]
+
+TICKER_CONTINUATIONS = {
+    # Youzan transferred from GEM 8083.HK to the main board as 6051.HK.
+    # Keep pre-transfer history and append the main-board quote stream.
+    "6051.HK": ["8083.HK", "6051.HK"],
+}
 
 
 def fetch_ohlc(ticker: str, start: str, end: str) -> pd.DataFrame:
@@ -112,6 +118,18 @@ def fetch_ohlc(ticker: str, start: str, end: str) -> pd.DataFrame:
     df = df[["Open", "High", "Low", "Close"]].dropna()
     df.index = df.index.strftime("%Y-%m-%d")
     return df
+
+
+def fetch_component_ohlc(ticker: str, start: str, end: str) -> pd.DataFrame:
+    tickers = TICKER_CONTINUATIONS.get(ticker, [ticker])
+    parts = []
+    for source_ticker in tickers:
+        df = fetch_ohlc(source_ticker, start, end)
+        if not df.empty:
+            parts.append(df)
+    if not parts:
+        return pd.DataFrame(columns=["Open", "High", "Low", "Close"])
+    return pd.concat(parts).sort_index().groupby(level=0).last()
 
 
 def fetch_fx(ticker: str, start: str, end: str) -> pd.Series:
@@ -148,7 +166,7 @@ def main():
     fetched = {}
     for name, short, ticker, weight, ccy in COMPONENTS:
         print(f"Fetching {short:15s} ({ticker:12s}, {ccy}) ...")
-        fetched[ticker] = fetch_ohlc(ticker, args.start, args.end)
+        fetched[ticker] = fetch_component_ohlc(ticker, args.start, args.end)
 
     # 2) Anchor calendar = ONDS
     anchor = fetched["ONDS"]
