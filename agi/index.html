@@ -954,7 +954,7 @@
   <div class="container">
     <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 7 PORTFOLIOS</div>
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 8 PORTFOLIOS</div>
       <div class="manifesto-sort">
         <span class="manifesto-sort-label">组合排序</span>
         <div class="components-rank-toggle" id="portfolio-rank-group" aria-label="Portfolio ranking mode">
@@ -995,7 +995,7 @@
           <span class="pillar-text"><span class="m-key">电池指数</span><span class="pillar-en">Battery Index</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">先推出七个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching seven portfolio channels first, with room for more themes later.</span></div>
+      <div class="manifesto-footer">先推出八个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching eight portfolio channels first, with room for more themes later.</span></div>
     </div>
 
     <div class="strategy">
@@ -1759,6 +1759,36 @@
             seed: 1209, base: 36, vol: 0.022, drift: 0.00014 },
         ],
       },
+      "china-property": {
+        name: "中国地产领先指数",
+        nameEn: "China Property Leadership Index",
+        tag: "策略 · 新鸿基地产 / 华润置地 / 中国海外发展 / 长和 · 各 25%",
+        tagEn: "STRATEGY · SHKP / CR LAND / CHINA OVERSEAS / CK HUTCHISON · 25 EACH",
+        footer: "四只港股等权配置，覆盖香港核心地产、内地城市综合开发、央企住宅龙头与综合型资产平台。",
+        footerEn: "Equal-weight exposure to Hong Kong prime property, mainland urban development, SOE residential leadership, and diversified asset platforms.",
+        components: [
+          { name: "新鸿基地产",                     short: "新地",           ticker: "0016.HK", weight: 0.25, ccy: "HKD", sleeve: "HK", status: "active",
+            concept: "香港核心地产 + 投资物业",
+            conceptEn: "Hong Kong prime property + investment properties",
+            marketCap: 48.0,
+            seed: 16, base: 88, vol: 0.020, drift: 0.00008 },
+          { name: "华润置地",                       short: "华润置地",       ticker: "1109.HK", weight: 0.25, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "城市综合开发 + 商业地产",
+            conceptEn: "Urban development + commercial property",
+            marketCap: 27.0,
+            seed: 1109, base: 34, vol: 0.026, drift: 0.00010 },
+          { name: "中国海外发展",                   short: "中海发展",       ticker: "0688.HK", weight: 0.25, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "央企住宅开发龙头",
+            conceptEn: "SOE residential developer leader",
+            marketCap: 19.0,
+            seed: 688, base: 21, vol: 0.026, drift: 0.00004 },
+          { name: "长和",                           short: "长和",           ticker: "0001.HK", weight: 0.25, ccy: "HKD", sleeve: "HK", status: "active",
+            concept: "综合资产平台 + 港股蓝筹",
+            conceptEn: "Diversified asset platform + Hong Kong blue chip",
+            marketCap: 25.0,
+            seed: 1, base: 50, vol: 0.018, drift: 0.00006 },
+        ],
+      },
     };
 
     const PORTFOLIO_EVENT_THEMES = {
@@ -1888,6 +1918,24 @@
           { date: "2026-03-27", category: "consumer", label: "华润万象生活商业场景", en: "CR Mixc commercial scenes",
             desc: "华润万象生活代表购物中心运营、物业服务与城市消费场景,补充内需指数的线下商业流量。",
             desc_en: "CR Mixc represents shopping-mall operation, property services, and urban consumption scenes, adding offline commercial traffic exposure to the index." },
+        ],
+      },
+      "china-property": {
+        header: "中国地产领先事件",
+        headerEn: "China Property Leadership Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "market", label: "中国地产领先指数起点", en: "China property leadership index start",
+            desc: "以统一 T₀ 追踪香港核心地产、内地央企开发商与综合型资产平台的相对表现。",
+            desc_en: "Uses the shared T₀ to track Hong Kong prime property, mainland SOE developers, and diversified asset-platform exposure." },
+          { date: "2024-09-24", category: "policy", label: "中国地产政策修复窗口", en: "China property policy recovery window",
+            desc: "地产政策、融资环境与居民资产负债表预期改善,推动头部地产与商业资产平台风险偏好修复。",
+            desc_en: "Property policy, financing conditions, and household balance-sheet expectations improve, supporting risk appetite for leading property and commercial-asset platforms." },
+          { date: "2025-03-25", category: "market", label: "华润系商业运营线", en: "CR commercial operation line",
+            desc: "华润置地与华润万象生活共同代表商业地产、购物中心运营与城市综合开发的华润系内需资产。",
+            desc_en: "CR Land and CR Mixc together represent CR's domestic-demand assets across commercial property, mall operation, and urban development." },
+          { date: "2026-03-13", category: "market", label: "香港地产资产重估", en: "Hong Kong property asset repricing",
+            desc: "香港利率、租金和核心商业资产预期变化,影响新鸿基地产与长和这类港股蓝筹资产平台的估值。",
+            desc_en: "Hong Kong rates, rents, and prime commercial-asset expectations affect valuations for blue-chip asset platforms such as SHKP and CK Hutchison." },
         ],
       },
     };
@@ -2080,6 +2128,7 @@
         ev: "pillar--realized",
         battery: "pillar--breakthrough",
         "china-consumption": "pillar--pending",
+        "china-property": "pillar--partial",
       }[key] || "pillar--realized";
     }
 
@@ -2204,7 +2253,7 @@
         `${portfolio.nameEn} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.name}</span>`
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 7 个组合", "PORTFOLIO CHANNELS · 7 PORTFOLIOS");
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 8 个组合", "PORTFOLIO CHANNELS · 8 PORTFOLIOS");
       document.querySelector("#portfolio-rank-group").previousElementSibling.textContent = t("组合排序", "Sort Portfolios");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="default"]').textContent = t("默认", "Default");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="mcap"]').textContent = t("市值", "Market Cap");
