@@ -13,6 +13,12 @@ Index composition:
     Theon International     THEON.AS   EUR    25.0%
     Kopin                   KOPN       USD    25.0%
 
+Additional portfolio data pool:
+    拼多多                  PDD        USD
+    纽约时报                NYT        USD
+    比亚迪                  002594.SZ  CNY
+    贵州茅台                600519.SS  CNY
+
 Calendar handling
 -----------------
 Each component trades on a different exchange with a different holiday
@@ -43,6 +49,10 @@ COMPONENTS = [
     ("Unusual Machines",       "UMAC",           "UMAC",      0.25, "USD"),
     ("Theon International",    "THEON",          "THEON.AS",  0.25, "EUR"),
     ("Kopin",                  "KOPN",           "KOPN",      0.25, "USD"),
+    ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.0, "USD"),
+    ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.0, "USD"),
+    ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.0, "CNY"),
+    ("\u8d35\u5dde\u8305\u53f0", "MOUTAI",        "600519.SS", 0.0, "CNY"),
 ]
 
 

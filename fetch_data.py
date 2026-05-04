@@ -13,6 +13,12 @@ Index composition:
     Theon International     THEON.AS   EUR    25.0%
     Kopin                   KOPN       USD    25.0%
 
+Additional portfolio data pool:
+    拼多多                  PDD        USD
+    纽约时报                NYT        USD
+    比亚迪                  002594.SZ  CNY
+    贵州茅台                600519.SS  CNY
+
 Calendar handling
 -----------------
 Each component trades on a different exchange with a different holiday
@@ -43,6 +49,10 @@ COMPONENTS = [
     {"name": "Unusual Machines", "short": "UMAC", "ticker": "UMAC", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Theon International", "short": "THEON", "ticker": "THEON.AS", "ccy": "EUR", "sleeve": "EU", "status": "active"},
     {"name": "Kopin", "short": "KOPN", "ticker": "KOPN", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
+    {"name": "\u7ebd\u7ea6\u65f6\u62a5", "short": "NYT", "ticker": "NYT", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
+    {"name": "\u8d35\u5dde\u8305\u53f0", "short": "MOUTAI", "ticker": "600519.SS", "ccy": "CNY", "sleeve": "CN", "status": "active"},
 ]
 
 TARGET_WEIGHTS = {
@@ -50,6 +60,10 @@ TARGET_WEIGHTS = {
     "UMAC": 0.25,
     "THEON.AS": 0.25,
     "KOPN": 0.25,
+    "PDD": 0.0,
+    "NYT": 0.0,
+    "002594.SZ": 0.0,
+    "600519.SS": 0.0,
 }
 
 SYNTHETIC_FALLBACKS = {}
@@ -312,7 +326,7 @@ def main():
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
             "pending_components": pending_components,
-            "weighting_policy": "Fixed target weights: ONDS 25%, UMAC 25%, THEON.AS 25%, KOPN 25%.",
+            "weighting_policy": "Data pool for portfolio switching. Active UI portfolios override ticker weights.",
         },
         "components": components_out,
         "fx": {
