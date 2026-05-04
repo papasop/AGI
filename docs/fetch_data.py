@@ -78,6 +78,12 @@ COMPONENTS = [
     {"name": "\u534e\u6da6\u7f6e\u5730", "short": "\u534e\u6da6\u7f6e\u5730", "ticker": "1109.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
     {"name": "\u4e2d\u56fd\u6d77\u5916\u53d1\u5c55", "short": "\u4e2d\u6d77\u53d1\u5c55", "ticker": "0688.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
     {"name": "\u957f\u548c", "short": "\u957f\u548c", "ticker": "0001.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
+    {"name": "\u6e2f\u706f-SS", "short": "\u6e2f\u706f", "ticker": "2638.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
+    {"name": "\u9999\u6e2f\u4e2d\u534e\u7164\u6c14", "short": "\u4e2d\u534e\u7164\u6c14", "ticker": "0003.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
+    {"name": "\u4e2d\u7535\u63a7\u80a1", "short": "\u4e2d\u7535", "ticker": "0002.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
+    {"name": "\u4e2d\u94f6\u9999\u6e2f", "short": "\u4e2d\u94f6\u9999\u6e2f", "ticker": "2388.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
+    {"name": "\u6c47\u4e30\u63a7\u80a1", "short": "\u6c47\u4e30", "ticker": "0005.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
+    {"name": "\u6e23\u6253\u96c6\u56e2", "short": "\u6e23\u6253", "ticker": "2888.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
 ]
 
 TARGET_WEIGHTS = {
@@ -111,6 +117,12 @@ TARGET_WEIGHTS = {
     "1109.HK": 0.0,
     "0688.HK": 0.0,
     "0001.HK": 0.0,
+    "2638.HK": 0.0,
+    "0003.HK": 0.0,
+    "0002.HK": 0.0,
+    "2388.HK": 0.0,
+    "0005.HK": 0.0,
+    "2888.HK": 0.0,
 }
 
 SYNTHETIC_FALLBACKS = {}
