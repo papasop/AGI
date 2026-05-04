@@ -954,7 +954,7 @@
   <div class="container">
     <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 11 PORTFOLIOS</div>
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 12 PORTFOLIOS</div>
       <div class="manifesto-sort">
         <span class="manifesto-sort-label">组合排序</span>
         <div class="components-rank-toggle" id="portfolio-rank-group" aria-label="Portfolio ranking mode">
@@ -995,7 +995,7 @@
           <span class="pillar-text"><span class="m-key">电池指数</span><span class="pillar-en">Battery Index</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">先推出十一个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching eleven portfolio channels first, with room for more themes later.</span></div>
+      <div class="manifesto-footer">先推出十二个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching twelve portfolio channels first, with room for more themes later.</span></div>
     </div>
 
     <div class="strategy">
@@ -1920,6 +1920,36 @@
             seed: 1971, base: 165, vol: 0.010, drift: 0.00016 },
         ],
       },
+      "brand": {
+        name: "品牌指数",
+        nameEn: "Brand Index",
+        tag: "策略 · 茅台 / Apple / Coca-Cola / 泡泡玛特 · 各 25%",
+        tagEn: "STRATEGY · MOUTAI / APPLE / COCA-COLA / POP MART · 25 EACH",
+        footer: "四个强品牌等权配置，覆盖中国白酒、全球消费电子、经典饮料与潮玩 IP。",
+        footerEn: "Equal-weight exposure to four strong brands across Chinese baijiu, global consumer electronics, classic beverages, and collectible IP.",
+        components: [
+          { name: "贵州茅台",                       short: "茅台",           ticker: "600519.SS", weight: 0.25, ccy: "CNY", sleeve: "CN", status: "active",
+            concept: "高端白酒 + 稀缺品牌定价权",
+            conceptEn: "Premium baijiu + scarce brand pricing power",
+            marketCap: 260.0,
+            seed: 519, base: 1550, vol: 0.018, drift: 0.00010 },
+          { name: "Apple",                          short: "Apple",         ticker: "AAPL", weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
+            concept: "消费电子生态 + 服务收入",
+            conceptEn: "Consumer-electronics ecosystem + services revenue",
+            marketCap: 3000.0,
+            seed: 1984, base: 145, vol: 0.020, drift: 0.00024 },
+          { name: "Coca-Cola",                      short: "可口可乐",       ticker: "KO", weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
+            concept: "全球饮料品牌 + 分销网络",
+            conceptEn: "Global beverage brand + distribution network",
+            marketCap: 285.0,
+            seed: 1886, base: 62, vol: 0.010, drift: 0.00008 },
+          { name: "泡泡玛特",                       short: "泡泡玛特",       ticker: "9992.HK", weight: 0.25, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "潮玩 IP + 情绪消费",
+            conceptEn: "Collectible IP + emotional consumption",
+            marketCap: 40.0,
+            seed: 9992, base: 22, vol: 0.035, drift: 0.00025 },
+        ],
+      },
     };
 
     const PORTFOLIO_EVENT_THEMES = {
@@ -2123,6 +2153,24 @@
             desc_en: "GLD represents gold exposure, providing a hard-asset anchor across inflation, real rates, and monetary credibility regimes." },
         ],
       },
+      "brand": {
+        header: "品牌指数事件",
+        headerEn: "Brand Index Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "market", label: "品牌指数起点", en: "Brand index start",
+            desc: "以统一 T₀ 追踪茅台、Apple、可口可乐与泡泡玛特四类品牌资产的相对表现。",
+            desc_en: "Uses the shared T₀ to track Moutai, Apple, Coca-Cola, and Pop Mart as four brand-asset lines." },
+          { date: "2023-06-05", category: "product", label: "Apple 生态品牌线", en: "Apple ecosystem brand line",
+            desc: "Apple 代表硬件、软件、服务与高粘性生态的复合品牌价值。",
+            desc_en: "Apple represents compound brand value across hardware, software, services, and a sticky ecosystem." },
+          { date: "2024-09-24", category: "policy", label: "中国消费品牌修复", en: "China consumer brand recovery",
+            desc: "中国资产风险偏好修复时，茅台与泡泡玛特分别代表高端消费与情绪消费的品牌弹性。",
+            desc_en: "When China risk appetite recovers, Moutai and Pop Mart represent premium consumption and emotional-consumption brand beta." },
+          { date: "2025-02-11", category: "consumer", label: "全球经典消费品牌", en: "Global classic consumer brand",
+            desc: "可口可乐代表全球渠道、经典品牌心智和防御型消费现金流。",
+            desc_en: "Coca-Cola represents global distribution, classic brand memory, and defensive consumer cash flow." },
+        ],
+      },
     };
 
     let currentPortfolioKey = "drone";
@@ -2317,6 +2365,7 @@
         "hk-utilities": "pillar--realized",
         "china-reversal": "pillar--breakthrough",
         "no-yield": "pillar--partial",
+        brand: "pillar--realized",
       }[key] || "pillar--realized";
     }
 
@@ -2367,7 +2416,7 @@
         mcap: (a, b) => b.totalMcap - a.totalMcap || a.index - b.index,
         return: (a, b) => b.totalReturn - a.totalReturn || a.index - b.index,
       };
-      const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪"];
+      const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫"];
       const rows = portfolioRows().sort(sorters[currentPortfolioRank] || sorters.default);
       document.querySelector(".manifesto-pillars").innerHTML = rows.map((row, i) => {
         const cls = portfolioStyleClass(row.key);
@@ -2442,7 +2491,7 @@
         `${portfolio.nameEn} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.name}</span>`
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 11 个组合", "PORTFOLIO CHANNELS · 11 PORTFOLIOS");
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 12 个组合", "PORTFOLIO CHANNELS · 12 PORTFOLIOS");
       document.querySelector("#portfolio-rank-group").previousElementSibling.textContent = t("组合排序", "Sort Portfolios");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="default"]').textContent = t("默认", "Default");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="mcap"]').textContent = t("市值", "Market Cap");

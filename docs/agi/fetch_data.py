@@ -89,6 +89,9 @@ COMPONENTS = [
     ("Bitcoin",                "Bitcoin",       "BTC-USD",  0.0, "USD"),
     ("Ethereum",               "ETH",           "ETH-USD",  0.0, "USD"),
     ("SPDR Gold Shares",       "GLD",           "GLD",      0.0, "USD"),
+    ("Apple",                  "Apple",         "AAPL",     0.0, "USD"),
+    ("Coca-Cola",              "可口可乐",      "KO",       0.0, "USD"),
+    ("\u6ce1\u6ce1\u739b\u7279", "泡泡玛特",      "9992.HK",  0.0, "HKD"),
 ]
 
 

@@ -89,6 +89,9 @@ COMPONENTS = [
     {"name": "Bitcoin", "short": "Bitcoin", "ticker": "BTC-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
     {"name": "Ethereum", "short": "ETH", "ticker": "ETH-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
     {"name": "SPDR Gold Shares", "short": "GLD", "ticker": "GLD", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Apple", "short": "Apple", "ticker": "AAPL", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Coca-Cola", "short": "\u53ef\u53e3\u53ef\u4e50", "ticker": "KO", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "\u6ce1\u6ce1\u739b\u7279", "short": "\u6ce1\u6ce1\u739b\u7279", "ticker": "9992.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
 ]
 
 TARGET_WEIGHTS = {
@@ -133,6 +136,9 @@ TARGET_WEIGHTS = {
     "BTC-USD": 0.0,
     "ETH-USD": 0.0,
     "GLD": 0.0,
+    "AAPL": 0.0,
+    "KO": 0.0,
+    "9992.HK": 0.0,
 }
 
 SYNTHETIC_FALLBACKS = {}
