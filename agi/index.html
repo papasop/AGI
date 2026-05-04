@@ -1834,6 +1834,7 @@
       "china-property": {
         name: "香港地产综合指数",
         nameEn: "Hong Kong Property Composite Index",
+        hideStrategy: true,
         tag: "策略 · 新鸿基地产 / 长和 / 嘉里建设 / 新世界发展 · 各 25%",
         tagEn: "STRATEGY · SHKP / CK HUTCHISON / KERRY PROPERTIES / NEW WORLD · 25 EACH",
         footer: "四只港股等权配置，覆盖香港核心地产、综合资产平台、商业地产与城市更新。",
@@ -2521,6 +2522,9 @@
 
     function renderStrategyBar() {
       const portfolio = activePortfolio();
+      const strategy = document.querySelector(".strategy");
+      if (strategy) strategy.style.display = portfolio.hideStrategy ? "none" : "";
+      if (portfolio.hideStrategy) return;
       document.querySelector(".strategy-tag").textContent = t(portfolio.tag, portfolio.tagEn);
       const classes = ["strategy-bar-stable", "strategy-bar-us", "strategy-bar-cn", "strategy-bar-core"];
       document.querySelector(".strategy-bar").innerHTML = portfolio.components.map((component, i) => `
