@@ -954,7 +954,7 @@
   <div class="container">
     <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 9 PORTFOLIOS</div>
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 10 PORTFOLIOS</div>
       <div class="manifesto-sort">
         <span class="manifesto-sort-label">组合排序</span>
         <div class="components-rank-toggle" id="portfolio-rank-group" aria-label="Portfolio ranking mode">
@@ -995,7 +995,7 @@
           <span class="pillar-text"><span class="m-key">电池指数</span><span class="pillar-en">Battery Index</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">先推出九个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching nine portfolio channels first, with room for more themes later.</span></div>
+      <div class="manifesto-footer">先推出十个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching ten portfolio channels first, with room for more themes later.</span></div>
     </div>
 
     <div class="strategy">
@@ -1829,6 +1829,26 @@
             seed: 2888, base: 55, vol: 0.022, drift: 0.00012 },
         ],
       },
+      "china-reversal": {
+        name: "中国困境反转指数",
+        nameEn: "China Distress Reversal Index",
+        tag: "策略 · API / 有赞 · 各 50%",
+        tagEn: "STRATEGY · API / YOUZAN · 50 EACH",
+        footer: "两只困境反转资产等权配置，追踪中国软件、云通信与商家服务平台的估值修复弹性。",
+        footerEn: "Equal-weight exposure to distressed-reversal beta across China software, cloud communications, and merchant-service platforms.",
+        components: [
+          { name: "Agora",                         short: "API",            ticker: "API", weight: 0.50, ccy: "USD", sleeve: "CN", status: "active",
+            concept: "实时互动云 + AI 通信基础设施",
+            conceptEn: "Real-time engagement cloud + AI communications infrastructure",
+            marketCap: 0.3,
+            seed: 910, base: 3.0, vol: 0.045, drift: 0.00012 },
+          { name: "中国有赞",                       short: "有赞",           ticker: "8083.HK", weight: 0.50, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "商家 SaaS + 私域电商工具",
+            conceptEn: "Merchant SaaS + private-domain commerce tools",
+            marketCap: 0.5,
+            seed: 8083, base: 0.12, vol: 0.040, drift: 0.00010 },
+        ],
+      },
     };
 
     const PORTFOLIO_EVENT_THEMES = {
@@ -1994,6 +2014,24 @@
           { date: "2025-09-09", category: "market", label: "银行与公用事业股息线", en: "Bank and utility dividend line",
             desc: "中银香港、汇丰、渣打与传统公用事业共同构成香港高股息、防御型资产篮子。",
             desc_en: "BOCHK, HSBC, Standard Chartered, and traditional utilities together form a Hong Kong high-dividend defensive asset basket." },
+        ],
+      },
+      "china-reversal": {
+        header: "中国困境反转事件",
+        headerEn: "China Distress Reversal Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "market", label: "中国困境反转指数起点", en: "China distress reversal index start",
+            desc: "以统一 T₀ 追踪 API 与有赞的困境反转弹性，把低估值软件和平台服务资产放到同一条曲线。",
+            desc_en: "Uses the shared T₀ to track reversal beta in API and Youzan, placing low-valuation software and platform-service assets on one curve." },
+          { date: "2023-11-15", category: "product", label: "AI 通信基础设施修复线", en: "AI communications infrastructure recovery line",
+            desc: "Agora 代表实时互动云与 AI 通信基础设施，反转逻辑来自开发者需求、实时音视频和智能客服场景修复。",
+            desc_en: "Agora represents real-time engagement cloud and AI communications infrastructure, with reversal logic tied to developer demand, real-time audio/video, and AI service use cases." },
+          { date: "2024-09-24", category: "policy", label: "中国资产风险偏好修复", en: "China asset risk appetite recovery",
+            desc: "中国资产政策与流动性预期改善时，小市值软件和商家服务平台更容易体现困境反转弹性。",
+            desc_en: "When China policy and liquidity expectations improve, small-cap software and merchant-service platforms can show higher distress-reversal beta." },
+          { date: "2025-03-20", category: "consumer", label: "有赞商家服务线", en: "Youzan merchant-service line",
+            desc: "有赞代表商家 SaaS、私域电商和门店数字化工具，观察消费修复对商家软件开支的传导。",
+            desc_en: "Youzan represents merchant SaaS, private-domain commerce, and store digitization tools, tracking how consumption recovery feeds into merchant software spending." },
         ],
       },
     };
@@ -2188,6 +2226,7 @@
         "china-consumption": "pillar--pending",
         "china-property": "pillar--partial",
         "hk-utilities": "pillar--realized",
+        "china-reversal": "pillar--breakthrough",
       }[key] || "pillar--realized";
     }
 
@@ -2312,7 +2351,7 @@
         `${portfolio.nameEn} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.name}</span>`
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 9 个组合", "PORTFOLIO CHANNELS · 9 PORTFOLIOS");
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 10 个组合", "PORTFOLIO CHANNELS · 10 PORTFOLIOS");
       document.querySelector("#portfolio-rank-group").previousElementSibling.textContent = t("组合排序", "Sort Portfolios");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="default"]').textContent = t("默认", "Default");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="mcap"]').textContent = t("市值", "Market Cap");
