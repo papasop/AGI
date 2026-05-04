@@ -208,79 +208,6 @@
       color: #4a5778;
       font-size: 10.5px;
     }
-    /* === Strategy block (ONDS / UMAC / THEON / KOPN equal weight) === */
-    .strategy {
-      margin: 0 0 22px;
-    }
-    .strategy-tag {
-      color: #6b7a99;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      margin-bottom: 8px;
-    }
-    .strategy-bar {
-      display: flex;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid #1d2740;
-      min-height: 78px;
-    }
-    .strategy-bar-stable,
-    .strategy-bar-core,
-    .strategy-bar-cn,
-    .strategy-bar-us {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 14px 22px;
-      gap: 6px;
-    }
-    .strategy-bar-cn {
-      background: linear-gradient(135deg, rgba(239, 83, 80, 0.18) 0%, rgba(239, 83, 80, 0.035) 100%);
-      border-right: 1px solid #2a3654;
-    }
-    .strategy-bar-stable {
-      background: linear-gradient(135deg, rgba(255, 209, 102, 0.18) 0%, rgba(255, 209, 102, 0.04) 100%);
-      border-right: 1px solid #2a3654;
-    }
-    .strategy-bar-core {
-      background: linear-gradient(135deg, rgba(38, 166, 154, 0.16) 0%, rgba(38, 166, 154, 0.035) 100%);
-      border-right: 1px solid #2a3654;
-    }
-    .strategy-bar-us {
-      background: linear-gradient(135deg, rgba(94, 158, 255, 0.04) 0%, rgba(94, 158, 255, 0.22) 100%);
-      border-right: 1px solid #2a3654;
-    }
-    .strategy-bar-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .strategy-bar-label {
-      font-size: 13px;
-      color: #fff;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
-    .strategy-bar-pct {
-      font-size: 24px;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.5px;
-    }
-    .strategy-bar-cn .strategy-bar-pct { color: #ef5350; }
-    .strategy-bar-stable .strategy-bar-pct { color: #ffd166; }
-    .strategy-bar-core .strategy-bar-pct { color: #26a69a; }
-    .strategy-bar-us .strategy-bar-pct { color: #5e9eff; }
-    .strategy-bar-detail {
-      font-size: 11px;
-      color: #8a96b3;
-      letter-spacing: 0.2px;
-    }
-
     /* === Meta strip (replaces subtitle) === */
     .meta-strip {
       display: grid;
@@ -996,40 +923,6 @@
         </li>
       </ol>
       <div class="manifesto-footer">先推出十三个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching thirteen portfolio channels first, with room for more themes later.</span></div>
-    </div>
-
-    <div class="strategy">
-      <div class="strategy-tag">策略 · STRATEGY · ONDS / UMAC / THEON / KOPN · 25 EACH</div>
-      <div class="strategy-bar">
-        <div class="strategy-bar-stable">
-          <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🇺🇸 ONDS</span>
-            <span class="strategy-bar-pct">25%</span>
-          </div>
-          <div class="strategy-bar-detail">Ondas · Iron Drone 反无人机</div>
-        </div>
-        <div class="strategy-bar-us">
-          <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🇺🇸 UMAC</span>
-            <span class="strategy-bar-pct">25%</span>
-          </div>
-          <div class="strategy-bar-detail">Unusual Machines · 无人机零部件</div>
-        </div>
-        <div class="strategy-bar-cn">
-          <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🇳🇱 THEON</span>
-            <span class="strategy-bar-pct">25%</span>
-          </div>
-          <div class="strategy-bar-detail">Theon · 军用夜视 / 热成像</div>
-        </div>
-        <div class="strategy-bar-core">
-          <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🇺🇸 KOPN</span>
-            <span class="strategy-bar-pct">25%</span>
-          </div>
-          <div class="strategy-bar-detail">Kopin · 军用微显示 / 头显光学</div>
-        </div>
-      </div>
     </div>
 
     <div class="meta-strip">
@@ -2521,24 +2414,6 @@
       return "🇺🇸";
     }
 
-    function renderStrategyBar() {
-      const portfolio = activePortfolio();
-      const strategy = document.querySelector(".strategy");
-      if (strategy) strategy.style.display = portfolio.hideStrategy ? "none" : "";
-      if (portfolio.hideStrategy) return;
-      document.querySelector(".strategy-tag").textContent = t(portfolio.tag, portfolio.tagEn);
-      const classes = ["strategy-bar-stable", "strategy-bar-us", "strategy-bar-cn", "strategy-bar-core"];
-      document.querySelector(".strategy-bar").innerHTML = portfolio.components.map((component, i) => `
-        <div class="${classes[i % classes.length]}">
-          <div class="strategy-bar-row">
-            <span class="strategy-bar-label">${countryFlag(component)} ${component.short}</span>
-            <span class="strategy-bar-pct">${formatWeightPct(component.weight)}</span>
-          </div>
-          <div class="strategy-bar-detail">${t(`${component.name} · ${component.concept}`, `${component.name} · ${component.conceptEn}`)}</div>
-        </div>
-      `).join("");
-    }
-
     function renderAssetButtons() {
       const buttons = [
         `<button data-asset="INDEX" class="${currentChartAsset === "INDEX" ? "active" : ""}"><span class="btn-main">${t("指数", "Index")}</span><span class="btn-sub">Index</span></button>`,
@@ -2574,8 +2449,6 @@
         `${portfolio.footer}<span class="manifesto-footer-en">${portfolio.footerEn}</span>`,
         `${portfolio.footerEn}<span class="manifesto-footer-en">${portfolio.footer}</span>`
       );
-
-      renderStrategyBar();
 
       const metaLabels = document.querySelectorAll(".meta-label");
       const metaDetails = document.querySelectorAll(".meta-detail");
