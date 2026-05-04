@@ -93,6 +93,34 @@
       background: rgba(94, 158, 255, 0.08);
       box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.18);
     }
+    .manifesto-sort {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .manifesto-sort-label {
+      color: #8a96b3;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .pillar-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 3px;
+      color: #8a96b3;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .pillar-meta b {
+      color: #dce6f7;
+      font-weight: 700;
+    }
     .pillar-num {
       color: #ffd166;
       font-weight: 700;
@@ -927,6 +955,14 @@
     <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
       <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 6 PORTFOLIOS</div>
+      <div class="manifesto-sort">
+        <span class="manifesto-sort-label">组合排序</span>
+        <div class="components-rank-toggle" id="portfolio-rank-group" aria-label="Portfolio ranking mode">
+          <button data-portfolio-rank="default" class="active">默认</button>
+          <button data-portfolio-rank="mcap">市值</button>
+          <button data-portfolio-rank="return">历史表现</button>
+        </div>
+      </div>
       <ol class="manifesto-pillars">
         <li class="pillar pillar--realized active" data-portfolio="drone">
           <span class="pillar-num">①</span>
@@ -1849,6 +1885,7 @@
     let currentPeriodDays = 5;          // 5 trading days = 1 calendar week
     let currentChartAsset = "INDEX";
     let currentComponentRank = "weight";
+    let currentPortfolioRank = "default";
     let currentEventCategory = "all";
     let popoverLang = (() => {
       try {
@@ -1946,6 +1983,83 @@
           };
     }
 
+    function portfolioStyleClass(key) {
+      return {
+        drone: "pillar--realized",
+        "global-ai-hedge": "pillar--breakthrough",
+        "china-leading": "pillar--pending",
+        blockchain: "pillar--partial",
+        ev: "pillar--realized",
+        battery: "pillar--breakthrough",
+      }[key] || "pillar--realized";
+    }
+
+    function portfolioComponentsForKey(key) {
+      const portfolio = PORTFOLIOS[key] || PORTFOLIOS.drone;
+      const rawComponents = dataPool?.components?.length ? dataPool.components : [];
+      const dateAxis = rawComponents.find((c) => c?.data?.length)?.data?.map((d) => d.date) || generateTradingDates(INCEPTION_DATE);
+      const byTicker = new Map(rawComponents.map((c) => [c.ticker, c]));
+      return portfolio.components
+        .filter((config) => config.status !== "prelist")
+        .map((config) => {
+          const incoming = byTicker.get(config.ticker);
+          const data = hasTradableData(incoming)
+            ? incoming.data
+            : generateOHLC(config.seed, config.base, config.vol, config.drift, dateAxis);
+          return { ...config, ...(incoming || {}), data, weight: config.weight };
+        });
+    }
+
+    function portfolioReturnForKey(key) {
+      const components = portfolioComponentsForKey(key);
+      if (!components.length) return 0;
+      const dateAxis = components[0].data.map((d) => d.date);
+      const fx = ensureFxRates(dataPool?.fx || {}, dateAxis);
+      const series = buildIndex(components, fx, "USD", currentRebalance, currentPeriodDays);
+      const first = series[0]?.close || 0;
+      const last = series[series.length - 1]?.close || 0;
+      return first ? (last / first - 1) * 100 : 0;
+    }
+
+    function portfolioRows() {
+      return Object.entries(PORTFOLIOS).map(([key, portfolio], index) => {
+        const totalMcap = portfolio.components.reduce((sum, c) => sum + (c.marketCap || 0), 0);
+        return {
+          key,
+          portfolio,
+          index,
+          totalMcap,
+          totalReturn: portfolioReturnForKey(key),
+        };
+      });
+    }
+
+    function renderPortfolioList() {
+      const sorters = {
+        default: (a, b) => a.index - b.index,
+        mcap: (a, b) => b.totalMcap - a.totalMcap || a.index - b.index,
+        return: (a, b) => b.totalReturn - a.totalReturn || a.index - b.index,
+      };
+      const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"];
+      const rows = portfolioRows().sort(sorters[currentPortfolioRank] || sorters.default);
+      document.querySelector(".manifesto-pillars").innerHTML = rows.map((row, i) => {
+        const cls = portfolioStyleClass(row.key);
+        const active = row.key === currentPortfolioKey ? " active" : "";
+        const name = t(row.portfolio.name, row.portfolio.nameEn);
+        const subName = t(row.portfolio.nameEn, row.portfolio.name);
+        const mcapLabel = t("市值", "Cap");
+        const returnLabel = t("历史", "History");
+        return `<li class="pillar ${cls}${active}" data-portfolio="${row.key}">
+          <span class="pillar-num">${numbers[i] || i + 1}</span>
+          <span class="pillar-cat ${cls.replace("pillar--", "pillar-cat--")}">${t("组合", "Portfolio")}</span>
+          <span class="pillar-text">
+            <span class="m-key">${name}</span><span class="pillar-en">${subName}</span>
+            <span class="pillar-meta"><span>${mcapLabel} <b>${formatMcap(row.totalMcap)}</b></span><span>${returnLabel} <b>${formatSignedPct(row.totalReturn)}</b></span></span>
+          </span>
+        </li>`;
+      }).join("");
+    }
+
     function portfolioDataFromPool(dataPool) {
       if (!dataPool) return null;
       return {
@@ -2002,45 +2116,11 @@
       );
 
       document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 6 个组合", "PORTFOLIO CHANNELS · 6 PORTFOLIOS");
-      const pillars = [
-        {
-          cat: ["组合", "Portfolio"],
-          text: ['<span class="m-key">无人机组合</span>', '<span class="m-key">Drone Portfolio</span>'],
-          en: ["Drone Portfolio", "无人机组合"],
-        },
-        {
-          cat: ["组合", "Portfolio"],
-          text: ['<span class="m-key">全球AI对冲</span>', '<span class="m-key">Global AI Hedge</span>'],
-          en: ["Global AI Hedge", "全球AI对冲"],
-        },
-        {
-          cat: ["组合", "Portfolio"],
-          text: ['<span class="m-key">中国领先指数</span>', '<span class="m-key">China Leadership Index</span>'],
-          en: ["China Leadership Index", "中国领先指数"],
-        },
-        {
-          cat: ["组合", "Portfolio"],
-          text: ['<span class="m-key">区块链领先指数</span>', '<span class="m-key">Blockchain Leadership Index</span>'],
-          en: ["Blockchain Leadership Index", "区块链领先指数"],
-        },
-        {
-          cat: ["组合", "Portfolio"],
-          text: ['<span class="m-key">电动车指数</span>', '<span class="m-key">Electric Vehicle Index</span>'],
-          en: ["Electric Vehicle Index", "电动车指数"],
-        },
-        {
-          cat: ["组合", "Portfolio"],
-          text: ['<span class="m-key">电池指数</span>', '<span class="m-key">Battery Index</span>'],
-          en: ["Battery Index", "电池指数"],
-        },
-      ];
-      document.querySelectorAll(".manifesto-pillars li").forEach((row, i) => {
-        const p = pillars[i];
-        if (!p) return;
-        row.classList.toggle("active", row.dataset.portfolio === currentPortfolioKey);
-        row.querySelector(".pillar-cat").textContent = t(p.cat[0], p.cat[1]);
-        row.querySelector(".pillar-text").innerHTML = `${t(p.text[0], p.text[1])}<span class="pillar-en">${t(p.en[0], p.en[1])}</span>`;
-      });
+      document.querySelector("#portfolio-rank-group").previousElementSibling.textContent = t("组合排序", "Sort Portfolios");
+      document.querySelector('#portfolio-rank-group button[data-portfolio-rank="default"]').textContent = t("默认", "Default");
+      document.querySelector('#portfolio-rank-group button[data-portfolio-rank="mcap"]').textContent = t("市值", "Market Cap");
+      document.querySelector('#portfolio-rank-group button[data-portfolio-rank="return"]').textContent = t("历史表现", "Performance");
+      renderPortfolioList();
       document.querySelector(".manifesto-footer").innerHTML = t(
         `${portfolio.footer}<span class="manifesto-footer-en">${portfolio.footerEn}</span>`,
         `${portfolio.footerEn}<span class="manifesto-footer-en">${portfolio.footer}</span>`
@@ -2481,6 +2561,7 @@
       chart.setOption(buildOption(data, currentType, chartData.label), true);
       updateStats(data);
       renderComponentsPanel();
+      renderPortfolioList();
       updateAssetControls();
     }
 
@@ -2522,6 +2603,14 @@
       renderMilestoneList();
       renderComponentsPanel();
       if (rawData) render();
+    });
+    document.getElementById("portfolio-rank-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-portfolio-rank]");
+      if (!btn) return;
+      document.querySelectorAll("#portfolio-rank-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentPortfolioRank = btn.dataset.portfolioRank;
+      renderPortfolioList();
     });
     document.getElementById("event-group").addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-event]");
@@ -2839,6 +2928,7 @@
     loadData().then((d) => {
       dataPool = d;
       rawData = portfolioDataFromPool(dataPool);
+      renderStaticLanguage();
       render();
     });
   </script>
