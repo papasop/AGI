@@ -168,7 +168,7 @@
       color: #4a5778;
       font-size: 10.5px;
     }
-    /* === Strategy block (TLT 50 / PDD 20 / NYT 20 / BYD 10) === */
+    /* === Strategy block (TLT 50 / NYT 25 / PDD 15 / BYD 10) === */
     .strategy {
       margin: 0 0 22px;
     }
@@ -941,7 +941,7 @@
     </div>
 
     <div class="strategy">
-      <div class="strategy-tag">策略 · STRATEGY · TLT 50 / PDD 20 / NYT 20 / BYD 10</div>
+      <div class="strategy-tag">策略 · STRATEGY · TLT 50 / NYT 25 / PDD 15 / BYD 10</div>
       <div class="strategy-bar">
         <div class="strategy-bar-stable">
           <div class="strategy-bar-row">
@@ -953,14 +953,14 @@
         <div class="strategy-bar-us">
           <div class="strategy-bar-row">
             <span class="strategy-bar-label">🇺🇸 纽约时报</span>
-            <span class="strategy-bar-pct">20%</span>
+            <span class="strategy-bar-pct">25%</span>
           </div>
           <div class="strategy-bar-detail">NYT · AI 数据版权</div>
         </div>
         <div class="strategy-bar-cn">
           <div class="strategy-bar-row">
             <span class="strategy-bar-label">🇨🇳 拼多多</span>
-            <span class="strategy-bar-pct">20%</span>
+            <span class="strategy-bar-pct">15%</span>
           </div>
           <div class="strategy-bar-detail">PDD · AI 生产力</div>
         </div>
@@ -1023,8 +1023,8 @@
           <span class="control-group-label">标的</span>
           <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
           <button data-asset="TLT"><span class="btn-main">TLT</span><span class="btn-sub">50%</span></button>
-          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">20%</span></button>
-          <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">20%</span></button>
+          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">15%</span></button>
+          <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">25%</span></button>
           <button data-asset="002594.SZ"><span class="btn-main">比亚迪</span><span class="btn-sub">10%</span></button>
         </div>
       </div>
@@ -1442,12 +1442,12 @@
         conceptEn: "20+ Year Treasury · rate hedge",
         marketCap: 55.0,
         seed: 2020, base: 102, vol: 0.012, drift: -0.00008 },
-      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.20, ccy: "USD", sleeve: "US", status: "active",
+      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
         concept: "AI 数据版权",
         conceptEn: "AI data rights",
         marketCap: 11.0,
         seed: 7,    base:  36, vol: 0.014, drift:  0.00050 },
-      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.20, ccy: "USD", sleeve: "CN", status: "active",
+      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.15, ccy: "USD", sleeve: "CN", status: "active",
         concept: "AI 生产力",
         conceptEn: "AI productivity",
         marketCap: 165.0,
@@ -1620,7 +1620,7 @@
         'The four tests define the index’s confirmation / falsification frame: geopolitics, model paradigm, compute path, and agency philosophy.<span class="manifesto-footer-en">四组命题构成本指数的证实 / 证伪框架。</span>'
       );
 
-      document.querySelector(".strategy-tag").textContent = t("策略 · TLT 50 / PDD 20 / NYT 20 / BYD 10", "STRATEGY · TLT 50 / PDD 20 / NYT 20 / BYD 10");
+      document.querySelector(".strategy-tag").textContent = t("策略 · TLT 50 / NYT 25 / PDD 15 / BYD 10", "STRATEGY · TLT 50 / NYT 25 / PDD 15 / BYD 10");
       document.querySelector(".strategy-bar-stable .strategy-bar-label").textContent = t("🇺🇸 TLT", "🇺🇸 TLT");
       document.querySelector(".strategy-bar-stable .strategy-bar-detail").textContent = t("20+ Year Treasury · 利率对冲", "20+ Year Treasury · rate hedge");
       document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 纽约时报", "🇺🇸 New York Times");

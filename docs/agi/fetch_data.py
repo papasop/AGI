@@ -40,8 +40,8 @@ import yfinance as yf
 COMPONENTS = [
     # (CN name,    short,            ticker,         weight, ccy)
     ("TLT",                     "TLT",            "TLT",       0.50, "USD"),
-    ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.20, "USD"),
-    ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.20, "USD"),
+    ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.15, "USD"),
+    ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.25, "USD"),
     ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.10, "CNY"),
 ]
 
