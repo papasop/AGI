@@ -12,7 +12,7 @@
 
 > ① 前提 · ② 待突破 · ③④⑤ 三重猜想 — 1 前提 + 1 突破 + 3 猜想 = 五重命题。
 
-> **策略**:ONDS 33.33% · UMAC 33.33% · THEON 33.33%
+> **策略**:ONDS 25% · UMAC 25% · THEON 25% · KOPN 25%
 
 T₀ 为 ChatGPT 公开发布日 (2022-11-30) 的 AI 主题加权指数。计价 USD,每周再平衡。
 
@@ -30,9 +30,10 @@ T₀ 为 ChatGPT 公开发布日 (2022-11-30) 的 AI 主题加权指数。计价
 ### 核心配置
 | 代码 | 名称 | 权重 | AI 子赛道 |
 |---|---|---|---|
-| ONDS | Ondas | 33.33% | Iron Drone 反无人机系统 |
-| UMAC | Unusual Machines | 33.33% | 无人机零部件供应商 |
-| THEON.AS | Theon International | 33.33% | 军用夜视 · 热成像 · ISR |
+| ONDS | Ondas | 25% | Iron Drone 反无人机系统 |
+| UMAC | Unusual Machines | 25% | 无人机零部件供应商 |
+| THEON.AS | Theon International | 25% | 军用夜视 · 热成像 · ISR |
+| KOPN | Kopin | 25% | 军用微显示 · 头显光学 |
 
 ## 用法
 

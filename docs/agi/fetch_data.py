@@ -8,9 +8,10 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    Ondas                   ONDS       USD    33.33%
-    Unusual Machines        UMAC       USD    33.33%
-    Theon International     THEON.AS   EUR    33.33%
+    Ondas                   ONDS       USD    25.0%
+    Unusual Machines        UMAC       USD    25.0%
+    Theon International     THEON.AS   EUR    25.0%
+    Kopin                   KOPN       USD    25.0%
 
 Calendar handling
 -----------------
@@ -38,9 +39,10 @@ import yfinance as yf
 
 COMPONENTS = [
     # (CN name,    short,            ticker,         weight, ccy)
-    ("Ondas",                  "ONDS",           "ONDS",      1 / 3, "USD"),
-    ("Unusual Machines",       "UMAC",           "UMAC",      1 / 3, "USD"),
-    ("Theon International",    "THEON",          "THEON.AS",  1 / 3, "EUR"),
+    ("Ondas",                  "ONDS",           "ONDS",      0.25, "USD"),
+    ("Unusual Machines",       "UMAC",           "UMAC",      0.25, "USD"),
+    ("Theon International",    "THEON",          "THEON.AS",  0.25, "EUR"),
+    ("Kopin",                  "KOPN",           "KOPN",      0.25, "USD"),
 ]
 
 
