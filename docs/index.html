@@ -168,7 +168,7 @@
       color: #4a5778;
       font-size: 10.5px;
     }
-    /* === Strategy block (PDD 50 / NYT 50) === */
+    /* === Strategy block (NYT 50 / PDD 25 / BYD 25) === */
     .strategy {
       margin: 0 0 22px;
     }
@@ -941,21 +941,28 @@
     </div>
 
     <div class="strategy">
-      <div class="strategy-tag">策略 · STRATEGY · PDD 50 / NYT 50</div>
+      <div class="strategy-tag">策略 · STRATEGY · NYT 50 / PDD 25 / BYD 25</div>
       <div class="strategy-bar">
-        <div class="strategy-bar-cn">
-          <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🇨🇳 拼多多</span>
-            <span class="strategy-bar-pct">50%</span>
-          </div>
-          <div class="strategy-bar-detail">PDD · AI 生产力</div>
-        </div>
         <div class="strategy-bar-us">
           <div class="strategy-bar-row">
             <span class="strategy-bar-label">🇺🇸 纽约时报</span>
             <span class="strategy-bar-pct">50%</span>
           </div>
-          <div class="strategy-bar-detail">NYT · AI 稳定计</div>
+          <div class="strategy-bar-detail">NYT · AI 数据版权</div>
+        </div>
+        <div class="strategy-bar-cn">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇨🇳 拼多多</span>
+            <span class="strategy-bar-pct">25%</span>
+          </div>
+          <div class="strategy-bar-detail">PDD · AI 生产力</div>
+        </div>
+        <div class="strategy-bar-core">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇨🇳 比亚迪</span>
+            <span class="strategy-bar-pct">25%</span>
+          </div>
+          <div class="strategy-bar-detail">BYD · AI 机器人 · 电池 + 电机 + 电控</div>
         </div>
       </div>
     </div>
@@ -1008,8 +1015,9 @@
         <div class="control-group" id="asset-group">
           <span class="control-group-label">标的</span>
           <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
-          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">50%</span></button>
           <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">50%</span></button>
+          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">25%</span></button>
+          <button data-asset="002594.SZ"><span class="btn-main">比亚迪</span><span class="btn-sub">25%</span></button>
         </div>
       </div>
       <div id="chart"></div>
@@ -1362,8 +1370,8 @@
         desc: "拜登政府第二轮升级对华先进 AI 芯片出口管制,把此前为绕开管制专门设计的 NVIDIA H800 / A800(中国版)也列入限制。它强化了中国本土 AI 芯片与半导体设备产业的国产替代逻辑。",
         desc_en: "The Biden administration's second-round tightening of AI chip export controls to China adds NVIDIA H800 / A800 — the China-specific chips originally designed to circumvent earlier controls — to the restriction list, strengthening the import-substitution logic for Chinese domestic AI chips and semiconductor equipment." },
       { date: "2023-12-27", category: "llm", label: "NYT \u8d77\u8bc9 OpenAI \u4e0e\u5fae\u8f6f",       en: "NYT v OpenAI lawsuit",
-        desc: "纽约时报在曼哈顿联邦法院起诉 OpenAI 与微软,指控未经授权使用其数百万篇文章训练 GPT 系列模型,索赔可能高达数十亿美元。这是 AI 与传统媒体的首例重磅版权诉讼,直接关系本指数 50% 权重的 NYT 估值——和解或胜诉将重塑 AI 训练数据的商业模式。",
-        desc_en: "The New York Times files suit against OpenAI and Microsoft in Manhattan federal court, alleging unauthorized use of millions of articles to train GPT models, with damages potentially in the billions. The first major copyright case between AI and traditional media — directly relevant to NYT's 50% weight in this index. A settlement or victory would reshape the business model of AI training data." },
+        desc: "纽约时报在曼哈顿联邦法院起诉 OpenAI 与微软,指控未经授权使用其数百万篇文章训练 GPT 系列模型,索赔可能高达数十亿美元。这是 AI 与传统媒体的首例重磅版权诉讼,会重塑训练数据授权与内容定价的商业模式。",
+        desc_en: "The New York Times files suit against OpenAI and Microsoft in Manhattan federal court, alleging unauthorized use of millions of articles to train GPT models, with damages potentially in the billions. The first major copyright case between AI and traditional media could reshape training-data licensing and content pricing." },
       { date: "2024-02-15", category: "physical", label: "Sora 世界模拟器论文", en: "Sora world-simulator report",
         desc: "OpenAI 发布 Sora 技术报告《Video generation models as world simulators》,把视频生成明确连接到“通用物理世界模拟器”的路线。它让物理一致性、时空 patch、长视频生成成为 AI 叙事中的核心变量。",
         desc_en: "OpenAI publishes the Sora technical report, 'Video generation models as world simulators,' explicitly tying video generation to the path toward general-purpose physical-world simulators. It pushes physical consistency, spacetime patches, and long-form video generation into the center of the AI narrative." },
@@ -1421,16 +1429,21 @@
     //  ChatGPT-launch day and today.
     // ============================================================
     const COMPONENTS_CONFIG = [
-      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.50, ccy: "USD", sleeve: "CN", status: "active",
+      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD", sleeve: "US", status: "active",
+        concept: "AI 数据版权",
+        conceptEn: "AI data rights",
+        marketCap: 11.0,
+        seed: 7,    base:  36, vol: 0.014, drift:  0.00050 },
+      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.25, ccy: "USD", sleeve: "CN", status: "active",
         concept: "AI 生产力",
         conceptEn: "AI productivity",
         marketCap: 165.0,
         seed: 200,  base:  80, vol: 0.030, drift:  0.00040 },
-      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.50, ccy: "USD", sleeve: "US", status: "active",
-        concept: "AI 稳定计",
-        conceptEn: "AI stabilizer",
-        marketCap: 11.0,
-        seed: 7,    base:  36, vol: 0.014, drift:  0.00050 },
+      { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ",  weight: 0.25, ccy: "CNY", sleeve: "CN", status: "active",
+        concept: "AI 机器人 · 电池 + 电机 + 电控",
+        conceptEn: "AI robotics · battery + motor + controls",
+        marketCap: 118.0,
+        seed: 2594, base: 250, vol: 0.024, drift: 0.00035 },
     ];
 
     async function loadData() {
@@ -1449,6 +1462,7 @@
       const activeConfigs = COMPONENTS_CONFIG.filter((c) => c.status !== "prelist");
       const components = activeConfigs.map((c) => ({
         name: c.name, short: c.short, ticker: c.ticker, weight: c.weight, ccy: c.ccy,
+        sleeve: c.sleeve, status: c.status,
         data: generateOHLC(c.seed, c.base, c.vol, c.drift, dates),
       }));
       return {
@@ -1493,7 +1507,7 @@
     //  Chart
     // ============================================================
     const chart = echarts.init(document.getElementById("chart"), null, { renderer: "canvas" });
-    let rawData = null;          // {byd, nyt, fx} — recomputed-from source
+    let rawData = null;          // normalized components, FX, benchmark, and macro curves
     let currentPeriod = "D";
     let currentType = "candle";
     let currentCurrency = "USD"; // industry-standard default for global indices
@@ -1528,13 +1542,24 @@
     }
 
     function normalizeComponentWeights(components) {
-      return components
-        .map(mergedComponentMeta)
-        .filter((c) => ["PDD", "NYT"].includes(c.ticker) && c.status !== "prelist")
-        .map((c) => ({
-        ...c,
-        weight: hasTradableData(c) ? 0.50 : 0,
-      }));
+      const configTickers = COMPONENTS_CONFIG
+        .filter((c) => c.status !== "prelist")
+        .map((c) => c.ticker);
+      const dateAxis = components.find((c) => c?.data?.length)?.data?.map((d) => d.date) || generateTradingDates(INCEPTION_DATE);
+      const byTicker = new Map(components.map((c) => [c.ticker, c]));
+      return configTickers.map((ticker) => {
+        const config = CONFIG_BY_TICKER[ticker] || {};
+        const incoming = byTicker.get(ticker);
+        const merged = mergedComponentMeta(incoming || config);
+        const data = hasTradableData(merged)
+          ? merged.data
+          : generateOHLC(config.seed, config.base, config.vol, config.drift, dateAxis);
+        return {
+          ...merged,
+          data,
+          weight: hasTradableData({ data }) ? config.weight : 0,
+        };
+      });
     }
 
     function t(zh, en) {
@@ -1582,11 +1607,13 @@
         'The four tests define the index’s confirmation / falsification frame: geopolitics, model paradigm, compute path, and agency philosophy.<span class="manifesto-footer-en">四组命题构成本指数的证实 / 证伪框架。</span>'
       );
 
-      document.querySelector(".strategy-tag").textContent = t("策略 · PDD 50 / NYT 50", "STRATEGY · PDD 50 / NYT 50");
+      document.querySelector(".strategy-tag").textContent = t("策略 · NYT 50 / PDD 25 / BYD 25", "STRATEGY · NYT 50 / PDD 25 / BYD 25");
+      document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 纽约时报", "🇺🇸 New York Times");
+      document.querySelector(".strategy-bar-us .strategy-bar-detail").textContent = t("NYT · AI 数据版权", "NYT · AI data rights");
       document.querySelector(".strategy-bar-cn .strategy-bar-label").textContent = t("🇨🇳 拼多多", "🇨🇳 PDD");
       document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t("PDD · AI 生产力", "PDD · AI productivity");
-      document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 纽约时报", "🇺🇸 New York Times");
-      document.querySelector(".strategy-bar-us .strategy-bar-detail").textContent = t("NYT · AI 稳定计", "NYT · AI stabilizer");
+      document.querySelector(".strategy-bar-core .strategy-bar-label").textContent = t("🇨🇳 比亚迪", "🇨🇳 BYD");
+      document.querySelector(".strategy-bar-core .strategy-bar-detail").textContent = t("BYD · AI 机器人 · 电池 + 电机 + 电控", "BYD · AI robotics · battery + motor + controls");
 
       const metaLabels = document.querySelectorAll(".meta-label");
       const metaDetails = document.querySelectorAll(".meta-detail");

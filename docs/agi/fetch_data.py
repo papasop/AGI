@@ -8,26 +8,21 @@ ai_global_index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    比亚迪          002594.SZ    CNY    10.0%
-    拼多多          PDD          USD    10.0%
-    福晶科技        002222.SZ    CNY    10.0%
-    曦智科技-P      01879.HK     HKD    10.0%   (IPO'd 2026-04-28)
-    拓荆科技        688072.SS    CNY    10.0%
     纽约时报        NYT          USD    50.0%
+    拼多多          PDD          USD    25.0%
+    比亚迪          002594.SZ    CNY    25.0%
 
 Calendar handling
 -----------------
 Each component trades on a different exchange with a different holiday
-calendar, and 曦智科技 (Lightelligence) IPO'd literally days ago. The
-anchor calendar is BYD ∩ NYT (the two anchors with full 14-year history);
+calendar. The anchor calendar is BYD ∩ NYT (the two anchors with full history);
 all other components are reindexed to that calendar.
 
-For components whose listing post-dates the start of the anchor calendar
-(Piotech 2022, Lightelligence 2026), pre-IPO dates are back-filled with
-the first known close. This means those components contribute a CONSTANT
-value to the index until they actually start trading. The distortion is
-bounded by their weight (2.5% each) and clearly documented in the JSON
-meta payload.
+For any component whose listing post-dates the start of the anchor calendar,
+pre-IPO dates are back-filled with the first known close. This means that
+component contributes a CONSTANT value to the index until it actually starts
+trading. The distortion is bounded by its index weight and documented in the
+JSON meta payload.
 
 Usage:
     pip install yfinance pandas
@@ -43,12 +38,9 @@ import yfinance as yf
 
 COMPONENTS = [
     # (CN name,    short,            ticker,         weight, ccy)
-    ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.10, "CNY"),
-    ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.10, "USD"),
-    ("\u798f\u6676\u79d1\u6280", "Fujing",        "002222.SZ", 0.10, "CNY"),
-    ("\u66e6\u667a\u79d1\u6280-P", "Lightelligence", "01879.HK",  0.10, "HKD"),
-    ("\u62d3\u8346\u79d1\u6280", "Piotech",       "688072.SS", 0.10, "CNY"),
-    ("\u7eb1\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.50, "USD"),
+    ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.50, "USD"),
+    ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.25, "USD"),
+    ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.25, "CNY"),
 ]
 
 
