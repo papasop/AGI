@@ -1377,13 +1377,62 @@
         bg: "rgba(240, 168, 104, 0.16)",
         line: "rgba(240, 168, 104, 0.34)",
       },
+      defense: {
+        zh: "防务订单",
+        en: "Defense",
+        color: "#ff7f7f",
+        bg: "rgba(255, 127, 127, 0.16)",
+        line: "rgba(255, 127, 127, 0.34)",
+      },
+      market: {
+        zh: "市场节点",
+        en: "Market",
+        color: "#b9f27c",
+        bg: "rgba(185, 242, 124, 0.14)",
+        line: "rgba(185, 242, 124, 0.30)",
+      },
+      policy: {
+        zh: "政策",
+        en: "Policy",
+        color: "#c4a3ff",
+        bg: "rgba(196, 163, 255, 0.15)",
+        line: "rgba(196, 163, 255, 0.32)",
+      },
+      product: {
+        zh: "产品",
+        en: "Product",
+        color: "#6ee7f9",
+        bg: "rgba(110, 231, 249, 0.14)",
+        line: "rgba(110, 231, 249, 0.30)",
+      },
+      supply: {
+        zh: "供应链",
+        en: "Supply Chain",
+        color: "#f7c56b",
+        bg: "rgba(247, 197, 107, 0.15)",
+        line: "rgba(247, 197, 107, 0.32)",
+      },
+      auto: {
+        zh: "整车",
+        en: "Auto",
+        color: "#8ee3a1",
+        bg: "rgba(142, 227, 161, 0.14)",
+        line: "rgba(142, 227, 161, 0.30)",
+      },
+      crypto: {
+        zh: "链上生态",
+        en: "On-chain",
+        color: "#7dd3fc",
+        bg: "rgba(125, 211, 252, 0.14)",
+        line: "rgba(125, 211, 252, 0.30)",
+      },
     };
 
     function milestoneCategory(key) {
       return MILESTONE_CATEGORIES[key] || MILESTONE_CATEGORIES.llm;
     }
 
-    const AI_MILESTONES = [
+    const DEFAULT_MILESTONES = [
       { date: "2022-11-30", category: "llm", label: "ChatGPT \u4e0a\u7ebf",                        en: "ChatGPT launched",
         desc: "OpenAI 发布基于 GPT-3.5 的对话产品 ChatGPT。5 天破百万用户、2 个月达 1 亿月活,创下消费产品最快增长纪录。本指数以这一天为 T₀,Base = 100,后续所有事件以这天为锚点参照。Generative AI 真正进入大众视野并撬动整条 AI 算力 / 应用产业链的零日。",
         desc_en: "OpenAI launches ChatGPT, built on GPT-3.5. It hits 1M users in 5 days and 100M monthly actives in 2 months — the fastest consumer-product adoption in history. This index uses this date as T₀, with Base = 100; all subsequent events are anchored here. Day zero of generative AI entering mainstream awareness and reshaping the entire AI compute / application stack." },
@@ -1620,6 +1669,105 @@
         ],
       },
     };
+
+    const PORTFOLIO_EVENT_THEMES = {
+      "global-ai-hedge": {
+        header: "全球 AI 大事记",
+        headerEn: "Global AI Milestones",
+        milestones: DEFAULT_MILESTONES,
+      },
+      "drone": {
+        header: "无人机防务事件",
+        headerEn: "Drone Defense Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "defense", label: "无人机指数起点", en: "Drone index start",
+            desc: "以 ChatGPT 公开发布日作为组合统一 T₀,把后续防务无人机、反无人机与军用光学事件放到同一条归一化时间线上。",
+            desc_en: "Uses ChatGPT's public launch date as the shared T₀, placing defense-drone, counter-UAS, and military-optics events on one normalized timeline." },
+          { date: "2024-02-14", category: "market", label: "UMAC 历史行情起点", en: "UMAC trading history begins",
+            desc: "UMAC 在数据池中的可用行情从这一天开始,代表无人机零部件供应链进入组合可跟踪区间。",
+            desc_en: "UMAC's available data begins on this date, bringing drone component supply-chain exposure into the tracked portfolio window." },
+          { date: "2024-02-07", category: "defense", label: "THEON 历史行情起点", en: "THEON trading history begins",
+            desc: "Theon International 的可用历史行情从这一天开始,军用夜视、热成像与 ISR 光学进入组合事件轴。",
+            desc_en: "Theon International's available trading data begins, adding military night-vision, thermal imaging, and ISR optics to the event axis." },
+          { date: "2025-09-01", category: "defense", label: "Iron Drone 订单主题", en: "Iron Drone order theme",
+            desc: "Ondas 持续向国防客户销售 Iron Drone 反无人机系统,订单验证反无人机从概念走向真实采购。",
+            desc_en: "Ondas continues selling Iron Drone counter-UAS systems to defense customers, validating the shift from concept to procurement." },
+        ],
+      },
+      "china-leading": {
+        header: "中国领先指数事件",
+        headerEn: "China Leadership Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "market", label: "中国领先指数起点", en: "China leadership index start",
+            desc: "以统一 T₀ 开始追踪中国平台消费、智能制造和高端消费龙头的相对表现。",
+            desc_en: "Starts the shared T₀ view of China's platform consumption, intelligent manufacturing, and premium consumer leaders." },
+          { date: "2023-08-29", category: "market", label: "PDD 国际化叙事强化", en: "PDD globalization narrative",
+            desc: "拼多多与跨境电商叙事强化,平台消费从国内效率竞争延展到全球化增长。",
+            desc_en: "PDD's cross-border commerce narrative strengthens, extending platform consumption from domestic efficiency to global growth." },
+          { date: "2024-03-27", category: "product", label: "比亚迪新能源规模化", en: "BYD NEV scale",
+            desc: "比亚迪继续体现电池、电机、电控与整车的一体化制造优势,成为中国智能制造主线之一。",
+            desc_en: "BYD continues to show the advantage of integrated battery, motor, control, and vehicle manufacturing as a core China manufacturing theme." },
+          { date: "2024-09-24", category: "policy", label: "中国资产政策拐点", en: "China asset policy pivot",
+            desc: "政策与流动性预期推动中国资产重新定价,影响平台、制造和消费龙头的共同风险偏好。",
+            desc_en: "Policy and liquidity expectations reprice China assets, affecting shared risk appetite across platform, manufacturing, and consumer leaders." },
+        ],
+      },
+      "blockchain": {
+        header: "区块链生态事件",
+        headerEn: "Blockchain Ecosystem Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "crypto", label: "区块链指数起点", en: "Blockchain index start",
+            desc: "以统一 T₀ 追踪公链、链上交易基础设施与稳定币治理生态的表现。",
+            desc_en: "Uses the shared T₀ to track public-chain, on-chain trading infrastructure, and stablecoin-governance exposure." },
+          { date: "2024-01-10", category: "market", label: "现货比特币 ETF 获批", en: "Spot Bitcoin ETFs approved",
+            desc: "美国现货比特币 ETF 获批,加密资产从边缘交易品进一步进入传统资产配置框架。",
+            desc_en: "US spot Bitcoin ETFs are approved, pushing crypto further into traditional asset-allocation frameworks." },
+          { date: "2024-11-29", category: "crypto", label: "HYPE 历史行情起点", en: "HYPE trading history begins",
+            desc: "Hyperliquid 代币可用行情从这一天开始,链上交易基础设施进入组合可视化曲线。",
+            desc_en: "Hyperliquid's token data begins, bringing on-chain trading infrastructure into the portfolio visualization." },
+          { date: "2025-07-18", category: "policy", label: "稳定币监管主题", en: "Stablecoin regulation theme",
+            desc: "稳定币合规、储备与支付网络讨论升温,直接影响 TRX 与 Sky 这类结算和治理生态的估值框架。",
+            desc_en: "Stablecoin compliance, reserves, and payment-network debates intensify, affecting valuation frameworks for settlement and governance ecosystems such as TRX and Sky." },
+        ],
+      },
+      "ev": {
+        header: "电动车产业事件",
+        headerEn: "Electric Vehicle Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "auto", label: "电动车指数起点", en: "EV index start",
+            desc: "以统一 T₀ 追踪中美电动车整车厂与中国自主品牌的相对表现。",
+            desc_en: "Uses the shared T₀ to track US and Chinese EV makers and leading China auto brands." },
+          { date: "2023-01-12", category: "market", label: "Tesla 全球降价周期", en: "Tesla price-cut cycle",
+            desc: "Tesla 开启全球价格调整,电动车竞争从供给稀缺转向成本、规模与品牌效率竞争。",
+            desc_en: "Tesla starts a global price-adjustment cycle, shifting EV competition from supply scarcity toward cost, scale, and brand efficiency." },
+          { date: "2024-03-26", category: "product", label: "小米 SU7 发布", en: "Xiaomi SU7 launch",
+            desc: "智能电动车竞争进入手机生态、软件体验与供应链组织能力叠加的新阶段。",
+            desc_en: "Smart-EV competition enters a new phase combining phone ecosystems, software experience, and supply-chain organization." },
+          { date: "2025-09-25", category: "market", label: "奇瑞历史行情起点", en: "Chery trading history begins",
+            desc: "奇瑞汽车 9973.HK 可用行情从这一天开始,中国自主品牌出口与新能源转型进入组合曲线。",
+            desc_en: "Chery Auto's 9973.HK data begins, adding China domestic-brand export and NEV-transition exposure to the portfolio curve." },
+        ],
+      },
+      "battery": {
+        header: "动力电池事件",
+        headerEn: "Power Battery Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "supply", label: "电池指数起点", en: "Battery index start",
+            desc: "以统一 T₀ 追踪比亚迪与宁德时代两条动力电池主线:整车垂直整合与独立电池平台。",
+            desc_en: "Uses the shared T₀ to track BYD and CATL: vertical EV integration versus independent battery-platform leadership." },
+          { date: "2023-04-19", category: "product", label: "宁德时代凝聚态电池", en: "CATL condensed battery",
+            desc: "宁德时代发布凝聚态电池,高能量密度路线强化其动力与新场景电池技术叙事。",
+            desc_en: "CATL announces its condensed battery, strengthening its high-energy-density battery technology narrative." },
+          { date: "2024-01-16", category: "supply", label: "比亚迪垂直整合优势", en: "BYD vertical integration",
+            desc: "比亚迪的刀片电池、三电系统与整车制造形成闭环,电池成本优势直接传导到整车竞争力。",
+            desc_en: "BYD's blade battery, three-electric system, and vehicle manufacturing form a closed loop, turning battery cost advantages into vehicle competitiveness." },
+          { date: "2024-09-24", category: "policy", label: "新能源产业政策窗口", en: "NEV policy window",
+            desc: "中国资产与新能源产业政策预期改善,动力电池龙头估值对利率、需求和出口预期更敏感。",
+            desc_en: "Improved China-asset and NEV policy expectations make battery leaders more sensitive to rates, demand, and export assumptions." },
+        ],
+      },
+    };
+
     let currentPortfolioKey = "drone";
     let COMPONENTS_CONFIG = PORTFOLIOS[currentPortfolioKey].components;
     let CONFIG_BY_TICKER = Object.fromEntries(COMPONENTS_CONFIG.map((c) => [c.ticker, c]));
@@ -1771,6 +1919,14 @@
       return PORTFOLIOS[currentPortfolioKey] || PORTFOLIOS.drone;
     }
 
+    function activeEventTheme() {
+      return PORTFOLIO_EVENT_THEMES[currentPortfolioKey] || PORTFOLIO_EVENT_THEMES["global-ai-hedge"];
+    }
+
+    function activeMilestones() {
+      return activeEventTheme().milestones || DEFAULT_MILESTONES;
+    }
+
     function portfolioDataFromPool(dataPool) {
       if (!dataPool) return null;
       return {
@@ -1911,7 +2067,8 @@
       document.querySelector('[data-rank="return"]').textContent = t("总涨幅", "Return");
       document.querySelector('[data-rank="contribution"]').textContent = t("贡献", "Contribution");
       document.getElementById("total-mcap-label").textContent = t("总市值 / TOTAL CAP", "TOTAL MARKET CAP");
-      document.querySelector(".milestones-header").textContent = t("AI 大事记", "AI Era Milestones");
+      const eventTheme = activeEventTheme();
+      document.querySelector(".milestones-header").textContent = t(eventTheme.header, eventTheme.headerEn);
       document.querySelector(".footer").innerHTML = t(
         'Data: 内置合成示例数据 (synthetic seeded sample, 含 FX) · 替换真实数据请用 <code>fetch_data.py</code> 生成 <code>data.json</code>',
         'Data: built-in synthetic seeded sample with FX · generate <code>data.json</code> via <code>fetch_data.py</code> to use real data'
@@ -1932,7 +2089,7 @@
     }
 
     function visibleMilestones() {
-      return AI_MILESTONES
+      return activeMilestones()
         .map((m, i) => ({ m, i }))
         .filter(({ m }) => currentEventCategory === "all" || m.category === currentEventCategory);
     }
@@ -2335,8 +2492,13 @@
       if (!row || row.dataset.portfolio === currentPortfolioKey) return;
       setPortfolioConfig(row.dataset.portfolio);
       currentChartAsset = "INDEX";
+      currentEventCategory = "all";
+      document.querySelectorAll("#event-group button").forEach((b) => b.classList.toggle("active", b.dataset.event === "all"));
+      activeIdx = null;
+      hidePopover();
       rawData = portfolioDataFromPool(dataPool);
       renderStaticLanguage();
+      renderMilestoneList();
       renderComponentsPanel();
       if (rawData) render();
     });
@@ -2494,7 +2656,7 @@
       document.getElementById("milestones-list").innerHTML = visibleMilestones().map(({ i }) =>
         `<div class="milestone" data-idx="${i}">
            <span class="milestone-num${i === 0 ? ' milestone-num-inception' : ''}">${i === 0 ? 'T\u2080' : i + 1}</span>
-           <span class="milestone-date">${AI_MILESTONES[i].date}</span>
+           <span class="milestone-date">${activeMilestones()[i].date}</span>
            <span class="milestone-category-slot"></span>
            <span class="milestone-title"></span>
          </div>`
@@ -2532,7 +2694,7 @@
     function renderMilestoneTitles() {
       document.querySelectorAll("#milestones-list .milestone").forEach((row) => {
         const idx = parseInt(row.dataset.idx, 10);
-        const m = AI_MILESTONES[idx];
+        const m = activeMilestones()[idx];
         const titleEl = row.querySelector(".milestone-title");
         const categoryEl = row.querySelector(".milestone-category-slot");
         if (!m || !titleEl) return;
@@ -2546,7 +2708,7 @@
     }
 
     function populatePopover(i) {
-      const m = AI_MILESTONES[i];
+      const m = activeMilestones()[i];
       if (!m) return;
       const numEl = document.getElementById("popover-num");
       numEl.textContent = i === 0 ? "T\u2080" : (i + 1);
