@@ -954,7 +954,7 @@
   <div class="container">
     <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 6 PORTFOLIOS</div>
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 7 PORTFOLIOS</div>
       <div class="manifesto-sort">
         <span class="manifesto-sort-label">组合排序</span>
         <div class="components-rank-toggle" id="portfolio-rank-group" aria-label="Portfolio ranking mode">
@@ -995,7 +995,7 @@
           <span class="pillar-text"><span class="m-key">电池指数</span><span class="pillar-en">Battery Index</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">先推出六个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching six portfolio channels first, with room for more themes later.</span></div>
+      <div class="manifesto-footer">先推出七个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching seven portfolio channels first, with room for more themes later.</span></div>
     </div>
 
     <div class="strategy">
@@ -1724,6 +1724,36 @@
             seed: 600152, base: 8, vol: 0.032, drift: 0.00016 },
         ],
       },
+      "china-consumption": {
+        name: "中国内需指数",
+        nameEn: "China Domestic Demand Index",
+        tag: "策略 · 好想你 / 古茗 / 江南布衣 / 五谷磨房 · 各 25%",
+        tagEn: "STRATEGY · HAOXIANGNI / GUMING / JNBY / NATURAL FOOD · 25 EACH",
+        footer: "四只股票等权配置，覆盖中国健康食品、新茶饮、设计师服饰与中式食养消费。",
+        footerEn: "Equal-weight exposure to Chinese healthy food, tea drinks, designer apparel, and traditional wellness consumption.",
+        components: [
+          { name: "好想你",                         short: "好想你",         ticker: "002582.SZ", weight: 0.25, ccy: "CNY", sleeve: "CN", status: "active",
+            concept: "红枣 + 健康食品",
+            conceptEn: "Jujube + healthy food",
+            marketCap: 5.1,
+            seed: 2582, base: 8, vol: 0.030, drift: 0.00010 },
+          { name: "古茗",                           short: "古茗",           ticker: "1364.HK", weight: 0.25, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "大众现制茶饮",
+            conceptEn: "Mass-market freshly made tea drinks",
+            marketCap: 3.0,
+            seed: 1364, base: 10, vol: 0.034, drift: 0.00018 },
+          { name: "江南布衣",                       short: "江南布衣",       ticker: "3306.HK", weight: 0.25, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "设计师服饰 + 会员消费",
+            conceptEn: "Designer apparel + membership consumption",
+            marketCap: 0.8,
+            seed: 3306, base: 9, vol: 0.025, drift: 0.00012 },
+          { name: "五谷磨房",                       short: "五谷磨房",       ticker: "1837.HK", weight: 0.25, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "中式食养 + 天然健康食品",
+            conceptEn: "Traditional wellness + natural healthy food",
+            marketCap: 0.4,
+            seed: 1837, base: 0.7, vol: 0.035, drift: 0.00016 },
+        ],
+      },
     };
 
     const PORTFOLIO_EVENT_THEMES = {
@@ -1832,6 +1862,24 @@
           { date: "2024-09-24", category: "policy", label: "新能源产业政策窗口", en: "NEV policy window",
             desc: "中国资产与新能源产业政策预期改善,动力电池龙头估值对利率、需求和出口预期更敏感。",
             desc_en: "Improved China-asset and NEV policy expectations make battery leaders more sensitive to rates, demand, and export assumptions." },
+        ],
+      },
+      "china-consumption": {
+        header: "中国内需事件",
+        headerEn: "China Domestic Demand Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "market", label: "中国内需指数起点", en: "China domestic demand index start",
+            desc: "以统一 T₀ 追踪中国食品饮料、茶饮、服饰和中式食养四条内需消费线。",
+            desc_en: "Uses the shared T₀ to track four domestic-demand lines: food and beverage, tea drinks, apparel, and traditional wellness consumption." },
+          { date: "2024-09-24", category: "policy", label: "内需政策预期修复", en: "Domestic-demand policy expectations recover",
+            desc: "中国资产政策与消费刺激预期改善,内需消费品牌的估值和风险偏好同步修复。",
+            desc_en: "China policy and consumption-support expectations improve, lifting valuation and risk appetite for domestic-demand brands." },
+          { date: "2025-02-12", category: "market", label: "古茗港股上市", en: "Guming lists in Hong Kong",
+            desc: "古茗在港交所上市,新茶饮从单店扩张与供应链效率进入资本市场定价框架。",
+            desc_en: "Guming lists in Hong Kong, bringing tea-drink store expansion and supply-chain efficiency into the public-market pricing framework." },
+          { date: "2025-06-30", category: "consumer", label: "江南布衣会员消费", en: "JNBY membership consumption",
+            desc: "江南布衣代表设计师品牌、会员运营与高粘性服饰消费,构成内需指数的服饰审美线。",
+            desc_en: "JNBY represents designer brands, membership operation, and sticky apparel consumption, forming the apparel-aesthetic line of the index." },
         ],
       },
     };
@@ -2023,6 +2071,7 @@
         blockchain: "pillar--partial",
         ev: "pillar--realized",
         battery: "pillar--breakthrough",
+        "china-consumption": "pillar--pending",
       }[key] || "pillar--realized";
     }
 
@@ -2147,7 +2196,7 @@
         `${portfolio.nameEn} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.name}</span>`
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 6 个组合", "PORTFOLIO CHANNELS · 6 PORTFOLIOS");
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 7 个组合", "PORTFOLIO CHANNELS · 7 PORTFOLIOS");
       document.querySelector("#portfolio-rank-group").previousElementSibling.textContent = t("组合排序", "Sort Portfolios");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="default"]').textContent = t("默认", "Default");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="mcap"]').textContent = t("市值", "Market Cap");
