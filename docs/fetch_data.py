@@ -258,6 +258,13 @@ def main():
     nasdaq_aligned = nasdaq.reindex(common).ffill().bfill()
     if nasdaq_aligned.isna().any().any():
         raise SystemExit("NASDAQ benchmark data missing; cannot align ^IXIC.")
+    print("Fetching benchmark Bitcoin (BTC-USD) ...")
+    bitcoin = fetch_ohlc("BTC-USD", args.start, args.end)
+    if bitcoin.empty:
+        print("  WARNING: empty benchmark result for BTC-USD")
+    bitcoin_aligned = bitcoin.reindex(common).ffill().bfill()
+    if bitcoin_aligned.isna().any().any():
+        raise SystemExit("Bitcoin benchmark data missing; cannot align BTC-USD.")
 
     # 3c) Macro yield pane. US10Y uses Yahoo ^TNX when available; CN10Y
     # is a local synthetic curve because yfinance does not expose a stable
@@ -361,6 +368,11 @@ def main():
                 "ticker": "^IXIC",
                 "data": to_records(nasdaq_aligned),
             },
+            "BITCOIN": {
+                "name": "Bitcoin",
+                "ticker": "BTC-USD",
+                "data": to_records(bitcoin_aligned),
+            },
         },
         "yields": {
             "CN10Y": {
@@ -401,6 +413,9 @@ def main():
     print(f"  NASDAQ:     {nasdaq_aligned['Close'].iloc[0]:.2f} \u2192 "
           f"{nasdaq_aligned['Close'].iloc[-1]:.2f}  "
           f"({(nasdaq_aligned['Close'].iloc[-1]/nasdaq_aligned['Close'].iloc[0] - 1) * 100:+.2f}%)")
+    print(f"  Bitcoin:    {bitcoin_aligned['Close'].iloc[0]:.2f} \u2192 "
+          f"{bitcoin_aligned['Close'].iloc[-1]:.2f}  "
+          f"({(bitcoin_aligned['Close'].iloc[-1]/bitcoin_aligned['Close'].iloc[0] - 1) * 100:+.2f}%)")
     print(f"  CN10Y:      {cn10y_aligned['Close'].iloc[0]:.3f}% \u2192 "
           f"{cn10y_aligned['Close'].iloc[-1]:.3f}%")
     print(f"  US10Y:      {us10y_aligned['Close'].iloc[0]:.3f}% \u2192 "
