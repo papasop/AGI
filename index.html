@@ -2962,6 +2962,14 @@
       updateAssetControls();
     }
 
+    function scrollToChart() {
+      const chartSection = document.querySelector(".chart-container");
+      if (!chartSection) return;
+      requestAnimationFrame(() => {
+        chartSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
     document.getElementById("period-group").addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
@@ -2995,7 +3003,11 @@
         return;
       }
       const row = e.target.closest("li[data-portfolio]");
-      if (!row || row.dataset.portfolio === currentPortfolioKey) return;
+      if (!row) return;
+      if (row.dataset.portfolio === currentPortfolioKey) {
+        scrollToChart();
+        return;
+      }
       setPortfolioConfig(row.dataset.portfolio);
       currentChartAsset = "INDEX";
       currentEventCategory = "all";
@@ -3007,6 +3019,7 @@
       renderMilestoneList();
       renderComponentsPanel();
       if (rawData) render();
+      scrollToChart();
     });
     document.getElementById("portfolio-rank-group").addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-portfolio-rank]");
