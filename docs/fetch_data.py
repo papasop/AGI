@@ -73,6 +73,7 @@ COMPONENTS = [
     {"name": "\u53e4\u8317", "short": "\u53e4\u8317", "ticker": "1364.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
     {"name": "\u6c5f\u5357\u5e03\u8863", "short": "\u6c5f\u5357\u5e03\u8863", "ticker": "3306.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
     {"name": "\u4e94\u8c37\u78e8\u623f", "short": "\u4e94\u8c37\u78e8\u623f", "ticker": "1837.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
+    {"name": "\u534e\u6da6\u4e07\u8c61\u751f\u6d3b", "short": "\u534e\u6da6\u4e07\u8c61", "ticker": "1209.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
 ]
 
 TARGET_WEIGHTS = {
@@ -101,6 +102,7 @@ TARGET_WEIGHTS = {
     "1364.HK": 0.0,
     "3306.HK": 0.0,
     "1837.HK": 0.0,
+    "1209.HK": 0.0,
 }
 
 SYNTHETIC_FALLBACKS = {}
