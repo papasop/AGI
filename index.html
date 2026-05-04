@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>全球AI对冲 | Global AI Hedge</title>
+  <title>无人机组合 | Drone Portfolio</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LY00KSNQ2E"></script>
   <script>
@@ -168,7 +168,7 @@
       color: #4a5778;
       font-size: 10.5px;
     }
-    /* === Strategy block (TLT 50 / NYT 25 / PDD 15 / BYD 10) === */
+    /* === Strategy block (ONDS / UMAC / THEON equal weight) === */
     .strategy {
       margin: 0 0 22px;
     }
@@ -912,7 +912,7 @@
   </div>
 
   <div class="container">
-    <h1>全球AI对冲 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">GLOBAL AI HEDGE</span></h1>
+    <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
       <div class="manifesto-tag">宣言 · MANIFESTO · 四组证实 / 证伪 / FOUR TESTS</div>
       <ol class="manifesto-pillars">
@@ -941,35 +941,28 @@
     </div>
 
     <div class="strategy">
-      <div class="strategy-tag">策略 · STRATEGY · TLT 50 / NYT 25 / PDD 15 / BYD 10</div>
+      <div class="strategy-tag">策略 · STRATEGY · ONDS / UMAC / THEON · 33.33 EACH</div>
       <div class="strategy-bar">
         <div class="strategy-bar-stable">
           <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🇺🇸 TLT</span>
-            <span class="strategy-bar-pct">50%</span>
+            <span class="strategy-bar-label">🇺🇸 ONDS</span>
+            <span class="strategy-bar-pct">33.33%</span>
           </div>
-          <div class="strategy-bar-detail">20+ Year Treasury · 利率对冲</div>
+          <div class="strategy-bar-detail">Ondas · Iron Drone 反无人机</div>
         </div>
         <div class="strategy-bar-us">
           <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🇺🇸 纽约时报</span>
-            <span class="strategy-bar-pct">25%</span>
+            <span class="strategy-bar-label">🇺🇸 UMAC</span>
+            <span class="strategy-bar-pct">33.33%</span>
           </div>
-          <div class="strategy-bar-detail">NYT · AI 数据版权</div>
+          <div class="strategy-bar-detail">Unusual Machines · 无人机零部件</div>
         </div>
         <div class="strategy-bar-cn">
           <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🇨🇳 拼多多</span>
-            <span class="strategy-bar-pct">15%</span>
+            <span class="strategy-bar-label">🇳🇱 THEON</span>
+            <span class="strategy-bar-pct">33.33%</span>
           </div>
-          <div class="strategy-bar-detail">PDD · AI 生产力</div>
-        </div>
-        <div class="strategy-bar-core">
-          <div class="strategy-bar-row">
-            <span class="strategy-bar-label">🇨🇳 比亚迪</span>
-            <span class="strategy-bar-pct">10%</span>
-          </div>
-          <div class="strategy-bar-detail">BYD · AI 机器人 · 电池 + 电机 + 电控</div>
+          <div class="strategy-bar-detail">Theon · 军用夜视 / 热成像</div>
         </div>
       </div>
     </div>
@@ -1022,10 +1015,9 @@
         <div class="control-group" id="asset-group">
           <span class="control-group-label">标的</span>
           <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
-          <button data-asset="TLT"><span class="btn-main">TLT</span><span class="btn-sub">50%</span></button>
-          <button data-asset="PDD"><span class="btn-main">PDD</span><span class="btn-sub">15%</span></button>
-          <button data-asset="NYT"><span class="btn-main">NYT</span><span class="btn-sub">25%</span></button>
-          <button data-asset="002594.SZ"><span class="btn-main">比亚迪</span><span class="btn-sub">10%</span></button>
+          <button data-asset="ONDS"><span class="btn-main">ONDS</span><span class="btn-sub">33.33%</span></button>
+          <button data-asset="UMAC"><span class="btn-main">UMAC</span><span class="btn-sub">33.33%</span></button>
+          <button data-asset="THEON.AS"><span class="btn-main">THEON</span><span class="btn-sub">33.33%</span></button>
         </div>
       </div>
       <div id="chart"></div>
@@ -1437,26 +1429,21 @@
     //  ChatGPT-launch day and today.
     // ============================================================
     const COMPONENTS_CONFIG = [
-      { name: "TLT",                           short: "TLT",            ticker: "TLT",        weight: 0.50, ccy: "USD", sleeve: "US", status: "active",
-        concept: "20+ 年美国国债 · 利率对冲",
-        conceptEn: "20+ Year Treasury · rate hedge",
-        marketCap: 55.0,
-        seed: 2020, base: 102, vol: 0.012, drift: -0.00008 },
-      { name: "\u7ebd\u7ea6\u65f6\u62a5",      short: "NYT",            ticker: "NYT",        weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
-        concept: "AI 数据版权",
-        conceptEn: "AI data rights",
-        marketCap: 11.0,
-        seed: 7,    base:  36, vol: 0.014, drift:  0.00050 },
-      { name: "\u62fc\u591a\u591a",            short: "PDD",            ticker: "PDD",        weight: 0.15, ccy: "USD", sleeve: "CN", status: "active",
-        concept: "AI 生产力",
-        conceptEn: "AI productivity",
-        marketCap: 165.0,
-        seed: 200,  base:  80, vol: 0.030, drift:  0.00040 },
-      { name: "\u6bd4\u4e9a\u8fea",            short: "BYD",            ticker: "002594.SZ",  weight: 0.10, ccy: "CNY", sleeve: "CN", status: "active",
-        concept: "AI 机器人 · 电池 + 电机 + 电控",
-        conceptEn: "AI robotics · battery + motor + controls",
-        marketCap: 118.0,
-        seed: 2594, base: 250, vol: 0.024, drift: 0.00035 },
+      { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 1 / 3, ccy: "USD", sleeve: "US", status: "active",
+        concept: "Iron Drone 反无人机系统",
+        conceptEn: "Iron Drone counter-UAS systems",
+        marketCap: 4.5,
+        seed: 413, base: 1.2, vol: 0.055, drift: 0.00110 },
+      { name: "Unusual Machines",              short: "UMAC",           ticker: "UMAC",      weight: 1 / 3, ccy: "USD", sleeve: "US", status: "active",
+        concept: "无人机零部件供应商",
+        conceptEn: "Drone component supplier",
+        marketCap: 0.7,
+        seed: 909, base: 4.8, vol: 0.065, drift: 0.00130 },
+      { name: "Theon International",           short: "THEON",          ticker: "THEON.AS",  weight: 1 / 3, ccy: "EUR", sleeve: "EU", status: "active",
+        concept: "军用夜视 · 热成像 · ISR",
+        conceptEn: "Military night vision · thermal imaging · ISR",
+        marketCap: 2.5,
+        seed: 1997, base: 12.5, vol: 0.026, drift: 0.00075 },
     ];
 
     async function loadData() {
@@ -1465,7 +1452,9 @@
         if (!r.ok) throw new Error("no data.json");
         const j = await r.json();
         if (j.components && j.components.length && j.fx) {
-          return { ...j, components: normalizeComponentWeights(j.components) };
+          const components = normalizeComponentWeights(j.components);
+          const dateAxis = components.find((c) => c?.data?.length)?.data?.map((d) => d.date) || [];
+          return { ...j, components, fx: ensureFxRates(j.fx, dateAxis) };
         }
       } catch (_) {}
 
@@ -1483,6 +1472,7 @@
         fx: {
           CNY: generateFX(2024, 7.05, 0.0035, 0.000020, dates),  // CNY per USD: 7.05 -> ~7.15
           HKD: generateFX(2022, 7.80, 0.0008, 0,        dates),  // HKD/USD peg: ~7.80
+          EUR: generateFX(2027, 0.92, 0.0025, 0,        dates),  // EUR per USD
         },
         benchmarks: {
           NASDAQ: {
@@ -1575,6 +1565,14 @@
       });
     }
 
+    function ensureFxRates(fx, dates) {
+      const out = { ...(fx || {}) };
+      if (!out.CNY && dates.length) out.CNY = generateFX(2024, 7.05, 0.0035, 0.000020, dates);
+      if (!out.HKD && dates.length) out.HKD = generateFX(2022, 7.80, 0.0008, 0, dates);
+      if (!out.EUR && dates.length) out.EUR = generateFX(2027, 0.92, 0.0025, 0, dates);
+      return out;
+    }
+
     function t(zh, en) {
       return popoverLang === "en" ? en : zh;
     }
@@ -1582,8 +1580,8 @@
     function renderStaticLanguage() {
       document.querySelector(".floating-lang-toggle").title = t("页面语言 / 悬浮窗语言", "Page Language / Popover Language");
       document.querySelector("h1").innerHTML = t(
-        '全球AI对冲 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">GLOBAL AI HEDGE</span>',
-        'Global AI Hedge <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">全球AI对冲</span>'
+        '无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span>',
+        'Drone Portfolio <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">无人机组合</span>'
       );
 
       document.querySelector(".manifesto-tag").textContent = t("宣言 · 四组证实 / 证伪", "MANIFESTO · FOUR TESTS");
@@ -1616,19 +1614,17 @@
         row.querySelector(".pillar-text").innerHTML = `${t(p.text[0], p.text[1])}<span class="pillar-en">${t(p.en[0], p.en[1])}</span>`;
       });
       document.querySelector(".manifesto-footer").innerHTML = t(
-        '四组命题构成本指数的证实 / 证伪框架 — 地缘格局、模型范式、算力路径与主体哲学。<span class="manifesto-footer-en">Geopolitics · model paradigm · compute path · agency philosophy.</span>',
-        'The four tests define the index’s confirmation / falsification frame: geopolitics, model paradigm, compute path, and agency philosophy.<span class="manifesto-footer-en">四组命题构成本指数的证实 / 证伪框架。</span>'
+        '四组命题构成本组合的证实 / 证伪框架 — 地缘格局、模型范式、算力路径与主体哲学。<span class="manifesto-footer-en">Geopolitics · model paradigm · compute path · agency philosophy.</span>',
+        'The four tests define the portfolio’s confirmation / falsification frame: geopolitics, model paradigm, compute path, and agency philosophy.<span class="manifesto-footer-en">四组命题构成本组合的证实 / 证伪框架。</span>'
       );
 
-      document.querySelector(".strategy-tag").textContent = t("策略 · TLT 50 / NYT 25 / PDD 15 / BYD 10", "STRATEGY · TLT 50 / NYT 25 / PDD 15 / BYD 10");
-      document.querySelector(".strategy-bar-stable .strategy-bar-label").textContent = t("🇺🇸 TLT", "🇺🇸 TLT");
-      document.querySelector(".strategy-bar-stable .strategy-bar-detail").textContent = t("20+ Year Treasury · 利率对冲", "20+ Year Treasury · rate hedge");
-      document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 纽约时报", "🇺🇸 New York Times");
-      document.querySelector(".strategy-bar-us .strategy-bar-detail").textContent = t("NYT · AI 数据版权", "NYT · AI data rights");
-      document.querySelector(".strategy-bar-cn .strategy-bar-label").textContent = t("🇨🇳 拼多多", "🇨🇳 PDD");
-      document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t("PDD · AI 生产力", "PDD · AI productivity");
-      document.querySelector(".strategy-bar-core .strategy-bar-label").textContent = t("🇨🇳 比亚迪", "🇨🇳 BYD");
-      document.querySelector(".strategy-bar-core .strategy-bar-detail").textContent = t("BYD · AI 机器人 · 电池 + 电机 + 电控", "BYD · AI robotics · battery + motor + controls");
+      document.querySelector(".strategy-tag").textContent = t("策略 · ONDS / UMAC / THEON · 各 33.33%", "STRATEGY · ONDS / UMAC / THEON · 33.33 EACH");
+      document.querySelector(".strategy-bar-stable .strategy-bar-label").textContent = t("🇺🇸 ONDS", "🇺🇸 ONDS");
+      document.querySelector(".strategy-bar-stable .strategy-bar-detail").textContent = t("Ondas · Iron Drone 反无人机", "Ondas · Iron Drone counter-UAS");
+      document.querySelector(".strategy-bar-us .strategy-bar-label").textContent = t("🇺🇸 UMAC", "🇺🇸 UMAC");
+      document.querySelector(".strategy-bar-us .strategy-bar-detail").textContent = t("Unusual Machines · 无人机零部件", "Unusual Machines · drone components");
+      document.querySelector(".strategy-bar-cn .strategy-bar-label").textContent = t("🇳🇱 THEON", "🇳🇱 THEON");
+      document.querySelector(".strategy-bar-cn .strategy-bar-detail").textContent = t("Theon · 军用夜视 / 热成像", "Theon · military night vision / thermal imaging");
 
       const metaLabels = document.querySelectorAll(".meta-label");
       const metaDetails = document.querySelectorAll(".meta-detail");
@@ -1669,8 +1665,8 @@
       document.getElementById("total-mcap-label").textContent = t("总市值 / TOTAL CAP", "TOTAL MARKET CAP");
       document.querySelector(".milestones-header").textContent = t("AI 大事记", "AI Era Milestones");
       document.querySelector(".footer").innerHTML = t(
-        'Data: 内置合成示例数据 (synthetic seeded sample, 含 CNY/USD) · 替换真实数据请用 <code>fetch_data.py</code> 生成 <code>data.json</code>',
-        'Data: built-in synthetic seeded sample with CNY/USD · generate <code>data.json</code> via <code>fetch_data.py</code> to use real data'
+        'Data: 内置合成示例数据 (synthetic seeded sample, 含 FX) · 替换真实数据请用 <code>fetch_data.py</code> 生成 <code>data.json</code>',
+        'Data: built-in synthetic seeded sample with FX · generate <code>data.json</code> via <code>fetch_data.py</code> to use real data'
       );
     }
 
@@ -1780,7 +1776,7 @@
     }
 
     function chartAssetLabel(assetKey) {
-      if (assetKey === "INDEX") return t("全球AI对冲", "Global AI Hedge");
+      if (assetKey === "INDEX") return t("无人机组合", "Drone Portfolio");
       const config = CONFIG_BY_TICKER[assetKey] || {};
       const component = rawData?.components?.find((c) => c.ticker === assetKey);
       const name = config.name || component?.name || assetKey;
@@ -1814,7 +1810,7 @@
       const closes = data.map((d) => +d.close.toFixed(2));
       const milestones = buildMilestoneMarkLine(xs);
       const yields = getYieldData(currentPeriod);
-      const indexSeriesName = chartLabel || t("全球AI对冲", "Global AI Hedge");
+      const indexSeriesName = chartLabel || t("无人机组合", "Drone Portfolio");
       const cnYieldName = t("中国10Y", "China 10Y");
       const usYieldName = t("美国10Y", "US 10Y");
       const fedFundsName = t("Fed Funds Apr'27隐含利率", "Fed Funds Apr '27 implied");

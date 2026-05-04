@@ -1,23 +1,22 @@
 """
 fetch_data.py
 =============
-Fetch OHLC data for the Global AI Hedge components plus the
-historical CNY/USD and HKD/USD spot rates, and write data.json next to
+Fetch OHLC data for the Drone Portfolio components plus the
+historical CNY/USD, HKD/USD, and EUR/USD spot rates, and write data.json next to
 index.html.
 
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    TLT             TLT          USD    50.0%
-    拼多多          PDD          USD    20.0%
-    纽约时报        NYT          USD    20.0%
-    比亚迪          002594.SZ    CNY    10.0%
+    Ondas                   ONDS       USD    33.33%
+    Unusual Machines        UMAC       USD    33.33%
+    Theon International     THEON.AS   EUR    33.33%
 
 Calendar handling
 -----------------
 Each component trades on a different exchange with a different holiday
-calendar. The anchor calendar is BYD ∩ NYT (two liquid anchors with full history);
-all other components are reindexed to that calendar.
+calendar. ONDS is used as the anchor calendar; all other components are
+reindexed to that calendar.
 
 For any component whose listing post-dates the start of the anchor calendar,
 pre-IPO dates are back-filled with the first known close. This means that
@@ -39,18 +38,15 @@ import yfinance as yf
 
 
 COMPONENTS = [
-    # CN names, short, ticker, currency, sleeve, status.
-    {"name": "TLT", "short": "TLT", "ticker": "TLT", "ccy": "USD", "sleeve": "US", "status": "active"},
-    {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
-    {"name": "\u7ebd\u7ea6\u65f6\u62a5", "short": "NYT", "ticker": "NYT", "ccy": "USD", "sleeve": "US", "status": "active"},
-    {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
+    {"name": "Ondas", "short": "ONDS", "ticker": "ONDS", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Unusual Machines", "short": "UMAC", "ticker": "UMAC", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Theon International", "short": "THEON", "ticker": "THEON.AS", "ccy": "EUR", "sleeve": "EU", "status": "active"},
 ]
 
 TARGET_WEIGHTS = {
-    "TLT": 0.50,
-    "PDD": 0.15,
-    "NYT": 0.25,
-    "002594.SZ": 0.10,
+    "ONDS": 1 / 3,
+    "UMAC": 1 / 3,
+    "THEON.AS": 1 / 3,
 }
 
 SYNTHETIC_FALLBACKS = {}
@@ -197,13 +193,12 @@ def main():
         print(f"Fetching {short:15s} ({ticker:12s}, {ccy}) ...")
         fetched[ticker] = fetch_ohlc(ticker, args.start, args.end)
 
-    # 2) Anchor calendar = BYD \u2229 NYT (liquid full-history anchors)
-    byd = fetched["002594.SZ"]
-    nyt = fetched["NYT"]
-    if byd.empty or nyt.empty:
-        raise SystemExit("BYD or NYT data missing; cannot establish anchor calendar.")
-    common = byd.index.intersection(nyt.index)
-    print(f"Anchor calendar: {len(common)} common BYD\u2229NYT days "
+    # 2) Anchor calendar = ONDS
+    anchor = fetched["ONDS"]
+    if anchor.empty:
+        raise SystemExit("ONDS data missing; cannot establish anchor calendar.")
+    common = anchor.index
+    print(f"Anchor calendar: {len(common)} ONDS trading days "
           f"({common[0]} \u2192 {common[-1]})")
 
     # 3) Fetch FX, align to anchor calendar
@@ -211,8 +206,11 @@ def main():
     fx_cny = fetch_fx("CNY=X", args.start, args.end)
     print("Fetching FX  HKD=X (HKD per USD) ...")
     fx_hkd = fetch_fx("HKD=X", args.start, args.end)
+    print("Fetching FX  USDEUR=X (EUR per USD) ...")
+    fx_eur = fetch_fx("USDEUR=X", args.start, args.end)
     fx_cny = fx_cny.reindex(common).ffill().bfill()
     fx_hkd = fx_hkd.reindex(common).ffill().bfill()
+    fx_eur = fx_eur.reindex(common).ffill().bfill()
 
     # 3b) Fetch benchmark, aligned to the same anchor calendar.
     print("Fetching benchmark NASDAQ (^IXIC) ...")
@@ -301,21 +299,23 @@ def main():
             "start": args.start,
             "end":   args.end,
             "n":     len(common),
-            "calendar_anchors": ["002594.SZ", "NYT"],
+            "calendar_anchors": ["ONDS"],
             "fx_unit_CNY": "CNY per USD (yfinance: CNY=X)",
             "fx_unit_HKD": "HKD per USD (yfinance: HKD=X)",
+            "fx_unit_EUR": "EUR per USD (yfinance: USDEUR=X)",
             "note": ("Pre-inception dates of late-listed components are "
                      "back-filled with their first known close. The index "
                      "therefore inherits a constant contribution from those "
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
             "pending_components": pending_components,
-            "weighting_policy": "Fixed target weights: TLT 50%, PDD 15%, NYT 25%, 002594.SZ 10%.",
+            "weighting_policy": "Fixed target weights: ONDS 33.33%, UMAC 33.33%, THEON.AS 33.33%.",
         },
         "components": components_out,
         "fx": {
             "CNY": [{"date": idx, "rate": float(r)} for idx, r in fx_cny.items()],
             "HKD": [{"date": idx, "rate": float(r)} for idx, r in fx_hkd.items()],
+            "EUR": [{"date": idx, "rate": float(r)} for idx, r in fx_eur.items()],
         },
         "benchmarks": {
             "NASDAQ": {
@@ -358,6 +358,8 @@ def main():
           f"({(fx_cny.iloc[-1]/fx_cny.iloc[0] - 1) * 100:+.2f}%)")
     print(f"  HKD/USD:    {fx_hkd.iloc[0]:.4f} \u2192 {fx_hkd.iloc[-1]:.4f}  "
           f"({(fx_hkd.iloc[-1]/fx_hkd.iloc[0] - 1) * 100:+.2f}%)")
+    print(f"  EUR/USD:    {fx_eur.iloc[0]:.4f} \u2192 {fx_eur.iloc[-1]:.4f}  "
+          f"({(fx_eur.iloc[-1]/fx_eur.iloc[0] - 1) * 100:+.2f}%)")
     print(f"  NASDAQ:     {nasdaq_aligned['Close'].iloc[0]:.2f} \u2192 "
           f"{nasdaq_aligned['Close'].iloc[-1]:.2f}  "
           f"({(nasdaq_aligned['Close'].iloc[-1]/nasdaq_aligned['Close'].iloc[0] - 1) * 100:+.2f}%)")
