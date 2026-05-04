@@ -48,8 +48,8 @@ COMPONENTS = [
 
 TARGET_WEIGHTS = {
     "TLT": 0.50,
-    "PDD": 0.20,
-    "NYT": 0.20,
+    "PDD": 0.15,
+    "NYT": 0.25,
     "002594.SZ": 0.10,
 }
 
@@ -310,7 +310,7 @@ def main():
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
             "pending_components": pending_components,
-            "weighting_policy": "Fixed target weights: TLT 50%, PDD 20%, NYT 20%, 002594.SZ 10%.",
+            "weighting_policy": "Fixed target weights: TLT 50%, PDD 15%, NYT 25%, 002594.SZ 10%.",
         },
         "components": components_out,
         "fx": {
