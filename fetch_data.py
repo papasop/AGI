@@ -8,27 +8,21 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    比亚迪          002594.SZ    CNY    other equal weight
-    拼多多          PDD          USD    other equal weight
-    福晶科技        002222.SZ    CNY    other equal weight
-    曦智科技-P      01879.HK     HKD    other equal weight (IPO'd 2026-04-28)
-    拓荆科技        688072.SS    CNY    other equal weight
-    长鑫科技        KCB:A06978   CNY    pre-listing watch; included after data exists
     纽约时报        NYT          USD    50.0%
+    拼多多          PDD          USD    25.0%
+    比亚迪          002594.SZ    CNY    25.0%
 
 Calendar handling
 -----------------
 Each component trades on a different exchange with a different holiday
-calendar, and 曦智科技 (Lightelligence) IPO'd literally days ago. The
-anchor calendar is BYD ∩ NYT (two liquid anchors with full history);
+calendar. The anchor calendar is BYD ∩ NYT (two liquid anchors with full history);
 all other components are reindexed to that calendar.
 
-For components whose listing post-dates the start of the anchor calendar
-(Piotech 2022, Lightelligence 2026), pre-IPO dates are back-filled with
-the first known close. This means those components contribute a CONSTANT
-value to the index until they actually start trading. The distortion is
-bounded by their dynamic index weight and clearly documented in the JSON
-meta payload.
+For any component whose listing post-dates the start of the anchor calendar,
+pre-IPO dates are back-filled with the first known close. This means that
+component contributes a CONSTANT value to the index until it actually starts
+trading. The distortion is bounded by its index weight and documented in the
+JSON meta payload.
 
 Usage:
     pip install yfinance pandas
@@ -45,36 +39,18 @@ import yfinance as yf
 
 COMPONENTS = [
     # CN names, short, ticker, currency, sleeve, status.
-    # Weight is assigned dynamically: NYT stays at 50%;
-    # all other active components split the remaining 50% equally.
-    {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
-    {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
-    {"name": "\u798f\u6676\u79d1\u6280", "short": "Fujing", "ticker": "002222.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
-    {"name": "\u66e6\u667a\u79d1\u6280-P", "short": "Lightelligence", "ticker": "01879.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
-    {"name": "\u62d3\u8346\u79d1\u6280", "short": "Piotech", "ticker": "688072.SS", "ccy": "CNY", "sleeve": "CN", "status": "active"},
-    {"name": "\u957f\u946b\u79d1\u6280", "short": "CXMT", "ticker": "KCB:A06978", "ccy": "CNY", "sleeve": "CN", "status": "prelist"},
     {"name": "\u7ebd\u7ea6\u65f6\u62a5", "short": "NYT", "ticker": "NYT", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
+    {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
 ]
 
-SYNTHETIC_FALLBACKS = {
-    # Yahoo Finance may not expose this newly listed HK ticker yet.
-    "01879.HK": {
-        "seed": 11,
-        "base": 30,
-        "vol": 0.028,
-        "drift": 0.00220,
-        "start": "2026-04-28",
-        "note": "Synthetic fallback used because yfinance returned no data.",
-    },
-    "688072.SS": {
-        "seed": 3000,
-        "base": 115,
-        "vol": 0.030,
-        "drift": 0.00125,
-        "start": "2022-11-30",
-        "note": "Synthetic fallback used because yfinance returned no data.",
-    },
+TARGET_WEIGHTS = {
+    "NYT": 0.50,
+    "PDD": 0.25,
+    "002594.SZ": 0.25,
 }
+
+SYNTHETIC_FALLBACKS = {}
 
 
 def mulberry32(seed: int):
@@ -305,7 +281,7 @@ def main():
             raise SystemExit(f"Could not back-fill {ticker} \u2014 series is empty?")
         components_out.append({
             "name": name, "short": short, "ticker": ticker,
-            "weight": 0.0, "ccy": ccy,
+            "weight": TARGET_WEIGHTS.get(ticker, 0.0), "ccy": ccy,
             "sleeve": component.get("sleeve"),
             "status": status,
             "inception": inception,
@@ -315,20 +291,6 @@ def main():
         late = " (back-filled pre-IPO!)" if inception and inception > common[0] else ""
         print(f"  {short:15s}: aligned to {len(df_aligned)} days, "
               f"real history from {inception}{late}")
-
-    active_other = [
-        c for c in components_out
-        if c.get("sleeve") != "US" and c.get("status") == "active"
-    ]
-    anchor_weight = 0.50
-    other_weight = 0.50 / len(active_other) if active_other else 0.0
-    for component in components_out:
-        if component.get("sleeve") == "US":
-            component["weight"] = anchor_weight
-        elif component.get("status") == "active":
-            component["weight"] = other_weight
-        else:
-            component["weight"] = 0.0
 
     # 5) Write JSON
     payload = {
@@ -345,7 +307,7 @@ def main():
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
             "pending_components": pending_components,
-            "weighting_policy": "NYT is fixed at 50%; all other active components split the remaining 50% equally. Pre-listing watch codes are excluded until exchange data exists.",
+            "weighting_policy": "Fixed target weights: NYT 50%, PDD 25%, 002594.SZ 25%.",
         },
         "components": components_out,
         "fx": {
