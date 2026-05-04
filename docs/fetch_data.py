@@ -8,9 +8,10 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    纽约时报        NYT          USD    50.0%
-    拼多多          PDD          USD    25.0%
-    比亚迪          002594.SZ    CNY    25.0%
+    TLT             TLT          USD    50.0%
+    拼多多          PDD          USD    20.0%
+    纽约时报        NYT          USD    20.0%
+    比亚迪          002594.SZ    CNY    10.0%
 
 Calendar handling
 -----------------
@@ -39,15 +40,17 @@ import yfinance as yf
 
 COMPONENTS = [
     # CN names, short, ticker, currency, sleeve, status.
-    {"name": "\u7ebd\u7ea6\u65f6\u62a5", "short": "NYT", "ticker": "NYT", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "TLT", "short": "TLT", "ticker": "TLT", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
+    {"name": "\u7ebd\u7ea6\u65f6\u62a5", "short": "NYT", "ticker": "NYT", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
 ]
 
 TARGET_WEIGHTS = {
-    "NYT": 0.50,
-    "PDD": 0.25,
-    "002594.SZ": 0.25,
+    "TLT": 0.50,
+    "PDD": 0.20,
+    "NYT": 0.20,
+    "002594.SZ": 0.10,
 }
 
 SYNTHETIC_FALLBACKS = {}
@@ -307,7 +310,7 @@ def main():
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
             "pending_components": pending_components,
-            "weighting_policy": "Fixed target weights: NYT 50%, PDD 25%, 002594.SZ 25%.",
+            "weighting_policy": "Fixed target weights: TLT 50%, PDD 20%, NYT 20%, 002594.SZ 10%.",
         },
         "components": components_out,
         "fx": {

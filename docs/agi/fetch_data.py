@@ -8,9 +8,10 @@ ai_global_index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    纽约时报        NYT          USD    50.0%
-    拼多多          PDD          USD    25.0%
-    比亚迪          002594.SZ    CNY    25.0%
+    TLT             TLT          USD    50.0%
+    拼多多          PDD          USD    20.0%
+    纽约时报        NYT          USD    20.0%
+    比亚迪          002594.SZ    CNY    10.0%
 
 Calendar handling
 -----------------
@@ -38,9 +39,10 @@ import yfinance as yf
 
 COMPONENTS = [
     # (CN name,    short,            ticker,         weight, ccy)
-    ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.50, "USD"),
-    ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.25, "USD"),
-    ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.25, "CNY"),
+    ("TLT",                     "TLT",            "TLT",       0.50, "USD"),
+    ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.20, "USD"),
+    ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.20, "USD"),
+    ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.10, "CNY"),
 ]
 
 
