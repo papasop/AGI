@@ -20,7 +20,7 @@ Additional portfolio data pool:
     贵州茅台                600519.SS  CNY
     TRON                    TRX-USD    USD
     Hyperliquid             HYPE32196-USD USD
-    Sky                     SKY-USD    USD
+    Sky Protocol            SKY33038-USD USD
 
 Calendar handling
 -----------------
@@ -58,7 +58,7 @@ COMPONENTS = [
     ("\u8d35\u5dde\u8305\u53f0", "MOUTAI",        "600519.SS", 0.0, "CNY"),
     ("TRON",                   "TRX",            "TRX-USD",   0.0, "USD"),
     ("Hyperliquid",            "HYPE",           "HYPE32196-USD", 0.0, "USD"),
-    ("Sky",                    "SKY",            "SKY-USD",   0.0, "USD"),
+    ("Sky Protocol",           "SKY",            "SKY33038-USD", 0.0, "USD"),
     ("Tesla",                  "TSLA",           "TSLA",      0.0, "USD"),
     ("NIO",                    "NIO",            "NIO",       0.0, "USD"),
     ("\u96f6\u8dd1\u6c7d\u8f66", "零跑",          "9863.HK",   0.0, "HKD"),
