@@ -18,6 +18,9 @@ Additional portfolio data pool:
     纽约时报                NYT        USD
     比亚迪                  002594.SZ  CNY
     贵州茅台                600519.SS  CNY
+    TRON                    TRX-USD    USD
+    Hyperliquid             HYPE32196-USD USD
+    Sky                     SKY-USD    USD
 
 Calendar handling
 -----------------
@@ -53,6 +56,9 @@ COMPONENTS = [
     ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.0, "USD"),
     ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.0, "CNY"),
     ("\u8d35\u5dde\u8305\u53f0", "MOUTAI",        "600519.SS", 0.0, "CNY"),
+    ("TRON",                   "TRX",            "TRX-USD",   0.0, "USD"),
+    ("Hyperliquid",            "HYPE",           "HYPE32196-USD", 0.0, "USD"),
+    ("Sky",                    "SKY",            "SKY-USD",   0.0, "USD"),
 ]
 
 
