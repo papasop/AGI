@@ -914,30 +914,25 @@
   <div class="container">
     <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">组合列表 · PORTFOLIO HOLDINGS · 25 EACH</div>
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 3 PORTFOLIOS</div>
       <ol class="manifesto-pillars">
         <li class="pillar pillar--realized">
           <span class="pillar-num">①</span>
-          <span class="pillar-cat pillar-cat--realized">ONDS</span>
-          <span class="pillar-text"><span class="m-key">25%</span> · Ondas · Iron Drone 反无人机系统<span class="pillar-en">Counter-UAS systems for defense customers</span></span>
+          <span class="pillar-cat pillar-cat--realized">组合</span>
+          <span class="pillar-text"><span class="m-key">无人机组合</span><span class="pillar-en">Drone Portfolio</span></span>
         </li>
         <li class="pillar pillar--breakthrough">
           <span class="pillar-num">②</span>
-          <span class="pillar-cat pillar-cat--breakthrough">UMAC</span>
-          <span class="pillar-text"><span class="m-key">25%</span> · Unusual Machines · 无人机零部件供应商<span class="pillar-en">Drone component supplier in the ecosystem</span></span>
+          <span class="pillar-cat pillar-cat--breakthrough">组合</span>
+          <span class="pillar-text"><span class="m-key">全球AI对冲</span><span class="pillar-en">Global AI Hedge</span></span>
         </li>
         <li class="pillar pillar--pending">
           <span class="pillar-num">③</span>
-          <span class="pillar-cat pillar-cat--pending">THEON</span>
-          <span class="pillar-text"><span class="m-key">25%</span> · Theon International · 军用夜视 / 热成像 / ISR<span class="pillar-en">Military night vision, thermal imaging, and ISR optics</span></span>
-        </li>
-        <li class="pillar pillar--pending">
-          <span class="pillar-num">④</span>
-          <span class="pillar-cat pillar-cat--pending">KOPN</span>
-          <span class="pillar-text"><span class="m-key">25%</span> · Kopin · 军用微显示 / 头显光学<span class="pillar-en">Microdisplays and optical modules for defense wearables</span></span>
+          <span class="pillar-cat pillar-cat--pending">组合</span>
+          <span class="pillar-text"><span class="m-key">中国领先指数</span><span class="pillar-en">China Leadership Index</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">四只股票等权配置，聚焦反无人机、防务无人机零部件、军用视觉设备与微显示头显光学。<span class="manifesto-footer-en">Equal-weight exposure to counter-UAS, drone components, military vision systems, and microdisplay optics.</span></div>
+      <div class="manifesto-footer">先推出三个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching three portfolio channels first, with room for more themes later.</span></div>
     </div>
 
     <div class="strategy">
@@ -1597,27 +1592,22 @@
         'Drone Portfolio <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">无人机组合</span>'
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("组合列表 · 四只股票 · 各 25%", "PORTFOLIO HOLDINGS · 4 STOCKS · 25 EACH");
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 3 个组合", "PORTFOLIO CHANNELS · 3 PORTFOLIOS");
       const pillars = [
         {
-          cat: ["ONDS", "ONDS"],
-          text: ['<span class="m-key">25%</span> · Ondas · Iron Drone 反无人机系统', '<span class="m-key">25%</span> · Ondas · Iron Drone counter-UAS systems'],
-          en: ["Counter-UAS systems for defense customers", "面向国防客户的反无人机系统"],
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">无人机组合</span>', '<span class="m-key">Drone Portfolio</span>'],
+          en: ["Drone Portfolio", "无人机组合"],
         },
         {
-          cat: ["UMAC", "UMAC"],
-          text: ['<span class="m-key">25%</span> · Unusual Machines · 无人机零部件供应商', '<span class="m-key">25%</span> · Unusual Machines · drone component supplier'],
-          en: ["Drone component supplier in the ecosystem", "无人机生态中的零部件供应商"],
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">全球AI对冲</span>', '<span class="m-key">Global AI Hedge</span>'],
+          en: ["Global AI Hedge", "全球AI对冲"],
         },
         {
-          cat: ["THEON", "THEON"],
-          text: ['<span class="m-key">25%</span> · Theon International · 军用夜视 / 热成像 / ISR', '<span class="m-key">25%</span> · Theon International · military night vision / thermal imaging / ISR'],
-          en: ["Military night vision, thermal imaging, and ISR optics", "军用夜视、热成像与 ISR 光学设备"],
-        },
-        {
-          cat: ["KOPN", "KOPN"],
-          text: ['<span class="m-key">25%</span> · Kopin · 军用微显示 / 头显光学', '<span class="m-key">25%</span> · Kopin · microdisplays / defense wearable optics'],
-          en: ["Microdisplays and optical modules for defense wearables", "军用可穿戴设备的微显示与光学模组"],
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">中国领先指数</span>', '<span class="m-key">China Leadership Index</span>'],
+          en: ["China Leadership Index", "中国领先指数"],
         },
       ];
       document.querySelectorAll(".manifesto-pillars li").forEach((row, i) => {
@@ -1627,8 +1617,8 @@
         row.querySelector(".pillar-text").innerHTML = `${t(p.text[0], p.text[1])}<span class="pillar-en">${t(p.en[0], p.en[1])}</span>`;
       });
       document.querySelector(".manifesto-footer").innerHTML = t(
-        '四只股票等权配置，聚焦反无人机、防务无人机零部件、军用视觉设备与微显示头显光学。<span class="manifesto-footer-en">Equal-weight exposure to counter-UAS, drone components, military vision systems, and microdisplay optics.</span>',
-        'Equal-weight exposure to counter-UAS, drone components, military vision systems, and microdisplay optics.<span class="manifesto-footer-en">四只股票等权配置，聚焦反无人机、防务无人机零部件、军用视觉设备与微显示头显光学。</span>'
+        '先推出三个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching three portfolio channels first, with room for more themes later.</span>',
+        'Launching three portfolio channels first, with room for more themes later.<span class="manifesto-footer-en">先推出三个组合栏目，后续可继续扩展更多主题组合。</span>'
       );
 
       document.querySelector(".strategy-tag").textContent = t("策略 · ONDS / UMAC / THEON / KOPN · 各 25%", "STRATEGY · ONDS / UMAC / THEON / KOPN · 25 EACH");
