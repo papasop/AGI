@@ -73,6 +73,21 @@
       flex-direction: column;
       gap: 10px;
     }
+    .manifesto-pillars .portfolio-category {
+      display: block;
+      margin: 6px 0 -2px;
+      padding: 7px 0 3px;
+      color: #8a96b3;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(138, 150, 179, 0.18);
+    }
+    .manifesto-pillars .portfolio-category:first-child {
+      margin-top: 0;
+      border-top: 0;
+    }
     .manifesto-pillars li {
       display: grid;
       grid-template-columns: 22px 64px 1fr;
@@ -2332,6 +2347,22 @@
       }[key] || "pillar--realized";
     }
 
+    function portfolioCategoryKey(key) {
+      return new Set([
+        "china-reversal",
+        "china-leading",
+        "battery",
+        "china-property",
+        "hk-utilities",
+      ]).has(key) ? "china" : "global";
+    }
+
+    function portfolioCategoryLabel(key) {
+      return key === "china"
+        ? t("中国指数", "China Indexes")
+        : t("全球 / 主题指数", "Global / Theme Indexes");
+    }
+
     function portfolioComponentsForKey(key) {
       const portfolio = PORTFOLIOS[key] || PORTFOLIOS.drone;
       const rawComponents = dataPool?.components?.length ? dataPool.components : [];
@@ -2381,21 +2412,29 @@
       };
       const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬"];
       const rows = portfolioRows().sort(sorters[currentPortfolioRank] || sorters.default);
-      document.querySelector(".manifesto-pillars").innerHTML = rows.map((row, i) => {
-        const cls = portfolioStyleClass(row.key);
-        const active = row.key === currentPortfolioKey ? " active" : "";
-        const name = t(row.portfolio.name, row.portfolio.nameEn);
-        const subName = t(row.portfolio.nameEn, row.portfolio.name);
-        const mcapLabel = t("市值", "Cap");
-        const returnLabel = t("历史", "History");
-        return `<li class="pillar ${cls}${active}" data-portfolio="${row.key}">
-          <span class="pillar-num">${numbers[i] || i + 1}</span>
-          <span class="pillar-cat ${cls.replace("pillar--", "pillar-cat--")}">${t("组合", "Portfolio")}</span>
-          <span class="pillar-text">
-            <span class="m-key">${name}</span><span class="pillar-en">${subName}</span>
-            <span class="pillar-meta"><span>${mcapLabel} <b>${formatMcap(row.totalMcap)}</b></span><span>${returnLabel} <b>${formatSignedPct(row.totalReturn)}</b></span></span>
-          </span>
-        </li>`;
+      const groups = ["china", "global"];
+      let counter = 0;
+      document.querySelector(".manifesto-pillars").innerHTML = groups.map((groupKey) => {
+        const groupRows = rows.filter((row) => portfolioCategoryKey(row.key) === groupKey);
+        if (!groupRows.length) return "";
+        const items = groupRows.map((row) => {
+          const i = counter++;
+          const cls = portfolioStyleClass(row.key);
+          const active = row.key === currentPortfolioKey ? " active" : "";
+          const name = t(row.portfolio.name, row.portfolio.nameEn);
+          const subName = t(row.portfolio.nameEn, row.portfolio.name);
+          const mcapLabel = t("市值", "Cap");
+          const returnLabel = t("历史", "History");
+          return `<li class="pillar ${cls}${active}" data-portfolio="${row.key}">
+            <span class="pillar-num">${numbers[i] || i + 1}</span>
+            <span class="pillar-cat ${cls.replace("pillar--", "pillar-cat--")}">${t("组合", "Portfolio")}</span>
+            <span class="pillar-text">
+              <span class="m-key">${name}</span><span class="pillar-en">${subName}</span>
+              <span class="pillar-meta"><span>${mcapLabel} <b>${formatMcap(row.totalMcap)}</b></span><span>${returnLabel} <b>${formatSignedPct(row.totalReturn)}</b></span></span>
+            </span>
+          </li>`;
+        }).join("");
+        return `<li class="portfolio-category">${portfolioCategoryLabel(groupKey)}</li>${items}`;
       }).join("");
     }
 
