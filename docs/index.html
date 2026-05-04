@@ -74,7 +74,10 @@
       gap: 10px;
     }
     .manifesto-pillars .portfolio-category {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       margin: 6px 0 -2px;
       padding: 7px 0 3px;
       color: #8a96b3;
@@ -83,6 +86,25 @@
       letter-spacing: 1.6px;
       text-transform: uppercase;
       border-top: 1px solid rgba(138, 150, 179, 0.18);
+    }
+    .manifesto-pillars .portfolio-category--toggle {
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 8px;
+      margin: 0 -8px -2px;
+      transition: background 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+    }
+    .manifesto-pillars .portfolio-category--toggle:hover,
+    .manifesto-pillars .portfolio-category--toggle.expanded {
+      color: #dce6f7;
+      background: rgba(94, 158, 255, 0.07);
+      box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.15);
+    }
+    .portfolio-category-count {
+      color: #5e9eff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
     }
     .manifesto-pillars .portfolio-category:first-child {
       margin-top: 0;
@@ -2232,6 +2254,7 @@
     let currentChartAsset = "INDEX";
     let currentComponentRank = "weight";
     let currentPortfolioRank = "default";
+    let expandedPortfolioGroups = { china: false };
     let currentEventCategory = "all";
     let popoverLang = (() => {
       try {
@@ -2413,20 +2436,19 @@
       };
       const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬"];
       const rows = portfolioRows().sort(sorters[currentPortfolioRank] || sorters.default);
-      const groups = ["china", "global"];
+      const globalRows = rows.filter((row) => portfolioCategoryKey(row.key) === "global");
+      const chinaRows = rows.filter((row) => portfolioCategoryKey(row.key) === "china");
+      if (portfolioCategoryKey(currentPortfolioKey) === "china") expandedPortfolioGroups.china = true;
       let counter = 0;
-      document.querySelector(".manifesto-pillars").innerHTML = groups.map((groupKey) => {
-        const groupRows = rows.filter((row) => portfolioCategoryKey(row.key) === groupKey);
-        if (!groupRows.length) return "";
-        const items = groupRows.map((row) => {
-          const i = counter++;
-          const cls = portfolioStyleClass(row.key);
-          const active = row.key === currentPortfolioKey ? " active" : "";
-          const name = t(row.portfolio.name, row.portfolio.nameEn);
-          const subName = t(row.portfolio.nameEn, row.portfolio.name);
-          const mcapLabel = t("市值", "Cap");
-          const returnLabel = t("历史", "History");
-          return `<li class="pillar ${cls}${active}" data-portfolio="${row.key}">
+      const renderItem = (row) => {
+        const i = counter++;
+        const cls = portfolioStyleClass(row.key);
+        const active = row.key === currentPortfolioKey ? " active" : "";
+        const name = t(row.portfolio.name, row.portfolio.nameEn);
+        const subName = t(row.portfolio.nameEn, row.portfolio.name);
+        const mcapLabel = t("市值", "Cap");
+        const returnLabel = t("历史", "History");
+        return `<li class="pillar ${cls}${active}" data-portfolio="${row.key}">
             <span class="pillar-num">${numbers[i] || i + 1}</span>
             <span class="pillar-cat ${cls.replace("pillar--", "pillar-cat--")}">${t("组合", "Portfolio")}</span>
             <span class="pillar-text">
@@ -2434,9 +2456,18 @@
               <span class="pillar-meta"><span>${mcapLabel} <b>${formatMcap(row.totalMcap)}</b></span><span>${returnLabel} <b>${formatSignedPct(row.totalReturn)}</b></span></span>
             </span>
           </li>`;
-        }).join("");
-        return `<li class="portfolio-category">${portfolioCategoryLabel(groupKey)}</li>${items}`;
-      }).join("");
+      };
+      const globalItems = globalRows.map(renderItem).join("");
+      const chinaExpanded = !!expandedPortfolioGroups.china;
+      const chinaItems = chinaExpanded ? chinaRows.map(renderItem).join("") : "";
+      const chinaToggle = chinaRows.length
+        ? `<li class="portfolio-category portfolio-category--toggle${chinaExpanded ? " expanded" : ""}" data-portfolio-group="china" aria-expanded="${chinaExpanded}">
+            <span>${t("中国指数", "China Indexes")}</span>
+            <span class="portfolio-category-count">${chinaExpanded ? t("收起", "Collapse") : t("展开", "Expand")} · ${chinaRows.length}</span>
+          </li>${chinaItems}`
+        : "";
+      document.querySelector(".manifesto-pillars").innerHTML =
+        `<li class="portfolio-category">${portfolioCategoryLabel("global")}</li>${globalItems}${chinaToggle}`;
     }
 
     function portfolioDataFromPool(dataPool) {
@@ -2956,6 +2987,13 @@
       render();
     });
     document.querySelector(".manifesto-pillars").addEventListener("click", (e) => {
+      const groupRow = e.target.closest("li[data-portfolio-group]");
+      if (groupRow) {
+        const groupKey = groupRow.dataset.portfolioGroup;
+        expandedPortfolioGroups[groupKey] = !expandedPortfolioGroups[groupKey];
+        renderPortfolioList();
+        return;
+      }
       const row = e.target.closest("li[data-portfolio]");
       if (!row || row.dataset.portfolio === currentPortfolioKey) return;
       setPortfolioConfig(row.dataset.portfolio);
