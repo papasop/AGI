@@ -954,7 +954,7 @@
   <div class="container">
     <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 10 PORTFOLIOS</div>
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 11 PORTFOLIOS</div>
       <div class="manifesto-sort">
         <span class="manifesto-sort-label">组合排序</span>
         <div class="components-rank-toggle" id="portfolio-rank-group" aria-label="Portfolio ranking mode">
@@ -995,7 +995,7 @@
           <span class="pillar-text"><span class="m-key">电池指数</span><span class="pillar-en">Battery Index</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">先推出十个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching ten portfolio channels first, with room for more themes later.</span></div>
+      <div class="manifesto-footer">先推出十一个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching eleven portfolio channels first, with room for more themes later.</span></div>
     </div>
 
     <div class="strategy">
@@ -1895,6 +1895,31 @@
             seed: 8083, base: 0.12, vol: 0.040, drift: 0.00010 },
         ],
       },
+      "no-yield": {
+        name: "无收益指数",
+        nameEn: "No-Yield Asset Index",
+        tag: "策略 · Bitcoin 25% / ETH 25% / GLD 50%",
+        tagEn: "STRATEGY · BITCOIN 25 / ETH 25 / GLD 50",
+        footer: "三类无现金流资产配置：比特币、以太坊与黄金 ETF，观察货币属性、链上资产和硬资产的组合表现。",
+        footerEn: "Exposure to three non-cash-flow assets: Bitcoin, Ethereum, and gold ETF, tracking monetary assets, on-chain assets, and hard-asset ballast.",
+        components: [
+          { name: "Bitcoin",                        short: "Bitcoin",       ticker: "BTC-USD", weight: 0.25, ccy: "USD", sleeve: "CRYPTO", status: "active",
+            concept: "数字黄金 + 稀缺性资产",
+            conceptEn: "Digital gold + scarcity asset",
+            marketCap: 1700.0,
+            seed: 21000000, base: 16500, vol: 0.032, drift: 0.00055 },
+          { name: "Ethereum",                       short: "ETH",           ticker: "ETH-USD", weight: 0.25, ccy: "USD", sleeve: "CRYPTO", status: "active",
+            concept: "智能合约基础资产",
+            conceptEn: "Smart-contract base asset",
+            marketCap: 380.0,
+            seed: 1212, base: 1200, vol: 0.036, drift: 0.00048 },
+          { name: "SPDR Gold Shares",               short: "GLD",           ticker: "GLD", weight: 0.50, ccy: "USD", sleeve: "US", status: "active",
+            concept: "黄金 ETF + 硬资产锚",
+            conceptEn: "Gold ETF + hard-asset anchor",
+            marketCap: 95.0,
+            seed: 1971, base: 165, vol: 0.010, drift: 0.00016 },
+        ],
+      },
     };
 
     const PORTFOLIO_EVENT_THEMES = {
@@ -2078,6 +2103,24 @@
           { date: "2025-03-20", category: "consumer", label: "有赞商家服务线", en: "Youzan merchant-service line",
             desc: "有赞代表商家 SaaS、私域电商和门店数字化工具，观察消费修复对商家软件开支的传导。",
             desc_en: "Youzan represents merchant SaaS, private-domain commerce, and store digitization tools, tracking how consumption recovery feeds into merchant software spending." },
+        ],
+      },
+      "no-yield": {
+        header: "无收益资产事件",
+        headerEn: "No-Yield Asset Milestones",
+        milestones: [
+          { date: "2022-11-30", category: "market", label: "无收益指数起点", en: "No-yield index start",
+            desc: "以统一 T₀ 追踪 Bitcoin、ETH 与 GLD 的组合表现，把数字稀缺性、智能合约资产和黄金放在同一条曲线。",
+            desc_en: "Uses the shared T₀ to track Bitcoin, ETH, and GLD together across digital scarcity, smart-contract assets, and gold." },
+          { date: "2024-01-10", category: "market", label: "现货比特币 ETF 获批", en: "Spot Bitcoin ETF approval",
+            desc: "现货比特币 ETF 获批后，比特币从链上资产进一步进入传统资产配置框架。",
+            desc_en: "After spot Bitcoin ETFs are approved, Bitcoin moves further into traditional asset-allocation frameworks." },
+          { date: "2024-07-23", category: "market", label: "现货以太坊 ETF 上市", en: "Spot Ethereum ETFs begin trading",
+            desc: "现货以太坊 ETF 上市让 ETH 的资产属性从链上 gas 与质押收益延展到机构配置入口。",
+            desc_en: "Spot Ethereum ETFs extend ETH's asset profile from on-chain gas and staking economics into institutional access." },
+          { date: "2025-04-21", category: "macro", label: "黄金硬资产锚", en: "Gold hard-asset anchor",
+            desc: "GLD 代表黄金敞口，在通胀、实际利率和货币信用变化中提供硬资产锚。",
+            desc_en: "GLD represents gold exposure, providing a hard-asset anchor across inflation, real rates, and monetary credibility regimes." },
         ],
       },
     };
@@ -2273,6 +2316,7 @@
         "china-property": "pillar--partial",
         "hk-utilities": "pillar--realized",
         "china-reversal": "pillar--breakthrough",
+        "no-yield": "pillar--partial",
       }[key] || "pillar--realized";
     }
 
@@ -2323,7 +2367,7 @@
         mcap: (a, b) => b.totalMcap - a.totalMcap || a.index - b.index,
         return: (a, b) => b.totalReturn - a.totalReturn || a.index - b.index,
       };
-      const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨"];
+      const numbers = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪"];
       const rows = portfolioRows().sort(sorters[currentPortfolioRank] || sorters.default);
       document.querySelector(".manifesto-pillars").innerHTML = rows.map((row, i) => {
         const cls = portfolioStyleClass(row.key);
@@ -2398,7 +2442,7 @@
         `${portfolio.nameEn} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.name}</span>`
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 10 个组合", "PORTFOLIO CHANNELS · 10 PORTFOLIOS");
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 11 个组合", "PORTFOLIO CHANNELS · 11 PORTFOLIOS");
       document.querySelector("#portfolio-rank-group").previousElementSibling.textContent = t("组合排序", "Sort Portfolios");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="default"]').textContent = t("默认", "Default");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="mcap"]').textContent = t("市值", "Market Cap");
