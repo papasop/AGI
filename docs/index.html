@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>领先中国AI指数 | Leading China AI Index</title>
+  <title>全球AI对冲 | Global AI Hedge</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LY00KSNQ2E"></script>
   <script>
@@ -912,7 +912,7 @@
   </div>
 
   <div class="container">
-    <h1>领先中国AI指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">LEADING CHINA AI INDEX</span></h1>
+    <h1>全球AI对冲 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">GLOBAL AI HEDGE</span></h1>
     <div class="manifesto">
       <div class="manifesto-tag">宣言 · MANIFESTO · 四组证实 / 证伪 / FOUR TESTS</div>
       <ol class="manifesto-pillars">
@@ -1569,8 +1569,8 @@
     function renderStaticLanguage() {
       document.querySelector(".floating-lang-toggle").title = t("页面语言 / 悬浮窗语言", "Page Language / Popover Language");
       document.querySelector("h1").innerHTML = t(
-        '领先中国AI指数 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">LEADING CHINA AI INDEX</span>',
-        'Leading China AI Index <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">领先中国AI指数</span>'
+        '全球AI对冲 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">GLOBAL AI HEDGE</span>',
+        'Global AI Hedge <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">全球AI对冲</span>'
       );
 
       document.querySelector(".manifesto-tag").textContent = t("宣言 · 四组证实 / 证伪", "MANIFESTO · FOUR TESTS");
@@ -1765,7 +1765,7 @@
     }
 
     function chartAssetLabel(assetKey) {
-      if (assetKey === "INDEX") return t("领先中国AI指数", "Leading China AI Index");
+      if (assetKey === "INDEX") return t("全球AI对冲", "Global AI Hedge");
       const config = CONFIG_BY_TICKER[assetKey] || {};
       const component = rawData?.components?.find((c) => c.ticker === assetKey);
       const name = config.name || component?.name || assetKey;
@@ -1799,7 +1799,7 @@
       const closes = data.map((d) => +d.close.toFixed(2));
       const milestones = buildMilestoneMarkLine(xs);
       const yields = getYieldData(currentPeriod);
-      const indexSeriesName = chartLabel || t("领先中国AI指数", "Leading China AI Index");
+      const indexSeriesName = chartLabel || t("全球AI对冲", "Global AI Hedge");
       const cnYieldName = t("中国10Y", "China 10Y");
       const usYieldName = t("美国10Y", "US 10Y");
       const fedFundsName = t("Fed Funds Apr'27隐含利率", "Fed Funds Apr '27 implied");
