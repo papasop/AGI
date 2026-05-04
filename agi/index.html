@@ -1805,6 +1805,11 @@
             ticker: "^IXIC",
             data: generateBenchmark(909, 10500, 0.016, 0.00045, dates),
           },
+          BITCOIN: {
+            name: "Bitcoin",
+            ticker: "BTC-USD",
+            data: generateBenchmark(21000000, 16500, 0.032, 0.00055, dates),
+          },
         },
         yields: {
           CN10Y: {
@@ -1925,6 +1930,20 @@
 
     function activeMilestones() {
       return activeEventTheme().milestones || DEFAULT_MILESTONES;
+    }
+
+    function activeBenchmarkConfig() {
+      return currentPortfolioKey === "blockchain"
+        ? {
+            key: "BITCOIN",
+            labelZh: "Bitcoin 同期",
+            labelEn: "Bitcoin Same Period",
+          }
+        : {
+            key: "NASDAQ",
+            labelZh: "NASDAQ 同期",
+            labelEn: "NASDAQ Same Period",
+          };
     }
 
     function portfolioDataFromPool(dataPool) {
@@ -2416,8 +2435,10 @@
       const pct = (change / prev.close) * 100;
       const since = data[0].close;
       const totalPct = ((last.close - since) / since) * 100;
-      const benchmark = rawData?.benchmarks?.NASDAQ?.data?.length
-        ? aggregate(rawData.benchmarks.NASDAQ.data, currentPeriod)
+      const benchmarkConfig = activeBenchmarkConfig();
+      const benchmarkSource = rawData?.benchmarks?.[benchmarkConfig.key]?.data || [];
+      const benchmark = benchmarkSource.length
+        ? aggregate(benchmarkSource, currentPeriod)
         : [];
       const benchmarkFirst = benchmark[0]?.close || 0;
       const benchmarkLast = benchmark[benchmark.length - 1]?.close || 0;
@@ -2447,7 +2468,7 @@
           <div class="stat-value ${totalCls}">${totalPct >= 0 ? "+" : ""}${totalPct.toFixed(2)}%</div>
         </div>
         <div class="stat">
-          <div class="stat-label">${t("NASDAQ 同期", "NASDAQ Same Period")}</div>
+          <div class="stat-label">${t(benchmarkConfig.labelZh, benchmarkConfig.labelEn)}</div>
           <div class="stat-value ${benchmarkCls}">${benchmarkPct >= 0 ? "+" : ""}${benchmarkPct.toFixed(2)}%</div>
           <div class="meta-detail">${spreadText}</div>
         </div>
