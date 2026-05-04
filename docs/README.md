@@ -1,4 +1,4 @@
-# 全球AI对冲 · Global AI Hedge
+# 无人机组合 · Drone Portfolio
 
 ## 宣言 · Manifesto · 五重命题
 
@@ -12,7 +12,7 @@
 
 > ① 前提 · ② 待突破 · ③④⑤ 三重猜想 — 1 前提 + 1 突破 + 3 猜想 = 五重命题。
 
-> **策略**:TLT 50% · 纽约时报 25% · 拼多多 15% · 比亚迪 10%
+> **策略**:ONDS 33.33% · UMAC 33.33% · THEON 33.33%
 
 T₀ 为 ChatGPT 公开发布日 (2022-11-30) 的 AI 主题加权指数。计价 USD,每周再平衡。
 
@@ -30,10 +30,9 @@ T₀ 为 ChatGPT 公开发布日 (2022-11-30) 的 AI 主题加权指数。计价
 ### 核心配置
 | 代码 | 名称 | 权重 | AI 子赛道 |
 |---|---|---|---|
-| TLT | iShares 20+ Year Treasury Bond ETF | 50% | 利率对冲 |
-| PDD | 拼多多 | 15% | AI 生产力 |
-| NYT | 纽约时报 | 25% | AI 数据版权 |
-| 002594.SZ | 比亚迪 | 10% | AI 机器人 · 电池 + 电机 + 电控 |
+| ONDS | Ondas | 33.33% | Iron Drone 反无人机系统 |
+| UMAC | Unusual Machines | 33.33% | 无人机零部件供应商 |
+| THEON.AS | Theon International | 33.33% | 军用夜视 · 热成像 · ISR |
 
 ## 用法
 
