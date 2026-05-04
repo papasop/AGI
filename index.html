@@ -1407,7 +1407,7 @@
       return d.getUTCFullYear() + "-W" + String(wk).padStart(2, "0");
     }
 
-    function aggregate(data, period) {
+    function aggregate(data, period, options = {}) {
       if (period === "D") return data;
       const groups = new Map();
       for (const d of data) {
@@ -1415,13 +1415,21 @@
         if (!groups.has(key)) groups.set(key, []);
         groups.get(key).push(d);
       }
-      return [...groups.values()].map((items) => ({
+      const rows = [...groups.values()].map((items) => ({
         date: items[items.length - 1].date,
         open: items[0].open,
         high: Math.max(...items.map((x) => x.high)),
         low:  Math.min(...items.map((x) => x.low)),
         close: items[items.length - 1].close,
       }));
+      if (options.continuousOpen) {
+        for (let i = 1; i < rows.length; i++) {
+          rows[i].open = rows[i - 1].close;
+          rows[i].high = Math.max(rows[i].high, rows[i].open, rows[i].close);
+          rows[i].low = Math.min(rows[i].low, rows[i].open, rows[i].close);
+        }
+      }
+      return rows;
     }
 
     // ============================================================
@@ -1925,6 +1933,7 @@
       "no-yield": {
         name: "无收益指数",
         nameEn: "No-Yield Asset Index",
+        continuousAggregate: true,
         tag: "策略 · Bitcoin 25% / ETH 25% / GLD 50%",
         tagEn: "STRATEGY · BITCOIN 25 / ETH 25 / GLD 50",
         footer: "三类无现金流资产配置：比特币、以太坊与黄金 ETF，观察货币属性、链上资产和硬资产的组合表现。",
@@ -2741,21 +2750,24 @@
     }
 
     function getChartData() {
+      const aggregateOptions = {
+        continuousOpen: Boolean(activePortfolio().continuousAggregate && currentPeriod !== "D"),
+      };
       if (currentChartAsset === "INDEX") {
         return {
-          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays, activePortfolio()), currentPeriod),
+          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays, activePortfolio()), currentPeriod, aggregateOptions),
           label: chartAssetLabel("INDEX"),
         };
       }
       const component = rawData.components.find((c) => c.ticker === currentChartAsset);
       if (!component) {
         return {
-          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays, activePortfolio()), currentPeriod),
+          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays, activePortfolio()), currentPeriod, aggregateOptions),
           label: chartAssetLabel("INDEX"),
         };
       }
       return {
-        data: aggregate(convertedComponentIndex(component), currentPeriod),
+        data: aggregate(convertedComponentIndex(component), currentPeriod, aggregateOptions),
         label: chartAssetLabel(currentChartAsset),
       };
     }
