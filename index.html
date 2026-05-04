@@ -926,7 +926,7 @@
   <div class="container">
     <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 4 PORTFOLIOS</div>
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 5 PORTFOLIOS</div>
       <ol class="manifesto-pillars">
         <li class="pillar pillar--realized active" data-portfolio="drone">
           <span class="pillar-num">①</span>
@@ -948,8 +948,13 @@
           <span class="pillar-cat pillar-cat--partial">组合</span>
           <span class="pillar-text"><span class="m-key">区块链指数</span><span class="pillar-en">Blockchain Index</span></span>
         </li>
+        <li class="pillar pillar--realized" data-portfolio="ev">
+          <span class="pillar-num">⑤</span>
+          <span class="pillar-cat pillar-cat--realized">组合</span>
+          <span class="pillar-text"><span class="m-key">电动车指数</span><span class="pillar-en">Electric Vehicle Index</span></span>
+        </li>
       </ol>
-      <div class="manifesto-footer">先推出四个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching four portfolio channels first, with room for more themes later.</span></div>
+      <div class="manifesto-footer">先推出五个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching five portfolio channels first, with room for more themes later.</span></div>
     </div>
 
     <div class="strategy">
@@ -1549,6 +1554,46 @@
             seed: 2024, base: 0.06, vol: 0.034, drift: 0.00045 },
         ],
       },
+      "ev": {
+        name: "电动车指数",
+        nameEn: "Electric Vehicle Index",
+        tag: "策略 · BYD / TESLA / NIO / 零跑 / 奇瑞 / 吉利 · 各 16.67%",
+        tagEn: "STRATEGY · BYD / TESLA / NIO / LEAPMOTOR / CHERY / GEELY · 16.67 EACH",
+        footer: "六只股票等权配置，覆盖中美电动车整车与中国自主品牌车企。",
+        footerEn: "Equal-weight exposure to US and Chinese EV makers and leading China auto brands.",
+        components: [
+          { name: "比亚迪",                         short: "BYD",            ticker: "002594.SZ", weight: 1 / 6, ccy: "CNY", sleeve: "CN", status: "active",
+            concept: "电动车龙头 · 电池 + 电机 + 电控",
+            conceptEn: "EV leader · battery + motor + controls",
+            marketCap: 118.0,
+            seed: 2594, base: 250, vol: 0.024, drift: 0.00035 },
+          { name: "Tesla",                          short: "TSLA",           ticker: "TSLA",      weight: 1 / 6, ccy: "USD", sleeve: "US", status: "active",
+            concept: "全球电动车龙头",
+            conceptEn: "Global EV leader",
+            marketCap: 850.0,
+            seed: 2003, base: 180, vol: 0.035, drift: 0.00045 },
+          { name: "NIO",                            short: "NIO",            ticker: "NIO",       weight: 1 / 6, ccy: "USD", sleeve: "CN", status: "active",
+            concept: "中国高端智能电动车",
+            conceptEn: "China premium smart EV",
+            marketCap: 10.0,
+            seed: 2018, base: 12, vol: 0.045, drift: -0.00005 },
+          { name: "零跑汽车",                       short: "零跑",           ticker: "9863.HK",   weight: 1 / 6, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "中国智能电动车",
+            conceptEn: "China smart EV maker",
+            marketCap: 8.0,
+            seed: 9863, base: 35, vol: 0.040, drift: 0.00035 },
+          { name: "奇瑞汽车",                       short: "奇瑞",           ticker: "9973.HK",   weight: 1 / 6, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "中国自主品牌汽车",
+            conceptEn: "China domestic auto brand",
+            marketCap: 25.0,
+            seed: 9973, base: 30, vol: 0.038, drift: 0.00030 },
+          { name: "吉利汽车",                       short: "吉利",           ticker: "0175.HK",   weight: 1 / 6, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "中国自主品牌 · 新能源转型",
+            conceptEn: "China domestic auto brand · NEV transition",
+            marketCap: 20.0,
+            seed: 175, base: 12, vol: 0.030, drift: 0.00020 },
+        ],
+      },
     };
     let currentPortfolioKey = "drone";
     let COMPONENTS_CONFIG = PORTFOLIOS[currentPortfolioKey].components;
@@ -1712,6 +1757,7 @@
     function countryFlag(component) {
       if (component.ticker === "THEON.AS") return "🇳🇱";
       if (component.ccy === "CNY") return "🇨🇳";
+      if (component.ccy === "HKD") return "🇭🇰";
       return "🇺🇸";
     }
 
@@ -1755,7 +1801,7 @@
         `${portfolio.nameEn} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.name}</span>`
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 4 个组合", "PORTFOLIO CHANNELS · 4 PORTFOLIOS");
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 5 个组合", "PORTFOLIO CHANNELS · 5 PORTFOLIOS");
       const pillars = [
         {
           cat: ["组合", "Portfolio"],
@@ -1776,6 +1822,11 @@
           cat: ["组合", "Portfolio"],
           text: ['<span class="m-key">区块链指数</span>', '<span class="m-key">Blockchain Index</span>'],
           en: ["Blockchain Index", "区块链指数"],
+        },
+        {
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">电动车指数</span>', '<span class="m-key">Electric Vehicle Index</span>'],
+          en: ["Electric Vehicle Index", "电动车指数"],
         },
       ];
       document.querySelectorAll(".manifesto-pillars li").forEach((row, i) => {

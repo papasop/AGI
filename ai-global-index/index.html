@@ -2,14 +2,2632 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=../" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecting...</title>
+  <title>无人机组合 | Drone Portfolio</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LY00KSNQ2E"></script>
   <script>
-    window.location.replace("../");
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LY00KSNQ2E');
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: #0a0e1a;
+      color: #e0e6f0;
+      min-height: 100vh;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 {
+      color: #fff;
+      font-weight: 300;
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+    /* === Manifesto block === */
+    .manifesto {
+      margin: 4px 0 20px;
+      padding: 16px 22px;
+      background: linear-gradient(90deg, rgba(255, 209, 102, 0.10) 0%, rgba(255, 209, 102, 0.02) 100%);
+      border-left: 3px solid #ffd166;
+      border-radius: 6px;
+    }
+    .manifesto-tag {
+      color: #ffd166;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      margin-bottom: 6px;
+    }
+    .pillar-text .m-key {
+      color: #ffd166;
+      font-weight: 600;
+      border-bottom: 1px dashed rgba(255, 209, 102, 0.4);
+      padding-bottom: 1px;
+    }
+    .pillar--partial .pillar-text .m-key {
+      color: #f0a868;
+      border-bottom-color: rgba(240, 168, 104, 0.45);
+    }
+    .pillar--breakthrough .pillar-text .m-key {
+      color: #5e9eff;
+      border-bottom-color: rgba(94, 158, 255, 0.42);
+    }
+    .pillar--realized .pillar-text .m-key {
+      color: #26a69a;
+      border-bottom-color: rgba(38, 166, 154, 0.42);
+    }
+    .manifesto-pillars {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .manifesto-pillars li {
+      display: grid;
+      grid-template-columns: 22px 64px 1fr;
+      gap: 12px;
+      align-items: baseline;
+      color: #d5dceb;
+      line-height: 1.5;
+    }
+    .manifesto-pillars li[data-portfolio] {
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 6px 8px;
+      margin: -6px -8px;
+      transition: background 0.16s ease, box-shadow 0.16s ease;
+    }
+    .manifesto-pillars li[data-portfolio]:hover,
+    .manifesto-pillars li[data-portfolio].active {
+      background: rgba(94, 158, 255, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.18);
+    }
+    .pillar-num {
+      color: #ffd166;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    .pillar--realized .pillar-num {
+      color: #26a69a;
+    }
+    .pillar--breakthrough .pillar-num {
+      color: #5e9eff;
+    }
+    .pillar--partial .pillar-num {
+      color: #f0a868;
+    }
+    .pillar-cat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-align: center;
+      border-radius: 3px;
+      line-height: 1.1;
+      gap: 1px;
+    }
+    .pillar-cat-main {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+    }
+    .pillar-cat-state {
+      font-size: 8px;
+      letter-spacing: 1.2px;
+      opacity: 0.78;
+      font-weight: 600;
+    }
+    .pillar-cat--realized {
+      color: #26a69a;
+      background: rgba(38, 166, 154, 0.12);
+      border: 1px solid rgba(38, 166, 154, 0.34);
+    }
+    .pillar-cat--breakthrough {
+      color: #5e9eff;
+      background: rgba(94, 158, 255, 0.12);
+      border: 1px solid rgba(94, 158, 255, 0.34);
+    }
+    .pillar-cat--partial {
+      color: #f0a868;
+      background: rgba(240, 168, 104, 0.12);
+      border: 1px solid rgba(240, 168, 104, 0.36);
+    }
+    .pillar-cat--pending {
+      color: #ffd166;
+      background: rgba(255, 209, 102, 0.10);
+      border: 1px solid rgba(255, 209, 102, 0.28);
+    }
+    .pillar-text {
+      font-size: 14.5px;
+      color: #fff;
+    }
+    .pillar-en {
+      display: block;
+      color: #6b7a99;
+      font-size: 11px;
+      font-style: italic;
+      letter-spacing: 0.2px;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+    .manifesto-footer {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 209, 102, 0.22);
+      font-size: 11.5px;
+      color: #6b7a99;
+      letter-spacing: 0.2px;
+    }
+    .manifesto-footer-en {
+      display: block;
+      margin-top: 3px;
+      font-style: italic;
+      color: #4a5778;
+      font-size: 10.5px;
+    }
+    /* === Strategy block (ONDS / UMAC / THEON / KOPN equal weight) === */
+    .strategy {
+      margin: 0 0 22px;
+    }
+    .strategy-tag {
+      color: #6b7a99;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      margin-bottom: 8px;
+    }
+    .strategy-bar {
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #1d2740;
+      min-height: 78px;
+    }
+    .strategy-bar-stable,
+    .strategy-bar-core,
+    .strategy-bar-cn,
+    .strategy-bar-us {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px 22px;
+      gap: 6px;
+    }
+    .strategy-bar-cn {
+      background: linear-gradient(135deg, rgba(239, 83, 80, 0.18) 0%, rgba(239, 83, 80, 0.035) 100%);
+      border-right: 1px solid #2a3654;
+    }
+    .strategy-bar-stable {
+      background: linear-gradient(135deg, rgba(255, 209, 102, 0.18) 0%, rgba(255, 209, 102, 0.04) 100%);
+      border-right: 1px solid #2a3654;
+    }
+    .strategy-bar-core {
+      background: linear-gradient(135deg, rgba(38, 166, 154, 0.16) 0%, rgba(38, 166, 154, 0.035) 100%);
+      border-right: 1px solid #2a3654;
+    }
+    .strategy-bar-us {
+      background: linear-gradient(135deg, rgba(94, 158, 255, 0.04) 0%, rgba(94, 158, 255, 0.22) 100%);
+      border-right: 1px solid #2a3654;
+    }
+    .strategy-bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .strategy-bar-label {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .strategy-bar-pct {
+      font-size: 24px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.5px;
+    }
+    .strategy-bar-cn .strategy-bar-pct { color: #ef5350; }
+    .strategy-bar-stable .strategy-bar-pct { color: #ffd166; }
+    .strategy-bar-core .strategy-bar-pct { color: #26a69a; }
+    .strategy-bar-us .strategy-bar-pct { color: #5e9eff; }
+    .strategy-bar-detail {
+      font-size: 11px;
+      color: #8a96b3;
+      letter-spacing: 0.2px;
+    }
+
+    /* === Meta strip (replaces subtitle) === */
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 4px 0 22px;
+    }
+    .meta-item {
+      background: linear-gradient(180deg, #131a2b 0%, #10172690 100%);
+      border: 1px solid #1d2740;
+      border-radius: 10px;
+      padding: 14px 18px;
+      transition: border-color 0.18s ease;
+    }
+    .meta-item:hover { border-color: #2a3654; }
+    .meta-label {
+      color: #6b7a99;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      margin-bottom: 8px;
+    }
+    .meta-value {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+    .meta-value sub {
+      font-size: 0.7em;
+      color: #ffd166;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .meta-detail {
+      color: #4a5778;
+      font-size: 11px;
+      margin-top: 5px;
+      letter-spacing: 0.2px;
+    }
+
+    /* === Controls (capsule pills with grouped label + buttons) === */
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .control-group {
+      display: inline-flex;
+      align-items: stretch;
+      background: #0f1525;
+      border: 1px solid #1d2740;
+      border-radius: 10px;
+      padding: 4px;
+      gap: 2px;
+    }
+    .control-group-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 14px 0 10px;
+      color: #4a5778;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      border-right: 1px solid #1d2740;
+      margin-right: 2px;
+      text-transform: uppercase;
+    }
+    .control-group button {
+      background: transparent;
+      border: none;
+      color: #8a96b3;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.1;
+      gap: 1px;
+      min-width: 56px;
+    }
+    .control-group button:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .control-group button.active {
+      background: rgba(94, 158, 255, 0.18);
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.3);
+    }
+    .control-group button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+    .btn-main {
+      font-size: 13px;
+      font-weight: 600;
+      pointer-events: none;
+    }
+    .btn-sub {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.7px;
+      color: #4a5778;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+    .control-group button.active .btn-sub { color: #6b7a99; }
+    .control-group button:hover .btn-sub { color: #6b7a99; }
+    .chart-container {
+      background: #131a2b;
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid #1d2740;
+    }
+    .chart-top-controls {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .chart-top-controls .control-group {
+      flex-shrink: 0;
+    }
+    #chart { height: 720px; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .stat {
+      background: #131a2b;
+      padding: 16px 18px;
+      border-radius: 10px;
+      border: 1px solid #1d2740;
+    }
+    .stat-label {
+      color: #6b7a99;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .stat-value {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-value.up { color: #ef5350; }
+    .stat-value.down { color: #26a69a; }
+    .components-panel {
+      margin-top: 18px;
+      background: #131a2b;
+      border: 1px solid #1d2740;
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .chart-container .components-panel {
+      margin-top: 18px;
+      padding: 18px 0 0;
+      background: transparent;
+      border: none;
+      border-top: 1px solid #1d2740;
+      border-radius: 0;
+    }
+    .components-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .components-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: min(100%, 320px);
+    }
+    .components-header-title {
+      color: #6b7a99;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+    .components-rank-toggle {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      background: #0f1525;
+      border: 1px solid #1d2740;
+      border-radius: 8px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .components-rank-toggle button {
+      background: transparent;
+      border: none;
+      color: #8a96b3;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      transition: all 0.15s ease;
+    }
+    .components-rank-toggle button:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .components-rank-toggle button.active {
+      background: rgba(94, 158, 255, 0.18);
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.3);
+    }
+    .components-header-total {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      min-width: min(100%, 260px);
+      color: #6b7a99;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .components-total-label {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: flex-end;
+      white-space: nowrap;
+    }
+    .total-mcap-value {
+      display: inline-block;
+      margin-left: 6px;
+      color: #ffd166;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .total-cap-bar {
+      position: relative;
+      width: 100%;
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+    }
+    .total-cap-bar-fill {
+      display: block;
+      height: 100%;
+      width: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(255, 209, 102, 0.42), #ffd166);
+    }
+    .components-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .component-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      padding: 9px 0;
+      border-top: 1px solid rgba(42, 54, 84, 0.48);
+    }
+    .component-row:first-child {
+      border-top: none;
+    }
+    .component-row--prelist {
+      opacity: 0.72;
+    }
+    .component-rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      color: #6b7a99;
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .component-weight {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      min-width: 38px;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 4px;
+      background: rgba(94, 158, 255, 0.15);
+      color: #5e9eff;
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .component-weight.weight-major {
+      background: rgba(255, 209, 102, 0.18);
+      color: #ffd166;
+    }
+    .component-weight.weight-prelist {
+      background: rgba(255, 209, 102, 0.10);
+      color: #ffd166;
+      border: 1px solid rgba(255, 209, 102, 0.24);
+    }
+    .component-name {
+      color: #fff;
+      font-weight: 500;
+      flex-shrink: 0;
+      min-width: 86px;
+    }
+    .component-ticker {
+      color: #4a5778;
+      font-size: 10px;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+    .component-concept {
+      color: #8a96b3;
+      font-size: 12.5px;
+      flex: 1;
+      min-width: 0;
+    }
+    .component-mcap {
+      color: #ffd166;
+      font-size: 12.5px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-align: right;
+      min-width: 96px;
+    }
+    .component-mcap-pct {
+      display: inline-block;
+      margin-left: 4px;
+      color: #4a5778;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+    .component-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex-shrink: 0;
+      min-width: 220px;
+      color: #ffd166;
+    }
+    .component-metric-main {
+      display: flex;
+      align-items: baseline;
+      justify-content: flex-end;
+      gap: 5px;
+      font-size: 12.5px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .component-metric.up { color: #ef5350; }
+    .component-metric.down { color: #26a69a; }
+    .component-metric-label {
+      color: #4a5778;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .component-bar {
+      position: relative;
+      width: 100%;
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+    }
+    .component-bar-fill {
+      display: block;
+      height: 100%;
+      width: var(--bar-pct, 0%);
+      min-width: 3px;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(94, 158, 255, 0.56), currentColor);
+      transition: width 0.28s ease;
+    }
+    .milestones {
+      margin-top: 18px;
+      background: #131a2b;
+      border: 1px solid #1d2740;
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .milestones-header {
+      color: #6b7a99;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 10px;
+    }
+    .milestone-category {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      min-width: 42px;
+      height: 20px;
+      padding: 0 7px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      border: 1px solid currentColor;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .milestone-category--llm { color: #5e9eff; }
+    .milestone-category--physical { color: #26a69a; }
+    .milestone-category--infra { color: #8a96b3; }
+    .milestone-category--paper { color: #ffd166; }
+    .milestone-category--remarks { color: #f0a868; }
+    .milestones-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 8px 18px;
+    }
+    .milestone {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #c5cdde;
+      cursor: pointer;
+      padding: 6px 8px;
+      margin: -6px -8px;
+      border-radius: 6px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+    .milestone:hover {
+      background: rgba(94, 158, 255, 0.10);
+    }
+    .milestone:active {
+      transform: scale(0.98);
+    }
+    .milestone-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #5e9eff;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .milestone-num-inception {
+      background: #ffd166;
+      color: #0a0e1a;
+      font-weight: 700;
+      width: 28px;
+      box-shadow: 0 0 0 1px rgba(255, 209, 102, 0.3), 0 0 8px rgba(255, 209, 102, 0.15);
+    }
+    .milestone-date {
+      color: #6b7a99;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      min-width: 70px;
+    }
+    /* === Hover popover (event description) === */
+    .popover {
+      position: fixed;
+      z-index: 100;
+      background: #131a2b;
+      border: 1px solid #2a3654;
+      border-radius: 10px;
+      padding: 14px 18px 16px;
+      max-width: 380px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(2px);
+      transition: opacity 0.12s ease, transform 0.12s ease;
+    }
+    .popover.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .popover-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .popover-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #5e9eff;
+      color: #fff;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .popover-num.popover-num-inception {
+      background: #ffd166;
+      color: #0a0e1a;
+      width: 32px;
+      box-shadow: 0 0 0 1px rgba(255, 209, 102, 0.25), 0 0 10px rgba(255, 209, 102, 0.2);
+    }
+    .popover-date {
+      color: #ffd166;
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .popover-category {
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .popover-title {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 2px;
+    }
+    .popover-en {
+      color: #6b7a99;
+      font-size: 11px;
+      letter-spacing: 0.2px;
+      margin-bottom: 10px;
+    }
+    .popover-en:empty {
+      display: none;
+      margin-bottom: 0;
+    }
+    .popover-desc {
+      color: #c5cdde;
+      font-size: 12.5px;
+      line-height: 1.65;
+    }
+    .popover-inception-tag {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 6px;
+      background: rgba(255, 209, 102, 0.15);
+      color: #ffd166;
+      font-size: 10px;
+      font-weight: 600;
+      border-radius: 3px;
+      letter-spacing: 0.5px;
+      vertical-align: middle;
+    }
+
+    /* === Floating popover-language toggle (bottom-right, fixed position) === */
+    .floating-lang-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 95;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      background: rgba(19, 26, 43, 0.78);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      border: 1px solid rgba(94, 158, 255, 0.18);
+      border-radius: 999px;
+      padding: 4px;
+      box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .floating-lang-toggle button {
+      background: transparent;
+      border: none;
+      color: #8a96b3;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      transition: all 0.18s ease;
+      min-width: 58px;
+    }
+    .floating-lang-toggle button:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .floating-lang-toggle button.active {
+      background: rgba(94, 158, 255, 0.22);
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(94, 158, 255, 0.42);
+    }
+    @media (max-width: 640px) {
+      .component-row {
+        flex-wrap: wrap;
+        gap: 7px 9px;
+      }
+      .component-concept {
+        flex-basis: 100%;
+        padding-left: 70px;
+      }
+      .component-metric {
+        margin-left: auto;
+        min-width: 160px;
+        flex: 1 1 160px;
+      }
+      .floating-lang-toggle {
+        bottom: 12px;
+        right: 12px;
+      }
+      .floating-lang-toggle button {
+        padding: 5px 11px;
+        font-size: 11px;
+      }
+    }
+    .footer {
+      margin-top: 24px;
+      color: #4a5778;
+      font-size: 12px;
+      text-align: center;
+    }
+    .footer code {
+      background: #131a2b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #8a96b3;
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting to <a href="../">Leading China AI Index</a>...</p>
+  <!-- Floating popover-language toggle (fixed-position, bottom-right). Independent of
+       the controls bar because its scope is global (affects all popovers throughout
+       the page), unlike the chart controls which only affect the chart. -->
+  <div class="floating-lang-toggle" id="popover-lang-group" title="悬浮窗语言 / Popover Language">
+    <button data-lang="zh" class="active">中文</button>
+    <button data-lang="en">English</button>
+  </div>
+
+  <div class="container">
+    <h1>无人机组合 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">DRONE PORTFOLIO</span></h1>
+    <div class="manifesto">
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 5 PORTFOLIOS</div>
+      <ol class="manifesto-pillars">
+        <li class="pillar pillar--realized active" data-portfolio="drone">
+          <span class="pillar-num">①</span>
+          <span class="pillar-cat pillar-cat--realized">组合</span>
+          <span class="pillar-text"><span class="m-key">无人机组合</span><span class="pillar-en">Drone Portfolio</span></span>
+        </li>
+        <li class="pillar pillar--breakthrough" data-portfolio="global-ai-hedge">
+          <span class="pillar-num">②</span>
+          <span class="pillar-cat pillar-cat--breakthrough">组合</span>
+          <span class="pillar-text"><span class="m-key">全球AI对冲</span><span class="pillar-en">Global AI Hedge</span></span>
+        </li>
+        <li class="pillar pillar--pending" data-portfolio="china-leading">
+          <span class="pillar-num">③</span>
+          <span class="pillar-cat pillar-cat--pending">组合</span>
+          <span class="pillar-text"><span class="m-key">中国领先指数</span><span class="pillar-en">China Leadership Index</span></span>
+        </li>
+        <li class="pillar pillar--partial" data-portfolio="blockchain">
+          <span class="pillar-num">④</span>
+          <span class="pillar-cat pillar-cat--partial">组合</span>
+          <span class="pillar-text"><span class="m-key">区块链指数</span><span class="pillar-en">Blockchain Index</span></span>
+        </li>
+        <li class="pillar pillar--realized" data-portfolio="ev">
+          <span class="pillar-num">⑤</span>
+          <span class="pillar-cat pillar-cat--realized">组合</span>
+          <span class="pillar-text"><span class="m-key">电动车指数</span><span class="pillar-en">Electric Vehicle Index</span></span>
+        </li>
+      </ol>
+      <div class="manifesto-footer">先推出五个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching five portfolio channels first, with room for more themes later.</span></div>
+    </div>
+
+    <div class="strategy">
+      <div class="strategy-tag">策略 · STRATEGY · ONDS / UMAC / THEON / KOPN · 25 EACH</div>
+      <div class="strategy-bar">
+        <div class="strategy-bar-stable">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇺🇸 ONDS</span>
+            <span class="strategy-bar-pct">25%</span>
+          </div>
+          <div class="strategy-bar-detail">Ondas · Iron Drone 反无人机</div>
+        </div>
+        <div class="strategy-bar-us">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇺🇸 UMAC</span>
+            <span class="strategy-bar-pct">25%</span>
+          </div>
+          <div class="strategy-bar-detail">Unusual Machines · 无人机零部件</div>
+        </div>
+        <div class="strategy-bar-cn">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇳🇱 THEON</span>
+            <span class="strategy-bar-pct">25%</span>
+          </div>
+          <div class="strategy-bar-detail">Theon · 军用夜视 / 热成像</div>
+        </div>
+        <div class="strategy-bar-core">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">🇺🇸 KOPN</span>
+            <span class="strategy-bar-pct">25%</span>
+          </div>
+          <div class="strategy-bar-detail">Kopin · 军用微显示 / 头显光学</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meta-strip">
+      <div class="meta-item">
+        <div class="meta-label">起点 INCEPTION</div>
+        <div class="meta-value">T<sub>0</sub> · 2022-11-30</div>
+        <div class="meta-detail">ChatGPT 公开发布日</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">基准 BASE</div>
+        <div class="meta-value">100.00</div>
+        <div class="meta-detail">归一化起点</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">计价 QUOTE</div>
+        <div class="meta-value" id="ccy-display">USD</div>
+        <div class="meta-detail" id="ccy-detail">FX 历史汇率折算</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">再平衡 REBALANCE</div>
+        <div class="meta-value" id="rebal-display">Weekly</div>
+        <div class="meta-detail" id="rebal-detail">每 5 个交易日重置权重</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="control-group" id="period-group">
+        <span class="control-group-label">周期</span>
+        <button data-period="D" class="active"><span class="btn-main">日</span><span class="btn-sub">Day</span></button>
+        <button data-period="W"><span class="btn-main">周</span><span class="btn-sub">Week</span></button>
+        <button data-period="M"><span class="btn-main">月</span><span class="btn-sub">Month</span></button>
+      </div>
+      <div class="control-group" id="type-group">
+        <span class="control-group-label">图型</span>
+        <button data-type="candle" class="active"><span class="btn-main">K线</span><span class="btn-sub">Candle</span></button>
+        <button data-type="line"><span class="btn-main">折线</span><span class="btn-sub">Line</span></button>
+      </div>
+      <div class="control-group" id="event-group">
+        <span class="control-group-label">事件</span>
+        <button data-event="all" class="active"><span class="btn-main">全部</span><span class="btn-sub">All</span></button>
+        <button data-event="paper"><span class="btn-main">论文</span><span class="btn-sub">Paper</span></button>
+        <button data-event="remarks"><span class="btn-main">言论</span><span class="btn-sub">Remarks</span></button>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-top-controls">
+        <div class="control-group" id="asset-group">
+          <span class="control-group-label">标的</span>
+          <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
+          <button data-asset="ONDS"><span class="btn-main">ONDS</span><span class="btn-sub">25%</span></button>
+          <button data-asset="UMAC"><span class="btn-main">UMAC</span><span class="btn-sub">25%</span></button>
+          <button data-asset="THEON.AS"><span class="btn-main">THEON</span><span class="btn-sub">25%</span></button>
+          <button data-asset="KOPN"><span class="btn-main">KOPN</span><span class="btn-sub">25%</span></button>
+        </div>
+      </div>
+      <div id="chart"></div>
+      <div class="components-panel">
+        <div class="components-header">
+          <div class="components-title-block">
+            <span class="components-header-title">成分股 · COMPONENTS · 各自代表的 AI 子赛道</span>
+            <div class="components-rank-toggle" id="components-rank-group" aria-label="Components ranking mode">
+              <button data-rank="weight" class="active">权重</button>
+              <button data-rank="mcap">市值</button>
+              <button data-rank="return">总涨幅</button>
+              <button data-rank="contribution">贡献</button>
+            </div>
+          </div>
+          <span class="components-header-total">
+            <span class="components-total-label"><span id="total-mcap-label">总市值 / TOTAL CAP</span><span class="total-mcap-value" id="total-mcap">—</span></span>
+            <span class="total-cap-bar" aria-hidden="true"><span class="total-cap-bar-fill"></span></span>
+          </span>
+        </div>
+        <div class="components-list" id="components-list"></div>
+      </div>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="milestones">
+      <div class="milestones-header">AI 大事记 · AI Era Milestones</div>
+      <div class="milestones-list" id="milestones-list"></div>
+    </div>
+
+    <div class="footer">
+      Data: 内置合成示例数据 (synthetic seeded sample, 含 CNY/USD) · 替换真实数据请用 <code>fetch_data.py</code> 生成 <code>data.json</code>
+    </div>
+  </div>
+
+  <!-- Hover popover for milestone descriptions. Shown on mouseenter of any
+       legend row or any chart marker; hidden on mouseleave. Position is
+       computed dynamically near the hovered element / cursor. -->
+  <div class="popover" id="popover">
+    <div class="popover-header">
+      <span class="popover-num" id="popover-num">1</span>
+      <span class="popover-date" id="popover-date">2022-11-30</span>
+    </div>
+    <div class="popover-title" id="popover-title">Title</div>
+    <div class="popover-en" id="popover-en">English</div>
+    <div class="popover-desc" id="popover-desc">Description</div>
+  </div>
+
+  <script>
+    // ============================================================
+    //  Data layer
+    //  ------------------------------------------------------------
+    //  By default uses seeded synthetic OHLC data so the file is
+    //  self-contained. To use REAL data, run fetch_data.py to
+    //  generate data.json next to this file, and the chart will
+    //  load it automatically.
+    // ============================================================
+
+    function mulberry32(seed) {
+      return function () {
+        let t = (seed += 0x6d2b79f5);
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+
+    function generateOHLC(seed, basePrice, dailyVol, drift, dates) {
+      const rng = mulberry32(seed);
+      let close = basePrice;
+      const data = [];
+      for (const date of dates) {
+        const ret = (rng() - 0.5) * 2 * dailyVol + drift;
+        const open = close * (1 + (rng() - 0.5) * 0.004);
+        const newClose = open * (1 + ret);
+        const wickFrac = (rng() * 0.5 + 0.2) * dailyVol;
+        const hi = Math.max(open, newClose) * (1 + wickFrac);
+        const lo = Math.min(open, newClose) * (1 - wickFrac);
+        data.push({ date, open, high: hi, low: lo, close: newClose });
+        close = newClose;
+      }
+      return data;
+    }
+
+    function generateTradingDates(startDateStr, endDate) {
+      // Returns all weekdays from startDateStr (inclusive) through endDate
+      // (default: today). Date strings in ISO format (YYYY-MM-DD).
+      const out = [];
+      const d = new Date(startDateStr);
+      const end = endDate ? new Date(endDate) : new Date();
+      while (d <= end) {
+        const wd = d.getUTCDay();
+        if (wd !== 0 && wd !== 6) out.push(d.toISOString().slice(0, 10));
+        d.setUTCDate(d.getUTCDate() + 1);
+      }
+      return out;
+    }
+
+    // ============================================================
+    //  Composite index: weighted blend of N components, normalized
+    //  to 100 at start, optionally FX-adjusted to a target currency.
+    // ============================================================
+    //
+    //  components: [{ weight, ccy: "CNY"|"HKD"|"USD", data: [bar, ...] }, ...]
+    //  fx:         { CNY: [{date, rate}], HKD: [{date, rate}] }
+    //              rate is units-per-USD (yfinance convention for X=Y tickers)
+    //  currency:   "USD" | "CNY" | "LOCAL"
+    //
+    function convRate(fromCcy, toCcy, fx, i) {
+      // Returns: how many `toCcy` per 1 `fromCcy` on day i.
+      // In LOCAL mode no conversion happens (rate is 1) — each component
+      // is normalized in its native currency and blended.
+      if (toCcy === "LOCAL") return 1;
+      if (fromCcy === toCcy) return 1;
+      const fromToUSD = fromCcy === "USD" ? 1 : 1 / fx[fromCcy][i].rate;
+      const usdToTo   = toCcy   === "USD" ? 1 : fx[toCcy][i].rate;
+      return fromToUSD * usdToTo;
+    }
+
+    // ============================================================
+    //  Build index under one of three rebalancing methodologies:
+    //
+    //    "BUYHOLD"   — fix initial weights, let them drift forever.
+    //                  Index_t = Σ w_i_0 · (P_i_t / P_i_0) · 100
+    //                  Behavior: a passive portfolio. Winners take over.
+    //
+    //    "PERIODIC"  — reset weights to target every `periodDays`.
+    //                  Between rebalances, behaves like BUYHOLD from
+    //                  the last rebalance; at rebalance, weights reset.
+    //                  Used by: most thematic ETFs (quarterly = ~63d).
+    //
+    //    "DAILY"     — reset weights every trading day.
+    //                  Index daily return = Σ w_i · r_i_daily, compounded.
+    //                  Used by: leveraged ETFs, fixed-weight strategy
+    //                  indices. Path-dependent (volatility drag).
+    //
+    //  All three start at base = 100 on the inception day.
+    // ============================================================
+    function buildIndex(components, fx, currency, rebalanceMode, periodDays) {
+      const N = components[0].data.length;
+      const dates = components[0].data.map((d) => d.date);
+
+      // FX conversion (shared across modes)
+      const conv = components.map((c) =>
+        c.data.map((bar, i) => {
+          const r = convRate(c.ccy, currency, fx, i);
+          return { open: bar.open*r, high: bar.high*r, low: bar.low*r, close: bar.close*r };
+        })
+      );
+
+      // Helper: weighted blend of (P_i_t / P_i_anchor) for any anchor index.
+      const blendVsAnchor = (i, anchorIdx) => {
+        let O = 0, H = 0, L = 0, C = 0;
+        components.forEach((c, k) => {
+          const a = conv[k][anchorIdx].close;  // anchor close as base
+          const b = conv[k][i];
+          O += c.weight * (b.open  / a);
+          H += c.weight * (b.high  / a);
+          L += c.weight * (b.low   / a);
+          C += c.weight * (b.close / a);
+        });
+        return { O, H, L, C };
+      };
+
+      // BUYHOLD ===
+      if (rebalanceMode === "BUYHOLD") {
+        return dates.map((date, i) => {
+          const r = blendVsAnchor(i, 0);
+          return { date, open: r.O*100, high: r.H*100, low: r.L*100, close: r.C*100 };
+        });
+      }
+
+      // PERIODIC === (period >= 2; reset weights every periodDays bars)
+      if (rebalanceMode === "PERIODIC") {
+        const out = new Array(N);
+        let anchorIdx = 0;
+        let anchorValue = 100;
+        for (let i = 0; i < N; i++) {
+          const r = blendVsAnchor(i, anchorIdx);
+          out[i] = {
+            date: dates[i],
+            open:  r.O * anchorValue,
+            high:  r.H * anchorValue,
+            low:   r.L * anchorValue,
+            close: r.C * anchorValue,
+          };
+          // Rebalance after this bar if interval reached
+          if (i > 0 && i - anchorIdx >= periodDays) {
+            anchorValue = out[i].close;
+            anchorIdx = i;
+          }
+        }
+        return out;
+      }
+
+      // DAILY === (rebalance every bar — index daily return is fixed-weight)
+      if (rebalanceMode === "DAILY") {
+        const out = new Array(N);
+        out[0] = { date: dates[0], open: 100, high: 100, low: 100, close: 100 };
+        for (let i = 1; i < N; i++) {
+          let dO = 0, dH = 0, dL = 0, dC = 0;
+          components.forEach((c, k) => {
+            const today = conv[k][i];
+            const yC    = conv[k][i-1].close;
+            dO += c.weight * (today.open  / yC - 1);
+            dH += c.weight * (today.high  / yC - 1);
+            dL += c.weight * (today.low   / yC - 1);
+            dC += c.weight * (today.close / yC - 1);
+          });
+          const prev = out[i-1].close;
+          out[i] = {
+            date: dates[i],
+            open:  prev * (1 + dO),
+            high:  prev * (1 + dH),
+            low:   prev * (1 + dL),
+            close: prev * (1 + dC),
+          };
+        }
+        return out;
+      }
+
+      throw new Error("Unknown rebalanceMode: " + rebalanceMode);
+    }
+
+    // ============================================================
+    //  Synthetic CNY/USD and HKD/USD paths
+    // ============================================================
+    function generateFX(seed, baseRate, dailyVol, drift, dates) {
+      const rng = mulberry32(seed);
+      let rate = baseRate;
+      return dates.map((date) => {
+        const ret = (rng() - 0.5) * 2 * dailyVol + drift;
+        rate = rate * (1 + ret);
+        return { date, rate };
+      });
+    }
+
+    function generateBenchmark(seed, basePrice, dailyVol, drift, dates) {
+      return generateOHLC(seed, basePrice, dailyVol, drift, dates);
+    }
+
+    function generateYieldPath(seed, baseYield, dailyVol, drift, dates, floor, ceiling) {
+      const rng = mulberry32(seed);
+      let close = baseYield;
+      return dates.map((date) => {
+        const change = (rng() - 0.5) * 2 * dailyVol + drift;
+        const open = close + (rng() - 0.5) * dailyVol * 0.35;
+        close = Math.min(ceiling, Math.max(floor, open + change));
+        const wick = (rng() * 0.5 + 0.2) * dailyVol;
+        const high = Math.min(ceiling, Math.max(open, close) + wick);
+        const low = Math.max(floor, Math.min(open, close) - wick);
+        return { date, open, high, low, close };
+      });
+    }
+
+    // ============================================================
+    //  Aggregation (D -> W / M)
+    // ============================================================
+    function isoWeekKey(dateStr) {
+      const d = new Date(dateStr);
+      const dn = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() + 4 - dn);
+      const yStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      const wk = Math.ceil(((d - yStart) / 86400000 + 1) / 7);
+      return d.getUTCFullYear() + "-W" + String(wk).padStart(2, "0");
+    }
+
+    function aggregate(data, period) {
+      if (period === "D") return data;
+      const groups = new Map();
+      for (const d of data) {
+        const key = period === "W" ? isoWeekKey(d.date) : d.date.slice(0, 7);
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(d);
+      }
+      return [...groups.values()].map((items) => ({
+        date: items[items.length - 1].date,
+        open: items[0].open,
+        high: Math.max(...items.map((x) => x.high)),
+        low:  Math.min(...items.map((x) => x.low)),
+        close: items[items.length - 1].close,
+      }));
+    }
+
+    // ============================================================
+    //  Index inception: ChatGPT public launch (2022-11-30) — base = 100
+    // ============================================================
+    const INCEPTION_DATE = "2022-11-30";
+
+    // AI milestones to annotate on the chart. Each event is a vertical
+    // marker line; numbers are rendered on the chart and the full text
+    // appears in the legend below. Edit freely — buildMilestoneMarkLine
+    // snaps each date to the nearest available bar in the current view.
+    const MILESTONE_CATEGORIES = {
+      llm: {
+        zh: "LLM",
+        en: "LLM",
+        color: "#5e9eff",
+        bg: "rgba(94, 158, 255, 0.16)",
+        line: "rgba(94, 158, 255, 0.34)",
+      },
+      physical: {
+        zh: "物理世界",
+        en: "Physical World",
+        color: "#26a69a",
+        bg: "rgba(38, 166, 154, 0.16)",
+        line: "rgba(38, 166, 154, 0.34)",
+      },
+      infra: {
+        zh: "算力产业",
+        en: "Compute",
+        color: "#8a96b3",
+        bg: "rgba(138, 150, 179, 0.14)",
+        line: "rgba(138, 150, 179, 0.30)",
+      },
+      paper: {
+        zh: "论文",
+        en: "Paper",
+        color: "#ffd166",
+        bg: "rgba(255, 209, 102, 0.16)",
+        line: "rgba(255, 209, 102, 0.34)",
+      },
+      remarks: {
+        zh: "人物言论",
+        en: "Remarks",
+        color: "#f0a868",
+        bg: "rgba(240, 168, 104, 0.16)",
+        line: "rgba(240, 168, 104, 0.34)",
+      },
+    };
+
+    function milestoneCategory(key) {
+      return MILESTONE_CATEGORIES[key] || MILESTONE_CATEGORIES.llm;
+    }
+
+    const AI_MILESTONES = [
+      { date: "2022-11-30", category: "llm", label: "ChatGPT \u4e0a\u7ebf",                        en: "ChatGPT launched",
+        desc: "OpenAI 发布基于 GPT-3.5 的对话产品 ChatGPT。5 天破百万用户、2 个月达 1 亿月活,创下消费产品最快增长纪录。本指数以这一天为 T₀,Base = 100,后续所有事件以这天为锚点参照。Generative AI 真正进入大众视野并撬动整条 AI 算力 / 应用产业链的零日。",
+        desc_en: "OpenAI launches ChatGPT, built on GPT-3.5. It hits 1M users in 5 days and 100M monthly actives in 2 months — the fastest consumer-product adoption in history. This index uses this date as T₀, with Base = 100; all subsequent events are anchored here. Day zero of generative AI entering mainstream awareness and reshaping the entire AI compute / application stack." },
+      { date: "2023-03-14", category: "llm", label: "GPT-4 \u53d1\u5e03",                          en: "GPT-4 released",
+        desc: "OpenAI 发布 GPT-4,首个大规模多模态(图文输入)旗舰模型。律师/医师/编程考试达到人类前 10% 水平。这是企业级 AI 投资真正起点——硅谷大厂从此开启 capex 军备竞赛,推动 NVDA 股价开始第一轮加速,中游半导体设备 / 上游光学晶体的需求逻辑也随之确立。",
+        desc_en: "OpenAI releases GPT-4, the first large-scale multimodal (text + image) flagship. Achieves top-10% human performance on bar, medical, and coding exams. The real beginning of enterprise AI investment — Silicon Valley enters capex arms-race mode, kicking off NVIDIA's first major stock surge and establishing the demand logic for mid-stream semiconductor equipment and upstream optical crystals." },
+      { date: "2023-03-22", category: "paper", label: "Sparks of AGI 论文", en: "Sparks of AGI paper",
+        desc: "微软研究院发布《Sparks of Artificial General Intelligence》预印本,系统记录早期 GPT-4 在推理、编码、数学、视觉等任务上的能力跃迁。它把 GPT-4 从产品事件推进到学术叙事,成为“通用智能火花”讨论的标志性论文。",
+        desc_en: "Microsoft Research posts the 'Sparks of Artificial General Intelligence' preprint, documenting early GPT-4's jumps across reasoning, coding, math, and vision tasks. It turns GPT-4 from a product event into an academic narrative and becomes a signature paper in the 'sparks of AGI' debate." },
+      { date: "2023-05-16", category: "remarks", label: "Altman 国会听证", en: "Altman Senate testimony",
+        desc: "OpenAI CEO Sam Altman 出席美国参议院 AI 监管听证,公开支持为高能力 AI 建立许可、审计与监管框架。这是 AI 公司负责人首次以近似行业代言人的方式进入国家监管议程。",
+        desc_en: "OpenAI CEO Sam Altman testifies before the U.S. Senate on AI oversight and publicly supports licensing, auditing, and regulatory frameworks for high-capability AI systems. It marks the moment an AI company leader enters the national regulatory agenda as a de facto industry spokesperson." },
+      { date: "2023-10-17", category: "infra", label: "\u7f8e\u5bf9\u534e\u82af\u7247\u51fa\u53e3\u7ba1\u5236\u5347\u7ea7", en: "US chip export controls tighten",
+        desc: "拜登政府第二轮升级对华先进 AI 芯片出口管制,把此前为绕开管制专门设计的 NVIDIA H800 / A800(中国版)也列入限制。它强化了中国本土 AI 芯片与半导体设备产业的国产替代逻辑。",
+        desc_en: "The Biden administration's second-round tightening of AI chip export controls to China adds NVIDIA H800 / A800 — the China-specific chips originally designed to circumvent earlier controls — to the restriction list, strengthening the import-substitution logic for Chinese domestic AI chips and semiconductor equipment." },
+      { date: "2023-12-27", category: "llm", label: "NYT \u8d77\u8bc9 OpenAI \u4e0e\u5fae\u8f6f",       en: "NYT v OpenAI lawsuit",
+        desc: "纽约时报在曼哈顿联邦法院起诉 OpenAI 与微软,指控未经授权使用其数百万篇文章训练 GPT 系列模型,索赔可能高达数十亿美元。这是 AI 与传统媒体的首例重磅版权诉讼,会重塑训练数据授权与内容定价的商业模式。",
+        desc_en: "The New York Times files suit against OpenAI and Microsoft in Manhattan federal court, alleging unauthorized use of millions of articles to train GPT models, with damages potentially in the billions. The first major copyright case between AI and traditional media could reshape training-data licensing and content pricing." },
+      { date: "2024-02-15", category: "physical", label: "Sora 世界模拟器论文", en: "Sora world-simulator report",
+        desc: "OpenAI 发布 Sora 技术报告《Video generation models as world simulators》,把视频生成明确连接到“通用物理世界模拟器”的路线。它让物理一致性、时空 patch、长视频生成成为 AI 叙事中的核心变量。",
+        desc_en: "OpenAI publishes the Sora technical report, 'Video generation models as world simulators,' explicitly tying video generation to the path toward general-purpose physical-world simulators. It pushes physical consistency, spacetime patches, and long-form video generation into the center of the AI narrative." },
+      { date: "2024-03-04", category: "llm", label: "Claude 3 (Opus/Sonnet/Haiku)",                en: "Claude 3 released",
+        desc: "Anthropic 一次性发布 Claude 3 三模型阵列(Opus / Sonnet / Haiku)。Opus 在多项基准上首次超越 GPT-4,Anthropic 正式跻身 AI 第一梯队。三档定价(便宜款 / 旗舰款分层)重塑了行业的模型经济学定价范式。",
+        desc_en: "Anthropic simultaneously releases Claude 3 in three tiers (Opus / Sonnet / Haiku). Opus surpasses GPT-4 on multiple benchmarks for the first time, formally placing Anthropic in the AI top tier. The three-tier pricing structure (budget / mid / flagship) reshapes the industry's model-economics paradigm." },
+      { date: "2024-03-18", category: "infra", label: "NVIDIA Blackwell (GTC)",                      en: "NVIDIA Blackwell announced",
+        desc: "黄仁勋 GTC 主题演讲发布 Blackwell B200 系列,FP4 训练性能 5x、推理 30x、互连带宽 10TB/s。它验证了 AI 算力需求向下一代互连(光互连 + NVLink-5)切换的趋势。",
+        desc_en: "Jensen Huang's GTC keynote unveils the Blackwell B200 series — 5x FP4 training, 30x inference, 10TB/s interconnect bandwidth. It validates the transition of AI compute demand toward next-generation interconnects, including optical interconnect and NVLink-5." },
+      { date: "2024-05-08", category: "physical", label: "AlphaFold 3", en: "AlphaFold 3",
+        desc: "Google DeepMind 与 Isomorphic Labs 发布 AlphaFold 3,可预测生命分子结构及相互作用。它把 AI 从文本/代码/图像进一步推向生命科学中的物理结构建模,是“AI 物理模型化”的关键样本。",
+        desc_en: "Google DeepMind and Isomorphic Labs introduce AlphaFold 3, which predicts the structure and interactions of life's molecules. It pushes AI beyond text, code, and images into physical structure modeling in life sciences, a key example of AI becoming a physical-modeling layer." },
+      { date: "2024-05-13", category: "llm", label: "GPT-4o \u591a\u6a21\u6001",                   en: "GPT-4o multimodal",
+        desc: "OpenAI 发布 GPT-4o(\"o\" for omni),原生支持音频/图像/文本的统一多模态推理。响应延迟降到 320ms,接近真人对话节奏。实时多模态交互显著抬高了对低延迟光互连和大带宽内存的需求,推升下一代 AI 数据中心规格门槛。",
+        desc_en: "OpenAI releases GPT-4o ('o' for omni), with native unified multimodal reasoning across audio, image, and text. Latency drops to 320ms, approaching natural conversation cadence. Real-time multimodal interaction sharply raises demand for low-latency optical interconnect and high-bandwidth memory, lifting next-generation AI data center spec thresholds." },
+      { date: "2024-09-12", category: "llm", label: "OpenAI o1 \u63a8\u7406\u8303\u5f0f",          en: "o1 reasoning paradigm",
+        desc: "OpenAI 发布 o1-preview,首次以\"测试时计算 (test-time compute)\"范式公开发布——模型在推理阶段主动思考更久,代价是 token 消耗成数十倍上升。这彻底改变了 AI 算力需求曲线:从\"训练侧扩张\"转向\"训练 + 推理双扩张\",对推理芯片和数据中心容量的需求倍增。",
+        desc_en: "OpenAI launches o1-preview, the first public release of the 'test-time compute' paradigm — the model thinks longer at inference, at the cost of token consumption rising dozens-fold. This fundamentally reshapes the AI compute demand curve: from 'training-side expansion' to 'training + inference dual expansion,' multiplying demand for inference chips and data center capacity." },
+      { date: "2024-09-13", category: "physical", label: "李飞飞 World Labs", en: "Fei-Fei Li's World Labs",
+        desc: "李飞飞创立的 World Labs 出 stealth,宣布 2.3 亿美元融资,主线是 spatial intelligence: 让 AI 理解、生成并操控三维物理世界。这是从语言智能转向空间/世界模型的代表性产业节点。",
+        desc_en: "Fei-Fei Li's World Labs emerges from stealth with $230M in funding around spatial intelligence: AI that can understand, generate, and manipulate the 3D physical world. It becomes a flagship industrial signal for the shift from language intelligence toward spatial/world models." },
+      { date: "2024-10-08", category: "remarks", label: "Hinton Nobel 警告", en: "Hinton Nobel warning",
+        desc: "John Hopfield 与 Geoffrey Hinton 因神经网络基础工作获得 2024 年诺贝尔物理学奖,Hinton 随即继续强调 AI 失控风险。AI 从计算机科学进入物理学最高奖叙事,也让“创造者的风险警告”成为市场情绪变量。",
+        desc_en: "John Hopfield and Geoffrey Hinton receive the 2024 Nobel Prize in Physics for foundational neural-network work, and Hinton continues warning about AI risk. AI enters the Nobel physics narrative, while the creator's warning becomes a sentiment variable for the market." },
+      { date: "2025-01-27", category: "llm", label: "Stargate $500B / DeepSeek-R1 (NVDA -$600B)",  en: "Stargate + DeepSeek shock",
+        desc: "三件事交叠的\"AI 大地震日\":(1) OpenAI / 软银 / Oracle 联合宣布 5000 亿美元 Stargate 数据中心计划;(2) 深度求索发布开源推理模型 R1,性能媲美 o1 但训练成本仅 560 万美元;(3) NVIDIA 单日市值蒸发 6000 亿美元,创美股单日个股蒸发纪录。市场首次开始重新评估\"AI 算力垄断\"叙事。",
+        desc_en: "Three overlapping events make this the 'AI earthquake day': (1) OpenAI / SoftBank / Oracle jointly announce the $500B Stargate data center initiative; (2) DeepSeek releases the open-source R1 reasoning model, matching o1's performance at just $5.6M training cost; (3) NVIDIA loses $600B market cap in a single day — the largest single-stock single-day wipeout in US market history. The market begins reassessing the 'AI compute monopoly' narrative for the first time." },
+      { date: "2025-05-22", category: "llm", label: "Claude 4 (Opus 4 / Sonnet 4)",                en: "Claude 4 released",
+        desc: "Anthropic 发布 Claude 4 系列。Opus 4 在 SWE-bench(软件工程基准)上达到 SOTA,标志 AI 在代码工程任务上首次系统性超越平均开发者。Anthropic 在企业代码 / agentic 工作流市场占据主导,加深 OpenAI / Anthropic / Google 的三足鼎立格局。",
+        desc_en: "Anthropic releases the Claude 4 series. Opus 4 reaches SOTA on SWE-bench (software engineering benchmark), marking AI's first systematic surpassing of average developers on code engineering tasks. Anthropic dominates the enterprise code / agentic workflow market, deepening the OpenAI / Anthropic / Google triumvirate." },
+      { date: "2025-06-11", category: "physical", label: "杨立坤 V-JEPA 2", en: "Yann LeCun V-JEPA 2",
+        desc: "Meta 发布 V-JEPA 2,延续杨立坤 JEPA/世界模型路线,强调通过视频学习物理世界表征,让机器人和智能体预测行动后的世界变化。它把“不是下一个 token,而是预测世界状态”推到主线叙事。",
+        desc_en: "Meta introduces V-JEPA 2, extending Yann LeCun's JEPA/world-model program. The model learns physical-world representations from video so robots and agents can predict how the world changes after actions. It pushes the narrative from 'predicting the next token' toward predicting future world states." },
+      { date: "2025-08-07", category: "llm", label: "GPT-5 \u53d1\u5e03",                           en: "GPT-5 released",
+        desc: "OpenAI 发布 GPT-5,统一架构设计——内置 router 自动路由到 instant / thinking / pro 三档,无需用户选择模型。HealthBench、coding 多项 SOTA。Altman 称这是\"第一个让人感觉真在跟 PhD 对话\"的模型,标志通用助手能力越过新阈值。",
+        desc_en: "OpenAI releases GPT-5 with a unified architecture — a built-in router automatically dispatches to instant / thinking / pro tiers, eliminating user model selection. SOTA across HealthBench, coding, and more. Altman calls it 'the first model that genuinely feels like talking to a PhD,' marking a new threshold for general-assistant capability." },
+      { date: "2025-11-17", category: "physical", label: "Project Prometheus", en: "Project Prometheus",
+        desc: "Jeff Bezos 参与的 Project Prometheus 公开进入市场,以数十亿美元级别资金押注 physical AI / 物理经济,目标指向工程、制造、机器人、航天等真实世界任务。这代表世界模型从研究路线进入重资本产业组织。",
+        desc_en: "Project Prometheus, backed by Jeff Bezos, enters the market with multi-billion-dollar funding for physical AI and the physical economy, targeting real-world tasks across engineering, manufacturing, robotics, aerospace, and related domains. It marks world models moving from research thesis into heavy-capital industrial organization." },
+      { date: "2026-02-19", category: "llm", label: "Gemini 3.1 Pro",                              en: "Gemini 3.1 Pro",
+        desc: "Google DeepMind 发布 Gemini 3.1 Pro,在 LMSys / GPQA 等多项基准重夺第一名。Google 在沉寂数月后重回 AI 第一梯队前列,三巨头格局(OpenAI / Anthropic / Google)首次在能力维度趋于均衡——客户的多供应商策略由此成为主流。",
+        desc_en: "Google DeepMind releases Gemini 3.1 Pro, reclaiming first place across LMSys / GPQA and other benchmarks. After months of relative quiet, Google returns to the AI top tier — for the first time, the three-way standoff (OpenAI / Anthropic / Google) reaches near-parity on capability, making multi-vendor strategy the customer mainstream." },
+      { date: "2026-04-23", category: "llm", label: "GPT-5.5 + DeepSeek V4 (\u540c\u65e5)",        en: "GPT-5.5 vs DeepSeek V4 same-day",
+        desc: "中美两端旗舰同日发布:OpenAI 推 GPT-5.5(强化 agentic 工作流 + 科研推理),深度求索同日推 V4(传出训练成本进一步下探)。市场情绪在\"美国领先\"与\"中国超车\"之间反复——本指数横跨两端,正是为了无视具体赢家、只跟随 AI 整体进化的速度。",
+        desc_en: "Flagships from both sides release on the same day: OpenAI's GPT-5.5 (enhanced agentic workflows + research-grade reasoning), and DeepSeek's V4 (rumored further training-cost reductions). Market sentiment oscillates between 'US still leads' and 'China overtakes' — this index spans both sides precisely to disregard specific winners and track AI's overall pace of evolution." },
+      { date: "2026-04-28", category: "infra", label: "\u66e6\u667a\u79d1\u6280 IPO",                en: "Lightelligence IPO",
+        desc: "曦智科技-P (01879.HK) 以 18C 章特专科技公司身份港交所上市,IPO 定价 183.2 HKD,公开发售超额认购 5784 倍。光电混合 AI 算力(oNOC + oNET + oMAC 三大核心芯片)是下一代算力基础设施的重要产业信号。",
+        desc_en: "Lightelligence-P (01879.HK) IPOs on the Hong Kong Stock Exchange under Chapter 18C (specialized technology companies), pricing at 183.2 HKD with public retail subscription oversubscribed 5,784x. Optoelectronic hybrid AI compute (the oNOC + oNET + oMAC three-chip stack) is an important industrial signal for next-generation compute infrastructure." },
+    ];
+
+    // ============================================================
+    //  Index components & calibrated synthetic parameters.
+    //  Calibrated for window 2022-11-30 to today (~890 trading days).
+    //  Endpoints chosen to match approximate real-world prices on
+    //  ChatGPT-launch day and today.
+    // ============================================================
+    const PORTFOLIOS = {
+      "drone": {
+        name: "无人机组合",
+        nameEn: "Drone Portfolio",
+        tag: "策略 · ONDS / UMAC / THEON / KOPN · 各 25%",
+        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN · 25 EACH",
+        footer: "四只股票等权配置，聚焦反无人机、防务无人机零部件、军用视觉设备与微显示头显光学。",
+        footerEn: "Equal-weight exposure to counter-UAS, drone components, military vision systems, and microdisplay optics.",
+        components: [
+          { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
+            concept: "Iron Drone 反无人机系统",
+            conceptEn: "Iron Drone counter-UAS systems",
+            marketCap: 4.5,
+            seed: 413, base: 1.2, vol: 0.055, drift: 0.00110 },
+          { name: "Unusual Machines",              short: "UMAC",           ticker: "UMAC",      weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
+            concept: "无人机零部件供应商",
+            conceptEn: "Drone component supplier",
+            marketCap: 0.7,
+            seed: 909, base: 4.8, vol: 0.065, drift: 0.00130 },
+          { name: "Theon International",           short: "THEON",          ticker: "THEON.AS",  weight: 0.25, ccy: "EUR", sleeve: "EU", status: "active",
+            concept: "军用夜视 · 热成像 · ISR",
+            conceptEn: "Military night vision · thermal imaging · ISR",
+            marketCap: 2.5,
+            seed: 1997, base: 12.5, vol: 0.026, drift: 0.00075 },
+          { name: "Kopin",                         short: "KOPN",           ticker: "KOPN",      weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
+            concept: "军用微显示 · 头显光学",
+            conceptEn: "Microdisplays · defense wearable optics",
+            marketCap: 0.3,
+            seed: 405, base: 1.6, vol: 0.045, drift: 0.00095 },
+        ],
+      },
+      "global-ai-hedge": {
+        name: "全球AI对冲",
+        nameEn: "Global AI Hedge",
+        tag: "策略 · PDD / NYT · 各 50%",
+        tagEn: "STRATEGY · PDD / NYT · 50 EACH",
+        footer: "两只股票等权配置，聚焦 AI 生产力平台与 AI 数据版权。",
+        footerEn: "Equal-weight exposure to AI productivity platforms and AI data rights.",
+        components: [
+          { name: "拼多多",                         short: "PDD",            ticker: "PDD",       weight: 0.50, ccy: "USD", sleeve: "CN", status: "active",
+            concept: "AI 生产力",
+            conceptEn: "AI productivity",
+            marketCap: 165.0,
+            seed: 200, base: 80, vol: 0.030, drift: 0.00040 },
+          { name: "纽约时报",                       short: "NYT",            ticker: "NYT",       weight: 0.50, ccy: "USD", sleeve: "US", status: "active",
+            concept: "AI 数据版权",
+            conceptEn: "AI data rights",
+            marketCap: 11.0,
+            seed: 7, base: 36, vol: 0.014, drift: 0.00050 },
+        ],
+      },
+      "china-leading": {
+        name: "中国领先指数",
+        nameEn: "China Leadership Index",
+        tag: "策略 · PDD / BYD / 贵州茅台 · 各 33.33%",
+        tagEn: "STRATEGY · PDD / BYD / KWEICHOW MOUTAI · 33.33 EACH",
+        footer: "三只股票等权配置，覆盖中国平台消费、智能制造与高端消费龙头。",
+        footerEn: "Equal-weight exposure to Chinese platform consumption, intelligent manufacturing, and premium consumer leadership.",
+        components: [
+          { name: "拼多多",                         short: "PDD",            ticker: "PDD",       weight: 1 / 3, ccy: "USD", sleeve: "CN", status: "active",
+            concept: "平台消费 · AI 生产力",
+            conceptEn: "Platform consumption · AI productivity",
+            marketCap: 165.0,
+            seed: 200, base: 80, vol: 0.030, drift: 0.00040 },
+          { name: "比亚迪",                         short: "BYD",            ticker: "002594.SZ", weight: 1 / 3, ccy: "CNY", sleeve: "CN", status: "active",
+            concept: "智能制造 · 电池 + 电机 + 电控",
+            conceptEn: "Intelligent manufacturing · battery + motor + controls",
+            marketCap: 118.0,
+            seed: 2594, base: 250, vol: 0.024, drift: 0.00035 },
+          { name: "贵州茅台",                       short: "茅台",           ticker: "600519.SS", weight: 1 / 3, ccy: "CNY", sleeve: "CN", status: "active",
+            concept: "高端消费龙头",
+            conceptEn: "Premium consumer leader",
+            marketCap: 260.0,
+            seed: 519, base: 1600, vol: 0.015, drift: 0.00010 },
+        ],
+      },
+      "blockchain": {
+        name: "区块链指数",
+        nameEn: "Blockchain Index",
+        tag: "策略 · TRX / HYPE / SKY · 各 33.33%",
+        tagEn: "STRATEGY · TRX / HYPE / SKY · 33.33 EACH",
+        footer: "三只加密资产等权配置，覆盖公链、链上交易基础设施与稳定币治理生态。",
+        footerEn: "Equal-weight exposure to public-chain, on-chain trading infrastructure, and stablecoin-governance ecosystems.",
+        components: [
+          { name: "TRON",                           short: "TRX",            ticker: "TRX-USD",      weight: 1 / 3, ccy: "USD", sleeve: "CRYPTO", status: "active",
+            concept: "公链 · 稳定币结算网络",
+            conceptEn: "Public chain · stablecoin settlement network",
+            marketCap: 32.0,
+            seed: 1958, base: 0.05, vol: 0.028, drift: 0.00050 },
+          { name: "Hyperliquid",                    short: "HYPE",           ticker: "HYPE32196-USD", weight: 1 / 3, ccy: "USD", sleeve: "CRYPTO", status: "active",
+            concept: "链上交易基础设施",
+            conceptEn: "On-chain trading infrastructure",
+            marketCap: 14.0,
+            seed: 32196, base: 4.0, vol: 0.065, drift: 0.00120 },
+          { name: "Sky",                            short: "SKY",            ticker: "SKY-USD",      weight: 1 / 3, ccy: "USD", sleeve: "CRYPTO", status: "active",
+            concept: "稳定币治理生态",
+            conceptEn: "Stablecoin-governance ecosystem",
+            marketCap: 2.0,
+            seed: 2024, base: 0.06, vol: 0.034, drift: 0.00045 },
+        ],
+      },
+      "ev": {
+        name: "电动车指数",
+        nameEn: "Electric Vehicle Index",
+        tag: "策略 · BYD / TESLA / NIO / 零跑 / 奇瑞 / 吉利 · 各 16.67%",
+        tagEn: "STRATEGY · BYD / TESLA / NIO / LEAPMOTOR / CHERY / GEELY · 16.67 EACH",
+        footer: "六只股票等权配置，覆盖中美电动车整车与中国自主品牌车企。",
+        footerEn: "Equal-weight exposure to US and Chinese EV makers and leading China auto brands.",
+        components: [
+          { name: "比亚迪",                         short: "BYD",            ticker: "002594.SZ", weight: 1 / 6, ccy: "CNY", sleeve: "CN", status: "active",
+            concept: "电动车龙头 · 电池 + 电机 + 电控",
+            conceptEn: "EV leader · battery + motor + controls",
+            marketCap: 118.0,
+            seed: 2594, base: 250, vol: 0.024, drift: 0.00035 },
+          { name: "Tesla",                          short: "TSLA",           ticker: "TSLA",      weight: 1 / 6, ccy: "USD", sleeve: "US", status: "active",
+            concept: "全球电动车龙头",
+            conceptEn: "Global EV leader",
+            marketCap: 850.0,
+            seed: 2003, base: 180, vol: 0.035, drift: 0.00045 },
+          { name: "NIO",                            short: "NIO",            ticker: "NIO",       weight: 1 / 6, ccy: "USD", sleeve: "CN", status: "active",
+            concept: "中国高端智能电动车",
+            conceptEn: "China premium smart EV",
+            marketCap: 10.0,
+            seed: 2018, base: 12, vol: 0.045, drift: -0.00005 },
+          { name: "零跑汽车",                       short: "零跑",           ticker: "9863.HK",   weight: 1 / 6, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "中国智能电动车",
+            conceptEn: "China smart EV maker",
+            marketCap: 8.0,
+            seed: 9863, base: 35, vol: 0.040, drift: 0.00035 },
+          { name: "奇瑞汽车",                       short: "奇瑞",           ticker: "9973.HK",   weight: 1 / 6, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "中国自主品牌汽车",
+            conceptEn: "China domestic auto brand",
+            marketCap: 25.0,
+            seed: 9973, base: 30, vol: 0.038, drift: 0.00030 },
+          { name: "吉利汽车",                       short: "吉利",           ticker: "0175.HK",   weight: 1 / 6, ccy: "HKD", sleeve: "CN", status: "active",
+            concept: "中国自主品牌 · 新能源转型",
+            conceptEn: "China domestic auto brand · NEV transition",
+            marketCap: 20.0,
+            seed: 175, base: 12, vol: 0.030, drift: 0.00020 },
+        ],
+      },
+    };
+    let currentPortfolioKey = "drone";
+    let COMPONENTS_CONFIG = PORTFOLIOS[currentPortfolioKey].components;
+    let CONFIG_BY_TICKER = Object.fromEntries(COMPONENTS_CONFIG.map((c) => [c.ticker, c]));
+
+    async function loadData() {
+      try {
+        const r = await fetch("data.json", { cache: "no-store" });
+        if (!r.ok) throw new Error("no data.json");
+        const j = await r.json();
+        if (j.components && j.components.length && j.fx) {
+          const dateAxis = j.components.find((c) => c?.data?.length)?.data?.map((d) => d.date) || [];
+          return { ...j, fx: ensureFxRates(j.fx, dateAxis) };
+        }
+      } catch (_) {}
+
+      // Synthetic fallback. All components & both FX series share
+      // the same trading-date axis (from ChatGPT launch through today).
+      const dates = generateTradingDates(INCEPTION_DATE);
+      const allConfigs = uniquePortfolioConfigs().filter((c) => c.status !== "prelist");
+      const components = allConfigs.map((c) => ({
+        name: c.name, short: c.short, ticker: c.ticker, weight: c.weight, ccy: c.ccy,
+        sleeve: c.sleeve, status: c.status,
+        data: generateOHLC(c.seed, c.base, c.vol, c.drift, dates),
+      }));
+      return {
+        components,
+        fx: {
+          CNY: generateFX(2024, 7.05, 0.0035, 0.000020, dates),  // CNY per USD: 7.05 -> ~7.15
+          HKD: generateFX(2022, 7.80, 0.0008, 0,        dates),  // HKD/USD peg: ~7.80
+          EUR: generateFX(2027, 0.92, 0.0025, 0,        dates),  // EUR per USD
+        },
+        benchmarks: {
+          NASDAQ: {
+            name: "Nasdaq Composite",
+            ticker: "^IXIC",
+            data: generateBenchmark(909, 10500, 0.016, 0.00045, dates),
+          },
+        },
+        yields: {
+          CN10Y: {
+            name: "中国10年国债",
+            ticker: "CN10Y",
+            data: generateYieldPath(1010, 2.85, 0.025, -0.0005, dates, 1.5, 4.0),
+          },
+          US10Y: {
+            name: "美国10年国债",
+            ticker: "^TNX",
+            data: generateYieldPath(2026, 3.7, 0.035, 0.0002, dates, 2.0, 6.0),
+          },
+          FEDFUNDS_APR27: {
+            name: "Fed Funds Apr '27 Implied Rate",
+            ticker: "ZQJ27",
+            source_ticker: "synthetic",
+            source_note: "Synthetic fallback; production data is generated by docs/fetch_data.py.",
+            quote_formula: "implied_rate = 100 - futures_price",
+            barchart_url: "https://www.barchart.com/futures/quotes/ZQJ27/interactive-chart",
+            tradingview_symbol: "CBOT:ZQJ2027",
+            data: generateYieldPath(202704, 3.08, 0.018, -0.00015, dates, 1.0, 6.0),
+          },
+        },
+      };
+    }
+
+    // ============================================================
+    //  Chart
+    // ============================================================
+    const chart = echarts.init(document.getElementById("chart"), null, { renderer: "canvas" });
+    let dataPool = null;         // all fetched components; portfolios filter from this pool
+    let rawData = null;          // normalized components, FX, benchmark, and macro curves
+    let currentPeriod = "D";
+    let currentType = "candle";
+    let currentCurrency = "USD"; // industry-standard default for global indices
+    let currentRebalance = "PERIODIC";
+    let currentPeriodDays = 5;          // 5 trading days = 1 calendar week
+    let currentChartAsset = "INDEX";
+    let currentComponentRank = "weight";
+    let currentEventCategory = "all";
+    let popoverLang = (() => {
+      try {
+        return localStorage.getItem("aiIndexPopoverLang") || "zh";
+      } catch (_) {
+        return "zh";
+      }
+    })();
+
+    // Default zoom per period — show full window in all modes so T₀
+    // (ChatGPT inception, leftmost bar) is always visible by default.
+    const ZOOM_DEFAULTS = {
+      D: { start: 0, end: 100 },
+      W: { start: 0, end: 100 },
+      M: { start: 0, end: 100 },
+    };
+
+    function hasTradableData(component) {
+      return Array.isArray(component?.data) && component.data.length > 0;
+    }
+
+    function mergedComponentMeta(component) {
+      const config = COMPONENTS_CONFIG.find((c) => c.ticker === component.ticker) || {};
+      return { ...config, ...component };
+    }
+
+    function normalizeComponentWeights(components) {
+      const configTickers = COMPONENTS_CONFIG
+        .filter((c) => c.status !== "prelist")
+        .map((c) => c.ticker);
+      const dateAxis = components.find((c) => c?.data?.length)?.data?.map((d) => d.date) || generateTradingDates(INCEPTION_DATE);
+      const byTicker = new Map(components.map((c) => [c.ticker, c]));
+      return configTickers.map((ticker) => {
+        const config = CONFIG_BY_TICKER[ticker] || {};
+        const incoming = byTicker.get(ticker);
+        const merged = mergedComponentMeta(incoming || config);
+        const data = hasTradableData(merged)
+          ? merged.data
+          : generateOHLC(config.seed, config.base, config.vol, config.drift, dateAxis);
+        return {
+          ...merged,
+          data,
+          weight: hasTradableData({ data }) ? config.weight : 0,
+        };
+      });
+    }
+
+    function ensureFxRates(fx, dates) {
+      const out = { ...(fx || {}) };
+      if (!out.CNY && dates.length) out.CNY = generateFX(2024, 7.05, 0.0035, 0.000020, dates);
+      if (!out.HKD && dates.length) out.HKD = generateFX(2022, 7.80, 0.0008, 0, dates);
+      if (!out.EUR && dates.length) out.EUR = generateFX(2027, 0.92, 0.0025, 0, dates);
+      return out;
+    }
+
+    function uniquePortfolioConfigs() {
+      const byTicker = new Map();
+      Object.values(PORTFOLIOS).forEach((portfolio) => {
+        portfolio.components.forEach((component) => {
+          if (!byTicker.has(component.ticker)) byTicker.set(component.ticker, component);
+        });
+      });
+      return [...byTicker.values()];
+    }
+
+    function setPortfolioConfig(key) {
+      currentPortfolioKey = PORTFOLIOS[key] ? key : "drone";
+      COMPONENTS_CONFIG = PORTFOLIOS[currentPortfolioKey].components;
+      CONFIG_BY_TICKER = Object.fromEntries(COMPONENTS_CONFIG.map((c) => [c.ticker, c]));
+    }
+
+    function activePortfolio() {
+      return PORTFOLIOS[currentPortfolioKey] || PORTFOLIOS.drone;
+    }
+
+    function portfolioDataFromPool(dataPool) {
+      if (!dataPool) return null;
+      return {
+        ...dataPool,
+        components: normalizeComponentWeights(dataPool.components || []),
+      };
+    }
+
+    function countryFlag(component) {
+      if (component.ticker === "THEON.AS") return "🇳🇱";
+      if (component.ccy === "CNY") return "🇨🇳";
+      if (component.ccy === "HKD") return "🇭🇰";
+      return "🇺🇸";
+    }
+
+    function renderStrategyBar() {
+      const portfolio = activePortfolio();
+      document.querySelector(".strategy-tag").textContent = t(portfolio.tag, portfolio.tagEn);
+      const classes = ["strategy-bar-stable", "strategy-bar-us", "strategy-bar-cn", "strategy-bar-core"];
+      document.querySelector(".strategy-bar").innerHTML = portfolio.components.map((component, i) => `
+        <div class="${classes[i % classes.length]}">
+          <div class="strategy-bar-row">
+            <span class="strategy-bar-label">${countryFlag(component)} ${component.short}</span>
+            <span class="strategy-bar-pct">${formatWeightPct(component.weight)}</span>
+          </div>
+          <div class="strategy-bar-detail">${t(`${component.name} · ${component.concept}`, `${component.name} · ${component.conceptEn}`)}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderAssetButtons() {
+      const buttons = [
+        `<button data-asset="INDEX" class="${currentChartAsset === "INDEX" ? "active" : ""}"><span class="btn-main">${t("指数", "Index")}</span><span class="btn-sub">Index</span></button>`,
+        ...COMPONENTS_CONFIG.map((component) => `
+          <button data-asset="${component.ticker}" class="${currentChartAsset === component.ticker ? "active" : ""}">
+            <span class="btn-main">${component.short}</span><span class="btn-sub">${formatWeightPct(component.weight)}</span>
+          </button>
+        `),
+      ];
+      document.getElementById("asset-group").querySelectorAll("button[data-asset]").forEach((btn) => btn.remove());
+      document.getElementById("asset-group").insertAdjacentHTML("beforeend", buttons.join(""));
+    }
+
+    function t(zh, en) {
+      return popoverLang === "en" ? en : zh;
+    }
+
+    function renderStaticLanguage() {
+      const portfolio = activePortfolio();
+      document.querySelector(".floating-lang-toggle").title = t("页面语言 / 悬浮窗语言", "Page Language / Popover Language");
+      document.querySelector("h1").innerHTML = t(
+        `${portfolio.name} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.nameEn.toUpperCase()}</span>`,
+        `${portfolio.nameEn} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.name}</span>`
+      );
+
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 5 个组合", "PORTFOLIO CHANNELS · 5 PORTFOLIOS");
+      const pillars = [
+        {
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">无人机组合</span>', '<span class="m-key">Drone Portfolio</span>'],
+          en: ["Drone Portfolio", "无人机组合"],
+        },
+        {
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">全球AI对冲</span>', '<span class="m-key">Global AI Hedge</span>'],
+          en: ["Global AI Hedge", "全球AI对冲"],
+        },
+        {
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">中国领先指数</span>', '<span class="m-key">China Leadership Index</span>'],
+          en: ["China Leadership Index", "中国领先指数"],
+        },
+        {
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">区块链指数</span>', '<span class="m-key">Blockchain Index</span>'],
+          en: ["Blockchain Index", "区块链指数"],
+        },
+        {
+          cat: ["组合", "Portfolio"],
+          text: ['<span class="m-key">电动车指数</span>', '<span class="m-key">Electric Vehicle Index</span>'],
+          en: ["Electric Vehicle Index", "电动车指数"],
+        },
+      ];
+      document.querySelectorAll(".manifesto-pillars li").forEach((row, i) => {
+        const p = pillars[i];
+        if (!p) return;
+        row.classList.toggle("active", row.dataset.portfolio === currentPortfolioKey);
+        row.querySelector(".pillar-cat").textContent = t(p.cat[0], p.cat[1]);
+        row.querySelector(".pillar-text").innerHTML = `${t(p.text[0], p.text[1])}<span class="pillar-en">${t(p.en[0], p.en[1])}</span>`;
+      });
+      document.querySelector(".manifesto-footer").innerHTML = t(
+        `${portfolio.footer}<span class="manifesto-footer-en">${portfolio.footerEn}</span>`,
+        `${portfolio.footerEn}<span class="manifesto-footer-en">${portfolio.footer}</span>`
+      );
+
+      renderStrategyBar();
+
+      const metaLabels = document.querySelectorAll(".meta-label");
+      const metaDetails = document.querySelectorAll(".meta-detail");
+      if (metaLabels.length >= 4) {
+        metaLabels[0].textContent = t("起点", "INCEPTION");
+        metaLabels[1].textContent = t("基准", "BASE");
+        metaLabels[2].textContent = t("计价", "QUOTE");
+        metaLabels[3].textContent = t("再平衡", "REBALANCE");
+      }
+      if (metaDetails.length >= 4) {
+        metaDetails[0].textContent = t("ChatGPT 公开发布日", "ChatGPT public launch date");
+        metaDetails[1].textContent = t("归一化起点", "Normalized starting point");
+        metaDetails[2].textContent = t("FX 历史汇率折算", "Converted with historical FX");
+        metaDetails[3].textContent = t("每 5 个交易日重置权重", "Weights reset every 5 trading days");
+      }
+
+      document.querySelector("#period-group .control-group-label").textContent = t("周期", "Period");
+      document.querySelector('#period-group button[data-period="D"] .btn-main').textContent = t("日", "Day");
+      document.querySelector('#period-group button[data-period="W"] .btn-main').textContent = t("周", "Week");
+      document.querySelector('#period-group button[data-period="M"] .btn-main').textContent = t("月", "Month");
+      document.querySelector("#type-group .control-group-label").textContent = t("图型", "Chart");
+      document.querySelector('#type-group button[data-type="candle"] .btn-main').textContent = t("K线", "Candle");
+      document.querySelector('#type-group button[data-type="line"] .btn-main').textContent = t("折线", "Line");
+      document.querySelector("#asset-group .control-group-label").textContent = t("标的", "Asset");
+      renderAssetButtons();
+      document.querySelector('#asset-group button[data-asset="INDEX"] .btn-main').textContent = t("指数", "Index");
+      document.querySelector('#asset-group button[data-asset="INDEX"] .btn-sub').textContent = t("Index", "Index");
+      updateAssetControls();
+      document.querySelector("#event-group .control-group-label").textContent = t("事件", "Events");
+      document.querySelector('#event-group button[data-event="all"] .btn-main').textContent = t("全部", "All");
+      document.querySelector('#event-group button[data-event="paper"] .btn-main').textContent = t("论文", "Paper");
+      document.querySelector('#event-group button[data-event="remarks"] .btn-main').textContent = t("言论", "Remarks");
+
+      document.querySelector(".components-header-title").textContent = t("成分股 · 各自代表的 AI 子赛道", "COMPONENTS · AI subsector represented by each holding");
+      document.querySelector('[data-rank="weight"]').textContent = t("权重", "Weight");
+      document.querySelector('[data-rank="mcap"]').textContent = t("市值", "Market Cap");
+      document.querySelector('[data-rank="return"]').textContent = t("总涨幅", "Return");
+      document.querySelector('[data-rank="contribution"]').textContent = t("贡献", "Contribution");
+      document.getElementById("total-mcap-label").textContent = t("总市值 / TOTAL CAP", "TOTAL MARKET CAP");
+      document.querySelector(".milestones-header").textContent = t("AI 大事记", "AI Era Milestones");
+      document.querySelector(".footer").innerHTML = t(
+        'Data: 内置合成示例数据 (synthetic seeded sample, 含 FX) · 替换真实数据请用 <code>fetch_data.py</code> 生成 <code>data.json</code>',
+        'Data: built-in synthetic seeded sample with FX · generate <code>data.json</code> via <code>fetch_data.py</code> to use real data'
+      );
+    }
+
+    // For markLine xAxis on a category axis, the date string must match
+    // an existing category. After D->W/M aggregation the dates change;
+    // snapDate finds the closest available date.
+    function snapDate(target, dates) {
+      const t = new Date(target).getTime();
+      let best = dates[0], bestDelta = Math.abs(new Date(best).getTime() - t);
+      for (let i = 1; i < dates.length; i++) {
+        const dt = Math.abs(new Date(dates[i]).getTime() - t);
+        if (dt < bestDelta) { bestDelta = dt; best = dates[i]; }
+      }
+      return best;
+    }
+
+    function visibleMilestones() {
+      return AI_MILESTONES
+        .map((m, i) => ({ m, i }))
+        .filter(({ m }) => currentEventCategory === "all" || m.category === currentEventCategory);
+    }
+
+    // Build the markLine config for AI milestones, snapped to the
+    // current data's date axis.
+    function buildMilestoneMarkLine(dates) {
+      return {
+        silent: false,
+        symbol: ["none", "none"],
+        animation: false,
+        data: visibleMilestones().map(({ m, i }) => {
+          // First milestone (ChatGPT) is the index inception — render it
+          // distinctively: solid gold line + "T₀" badge instead of a number.
+          const isInception = i === 0;
+          const category = milestoneCategory(m.category);
+          return {
+            xAxis: snapDate(m.date, dates),
+            label: {
+              show: true,
+              formatter: isInception ? "T\u2080" : String(i + 1),
+              position: "insideEndTop",
+              color: isInception ? "#0a0e1a" : "#fff",
+              fontSize: isInception ? 11 : 10,
+              fontWeight: 700,
+              backgroundColor: isInception ? "#ffd166" : category.color,
+              padding: [3, 6, 3, 6],
+              borderRadius: 9,
+              align: "center",
+              distance: -2,
+            },
+            lineStyle: {
+              color: isInception ? "rgba(255, 209, 102, 0.65)" : category.line,
+              type:  isInception ? "solid"  : "dashed",
+              width: isInception ? 2        : 1,
+            },
+            milestoneIdx: i,
+          };
+        }),
+      };
+    }
+
+    function getYieldData(period) {
+      const cn = rawData?.yields?.CN10Y?.data?.length ? aggregate(rawData.yields.CN10Y.data, period) : [];
+      const us = rawData?.yields?.US10Y?.data?.length ? aggregate(rawData.yields.US10Y.data, period) : [];
+      const fed = rawData?.yields?.FEDFUNDS_APR27?.data?.length
+        ? aggregate(rawData.yields.FEDFUNDS_APR27.data, period)
+        : [];
+      return {
+        cn: cn.map((d) => +d.close.toFixed(3)),
+        us: us.map((d) => +d.close.toFixed(3)),
+        fed: fed.map((d) => +d.close.toFixed(3)),
+      };
+    }
+
+    function updateAssetControls() {
+      if (!rawData?.components?.length) return;
+      document.querySelectorAll("#asset-group button[data-asset]").forEach((btn) => {
+        const ticker = btn.dataset.asset;
+        if (ticker === "INDEX") return;
+        const component = rawData.components.find((c) => c.ticker === ticker);
+        const config = CONFIG_BY_TICKER[ticker] || {};
+        const isTradable = Boolean(component?.data?.length && component.status !== "prelist");
+        btn.disabled = !isTradable;
+        const sub = btn.querySelector(".btn-sub");
+        if (!sub) return;
+        if (isTradable) {
+          sub.textContent = formatWeightPct(component.weight || 0);
+        } else if (config.status === "prelist") {
+          sub.textContent = t("预上市", "Pre");
+        }
+      });
+    }
+
+    function convertedComponentIndex(component) {
+      if (!component?.data?.length) return [];
+      const firstClose = componentCloseInCurrency(component, 0);
+      return component.data.map((bar, i) => {
+        const r = convRate(component.ccy, currentCurrency, rawData.fx, i);
+        const scale = firstClose ? 100 / firstClose : 1;
+        return {
+          date: bar.date,
+          open: bar.open * r * scale,
+          high: bar.high * r * scale,
+          low: bar.low * r * scale,
+          close: bar.close * r * scale,
+        };
+      });
+    }
+
+    function chartAssetLabel(assetKey) {
+      if (assetKey === "INDEX") {
+        const portfolio = activePortfolio();
+        return t(portfolio.name, portfolio.nameEn);
+      }
+      const config = CONFIG_BY_TICKER[assetKey] || {};
+      const component = rawData?.components?.find((c) => c.ticker === assetKey);
+      const name = config.name || component?.name || assetKey;
+      const short = config.short || component?.short || assetKey;
+      return `${t(name, short)} · ${assetKey}`;
+    }
+
+    function getChartData() {
+      if (currentChartAsset === "INDEX") {
+        return {
+          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays), currentPeriod),
+          label: chartAssetLabel("INDEX"),
+        };
+      }
+      const component = rawData.components.find((c) => c.ticker === currentChartAsset);
+      if (!component) {
+        return {
+          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays), currentPeriod),
+          label: chartAssetLabel("INDEX"),
+        };
+      }
+      return {
+        data: aggregate(convertedComponentIndex(component), currentPeriod),
+        label: chartAssetLabel(currentChartAsset),
+      };
+    }
+
+    function buildOption(data, type, chartLabel) {
+      const xs = data.map((d) => d.date);
+      const ohlc = data.map((d) => [d.open, d.close, d.low, d.high]);
+      const closes = data.map((d) => +d.close.toFixed(2));
+      const milestones = buildMilestoneMarkLine(xs);
+      const yields = getYieldData(currentPeriod);
+      const portfolio = activePortfolio();
+      const indexSeriesName = chartLabel || t(portfolio.name, portfolio.nameEn);
+      const cnYieldName = t("中国10Y", "China 10Y");
+      const usYieldName = t("美国10Y", "US 10Y");
+      const fedFundsName = t("Fed Funds Apr'27隐含利率", "Fed Funds Apr '27 implied");
+
+      const series =
+        type === "candle"
+          ? [{
+              name: indexSeriesName,
+              type: "candlestick",
+              xAxisIndex: 0,
+              yAxisIndex: 0,
+              data: ohlc,
+              itemStyle: {
+                color: "#ef5350",
+                color0: "#26a69a",
+                borderColor: "#ef5350",
+                borderColor0: "#26a69a",
+              },
+              markLine: milestones,
+            }]
+          : [{
+              name: indexSeriesName,
+              type: "line",
+              xAxisIndex: 0,
+              yAxisIndex: 0,
+              data: closes,
+              smooth: true,
+              symbol: "none",
+              lineStyle: { color: "#5e9eff", width: 2 },
+              areaStyle: {
+                color: {
+                  type: "linear", x: 0, y: 0, x2: 0, y2: 1,
+                  colorStops: [
+                    { offset: 0, color: "rgba(94,158,255,0.32)" },
+                    { offset: 1, color: "rgba(94,158,255,0)" },
+                  ],
+                },
+              },
+              markLine: milestones,
+            }];
+
+      series.push(
+        {
+          name: cnYieldName,
+          type: "line",
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          data: yields.cn,
+          smooth: true,
+          symbol: "none",
+          lineStyle: { color: "#ffd166", width: 1.6 },
+        },
+        {
+          name: usYieldName,
+          type: "line",
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          data: yields.us,
+          smooth: true,
+          symbol: "none",
+          lineStyle: { color: "#26a69a", width: 1.6 },
+        },
+        {
+          name: fedFundsName,
+          type: "line",
+          xAxisIndex: 1,
+          yAxisIndex: 1,
+          data: yields.fed,
+          smooth: true,
+          symbol: "none",
+          lineStyle: { color: "#f0a868", width: 1.7 },
+        }
+      );
+
+      return {
+        backgroundColor: "transparent",
+        animation: true,
+        animationDuration: 400,
+        legend: {
+          right: 24,
+          top: 500,
+          itemWidth: 16,
+          itemHeight: 8,
+          textStyle: { color: "#8a96b3", fontSize: 11 },
+          data: [cnYieldName, usYieldName, fedFundsName],
+        },
+        graphic: [{
+          type: "text",
+          left: 60,
+          top: 500,
+          style: {
+            text: t("宏观利率 · 中美10Y + Fed Funds Apr'27", "MACRO RATES · 10Y yields + Fed Funds Apr '27"),
+            fill: "#6b7a99",
+            font: "700 11px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+            letterSpacing: 1,
+          },
+        }],
+        grid: [
+          { left: 60, right: 30, top: 30, height: 455 },
+          { left: 60, right: 30, top: 525, height: 105 },
+        ],
+        xAxis: [
+          {
+            type: "category",
+            data: xs,
+            gridIndex: 0,
+            axisLine: { lineStyle: { color: "#2a3654" } },
+            axisLabel: { color: "#8a96b3" },
+            splitLine: { show: false },
+          },
+          {
+            type: "category",
+            data: xs,
+            gridIndex: 1,
+            axisLine: { lineStyle: { color: "#2a3654" } },
+            axisLabel: { color: "#8a96b3" },
+            splitLine: { show: false },
+          },
+        ],
+        yAxis: [
+          {
+            scale: true,
+            gridIndex: 0,
+            axisLine: { show: false },
+            axisLabel: { color: "#8a96b3", formatter: (v) => v.toFixed(0) },
+            splitLine: { lineStyle: { color: "#1d2740" } },
+          },
+          {
+            scale: true,
+            gridIndex: 1,
+            axisLine: { show: false },
+            axisLabel: { color: "#8a96b3", formatter: (v) => v.toFixed(1) + "%" },
+            splitLine: { lineStyle: { color: "#1d2740" } },
+          },
+        ],
+        dataZoom: [
+          { type: "inside", xAxisIndex: [0, 1], start: ZOOM_DEFAULTS[currentPeriod].start, end: ZOOM_DEFAULTS[currentPeriod].end },
+          {
+            type: "slider",
+            xAxisIndex: [0, 1],
+            show: true,
+            backgroundColor: "transparent",
+            fillerColor: "rgba(94,158,255,0.12)",
+            borderColor: "#2a3654",
+            textStyle: { color: "#6b7a99" },
+            handleStyle: { color: "#5e9eff", borderColor: "#5e9eff" },
+            moveHandleStyle: { color: "#5e9eff" },
+            start: ZOOM_DEFAULTS[currentPeriod].start,
+            end: ZOOM_DEFAULTS[currentPeriod].end,
+            height: 22, bottom: 14,
+          },
+        ],
+        tooltip: {
+          trigger: "axis",
+          axisPointer: { type: "cross", lineStyle: { color: "#5e9eff", type: "dashed" } },
+          backgroundColor: "rgba(19,26,43,0.95)",
+          borderColor: "#2a3654",
+          textStyle: { color: "#e0e6f0" },
+          formatter: (params) => {
+            const p = params.find((item) => item.seriesName === indexSeriesName) || params[0];
+            const d = data[p.dataIndex];
+            if (!d) return "";
+            const cn10 = yields.cn[p.dataIndex];
+            const us10 = yields.us[p.dataIndex];
+            const fedFunds = yields.fed[p.dataIndex];
+            const yieldRows = `<div style="margin-top:7px;padding-top:6px;border-top:1px solid rgba(42,54,84,0.8)">
+              <div>${t("中国10Y", "China 10Y")}: <b style="color:#ffd166">${Number.isFinite(cn10) ? cn10.toFixed(3) : "—"}%</b></div>
+              <div>${t("美国10Y", "US 10Y")}: <b style="color:#26a69a">${Number.isFinite(us10) ? us10.toFixed(3) : "—"}%</b></div>
+              <div>${t("Fed Funds Apr'27隐含", "Fed Funds Apr '27 implied")}: <b style="color:#f0a868">${Number.isFinite(fedFunds) ? fedFunds.toFixed(3) : "—"}%</b></div>
+            </div>`;
+            if (type === "candle") {
+              const arrow = d.close >= d.open ? "▲" : "▼";
+              const color = d.close >= d.open ? "#ef5350" : "#26a69a";
+              return `<div style="font-weight:600;margin-bottom:6px">${d.date}</div>
+                <div>${t("开", "Open")}: <b>${d.open.toFixed(2)}</b></div>
+                <div>${t("高", "High")}: <b>${d.high.toFixed(2)}</b></div>
+                <div>${t("低", "Low")}: <b>${d.low.toFixed(2)}</b></div>
+                <div>${t("收", "Close")}: <b style="color:${color}">${arrow} ${d.close.toFixed(2)}</b></div>
+                ${yieldRows}`;
+            }
+            return `<div style="font-weight:600;margin-bottom:6px">${d.date}</div>
+              <div>${indexSeriesName}: <b>${d.close.toFixed(2)}</b></div>
+              ${yieldRows}`;
+          },
+        },
+        series,
+      };
+    }
+
+    function updateStats(data) {
+      const last = data[data.length - 1];
+      const prev = data[data.length - 2] || last;
+      const change = last.close - prev.close;
+      const pct = (change / prev.close) * 100;
+      const since = data[0].close;
+      const totalPct = ((last.close - since) / since) * 100;
+      const benchmark = rawData?.benchmarks?.NASDAQ?.data?.length
+        ? aggregate(rawData.benchmarks.NASDAQ.data, currentPeriod)
+        : [];
+      const benchmarkFirst = benchmark[0]?.close || 0;
+      const benchmarkLast = benchmark[benchmark.length - 1]?.close || 0;
+      const benchmarkPct = benchmarkFirst ? ((benchmarkLast - benchmarkFirst) / benchmarkFirst) * 100 : 0;
+      const spreadPct = totalPct - benchmarkPct;
+
+      const cls = change >= 0 ? "up" : "down";
+      const arrow = change >= 0 ? "▲" : "▼";
+      const totalCls = totalPct >= 0 ? "up" : "down";
+      const benchmarkCls = benchmarkPct >= 0 ? "up" : "down";
+      const spreadText = t(
+        `相对指数 ${spreadPct >= 0 ? "+" : ""}${spreadPct.toFixed(2)}pt`,
+        `${spreadPct >= 0 ? "+" : ""}${spreadPct.toFixed(2)}pt vs Index`
+      );
+
+      document.getElementById("stats").innerHTML = `
+        <div class="stat">
+          <div class="stat-label">${t("最新", "Latest")}</div>
+          <div class="stat-value">${last.close.toFixed(2)}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">${t("变化", "Change")}</div>
+          <div class="stat-value ${cls}">${arrow} ${Math.abs(change).toFixed(2)} (${pct.toFixed(2)}%)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">${t("累计", "Since Start")}</div>
+          <div class="stat-value ${totalCls}">${totalPct >= 0 ? "+" : ""}${totalPct.toFixed(2)}%</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">${t("NASDAQ 同期", "NASDAQ Same Period")}</div>
+          <div class="stat-value ${benchmarkCls}">${benchmarkPct >= 0 ? "+" : ""}${benchmarkPct.toFixed(2)}%</div>
+          <div class="meta-detail">${spreadText}</div>
+        </div>
+      `;
+    }
+
+    function render() {
+      const chartData = getChartData();
+      const data = chartData.data;
+      chart.setOption(buildOption(data, currentType, chartData.label), true);
+      updateStats(data);
+      renderComponentsPanel();
+      updateAssetControls();
+    }
+
+    document.getElementById("period-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      document.querySelectorAll("#period-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentPeriod = btn.dataset.period;
+      render();
+    });
+    document.getElementById("type-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      document.querySelectorAll("#type-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentType = btn.dataset.type;
+      render();
+    });
+    document.getElementById("asset-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-asset]");
+      if (!btn) return;
+      document.querySelectorAll("#asset-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentChartAsset = btn.dataset.asset;
+      render();
+    });
+    document.querySelector(".manifesto-pillars").addEventListener("click", (e) => {
+      const row = e.target.closest("li[data-portfolio]");
+      if (!row || row.dataset.portfolio === currentPortfolioKey) return;
+      setPortfolioConfig(row.dataset.portfolio);
+      currentChartAsset = "INDEX";
+      rawData = portfolioDataFromPool(dataPool);
+      renderStaticLanguage();
+      renderComponentsPanel();
+      if (rawData) render();
+    });
+    document.getElementById("event-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-event]");
+      if (!btn) return;
+      document.querySelectorAll("#event-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentEventCategory = btn.dataset.event;
+      activeIdx = null;
+      hidePopover();
+      renderMilestoneList();
+      if (rawData) render();
+    });
+    document.getElementById("components-rank-group").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-rank]");
+      if (!btn) return;
+      document.querySelectorAll("#components-rank-group button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentComponentRank = btn.dataset.rank;
+      renderComponentsPanel();
+    });
+    window.addEventListener("resize", () => chart.resize());
+
+    // ============================================================
+    //  Init
+    // ============================================================
+    // Format a USD-billion value for display: $X.XB / $XXXB / $X.XT
+    function formatMcap(billions) {
+      if (billions >= 1000) return "$" + (billions / 1000).toFixed(2) + "T";
+      if (billions >= 100)  return "$" + billions.toFixed(0) + "B";
+      if (billions >= 10)   return "$" + billions.toFixed(1) + "B";
+      if (billions >= 1)    return "$" + billions.toFixed(1) + "B";
+      return "$" + (billions * 1000).toFixed(0) + "M";
+    }
+
+    function formatSignedPct(v) {
+      const sign = v >= 0 ? "+" : "";
+      return sign + v.toFixed(1) + "%";
+    }
+
+    function formatContribution(v) {
+      const sign = v >= 0 ? "+" : "";
+      return sign + v.toFixed(2) + "pt";
+    }
+
+    function formatWeightPct(weight) {
+      const pct = weight * 100;
+      return (Math.abs(pct - Math.round(pct)) < 0.01 ? pct.toFixed(0) : pct.toFixed(2)) + "%";
+    }
+
+    function componentCloseInCurrency(component, idx) {
+      const bar = component.data[idx];
+      return bar.close * convRate(component.ccy, currentCurrency, rawData.fx, idx);
+    }
+
+    function getComponentRows() {
+      const rawComponents = rawData?.components?.length ? rawData.components : [];
+      const seenTickers = new Set(rawComponents.map((c) => c.ticker));
+      const pendingConfigs = COMPONENTS_CONFIG.filter((c) => c.status === "prelist" && !seenTickers.has(c.ticker));
+      const source = rawComponents.length ? [...rawComponents, ...pendingConfigs] : COMPONENTS_CONFIG;
+      const totalMcap = COMPONENTS_CONFIG.reduce((s, c) => s + (c.marketCap || 0), 0);
+      return source.map((component) => {
+        const config = CONFIG_BY_TICKER[component.ticker] || {};
+        const merged = { ...config, ...component };
+        const mcap = config.marketCap || 0;
+        let totalReturn = 0;
+        let contribution = 0;
+        if (rawData?.fx && component.data?.length && merged.status !== "prelist") {
+          const first = componentCloseInCurrency(component, 0);
+          const last = componentCloseInCurrency(component, component.data.length - 1);
+          totalReturn = first ? (last / first - 1) * 100 : 0;
+          contribution = merged.weight * totalReturn;
+        }
+        return {
+          ...merged,
+          displayName: t(merged.name, merged.short || merged.name),
+          displayConcept: t(merged.concept || "", merged.conceptEn || merged.concept || ""),
+          marketCap: mcap,
+          mcapPct: totalMcap > 0 ? (mcap / totalMcap) * 100 : 0,
+          totalReturn,
+          contribution,
+        };
+      });
+    }
+
+    function renderComponentsPanel() {
+      const rows = getComponentRows();
+      const totalMcap = rows.reduce((s, c) => s + (c.marketCap || 0), 0);
+      const sorters = {
+        weight: (a, b) => (a.status === "prelist") - (b.status === "prelist") || b.weight - a.weight || b.marketCap - a.marketCap,
+        mcap: (a, b) => (a.status === "prelist") - (b.status === "prelist") || b.marketCap - a.marketCap,
+        return: (a, b) => (a.status === "prelist") - (b.status === "prelist") || b.totalReturn - a.totalReturn,
+        contribution: (a, b) => (a.status === "prelist") - (b.status === "prelist") || b.contribution - a.contribution,
+      };
+      rows.sort(sorters[currentComponentRank] || sorters.weight);
+      const metricValue = (c) => {
+        if (currentComponentRank === "weight") return c.weight * 100;
+        if (currentComponentRank === "mcap") return c.marketCap;
+        if (currentComponentRank === "return") return Math.abs(c.totalReturn);
+        if (currentComponentRank === "contribution") return Math.abs(c.contribution);
+        return c.weight * 100;
+      };
+      const maxMetric = currentComponentRank === "mcap"
+        ? Math.max(totalMcap, 0.0001)
+        : Math.max(...rows.map(metricValue), 0.0001);
+      const metricBar = (c, valueText, labelText, toneClass = "") => {
+        const pct = Math.max(0, Math.min(100, (metricValue(c) / maxMetric) * 100));
+        return `<span class="component-metric ${toneClass}" style="--bar-pct:${pct.toFixed(1)}%">
+          <span class="component-metric-main"><span>${valueText}</span><span class="component-metric-label">${labelText}</span></span>
+          <span class="component-bar" aria-hidden="true"><span class="component-bar-fill"></span></span>
+        </span>`;
+      };
+      document.getElementById("total-mcap").textContent = formatMcap(totalMcap);
+      document.getElementById("components-list").innerHTML = rows.map((c, i) => {
+        const isMajor = c.weight >= 0.5;
+        const isPrelist = c.status === "prelist";
+        const wPct = formatWeightPct(c.weight);
+        const prelistLabel = t(c.preListingNote || "预上市代码", c.preListingNoteEn || "Pre-listing code");
+        const metric = isPrelist
+          ? metricBar(c, t("预上市", "Pre-listing"), prelistLabel)
+          : currentComponentRank === "weight"
+            ? metricBar(c, wPct, t("权重", "Weight"))
+            : currentComponentRank === "return"
+            ? metricBar(c, formatSignedPct(c.totalReturn), t("总涨幅", "Return"), c.totalReturn >= 0 ? "up" : "down")
+            : currentComponentRank === "contribution"
+              ? metricBar(c, formatContribution(c.contribution), t("贡献", "Contribution"), c.contribution >= 0 ? "up" : "down")
+              : metricBar(c, formatMcap(c.marketCap), `${c.mcapPct.toFixed(1)}%`);
+        return `<div class="component-row${isPrelist ? ' component-row--prelist' : ''}">
+          <span class="component-rank">${i + 1}</span>
+          <span class="component-weight${isMajor ? ' weight-major' : ''}${isPrelist ? ' weight-prelist' : ''}">${isPrelist ? t("候选", "Watch") : wPct}</span>
+          <span class="component-name">${c.displayName}</span>
+          <span class="component-ticker">${c.ticker}</span>
+          <span class="component-concept">${c.displayConcept || ''}</span>
+          ${metric}
+        </div>`;
+      }).join("");
+    }
+
+    renderComponentsPanel();
+
+    // ----- Hover popover for milestone descriptions -----
+    const popoverEl = document.getElementById("popover");
+    const popoverLangGroup = document.getElementById("popover-lang-group");
+    let activeIdx = null;        // currently shown milestone index
+    let hideTimer = null;        // delayed-hide timer (cancellable)
+
+    function categoryBadge(categoryKey, extraClass = "") {
+      const category = milestoneCategory(categoryKey);
+      const label = t(category.zh, category.en);
+      return `<span class="milestone-category milestone-category--${categoryKey || 'llm'} ${extraClass}" style="background:${category.bg};color:${category.color}">${label}</span>`;
+    }
+
+    function renderMilestoneList() {
+      document.getElementById("milestones-list").innerHTML = visibleMilestones().map(({ i }) =>
+        `<div class="milestone" data-idx="${i}">
+           <span class="milestone-num${i === 0 ? ' milestone-num-inception' : ''}">${i === 0 ? 'T\u2080' : i + 1}</span>
+           <span class="milestone-date">${AI_MILESTONES[i].date}</span>
+           <span class="milestone-category-slot"></span>
+           <span class="milestone-title"></span>
+         </div>`
+      ).join("");
+      renderMilestoneTitles();
+    }
+
+    function setPopoverLanguage(lang) {
+      popoverLang = lang === "en" ? "en" : "zh";
+      try {
+        localStorage.setItem("aiIndexPopoverLang", popoverLang);
+      } catch (_) {}
+      document.documentElement.dataset.popoverLang = popoverLang;
+      popoverLangGroup.querySelectorAll("button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === popoverLang);
+      });
+      renderStaticLanguage();
+      if (rawData) render();
+      else renderComponentsPanel();
+      renderMilestoneList();
+      if (activeIdx !== null) populatePopover(activeIdx);
+    }
+
+    popoverLangGroup.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-lang]");
+      if (!btn) return;
+      setPopoverLanguage(btn.dataset.lang);
+    });
+    setPopoverLanguage(popoverLang);
+
+    function isPopoverControlTarget(node) {
+      return Boolean(node && popoverLangGroup.contains(node));
+    }
+
+    function renderMilestoneTitles() {
+      document.querySelectorAll("#milestones-list .milestone").forEach((row) => {
+        const idx = parseInt(row.dataset.idx, 10);
+        const m = AI_MILESTONES[idx];
+        const titleEl = row.querySelector(".milestone-title");
+        const categoryEl = row.querySelector(".milestone-category-slot");
+        if (!m || !titleEl) return;
+        const primary = popoverLang === "en" ? m.en : m.label;
+        const inception = idx === 0
+          ? (popoverLang === "en" ? ' <em style="color:#ffd166;font-style:normal;font-weight:600">· Index Start</em>' : ' <em style="color:#ffd166;font-style:normal;font-weight:600">· 指数起点</em>')
+          : "";
+        titleEl.innerHTML = primary + inception;
+        if (categoryEl) categoryEl.innerHTML = categoryBadge(m.category);
+      });
+    }
+
+    function populatePopover(i) {
+      const m = AI_MILESTONES[i];
+      if (!m) return;
+      const numEl = document.getElementById("popover-num");
+      numEl.textContent = i === 0 ? "T\u2080" : (i + 1);
+      numEl.className = "popover-num" + (i === 0 ? " popover-num-inception" : "");
+      document.getElementById("popover-date").innerHTML =
+        m.date + categoryBadge(m.category, "popover-category") + (i === 0 ? '<span class="popover-inception-tag">T₀ · Base 100</span>' : "");
+      if (popoverLang === "en") {
+        document.getElementById("popover-title").textContent = m.en;
+        document.getElementById("popover-en").textContent   = "";
+        document.getElementById("popover-desc").textContent = m.desc_en || m.desc;
+      } else {
+        document.getElementById("popover-title").textContent = m.label;
+        document.getElementById("popover-en").textContent   = "";
+        document.getElementById("popover-desc").textContent = m.desc;
+      }
+    }
+
+    function positionPopover(anchorRect, cursorX, cursorY) {
+      // Prefer placing the popover to the right of the anchor element. If that
+      // overflows the viewport, place it to the left. Vertically clamp inside.
+      const margin = 12;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const pw = popoverEl.offsetWidth;
+      const ph = popoverEl.offsetHeight;
+
+      let left, top;
+      if (anchorRect) {
+        // Anchored to a DOM element (legend row): place to its right, vertically centered
+        left = anchorRect.right + margin;
+        top  = anchorRect.top + anchorRect.height / 2 - ph / 2;
+        if (left + pw > vw - margin) left = anchorRect.left - pw - margin; // flip to left side
+      } else {
+        // Anchored to a cursor position (chart marker)
+        left = cursorX + 16;
+        top  = cursorY - ph / 2;
+        if (left + pw > vw - margin) left = cursorX - pw - 16;
+      }
+      // Vertical clamp
+      if (top < margin) top = margin;
+      if (top + ph > vh - margin) top = vh - ph - margin;
+      // Horizontal clamp
+      if (left < margin) left = margin;
+      popoverEl.style.left = left + "px";
+      popoverEl.style.top  = top + "px";
+    }
+
+    function showPopover(i, opts) {
+      clearTimeout(hideTimer);
+      activeIdx = i;
+      populatePopover(i);
+      // Make visible (display:block) so we can measure offsetWidth/Height
+      popoverEl.style.display = "block";
+      // Reposition after one paint so dimensions are accurate
+      requestAnimationFrame(() => {
+        positionPopover(opts?.anchorRect, opts?.cursorX, opts?.cursorY);
+        popoverEl.classList.add("show");
+      });
+    }
+
+    function hidePopover() {
+      activeIdx = null;
+      popoverEl.classList.remove("show");
+      // Defer display:none until fade completes so the transition plays
+      hideTimer = setTimeout(() => {
+        if (activeIdx === null) popoverEl.style.display = "none";
+      }, 140);
+    }
+
+    // ---- Hover on legend rows ----
+    const listEl = document.getElementById("milestones-list");
+    listEl.addEventListener("mouseover", (e) => {
+      const row = e.target.closest(".milestone");
+      if (!row) return;
+      const idx = parseInt(row.dataset.idx, 10);
+      if (idx === activeIdx) return;            // already showing
+      showPopover(idx, { anchorRect: row.getBoundingClientRect() });
+    });
+    listEl.addEventListener("mouseout", (e) => {
+      const row = e.target.closest(".milestone");
+      if (!row) return;
+      // Only hide if the cursor truly left the row (and not into a child)
+      if (isPopoverControlTarget(e.relatedTarget)) return;
+      if (!e.relatedTarget || !row.contains(e.relatedTarget)) hidePopover();
+    });
+
+    // ---- Hover on chart markers (markLine) ----
+    chart.on("mouseover", (params) => {
+      if (params.componentType === "markLine" && typeof params.dataIndex === "number") {
+        const ev = params.event && params.event.event;
+        const cx = ev ? ev.clientX : window.innerWidth / 2;
+        const cy = ev ? ev.clientY : window.innerHeight / 2;
+        const idx = params.data && Number.isInteger(params.data.milestoneIdx)
+          ? params.data.milestoneIdx
+          : params.dataIndex;
+        showPopover(idx, { cursorX: cx, cursorY: cy });
+      }
+    });
+    chart.on("mouseout", (params) => {
+      if (params.componentType === "markLine") {
+        const ev = params.event && params.event.event;
+        if (ev && isPopoverControlTarget(ev.relatedTarget)) return;
+        hidePopover();
+      }
+    });
+
+    loadData().then((d) => {
+      dataPool = d;
+      rawData = portfolioDataFromPool(dataPool);
+      render();
+    });
+  </script>
 </body>
 </html>
