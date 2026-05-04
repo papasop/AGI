@@ -1222,7 +1222,7 @@
     //
     //  All three start at base = 100 on the inception day.
     // ============================================================
-    function buildIndex(components, fx, currency, rebalanceMode, periodDays) {
+    function buildIndex(components, fx, currency, rebalanceMode, periodDays, options = {}) {
       const N = components[0].data.length;
       const dates = components[0].data.map((d) => d.date);
 
@@ -1233,6 +1233,51 @@
           return { open: bar.open*r, high: bar.high*r, low: bar.low*r, close: bar.close*r };
         })
       );
+
+      const isActiveAt = (component, i) => {
+        if (!options.respectInception) return true;
+        return !component.inception || dates[i] >= component.inception;
+      };
+
+      const activeWeightsAt = (i) => {
+        const weighted = components.map((c, k) => ({
+          k,
+          weight: isActiveAt(c, i) ? c.weight : 0,
+        }));
+        const total = weighted.reduce((sum, item) => sum + item.weight, 0);
+        if (!total) {
+          const fallback = 1 / components.length;
+          return weighted.map((item) => ({ k: item.k, weight: fallback }));
+        }
+        return weighted
+          .filter((item) => item.weight > 0)
+          .map((item) => ({ k: item.k, weight: item.weight / total }));
+      };
+
+      if (options.respectInception) {
+        const out = new Array(N);
+        out[0] = { date: dates[0], open: 100, high: 100, low: 100, close: 100 };
+        for (let i = 1; i < N; i++) {
+          let dO = 0, dH = 0, dL = 0, dC = 0;
+          activeWeightsAt(i).forEach(({ k, weight }) => {
+            const today = conv[k][i];
+            const yC = conv[k][i - 1].close;
+            dO += weight * (today.open / yC - 1);
+            dH += weight * (today.high / yC - 1);
+            dL += weight * (today.low / yC - 1);
+            dC += weight * (today.close / yC - 1);
+          });
+          const prev = out[i - 1].close;
+          out[i] = {
+            date: dates[i],
+            open: prev * (1 + dO),
+            high: prev * (1 + dH),
+            low: prev * (1 + dL),
+            close: prev * (1 + dC),
+          };
+        }
+        return out;
+      }
 
       // Helper: weighted blend of (P_i_t / P_i_anchor) for any anchor index.
       const blendVsAnchor = (i, anchorIdx) => {
@@ -1622,10 +1667,11 @@
       "blockchain": {
         name: "区块链领先指数",
         nameEn: "Blockchain Leadership Index",
+        respectInception: true,
         tag: "策略 · TRX / HYPE / SKY · 各 33.33%",
         tagEn: "STRATEGY · TRX / HYPE / SKY · 33.33 EACH",
-        footer: "三只加密资产等权配置，覆盖公链、链上交易基础设施与稳定币治理生态。",
-        footerEn: "Equal-weight exposure to public-chain, on-chain trading infrastructure, and stablecoin-governance ecosystems.",
+        footer: "三只加密资产目标等权配置；2022-2023 仅使用已有真实行情的 TRX，SKY 与 HYPE 有真实数据后自动加入并重分权重。",
+        footerEn: "Targets equal-weight exposure across three crypto assets; 2022-2023 uses only TRX real history, then adds SKY and HYPE once real trading data begins.",
         components: [
           { name: "TRON",                           short: "TRX",            ticker: "TRX-USD",      weight: 1 / 3, ccy: "USD", sleeve: "CRYPTO", status: "active",
             concept: "公链 · 稳定币结算网络",
@@ -2247,11 +2293,12 @@
     }
 
     function portfolioReturnForKey(key) {
+      const portfolio = PORTFOLIOS[key] || PORTFOLIOS.drone;
       const components = portfolioComponentsForKey(key);
       if (!components.length) return 0;
       const dateAxis = components[0].data.map((d) => d.date);
       const fx = ensureFxRates(dataPool?.fx || {}, dateAxis);
-      const series = buildIndex(components, fx, "USD", currentRebalance, currentPeriodDays);
+      const series = buildIndex(components, fx, "USD", currentRebalance, currentPeriodDays, portfolio);
       const first = series[0]?.close || 0;
       const last = series[series.length - 1]?.close || 0;
       return first ? (last / first - 1) * 100 : 0;
@@ -2530,14 +2577,14 @@
     function getChartData() {
       if (currentChartAsset === "INDEX") {
         return {
-          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays), currentPeriod),
+          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays, activePortfolio()), currentPeriod),
           label: chartAssetLabel("INDEX"),
         };
       }
       const component = rawData.components.find((c) => c.ticker === currentChartAsset);
       if (!component) {
         return {
-          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays), currentPeriod),
+          data: aggregate(buildIndex(rawData.components, rawData.fx, currentCurrency, currentRebalance, currentPeriodDays, activePortfolio()), currentPeriod),
           label: chartAssetLabel("INDEX"),
         };
       }
