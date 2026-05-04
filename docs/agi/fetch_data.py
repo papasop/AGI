@@ -59,6 +59,11 @@ COMPONENTS = [
     ("TRON",                   "TRX",            "TRX-USD",   0.0, "USD"),
     ("Hyperliquid",            "HYPE",           "HYPE32196-USD", 0.0, "USD"),
     ("Sky",                    "SKY",            "SKY-USD",   0.0, "USD"),
+    ("Tesla",                  "TSLA",           "TSLA",      0.0, "USD"),
+    ("NIO",                    "NIO",            "NIO",       0.0, "USD"),
+    ("\u96f6\u8dd1\u6c7d\u8f66", "零跑",          "9863.HK",   0.0, "HKD"),
+    ("\u5947\u745e\u6c7d\u8f66", "奇瑞",          "9973.HK",   0.0, "HKD"),
+    ("\u5409\u5229\u6c7d\u8f66", "吉利",          "0175.HK",   0.0, "HKD"),
 ]
 
 
