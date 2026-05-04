@@ -8,9 +8,10 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    Ondas                   ONDS       USD    33.33%
-    Unusual Machines        UMAC       USD    33.33%
-    Theon International     THEON.AS   EUR    33.33%
+    Ondas                   ONDS       USD    25.0%
+    Unusual Machines        UMAC       USD    25.0%
+    Theon International     THEON.AS   EUR    25.0%
+    Kopin                   KOPN       USD    25.0%
 
 Calendar handling
 -----------------
@@ -41,12 +42,14 @@ COMPONENTS = [
     {"name": "Ondas", "short": "ONDS", "ticker": "ONDS", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Unusual Machines", "short": "UMAC", "ticker": "UMAC", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Theon International", "short": "THEON", "ticker": "THEON.AS", "ccy": "EUR", "sleeve": "EU", "status": "active"},
+    {"name": "Kopin", "short": "KOPN", "ticker": "KOPN", "ccy": "USD", "sleeve": "US", "status": "active"},
 ]
 
 TARGET_WEIGHTS = {
-    "ONDS": 1 / 3,
-    "UMAC": 1 / 3,
-    "THEON.AS": 1 / 3,
+    "ONDS": 0.25,
+    "UMAC": 0.25,
+    "THEON.AS": 0.25,
+    "KOPN": 0.25,
 }
 
 SYNTHETIC_FALLBACKS = {}
@@ -309,7 +312,7 @@ def main():
                      "components prior to their actual IPO."),
             "synthetic_fallbacks": fallback_notes,
             "pending_components": pending_components,
-            "weighting_policy": "Fixed target weights: ONDS 33.33%, UMAC 33.33%, THEON.AS 33.33%.",
+            "weighting_policy": "Fixed target weights: ONDS 25%, UMAC 25%, THEON.AS 25%, KOPN 25%.",
         },
         "components": components_out,
         "fx": {
