@@ -988,11 +988,13 @@
         <div class="control-group" id="asset-group">
           <span class="control-group-label">标的</span>
           <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
-          <button data-asset="ONDS"><span class="btn-main">ONDS</span><span class="btn-sub">20%</span></button>
-          <button data-asset="UMAC"><span class="btn-main">UMAC</span><span class="btn-sub">20%</span></button>
-          <button data-asset="THEON.AS"><span class="btn-main">THEON</span><span class="btn-sub">20%</span></button>
-          <button data-asset="KOPN"><span class="btn-main">KOPN</span><span class="btn-sub">20%</span></button>
-          <button data-asset="RCAT"><span class="btn-main">RCAT</span><span class="btn-sub">20%</span></button>
+          <button data-asset="ONDS"><span class="btn-main">ONDS</span><span class="btn-sub">14.29%</span></button>
+          <button data-asset="UMAC"><span class="btn-main">UMAC</span><span class="btn-sub">14.29%</span></button>
+          <button data-asset="THEON.AS"><span class="btn-main">THEON</span><span class="btn-sub">14.29%</span></button>
+          <button data-asset="KOPN"><span class="btn-main">KOPN</span><span class="btn-sub">14.29%</span></button>
+          <button data-asset="RCAT"><span class="btn-main">RCAT</span><span class="btn-sub">14.29%</span></button>
+          <button data-asset="AVEX"><span class="btn-main">AVEX</span><span class="btn-sub">14.29%</span></button>
+          <button data-asset="SWMR"><span class="btn-main">SWMR</span><span class="btn-sub">14.29%</span></button>
         </div>
       </div>
       <div id="chart"></div>
@@ -1520,36 +1522,46 @@
       "drone": {
         name: "无人机组合",
         nameEn: "Drone Portfolio",
-        tag: "策略 · ONDS / UMAC / THEON / KOPN / RCAT · 各 20%",
-        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN / RCAT · 20 EACH",
-        footer: "五只股票等权配置，聚焦反无人机、防务无人机整机、零部件、军用视觉设备与微显示头显光学。",
-        footerEn: "Equal-weight exposure to counter-UAS, defense drones, components, military vision systems, and microdisplay optics.",
+        tag: "策略 · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · 各 14.29%",
+        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · 14.29 EACH",
+        footer: "七只股票等权配置，聚焦反无人机、防务无人机整机、蜂群软件、零部件、军用视觉设备与微显示头显光学。",
+        footerEn: "Equal-weight exposure to counter-UAS, defense drones, swarm software, components, military vision systems, and microdisplay optics.",
         components: [
-          { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 0.2, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 1 / 7, ccy: "USD", sleeve: "US", status: "active",
             concept: "Iron Drone 反无人机系统",
             conceptEn: "Iron Drone counter-UAS systems",
             marketCap: 4.5,
             seed: 413, base: 1.2, vol: 0.055, drift: 0.00110 },
-          { name: "Unusual Machines",              short: "UMAC",           ticker: "UMAC",      weight: 0.2, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Unusual Machines",              short: "UMAC",           ticker: "UMAC",      weight: 1 / 7, ccy: "USD", sleeve: "US", status: "active",
             concept: "无人机零部件供应商",
             conceptEn: "Drone component supplier",
             marketCap: 0.7,
             seed: 909, base: 4.8, vol: 0.065, drift: 0.00130 },
-          { name: "Theon International",           short: "THEON",          ticker: "THEON.AS",  weight: 0.2, ccy: "EUR", sleeve: "EU", status: "active",
+          { name: "Theon International",           short: "THEON",          ticker: "THEON.AS",  weight: 1 / 7, ccy: "EUR", sleeve: "EU", status: "active",
             concept: "军用夜视 · 热成像 · ISR",
             conceptEn: "Military night vision · thermal imaging · ISR",
             marketCap: 2.5,
             seed: 1997, base: 12.5, vol: 0.026, drift: 0.00075 },
-          { name: "Kopin",                         short: "KOPN",           ticker: "KOPN",      weight: 0.2, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Kopin",                         short: "KOPN",           ticker: "KOPN",      weight: 1 / 7, ccy: "USD", sleeve: "US", status: "active",
             concept: "军用微显示 · 头显光学",
             conceptEn: "Microdisplays · defense wearable optics",
             marketCap: 0.52,
             seed: 405, base: 1.6, vol: 0.045, drift: 0.00095 },
-          { name: "Red Cat Holdings",              short: "RCAT",           ticker: "RCAT",      weight: 0.2, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Red Cat Holdings",              short: "RCAT",           ticker: "RCAT",      weight: 1 / 7, ccy: "USD", sleeve: "US", status: "active",
             concept: "军用小型无人机 · 战术 UAS",
             conceptEn: "Small tactical UAS · defense drones",
             marketCap: 1.5,
             seed: 1214, base: 1.1, vol: 0.058, drift: 0.00115 },
+          { name: "AEVEX",                         short: "AVEX",           ticker: "AVEX",      weight: 1 / 7, ccy: "USD", sleeve: "US", status: "active",
+            concept: "无人系统任务平台 · 防务承包商",
+            conceptEn: "UAS mission platforms · defense prime contractor",
+            marketCap: 3.39,
+            seed: 4317, base: 19.5, vol: 0.042, drift: 0.00095 },
+          { name: "Swarmer",                       short: "SWMR",           ticker: "SWMR",      weight: 1 / 7, ccy: "USD", sleeve: "US", status: "active",
+            concept: "无人机蜂群 AI · 自主协同软件",
+            conceptEn: "Drone swarm AI · autonomous coordination software",
+            marketCap: 0.45,
+            seed: 3176, base: 29.5, vol: 0.072, drift: 0.00120 },
         ],
       },
       "global-ai-hedge": {
@@ -1947,6 +1959,12 @@
           { date: "2025-11-15", category: "defense", label: "RCAT 战术无人机主题", en: "RCAT tactical UAS theme",
             desc: "Red Cat Holdings 加入组合,代表小型战术无人机和国防无人系统整机侧的暴露。",
             desc_en: "Red Cat Holdings joins the portfolio, adding exposure to small tactical drones and defense UAS platforms." },
+          { date: "2026-03-17", category: "defense", label: "SWMR 蜂群软件上市", en: "SWMR swarm software IPO",
+            desc: "Swarmer 代表无人机蜂群 AI 与自主协同软件,把软件定义无人系统纳入组合主题。",
+            desc_en: "Swarmer represents drone-swarm AI and autonomous coordination software, adding software-defined unmanned systems to the theme." },
+          { date: "2026-04-17", category: "defense", label: "AVEX 防务无人系统上市", en: "AVEX defense UAS IPO",
+            desc: "AEVEX 进入公开市场,补充防务无人系统任务平台和主承包商侧的暴露。",
+            desc_en: "AEVEX enters the public market, adding defense UAS mission-platform and prime-contractor exposure." },
         ],
       },
       "china-leading": {
