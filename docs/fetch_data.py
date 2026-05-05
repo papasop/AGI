@@ -8,10 +8,16 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    Ondas                   ONDS       USD    25.0%
-    Unusual Machines        UMAC       USD    25.0%
-    Theon International     THEON.AS   EUR    25.0%
-    Kopin                   KOPN       USD    25.0%
+    Ondas                   ONDS       USD    10.00%
+    Unusual Machines        UMAC       USD    10.00%
+    Theon International     THEON.AS   EUR    10.00%
+    Kopin                   KOPN       USD    10.00%
+    Red Cat Holdings        RCAT       USD    10.00%
+    Swarmer                 SWMR       USD    10.00%
+    Draganfly               DPRO       USD    10.00%
+    LightPath Technologies  LPTH       USD    10.00%
+    Safe Pro Group          SPAI       USD    10.00%
+    Kratos Defense          KTOS       USD    10.00%
 
 Additional portfolio data pool:
     拼多多                  PDD        USD
@@ -57,6 +63,7 @@ COMPONENTS = [
     {"name": "Draganfly", "short": "DPRO", "ticker": "DPRO", "ccy": "USD", "sleeve": "CA", "status": "active"},
     {"name": "LightPath Technologies", "short": "LPTH", "ticker": "LPTH", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Safe Pro Group", "short": "SPAI", "ticker": "SPAI", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Kratos Defense & Security Solutions", "short": "KTOS", "ticker": "KTOS", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Skydio", "short": "SKYDIO", "ticker": "SKYDIO", "ccy": "USD", "sleeve": "US", "status": "prelist"},
     {"name": "Neros Technologies", "short": "NEROS", "ticker": "NEROS", "ccy": "USD", "sleeve": "US", "status": "prelist"},
     {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
@@ -108,15 +115,16 @@ COMPONENTS = [
 ]
 
 TARGET_WEIGHTS = {
-    "ONDS": 1 / 9,
-    "UMAC": 1 / 9,
-    "THEON.AS": 1 / 9,
-    "KOPN": 1 / 9,
-    "RCAT": 1 / 9,
-    "SWMR": 1 / 9,
-    "DPRO": 1 / 9,
-    "LPTH": 1 / 9,
-    "SPAI": 1 / 9,
+    "ONDS": 1 / 10,
+    "UMAC": 1 / 10,
+    "THEON.AS": 1 / 10,
+    "KOPN": 1 / 10,
+    "RCAT": 1 / 10,
+    "SWMR": 1 / 10,
+    "DPRO": 1 / 10,
+    "LPTH": 1 / 10,
+    "SPAI": 1 / 10,
+    "KTOS": 1 / 10,
     "SKYDIO": 0.0,
     "NEROS": 0.0,
     "PDD": 0.0,
