@@ -996,6 +996,7 @@
           <button data-asset="AVEX"><span class="btn-main">AVEX</span><span class="btn-sub">14.29%</span></button>
           <button data-asset="SWMR"><span class="btn-main">SWMR</span><span class="btn-sub">14.29%</span></button>
           <button data-asset="SKYDIO" disabled><span class="btn-main">Skydio</span><span class="btn-sub">预上市</span></button>
+          <button data-asset="NEROS" disabled><span class="btn-main">Neros</span><span class="btn-sub">预上市</span></button>
         </div>
       </div>
       <div id="chart"></div>
@@ -1523,10 +1524,10 @@
       "drone": {
         name: "无人机组合",
         nameEn: "Drone Portfolio",
-        tag: "策略 · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · Skydio 预上市观察",
-        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · SKYDIO PRE-LISTING WATCH",
-        footer: "已上市成分股自动等权；Skydio 作为预上市观察项，公开行情出现后自动纳入无人机组合。",
-        footerEn: "Listed constituents are equal-weighted automatically; Skydio is tracked as a pre-listing watch name and joins when public quote data appears.",
+        tag: "策略 · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · Skydio / Neros 预上市观察",
+        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · SKYDIO / NEROS PRE-LISTING WATCH",
+        footer: "已上市成分股自动等权；Skydio 与 Neros 作为预上市观察项，公开行情出现后自动纳入无人机组合。",
+        footerEn: "Listed constituents are equal-weighted automatically; Skydio and Neros are tracked as pre-listing watch names and join when public quote data appears.",
         equalWeightTradable: true,
         components: [
           { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 1 / 7, ccy: "USD", sleeve: "US", status: "active",
@@ -1571,6 +1572,13 @@
             preListingNote: "预上市 · 暂无公开 ticker",
             preListingNoteEn: "Pre-listing · no public ticker yet",
             seed: 5014, base: 20.0, vol: 0.040, drift: 0.00090 },
+          { name: "Neros Technologies",            short: "NEROS",          ticker: "NEROS",     weight: 0, ccy: "USD", sleeve: "US", status: "prelist",
+            concept: "战术 FPV 无人机 · 本土化制造",
+            conceptEn: "Tactical FPV drones · domestic manufacturing",
+            marketCap: 0,
+            preListingNote: "预上市 · 暂无公开 ticker",
+            preListingNoteEn: "Pre-listing · no public ticker yet",
+            seed: 8821, base: 18.0, vol: 0.045, drift: 0.00100 },
         ],
       },
       "global-ai-hedge": {
@@ -1977,6 +1985,9 @@
           { date: "2026-05-05", category: "market", label: "Skydio 预上市观察", en: "Skydio pre-listing watch",
             desc: "Skydio 暂无公开 ticker,作为无人机组合预上市观察项;公开行情出现后自动加入等权计算。",
             desc_en: "Skydio has no public ticker yet and is tracked as a pre-listing watch name; once public quote data appears, it automatically joins the equal-weight calculation." },
+          { date: "2026-05-05", category: "market", label: "Neros 预上市观察", en: "Neros pre-listing watch",
+            desc: "Neros Technologies 暂无公开 ticker,作为战术 FPV 无人机与本土化制造预上市观察项;公开行情出现后自动加入等权计算。",
+            desc_en: "Neros Technologies has no public ticker yet and is tracked as a tactical FPV drone and domestic-manufacturing pre-listing watch name; once public quote data appears, it automatically joins the equal-weight calculation." },
         ],
       },
       "china-leading": {
