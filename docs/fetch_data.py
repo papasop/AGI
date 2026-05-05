@@ -56,6 +56,7 @@ COMPONENTS = [
     {"name": "AEVEX", "short": "AVEX", "ticker": "AVEX", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Swarmer", "short": "SWMR", "ticker": "SWMR", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Skydio", "short": "SKYDIO", "ticker": "SKYDIO", "ccy": "USD", "sleeve": "US", "status": "prelist"},
+    {"name": "Neros Technologies", "short": "NEROS", "ticker": "NEROS", "ccy": "USD", "sleeve": "US", "status": "prelist"},
     {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
     {"name": "\u7ebd\u7ea6\u65f6\u62a5", "short": "NYT", "ticker": "NYT", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
@@ -113,6 +114,7 @@ TARGET_WEIGHTS = {
     "AVEX": 1 / 7,
     "SWMR": 1 / 7,
     "SKYDIO": 0.0,
+    "NEROS": 0.0,
     "PDD": 0.0,
     "NYT": 0.0,
     "002594.SZ": 0.0,
@@ -170,6 +172,9 @@ TICKER_CONTINUATIONS = {
     # Skydio has no public ticker yet. Try likely placeholders so the
     # pre-listing watch can activate automatically if either symbol appears.
     "SKYDIO": ["SKYDIO", "SKYD"],
+    # Neros Technologies has no public ticker yet; these placeholders keep the
+    # pre-listing watch ready to activate if either symbol becomes available.
+    "NEROS": ["NEROS", "NROS"],
 }
 
 
