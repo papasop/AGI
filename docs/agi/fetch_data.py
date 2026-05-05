@@ -8,17 +8,18 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    Ondas                   ONDS       USD    9.09%
-    Unusual Machines        UMAC       USD    9.09%
-    Theon International     THEON.AS   EUR    9.09%
-    Kopin                   KOPN       USD    9.09%
-    Red Cat Holdings        RCAT       USD    9.09%
-    Swarmer                 SWMR       USD    9.09%
-    Draganfly               DPRO       USD    9.09%
-    LightPath Technologies  LPTH       USD    9.09%
-    Safe Pro Group          SPAI       USD    9.09%
-    Kratos Defense          KTOS       USD    9.09%
-    Palladyne AI            PDYN       USD    9.09%
+    Ondas                   ONDS       USD    8.33%
+    Unusual Machines        UMAC       USD    8.33%
+    Theon International     THEON.AS   EUR    8.33%
+    Kopin                   KOPN       USD    8.33%
+    Red Cat Holdings        RCAT       USD    8.33%
+    Swarmer                 SWMR       USD    8.33%
+    Draganfly               DPRO       USD    8.33%
+    LightPath Technologies  LPTH       USD    8.33%
+    Safe Pro Group          SPAI       USD    8.33%
+    Kratos Defense          KTOS       USD    8.33%
+    Palladyne AI            PDYN       USD    8.33%
+    AeroVironment           AVAV       USD    8.33%
 
 Additional portfolio data pool:
     拼多多                  PDD        USD
@@ -55,17 +56,18 @@ import yfinance as yf
 
 COMPONENTS = [
     # (CN name,    short,            ticker,         weight, ccy)
-    ("Ondas",                  "ONDS",           "ONDS",      1 / 11, "USD"),
-    ("Unusual Machines",       "UMAC",           "UMAC",      1 / 11, "USD"),
-    ("Theon International",    "THEON",          "THEON.AS",  1 / 11, "EUR"),
-    ("Kopin",                  "KOPN",           "KOPN",      1 / 11, "USD"),
-    ("Red Cat Holdings",       "RCAT",           "RCAT",      1 / 11, "USD"),
-    ("Swarmer",                "SWMR",           "SWMR",      1 / 11, "USD"),
-    ("Draganfly",              "DPRO",           "DPRO",      1 / 11, "USD"),
-    ("LightPath Technologies", "LPTH",           "LPTH",      1 / 11, "USD"),
-    ("Safe Pro Group",         "SPAI",           "SPAI",      1 / 11, "USD"),
-    ("Kratos Defense & Security Solutions", "KTOS", "KTOS", 1 / 11, "USD"),
-    ("Palladyne AI",           "PDYN",           "PDYN",      1 / 11, "USD"),
+    ("Ondas",                  "ONDS",           "ONDS",      1 / 12, "USD"),
+    ("Unusual Machines",       "UMAC",           "UMAC",      1 / 12, "USD"),
+    ("Theon International",    "THEON",          "THEON.AS",  1 / 12, "EUR"),
+    ("Kopin",                  "KOPN",           "KOPN",      1 / 12, "USD"),
+    ("Red Cat Holdings",       "RCAT",           "RCAT",      1 / 12, "USD"),
+    ("Swarmer",                "SWMR",           "SWMR",      1 / 12, "USD"),
+    ("Draganfly",              "DPRO",           "DPRO",      1 / 12, "USD"),
+    ("LightPath Technologies", "LPTH",           "LPTH",      1 / 12, "USD"),
+    ("Safe Pro Group",         "SPAI",           "SPAI",      1 / 12, "USD"),
+    ("Kratos Defense & Security Solutions", "KTOS", "KTOS", 1 / 12, "USD"),
+    ("Palladyne AI",           "PDYN",           "PDYN",      1 / 12, "USD"),
+    ("AeroVironment",          "AVAV",           "AVAV",      1 / 12, "USD"),
     ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.0, "USD"),
     ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.0, "USD"),
     ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.0, "CNY"),
