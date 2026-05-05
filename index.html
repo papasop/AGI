@@ -1570,7 +1570,7 @@
             concept: "无人机平台 · 公共安全与工业应用",
             conceptEn: "Drone platforms · public safety and industrial applications",
             marketCap: 0.21,
-            seed: 6402, base: 5.8, vol: 0.060, drift: 0.00085 },
+            seed: 6402, base: 1.8259, vol: 0.060, drift: 0.00085 },
           { name: "Skydio",                        short: "SKYDIO",         ticker: "SKYDIO",    weight: 0, ccy: "USD", sleeve: "US", status: "prelist",
             concept: "自主无人机 · 国防与公共安全",
             conceptEn: "Autonomous drones · defense and public safety",
@@ -2727,6 +2727,21 @@
       });
     }
 
+    function convertedComponentPriceSeries(component) {
+      if (!component?.data?.length) return [];
+      return component.data.map((bar, i) => {
+        const r = convRate(component.ccy, currentCurrency, rawData.fx, i);
+        const b = normalizeBarForComponent(component, bar);
+        return {
+          date: bar.date,
+          open: b.open * r,
+          high: b.high * r,
+          low: b.low * r,
+          close: b.close * r,
+        };
+      });
+    }
+
     function chartAssetLabel(assetKey) {
       if (assetKey === "INDEX") {
         const portfolio = activePortfolio();
@@ -2757,7 +2772,7 @@
         };
       }
       return {
-        data: aggregate(convertedComponentIndex(component), currentPeriod, aggregateOptions),
+        data: aggregate(convertedComponentPriceSeries(component), currentPeriod, aggregateOptions),
         label: chartAssetLabel(currentChartAsset),
       };
     }
