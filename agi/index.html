@@ -995,6 +995,7 @@
           <button data-asset="RCAT"><span class="btn-main">RCAT</span><span class="btn-sub">14.29%</span></button>
           <button data-asset="AVEX"><span class="btn-main">AVEX</span><span class="btn-sub">14.29%</span></button>
           <button data-asset="SWMR"><span class="btn-main">SWMR</span><span class="btn-sub">14.29%</span></button>
+          <button data-asset="SKYDIO" disabled><span class="btn-main">Skydio</span><span class="btn-sub">预上市</span></button>
         </div>
       </div>
       <div id="chart"></div>
@@ -1522,10 +1523,11 @@
       "drone": {
         name: "无人机组合",
         nameEn: "Drone Portfolio",
-        tag: "策略 · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · 各 14.29%",
-        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · 14.29 EACH",
-        footer: "七只股票等权配置，聚焦反无人机、防务无人机整机、蜂群软件、零部件、军用视觉设备与微显示头显光学。",
-        footerEn: "Equal-weight exposure to counter-UAS, defense drones, swarm software, components, military vision systems, and microdisplay optics.",
+        tag: "策略 · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · Skydio 预上市观察",
+        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR · SKYDIO PRE-LISTING WATCH",
+        footer: "已上市成分股自动等权；Skydio 作为预上市观察项，公开行情出现后自动纳入无人机组合。",
+        footerEn: "Listed constituents are equal-weighted automatically; Skydio is tracked as a pre-listing watch name and joins when public quote data appears.",
+        equalWeightTradable: true,
         components: [
           { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 1 / 7, ccy: "USD", sleeve: "US", status: "active",
             concept: "Iron Drone 反无人机系统",
@@ -1562,6 +1564,13 @@
             conceptEn: "Drone swarm AI · autonomous coordination software",
             marketCap: 0.45,
             seed: 3176, base: 29.5, vol: 0.072, drift: 0.00120 },
+          { name: "Skydio",                        short: "SKYDIO",         ticker: "SKYDIO",    weight: 0, ccy: "USD", sleeve: "US", status: "prelist",
+            concept: "自主无人机 · 国防与公共安全",
+            conceptEn: "Autonomous drones · defense and public safety",
+            marketCap: 0,
+            preListingNote: "预上市 · 暂无公开 ticker",
+            preListingNoteEn: "Pre-listing · no public ticker yet",
+            seed: 5014, base: 20.0, vol: 0.040, drift: 0.00090 },
         ],
       },
       "global-ai-hedge": {
@@ -1965,6 +1974,9 @@
           { date: "2026-04-17", category: "defense", label: "AVEX 防务无人系统上市", en: "AVEX defense UAS IPO",
             desc: "AEVEX 进入公开市场,补充防务无人系统任务平台和主承包商侧的暴露。",
             desc_en: "AEVEX enters the public market, adding defense UAS mission-platform and prime-contractor exposure." },
+          { date: "2026-05-05", category: "market", label: "Skydio 预上市观察", en: "Skydio pre-listing watch",
+            desc: "Skydio 暂无公开 ticker,作为无人机组合预上市观察项;公开行情出现后自动加入等权计算。",
+            desc_en: "Skydio has no public ticker yet and is tracked as a pre-listing watch name; once public quote data appears, it automatically joins the equal-weight calculation." },
         ],
       },
       "china-leading": {
@@ -2294,11 +2306,17 @@
     }
 
     function normalizeComponentWeights(components) {
+      const byTicker = new Map(components.map((c) => [c.ticker, c]));
+      const tradableConfigs = COMPONENTS_CONFIG.filter((c) => (
+        c.status !== "prelist" || hasTradableData(byTicker.get(c.ticker))
+      ));
       const configTickers = COMPONENTS_CONFIG
-        .filter((c) => c.status !== "prelist")
+        .filter((c) => tradableConfigs.includes(c))
         .map((c) => c.ticker);
       const dateAxis = components.find((c) => c?.data?.length)?.data?.map((d) => d.date) || generateTradingDates(INCEPTION_DATE);
-      const byTicker = new Map(components.map((c) => [c.ticker, c]));
+      const equalWeight = activePortfolio().equalWeightTradable && tradableConfigs.length
+        ? 1 / tradableConfigs.length
+        : null;
       return configTickers.map((ticker) => {
         const config = CONFIG_BY_TICKER[ticker] || {};
         const incoming = byTicker.get(ticker);
@@ -2309,7 +2327,8 @@
         return {
           ...merged,
           data,
-          weight: hasTradableData({ data }) ? config.weight : 0,
+          status: hasTradableData(incoming) && config.status === "prelist" ? "active" : merged.status,
+          weight: hasTradableData({ data }) ? (equalWeight ?? config.weight) : 0,
         };
       });
     }
@@ -2404,14 +2423,25 @@
       const rawComponents = dataPool?.components?.length ? dataPool.components : [];
       const dateAxis = rawComponents.find((c) => c?.data?.length)?.data?.map((d) => d.date) || generateTradingDates(INCEPTION_DATE);
       const byTicker = new Map(rawComponents.map((c) => [c.ticker, c]));
-      return portfolio.components
-        .filter((config) => config.status !== "prelist")
+      const tradableConfigs = portfolio.components.filter((config) => (
+        config.status !== "prelist" || hasTradableData(byTicker.get(config.ticker))
+      ));
+      const equalWeight = portfolio.equalWeightTradable && tradableConfigs.length
+        ? 1 / tradableConfigs.length
+        : null;
+      return tradableConfigs
         .map((config) => {
           const incoming = byTicker.get(config.ticker);
           const data = hasTradableData(incoming)
             ? incoming.data
             : generateOHLC(config.seed, config.base, config.vol, config.drift, dateAxis);
-          return { ...config, ...(incoming || {}), data, weight: config.weight };
+          return {
+            ...config,
+            ...(incoming || {}),
+            data,
+            status: hasTradableData(incoming) && config.status === "prelist" ? "active" : (incoming?.status || config.status),
+            weight: equalWeight ?? config.weight,
+          };
         });
     }
 
