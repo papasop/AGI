@@ -988,15 +988,16 @@
         <div class="control-group" id="asset-group">
           <span class="control-group-label">标的</span>
           <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
-          <button data-asset="ONDS"><span class="btn-main">ONDS</span><span class="btn-sub">11.11%</span></button>
-          <button data-asset="UMAC"><span class="btn-main">UMAC</span><span class="btn-sub">11.11%</span></button>
-          <button data-asset="THEON.AS"><span class="btn-main">THEON</span><span class="btn-sub">11.11%</span></button>
-          <button data-asset="KOPN"><span class="btn-main">KOPN</span><span class="btn-sub">11.11%</span></button>
-          <button data-asset="RCAT"><span class="btn-main">RCAT</span><span class="btn-sub">11.11%</span></button>
-          <button data-asset="AVEX"><span class="btn-main">AVEX</span><span class="btn-sub">11.11%</span></button>
-          <button data-asset="SWMR"><span class="btn-main">SWMR</span><span class="btn-sub">11.11%</span></button>
-          <button data-asset="DPRO"><span class="btn-main">DPRO</span><span class="btn-sub">11.11%</span></button>
-          <button data-asset="LPTH"><span class="btn-main">LPTH</span><span class="btn-sub">11.11%</span></button>
+          <button data-asset="ONDS"><span class="btn-main">ONDS</span><span class="btn-sub">10%</span></button>
+          <button data-asset="UMAC"><span class="btn-main">UMAC</span><span class="btn-sub">10%</span></button>
+          <button data-asset="THEON.AS"><span class="btn-main">THEON</span><span class="btn-sub">10%</span></button>
+          <button data-asset="KOPN"><span class="btn-main">KOPN</span><span class="btn-sub">10%</span></button>
+          <button data-asset="RCAT"><span class="btn-main">RCAT</span><span class="btn-sub">10%</span></button>
+          <button data-asset="AVEX"><span class="btn-main">AVEX</span><span class="btn-sub">10%</span></button>
+          <button data-asset="SWMR"><span class="btn-main">SWMR</span><span class="btn-sub">10%</span></button>
+          <button data-asset="DPRO"><span class="btn-main">DPRO</span><span class="btn-sub">10%</span></button>
+          <button data-asset="LPTH"><span class="btn-main">LPTH</span><span class="btn-sub">10%</span></button>
+          <button data-asset="SPAI"><span class="btn-main">SPAI</span><span class="btn-sub">10%</span></button>
           <button data-asset="SKYDIO" disabled><span class="btn-main">Skydio</span><span class="btn-sub">预上市</span></button>
           <button data-asset="NEROS" disabled><span class="btn-main">Neros</span><span class="btn-sub">预上市</span></button>
         </div>
@@ -1526,57 +1527,62 @@
       "drone": {
         name: "无人机组合",
         nameEn: "Drone Portfolio",
-        tag: "策略 · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR / DPRO / LPTH · Skydio / Neros 预上市观察",
-        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR / DPRO / LPTH · SKYDIO / NEROS PRE-LISTING WATCH",
+        tag: "策略 · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR / DPRO / LPTH / SPAI · Skydio / Neros 预上市观察",
+        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN / RCAT / AVEX / SWMR / DPRO / LPTH / SPAI · SKYDIO / NEROS PRE-LISTING WATCH",
         footer: "已上市成分股自动等权；Skydio 与 Neros 作为预上市观察项，公开行情出现后自动纳入无人机组合。",
         footerEn: "Listed constituents are equal-weighted automatically; Skydio and Neros are tracked as pre-listing watch names and join when public quote data appears.",
         equalWeightTradable: true,
         components: [
-          { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 1 / 9, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 0.1, ccy: "USD", sleeve: "US", status: "active",
             concept: "Iron Drone 反无人机系统",
             conceptEn: "Iron Drone counter-UAS systems",
             marketCap: 4.5,
             seed: 413, base: 1.2, vol: 0.055, drift: 0.00110 },
-          { name: "Unusual Machines",              short: "UMAC",           ticker: "UMAC",      weight: 1 / 9, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Unusual Machines",              short: "UMAC",           ticker: "UMAC",      weight: 0.1, ccy: "USD", sleeve: "US", status: "active",
             concept: "无人机零部件供应商",
             conceptEn: "Drone component supplier",
             marketCap: 0.7,
             seed: 909, base: 4.8, vol: 0.065, drift: 0.00130 },
-          { name: "Theon International",           short: "THEON",          ticker: "THEON.AS",  weight: 1 / 9, ccy: "EUR", sleeve: "EU", status: "active",
+          { name: "Theon International",           short: "THEON",          ticker: "THEON.AS",  weight: 0.1, ccy: "EUR", sleeve: "EU", status: "active",
             concept: "军用夜视 · 热成像 · ISR",
             conceptEn: "Military night vision · thermal imaging · ISR",
             marketCap: 2.5,
             seed: 1997, base: 12.5, vol: 0.026, drift: 0.00075 },
-          { name: "Kopin",                         short: "KOPN",           ticker: "KOPN",      weight: 1 / 9, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Kopin",                         short: "KOPN",           ticker: "KOPN",      weight: 0.1, ccy: "USD", sleeve: "US", status: "active",
             concept: "军用微显示 · 头显光学",
             conceptEn: "Microdisplays · defense wearable optics",
             marketCap: 0.52,
             seed: 405, base: 1.6, vol: 0.045, drift: 0.00095 },
-          { name: "Red Cat Holdings",              short: "RCAT",           ticker: "RCAT",      weight: 1 / 9, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Red Cat Holdings",              short: "RCAT",           ticker: "RCAT",      weight: 0.1, ccy: "USD", sleeve: "US", status: "active",
             concept: "军用小型无人机 · 战术 UAS",
             conceptEn: "Small tactical UAS · defense drones",
             marketCap: 1.5,
             seed: 1214, base: 1.1, vol: 0.058, drift: 0.00115 },
-          { name: "AEVEX",                         short: "AVEX",           ticker: "AVEX",      weight: 1 / 9, ccy: "USD", sleeve: "US", status: "active",
+          { name: "AEVEX",                         short: "AVEX",           ticker: "AVEX",      weight: 0.1, ccy: "USD", sleeve: "US", status: "active",
             concept: "无人系统任务平台 · 防务承包商",
             conceptEn: "UAS mission platforms · defense prime contractor",
             marketCap: 3.39,
             seed: 4317, base: 19.5, vol: 0.042, drift: 0.00095 },
-          { name: "Swarmer",                       short: "SWMR",           ticker: "SWMR",      weight: 1 / 9, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Swarmer",                       short: "SWMR",           ticker: "SWMR",      weight: 0.1, ccy: "USD", sleeve: "US", status: "active",
             concept: "无人机蜂群 AI · 自主协同软件",
             conceptEn: "Drone swarm AI · autonomous coordination software",
             marketCap: 0.45,
             seed: 3176, base: 29.5, vol: 0.072, drift: 0.00120 },
-          { name: "Draganfly",                     short: "DPRO",           ticker: "DPRO",      weight: 1 / 9, ccy: "USD", sleeve: "CA", status: "active",
+          { name: "Draganfly",                     short: "DPRO",           ticker: "DPRO",      weight: 0.1, ccy: "USD", sleeve: "CA", status: "active",
             concept: "无人机平台 · 公共安全与工业应用",
             conceptEn: "Drone platforms · public safety and industrial applications",
             marketCap: 0.21,
             seed: 6402, base: 1.8259, vol: 0.060, drift: 0.00085 },
-          { name: "LightPath Technologies",         short: "LPTH",           ticker: "LPTH",      weight: 1 / 9, ccy: "USD", sleeve: "US", status: "active",
+          { name: "LightPath Technologies",         short: "LPTH",           ticker: "LPTH",      weight: 0.1, ccy: "USD", sleeve: "US", status: "active",
             concept: "红外光学 · 热成像组件",
             conceptEn: "Infrared optics · thermal imaging components",
             marketCap: 0.81,
             seed: 9147, base: 2.2, vol: 0.050, drift: 0.00105 },
+          { name: "Safe Pro Group",                 short: "SPAI",           ticker: "SPAI",      weight: 0.1, ccy: "USD", sleeve: "US", status: "active",
+            concept: "无人机影像 AI · 排爆与公共安全",
+            conceptEn: "Drone imagery AI · EOD and public safety",
+            marketCap: 0.091,
+            seed: 7784, base: 4.4, vol: 0.055, drift: 0.00095 },
           { name: "Skydio",                        short: "SKYDIO",         ticker: "SKYDIO",    weight: 0, ccy: "USD", sleeve: "US", status: "prelist",
             concept: "自主无人机 · 国防与公共安全",
             conceptEn: "Autonomous drones · defense and public safety",
@@ -2000,6 +2006,9 @@
           { date: "2026-05-05", category: "defense", label: "LPTH 光学组件主题", en: "LPTH optics component theme",
             desc: "LightPath Technologies 纳入无人机组合,补充红外光学、热成像和防务视觉组件侧的供应链敞口。",
             desc_en: "LightPath Technologies joins the drone portfolio, adding supply-chain exposure to infrared optics, thermal imaging, and defense vision components." },
+          { date: "2026-05-05", category: "defense", label: "SPAI 无人机影像 AI", en: "SPAI drone imagery AI",
+            desc: "Safe Pro Group 纳入无人机组合,补充无人机影像 AI、排爆识别与公共安全应用敞口。",
+            desc_en: "Safe Pro Group joins the drone portfolio, adding exposure to drone imagery AI, EOD detection, and public-safety applications." },
           { date: "2026-05-05", category: "market", label: "Skydio 预上市观察", en: "Skydio pre-listing watch",
             desc: "Skydio 暂无公开 ticker,作为无人机组合预上市观察项;公开行情出现后自动加入等权计算。",
             desc_en: "Skydio has no public ticker yet and is tracked as a pre-listing watch name; once public quote data appears, it automatically joins the equal-weight calculation." },
