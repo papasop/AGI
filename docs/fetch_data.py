@@ -8,16 +8,17 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    Ondas                   ONDS       USD    10.00%
-    Unusual Machines        UMAC       USD    10.00%
-    Theon International     THEON.AS   EUR    10.00%
-    Kopin                   KOPN       USD    10.00%
-    Red Cat Holdings        RCAT       USD    10.00%
-    Swarmer                 SWMR       USD    10.00%
-    Draganfly               DPRO       USD    10.00%
-    LightPath Technologies  LPTH       USD    10.00%
-    Safe Pro Group          SPAI       USD    10.00%
-    Kratos Defense          KTOS       USD    10.00%
+    Ondas                   ONDS       USD    9.09%
+    Unusual Machines        UMAC       USD    9.09%
+    Theon International     THEON.AS   EUR    9.09%
+    Kopin                   KOPN       USD    9.09%
+    Red Cat Holdings        RCAT       USD    9.09%
+    Swarmer                 SWMR       USD    9.09%
+    Draganfly               DPRO       USD    9.09%
+    LightPath Technologies  LPTH       USD    9.09%
+    Safe Pro Group          SPAI       USD    9.09%
+    Kratos Defense          KTOS       USD    9.09%
+    Palladyne AI            PDYN       USD    9.09%
 
 Additional portfolio data pool:
     拼多多                  PDD        USD
@@ -64,6 +65,7 @@ COMPONENTS = [
     {"name": "LightPath Technologies", "short": "LPTH", "ticker": "LPTH", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Safe Pro Group", "short": "SPAI", "ticker": "SPAI", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Kratos Defense & Security Solutions", "short": "KTOS", "ticker": "KTOS", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Palladyne AI", "short": "PDYN", "ticker": "PDYN", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Skydio", "short": "SKYDIO", "ticker": "SKYDIO", "ccy": "USD", "sleeve": "US", "status": "prelist"},
     {"name": "Neros Technologies", "short": "NEROS", "ticker": "NEROS", "ccy": "USD", "sleeve": "US", "status": "prelist"},
     {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
@@ -115,16 +117,17 @@ COMPONENTS = [
 ]
 
 TARGET_WEIGHTS = {
-    "ONDS": 1 / 10,
-    "UMAC": 1 / 10,
-    "THEON.AS": 1 / 10,
-    "KOPN": 1 / 10,
-    "RCAT": 1 / 10,
-    "SWMR": 1 / 10,
-    "DPRO": 1 / 10,
-    "LPTH": 1 / 10,
-    "SPAI": 1 / 10,
-    "KTOS": 1 / 10,
+    "ONDS": 1 / 11,
+    "UMAC": 1 / 11,
+    "THEON.AS": 1 / 11,
+    "KOPN": 1 / 11,
+    "RCAT": 1 / 11,
+    "SWMR": 1 / 11,
+    "DPRO": 1 / 11,
+    "LPTH": 1 / 11,
+    "SPAI": 1 / 11,
+    "KTOS": 1 / 11,
+    "PDYN": 1 / 11,
     "SKYDIO": 0.0,
     "NEROS": 0.0,
     "PDD": 0.0,
