@@ -988,10 +988,11 @@
         <div class="control-group" id="asset-group">
           <span class="control-group-label">标的</span>
           <button data-asset="INDEX" class="active"><span class="btn-main">指数</span><span class="btn-sub">Index</span></button>
-          <button data-asset="ONDS"><span class="btn-main">ONDS</span><span class="btn-sub">25%</span></button>
-          <button data-asset="UMAC"><span class="btn-main">UMAC</span><span class="btn-sub">25%</span></button>
-          <button data-asset="THEON.AS"><span class="btn-main">THEON</span><span class="btn-sub">25%</span></button>
-          <button data-asset="KOPN"><span class="btn-main">KOPN</span><span class="btn-sub">25%</span></button>
+          <button data-asset="ONDS"><span class="btn-main">ONDS</span><span class="btn-sub">20%</span></button>
+          <button data-asset="UMAC"><span class="btn-main">UMAC</span><span class="btn-sub">20%</span></button>
+          <button data-asset="THEON.AS"><span class="btn-main">THEON</span><span class="btn-sub">20%</span></button>
+          <button data-asset="KOPN"><span class="btn-main">KOPN</span><span class="btn-sub">20%</span></button>
+          <button data-asset="RCAT"><span class="btn-main">RCAT</span><span class="btn-sub">20%</span></button>
         </div>
       </div>
       <div id="chart"></div>
@@ -1519,31 +1520,36 @@
       "drone": {
         name: "无人机组合",
         nameEn: "Drone Portfolio",
-        tag: "策略 · ONDS / UMAC / THEON / KOPN · 各 25%",
-        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN · 25 EACH",
-        footer: "四只股票等权配置，聚焦反无人机、防务无人机零部件、军用视觉设备与微显示头显光学。",
-        footerEn: "Equal-weight exposure to counter-UAS, drone components, military vision systems, and microdisplay optics.",
+        tag: "策略 · ONDS / UMAC / THEON / KOPN / RCAT · 各 20%",
+        tagEn: "STRATEGY · ONDS / UMAC / THEON / KOPN / RCAT · 20 EACH",
+        footer: "五只股票等权配置，聚焦反无人机、防务无人机整机、零部件、军用视觉设备与微显示头显光学。",
+        footerEn: "Equal-weight exposure to counter-UAS, defense drones, components, military vision systems, and microdisplay optics.",
         components: [
-          { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Ondas",                         short: "ONDS",           ticker: "ONDS",      weight: 0.2, ccy: "USD", sleeve: "US", status: "active",
             concept: "Iron Drone 反无人机系统",
             conceptEn: "Iron Drone counter-UAS systems",
             marketCap: 4.5,
             seed: 413, base: 1.2, vol: 0.055, drift: 0.00110 },
-          { name: "Unusual Machines",              short: "UMAC",           ticker: "UMAC",      weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Unusual Machines",              short: "UMAC",           ticker: "UMAC",      weight: 0.2, ccy: "USD", sleeve: "US", status: "active",
             concept: "无人机零部件供应商",
             conceptEn: "Drone component supplier",
             marketCap: 0.7,
             seed: 909, base: 4.8, vol: 0.065, drift: 0.00130 },
-          { name: "Theon International",           short: "THEON",          ticker: "THEON.AS",  weight: 0.25, ccy: "EUR", sleeve: "EU", status: "active",
+          { name: "Theon International",           short: "THEON",          ticker: "THEON.AS",  weight: 0.2, ccy: "EUR", sleeve: "EU", status: "active",
             concept: "军用夜视 · 热成像 · ISR",
             conceptEn: "Military night vision · thermal imaging · ISR",
             marketCap: 2.5,
             seed: 1997, base: 12.5, vol: 0.026, drift: 0.00075 },
-          { name: "Kopin",                         short: "KOPN",           ticker: "KOPN",      weight: 0.25, ccy: "USD", sleeve: "US", status: "active",
+          { name: "Kopin",                         short: "KOPN",           ticker: "KOPN",      weight: 0.2, ccy: "USD", sleeve: "US", status: "active",
             concept: "军用微显示 · 头显光学",
             conceptEn: "Microdisplays · defense wearable optics",
             marketCap: 0.52,
             seed: 405, base: 1.6, vol: 0.045, drift: 0.00095 },
+          { name: "Red Cat Holdings",              short: "RCAT",           ticker: "RCAT",      weight: 0.2, ccy: "USD", sleeve: "US", status: "active",
+            concept: "军用小型无人机 · 战术 UAS",
+            conceptEn: "Small tactical UAS · defense drones",
+            marketCap: 1.5,
+            seed: 1214, base: 1.1, vol: 0.058, drift: 0.00115 },
         ],
       },
       "global-ai-hedge": {
@@ -1938,6 +1944,9 @@
           { date: "2025-09-01", category: "defense", label: "Iron Drone 订单主题", en: "Iron Drone order theme",
             desc: "Ondas 持续向国防客户销售 Iron Drone 反无人机系统,订单验证反无人机从概念走向真实采购。",
             desc_en: "Ondas continues selling Iron Drone counter-UAS systems to defense customers, validating the shift from concept to procurement." },
+          { date: "2025-11-15", category: "defense", label: "RCAT 战术无人机主题", en: "RCAT tactical UAS theme",
+            desc: "Red Cat Holdings 加入组合,代表小型战术无人机和国防无人系统整机侧的暴露。",
+            desc_en: "Red Cat Holdings joins the portfolio, adding exposure to small tactical drones and defense UAS platforms." },
         ],
       },
       "china-leading": {
