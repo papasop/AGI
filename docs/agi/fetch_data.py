@@ -8,10 +8,13 @@ index.html.
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    Ondas                   ONDS       USD    25.0%
-    Unusual Machines        UMAC       USD    25.0%
-    Theon International     THEON.AS   EUR    25.0%
-    Kopin                   KOPN       USD    25.0%
+    Ondas                   ONDS       USD    14.29%
+    Unusual Machines        UMAC       USD    14.29%
+    Theon International     THEON.AS   EUR    14.29%
+    Kopin                   KOPN       USD    14.29%
+    Red Cat Holdings        RCAT       USD    14.29%
+    AEVEX                   AVEX       USD    14.29%
+    Swarmer                 SWMR       USD    14.29%
 
 Additional portfolio data pool:
     拼多多                  PDD        USD
@@ -48,10 +51,13 @@ import yfinance as yf
 
 COMPONENTS = [
     # (CN name,    short,            ticker,         weight, ccy)
-    ("Ondas",                  "ONDS",           "ONDS",      0.25, "USD"),
-    ("Unusual Machines",       "UMAC",           "UMAC",      0.25, "USD"),
-    ("Theon International",    "THEON",          "THEON.AS",  0.25, "EUR"),
-    ("Kopin",                  "KOPN",           "KOPN",      0.25, "USD"),
+    ("Ondas",                  "ONDS",           "ONDS",      1 / 7, "USD"),
+    ("Unusual Machines",       "UMAC",           "UMAC",      1 / 7, "USD"),
+    ("Theon International",    "THEON",          "THEON.AS",  1 / 7, "EUR"),
+    ("Kopin",                  "KOPN",           "KOPN",      1 / 7, "USD"),
+    ("Red Cat Holdings",       "RCAT",           "RCAT",      1 / 7, "USD"),
+    ("AEVEX",                  "AVEX",           "AVEX",      1 / 7, "USD"),
+    ("Swarmer",                "SWMR",           "SWMR",      1 / 7, "USD"),
     ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.0, "USD"),
     ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.0, "USD"),
     ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.0, "CNY"),

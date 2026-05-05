@@ -52,6 +52,10 @@ COMPONENTS = [
     {"name": "Unusual Machines", "short": "UMAC", "ticker": "UMAC", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Theon International", "short": "THEON", "ticker": "THEON.AS", "ccy": "EUR", "sleeve": "EU", "status": "active"},
     {"name": "Kopin", "short": "KOPN", "ticker": "KOPN", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Red Cat Holdings", "short": "RCAT", "ticker": "RCAT", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "AEVEX", "short": "AVEX", "ticker": "AVEX", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Swarmer", "short": "SWMR", "ticker": "SWMR", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Skydio", "short": "SKYDIO", "ticker": "SKYDIO", "ccy": "USD", "sleeve": "US", "status": "prelist"},
     {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
     {"name": "\u7ebd\u7ea6\u65f6\u62a5", "short": "NYT", "ticker": "NYT", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "\u6bd4\u4e9a\u8fea", "short": "BYD", "ticker": "002594.SZ", "ccy": "CNY", "sleeve": "CN", "status": "active"},
@@ -101,10 +105,14 @@ COMPONENTS = [
 ]
 
 TARGET_WEIGHTS = {
-    "ONDS": 0.25,
-    "UMAC": 0.25,
-    "THEON.AS": 0.25,
-    "KOPN": 0.25,
+    "ONDS": 1 / 7,
+    "UMAC": 1 / 7,
+    "THEON.AS": 1 / 7,
+    "KOPN": 1 / 7,
+    "RCAT": 1 / 7,
+    "AVEX": 1 / 7,
+    "SWMR": 1 / 7,
+    "SKYDIO": 0.0,
     "PDD": 0.0,
     "NYT": 0.0,
     "002594.SZ": 0.0,
@@ -159,6 +167,9 @@ TICKER_CONTINUATIONS = {
     # Youzan transferred from GEM 8083.HK to the main board as 6051.HK.
     # Keep pre-transfer history and append the main-board quote stream.
     "6051.HK": ["8083.HK", "6051.HK"],
+    # Skydio has no public ticker yet. Try likely placeholders so the
+    # pre-listing watch can activate automatically if either symbol appears.
+    "SKYDIO": ["SKYDIO", "SKYD"],
 }
 
 
