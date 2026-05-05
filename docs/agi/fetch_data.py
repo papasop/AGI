@@ -1,25 +1,26 @@
 """
 fetch_data.py
 =============
-Fetch OHLC data for the Drone Portfolio components plus the historical
+Fetch OHLC data for the AI Drone Portfolio components plus the historical
 CNY/USD, HKD/USD, and EUR/USD spot rates, and write data.json next to
 index.html.
 
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    Ondas                   ONDS       USD    8.33%
-    Unusual Machines        UMAC       USD    8.33%
-    Theon International     THEON.AS   EUR    8.33%
-    Kopin                   KOPN       USD    8.33%
-    Red Cat Holdings        RCAT       USD    8.33%
-    Swarmer                 SWMR       USD    8.33%
-    Draganfly               DPRO       USD    8.33%
-    LightPath Technologies  LPTH       USD    8.33%
-    Safe Pro Group          SPAI       USD    8.33%
-    Kratos Defense          KTOS       USD    8.33%
-    Palladyne AI            PDYN       USD    8.33%
-    AeroVironment           AVAV       USD    8.33%
+    Ondas                   ONDS       USD    7.69%
+    Unusual Machines        UMAC       USD    7.69%
+    Theon International     THEON.AS   EUR    7.69%
+    Kopin                   KOPN       USD    7.69%
+    Red Cat Holdings        RCAT       USD    7.69%
+    Swarmer                 SWMR       USD    7.69%
+    Draganfly               DPRO       USD    7.69%
+    LightPath Technologies  LPTH       USD    7.69%
+    Safe Pro Group          SPAI       USD    7.69%
+    Kratos Defense          KTOS       USD    7.69%
+    Palladyne AI            PDYN       USD    7.69%
+    AeroVironment           AVAV       USD    7.69%
+    Palantir                PLTR       USD    7.69%
 
 Additional portfolio data pool:
     拼多多                  PDD        USD
@@ -56,18 +57,19 @@ import yfinance as yf
 
 COMPONENTS = [
     # (CN name,    short,            ticker,         weight, ccy)
-    ("Ondas",                  "ONDS",           "ONDS",      1 / 12, "USD"),
-    ("Unusual Machines",       "UMAC",           "UMAC",      1 / 12, "USD"),
-    ("Theon International",    "THEON",          "THEON.AS",  1 / 12, "EUR"),
-    ("Kopin",                  "KOPN",           "KOPN",      1 / 12, "USD"),
-    ("Red Cat Holdings",       "RCAT",           "RCAT",      1 / 12, "USD"),
-    ("Swarmer",                "SWMR",           "SWMR",      1 / 12, "USD"),
-    ("Draganfly",              "DPRO",           "DPRO",      1 / 12, "USD"),
-    ("LightPath Technologies", "LPTH",           "LPTH",      1 / 12, "USD"),
-    ("Safe Pro Group",         "SPAI",           "SPAI",      1 / 12, "USD"),
-    ("Kratos Defense & Security Solutions", "KTOS", "KTOS", 1 / 12, "USD"),
-    ("Palladyne AI",           "PDYN",           "PDYN",      1 / 12, "USD"),
-    ("AeroVironment",          "AVAV",           "AVAV",      1 / 12, "USD"),
+    ("Ondas",                  "ONDS",           "ONDS",      1 / 13, "USD"),
+    ("Unusual Machines",       "UMAC",           "UMAC",      1 / 13, "USD"),
+    ("Theon International",    "THEON",          "THEON.AS",  1 / 13, "EUR"),
+    ("Kopin",                  "KOPN",           "KOPN",      1 / 13, "USD"),
+    ("Red Cat Holdings",       "RCAT",           "RCAT",      1 / 13, "USD"),
+    ("Swarmer",                "SWMR",           "SWMR",      1 / 13, "USD"),
+    ("Draganfly",              "DPRO",           "DPRO",      1 / 13, "USD"),
+    ("LightPath Technologies", "LPTH",           "LPTH",      1 / 13, "USD"),
+    ("Safe Pro Group",         "SPAI",           "SPAI",      1 / 13, "USD"),
+    ("Kratos Defense & Security Solutions", "KTOS", "KTOS", 1 / 13, "USD"),
+    ("Palladyne AI",           "PDYN",           "PDYN",      1 / 13, "USD"),
+    ("AeroVironment",          "AVAV",           "AVAV",      1 / 13, "USD"),
+    ("Palantir Technologies",  "PLTR",           "PLTR",      1 / 13, "USD"),
     ("\u62fc\u591a\u591a",      "PDD",            "PDD",       0.0, "USD"),
     ("\u7ebd\u7ea6\u65f6\u62a5", "NYT",           "NYT",       0.0, "USD"),
     ("\u6bd4\u4e9a\u8fea",      "BYD",            "002594.SZ", 0.0, "CNY"),

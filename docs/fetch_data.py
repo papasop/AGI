@@ -1,25 +1,26 @@
 """
 fetch_data.py
 =============
-Fetch OHLC data for the Drone Portfolio components plus the
+Fetch OHLC data for the AI Drone Portfolio components plus the
 historical CNY/USD, HKD/USD, and EUR/USD spot rates, and write data.json next to
 index.html.
 
 Index inception: 2022-11-30 (ChatGPT public launch). Base = 100.
 
 Index composition:
-    Ondas                   ONDS       USD    8.33%
-    Unusual Machines        UMAC       USD    8.33%
-    Theon International     THEON.AS   EUR    8.33%
-    Kopin                   KOPN       USD    8.33%
-    Red Cat Holdings        RCAT       USD    8.33%
-    Swarmer                 SWMR       USD    8.33%
-    Draganfly               DPRO       USD    8.33%
-    LightPath Technologies  LPTH       USD    8.33%
-    Safe Pro Group          SPAI       USD    8.33%
-    Kratos Defense          KTOS       USD    8.33%
-    Palladyne AI            PDYN       USD    8.33%
-    AeroVironment           AVAV       USD    8.33%
+    Ondas                   ONDS       USD    7.69%
+    Unusual Machines        UMAC       USD    7.69%
+    Theon International     THEON.AS   EUR    7.69%
+    Kopin                   KOPN       USD    7.69%
+    Red Cat Holdings        RCAT       USD    7.69%
+    Swarmer                 SWMR       USD    7.69%
+    Draganfly               DPRO       USD    7.69%
+    LightPath Technologies  LPTH       USD    7.69%
+    Safe Pro Group          SPAI       USD    7.69%
+    Kratos Defense          KTOS       USD    7.69%
+    Palladyne AI            PDYN       USD    7.69%
+    AeroVironment           AVAV       USD    7.69%
+    Palantir                PLTR       USD    7.69%
 
 Additional portfolio data pool:
     拼多多                  PDD        USD
@@ -68,6 +69,7 @@ COMPONENTS = [
     {"name": "Kratos Defense & Security Solutions", "short": "KTOS", "ticker": "KTOS", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Palladyne AI", "short": "PDYN", "ticker": "PDYN", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "AeroVironment", "short": "AVAV", "ticker": "AVAV", "ccy": "USD", "sleeve": "US", "status": "active"},
+    {"name": "Palantir Technologies", "short": "PLTR", "ticker": "PLTR", "ccy": "USD", "sleeve": "US", "status": "active"},
     {"name": "Skydio", "short": "SKYDIO", "ticker": "SKYDIO", "ccy": "USD", "sleeve": "US", "status": "prelist"},
     {"name": "Neros Technologies", "short": "NEROS", "ticker": "NEROS", "ccy": "USD", "sleeve": "US", "status": "prelist"},
     {"name": "\u62fc\u591a\u591a", "short": "PDD", "ticker": "PDD", "ccy": "USD", "sleeve": "CN", "status": "active"},
@@ -119,18 +121,19 @@ COMPONENTS = [
 ]
 
 TARGET_WEIGHTS = {
-    "ONDS": 1 / 12,
-    "UMAC": 1 / 12,
-    "THEON.AS": 1 / 12,
-    "KOPN": 1 / 12,
-    "RCAT": 1 / 12,
-    "SWMR": 1 / 12,
-    "DPRO": 1 / 12,
-    "LPTH": 1 / 12,
-    "SPAI": 1 / 12,
-    "KTOS": 1 / 12,
-    "PDYN": 1 / 12,
-    "AVAV": 1 / 12,
+    "ONDS": 1 / 13,
+    "UMAC": 1 / 13,
+    "THEON.AS": 1 / 13,
+    "KOPN": 1 / 13,
+    "RCAT": 1 / 13,
+    "SWMR": 1 / 13,
+    "DPRO": 1 / 13,
+    "LPTH": 1 / 13,
+    "SPAI": 1 / 13,
+    "KTOS": 1 / 13,
+    "PDYN": 1 / 13,
+    "AVAV": 1 / 13,
+    "PLTR": 1 / 13,
     "SKYDIO": 0.0,
     "NEROS": 0.0,
     "PDD": 0.0,
