@@ -106,7 +106,6 @@ COMPONENTS = [
     ("\u4e2d\u94f6\u9999\u6e2f", "中银香港",      "2388.HK",  0.0, "HKD"),
     ("\u6c47\u4e30\u63a7\u80a1", "汇丰",          "0005.HK",  0.0, "HKD"),
     ("\u6e23\u6253\u96c6\u56e2", "渣打",          "2888.HK",  0.0, "HKD"),
-    ("Agora",                  "API",           "API",      0.0, "USD"),
     ("\u8fc8\u5bcc\u65f6",     "迈富时",        "2556.HK",  0.0, "HKD"),
     ("Bitcoin",                "Bitcoin",       "BTC-USD",  0.0, "USD"),
     ("Ethereum",               "ETH",           "ETH-USD",  0.0, "USD"),
@@ -119,9 +118,6 @@ COMPONENTS = [
 ]
 
 TICKER_CONTINUATIONS = {
-    # Youzan transferred from GEM 8083.HK to the main board as 6051.HK.
-    # Keep pre-transfer history and append the main-board quote stream.
-    "6051.HK": ["8083.HK", "6051.HK"],
 }
 
 

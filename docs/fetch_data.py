@@ -108,7 +108,6 @@ COMPONENTS = [
     {"name": "\u4e2d\u94f6\u9999\u6e2f", "short": "\u4e2d\u94f6\u9999\u6e2f", "ticker": "2388.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
     {"name": "\u6c47\u4e30\u63a7\u80a1", "short": "\u6c47\u4e30", "ticker": "0005.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
     {"name": "\u6e23\u6253\u96c6\u56e2", "short": "\u6e23\u6253", "ticker": "2888.HK", "ccy": "HKD", "sleeve": "HK", "status": "active"},
-    {"name": "Agora", "short": "API", "ticker": "API", "ccy": "USD", "sleeve": "CN", "status": "active"},
     {"name": "\u8fc8\u5bcc\u65f6", "short": "\u8fc8\u5bcc\u65f6", "ticker": "2556.HK", "ccy": "HKD", "sleeve": "CN", "status": "active"},
     {"name": "Bitcoin", "short": "Bitcoin", "ticker": "BTC-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
     {"name": "Ethereum", "short": "ETH", "ticker": "ETH-USD", "ccy": "USD", "sleeve": "CRYPTO", "status": "active"},
@@ -172,7 +171,6 @@ TARGET_WEIGHTS = {
     "2388.HK": 0.0,
     "0005.HK": 0.0,
     "2888.HK": 0.0,
-    "API": 0.0,
     "2556.HK": 0.0,
     "BTC-USD": 0.0,
     "ETH-USD": 0.0,
@@ -187,9 +185,6 @@ TARGET_WEIGHTS = {
 SYNTHETIC_FALLBACKS = {}
 
 TICKER_CONTINUATIONS = {
-    # Youzan transferred from GEM 8083.HK to the main board as 6051.HK.
-    # Keep pre-transfer history and append the main-board quote stream.
-    "6051.HK": ["8083.HK", "6051.HK"],
     # Skydio has no public ticker yet. Try likely placeholders so the
     # pre-listing watch can activate automatically if either symbol appears.
     "SKYDIO": ["SKYDIO", "SKYD"],
