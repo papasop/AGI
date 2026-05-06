@@ -107,7 +107,7 @@ COMPONENTS = [
     ("\u6c47\u4e30\u63a7\u80a1", "汇丰",          "0005.HK",  0.0, "HKD"),
     ("\u6e23\u6253\u96c6\u56e2", "渣打",          "2888.HK",  0.0, "HKD"),
     ("Agora",                  "API",           "API",      0.0, "USD"),
-    ("\u6709\u8d5e",           "有赞",          "6051.HK",  0.0, "HKD"),
+    ("\u8fc8\u5bcc\u65f6",     "迈富时",        "2556.HK",  0.0, "HKD"),
     ("Bitcoin",                "Bitcoin",       "BTC-USD",  0.0, "USD"),
     ("Ethereum",               "ETH",           "ETH-USD",  0.0, "USD"),
     ("SPDR Gold Shares",       "GLD",           "GLD",      0.0, "USD"),
