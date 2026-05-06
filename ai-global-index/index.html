@@ -896,7 +896,7 @@
   <div class="container">
     <h1>AI 无人机 <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">AI DRONE PORTFOLIO</span></h1>
     <div class="manifesto">
-      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 10 PORTFOLIOS</div>
+      <div class="manifesto-tag">组合栏目 · PORTFOLIO CHANNELS · 9 PORTFOLIOS</div>
       <div class="manifesto-sort">
         <span class="manifesto-sort-label">组合排序</span>
         <div class="components-rank-toggle" id="portfolio-rank-group" aria-label="Portfolio ranking mode">
@@ -910,11 +910,6 @@
           <span class="pillar-num">①</span>
           <span class="pillar-cat pillar-cat--realized">组合</span>
           <span class="pillar-text"><span class="m-key">AI 无人机</span><span class="pillar-en">AI Drone Portfolio</span></span>
-        </li>
-        <li class="pillar pillar--breakthrough" data-portfolio="global-ai-hedge">
-          <span class="pillar-num">②</span>
-          <span class="pillar-cat pillar-cat--breakthrough">组合</span>
-          <span class="pillar-text"><span class="m-key">全球AI对冲</span><span class="pillar-en">Global AI Hedge</span></span>
         </li>
         <li class="pillar pillar--pending" data-portfolio="china-leading">
           <span class="pillar-num">③</span>
@@ -937,7 +932,7 @@
           <span class="pillar-text"><span class="m-key">电池指数</span><span class="pillar-en">Battery Index</span></span>
         </li>
       </ol>
-      <div class="manifesto-footer">先推出十个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching ten portfolio channels first, with room for more themes later.</span></div>
+      <div class="manifesto-footer">先推出九个组合栏目，后续可继续扩展更多主题组合。<span class="manifesto-footer-en">Launching nine portfolio channels first, with room for more themes later.</span></div>
     </div>
 
     <div class="meta-strip">
@@ -1617,26 +1612,6 @@
             seed: 8821, base: 18.0, vol: 0.045, drift: 0.00100 },
         ],
       },
-      "global-ai-hedge": {
-        name: "全球AI对冲",
-        nameEn: "Global AI Hedge",
-        tag: "策略 · PDD / NYT · 各 50%",
-        tagEn: "STRATEGY · PDD / NYT · 50 EACH",
-        footer: "两只股票等权配置，聚焦 AI 生产力平台与 AI 数据版权。",
-        footerEn: "Equal-weight exposure to AI productivity platforms and AI data rights.",
-        components: [
-          { name: "拼多多",                         short: "PDD",            ticker: "PDD",       weight: 0.50, ccy: "USD", sleeve: "CN", status: "active",
-            concept: "AI 生产力",
-            conceptEn: "AI productivity",
-            marketCap: 165.0,
-            seed: 200, base: 80, vol: 0.030, drift: 0.00040 },
-          { name: "纽约时报",                       short: "NYT",            ticker: "NYT",       weight: 0.50, ccy: "USD", sleeve: "US", status: "active",
-            concept: "AI 数据版权",
-            conceptEn: "AI data rights",
-            marketCap: 11.0,
-            seed: 7, base: 36, vol: 0.014, drift: 0.00050 },
-        ],
-      },
       "china-leading": {
         name: "中国景气指数",
         nameEn: "China Prosperity Index",
@@ -1908,11 +1883,6 @@
     };
 
     const PORTFOLIO_EVENT_THEMES = {
-      "global-ai-hedge": {
-        header: "全球 AI 大事记",
-        headerEn: "Global AI Milestones",
-        milestones: DEFAULT_MILESTONES,
-      },
       "drone": {
         header: "AI 无人机事件",
         headerEn: "AI Drone Milestones",
@@ -2296,7 +2266,7 @@
     }
 
     function activeEventTheme() {
-      return PORTFOLIO_EVENT_THEMES[currentPortfolioKey] || PORTFOLIO_EVENT_THEMES["global-ai-hedge"];
+      return PORTFOLIO_EVENT_THEMES[currentPortfolioKey] || PORTFOLIO_EVENT_THEMES.drone;
     }
 
     function activeMilestones() {
@@ -2320,7 +2290,6 @@
     function portfolioStyleClass(key) {
       return {
         drone: "pillar--realized",
-        "global-ai-hedge": "pillar--breakthrough",
         "china-leading": "pillar--pending",
         blockchain: "pillar--partial",
         ev: "pillar--realized",
@@ -2472,7 +2441,7 @@
         `${portfolio.nameEn} <span style="color:#5e9eff;font-size:0.6em;font-weight:300;letter-spacing:2px;margin-left:8px">${portfolio.name}</span>`
       );
 
-      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 10 个组合", "PORTFOLIO CHANNELS · 10 PORTFOLIOS");
+      document.querySelector(".manifesto-tag").textContent = t("组合栏目 · 先推出 9 个组合", "PORTFOLIO CHANNELS · 9 PORTFOLIOS");
       document.querySelector("#portfolio-rank-group").previousElementSibling.textContent = t("组合排序", "Sort Portfolios");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="default"]').textContent = t("默认", "Default");
       document.querySelector('#portfolio-rank-group button[data-portfolio-rank="mcap"]').textContent = t("市值", "Market Cap");
