@@ -5,6 +5,12 @@
 Frozen research-software release **v0.7.4** for the repository
 [`papasop/Geometric-Flow`](https://github.com/papasop/Geometric-Flow).
 
+Archived Zenodo record:
+[`10.5281/zenodo.21722267`](https://doi.org/10.5281/zenodo.21722267).
+
+**Authors/Creators:** Y. Y. N. Li
+([ORCID 0009-0002-6471-139X](https://orcid.org/0009-0002-6471-139X)).
+
 This release audits a 14-phase driven-qubit model with the response constraint
 
 $$
