@@ -1,6 +1,6 @@
 # Computation as Geometric Flow
 
-## Arb-certified intrinsic ODE microstep on a quantum-control response fibre
+## An Arb-Certified Local Intrinsic ODE on a Quantum-Control Response Fibre
 
 Frozen research-software release **v0.9.3** for
 [`papasop/Geometric-Flow`](https://github.com/papasop/Geometric-Flow).

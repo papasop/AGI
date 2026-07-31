@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this research artifact, cite the repository and the exact v0.9.3 release or commit."
-title: "Validated Intrinsic ODE Microstep on a Quantum-Control Response Fibre"
+title: "Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on a Quantum-Control Response Fibre"
 type: software
 authors:
   - family-names: "Li"
