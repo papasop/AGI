@@ -21,8 +21,8 @@ The projected-gradient norm is bounded below by
 ## Open alignment gate
 
 The frozen KKT-witness residual has certified relative upper bound
-`0.008935710124765316`. This is small enough to imply the reported cosine
-lower bound `0.99996007574531`, but it does not meet the predeclared gate
+`0.008935710125297152`. This is small enough to imply the reported cosine
+lower bound `0.9999600757453052`, but it does not meet the predeclared gate
 `2e-4`. Consequently:
 
 - `kkt_witness_alignment_cover_certified = false`;

@@ -38,13 +38,13 @@ The frozen reference summary gives:
 
 | quantity | certified/report value |
 | --- | ---: |
-| maximum right-inverse defect upper bound | `0.12993443903572463` |
+| maximum right-inverse defect upper bound | `0.1299344388400178` |
 | minimum projected-gradient norm lower bound | `0.6530784748107296` |
 | maximum response-tangency norm upper bound | `2.3071147819354663e-09` |
 | maximum $dL_6/ds$ upper bound | `-0.6530784697700559` |
 
 The KKT-witness alignment gate does **not** close at its predeclared threshold:
-the maximum relative residual upper bound is `0.008935710124765316`, versus a
+the maximum relative residual upper bound is `0.008935710125297152`, versus a
 gate of `2e-4`. Therefore `all_gates_pass` is false.
 
 ## What this release does not claim
@@ -118,6 +118,10 @@ src/
 inputs/
   response_fibre_v0_6_2_backend_inputs.zip
 results/reference_run_summary.json
+results/reference/
+  protocol.json
+  certificate.json
+  report.json
 docs/CLAIM_SCOPE.md
 docs/PAPER_WORDING.md
 tools/verify_release.py
@@ -154,7 +158,8 @@ validated_ODE_claimed = false
 ```
 
 The output directory contains `protocol.json`, `certificate.json`, and
-`report.json`. Compare the report with `results/reference_run_summary.json`;
+`report.json`. The committed `results/reference/` directory stores the frozen
+reference machine output used to derive `results/reference_run_summary.json`;
 elapsed time is intentionally excluded from reproducibility expectations.
 
 ## Verify the release package

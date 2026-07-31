@@ -1,0 +1,106 @@
+{
+  "arb_precision_bits": 192,
+  "box_center": 0.015625,
+  "box_half_width": 0.015625,
+  "cauchy_arcs": 64,
+  "cauchy_bound_radius_multiplier": 3.0,
+  "cauchy_points": 64,
+  "cauchy_sample_radius_multiplier": 2.0,
+  "chart": 9,
+  "child_box_half_width": 0.0009765625,
+  "child_boxes": 16,
+  "child_parameter_intervals": [
+    [
+      0.0,
+      0.001953125
+    ],
+    [
+      0.001953125,
+      0.00390625
+    ],
+    [
+      0.00390625,
+      0.005859375
+    ],
+    [
+      0.005859375,
+      0.0078125
+    ],
+    [
+      0.0078125,
+      0.009765625
+    ],
+    [
+      0.009765625,
+      0.01171875
+    ],
+    [
+      0.01171875,
+      0.013671875
+    ],
+    [
+      0.013671875,
+      0.015625
+    ],
+    [
+      0.015625,
+      0.017578125
+    ],
+    [
+      0.017578125,
+      0.01953125
+    ],
+    [
+      0.01953125,
+      0.021484375
+    ],
+    [
+      0.021484375,
+      0.0234375
+    ],
+    [
+      0.0234375,
+      0.025390625
+    ],
+    [
+      0.025390625,
+      0.02734375
+    ],
+    [
+      0.02734375,
+      0.029296875
+    ],
+    [
+      0.029296875,
+      0.03125
+    ]
+  ],
+  "dependency_method": "Stage A forms the oriented pairing with the frozen midpoint solve and propagates the complete exact solve correction; Stage B freezes a centre least-squares witness (lambda,mu), forms g+lambda*gamma_dot-J^T*mu before Cauchy extraction, and adds a formal correction for the response-normal component of gamma_dot",
+  "finite_error_outcomes_used": false,
+  "formal_interval_arithmetic": true,
+  "gates": {
+    "maximum_dL6_dell": -0.55,
+    "maximum_parallel_relative_residual": 0.0002,
+    "maximum_response_tangency_norm": 1e-06,
+    "maximum_right_inverse_defect": 0.8,
+    "minimum_alignment_scale": 0.55,
+    "minimum_projected_gradient_norm": 0.6
+  },
+  "global_flow_claimed": false,
+  "macro_interval": [
+    0.0,
+    0.03125
+  ],
+  "metric": "Euclidean metric in the fourteen phase coordinates",
+  "model": "14-segment driven qubit with common quasi-static detuning",
+  "purpose": "certify response rank, tangent descent, projected-gradient nonstationarity with the preserved frozen-solve proof, and certify frozen KKT-witness alignment on one complete 1/64 scalar box via sixteen exact subboxes",
+  "source_corrected_atlas_sha256": "c02acc1c76e0b670793340150d1a875fdc373e0ac7c46d3360a7824b66a3a5ef",
+  "subdivision": 32,
+  "taylor_order": 24,
+  "title": "RESPONSE-FIBRE ARB KKT-WITNESS ALIGNMENT AUDIT",
+  "uses_cloud_or_qpu": false,
+  "uses_pasqal_credentials": false,
+  "validated_ODE_claimed": false,
+  "vector_field": "unit-normalized negative Euclidean projection of grad(L6) onto ker(DR3)",
+  "version": "0.7.4"
+}
