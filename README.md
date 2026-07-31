@@ -61,19 +61,44 @@ geometric flow has been proved.” See
 [`docs/CLAIM_SCOPE.md`](docs/CLAIM_SCOPE.md) and
 [`docs/PAPER_WORDING.md`](docs/PAPER_WORDING.md).
 
-## Possible extension to neural networks
+## Research direction: neural-network response fibres
 
 The response-level viewpoint suggests a possible extension beyond quantum
 control. For a parameterized model, let $R_{\mathrm{train}}(\theta)$ represent
 a declared collection of training responses, such as logits, predictions, or
-input jets, and let $G(\theta)$ be a separate robustness or generalization
-objective. One may then study constrained descent of the form
+input jets. When
 
 $$
-\mathcal F_r=R_{\mathrm{train}}^{-1}(r),\qquad
+\operatorname{rank}DR_{\mathrm{train}}(\theta)=\dim R_{\mathrm{train}},
+$$
+
+the matched-response set is locally a smooth fibre near regular points:
+
+$$
+\mathcal F_r=R_{\mathrm{train}}^{-1}(r).
+$$
+
+Let $G(\theta)$ be a separate robustness or generalization objective. One may
+then study constrained descent of the form
+
+$$
 \dot{\theta}
 =-P_{\ker DR_{\mathrm{train}}(\theta)}^{\,g}\nabla_g G(\theta).
 $$
+
+The descended quantity here is the independent objective $G$, not the training
+loss itself. If $L$ is the training loss and the motion is restricted to a loss
+level set, then
+
+$$
+L|_{L^{-1}(c)}=c
+\quad\Longrightarrow\quad
+\nabla_{L^{-1}(c)}L=0,
+$$
+
+so the intrinsic descent problem for $L$ on its own level set is degenerate.
+The response-fibre question is instead whether one can preserve a declared
+training response while descending a distinct objective.
 
 This separates motion that preserves the declared training response from
 motion that changes it. It also raises the question of whether different
@@ -82,6 +107,8 @@ jet-matching orders define distinct notions of model equivalence.
 This is a research direction, not a result of the present release. The
 projective-jet no-go theorem, the Arb certificate, and the local descent
 result have not been transferred to neural networks or to the NTK regime.
+There is also no scalable Arb-certification method here for high-dimensional
+neural networks.
 
 ## Repository layout
 
@@ -146,6 +173,13 @@ the full 192-bit sixteen-subbox Arb audit.
 上，响应秩、响应近切向性、投影梯度非驻点性及局部 Chebyshev 坐标
 $dL_6/ds<0$ 的统一界已由 Arb 区间算术认证。KKT 对齐门未通过，因此不能称为
 “完整几何流定理”或“已验证 ODE”。
+
+神经网络“响应纤维”只作为未来研究方向：只有在
+$\operatorname{rank}DR_{\mathrm{train}}=\dim R_{\mathrm{train}}$ 的正则点，
+匹配响应集合才局部构成光滑纤维；下降对象应是独立目标 $G$，不是训练损失在
+自身等值集上的退化下降。本版本没有把 projective-jet no-go theorem、Arb
+证书或局部下降结果推广到神经网络、NTK 区域，也没有给出高维神经网络的可扩展
+Arb 认证方法。
 
 ## Citation and license
 
