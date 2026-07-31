@@ -1,36 +1,43 @@
-# Claim scope
+# Claim scope for frozen v0.7.4
 
-## Supported
+## Certified local statement
 
-For the serialized fourteen-phase driven-qubit model and the declared Euclidean
-phase metric:
+For the serialized corrected atlas with canonical JSON SHA-256
+`c02acc1c76e0b670793340150d1a875fdc373e0ac7c46d3360a7824b66a3a5ef`,
+v0.7.4 covers chart 9, subdivision 32 by 16 exact contiguous child boxes.
+The reference run reports formal outward-rounded certification of:
 
-1. the frozen exact response curve supplies the starting response-fibre data;
-2. a response-corrected RK4 construction follows the unit-normalized projected
-   negative $L_6$ gradient to floating-point accuracy;
-3. the 80-step and 160-step runs pass every predeclared construction gate;
-4. every numerical step strictly decreases $L_6$;
-5. step halving changes the total $L_6$ decrease by about $5.36\times10^{-8}$.
+1. full response-Jacobian row rank;
+2. response tangency on the complete parent box;
+3. nonzero projected \(L_6\) gradient;
+4. negative oriented projected-gradient pairing; and
+5. the uniform inequality
+   \[
+   \frac{dL_6}{d\ell}\le -0.6530784697700559<0.
+   \]
 
-## Not supported
+The projected-gradient norm is bounded below by
+`0.6530784748107296`, and the response-tangency norm is bounded above by
+`2.3071147819354663e-09`.
 
-The current calculations do not certify:
+## Open alignment gate
 
-- existence and uniqueness of an exact ODE solution on the full interval;
-- exact equality between the numerical derivative and the vector field;
-- a uniform outward-rounded negative bound for $dL_6/d\ell$;
-- the complete global response fibre;
-- holonomy or geometric memory;
-- robustness under model discrepancy;
-- PASQAL Cloud or QPU behavior.
+The frozen KKT-witness residual has certified relative upper bound
+`0.008935710124765316`. This is small enough to imply the reported cosine
+lower bound `0.99996007574531`, but it does not meet the predeclared gate
+`2e-4`. Consequently:
 
-## Required wording
+- `kkt_witness_alignment_cover_certified = false`;
+- `formal_single_box_projected_gradient_alignment_certified = false`; and
+- `all_gates_pass = false`.
 
-Preferred:
+This is a fail-closed outcome, not a numerical failure of descent.
 
-> A floating-point, response-corrected projected-gradient reconstruction passes
-> the declared 80-step and 160-step audits and is stable under step refinement.
+## Explicit exclusions
 
-Avoid:
+The release does not establish ODE existence or uniqueness, a transverse
+radii-polynomial tube, the complete ten-chart flow, a global response fibre,
+holonomy, or hardware execution. The word “flow” in the repository name is a
+research direction; the frozen theorem is local strict descent along the
+serialized atlas.
 
-> The geometric flow has been formally proved.

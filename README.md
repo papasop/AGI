@@ -1,187 +1,124 @@
-# Geometric Flow on Quantum Response Fibres
+# Certified Local Descent on a Quantum-Control Response Fibre
 
-> **Recovery package:** if the generated input and raw outputs are missing,
-> follow [README_RECOVERY.md](README_RECOVERY.md) and run
-> `python rebuild_all_artifacts.py`. The driver regenerates the formal v1.3.1
-> input plus the 80/160-step result directories, verifies their recorded
-> canonical hashes, and creates a GitHub-ready ZIP.
+Frozen research-software release **v0.7.4** for the repository
+[`papasop/Geometric-Flow`](https://github.com/papasop/Geometric-Flow).
 
-This repository studies a concrete geometric-flow construction in quantum
-control.  The control space is a fourteen-phase driven-qubit model, the
-constraint is equality of the projective response jet
+This release audits a 14-phase driven-qubit model with the response constraint
 
-$$
-R_3(\theta)=(\Re a_0,\Im a_0,\ldots,\Re a_3,\Im a_3),
-$$
+\[
+R_3(\theta)=(\Re a_0,\Im a_0,\ldots,\Re a_3,\Im a_3)
+\]
 
-and the potential is the sixth-order symmetric-loss coefficient $L_6$.
+and the sixth-order symmetric-loss coefficient \(L_6\).  All theorem-bearing
+arithmetic in the audit is outward-rounded Arb arithmetic at 192-bit
+precision. A floating midpoint solve is used only as a frozen preconditioner.
 
-The candidate vector field in the declared Euclidean phase metric is
+## Frozen scientific status
 
-$$
-X(\theta)=-
-\frac{P_{\ker DR_3(\theta)}\nabla L_6(\theta)}
-{\|P_{\ker DR_3(\theta)}\nabla L_6(\theta)\|}.
-$$
-
-The present release constructs and tests a response-corrected numerical
-trajectory of this field.  It is a floating-point reconstruction, not yet a
-validated ODE theorem.
-
-## Current evidence
-
-The frozen response-fibre parameterization has SHA-256
+The reference v0.7.4 run reports:
 
 ```text
-e8ad8a6fbcab626b726082b570f59df6854d4a28259177783e1f5e3274b1cb84
+FORMAL_ARB_ORIENTED_DESCENT_CERTIFIED_ALIGNMENT_INCONCLUSIVE
 ```
 
-The original ten-segment curve passed response preservation, fibre tangency,
-and sampled strict $L_6$ descent, but failed the predeclared
-gradient-alignment gate.  This motivated reconstruction by directly integrating
-the projected-gradient vector field.
+Stage A closes on all 16 exact child boxes covering one complete serialized
+1/64 parent box (chart 9, subdivision 32). It certifies, for this local box:
 
-| reconstruction | steps | total change in $L_6$ | max response gap | min alignment cosine | status |
-| --- | ---: | ---: | ---: | ---: | --- |
-| v0.2.2 | 80 | `-0.3457666722306385` | `6.7502e-14` | `0.9999999984107195` | supported |
-| v0.2.3 | 160 | `-0.3457666186470760` | `9.7700e-14` | `0.9999999989512591` | supported |
+- full row rank of the response Jacobian;
+- response-fibre tangency within the reported outward-rounded bound;
+- nonstationarity of the projected \(L_6\) gradient;
+- a negative oriented projected-gradient pairing; and
+- a uniform strict bound \(dL_6/d\ell<0\).
 
-The two total decreases differ by approximately `5.36e-8`, or
-`1.55e-7` relative to their magnitude.  Every declared step decreases
-$L_6$, and the minimum projected-gradient norm remains above `0.641`.
-This is step-refinement evidence for a continuous projected-gradient-flow
-candidate.
+The frozen reference summary gives:
 
-## What this release establishes
+| quantity | certified/report value |
+| --- | ---: |
+| maximum right-inverse defect upper bound | `0.12993443903572463` |
+| minimum projected-gradient norm lower bound | `0.6530784748107296` |
+| maximum response-tangency norm upper bound | `2.3071147819354663e-09` |
+| maximum \(dL_6/d\ell\) upper bound | `-0.6530784697700559` |
 
-- A response-corrected RK4 trajectory generated from the projected negative
-  $L_6$ gradient.
-- Response preservation to approximately $10^{-13}$ in the completed runs.
-- Strict $L_6$ decrease at every one of 80 and 160 numerical steps.
-- Near-unit midpoint alignment with the declared projected-gradient field.
-- Stable total $L_6$ decrease under step halving.
+The KKT-witness alignment gate does **not** close at its predeclared threshold:
+the maximum relative residual upper bound is `0.008935710124765316`, versus a
+gate of `2e-4`. Therefore `all_gates_pass` is false.
 
-## What this release does not establish
+## What this release does not claim
 
-- No outward-rounded or interval ODE existence theorem.
-- No exact continuous-time gradient-flow claim.
-- No uniform certified bound for $dL_6/d\ell<0$ over the full interval.
-- No global six-dimensional response-fibre theorem.
-- No canonical physical metric, holonomy, PASQAL Cloud, or QPU claim.
-- No neural-network or LoRA optimizer claim.
+- no validated ODE existence or uniqueness theorem;
+- no complete ten-chart projected-gradient flow theorem;
+- no formal exact gradient-alignment certificate;
+- no global six-dimensional fibre, holonomy, cloud, or QPU theorem;
+- no neural-network claim.
+
+The correct description is **formal local strict descent on a serialized
+response-fibre box**, not “the full geometric flow has been proved.” See
+[`docs/CLAIM_SCOPE.md`](docs/CLAIM_SCOPE.md) and
+[`docs/PAPER_WORDING.md`](docs/PAPER_WORDING.md).
 
 ## Repository layout
 
 ```text
-scripts/
-  response_fibre_exact_root_descent_v1_3_1.py
-  response_fibre_geometric_flow_preflight_v0_1.py
-  response_fibre_projected_gradient_reconstruction_v0_2_2_oneclick.py
-  response_fibre_projected_gradient_reconstruction_v0_2_3_steps160_oneclick.py
-docs/
-  CLAIM_SCOPE.md
-  STEP_REFINEMENT.md
-  FORMAL_ROADMAP.md
-  MIGRATION_RECORD.md
-results/reference/
-  step_refinement_summary.json
+src/
+  response_fibre_arb_kkt_witness_alignment_v0_7_4.py
 inputs/
-  README.md
-tools/
-  verify_release.py
-README_RECOVERY.md
-rebuild_all_artifacts.py
-requirements.txt
-CITATION.cff
-LICENSE
+  response_fibre_v0_6_2_backend_inputs.zip
+results/reference_run_summary.json
+docs/CLAIM_SCOPE.md
+docs/PAPER_WORDING.md
+tools/verify_release.py
 ```
 
-## Requirements
+The input archive contains the hash-bound corrected Chebyshev atlas and its
+supporting v0.5.2/v0.6.1 artifacts. It is included so the frozen audit can be
+run without reconstructing earlier notebook state.
+
+## Install
+
+Python 3.12 is recommended.
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-Python 3.12, NumPy 2.x, and SciPy 1.x are recommended.
+## Reproduce the frozen local audit
 
-## Reproduction paths
+```bash
+python src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py \
+  --inputs-zip inputs/response_fibre_v0_6_2_backend_inputs.zip \
+  --chart 9 \
+  --subdivision 32 \
+  --output results/v0_7_4_run
+```
 
-There are two supported ways to obtain the required
-`global_parameterization.json`.
-
-Fast path: use an existing parameterization whose canonical JSON hash equals
-the frozen hash shown above.  This file is produced by the formally certified
-local response-curve calculation in the companion
-[Projective-Jet repository](https://github.com/papasop/projective-jet-quantum-control).
-Place it at:
+Expected high-level result:
 
 ```text
-inputs/global_parameterization.json
+stage_a_rank_descent_cover_certified = true
+kkt_witness_alignment_cover_certified = false
+validated_ODE_claimed = false
 ```
 
-Complete recovery path: run the in-repository recovery driver.  It regenerates
-the v1.3.1 parameterization and the 80/160-step raw outputs, verifies their
-recorded canonical hashes, and packages a GitHub-ready release ZIP:
+The output directory contains `protocol.json`, `certificate.json`, and
+`report.json`. Compare the report with `results/reference_run_summary.json`;
+elapsed time is intentionally excluded from reproducibility expectations.
 
-```bash
-python rebuild_all_artifacts.py
-```
-
-The input is intentionally not inferred from finite-error or $L_6$ outcomes.
-
-## Reproduce
-
-First diagnose the older response-matched curve:
-
-```bash
-python scripts/response_fibre_geometric_flow_preflight_v0_1.py \
-  --parameterization inputs/global_parameterization.json
-```
-
-Run the 80-step reconstruction:
-
-```bash
-python scripts/response_fibre_projected_gradient_reconstruction_v0_2_2_oneclick.py \
-  --parameterization inputs/global_parameterization.json \
-  --output results/run_80
-```
-
-Run the 160-step refinement:
-
-```bash
-python scripts/response_fibre_projected_gradient_reconstruction_v0_2_3_steps160_oneclick.py \
-  --parameterization inputs/global_parameterization.json \
-  --output results/run_160
-```
-
-Check the release files:
+## Verify the release package
 
 ```bash
 python tools/verify_release.py
+sha256sum -c SHA256SUMS.txt
 ```
 
-## Next theorem-bearing milestone
+## 中文说明
 
-The next release should replace floating-point reconstruction by a validated
-Taylor/Chebyshev ODE atlas and certify, uniformly over the complete parameter
-interval,
+本版本冻结在 v0.7.4。可用于论文的结论是：在一个完整的局部 1/64 参数盒
+上，响应秩、纤维切向性、投影梯度非驻点性及 \(dL_6/d\ell<0\) 的统一界已由
+Arb 区间算术认证。KKT 对齐门未通过，因此不能称为“完整几何流定理”或“已验证
+ODE”。
 
-$$
-R_3(\gamma(\ell))=R_3(\gamma(0)),
-\qquad
-\dot\gamma(\ell)=X(\gamma(\ell)),
-$$
+## Citation and license
 
-and
+Use [`CITATION.cff`](CITATION.cff) and cite the exact GitHub release or commit.
+The code is released under the MIT License.
 
-$$
-\frac{dL_6}{d\ell}
-=-\|P_{\ker DR_3}\nabla L_6\|<0.
-$$
-
-Until that validation closes, this repository should use the phrase
-“projected-gradient curve reconstruction supported,” not “geometric-flow
-theorem proved.”
-
-Historical PyTorch/LoRA optimizer work is preserved at the
-`legacy-geoflow-optim-v0.1` tag.

@@ -1,80 +1,90 @@
 #!/usr/bin/env python3
-"""Fail-closed structural verification for the migration package."""
+"""Fail-closed structural and hash verification for the frozen v0.7.4 release."""
 
 from __future__ import annotations
 
 import hashlib
 import json
-import py_compile
+import sys
+import zipfile
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_PARAMETERIZATION_HASH = (
-    "e8ad8a6fbcab626b726082b570f59df6854d4a28259177783e1f5e3274b1cb84"
+SOURCE = ROOT / "src" / "response_fibre_arb_kkt_witness_alignment_v0_7_4.py"
+INPUTS = ROOT / "inputs" / "response_fibre_v0_6_2_backend_inputs.zip"
+SUMMARY = ROOT / "results" / "reference_run_summary.json"
+
+EXPECTED_SOURCE_SHA256 = (
+    "1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8"
 )
-REQUIRED = [
-    "CITATION.cff",
-    "LICENSE",
-    "README.md",
-    "README_RECOVERY.md",
-    "docs/MIGRATION_RECORD.md",
-    "docs/CLAIM_SCOPE.md",
-    "docs/STEP_REFINEMENT.md",
-    "docs/FORMAL_ROADMAP.md",
-    "requirements.txt",
-    "rebuild_all_artifacts.py",
-    "results/reference/step_refinement_summary.json",
-    "scripts/response_fibre_exact_root_descent_v1_3_1.py",
-    "scripts/response_fibre_geometric_flow_preflight_v0_1.py",
-    "scripts/response_fibre_projected_gradient_reconstruction_v0_2_2_oneclick.py",
-    "scripts/response_fibre_projected_gradient_reconstruction_v0_2_3_steps160_oneclick.py",
-]
+EXPECTED_INPUTS_SHA256 = (
+    "2efd863f5ff26da1067594f068bfe265678e6ebac480574ff0574ccc55f98666"
+)
+EXPECTED_ATLAS_SHA256 = (
+    "c02acc1c76e0b670793340150d1a875fdc373e0ac7c46d3360a7824b66a3a5ef"
+)
 
 
-def canonical_json(value: object) -> bytes:
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def canonical_json(value) -> bytes:
     return json.dumps(
         value, sort_keys=True, separators=(",", ":"), ensure_ascii=True
     ).encode("utf-8")
 
 
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def main() -> int:
+    checks = {
+        "source_exists": SOURCE.is_file(),
+        "inputs_exist": INPUTS.is_file(),
+        "summary_exists": SUMMARY.is_file(),
+    }
+    if not all(checks.values()):
+        print(json.dumps(checks, indent=2))
+        return 1
 
+    checks["source_sha256"] = sha256(SOURCE) == EXPECTED_SOURCE_SHA256
+    checks["inputs_sha256"] = sha256(INPUTS) == EXPECTED_INPUTS_SHA256
 
-def main() -> None:
-    missing = [relative for relative in REQUIRED if not (ROOT / relative).is_file()]
-    if missing:
-        raise SystemExit(f"FAIL missing required files: {missing}")
+    with zipfile.ZipFile(INPUTS) as archive:
+        atlas_names = [
+            name for name in archive.namelist()
+            if name.endswith("/corrected_atlas.json")
+            or name == "corrected_atlas.json"
+        ]
+        checks["one_corrected_atlas"] = len(atlas_names) == 1
+        if atlas_names:
+            atlas = json.loads(archive.read(atlas_names[0]))
+            checks["canonical_atlas_sha256"] = (
+                hashlib.sha256(canonical_json(atlas)).hexdigest()
+                == EXPECTED_ATLAS_SHA256
+            )
 
-    for relative in REQUIRED:
-        if relative.endswith(".py"):
-            py_compile.compile(str(ROOT / relative), doraise=True)
+    summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    checks["stage_a_certified"] = (
+        summary.get("stage_a_rank_descent_cover_certified") is True
+    )
+    checks["alignment_fail_closed"] = (
+        summary.get("kkt_witness_alignment_cover_certified") is False
+        and summary.get("all_gates_pass") is False
+    )
+    checks["validated_ode_not_claimed"] = (
+        summary.get("validated_ODE_claimed") is False
+    )
 
-    summary_path = ROOT / "results/reference/step_refinement_summary.json"
-    summary = json.loads(summary_path.read_text(encoding="utf-8"))
-    if summary["source_parameterization_sha256"] != EXPECTED_PARAMETERIZATION_HASH:
-        raise SystemExit("FAIL frozen parameterization hash mismatch")
-    runs = summary["runs"]
-    if not all(runs[key]["all_gates_pass"] for key in ("80", "160")):
-        raise SystemExit("FAIL one reference run is not marked as passing")
-    if not all(
-        runs[key]["scientific_status"]
-        == "PROJECTED_GRADIENT_CURVE_RECONSTRUCTION_SUPPORTED"
-        for key in ("80", "160")
-    ):
-        raise SystemExit("FAIL unexpected scientific status")
-
-    observed = abs(runs["80"]["total_L6_change"] - runs["160"]["total_L6_change"])
-    declared = summary["step_refinement"][
-        "absolute_total_L6_change_difference"
-    ]
-    if abs(observed - declared) > 1.0e-15:
-        raise SystemExit("FAIL inconsistent step-refinement difference")
-
-    print("PASS: migration package structure and reference summary are consistent")
-    print(f"summary_sha256 = {sha256(summary_path)}")
+    print(json.dumps(checks, indent=2, sort_keys=True))
+    passed = all(checks.values())
+    print("PASS" if passed else "FAIL")
+    return 0 if passed else 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
+

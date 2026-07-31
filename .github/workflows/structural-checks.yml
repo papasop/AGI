@@ -12,7 +12,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Compile scripts
-        run: python -m compileall -q rebuild_all_artifacts.py scripts tools
-      - name: Verify release structure
+      - name: Compile frozen source
+        run: python -m compileall -q src tools
+      - name: Verify frozen release hashes and metadata
         run: python tools/verify_release.py
+
