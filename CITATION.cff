@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: "If you use this research artifact, cite the repository and the exact v0.7.4 release or commit."
-title: "Certified Local Descent on a Quantum-Control Response Fibre"
+title: "Computation as Geometric Flow: Projective-Jet Filtration and Arb-Certified Local Descent"
 type: software
 authors:
   - family-names: "Li"
     given-names: "Y. Y. N."
 year: 2026
+date-released: "2026-08-01"
 repository-code: "https://github.com/papasop/Geometric-Flow"
 license: MIT
 version: 0.7.4
-

@@ -1,15 +1,19 @@
-# Certified Local Descent on a Quantum-Control Response Fibre
+# Computation as Geometric Flow
+
+## Projective-Jet Filtration and Arb-Certified Local Descent
 
 Frozen research-software release **v0.7.4** for the repository
 [`papasop/Geometric-Flow`](https://github.com/papasop/Geometric-Flow).
 
 This release audits a 14-phase driven-qubit model with the response constraint
 
-\[
-R_3(\theta)=(\Re a_0,\Im a_0,\ldots,\Re a_3,\Im a_3)
-\]
+$$
+\mathcal R_3(\theta)
+=(\Re a_0,\Re a_1,\Re a_2,\Re a_3,
+  \Im a_0,\Im a_1,\Im a_2,\Im a_3)
+$$
 
-and the sixth-order symmetric-loss coefficient \(L_6\).  All theorem-bearing
+and the sixth-order symmetric-loss coefficient $L_6$.  All theorem-bearing
 arithmetic in the audit is outward-rounded Arb arithmetic at 192-bit
 precision. A floating midpoint solve is used only as a frozen preconditioner.
 
@@ -25,10 +29,10 @@ Stage A closes on all 16 exact child boxes covering one complete serialized
 1/64 parent box (chart 9, subdivision 32). It certifies, for this local box:
 
 - full row rank of the response Jacobian;
-- response-fibre tangency within the reported outward-rounded bound;
-- nonstationarity of the projected \(L_6\) gradient;
+- certified response near-tangency within the reported outward-rounded bound;
+- nonstationarity of the projected $L_6$ gradient;
 - a negative oriented projected-gradient pairing; and
-- a uniform strict bound \(dL_6/d\ell<0\).
+- a uniform strict bound $dL_6/ds<0$ in the local Chebyshev coordinate $s$.
 
 The frozen reference summary gives:
 
@@ -37,7 +41,7 @@ The frozen reference summary gives:
 | maximum right-inverse defect upper bound | `0.12993443903572463` |
 | minimum projected-gradient norm lower bound | `0.6530784748107296` |
 | maximum response-tangency norm upper bound | `2.3071147819354663e-09` |
-| maximum \(dL_6/d\ell\) upper bound | `-0.6530784697700559` |
+| maximum $dL_6/ds$ upper bound | `-0.6530784697700559` |
 
 The KKT-witness alignment gate does **not** close at its predeclared threshold:
 the maximum relative residual upper bound is `0.008935710124765316`, versus a
@@ -51,8 +55,9 @@ gate of `2e-4`. Therefore `all_gates_pass` is false.
 - no global six-dimensional fibre, holonomy, cloud, or QPU theorem;
 - no neural-network claim.
 
-The correct description is **formal local strict descent on a serialized
-response-fibre box**, not “the full geometric flow has been proved.” See
+The correct description is **formal local strict descent near a regular
+projective-response level on one complete local parameter box**, not “the full
+geometric flow has been proved.” See
 [`docs/CLAIM_SCOPE.md`](docs/CLAIM_SCOPE.md) and
 [`docs/PAPER_WORDING.md`](docs/PAPER_WORDING.md).
 
@@ -110,15 +115,17 @@ python tools/verify_release.py
 sha256sum -c SHA256SUMS.txt
 ```
 
+GitHub Actions performs structural and hash verification. It does not rerun
+the full 192-bit sixteen-subbox Arb audit.
+
 ## 中文说明
 
 本版本冻结在 v0.7.4。可用于论文的结论是：在一个完整的局部 1/64 参数盒
-上，响应秩、纤维切向性、投影梯度非驻点性及 \(dL_6/d\ell<0\) 的统一界已由
-Arb 区间算术认证。KKT 对齐门未通过，因此不能称为“完整几何流定理”或“已验证
-ODE”。
+上，响应秩、响应近切向性、投影梯度非驻点性及局部 Chebyshev 坐标
+$dL_6/ds<0$ 的统一界已由 Arb 区间算术认证。KKT 对齐门未通过，因此不能称为
+“完整几何流定理”或“已验证 ODE”。
 
 ## Citation and license
 
 Use [`CITATION.cff`](CITATION.cff) and cite the exact GitHub release or commit.
 The code is released under the MIT License.
-

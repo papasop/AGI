@@ -31,8 +31,9 @@
   "minimum_alignment_scale": 0.6530911830790829,
   "maximum_response_tangency_norm_upper": 2.3071147819354663e-09,
   "maximum_parallel_relative_residual_upper": 0.008935710124765316,
+  "certified_curve_parameter": "local Chebyshev coordinate s",
+  "legacy_field_name_note": "maximum_dL6_dell_upper is retained for frozen-source compatibility; the certified derivative is with respect to s",
   "maximum_dL6_dell_upper": -0.6530784697700559,
   "minimum_alignment_cosine_lower": 0.99996007574531,
   "certificate_sha256_from_reference_run": "e9082f5a404b9c3f9539492891a9741ec113542196fd5e5a6997bad83e7715e8"
 }
-

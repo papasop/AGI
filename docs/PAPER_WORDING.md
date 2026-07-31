@@ -2,11 +2,12 @@
 
 ## Recommended statement
 
-> On one complete local parameter box of the serialized response-matched
-> atlas, outward-rounded Arb arithmetic certifies full response rank,
-> response-fibre tangency, nonstationarity of the projected sixth-order loss
-> gradient, and the uniform strict bound
-> \(dL_6/d\ell\le-0.6530784697700559<0\). The accompanying KKT-witness audit
+> On one complete local parameter box of the serialized candidate
+> response-level atlas, outward-rounded Arb arithmetic certifies full response
+> rank, certified response near-tangency, nonstationarity of the projected
+> sixth-order loss gradient, and the uniform strict bound
+> $dL_6/ds\le-0.6530784697700559<0$ in the local Chebyshev coordinate $s$.
+> The accompanying KKT-witness audit
 > gives a near-alignment bound but does not close the predeclared formal
 > alignment gate. We therefore claim a certified local descent segment, not a
 > validated projected-gradient ODE or a complete geometric-flow theorem.
@@ -30,8 +31,7 @@ been published.
 
 ## Suggested status label
 
-Use `certified local response-fibre descent` in the abstract, figure captions,
-README, and release notes. Reserve `validated geometric flow` for a future
-release that closes both a formal ODE tube and the complete alignment/coverage
-requirements.
-
+Use `certified local descent near a regular projective-response level` in the
+abstract, figure captions, README, and release notes. Reserve `validated
+geometric flow` for a future release that closes both a formal ODE tube and
+the complete alignment/coverage requirements.

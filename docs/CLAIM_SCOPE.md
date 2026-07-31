@@ -8,13 +8,11 @@ v0.7.4 covers chart 9, subdivision 32 by 16 exact contiguous child boxes.
 The reference run reports formal outward-rounded certification of:
 
 1. full response-Jacobian row rank;
-2. response tangency on the complete parent box;
-3. nonzero projected \(L_6\) gradient;
+2. certified response near-tangency on the complete parent box;
+3. nonzero projected $L_6$ gradient;
 4. negative oriented projected-gradient pairing; and
-5. the uniform inequality
-   \[
-   \frac{dL_6}{d\ell}\le -0.6530784697700559<0.
-   \]
+5. the uniform inequality in the local Chebyshev coordinate $s$,
+   $dL_6/ds\le -0.6530784697700559<0$.
 
 The projected-gradient norm is bounded below by
 `0.6530784748107296`, and the response-tangency norm is bounded above by
@@ -36,8 +34,7 @@ This is a fail-closed outcome, not a numerical failure of descent.
 ## Explicit exclusions
 
 The release does not establish ODE existence or uniqueness, a transverse
-radii-polynomial tube, the complete ten-chart flow, a global response fibre,
+radii-polynomial tube, the complete ten-chart flow, a global response level,
 holonomy, or hardware execution. The word “flow” in the repository name is a
-research direction; the frozen theorem is local strict descent along the
-serialized atlas.
-
+research direction; the frozen theorem is local strict descent near a regular
+projective-response level on one complete local parameter box.
