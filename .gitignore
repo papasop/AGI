@@ -1,5 +1,7 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
-.pycache-check/
-artifacts/
+.DS_Store
+inputs/global_parameterization.json
+results/run_*/
+

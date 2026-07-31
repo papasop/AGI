@@ -1,0 +1,42 @@
+{
+  "evidence_type": "transcribed_final_reports",
+  "formal_interval_arithmetic": false,
+  "source_parameterization_sha256": "e8ad8a6fbcab626b726082b570f59df6854d4a28259177783e1f5e3274b1cb84",
+  "step_refinement": {
+    "absolute_total_L6_change_difference": 5.35835624759784e-08,
+    "relative_total_L6_change_difference": 1.549703169312337e-07
+  },
+  "runs": {
+    "80": {
+      "all_gates_pass": true,
+      "arclength": 0.4001624695258889,
+      "maximum_midpoint_parallel_relative_residual": 5.6378727991905387e-05,
+      "maximum_response_correction_l2": 1.3037528630831583e-10,
+      "maximum_response_gap": 6.750155989720952e-14,
+      "minimum_midpoint_alignment_cosine": 0.9999999984107195,
+      "minimum_projected_gradient_norm": 0.6410014608815628,
+      "protocol_sha256": "18b4fe4575424198c56a74bed3009eb2415cf2e09de2673185cdc9ac8a3708c5",
+      "reconstructed_curve_sha256": "c05e1184d6e8e0b603f6a73323957f300291d02a78fdd950f920f0a1dc383063",
+      "scientific_status": "PROJECTED_GRADIENT_CURVE_RECONSTRUCTION_SUPPORTED",
+      "step_size": 0.005002030869073611,
+      "steps": 80,
+      "total_L6_change": -0.3457666722306385
+    },
+    "160": {
+      "all_gates_pass": true,
+      "arclength": 0.4001624695258889,
+      "maximum_midpoint_parallel_relative_residual": 4.5798272280138687e-05,
+      "maximum_response_correction_l2": 6.632365435307906e-11,
+      "maximum_response_gap": 9.769962616701378e-14,
+      "minimum_midpoint_alignment_cosine": 0.9999999989512591,
+      "minimum_projected_gradient_norm": 0.6410166202171632,
+      "protocol_sha256": "b84ece0153c486eca29bc56ac61ee4e2818351065a8ebbbe36aa00703ad4b0cd",
+      "reconstructed_curve_sha256": "b63827b54311e895a2089610575601a5c79fa43d66ddd40f9cccfb1f37c9d670",
+      "scientific_status": "PROJECTED_GRADIENT_CURVE_RECONSTRUCTION_SUPPORTED",
+      "step_size": 0.0025010154345368055,
+      "steps": 160,
+      "total_L6_change": -0.34576661864707603
+    }
+  },
+  "scope": "floating-point step-refinement evidence; not a validated ODE or interval theorem"
+}
