@@ -61,6 +61,28 @@ geometric flow has been proved.” See
 [`docs/CLAIM_SCOPE.md`](docs/CLAIM_SCOPE.md) and
 [`docs/PAPER_WORDING.md`](docs/PAPER_WORDING.md).
 
+## Possible extension to neural networks
+
+The response-level viewpoint suggests a possible extension beyond quantum
+control. For a parameterized model, let $R_{\mathrm{train}}(\theta)$ represent
+a declared collection of training responses, such as logits, predictions, or
+input jets, and let $G(\theta)$ be a separate robustness or generalization
+objective. One may then study constrained descent of the form
+
+$$
+\mathcal F_r=R_{\mathrm{train}}^{-1}(r),\qquad
+\dot{\theta}
+=-P_{\ker DR_{\mathrm{train}}(\theta)}^{\,g}\nabla_g G(\theta).
+$$
+
+This separates motion that preserves the declared training response from
+motion that changes it. It also raises the question of whether different
+jet-matching orders define distinct notions of model equivalence.
+
+This is a research direction, not a result of the present release. The
+projective-jet no-go theorem, the Arb certificate, and the local descent
+result have not been transferred to neural networks or to the NTK regime.
+
 ## Repository layout
 
 ```text
