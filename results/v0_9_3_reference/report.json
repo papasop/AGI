@@ -1,0 +1,103 @@
+{
+  "ODE_existence_certified": true,
+  "ODE_uniqueness_certified": true,
+  "all_gates_pass": true,
+  "arb_precision_bits": 192,
+  "backend_exit_code": 0,
+  "cauchy_lipschitz_upper": 348785915675.93805,
+  "centered_parameter_residual_upper": 7.407811515687426e-15,
+  "certified_time_step": 1e-14,
+  "child_index": 15,
+  "complex_graph_krawczyk_utilization": 0.02316105051443677,
+  "complex_graph_normal_derivative_defect_upper": 0.0005642439501876456,
+  "elapsed_seconds_total": 4.737159013748169,
+  "exact_response_preservation_certified": true,
+  "formal_interval_arithmetic": true,
+  "gates": {
+    "analytic_normalization_branch": true,
+    "cauchy_lipschitz_resolved": true,
+    "complex_parametric_fibre_graph": true,
+    "exact_response_preservation": true,
+    "frozen_child_stage_a": true,
+    "implicit_graph_derivative_enclosed": true,
+    "intrinsic_projected_gradient_nonstationary": true,
+    "picard_contraction": true,
+    "picard_self_mapping": true,
+    "pullback_metric_positive_definite": true,
+    "uniform_strict_L6_descent": true
+  },
+  "generator_source_sha256": "3be3e07146ff0e505f08bae7bd0ec7f2895955f2540647fea3278fdba51db79c",
+  "global_flow_claimed": false,
+  "graph_refinement_records": [
+    {
+      "domain_radius": 1e-10,
+      "image_radius": 4.4153848166201974e-13,
+      "iteration": 0,
+      "normal_derivative_defect_upper": 0.004310622540181914,
+      "pass": true,
+      "utilization": 0.004415384816620197
+    },
+    {
+      "domain_radius": 4.636154057451207e-13,
+      "image_radius": 1.0737819831733842e-14,
+      "iteration": 1,
+      "normal_derivative_defect_upper": 0.0005642439501876456,
+      "pass": true,
+      "utilization": 0.02316105051443677
+    },
+    {
+      "domain_radius": 1.1274710823320533e-14,
+      "image_radius": 1.0482395722555216e-14,
+      "iteration": 2,
+      "normal_derivative_defect_upper": 0.0005470720112919707,
+      "pass": true,
+      "utilization": 0.9297263483577336
+    }
+  ],
+  "implicit_derivative_neumann_defect_upper": 0.0005642439501876456,
+  "implicit_derivative_neumann_tail_upper": 7.653022069862416e-70,
+  "inner_real_picard_radius": 1e-11,
+  "intrinsic_field_sup_norm_upper": 0.5813098594598967,
+  "intrinsic_projected_gradient_norm_lower": 0.6419529191591549,
+  "midpoint_response_singular_values": [
+    31.513135427844514,
+    8.705874730833322,
+    4.96990205742975,
+    3.0413096487969744,
+    0.8079729671362158,
+    0.5240961506519045,
+    0.010895748363787759,
+    0.006589914202571633
+  ],
+  "next_required_step": "Chain adjacent certified microsteps with endpoint inclusion; do not call this a full-child or global flow theorem.",
+  "normal_dimension": 8,
+  "normal_graph_radius": 1e-10,
+  "outer_complex_tangent_radius": 2e-11,
+  "picard_contraction_factor": 0.00348785915675938,
+  "picard_displacement_upper": 5.813098594598967e-15,
+  "picard_self_mapping_utilization": 0.0005813098594598967,
+  "proof_identities": {
+    "graph_equation": "B(R3(theta0+T*a+N*psi(a))-c)=0",
+    "graph_tangent": "W=T+N*Dpsi",
+    "implicit_derivative": "Dpsi=-(B*DR3*N)^(-1)*(B*DR3*T)",
+    "intrinsic_field": "a_dot=-H^(-1)W^T grad(L6)/sqrt((W^T grad(L6))^T H^(-1)(W^T grad(L6)))",
+    "lyapunov_identity": "dL6/dt=-sqrt((W^T grad(L6))^T H^(-1)(W^T grad(L6)))",
+    "pullback_metric": "H=W^T*W",
+    "response_preservation": "DR3*W=0"
+  },
+  "protocol_sha256": "6d0aaefabd71f1d2986515ed84673f0083ae90d0344b9a1e92d7697ac08d061a",
+  "pullback_metric_neumann_defect_upper": 0.000695359681037727,
+  "pullback_metric_solve_tail_upper": 2.4653492489588865e-64,
+  "refined_normal_graph_radius": 4.636154057451207e-13,
+  "scientific_status": "VALIDATED_INTRINSIC_RESPONSE_FIBRE_ODE_MICROSTEP_CERTIFIED",
+  "scope": "one formally validated intrinsic six-dimensional ODE microstep inside child 15; not the whole child, ten-chart atlas or global fibre",
+  "selected_graph_refinement_iteration": 1,
+  "tangent_dimension": 6,
+  "uniform_L6_descent_certified_for_validated_solution": true,
+  "uniform_dL6_dt_upper": -0.6419529191591549,
+  "validated_ODE_claimed": true,
+  "versions": {
+    "python": "3.12.13",
+    "python_flint": "0.8.0"
+  }
+}

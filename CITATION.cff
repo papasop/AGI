@@ -1,14 +1,13 @@
 cff-version: 1.2.0
-message: "If you use this research artifact, cite the repository and the exact v0.7.4 release or commit."
-title: "Computation as Geometric Flow: Projective-Jet Filtration and Arb-Certified Local Descent"
+message: "If you use this research artifact, cite the repository and the exact v0.9.3 release or commit."
+title: "Validated Intrinsic ODE Microstep on a Quantum-Control Response Fibre"
 type: software
 authors:
   - family-names: "Li"
     given-names: "Y. Y. N."
     orcid: "https://orcid.org/0009-0002-6471-139X"
 year: 2026
-date-released: "2026-07-31"
+date-released: "2026-08-01"
 repository-code: "https://github.com/papasop/Geometric-Flow"
-doi: "10.5281/zenodo.21722267"
 license: MIT
-version: 0.7.4
+version: 0.9.3

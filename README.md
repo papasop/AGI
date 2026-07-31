@@ -1,78 +1,91 @@
 # Computation as Geometric Flow
 
-## Projective-Jet Filtration and Arb-Certified Local Descent
+## Arb-certified intrinsic ODE microstep on a quantum-control response fibre
 
-This repository accompanies the artifact-hardened **v0.7.4-r1** release.
-The scientific model and claim scope are unchanged from v0.7.4; r1 adds
-the complete reference certificate and stronger fail-closed verification.
+Frozen research-software release **v0.9.3** for
+[`papasop/Geometric-Flow`](https://github.com/papasop/Geometric-Flow).
 
-> **Scientific status**
->
-> Arb certifies local strict descent on one complete parameter box.
-> Response rank, near-tangency, projected-gradient nonstationarity, and
-> $dL_6/ds<0$ are certified.
->
-> The KKT alignment gate remains open. This is **not** a validated
-> projected-gradient ODE or a global geometric-flow theorem.
-
-Archived Zenodo record:
-[`10.5281/zenodo.21722267`](https://doi.org/10.5281/zenodo.21722267).
-
-**Authors/Creators:** Y. Y. N. Li
-([ORCID 0009-0002-6471-139X](https://orcid.org/0009-0002-6471-139X)).
-
-This release audits a 14-phase driven-qubit model with the response constraint
+This repository studies a 14-phase driven-qubit model with response constraint
 
 $$
-\mathcal R_3(\theta)
-=(\Re a_0,\Re a_1,\Re a_2,\Re a_3,
-  \Im a_0,\Im a_1,\Im a_2,\Im a_3)
+R_3(\theta)=(\Re a_0,\Re a_1,\Re a_2,\Re a_3,
+             \Im a_0,\Im a_1,\Im a_2,\Im a_3)
 $$
 
-and the sixth-order symmetric-loss coefficient $L_6$. All theorem-bearing
-arithmetic in the audit is outward-rounded Arb arithmetic at 192-bit
-precision. A floating midpoint solve is used only as a frozen preconditioner.
+and independent objective $L_6$. The declared ambient metric is Euclidean in
+the fourteen phase coordinates. All theorem-bearing enclosures use
+outward-rounded Arb arithmetic at 192-bit precision; floating midpoint SVDs
+and inverses are frozen preconditioners only.
 
-## Frozen scientific status
+## Strongest certified statement
 
-The reference v0.7.4 run reports:
+For child 15 of chart 9, subdivision 32, v0.9.3 constructs a local fibre chart
+
+$$
+\theta(a)=\theta_0+Ta+N\psi(a), \qquad a\in\mathbb R^6,
+$$
+
+certifies the complex parametric graph $b=\psi(a)$, pulls the Euclidean
+metric back through $W=T+N D\psi$, and validates one intrinsic normalized
+projected-gradient ODE microstep:
+
+$$
+\dot a=-\frac{H^{-1}W^\top\nabla L_6}
+{\sqrt{(W^\top\nabla L_6)^\top H^{-1}(W^\top\nabla L_6)}},
+\qquad H=W^\top W.
+$$
+
+The reference report has status:
 
 ```text
-FORMAL_ARB_ORIENTED_DESCENT_CERTIFIED_ALIGNMENT_INCONCLUSIVE
+VALIDATED_INTRINSIC_RESPONSE_FIBRE_ODE_MICROSTEP_CERTIFIED
 ```
 
-Stage A closes on all 16 exact child boxes covering one complete serialized
-1/64 parent box (chart 9, subdivision 32). It certifies, for this local box:
+It formally certifies, on the declared microstep $0\le t\le10^{-14}$:
 
-- full row rank of the response Jacobian;
-- certified response near-tangency within the reported outward-rounded bound;
-- nonstationarity of the projected $L_6$ gradient;
-- a negative oriented projected-gradient pairing; and
-- a uniform strict bound $dL_6/ds<0$ in the local Chebyshev coordinate $s$.
+- existence and uniqueness of the intrinsic six-dimensional ODE solution;
+- exact response preservation $R_3(\theta(t))=R_3(\theta(0))$;
+- nonstationarity of the intrinsic projected gradient; and
+- uniform strict descent
+  $$
+  \frac{dL_6}{dt}\le-0.6419529191591549<0.
+  $$
 
-| Gate | Bound | Threshold | Status |
-| --- | ---: | ---: | --- |
-| Right-inverse defect | `0.1299344388400178` | `< 0.8` | PASS |
-| Projected-gradient norm | `0.6530784748107296` | `> 0.6` | PASS |
-| Response tangency | `2.3071147819354663e-09` | `< 1e-6` | PASS |
-| $dL_6/ds$ | `-0.6530784697700559` | `< -0.55` | PASS |
-| KKT relative residual | `0.008935710125297152` | `< 2e-4` | OPEN |
+| quantity | certified value |
+| --- | ---: |
+| complex-graph Krawczyk utilization | `0.02316105051443677` |
+| pullback-metric Neumann defect | `0.000695359681037727` |
+| intrinsic projected-gradient norm lower bound | `0.6419529191591549` |
+| Picard contraction factor | `0.00348785915675938` |
+| Picard self-mapping utilization | `0.0005813098594598967` |
+| certified time step | `1e-14` |
 
-The KKT-witness alignment gate does **not** close at its predeclared threshold,
-so `all_gates_pass` is false.
+The protocol SHA-256 is
+`6d0aaefabd71f1d2986515ed84673f0083ae90d0344b9a1e92d7697ac08d061a`.
 
-## What this release does not claim
+## Two distinct certified layers
 
-- no validated ODE existence or uniqueness theorem;
-- no complete ten-chart projected-gradient flow theorem;
-- no formal exact gradient-alignment certificate;
-- no global six-dimensional fibre, holonomy, cloud, or QPU theorem;
-- no neural-network claim.
+The release preserves v0.7.4 because its theorem and the v0.9.3 theorem have
+different scopes:
 
-The correct description is **formal local strict descent near a regular
-projective-response level on one complete local parameter box**, not “the full
-geometric flow has been proved.” See
-[`docs/CLAIM_SCOPE.md`](docs/CLAIM_SCOPE.md) and
+| layer | certified result | coverage |
+| --- | --- | --- |
+| v0.7.4 | rank, response tangency, projected-gradient nonstationarity and strict atlas descent | one complete 1/64 parent box, covered by 16 children |
+| v0.9.3 | existence, uniqueness, exact response preservation and strict descent for the intrinsic ODE | one (10^{-14}) microstep near child 15 |
+
+The broader v0.7.4 result is not an ODE theorem. The v0.9.3 ODE theorem is not
+a complete-parent-box result.
+
+## What v0.9.3 does not claim
+
+- no validated traversal of the complete child interval;
+- no complete ten-chart flow;
+- no global connection between arbitrary response-equivalent controls;
+- no global response-fibre, holonomy, neural-network, cloud, or QPU theorem;
+- no practically large integration time—the certified step is deliberately
+  microscopic and establishes the first local theorem unit.
+
+See [`docs/CLAIM_SCOPE.md`](docs/CLAIM_SCOPE.md) and
 [`docs/PAPER_WORDING.md`](docs/PAPER_WORDING.md).
 
 ## Repository layout
@@ -80,34 +93,27 @@ geometric flow has been proved.” See
 ```text
 src/
   response_fibre_arb_kkt_witness_alignment_v0_7_4.py
+  response_fibre_centered_mean_value_krawczyk_v0_9_2.py
+  response_fibre_intrinsic_picard_microstep_v0_9_3.py
 inputs/
   response_fibre_v0_6_2_backend_inputs.zip
-results/reference_run_summary.json
-results/reference/
-  protocol.json
-  certificate.json
-  report.json
-docs/CLAIM_SCOPE.md
-docs/NEURAL_NETWORK_RESPONSE_FIBRES.md
-docs/PAPER_WORDING.md
-tools/verify_release.py
+results/
+  reference_run_summary.json
+  reference/
+    protocol.json
+    certificate.json
+    report.json
+  v0_9_3_reference/
+    protocol.json
+    intrinsic_picard_microstep_certificate.json
+    report.json
+docs/
+  CLAIM_SCOPE.md
+  NEURAL_NETWORK_RESPONSE_FIBRES.md
+  PAPER_WORDING.md
+tools/
+  verify_release.py
 ```
-
-The input archive contains the hash-bound corrected Chebyshev atlas and its
-supporting v0.5.2/v0.6.1 artifacts. It is included so the frozen audit can be
-run without reconstructing earlier notebook state.
-
-## Frozen artifact identifiers
-
-| Artifact | SHA-256 |
-| --- | --- |
-| Source | `1f71c491...` |
-| Backend inputs | `2efd863f...` |
-| Corrected atlas | `c02acc1c...` |
-| Protocol | `d935fb83...` |
-| Reference certificate | `ed302725...` |
-
-The complete file-level release manifest is [`SHA256SUMS.txt`](SHA256SUMS.txt).
 
 ## Install
 
@@ -117,67 +123,57 @@ Python 3.12 is recommended.
 python -m pip install -r requirements.txt
 ```
 
-## Fast structural verification
+## Reproduce v0.9.3
 
 ```bash
-python tools/verify_release.py
-sha256sum -c SHA256SUMS.txt
+python src/response_fibre_intrinsic_picard_microstep_v0_9_3.py \
+  --inputs-zip inputs/response_fibre_v0_6_2_backend_inputs.zip \
+  --v074-source src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py \
+  --no-download \
+  --output results/v0_9_3_reproduction
 ```
 
-This verifies the archived source, inputs, reference machine outputs, key
-reported bounds, README numerics, and complete file-level manifest.
+Expected high-level fields:
 
-## Full 192-bit Arb reproduction
+```text
+all_gates_pass = true
+validated_ODE_claimed = true
+ODE_existence_certified = true
+ODE_uniqueness_certified = true
+exact_response_preservation_certified = true
+uniform_L6_descent_certified_for_validated_solution = true
+global_flow_claimed = false
+```
+
+The final report binds the generator source hash. Notebook-cell execution can
+leave `generator_source_sha256` null, so release-grade reproduction should run
+the saved `.py` file as shown above.
+
+## Reproduce the broader v0.7.4 descent audit
 
 ```bash
 python src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py \
   --inputs-zip inputs/response_fibre_v0_6_2_backend_inputs.zip \
   --chart 9 \
   --subdivision 32 \
-  --output results/v0_7_4_run
+  --output results/v0_7_4_reproduction
 ```
 
-Expected high-level result:
+## Verify the package
 
-```text
-stage_a_rank_descent_cover_certified = true
-kkt_witness_alignment_cover_certified = false
-validated_ODE_claimed = false
+```bash
+python tools/verify_release.py
+sha256sum -c SHA256SUMS.txt
 ```
-
-The output directory contains `protocol.json`, `certificate.json`, and
-`report.json`. The committed `results/reference/` directory stores the frozen
-reference machine output used to derive `results/reference_run_summary.json`;
-elapsed time is intentionally excluded from reproducibility expectations.
-
-GitHub Actions performs fast structural and hash verification by default. It
-does not rerun the full 192-bit sixteen-subbox Arb audit.
-
-## Future direction: neural-network response fibres
-
-A possible extension replaces the quantum response map by a declared
-training-response map $R_{\mathrm{train}}(\theta)$ and studies descent of an
-independent objective $G$ along regular fibres
-$R_{\mathrm{train}}^{-1}(r)$.
-
-This is a research direction only. No neural-network, NTK, or scalable
-high-dimensional Arb theorem is claimed here. See
-[`docs/NEURAL_NETWORK_RESPONSE_FIBRES.md`](docs/NEURAL_NETWORK_RESPONSE_FIBRES.md).
 
 ## 中文说明
 
-本仓库对应 artifact-hardened v0.7.4-r1 release。科学模型和声明边界与
-v0.7.4 不变；r1 增加完整 reference certificate，并强化 fail-closed
-校验。可用于论文的结论是：在一个完整的局部 1/64 参数盒上，响应秩、响应近
-切向性、投影梯度非驻点性及局部 Chebyshev 坐标 $dL_6/ds<0$ 的统一界已由
-Arb 区间算术认证。KKT 对齐门仍未通过，因此不能称为“完整几何流定理”或
-“已验证 ODE”。
-
-神经网络“响应纤维”只作为未来研究方向。本版本没有把 projective-jet no-go
-theorem、Arb 证书或局部下降结果推广到神经网络、NTK 区域，也没有给出高维
-神经网络的可扩展 Arb 认证方法。
+v0.9.3 首次在响应纤维的六维内蕴坐标中，以 192-bit Arb 区间算术认证了
+一个投影梯度 ODE 微步：解存在且唯一，响应 $R_3$ 精确保持，并且
+$dL_6/dt\le-0.6419529191591549<0$。认证时间仅为 $10^{-14}$，因此这是
+严格的局部微步定理，不是完整 child、十图或全局几何流定理。
 
 ## Citation and license
 
-Use [`CITATION.cff`](CITATION.cff) and cite the exact GitHub release or commit.
+Use [`CITATION.cff`](CITATION.cff) and cite the exact v0.9.3 release or commit.
 The code is released under the MIT License.

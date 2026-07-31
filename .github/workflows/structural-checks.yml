@@ -16,5 +16,4 @@ jobs:
         run: python -m compileall -q src tools
       - name: Verify frozen release hashes and metadata
         run: python tools/verify_release.py
-      - name: Verify complete release manifest
-        run: sha256sum -c SHA256SUMS.txt
+

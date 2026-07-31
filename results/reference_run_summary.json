@@ -1,5 +1,5 @@
 {
-  "artifact_role": "reference summary automatically derived from results/reference/report.json; see protocol.json, certificate.json, and report.json for the full machine output",
+  "artifact_role": "reference summary transcribed from the completed Colab v0.7.4 run; rerun the frozen source to regenerate the full certificate",
   "scientific_status": "FORMAL_ARB_ORIENTED_DESCENT_CERTIFIED_ALIGNMENT_INCONCLUSIVE",
   "all_gates_pass": false,
   "formal_interval_arithmetic": true,
@@ -26,14 +26,13 @@
   "child_boxes_passing": 0,
   "child_boxes_passing_stage_a": 16,
   "child_boxes_passing_stage_b": 0,
-  "maximum_right_inverse_defect_upper": 0.1299344388400178,
+  "maximum_right_inverse_defect_upper": 0.12993443903572463,
   "minimum_projected_gradient_norm_lower": 0.6530784748107296,
-  "minimum_alignment_scale": 0.6530911830790997,
+  "minimum_alignment_scale": 0.6530911830790829,
   "maximum_response_tangency_norm_upper": 2.3071147819354663e-09,
-  "maximum_parallel_relative_residual_upper": 0.008935710125297152,
+  "maximum_parallel_relative_residual_upper": 0.008935710124765316,
   "maximum_dL6_dell_upper": -0.6530784697700559,
-  "minimum_alignment_cosine_lower": 0.9999600757453052,
-  "certified_curve_parameter": "local Chebyshev coordinate s",
-  "legacy_field_name_note": "maximum_dL6_dell_upper is retained for frozen-source compatibility; the certified derivative is with respect to s",
-  "certificate_sha256_from_reference_run": "ed302725c03b66f2bbe7363e901842f07790bd895b4cf95261ebe3d172d400f9"
+  "minimum_alignment_cosine_lower": 0.99996007574531,
+  "certificate_sha256_from_reference_run": "e9082f5a404b9c3f9539492891a9741ec113542196fd5e5a6997bad83e7715e8"
 }
+

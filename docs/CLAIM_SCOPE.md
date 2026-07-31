@@ -1,40 +1,53 @@
-# Claim scope for frozen v0.7.4
+# Claim scope for frozen v0.9.3
 
-## Certified local statement
+## Theorem A: complete-parent-box strict descent (v0.7.4)
 
-For the serialized corrected atlas with canonical JSON SHA-256
+For the corrected atlas with canonical JSON SHA-256
 `c02acc1c76e0b670793340150d1a875fdc373e0ac7c46d3360a7824b66a3a5ef`,
-v0.7.4 covers chart 9, subdivision 32 by 16 exact contiguous child boxes.
-The reference run reports formal outward-rounded certification of:
+v0.7.4 covers chart 9, subdivision 32 by 16 exact child boxes. It certifies
+response rank, response tangency, projected-gradient nonstationarity, negative
+oriented pairing, and
 
-1. full response-Jacobian row rank;
-2. certified response near-tangency on the complete parent box;
-3. nonzero projected $L_6$ gradient;
-4. negative oriented projected-gradient pairing; and
-5. the uniform inequality in the local Chebyshev coordinate $s$,
-   $dL_6/ds\le -0.6530784697700559<0$.
+$$
+\frac{dL_6}{ds}\le-0.6530784697700559<0.
+$$
 
-The projected-gradient norm is bounded below by
-`0.6530784748107296`, and the response-tangency norm is bounded above by
-`2.3071147819354663e-09`.
+Here $s$ is the local Chebyshev coordinate recorded by the v0.7.4 certificate.
+Its KKT alignment gate remains open, so this layer is not a validated ODE.
 
-## Open alignment gate
+## Theorem B: intrinsic ODE microstep (v0.9.3)
 
-The frozen KKT-witness residual has certified relative upper bound
-`0.008935710125297152`. This is small enough to imply the reported cosine
-lower bound `0.9999600757453052`, but it does not meet the predeclared gate
-`2e-4`. Consequently:
+At child 15, v0.9.3 formally constructs a complex parametric fibre graph
 
-- `kkt_witness_alignment_cover_certified = false`;
-- `formal_single_box_projected_gradient_alignment_certified = false`; and
-- `all_gates_pass = false`.
+$$
+\theta(a)=\theta_0+Ta+N\psi(a)
+$$
 
-This is a fail-closed outcome, not a numerical failure of descent.
+and validates the induced six-dimensional normalized projected-gradient ODE
+for $0\le t\le10^{-14}$. The reference certificate establishes:
+
+1. existence and uniqueness inside the declared Picard tube;
+2. exact preservation of $R_3$;
+3. projected-gradient norm at least `0.6419529191591549`; and
+4. the uniform Lyapunov bound
+   $$
+   \frac{dL_6}{dt}\le-0.6419529191591549<0.
+   $$
+
+The Picard contraction factor is `0.00348785915675938`, and the self-mapping
+utilization is `0.0005813098594598967`.
+
+## Logical relationship
+
+Theorem A has broader parameter coverage but does not validate an ODE.
+Theorem B validates an ODE but only for one microscopic local step. Neither
+statement implies the other, and neither may be silently promoted to a
+complete-child or global theorem.
 
 ## Explicit exclusions
 
-The release does not establish ODE existence or uniqueness, a transverse
-radii-polynomial tube, the complete ten-chart flow, a global response level,
-holonomy, or hardware execution. The word “flow” in the repository name is a
-research direction; the frozen theorem is local strict descent near a regular
-projective-response level on one complete local parameter box.
+This release does not establish a validated traversal of a complete child,
+the complete ten-chart flow, arbitrary endpoint connection, a global response
+fibre, holonomy, neural-network transfer, or cloud/QPU execution. The term
+“validated ODE” refers only to the exact microstep and domain recorded in the
+v0.9.3 certificate.

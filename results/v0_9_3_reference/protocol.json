@@ -1,0 +1,32 @@
+{
+  "arb_precision_bits": 192,
+  "cauchy_lipschitz": "L<=6*M/(outer_radius-inner_radius)",
+  "child_index": 15,
+  "coordinate_model": "theta=theta0+T*a+N*psi(a)",
+  "formal_interval_arithmetic": true,
+  "gates": {
+    "maximum_L6_derivative": -0.55,
+    "maximum_graph_derivative_defect": 0.8,
+    "maximum_graph_utilization": 0.95,
+    "maximum_picard_contraction": 0.5,
+    "maximum_picard_self_mapping_utilization": 0.95,
+    "maximum_pullback_metric_defect": 0.8,
+    "minimum_projected_gradient_norm": 0.6
+  },
+  "global_flow_claimed": false,
+  "implementation_revision": "complex-fibre-graph-pullback-cauchy-picard",
+  "inner_real_picard_radius": "1E-11",
+  "metric": "Euclidean metric pulled back by W=T+N*Dpsi",
+  "neumann_terms": 20,
+  "normal_graph_radius": "1E-10",
+  "outer_complex_tangent_radius": "2E-11",
+  "parameter_residual_identity": "B(R(theta0+T*a)-R(theta0))=integral_0^1 B*J(theta0+s*T*a)*T*a ds",
+  "picard_norm": "sup norm in six intrinsic coordinates",
+  "purpose": "certify a complex parametric response-fibre graph, its induced six-dimensional normalized descent field and one Picard microstep",
+  "source_atlas_sha256": "c02acc1c76e0b670793340150d1a875fdc373e0ac7c46d3360a7824b66a3a5ef",
+  "source_v074_sha256": "1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8",
+  "time_step": "1E-14",
+  "title": "RESPONSE-FIBRE ARB INTRINSIC SIX-DIMENSIONAL PICARD MICROSTEP",
+  "validated_ODE_claimed_before_audit": false,
+  "version": "0.9.3"
+}
