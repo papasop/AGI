@@ -13,6 +13,6 @@ jobs:
         with:
           python-version: "3.12"
       - name: Compile scripts
-        run: python -m compileall -q scripts tools
+        run: python -m compileall -q rebuild_all_artifacts.py scripts tools
       - name: Verify release structure
         run: python tools/verify_release.py

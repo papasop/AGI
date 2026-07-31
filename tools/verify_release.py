@@ -14,12 +14,18 @@ EXPECTED_PARAMETERIZATION_HASH = (
     "e8ad8a6fbcab626b726082b570f59df6854d4a28259177783e1f5e3274b1cb84"
 )
 REQUIRED = [
+    "CITATION.cff",
+    "LICENSE",
     "README.md",
-    "MIGRATION_PLAN.md",
+    "README_RECOVERY.md",
+    "docs/MIGRATION_RECORD.md",
     "docs/CLAIM_SCOPE.md",
     "docs/STEP_REFINEMENT.md",
     "docs/FORMAL_ROADMAP.md",
+    "requirements.txt",
+    "rebuild_all_artifacts.py",
     "results/reference/step_refinement_summary.json",
+    "scripts/response_fibre_exact_root_descent_v1_3_1.py",
     "scripts/response_fibre_geometric_flow_preflight_v0_1.py",
     "scripts/response_fibre_projected_gradient_reconstruction_v0_2_2_oneclick.py",
     "scripts/response_fibre_projected_gradient_reconstruction_v0_2_3_steps160_oneclick.py",
@@ -72,4 +78,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

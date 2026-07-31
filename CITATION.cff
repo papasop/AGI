@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Geometric Flow on Quantum Response Fibres"
+authors:
+  - family-names: "Li"
+    given-names: "Y. Y. N."
+version: "0.2.3"
+date-released: "2026-07-31"
+repository-code: "https://github.com/papasop/Geometric-Flow"
+license: "MIT"
