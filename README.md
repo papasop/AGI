@@ -2,6 +2,10 @@
 
 ## An Arb-Certified Local Intrinsic ODE on a Quantum-Control Response Fibre
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
+https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_v093.ipynb
+)
+
 Frozen research-software release **v0.9.3** for
 [`papasop/Geometric-Flow`](https://github.com/papasop/Geometric-Flow).
 
@@ -111,8 +115,13 @@ docs/
   CLAIM_SCOPE.md
   NEURAL_NETWORK_RESPONSE_FIBRES.md
   PAPER_WORDING.md
+notebooks/
+  reproduce_v093.ipynb
 tools/
   verify_release.py
+.github/workflows/
+  structural-checks.yml
+  reproduce-validated-ode.yml
 ```
 
 ## Install
@@ -123,7 +132,25 @@ Python 3.12 is recommended.
 python -m pip install -r requirements.txt
 ```
 
-## Reproduce v0.9.3
+## One-click external reproduction
+
+- Public interactive reproduction:
+  [Open in Colab](https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_v093.ipynb)
+- Independent CI record:
+  [`reproduce-validated-ode`](.github/workflows/reproduce-validated-ode.yml)
+- Frozen structural verification: `python tools/verify_release.py`
+
+A successful full reproduction must end with:
+
+```text
+VALIDATED_INTRINSIC_RESPONSE_FIBRE_ODE_MICROSTEP_CERTIFIED
+```
+
+The default `structural-checks` workflow verifies committed files and hashes.
+It is not an ODE reproduction. The `reproduce-validated-ode` workflow reruns
+the 192-bit Arb ODE microstep and uploads the resulting certificate directory.
+
+## Full v0.9.3 Arb reproduction
 
 ```bash
 python src/response_fibre_intrinsic_picard_microstep_v0_9_3.py \
@@ -159,7 +186,7 @@ python src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py \
   --output results/v0_7_4_reproduction
 ```
 
-## Verify the package
+## Verify the frozen package
 
 ```bash
 python tools/verify_release.py
