@@ -2,9 +2,8 @@
 
 ## An Arb-Certified Local Intrinsic ODE on a Quantum-Control Response Fibre
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
-https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_v093.ipynb
-)
+[![Full joint verification](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_joint_v093.ipynb)
+[![reproduce-joint-geometric-flow](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-joint-geometric-flow.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-joint-geometric-flow.yml)
 
 Frozen research-software release **v0.9.3** for
 [`papasop/Geometric-Flow`](https://github.com/papasop/Geometric-Flow).
@@ -116,10 +115,12 @@ docs/
   NEURAL_NETWORK_RESPONSE_FIBRES.md
   PAPER_WORDING.md
 notebooks/
+  reproduce_joint_v093.ipynb
   reproduce_v093.ipynb
 tools/
   verify_release.py
 .github/workflows/
+  reproduce-joint-geometric-flow.yml
   structural-checks.yml
   reproduce-validated-ode.yml
 ```
@@ -134,21 +135,32 @@ python -m pip install -r requirements.txt
 
 ## One-click external reproduction
 
-- Public interactive reproduction:
+- Recommended: Full geometry + ODE verification:
+  [Open in Colab](https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_joint_v093.ipynb)
+  or
+  [![reproduce-joint-geometric-flow](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-joint-geometric-flow.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-joint-geometric-flow.yml)
+- Quick: Local ODE microstep only:
   [Open in Colab](https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_v093.ipynb)
-- Independent CI record:
+  or
   [![reproduce-validated-ode](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml)
 - Frozen structural verification: `python tools/verify_release.py`
 
-A successful full reproduction must end with:
+A successful joint reproduction must end with:
 
 ```text
-VALIDATED_INTRINSIC_RESPONSE_FIBRE_ODE_MICROSTEP_CERTIFIED
+STAGE_A_PARENT_BOX_GEOMETRY_CERTIFIED = true
+STAGE_B_LOCAL_ODE_MICROSTEP_CERTIFIED = true
+JOINT_GEOMETRIC_FLOW_RELEASE_GATE = true
+GLOBAL_FLOW_CLAIMED = false
 ```
 
 The default `structural-checks` workflow verifies committed files and hashes.
-It is not an ODE reproduction. The `reproduce-validated-ode` workflow reruns
-the 192-bit Arb ODE microstep and uploads the resulting certificate directory.
+It is not an ODE reproduction. The `reproduce-joint-geometric-flow` workflow
+reruns the v0.7.4 complete-parent-box geometry certificate and the v0.9.3
+local ODE microstep as separate stages, then writes a joint summary without
+merging the original certificates or claiming a global flow. The
+`reproduce-validated-ode` workflow remains as a faster ODE-microstep-only
+entry point.
 
 ## Full v0.9.3 Arb reproduction
 

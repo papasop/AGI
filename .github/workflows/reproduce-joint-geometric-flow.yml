@@ -1,0 +1,127 @@
+name: reproduce-joint-geometric-flow
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "src/**"
+      - "inputs/**"
+      - "requirements.txt"
+      - "tools/**"
+      - ".github/workflows/reproduce-joint-geometric-flow.yml"
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install frozen dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Verify frozen release manifest
+        run: |
+          python tools/verify_release.py
+          sha256sum -c SHA256SUMS.txt
+
+      - name: Stage A - recompute v0.7.4 parent-box geometry certificate
+        run: |
+          python src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py \
+            --inputs-zip inputs/response_fibre_v0_6_2_backend_inputs.zip \
+            --chart 9 \
+            --subdivision 32 \
+            --output results/github_actions_v074
+
+      - name: Stage B - recompute v0.9.3 intrinsic ODE microstep
+        run: |
+          python src/response_fibre_intrinsic_picard_microstep_v0_9_3.py \
+            --inputs-zip inputs/response_fibre_v0_6_2_backend_inputs.zip \
+            --v074-source src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py \
+            --no-download \
+            --output results/github_actions_v093
+
+      - name: Check joint release gate
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          stage_a = json.loads(Path("results/github_actions_v074/report.json").read_text())
+          stage_b = json.loads(Path("results/github_actions_v093/report.json").read_text())
+
+          stage_a_checks = {
+              "stage_a_rank_descent_cover_certified": stage_a.get("stage_a_rank_descent_cover_certified") is True,
+              "formal_response_rank_cover_certified": stage_a.get("formal_response_rank_cover_certified") is True,
+              "formal_response_tangency_cover_certified": stage_a.get("formal_response_tangency_cover_certified") is True,
+              "formal_projected_gradient_nonstationary_cover_certified": stage_a.get("formal_projected_gradient_nonstationary_cover_certified") is True,
+              "uniform_single_box_L6_descent_certified": stage_a.get("uniform_single_box_L6_descent_certified") is True,
+              "child_box_cover": (
+                  stage_a.get("child_boxes_declared") == 16
+                  and stage_a.get("child_boxes_passing_stage_a") == 16
+              ),
+              "not_ode_claim": stage_a.get("validated_ODE_claimed") is False,
+              "not_global_flow": stage_a.get("global_flow_claimed") is False,
+          }
+          stage_b_checks = {
+              "all_gates_pass": stage_b.get("all_gates_pass") is True,
+              "validated_ODE_claimed": stage_b.get("validated_ODE_claimed") is True,
+              "ODE_existence_certified": stage_b.get("ODE_existence_certified") is True,
+              "ODE_uniqueness_certified": stage_b.get("ODE_uniqueness_certified") is True,
+              "exact_response_preservation_certified": stage_b.get("exact_response_preservation_certified") is True,
+              "uniform_L6_descent_certified_for_validated_solution": (
+                  stage_b.get("uniform_L6_descent_certified_for_validated_solution") is True
+              ),
+              "protocol_hash": (
+                  stage_b.get("protocol_sha256")
+                  == "6d0aaefabd71f1d2986515ed84673f0083ae90d0344b9a1e92d7697ac08d061a"
+              ),
+              "generator_hash": (
+                  stage_b.get("generator_source_sha256")
+                  == "3be3e07146ff0e505f08bae7bd0ec7f2895955f2540647fea3278fdba51db79c"
+              ),
+              "not_global_flow": stage_b.get("global_flow_claimed") is False,
+          }
+
+          summary = {
+              "STAGE_A_PARENT_BOX_GEOMETRY_CERTIFIED": all(stage_a_checks.values()),
+              "STAGE_B_LOCAL_ODE_MICROSTEP_CERTIFIED": all(stage_b_checks.values()),
+              "GLOBAL_FLOW_CLAIMED": False,
+          }
+          summary["JOINT_GEOMETRIC_FLOW_RELEASE_GATE"] = (
+              summary["STAGE_A_PARENT_BOX_GEOMETRY_CERTIFIED"]
+              and summary["STAGE_B_LOCAL_ODE_MICROSTEP_CERTIFIED"]
+              and summary["GLOBAL_FLOW_CLAIMED"] is False
+          )
+
+          Path("results/joint_v093_summary.json").write_text(
+              json.dumps(
+                  {
+                      "stage_a_checks": stage_a_checks,
+                      "stage_b_checks": stage_b_checks,
+                      "summary": summary,
+                  },
+                  indent=2,
+                  sort_keys=True,
+              )
+          )
+          print(json.dumps(summary, indent=2, sort_keys=True))
+          assert summary["JOINT_GEOMETRIC_FLOW_RELEASE_GATE"], (
+              "FAIL-CLOSED: joint geometry + ODE release gate did not reproduce"
+          )
+          print("PASS: JOINT GEOMETRIC FLOW RELEASE GATE REPRODUCED")
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v093-joint-geometry-ode-certificates
+          path: |
+            results/github_actions_v074/
+            results/github_actions_v093/
+            results/joint_v093_summary.json
