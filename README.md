@@ -137,7 +137,7 @@ python -m pip install -r requirements.txt
 - Public interactive reproduction:
   [Open in Colab](https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_v093.ipynb)
 - Independent CI record:
-  [`reproduce-validated-ode`](.github/workflows/reproduce-validated-ode.yml)
+  [![reproduce-validated-ode](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml)
 - Frozen structural verification: `python tools/verify_release.py`
 
 A successful full reproduction must end with:
