@@ -1,13 +1,23 @@
 # Computation as Geometric Flow
 
-This repository develops Arb-certified, repository-native continuation
-milestones for response-preserving intrinsic descent in a frozen fourteen-phase
-quantum-control model.
+Can a computation move through different control implementations while
+preserving its declared response and strictly improving another objective?
 
-The reference theorem is local: the frozen v0.9.3 artifact proves existence and
-uniqueness of a six-dimensional intrinsic ODE microstep, exact preservation of
-the declared response map \(\mathcal R_3\), and strict decrease of \(L_6\).
-Later repository artifacts certify finite same-chart continuation milestones.
+This repository studies that question on a frozen fourteen-phase
+quantum-control model. Its reference result is a computer-assisted local
+theorem verified with 192-bit Arb interval arithmetic.
+
+## What Is Proved
+
+For the frozen v0.9.3 instance, the repository certifies a unique
+six-dimensional intrinsic ODE microstep that:
+
+- preserves the declared response map \(\mathcal R_3\);
+- strictly decreases the independent objective \(L_6\);
+- remains inside a formally validated local response-fibre chart.
+
+Later milestones extend this construction through finite same-chart
+continuation. They do not yet prove a global flow.
 
 ## Three-Layer Status
 
@@ -21,23 +31,18 @@ The v0.10.13.1 source chain records a reindexed Taylor/affine-Lohner terminal
 set, but its reference-result packaging is pending. The v0.10.15 fifth-frame
 backend harness is fail-closed scaffold work.
 
-## Quick Start
+## Choose A Reproduction Path
 
 Python 3.12 and `python-flint==0.8.0` are recommended.
 
-```bash
-python scripts/reproduce_local_ode.py
-python scripts/verify_reference_results.py
-python scripts/reproduce_lohner_flowpipe.py
-python scripts/audit_fifth_frame.py
-```
-
-Optional finite-chain wrappers:
-
-```bash
-python scripts/reproduce_finite_continuation.py
-python scripts/reproduce_field_jacobian.py
-```
+| Goal | Command |
+| --- | --- |
+| Recompute the local ODE theorem | `python scripts/reproduce_local_ode.py` |
+| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |
+| Reproduce the fourth-chart Lohner flowpipe | `python scripts/reproduce_lohner_flowpipe.py` |
+| Audit the open fifth-frame target | `python scripts/audit_fifth_frame.py` |
+| Run the longer finite chain | `python scripts/reproduce_finite_continuation.py` |
+| Reproduce the same-expression field/Jacobian milestone | `python scripts/reproduce_field_jacobian.py` |
 
 The stable scripts verify the relevant frozen SHA-256 entries before calling
 their archived long-form proof drivers in `archive/frozen_milestones/`.
@@ -55,7 +60,7 @@ frozen-instance continuation milestones. It does not certify:
 - a global geometric flow.
 
 The archived milestone scripts keep their original long filenames for audit
-stability. This repository cleanup changes navigation, not proof content.
+stability. This README changes reading order only, not proof content.
 
 ## Documentation
 
@@ -66,6 +71,17 @@ stability. This repository cleanup changes navigation, not proof content.
 - [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md): full script order and audit notes
 - [docs/releases/](docs/releases/): release notes
 - [docs/archive/](docs/archive/): historical migration and supersession notes
+
+<details>
+<summary>中文概览</summary>
+
+本仓库研究：当多组量子控制参数产生相同的声明响应时，是否可以沿响应纤维
+连续移动，同时严格降低另一个目标函数。
+
+当前已严格证明局部 ODE 微步和冻结实例上的有限同图延拓；尚未证明第五局部图、
+完整子域遍历或全局几何流。
+
+</details>
 
 ## Citation And Licence
 
