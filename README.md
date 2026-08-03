@@ -141,20 +141,31 @@ See [docs/CLAIM_SCOPE.md](docs/CLAIM_SCOPE.md) and
 Python 3.12 and `python-flint==0.8.0` are recommended.
 
 ```bash
-python scripts/reproduce_v093.py
+python scripts/reproduce_local_ode.py
 python scripts/verify_reference_results.py
-python scripts/reproduce_finite_chain.py
+python scripts/reproduce_lohner_flowpipe.py
+python scripts/audit_fifth_frame.py
 ```
 
 The first command recomputes the frozen v0.9.3 local ODE theorem. The second
-checks frozen hashes and stored reference results. The third audits the finite
-continuation entry points and prints the long reproduction chain; use
-`--run` to execute that chain in an environment where all predecessor artifacts
-are available.
+checks frozen hashes and stored reference results. The third reruns the latest
+stored repository reference certificate, the v0.10.6 fourth-chart Lohner
+support flowpipe. The fourth audits the implementation-open fifth-frame
+scaffold without upgrading any claim.
+
+```bash
+python scripts/reproduce_finite_continuation.py
+```
+
+The longer finite-continuation wrapper is optional. All stable entry points
+check the relevant frozen SHA-256 entries before
+calling their underlying long versioned proof files.
 
 ## Repository Navigation
 
 - [docs/MILESTONES.md](docs/MILESTONES.md): complete milestone table
+- [docs/ARTIFACT_INDEX.md](docs/ARTIFACT_INDEX.md): stable entry points, frozen artifact classes, and future archive map
+- [docs/PROOF_MAP.md](docs/PROOF_MAP.md): concise three-layer proof map
 - [docs/PROOF_GRAPH.md](docs/PROOF_GRAPH.md): dependency graph and proof layers
 - [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md): full one-click script order
 - [docs/CLAIM_SCOPE.md](docs/CLAIM_SCOPE.md): allowed and forbidden claims
