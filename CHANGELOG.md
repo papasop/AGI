@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.10.6 — fourth-chart domain correction and Lohner support flowpipe
+
+- Correct v0.10.4/5 default Picard-certificate selection to prefer the full
+  v0.9.30 fourth-chart domain (`1.5e-11` real inner radius).
+- Preserve the earlier `1e-11` certificate only as a compatibility fallback;
+  it is not used to support the full fourth-chart propagation claim.
+- Add a ten-step repository-native Arb Lohner support-flowpipe certificate.
+- Emit complete step records and QR shape history.
+- Explicitly decline directional QR gain because the complete-box `DX`
+  midpoint is zero; no artificial directional improvement is claimed.
+- Keep fifth-frame, complete-child, atlas-wide, and global-flow claims false.
+
 ## v0.10.5 — repository-native Arb field and same-expression Jacobian milestone
 
 - Preserve the active repository-native Arb backend rather than exporting

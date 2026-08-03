@@ -1,14 +1,15 @@
-# Claim scope for v0.10.5 plus earlier continuation milestones
+# Claim scope for v0.10.6 plus earlier continuation milestones
 
 ## Strongest supported certified claim
 
-The strongest current result is v0.10.5: a repository-native Arb construction
-of the fourth-chart intrinsic field `X` and its 6x6 same-expression Jacobian
-`DX`. This is a local field/Jacobian enclosure over the certified fourth-chart
-graph box.
+The strongest current result is v0.10.6: a ten-step fourth-chart Arb Lohner
+support flowpipe backed by the repository-native same-expression fourth-chart
+field `X` and 6x6 Jacobian `DX`. All ten support tubes remain strictly inside
+the real `1.5e-11` and complex `2e-11` fourth-chart domains.
 
-The v0.10.5 milestone stops at `X,DX`. It does not include the not-yet-run
-v0.10.6 QR/Lohner propagation.
+The v0.10.6 milestone records support radii and QR shape history. It does not
+certify directional QR tightening, a fifth recenter/frame, complete-child
+continuation, atlas-wide continuation, or a global flow theorem.
 
 ## Strongest supported finite-continuation claim
 
@@ -38,9 +39,8 @@ current limits on the flow.
 
 ## Prohibited upgrades
 
-This package does not establish a v0.10.6 QR/Lohner flowpipe, fifth frame,
-fifth Picard chart, sharp Taylor/Lohner trajectory midpoint, complete-child
-traversal, atlas-wide continuation, arbitrary-point connectivity, or global
-flow.
+This package does not establish directional QR tightening, a fifth frame, fifth
+Picard chart, sharp Taylor/Lohner trajectory midpoint, complete-child traversal,
+atlas-wide continuation, arbitrary-point connectivity, or global flow.
 
 This package does not establish any global flow.

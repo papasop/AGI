@@ -3,12 +3,12 @@
   "version": "0.10.5",
   "scientific_status": "VALIDATED_NATIVE_SAME_EXPRESSION_X_DX_CERTIFIED",
   "formal_backend": "python-flint/Arb 192-bit",
-  "certificate": "/workspace/scratch/b481b397d7c6/same_expression_test_v0105/same_expression_X_DX_arb_certificate.json",
+  "certificate": "/workspace/scratch/b481b397d7c6/corrected_test_v0105/same_expression_X_DX_arb_certificate.json",
   "metrics": {
-    "descent_square": "[0.4 +/- 0.0340] + [+/- 7.43e-3]j",
-    "maximum_X_absolute_upper": 0.5567255280911922,
-    "maximum_DX_absolute_upper": 4834.868911743164,
-    "maximum_response_tangent_residual_upper": 0.0016352752609236632
+    "descent_square": "[0.4 +/- 0.0376] + [+/- 0.0110]j",
+    "maximum_X_absolute_upper": 0.5689514405094087,
+    "maximum_DX_absolute_upper": 7939.247695922852,
+    "maximum_response_tangent_residual_upper": 0.0024053990382526536
   },
   "gates": {
     "v0104_parametric_normal_graph_jet": true,

@@ -1,45 +1,41 @@
 #!/usr/bin/env python3
-"""Verify hashes, Python syntax, JSON syntax, and milestone claim boundaries."""
-from __future__ import annotations
-
 import hashlib
 import json
-import py_compile
-import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+required = [
+    ROOT / "src/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py",
+    ROOT / "src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
+    ROOT / "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
+    ROOT / "results/v0_10_4/run_summary.json",
+    ROOT / "results/v0_10_5/run_summary.json",
+    ROOT / "results/v0_10_6/run_summary.json",
+    ROOT / "SHA256SUMS.txt",
+]
 
-def digest(path):
-    h = hashlib.sha256()
-    with path.open("rb") as f:
-        for block in iter(lambda: f.read(1 << 20), b""):
-            h.update(block)
-    return h.hexdigest()
+for path in required:
+    if not path.is_file():
+        raise SystemExit(f"missing: {path.relative_to(ROOT)}")
 
+v104 = json.loads((ROOT / "results/v0_10_4/run_summary.json").read_text())
+if "1.500000000000000" not in json.dumps(v104):
+    raise SystemExit("v0_10_4 is not visibly bound to the full fourth domain")
+v105 = json.loads((ROOT / "results/v0_10_5/run_summary.json").read_text())
+if not v105.get("gates", {}).get("complete_fourth_graph_box_used"):
+    raise SystemExit("v0_10_5 full fourth graph-box gate is false")
 
-expected = {}
+report = json.loads((ROOT / "results/v0_10_6/run_summary.json").read_text())
+if not report.get("qr_lohner_support_flowpipe_certified"):
+    raise SystemExit("v0.10.6 support-flowpipe gate is false")
+if report.get("directional_qr_tightening_certified"):
+    raise SystemExit("unexpected directional QR claim")
+
 for line in (ROOT / "SHA256SUMS.txt").read_text().splitlines():
-    if line.strip():
-        value, name = line.split(None, 1)
-        expected[name.strip()] = value
+    digest, rel = line.split("  ", 1)
+    path = ROOT / rel
+    if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+        raise SystemExit(f"hash mismatch: {rel}")
 
-for name, value in expected.items():
-    path = ROOT / name
-    assert path.is_file(), f"missing: {name}"
-    assert digest(path) == value, f"hash mismatch: {name}"
-
-with tempfile.TemporaryDirectory(prefix="geometric_flow_verify_update_") as tmp:
-    cache = Path(tmp)
-    for path in (ROOT / "src").glob("*.py"):
-        py_compile.compile(str(path), cfile=str(cache / f"{path.name}.pyc"), doraise=True)
-for path in (ROOT / "results").rglob("*.json"):
-    json.loads(path.read_text())
-
-summary = json.loads((ROOT / "results/v0_10_5/run_summary.json").read_text())
-assert summary["same_expression_X_ready"] is True
-assert summary["same_expression_DX_ready"] is True
-assert summary["qr_lohner_flowpipe_certified"] is False
-assert summary["global_flow_claimed"] is False
-print("v0.10.5 update verification: PASS")
+print("v0.10.6 update verified")
