@@ -17,7 +17,7 @@ def atomic(path:Path,obj)->None:
 def materialize(out:Path)->Path:
  raw=zlib.decompress(base64.b64decode(EMBEDDED_V0910))
  if hashlib.sha256(raw).hexdigest()!=V0910_SHA:raise RuntimeError("embedded v0.9.10 hash mismatch")
- p=out/"embedded_backend"/"archive/frozen_milestones/02_second_chart/response_fibre_second_chart_v0_9_10_oneclick.py";p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw);return p
+ p=out/"embedded_backend"/"archive/milestones/02_second_chart/response_fibre_second_chart_v0_9_10_oneclick.py";p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw);return p
 
 def parse():
  p=argparse.ArgumentParser();p.add_argument("--outdir",default="response_fibre_finite_continuation_v0_9_11_results");p.add_argument("--steps",type=int,default=100);p.add_argument("--root-radius",default="2e-18")

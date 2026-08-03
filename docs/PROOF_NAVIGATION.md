@@ -1,7 +1,8 @@
 # Proof Navigation
 
-Use the stable scripts in `scripts/` for routine reproduction. They verify
-SHA-256 entries before dispatching into archived long-form proof drivers.
+Use the paper-level scripts in `reproduce/` for routine reproduction. They
+delegate to compatibility wrappers in `scripts/`, which verify SHA-256 entries
+before dispatching into archived long-form proof drivers.
 
 ## Main Maps
 
@@ -21,4 +22,4 @@ SHA-256 entries before dispatching into archived long-form proof drivers.
 
 - [releases/](releases/): release notes
 - [archive/](archive/): migration and supersession notes
-- [`archive/frozen_milestones/`](../archive/frozen_milestones/): frozen long-form milestone scripts
+- [`archive/milestones/`](../archive/milestones/): frozen long-form milestone scripts
