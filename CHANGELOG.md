@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.9.23 — signed endpoint and parametric-root inclusion
+
+- Correct the v0.9.18-v0.9.19 duplicated-dimension-factor diagnosis: the
+  v0.9.3 `cauchy_lipschitz_upper` quantity was already an induced infinity-norm
+  bound.
+- Restore the 557-step scalar continuation result under the corrected norm
+  interpretation.
+- Add a six-component signed intrinsic endpoint enclosure after 557
+  microsteps.
+- Add repository-native Arb export of the signed intrinsic-field intervals.
+- Certify that the complete endpoint box remains inside the parametric
+  fibre-graph domain.
+- Inherit unique normal-root existence for every tangent point in that endpoint
+  box.
+- Retain v0.9.18-v0.9.19 only as auditable correction history, not current
+  capability bounds.
+- Explicitly exclude a third frame, third Picard chart, complete-child
+  traversal, atlas-wide continuation, arbitrary-point connectivity, and global
+  flow.
+
 ## v0.9.18 — validated continuation milestone
 
 - Certify a unique eight-dimensional normal correction at the frozen recenter

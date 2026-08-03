@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed structural/hash verification for the v0.9.18 milestone."""
+"""Fail-closed structural/hash verification for the v0.9.23 milestone."""
 
 from __future__ import annotations
 
@@ -23,7 +23,8 @@ V093_REPORT = V093_DIR / "report.json"
 SHA256SUMS = ROOT / "SHA256SUMS.txt"
 README = ROOT / "README.md"
 CLAIM_SCOPE = ROOT / "docs" / "CLAIM_SCOPE.md"
-V0918_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.18.md"
+V0923_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.23.md"
+SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
 
 EXPECTED = {
     V074_SOURCE: "1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8",
@@ -40,7 +41,7 @@ EXPECTED_ATLAS_SHA256 = (
 EXPECTED_PROTOCOL_SHA256 = (
     "6d0aaefabd71f1d2986515ed84673f0083ae90d0344b9a1e92d7697ac08d061a"
 )
-EXPECTED_V0918_SCRIPTS = {
+EXPECTED_V0923_SCRIPTS = {
     "response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
     "response_fibre_two_step_continuation_v0_9_5_oneclick.py",
     "response_fibre_recenter_preflight_v0_9_6_oneclick.py",
@@ -56,6 +57,11 @@ EXPECTED_V0918_SCRIPTS = {
     "response_fibre_adapter_hardening_v0_9_16_oneclick.py",
     "response_fibre_executable_adapter_v0_9_17_oneclick.py",
     "response_fibre_lohner_stress_v0_9_18_oneclick.py",
+    "response_fibre_local_dx_target_v0_9_19_oneclick.py",
+    "response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py",
+    "response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
+    "response_fibre_signed_field_export_v0_9_22_oneclick.py",
+    "response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
 }
 
 
@@ -145,36 +151,54 @@ def main() -> int:
             and report.get("uniform_dL6_dt_upper", 0.0) < -0.55
         )
 
-    checks["v0918_sha256sums_exists"] = SHA256SUMS.is_file()
+    checks["v0923_sha256sums_exists"] = SHA256SUMS.is_file()
     if SHA256SUMS.is_file():
         sums = read_sha256sums(SHA256SUMS)
-        checks["v0918_all_expected_scripts_listed"] = (
-            EXPECTED_V0918_SCRIPTS <= set(sums)
+        checks["v0923_all_expected_scripts_listed"] = (
+            EXPECTED_V0923_SCRIPTS <= set(sums)
         )
         for name, expected in sums.items():
             path = ROOT / name
-            label = f"v0918_{name.replace('/', '_')}"
+            label = f"v0923_{name.replace('/', '_')}"
             checks[f"{label}_exists"] = path.is_file()
             checks[f"{label}_sha256"] = path.is_file() and sha256(path) == expected
 
-    checks["v0918_readme_exists"] = README.is_file()
+    checks["v0923_readme_exists"] = README.is_file()
     if README.is_file():
         text = README.read_text(encoding="utf-8")
-        checks["v0918_readme_states_bottleneck"] = (
-            "maximum_certified_steps = 172" in text
-            and "first_failing_step      = 173" in text
-            and "Do not cite this archive as a global-flow theorem." in text
+        checks["v0923_readme_states_endpoint"] = (
+            "signed endpoint and parametric-root milestone v0.9.23" in text
+            and "six signed intrinsic-field component intervals" in text
+            and "nonzero six-dimensional endpoint box after 557 microsteps" in text
+            and "This package is a formal-development milestone, not a global-flow theorem." in text
+        )
+        checks["v0923_readme_supersedes_v0918_limit"] = (
+            "the formal continuation is limited to 172 steps" in text
+            and "They must not be cited as current capability bounds." in text
         )
 
-    checks["v0918_claim_scope_exists"] = CLAIM_SCOPE.is_file()
+    checks["v0923_claim_scope_exists"] = CLAIM_SCOPE.is_file()
     if CLAIM_SCOPE.is_file():
         scope = CLAIM_SCOPE.read_text(encoding="utf-8")
-        checks["v0918_claim_scope_rejects_global_flow"] = (
+        checks["v0923_claim_scope_rejects_global_flow"] = (
             "does not establish" in scope
-            and "global\nflow" in scope
+            and "global flow" in scope
+        )
+        checks["v0923_claim_scope_states_correction"] = (
+            "a second factor of six" in scope
+            and "current limits on the flow" in scope
         )
 
-    checks["v0918_release_notes_exists"] = V0918_RELEASE_NOTES.is_file()
+    checks["v0923_release_notes_exists"] = V0923_RELEASE_NOTES.is_file()
+    checks["v0923_superseded_results_exists"] = SUPERSEDED_RESULTS.is_file()
+    if SUPERSEDED_RESULTS.is_file():
+        superseded = SUPERSEDED_RESULTS.read_text(encoding="utf-8")
+        checks["v0923_superseded_results_states_resolution"] = (
+            "v0.9.18" in superseded
+            and "v0.9.19" in superseded
+            and "Resolution in v0.9.20" in superseded
+            and "step 557" in superseded
+        )
 
     print(json.dumps(checks, indent=2, sort_keys=True))
     passed = bool(checks) and all(checks.values())

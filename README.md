@@ -1,53 +1,102 @@
-# Geometric-Flow — validated continuation milestone v0.9.18
+# Geometric-Flow — signed endpoint and parametric-root milestone v0.9.23
 
-This update packages the repository-native formal continuation work built on
-the frozen `v0.9.3` intrinsic response-fibre microstep certificate.
+This development release extends the frozen v0.9.3 local response-fibre ODE
+theorem through a second recentered local chart and a certified signed
+six-component endpoint enclosure.
 
-## Result in one sentence
+## Strongest result
 
-The response-fibre flow has been formally continued from the original local
-chart into a second recentered local chart, while the present conservative
-global-Jacobian adapter is proved to support at most 172 validated Lohner steps
-before exhausting the declared intrinsic domain.
+For the frozen chart-9/child-15 instance, the repository-native Arb backend
+certifies:
 
-## What is certified
+1. a second recentered complex fibre graph and local Picard microstep;
+2. a 557-step scalar reachable tube within that second chart;
+3. six signed intrinsic-field component intervals;
+4. a nonzero six-dimensional endpoint box after 557 microsteps; and
+5. inclusion of the complete endpoint box in the certified parametric fibre
+   graph, hence a unique normal root for every tangent point in that box.
 
-| Version | Certified result |
-|---|---|
-| v0.9.8 | Unique eight-dimensional normal correction at the frozen recenter target |
-| v0.9.9 | Full-row-rank response Jacobian and a recentered tangent/normal frame |
-| v0.9.10 | Second complex fibre graph, endpoint inclusion and one recentered Picard microstep |
-| v0.9.11 | Finite continuation inside the second local chart |
-| v0.9.13 | Route correction: chart 9 is terminal; same-chart recentering is required |
-| v0.9.14 | Separation of a scalar reachable tube from an identifiable trajectory endpoint |
-| v0.9.15 | Six-dimensional Taylor/QR-Lohner core self-test |
-| v0.9.16 | Executable-adapter hardening; rejection of truthy-JSON sham adapters |
-| v0.9.17 | Executable repository-native conservative formal adapter |
-| v0.9.18 | Quantitative global-`DX` bottleneck certificate: 172 safe steps, failure at 173 |
-
-The v0.9.18 conservative propagation gives
+The endpoint-box centre is approximately
 
 ```text
-maximum_certified_steps = 172
-first_failing_step      = 173
-r_172                   = 9.8965e-12
-r_173                   = 1.0112e-11
-formal inner radius     = 1.0000e-11
+(-2.426e-13, +1.537e-12, +2.212e-12,
+ +2.768e-12, +2.694e-12, -2.968e-12).
 ```
+
+Its maximum absolute coordinate, including component uncertainty, is about
+`3.1814e-12`, leaving about `6.8186e-12` of strict margin inside the declared
+real intrinsic radius `1e-11`.
+
+## Certified milestones
+
+| Version | Result |
+|---|---|
+| v0.9.8 | Unique normal correction at the first recenter target |
+| v0.9.9 | Recentered tangent/normal frame |
+| v0.9.10 | Second complex fibre graph, overlap and Picard microstep |
+| v0.9.11–12 | 557-step scalar continuation and exact local-domain exhaustion point |
+| v0.9.13 | Route correction: chart 9 is terminal; same-chart recentering is required |
+| v0.9.15–17 | Lohner core, hardened adapter contract and executable conservative adapter |
+| v0.9.18 | Reproduced 172-step limit under an incorrectly overcounted adapter norm |
+| v0.9.19 | Quantified the consequence of that overcount; superseded by v0.9.20 |
+| v0.9.20 | Corrected the duplicated dimension factor and restored the 557-step scalar result |
+| v0.9.21 | Six-component symmetric endpoint enclosure |
+| v0.9.22 | Repository-native signed field and nonzero 557-step endpoint box |
+| v0.9.23 | Complete endpoint-box inclusion and inherited unique parametric normal root |
+
+## Important correction to v0.9.18–19
+
+The frozen v0.9.3 source defines
+
+```text
+cauchy_lipschitz_upper = d*M/(R-r)
+```
+
+as the **induced infinity-norm** Lipschitz bound. v0.9.17 placed this already
+induced bound into every entry of a `6x6` Jacobian box, and v0.9.18 then took
+the matrix infinity norm, multiplying by six a second time.
+
+Therefore these two earlier capability statements are withdrawn:
+
+- “the formal continuation is limited to 172 steps”; and
+- “the Jacobian must be tightened by 5.985x to reach 557 steps.”
+
+They describe the overcounted adapter, not the certified geometric flow.
+v0.9.20 independently recovers step 557 as strictly inside the domain and
+step 558 as the first non-strict step, agreeing with v0.9.12.
+
+The v0.9.18–19 scripts remain in this archive as an auditable correction
+history. They must not be cited as current capability bounds.
 
 ## What is not certified
 
-- a narrow, identifiable endpoint after 557 steps;
+- a third tangent/normal frame;
+- a third local fibre graph or Picard microstep;
+- a Taylor/Lohner stepwise flowpipe;
 - complete traversal of child 15;
-- a new atlas chart after chart 9;
-- ten-chart continuation;
-- a global response-fibre flow;
+- a successor atlas chart after terminal chart 9;
+- ten-chart continuation or a global flow;
 - connectivity of arbitrary points in a response fibre.
 
-The 557-step result from v0.9.11 is a scalar reachable-tube certificate, not a
-validated trajectory centre.  The failure of the conservative v0.9.18 adapter
-to reach 557 steps is a limitation of the global Cauchy Jacobian enclosure, not
-evidence that the geometric flow terminates.
+## Reproduction
+
+Python 3.12 and `python-flint==0.8.0` are recommended. The latest scripts are
+single-file Colab/Jupyter drivers and ignore the injected kernel `-f` option.
+
+Principal commands:
+
+```bash
+python response_fibre_second_chart_v0_9_10_oneclick.py
+python response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py
+python response_fibre_signed_field_export_v0_9_22_oneclick.py
+python response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py
+```
+
+Verify this package with:
+
+```bash
+sha256sum -c SHA256SUMS.txt
+```
 
 ## Frozen repository inputs
 
@@ -65,44 +114,10 @@ corrected atlas canonical hash
 c02acc1c76e0b670793340150d1a875fdc373e0ac7c46d3360a7824b66a3a5ef
 ```
 
-## Reproduction
+## Next milestone
 
-Python 3.12 and `python-flint==0.8.0` are recommended.  Each public script is
-Colab/Jupyter aware and ignores the injected kernel `-f` argument.
+Construct and Arb-certify a third tangent/normal frame at the frozen v0.9.23
+centre, transform the complete endpoint box into that frame, and then certify
+a third local fibre graph and Picard microstep.
 
-Run the principal milestones in order:
-
-```bash
-python response_fibre_arb_normal_root_v0_9_8_oneclick.py
-python response_fibre_recentered_frame_v0_9_9_oneclick.py
-python response_fibre_second_chart_v0_9_10_oneclick.py
-python response_fibre_lohner_stress_v0_9_18_oneclick.py
-```
-
-The one-click v0.9.18 script embeds the required preceding drivers, downloads
-the frozen repository inputs, verifies their hashes, and fails closed when a
-scientific gate is not met.
-
-To verify the archive files:
-
-```bash
-sha256sum -c SHA256SUMS.txt
-```
-
-## Next formal milestone
-
-Replace the sign-symmetric global bound
-
-```text
-|DX_ij| <= 3.4879e11
-```
-
-with point- or small-box-dependent Arb Taylor/automatic-differentiation
-enclosures.  The target is a validated 557-step centre-radius endpoint narrow
-enough to support another same-chart Krawczyk recentering.
-
-## Citation and claim boundary
-
-Until a new paper version is released, cite the frozen v0.9.3 theorem for the
-original local existence result and identify this package as a development
-milestone.  Do not cite this archive as a global-flow theorem.
+This package is a formal-development milestone, not a global-flow theorem.
