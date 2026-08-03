@@ -11,6 +11,8 @@ current claims within the first page of the README.
 - Moved the full milestone table to `docs/MILESTONES.md`.
 - Added `docs/ARTIFACT_INDEX.md` for stable entry points and frozen artifact
   mapping.
+- Added `docs/PROOF_MAP.md` and preview-only archive migration reports for the
+  proposed `archive/frozen_milestones/` layout.
 - Added `docs/PROOF_GRAPH.md` for the three proof layers and dependency graph.
 - Added `docs/REPRODUCIBILITY.md` for the full one-click script order.
 - Updated `docs/PAPER_WORDING.md` and `docs/CLAIM_SCOPE.md` to distinguish
@@ -21,6 +23,8 @@ current claims within the first page of the README.
 - Added stable wrapper scripts under `scripts/` for local ODE, finite
   continuation, field/Jacobian, Lohner flowpipe, and fifth-frame scaffold
   auditing.
+- Added `tools/plan_archive_migration.py`; it emits old-path to new-path
+  migration reports and intentionally refuses `--apply`.
 - Updated `tools/verify_release.py` and regenerated hash manifests.
 
 ## Claim Boundary
@@ -40,4 +44,5 @@ does not certify a fifth frame.
 - `python3 scripts/reproduce_lohner_flowpipe.py --check-only`
 - `python3 scripts/reproduce_finite_continuation.py`
 - `python3 scripts/audit_fifth_frame.py`
+- `python3 tools/plan_archive_migration.py`
 - `git diff --check`

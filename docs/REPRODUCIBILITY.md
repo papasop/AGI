@@ -35,6 +35,7 @@ This runs `tools/verify_release.py` and validates `SHA256SUMS.txt`.
 python scripts/reproduce_local_ode.py
 python scripts/verify_reference_results.py
 python scripts/reproduce_lohner_flowpipe.py
+python scripts/audit_fifth_frame.py
 ```
 
 Additional stable audit and reproduction entry points:
@@ -42,7 +43,6 @@ Additional stable audit and reproduction entry points:
 ```bash
 python scripts/reproduce_finite_continuation.py
 python scripts/reproduce_field_jacobian.py
-python scripts/audit_fifth_frame.py
 ```
 
 These wrappers leave the long versioned proof scripts in place so historical

@@ -33,7 +33,10 @@ V010141_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.14.1.md"
 SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
 BACKEND_BINDING = ROOT / "docs" / "BACKEND_BINDING.md"
 ARTIFACT_INDEX = ROOT / "docs" / "ARTIFACT_INDEX.md"
+ARCHIVE_MIGRATION_JSON = ROOT / "docs" / "ARCHIVE_MIGRATION_PLAN.json"
+ARCHIVE_MIGRATION_MD = ROOT / "docs" / "ARCHIVE_MIGRATION_PLAN.md"
 MILESTONES = ROOT / "docs" / "MILESTONES.md"
+PROOF_MAP = ROOT / "docs" / "PROOF_MAP.md"
 PROOF_GRAPH = ROOT / "docs" / "PROOF_GRAPH.md"
 REPRODUCIBILITY = ROOT / "docs" / "REPRODUCIBILITY.md"
 PAPER_WORDING = ROOT / "docs" / "PAPER_WORDING.md"
@@ -47,6 +50,7 @@ SCRIPT_AUDIT_FIFTH_FRAME = ROOT / "scripts" / "audit_fifth_frame.py"
 SCRIPT_REPRODUCE_V093 = ROOT / "scripts" / "reproduce_v093.py"
 SCRIPT_VERIFY_REFERENCE = ROOT / "scripts" / "verify_reference_results.py"
 SCRIPT_REPRODUCE_FINITE = ROOT / "scripts" / "reproduce_finite_chain.py"
+TOOL_ARCHIVE_PLAN = ROOT / "tools" / "plan_archive_migration.py"
 V0946_CANDIDATE = ROOT / "src" / "geometric_flow_native_point_field_candidate_v0_9_46.py"
 V0946_HARNESS = ROOT / "src" / "response_fibre_native_binding_harness_v0_9_46_standalone.py"
 V0946_TEST = ROOT / "tests" / "test_v0946_contract.py"
@@ -155,7 +159,10 @@ EXPECTED_V010141_FILES = {
 }
 EXPECTED_NAVIGATION_FILES = {
     "docs/ARTIFACT_INDEX.md",
+    "docs/ARCHIVE_MIGRATION_PLAN.json",
+    "docs/ARCHIVE_MIGRATION_PLAN.md",
     "docs/MILESTONES.md",
+    "docs/PROOF_MAP.md",
     "docs/PROOF_GRAPH.md",
     "docs/REPRODUCIBILITY.md",
     "scripts/_entrypoint_utils.py",
@@ -167,6 +174,7 @@ EXPECTED_NAVIGATION_FILES = {
     "scripts/reproduce_v093.py",
     "scripts/verify_reference_results.py",
     "scripts/reproduce_finite_chain.py",
+    "tools/plan_archive_migration.py",
 }
 
 
@@ -308,15 +316,15 @@ def main() -> int:
             and "implementation-open" in text
             and "v0.10.15 backend harness" in text
         )
-        checks["readme_has_three_reproduction_entrypoints"] = (
+        checks["readme_has_four_user_entrypoints"] = (
             "python scripts/reproduce_local_ode.py" in text
             and "python scripts/verify_reference_results.py" in text
             and "python scripts/reproduce_lohner_flowpipe.py" in text
-        )
-        checks["readme_lists_additional_stable_entrypoints"] = (
-            "python scripts/reproduce_finite_continuation.py" in text
-            and "python scripts/reproduce_field_jacobian.py" in text
             and "python scripts/audit_fifth_frame.py" in text
+        )
+        checks["readme_lists_optional_finite_entrypoint"] = (
+            "python scripts/reproduce_finite_continuation.py" in text
+            and "python scripts/reproduce_field_jacobian.py" not in text
             and "check the relevant frozen SHA-256 entries" in text
         )
         checks["readme_next_milestone_is_not_stale_v0946"] = (
@@ -471,19 +479,28 @@ def main() -> int:
 
     checks["navigation_docs_exist"] = (
         ARTIFACT_INDEX.is_file()
+        and ARCHIVE_MIGRATION_JSON.is_file()
+        and ARCHIVE_MIGRATION_MD.is_file()
         and MILESTONES.is_file()
+        and PROOF_MAP.is_file()
         and PROOF_GRAPH.is_file()
         and REPRODUCIBILITY.is_file()
         and PAPER_WORDING.is_file()
     )
     if (
         ARTIFACT_INDEX.is_file()
+        and ARCHIVE_MIGRATION_JSON.is_file()
+        and ARCHIVE_MIGRATION_MD.is_file()
         and MILESTONES.is_file()
+        and PROOF_MAP.is_file()
         and PROOF_GRAPH.is_file()
         and REPRODUCIBILITY.is_file()
     ):
         artifact_index = ARTIFACT_INDEX.read_text(encoding="utf-8")
+        archive_migration = json.loads(ARCHIVE_MIGRATION_JSON.read_text(encoding="utf-8"))
+        archive_migration_md = ARCHIVE_MIGRATION_MD.read_text(encoding="utf-8")
         milestones = MILESTONES.read_text(encoding="utf-8")
+        proof_map = PROOF_MAP.read_text(encoding="utf-8")
         proof_graph = PROOF_GRAPH.read_text(encoding="utf-8")
         reproducibility = REPRODUCIBILITY.read_text(encoding="utf-8")
         checks["artifact_index_maps_stable_entrypoints"] = (
@@ -498,30 +515,53 @@ def main() -> int:
         )
         checks["artifact_index_classifies_root_frozen_files"] = (
             "Root-Level Frozen Milestone Classes" in artifact_index
-            and "Early continuation preflight" in artifact_index
-            and "Recenter and normal-root setup" in artifact_index
-            and "Second local chart" in artifact_index
-            and "Route correction and diagnostics" in artifact_index
-            and "Lohner and adapter exploration" in artifact_index
-            and "Endpoint enclosures" in artifact_index
-            and "Third-chart chain" in artifact_index
-            and "Fourth-chart chain" in artifact_index
+            and "01 local foundation" in artifact_index
+            and "02 second chart" in artifact_index
+            and "03 endpoint enclosure" in artifact_index
+            and "Superseded v0.9.18" in artifact_index
+            and "04 third chart" in artifact_index
+            and "05 fourth chart" in artifact_index
+            and "06 Taylor/Lohner" in artifact_index
             and "response_fibre_lohner_stress_v0_9_18_oneclick.py" in artifact_index
             and "response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py" in artifact_index
             and "SUPERSEDED_RESULTS.md" in artifact_index
         )
-        checks["artifact_index_defers_archive_move_to_v1"] = (
-            "Proposed v1.0 Archive Layout" in artifact_index
-            and "src/frozen_milestones/" in artifact_index
+        checks["artifact_index_defers_archive_move_to_dedicated_pr"] = (
+            "Target Archive Layout" in artifact_index
+            and "archive/frozen_milestones/" in artifact_index
             and "Moving these files now would not change their content hashes" in artifact_index
             and "change paths, raw GitHub URLs" in artifact_index
-            and "compatibility\nwrappers at the old paths" in artifact_index
-            and "CI\ncoverage for both old and new entry points" in artifact_index
+            and "Run `python tools/plan_archive_migration.py`" in artifact_index
+            and "refuses `--apply`" in artifact_index
+            and "dedicated migration PR" in artifact_index
+        )
+        checks["artifact_index_records_proof_map_and_history"] = (
+            "Proof Map Summary" in artifact_index
+            and "v0.10.13.1 | Finite correlated continuation" in artifact_index
+            and "Historical Status" in artifact_index
+            and "v0.9.34 | retracted" in artifact_index
+            and "v0.10.9 | failed closed" in artifact_index
         )
         checks["milestones_preserve_history_outside_readme"] = (
             "v0.9.18-v0.9.19" in milestones
             and "v0.10.13.1" in milestones
             and "reference-result packaging pending" in milestones
+        )
+        checks["proof_map_states_four_layers"] = (
+            "I: local intrinsic ODE" in proof_map
+            and "II: frozen-instance finite continuation" in proof_map
+            and "III: conditional continuation" in proof_map
+            and "Open backend work" in proof_map
+            and "python scripts/audit_fifth_frame.py" in proof_map
+            and "Historical proof scripts are indexed" in proof_map
+        )
+        checks["archive_migration_report_is_preview_only"] = (
+            archive_migration.get("mode") == "preview_only"
+            and archive_migration.get("content_rewrite_planned") is False
+            and archive_migration.get("scientific_claim_change_planned") is False
+            and archive_migration.get("moves_planned", 0) >= 30
+            and "archive/frozen_milestones/06_taylor_lohner" in archive_migration_md
+            and "response_fibre_lohner_stress_v0_9_18_oneclick.py" in archive_migration_md
         )
         checks["proof_graph_states_three_layers"] = (
             "Layer I: Unconditional Local Theorem" in proof_graph
@@ -533,6 +573,7 @@ def main() -> int:
             "python scripts/reproduce_local_ode.py" in reproducibility
             and "python scripts/verify_reference_results.py" in reproducibility
             and "python scripts/reproduce_lohner_flowpipe.py" in reproducibility
+            and "python scripts/audit_fifth_frame.py" in reproducibility
             and "python scripts/reproduce_finite_continuation.py --run" in reproducibility
             and "geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py" in reproducibility
         )
@@ -557,6 +598,7 @@ def main() -> int:
         and SCRIPT_REPRODUCE_V093.is_file()
         and SCRIPT_VERIFY_REFERENCE.is_file()
         and SCRIPT_REPRODUCE_FINITE.is_file()
+        and TOOL_ARCHIVE_PLAN.is_file()
     )
     if (
         SCRIPT_ENTRYPOINT_UTILS.is_file()
@@ -582,6 +624,18 @@ def main() -> int:
             and "--run-backend" in fifth
             and "implementation-open fail-closed harness" in fifth
             and "global flow is certified" in fifth
+        )
+    if TOOL_ARCHIVE_PLAN.is_file():
+        archive_plan = TOOL_ARCHIVE_PLAN.read_text(encoding="utf-8")
+        checks["archive_plan_tool_is_preview_only"] = (
+            "preview_only" in archive_plan
+            and "--apply is intentionally disabled" in archive_plan
+            and "archive/frozen_milestones/01_local_foundation" in archive_plan
+            and "archive/frozen_milestones/06_taylor_lohner" in archive_plan
+            and "response_fibre_lohner_stress_v0_9_18_oneclick.py" in archive_plan
+            and "superseded_by_v0_9_20" in archive_plan
+            and "content_rewrite_planned" in archive_plan
+            and "scientific_claim_change_planned" in archive_plan
         )
 
     checks["v01013_script_exists"] = V01013_SCRIPT.is_file()

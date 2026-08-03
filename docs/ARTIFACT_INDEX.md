@@ -29,56 +29,67 @@ before invoking the long versioned artifact.  A mismatch fails closed.
 | v0.10.14.1 | `src/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py` | No new reference result certificate | Integration and inclusion-gate wiring; no fifth-frame theorem. |
 | v0.10.15 | `src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py` | No certificate unless native callbacks pass | Fail-closed fifth-frame backend harness; implementation remains open. |
 
+## Proof Map Summary
+
+| Level | Version | Role | Status | Supersedes |
+| --- | --- | --- | --- | --- |
+| I | v0.9.3 | Local intrinsic ODE | theorem-bearing reference result | - |
+| II | v0.10.6 | Fourth-chart Lohner support flowpipe | latest repository reference certificate | v0.9.32 continuation inputs |
+| II | v0.10.13.1 | Finite correlated continuation | source-certified; reference packaging pending | v0.10.6 chain input |
+| III | conditional theorem | Conditional continuation | paper-level conditional statement | - |
+| Open | v0.10.14.1/v0.10.15 | Fifth-frame transition contract and backend harness | implementation-open fail-closed scaffold | - |
+
+## Historical Status
+
+| Version | Classification | Reason |
+| --- | --- | --- |
+| v0.9.18 | superseded | induced-norm factor corrected by v0.9.20; do not use as a current conclusion entry point |
+| v0.9.34 | retracted | ellipsoid did not contain the complete endpoint box |
+| v0.9.40 | superseded | invalid equal per-entry allocation |
+| v0.10.9 | failed closed | corrected by mean-value v0.10.9.1 |
+
 ## Root-Level Frozen Milestone Classes
 
 The root-level `response_fibre_*_oneclick.py` files are intentionally left at
 their historical paths for this release.  They should be treated as frozen
 milestone artifacts, not as the preferred user interface.
+Superseded, retracted, and corrected milestones are cross-referenced in
+`SUPERSEDED_RESULTS.md`.
 
 | Class | Frozen artifacts | Current status | Future archive target |
 | --- | --- | --- | --- |
-| Early continuation preflight | `response_fibre_validated_continuation_v0_9_4_1_oneclick.py`, `response_fibre_two_step_continuation_v0_9_5_oneclick.py` | Audit history and finite-continuation inputs | `src/frozen_milestones/continuation_preflight/` |
-| Recenter and normal-root setup | `response_fibre_recenter_preflight_v0_9_6_oneclick.py`, `response_fibre_normal_root_v0_9_7_oneclick.py`, `response_fibre_arb_normal_root_v0_9_8_oneclick.py` | Valid frozen setup artifacts | `src/frozen_milestones/recentered_charts/second_chart/` |
-| Second local chart | `response_fibre_recentered_frame_v0_9_9_oneclick.py`, `response_fibre_second_chart_v0_9_10_oneclick.py`, `response_fibre_finite_continuation_v0_9_11_oneclick.py` | Certified local continuation chain | `src/frozen_milestones/recentered_charts/second_chart/` |
-| Route correction and diagnostics | `response_fibre_transition_preflight_v0_9_12_oneclick.py`, `response_fibre_route_correction_v0_9_13_oneclick.py`, `response_fibre_endpoint_identifiability_v0_9_14_oneclick.py` | Correction and scope-setting artifacts | `src/frozen_milestones/superseded_audits/` |
-| Lohner and adapter exploration | `response_fibre_validated_lohner_v0_9_15_oneclick.py`, `response_fibre_adapter_hardening_v0_9_16_oneclick.py`, `response_fibre_executable_adapter_v0_9_17_oneclick.py`, `response_fibre_lohner_stress_v0_9_18_oneclick.py`, `response_fibre_local_dx_target_v0_9_19_oneclick.py`, `response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py` | Mixed certified components and superseded stress/audit results; see `SUPERSEDED_RESULTS.md` | `src/frozen_milestones/superseded_audits/` |
-| Endpoint enclosures | `response_fibre_six_component_endpoint_v0_9_21_oneclick.py`, `response_fibre_signed_field_export_v0_9_22_oneclick.py`, `response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py`, `response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py` | Endpoint-box and signed-field evidence; no arbitrary endpoint connectivity | `src/frozen_milestones/endpoint_enclosures/` |
-| Third-chart chain | `response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py` through `response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py` | Valid finite continuation chain | `src/frozen_milestones/recentered_charts/third_chart/` |
-| Fourth-chart chain | `response_fibre_fourth_frame_v0_9_29_oneclick.py` through `response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py` | Valid finite continuation chain feeding later v0.10 work | `src/frozen_milestones/recentered_charts/fourth_chart/` |
+| 01 local foundation | `response_fibre_validated_continuation_v0_9_4_1_oneclick.py`, `response_fibre_two_step_continuation_v0_9_5_oneclick.py`, `response_fibre_recenter_preflight_v0_9_6_oneclick.py`, `response_fibre_normal_root_v0_9_7_oneclick.py`, `response_fibre_arb_normal_root_v0_9_8_oneclick.py` | Audit history, initial continuation, and normal-root setup | `archive/frozen_milestones/01_local_foundation/` |
+| 02 second chart | `response_fibre_recentered_frame_v0_9_9_oneclick.py`, `response_fibre_second_chart_v0_9_10_oneclick.py`, `response_fibre_finite_continuation_v0_9_11_oneclick.py`, `response_fibre_transition_preflight_v0_9_12_oneclick.py`, `response_fibre_route_correction_v0_9_13_oneclick.py` | Second local chart continuation and route correction | `archive/frozen_milestones/02_second_chart/` |
+| 03 endpoint enclosure | `response_fibre_endpoint_identifiability_v0_9_14_oneclick.py`, `response_fibre_validated_lohner_v0_9_15_oneclick.py`, `response_fibre_adapter_hardening_v0_9_16_oneclick.py`, `response_fibre_executable_adapter_v0_9_17_oneclick.py`, `response_fibre_local_dx_target_v0_9_19_oneclick.py`, `response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py`, `response_fibre_six_component_endpoint_v0_9_21_oneclick.py`, `response_fibre_signed_field_export_v0_9_22_oneclick.py` | Lohner, adapter, norm-correction, and endpoint-box evidence | `archive/frozen_milestones/03_endpoint_enclosure/` |
+| Superseded v0.9.18 | `response_fibre_lohner_stress_v0_9_18_oneclick.py` | Superseded by v0.9.20 norm correction; retained for audit only | `archive/frozen_milestones/superseded/v0_9_18/` |
+| 04 third chart | `response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py` through `response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py` | Valid finite continuation chain | `archive/frozen_milestones/04_third_chart/` |
+| 05 fourth chart | `response_fibre_fourth_frame_v0_9_29_oneclick.py` through `response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py` | Valid finite continuation chain feeding later v0.10 work | `archive/frozen_milestones/05_fourth_chart/` |
+| 06 Taylor/Lohner | `src/geometric_flow_active_backend_export_v0_10_1_oneclick.py` through `src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py` | Current effective backend chain through v0.10.13.1 plus implementation-open fifth-frame harness | `archive/frozen_milestones/06_taylor_lohner/` |
 
 Moving these files now would not change their content hashes, but it would
 change paths, raw GitHub URLs, embedded file discovery assumptions, and any
 certificate metadata that records source locations.  For that reason, this
 release improves navigation through stable wrappers and this index only.
 
-## Proposed v1.0 Archive Layout
+## Target Archive Layout
 
 ```text
-src/
-  core/
-    geometric_flow/
+archive/
   frozen_milestones/
-    local_ode/
-      v0_9_3/
-    continuation_preflight/
-      v0_9_4/
-      v0_9_5/
-      v0_9_6/
-    recentered_charts/
-      second_chart/
-      third_chart/
-      fourth_chart/
-    endpoint_enclosures/
-      v0_9_21/
-      v0_9_22/
-      v0_9_28/
-      v0_9_32/
-    superseded_audits/
+    01_local_foundation/
+    02_second_chart/
+    03_endpoint_enclosure/
+    04_third_chart/
+    05_fourth_chart/
+    06_taylor_lohner/
+    superseded/
 ```
 
-The v1.0 migration should include a machine-readable manifest, compatibility
-wrappers at the old paths, SHA-256 checks from wrapper to relocated target, CI
-coverage for both old and new entry points, and an explicit migration map.
+Run `python tools/plan_archive_migration.py` to generate a preview-only
+`archive_migration_plan.json` and `archive_migration_plan.md`. The tool records
+old path, proposed new path, SHA-256, classification, and text references. It
+refuses `--apply`; moving files should happen only in a dedicated migration PR
+that updates manifests, compatibility wrappers, references, and CI together.
 
 ## Future Package Boundary
 
