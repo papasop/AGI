@@ -1,5 +1,5 @@
 __pycache__/
 *.py[cod]
 .venv/
+.venv*/
 results/v0_7_4_run/
-

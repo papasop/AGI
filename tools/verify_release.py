@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed structural/hash verification for the frozen v0.9.3 release."""
+"""Fail-closed structural/hash verification for the v0.9.18 milestone."""
 
 from __future__ import annotations
 
@@ -20,6 +20,10 @@ V093_DIR = ROOT / "results" / "v0_9_3_reference"
 V093_PROTOCOL = V093_DIR / "protocol.json"
 V093_CERTIFICATE = V093_DIR / "intrinsic_picard_microstep_certificate.json"
 V093_REPORT = V093_DIR / "report.json"
+SHA256SUMS = ROOT / "SHA256SUMS.txt"
+README = ROOT / "README.md"
+CLAIM_SCOPE = ROOT / "docs" / "CLAIM_SCOPE.md"
+V0918_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.18.md"
 
 EXPECTED = {
     V074_SOURCE: "1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8",
@@ -36,6 +40,23 @@ EXPECTED_ATLAS_SHA256 = (
 EXPECTED_PROTOCOL_SHA256 = (
     "6d0aaefabd71f1d2986515ed84673f0083ae90d0344b9a1e92d7697ac08d061a"
 )
+EXPECTED_V0918_SCRIPTS = {
+    "response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
+    "response_fibre_two_step_continuation_v0_9_5_oneclick.py",
+    "response_fibre_recenter_preflight_v0_9_6_oneclick.py",
+    "response_fibre_normal_root_v0_9_7_oneclick.py",
+    "response_fibre_arb_normal_root_v0_9_8_oneclick.py",
+    "response_fibre_recentered_frame_v0_9_9_oneclick.py",
+    "response_fibre_second_chart_v0_9_10_oneclick.py",
+    "response_fibre_finite_continuation_v0_9_11_oneclick.py",
+    "response_fibre_transition_preflight_v0_9_12_oneclick.py",
+    "response_fibre_route_correction_v0_9_13_oneclick.py",
+    "response_fibre_endpoint_identifiability_v0_9_14_oneclick.py",
+    "response_fibre_validated_lohner_v0_9_15_oneclick.py",
+    "response_fibre_adapter_hardening_v0_9_16_oneclick.py",
+    "response_fibre_executable_adapter_v0_9_17_oneclick.py",
+    "response_fibre_lohner_stress_v0_9_18_oneclick.py",
+}
 
 
 def sha256(path: Path) -> str:
@@ -50,6 +71,16 @@ def canonical_json(value) -> bytes:
     return json.dumps(
         value, sort_keys=True, separators=(",", ":"), ensure_ascii=True
     ).encode("utf-8")
+
+
+def read_sha256sums(path: Path) -> dict[str, str]:
+    entries: dict[str, str] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        digest, name = line.split(None, 1)
+        entries[name] = digest
+    return entries
 
 
 def main() -> int:
@@ -113,6 +144,37 @@ def main() -> int:
             is True
             and report.get("uniform_dL6_dt_upper", 0.0) < -0.55
         )
+
+    checks["v0918_sha256sums_exists"] = SHA256SUMS.is_file()
+    if SHA256SUMS.is_file():
+        sums = read_sha256sums(SHA256SUMS)
+        checks["v0918_all_expected_scripts_listed"] = (
+            EXPECTED_V0918_SCRIPTS <= set(sums)
+        )
+        for name, expected in sums.items():
+            path = ROOT / name
+            label = f"v0918_{name.replace('/', '_')}"
+            checks[f"{label}_exists"] = path.is_file()
+            checks[f"{label}_sha256"] = path.is_file() and sha256(path) == expected
+
+    checks["v0918_readme_exists"] = README.is_file()
+    if README.is_file():
+        text = README.read_text(encoding="utf-8")
+        checks["v0918_readme_states_bottleneck"] = (
+            "maximum_certified_steps = 172" in text
+            and "first_failing_step      = 173" in text
+            and "Do not cite this archive as a global-flow theorem." in text
+        )
+
+    checks["v0918_claim_scope_exists"] = CLAIM_SCOPE.is_file()
+    if CLAIM_SCOPE.is_file():
+        scope = CLAIM_SCOPE.read_text(encoding="utf-8")
+        checks["v0918_claim_scope_rejects_global_flow"] = (
+            "does not establish" in scope
+            and "global\nflow" in scope
+        )
+
+    checks["v0918_release_notes_exists"] = V0918_RELEASE_NOTES.is_file()
 
     print(json.dumps(checks, indent=2, sort_keys=True))
     passed = bool(checks) and all(checks.values())
