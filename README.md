@@ -10,9 +10,12 @@ Geometric-Flow studies a simple but important question:
 
 The repository develops that question for a frozen 14-phase driven-qubit
 model. The original v0.9.3 result proves one local intrinsic ODE microstep.
-The current v0.10.6 certified development milestone corrects the fourth-chart
+The current reference-result milestone, v0.10.6, corrects the fourth-chart
 domain binding and certifies ten Arb Lohner support-flowpipe steps using the
 repository-native fourth-chart field `X` and same-expression Jacobian `DX`.
+The v0.10.14.1 delta adds the reindexed Taylor/Lohner continuation source and
+a fail-closed fifth-frame transition backend harness, without adding a fifth
+frame theorem.
 
 Current status: strong local and finite-continuation results are certified
 for one frozen chart/child instance. A complete-child, atlas-wide, or global
@@ -61,6 +64,30 @@ induced infinity |DX| upper    11510.000045776367
 This milestone certifies support radii and QR shape history. It deliberately
 does not certify directional QR tightening, a fifth recenter/frame,
 complete-child continuation, atlas-wide continuation, or a global-flow theorem.
+
+## Latest incremental source milestone: v0.10.14.1
+
+The v0.10.14.1 delta package adds three source drivers after v0.10.6:
+
+- v0.10.13.1 reindexes the ten true propagation input boxes against their
+  matching Hessian parent boxes and assembles the directional Taylor/affine
+  Lohner chain;
+- v0.10.14.1 freezes the Arb-formatted terminal correlated set and emits a
+  strict nonlinear fourth-to-fifth chart-transition backend contract; and
+- v0.10.15 provides a fail-closed proof-producing backend harness for a future
+  fifth parametric normal root, Arb SVD frame, and nonlinear transition.
+
+The packaged source status is:
+
+```text
+VALIDATED_REINDEXED_TAYLOR_DIRECTIONAL_AFFINE_LOHNER_CERTIFIED
+```
+
+This delta does not add repository reference result certificates. It does not
+certify a fifth frame, fifth Picard chart, complete-child continuation,
+atlas-wide continuation, or a global-flow theorem. The v0.10.15 callbacks
+remain implementation-open until real repository-native Arb operations replace
+the generated template and all formal gates pass.
 
 ## Implementation-open scaffold retained: v0.9.46
 
@@ -161,6 +188,9 @@ preconditioners, not as proof objects.
 | v0.9.46 | Implementation-open repository-native point/box field backend scaffold, not a certified field |
 | v0.10.1-5 | Repository-native Arb field and same-expression 6x6 Jacobian `DX` |
 | v0.10.6 | Corrected full fourth-chart domain binding and ten-step Arb Lohner support-flowpipe certificate; no directional QR gain |
+| v0.10.13.1 | Reindexed input-parent Taylor/affine Lohner chain source milestone and terminal correlated-set production when predecessor artifacts are available |
+| v0.10.14.1 | Frozen terminal correlated-set object and nonlinear fourth-to-fifth chart-transition contract; no fifth-frame theorem without backend certificate |
+| v0.10.15 | Fail-closed fifth-frame backend harness with implementation-open native Arb callbacks |
 
 The v0.7.4 and v0.9.3 results have different scopes: v0.7.4 covers broader
 geometry but is not an ODE theorem; v0.9.3 is an ODE theorem but only for one
@@ -197,9 +227,10 @@ See [SUPERSEDED_RESULTS.md](SUPERSEDED_RESULTS.md) for the correction record.
 The repository does not currently certify:
 
 - a fifth tangent/normal frame or fifth local fibre graph;
-- a sharp, stepwise Taylor/Lohner trajectory midpoint or directional
-  QR-tightened flowpipe;
-- directional QR tightening;
+- a fifth-frame nonlinear transition certificate from the implementation-open
+  v0.10.15 backend harness;
+- a sharp, stepwise Taylor/Lohner trajectory midpoint beyond the packaged
+  correlated-set support audit;
 - complete traversal of child 15;
 - a successor atlas chart after terminal chart 9;
 - complete ten-chart continuation;
@@ -250,7 +281,14 @@ python src/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py
 python src/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py
 python src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py
 python src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py
+python src/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py
+python src/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py
+python src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py
 ```
+
+The v0.10.13.1-v0.10.15 drivers consume intermediate artifacts from the
+preceding live chain. If those artifacts are absent, they fail closed or emit
+only the implementation template/contract.
 
 Run the frozen v0.9.3 local ODE theorem directly:
 
@@ -284,7 +322,7 @@ tools/                       structural and hash verification
 .github/workflows/           CI reproduction and consistency checks
 response_fibre_*_oneclick.py continuation milestones v0.9.4-v0.9.32
 src/*_v0_9_46*.py            implementation-open backend binding scaffold
-src/geometric_flow_*v0_10*.py repository-native Arb X/DX and support-flowpipe milestones
+src/geometric_flow_*v0_10*.py repository-native Arb X/DX, support-flowpipe, and transition-audit milestones
 frozen/                      hash-bound reference sources for v0.9.46
 results/v0_10_*/             v0.10.1-v0.10.6 reference summaries/certificates
 tests/                       contract checks for open backend scaffolds
@@ -300,6 +338,8 @@ Useful documents:
 - [RELEASE_NOTES_v0.9.46.md](RELEASE_NOTES_v0.9.46.md): backend scaffold notes
 - [RELEASE_NOTES_v0.10.5.md](RELEASE_NOTES_v0.10.5.md): repository-native X/DX milestone notes
 - [RELEASE_NOTES_v0.10.6.md](RELEASE_NOTES_v0.10.6.md): domain correction and support-flowpipe notes
+- [RELEASE_NOTES_v0.10.14.1.md](RELEASE_NOTES_v0.10.14.1.md): reindexed Taylor and fifth-frame contract notes
+- [docs/INTEGRATION.md](docs/INTEGRATION.md): v0.10.14.1 delta integration guide
 - [docs/BACKEND_BINDING.md](docs/BACKEND_BINDING.md): native Arb binding contract
 - [CHANGELOG.md](CHANGELOG.md): version history
 
@@ -347,7 +387,9 @@ v0.9.3 用 192-bit Arb 区间算术证明了一个六维内蕴 ODE 微步：解�
 
 v0.10.6 修正了 v0.10.4/5 的第四图完整域绑定，并认证了十步 Arb Lohner
 support flowpipe；所有支撑管都保持在实 `1.5e-11` 与复 `2e-11` 第四图域内。
+v0.10.14.1 增加了重索引 Taylor/Lohner 链、冻结终端 correlated set 的脚本，
+以及第五图非线性过渡的 fail-closed 后端合约；它没有新增第五图定理。
 v0.9.46 只是后端绑定重构脚手架，候选模块仍保留 fail-closed 的
-`NotImplementedError`，不能表述为已认证的点依赖场。目前仍未证明 directional QR
-tightening、第五个局部图、完整 child 遍历、十图延拓或全局几何流。因而正确表述是
-“局部严格定理与有限延拓里程碑”，不是“全局流已证明”。
+`NotImplementedError`，不能表述为已认证的点依赖场。目前仍未证明第五个局部图、
+完整 child 遍历、十图延拓或全局几何流。因而正确表述是“局部严格定理与有限延拓
+里程碑”，不是“全局流已证明”。

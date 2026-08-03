@@ -29,11 +29,16 @@ V0932_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.32.md"
 V0946_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.46.md"
 V0105_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.5.md"
 V0106_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.6.md"
+V010141_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.14.1.md"
 SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
 BACKEND_BINDING = ROOT / "docs" / "BACKEND_BINDING.md"
+V010141_INTEGRATION = ROOT / "docs" / "INTEGRATION.md"
 V0946_CANDIDATE = ROOT / "src" / "geometric_flow_native_point_field_candidate_v0_9_46.py"
 V0946_HARNESS = ROOT / "src" / "response_fibre_native_binding_harness_v0_9_46_standalone.py"
 V0946_TEST = ROOT / "tests" / "test_v0946_contract.py"
+V01013_SCRIPT = ROOT / "src" / "geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py"
+V01014_SCRIPT = ROOT / "src" / "geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py"
+V01015_SCRIPT = ROOT / "src" / "geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py"
 V0105_SUMMARY = ROOT / "results" / "v0_10_5" / "run_summary.json"
 V0105_CERTIFICATE = (
     ROOT / "results" / "v0_10_5" / "same_expression_X_DX_arb_certificate.json"
@@ -126,6 +131,13 @@ EXPECTED_V0106_FILES = {
     "results/v0_10_6/run_summary.json",
     "results/v0_10_6/fourth_chart_qr_lohner_support_certificate.json",
     "results/v0_10_6/qr_lohner_step_records.json",
+}
+EXPECTED_V010141_FILES = {
+    "RELEASE_NOTES_v0.10.14.1.md",
+    "docs/INTEGRATION.md",
+    "src/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
+    "src/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
+    "src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
 }
 
 
@@ -233,6 +245,9 @@ def main() -> int:
         checks["v0106_all_expected_files_listed"] = (
             EXPECTED_V0106_FILES <= set(sums)
         )
+        checks["v010141_all_expected_files_listed"] = (
+            EXPECTED_V010141_FILES <= set(sums)
+        )
         for name, expected in sums.items():
             path = ROOT / name
             label = name.replace("/", "_")
@@ -254,6 +269,12 @@ def main() -> int:
             and "maximum terminal support       1.3938448261845923e-11" in text
             and "does not certify directional QR tightening" in text
         )
+        checks["readme_states_v010141_delta_boundary"] = (
+            "Latest incremental source milestone: v0.10.14.1" in text
+            and "VALIDATED_REINDEXED_TAYLOR_DIRECTIONAL_AFFINE_LOHNER_CERTIFIED" in text
+            and "does not add repository reference result certificates" in text
+            and "v0.10.15 callbacks\nremain implementation-open" in text
+        )
         checks["readme_states_v0946_scaffold_only"] = (
             "Implementation-open scaffold retained: v0.9.46" in text
             and "`IMPLEMENTATION_OPEN`" in text
@@ -272,9 +293,14 @@ def main() -> int:
             and "not a sharp trajectory midpoint" in scope
         )
         checks["claim_scope_states_v0106_boundary"] = (
-            "strongest current result is v0.10.6" in scope
-            and "ten-step fourth-chart Arb Lohner\nsupport flowpipe" in scope
-            and "does not\ncertify directional QR tightening" in scope
+            "strongest repository reference result remains v0.10.6" in scope
+            and "ten-step\nfourth-chart Arb Lohner support flowpipe" in scope
+            and "This delta does not add new reference result certificates" in scope
+        )
+        checks["claim_scope_states_v010141_boundary"] = (
+            "reindexed ten-step local-root,\nsecond-order Taylor" in scope
+            and "does not certify a fifth recenter/frame" in scope
+            and "v0.10.15 fifth-frame backend harness is also implementation-open" in scope
             and "global flow theorem" in scope
         )
         checks["claim_scope_states_v0946_scaffold_only"] = (
@@ -295,6 +321,7 @@ def main() -> int:
     checks["v0946_release_notes_exists"] = V0946_RELEASE_NOTES.is_file()
     checks["v0105_release_notes_exists"] = V0105_RELEASE_NOTES.is_file()
     checks["v0106_release_notes_exists"] = V0106_RELEASE_NOTES.is_file()
+    checks["v010141_release_notes_exists"] = V010141_RELEASE_NOTES.is_file()
     if V0946_RELEASE_NOTES.is_file():
         notes = V0946_RELEASE_NOTES.read_text(encoding="utf-8")
         checks["v0946_release_notes_state_implementation_open"] = (
@@ -316,6 +343,15 @@ def main() -> int:
             and "maximum terminal support      1.3938448261845923e-11" in notes
             and "not a directional QR-tightening result" in notes
             and "global-flow theorem" in notes
+        )
+    if V010141_RELEASE_NOTES.is_file():
+        notes = V010141_RELEASE_NOTES.read_text(encoding="utf-8")
+        checks["v010141_release_notes_state_delta_only"] = (
+            "v0.10.13.1" in notes
+            and "v0.10.14.1" in notes
+            and "v0.10.15" in notes
+            and "does not add reference result certificates" in notes
+            and "No fifth frame, fifth Picard chart" in notes
         )
 
     checks["v0923_superseded_results_exists"] = SUPERSEDED_RESULTS.is_file()
@@ -375,6 +411,59 @@ def main() -> int:
         checks["v0946_contract_test_expects_fail_closed_scaffold"] = (
             "test_unimplemented_candidate_is_explicitly_fail_closed" in test_text
             and "assert calls" in test_text
+        )
+
+    checks["v010141_integration_exists"] = V010141_INTEGRATION.is_file()
+    if V010141_INTEGRATION.is_file():
+        integration = V010141_INTEGRATION.read_text(encoding="utf-8")
+        checks["v010141_integration_states_nonclaim"] = (
+            "Do not add reference certificates unless" in integration
+            and "v0.10.15 is an implementation-open native adapter\n   harness" in integration
+            and "No fifth frame, fifth Picard chart" in integration
+        )
+
+    checks["v01013_script_exists"] = V01013_SCRIPT.is_file()
+    if V01013_SCRIPT.is_file():
+        v01013 = V01013_SCRIPT.read_text(encoding="utf-8")
+        checks["v01013_script_states_reindexed_cert_boundary"] = (
+            "VERSION=\"0.10.13.1\"" in v01013
+            and "VALIDATED_REINDEXED_TAYLOR_DIRECTIONAL_AFFINE_LOHNER_CERTIFIED" in v01013
+            and "'fifth_frame_certified':False" in v01013
+            and "'global_flow_claimed':False" in v01013
+        )
+
+    checks["v01014_script_exists"] = V01014_SCRIPT.is_file()
+    if V01014_SCRIPT.is_file():
+        v01014 = V01014_SCRIPT.read_text(encoding="utf-8")
+        checks["v01014_script_requires_backend_certificate_for_fifth_frame"] = (
+            "FIFTH_FRAME_TARGET_FROZEN_ARB_TRANSITION_BACKEND_OPEN" in v01014
+            and '"fifth_frame_certified": passed' in v01014
+            and '"global_flow_claimed": False' in v01014
+            and "forbidden_shortcuts" in v01014
+        )
+
+    checks["v01015_script_exists"] = V01015_SCRIPT.is_file()
+    if V01015_SCRIPT.is_file():
+        v01015 = V01015_SCRIPT.read_text(encoding="utf-8")
+        tree = ast.parse(v01015)
+        required_callbacks = {
+            "lift_fourth_correlated_set_to_phase_box",
+            "solve_fifth_parametric_normal_root",
+            "construct_fifth_arb_svd_frame",
+            "map_phase_box_to_fifth_intrinsic_box",
+        }
+        checks["v01015_script_remains_fail_closed_harness"] = (
+            "FIFTH_NATIVE_ADAPTER_IMPLEMENTATION_OPEN_FAIL_CLOSED" in v01015
+            and required_callbacks <= set(ast.literal_eval(
+                next(
+                    node.value
+                    for node in tree.body
+                    if isinstance(node, ast.Assign)
+                    and any(getattr(target, "id", None) == "REQUIRED" for target in node.targets)
+                )
+            ))
+            and "raise NotImplementedError" in v01015
+            and '"global_flow_claimed": False' in v01015
         )
 
     checks["v0105_summary_exists"] = V0105_SUMMARY.is_file()

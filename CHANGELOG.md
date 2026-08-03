@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.10.14.1 — reindexed Taylor chain and fifth-frame transition contract
+
+- Add the v0.10.13.1 reindexed input-parent Taylor/affine Lohner chain driver.
+- Add the v0.10.14.1 terminal correlated-set freezer and nonlinear
+  fourth-to-fifth chart-transition contract emitter.
+- Add the v0.10.15 fail-closed proof-producing fifth-frame backend harness.
+- Preserve v0.10.6 as the latest repository reference certificate set; this
+  delta does not add independently verified reference result certificates.
+- Explicitly exclude fifth-frame, fifth-Picard-chart, complete-child,
+  atlas-wide, and global-flow claims.
+
 ## v0.10.6 — fourth-chart domain correction and Lohner support flowpipe
 
 - Correct v0.10.4/5 default Picard-certificate selection to prefer the full
