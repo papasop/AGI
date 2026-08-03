@@ -32,7 +32,14 @@ V0106_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.6.md"
 V010141_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.14.1.md"
 SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
 BACKEND_BINDING = ROOT / "docs" / "BACKEND_BINDING.md"
-V010141_INTEGRATION = ROOT / "docs" / "INTEGRATION.md"
+MILESTONES = ROOT / "docs" / "MILESTONES.md"
+PROOF_GRAPH = ROOT / "docs" / "PROOF_GRAPH.md"
+REPRODUCIBILITY = ROOT / "docs" / "REPRODUCIBILITY.md"
+PAPER_WORDING = ROOT / "docs" / "PAPER_WORDING.md"
+V010141_INTEGRATION = ROOT / "docs" / "archive" / "INTEGRATION_v0.10.14.1.md"
+SCRIPT_REPRODUCE_V093 = ROOT / "scripts" / "reproduce_v093.py"
+SCRIPT_VERIFY_REFERENCE = ROOT / "scripts" / "verify_reference_results.py"
+SCRIPT_REPRODUCE_FINITE = ROOT / "scripts" / "reproduce_finite_chain.py"
 V0946_CANDIDATE = ROOT / "src" / "geometric_flow_native_point_field_candidate_v0_9_46.py"
 V0946_HARNESS = ROOT / "src" / "response_fibre_native_binding_harness_v0_9_46_standalone.py"
 V0946_TEST = ROOT / "tests" / "test_v0946_contract.py"
@@ -134,10 +141,18 @@ EXPECTED_V0106_FILES = {
 }
 EXPECTED_V010141_FILES = {
     "RELEASE_NOTES_v0.10.14.1.md",
-    "docs/INTEGRATION.md",
+    "docs/archive/INTEGRATION_v0.10.14.1.md",
     "src/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
     "src/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
     "src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
+}
+EXPECTED_NAVIGATION_FILES = {
+    "docs/MILESTONES.md",
+    "docs/PROOF_GRAPH.md",
+    "docs/REPRODUCIBILITY.md",
+    "scripts/reproduce_v093.py",
+    "scripts/verify_reference_results.py",
+    "scripts/reproduce_finite_chain.py",
 }
 
 
@@ -248,6 +263,9 @@ def main() -> int:
         checks["v010141_all_expected_files_listed"] = (
             EXPECTED_V010141_FILES <= set(sums)
         )
+        checks["navigation_all_expected_files_listed"] = (
+            EXPECTED_NAVIGATION_FILES <= set(sums)
+        )
         for name, expected in sums.items():
             path = ROOT / name
             label = name.replace("/", "_")
@@ -257,32 +275,34 @@ def main() -> int:
     checks["readme_exists"] = README.is_file()
     if README.is_file():
         text = README.read_text(encoding="utf-8")
-        checks["readme_states_v0932_certified_endpoint"] = (
-            "Latest certified finite-continuation result: v0.9.32" in text
-            and "signed six-component fourth-chart terminal endpoint box" in text
-            and "1.39387284131938755e-11" in text
-            and "This package is a formal-development milestone, not a global-flow theorem." in text
+        checks["readme_has_single_status_table"] = (
+            "## Status At A Glance" in text
+            and "| Intrinsic ODE microstep | v0.9.3 | Certified reference theorem |" in text
+            and "| Ten-step fourth-chart support flowpipe | v0.10.6 | Latest repository reference certificate |" in text
+            and "| Reindexed Taylor/affine-Lohner terminal set | v0.10.13.1 | Source-certified chain; reference-result packaging pending |" in text
+            and text.count("## Latest ") == 0
         )
-        checks["readme_states_v0106_certified_support_flowpipe"] = (
-            "Latest certified support-flowpipe result: v0.10.6" in text
-            and "VALIDATED_TEN_STEP_FOURTH_CHART_LOHNER_SUPPORT_FLOWPIPE_CERTIFIED" in text
+        checks["readme_states_main_theorem_and_v0106_reference"] = (
+            "## Main Theorem" in text
+            and "dL_6/dt <= -0.6419529191591549 < 0" in text
             and "maximum terminal support       1.3938448261845923e-11" in text
-            and "does not certify directional QR tightening" in text
+            and "v0.10.6 is the latest\nindependent reference certificate" in text
         )
-        checks["readme_states_v010141_delta_boundary"] = (
-            "Latest incremental source milestone: v0.10.14.1" in text
-            and "VALIDATED_REINDEXED_TAYLOR_DIRECTIONAL_AFFINE_LOHNER_CERTIFIED" in text
-            and "does not add repository reference result certificates" in text
-            and "v0.10.15 callbacks\nremain implementation-open" in text
+        checks["readme_states_source_vs_reference_boundary"] = (
+            "VALIDATED_REINDEXED_TAYLOR_DIRECTIONAL_AFFINE_LOHNER_CERTIFIED" in text
+            and "reference-result packaging pending" in text
+            and "implementation-open" in text
+            and "v0.10.15 backend harness" in text
         )
-        checks["readme_states_v0946_scaffold_only"] = (
-            "Implementation-open scaffold retained: v0.9.46" in text
-            and "`IMPLEMENTATION_OPEN`" in text
-            and "not** a certified point-dependent field" in text
+        checks["readme_has_three_reproduction_entrypoints"] = (
+            "python scripts/reproduce_v093.py" in text
+            and "python scripts/verify_reference_results.py" in text
+            and "python scripts/reproduce_finite_chain.py" in text
         )
-        checks["readme_supersedes_v0918_limit"] = (
-            "the formal continuation is limited to 172 steps" in text
-            and "They must not be cited as current capability bounds." in text
+        checks["readme_next_milestone_is_not_stale_v0946"] = (
+            "implicit_fibre_root_solver(a_box)" not in text
+            and "projected_gradient(a_box, root_box, metric_box)" not in text
+            and "Next milestone" not in text
         )
 
     checks["claim_scope_exists"] = CLAIM_SCOPE.is_file()
@@ -291,6 +311,11 @@ def main() -> int:
         checks["claim_scope_states_v0932_boundary"] = (
             "v0.9.32 certifies a signed six-component fourth-chart terminal" in scope
             and "not a sharp trajectory midpoint" in scope
+        )
+        checks["claim_scope_has_three_layers"] = (
+            "Layer I: Unconditional Local Theorem" in scope
+            and "Layer II: Frozen-Instance Finite Continuation" in scope
+            and "Layer III: Conditional / Next-Frame Work" in scope
         )
         checks["claim_scope_states_v0106_boundary"] = (
             "strongest repository reference result remains v0.10.6" in scope
@@ -301,6 +326,7 @@ def main() -> int:
             "reindexed ten-step local-root,\nsecond-order Taylor" in scope
             and "does not certify a fifth recenter/frame" in scope
             and "v0.10.15 fifth-frame backend harness is also implementation-open" in scope
+            and "reference-result packaging is\npending" in scope
             and "global flow theorem" in scope
         )
         checks["claim_scope_states_v0946_scaffold_only"] = (
@@ -351,6 +377,7 @@ def main() -> int:
             and "v0.10.14.1" in notes
             and "v0.10.15" in notes
             and "does not add reference result certificates" in notes
+            and "Reference-result packaging for v0.10.13.1\nis pending" in notes
             and "No fifth frame, fifth Picard chart" in notes
         )
 
@@ -421,6 +448,50 @@ def main() -> int:
             and "v0.10.15 is an implementation-open native adapter\n   harness" in integration
             and "No fifth frame, fifth Picard chart" in integration
         )
+
+    checks["navigation_docs_exist"] = (
+        MILESTONES.is_file()
+        and PROOF_GRAPH.is_file()
+        and REPRODUCIBILITY.is_file()
+        and PAPER_WORDING.is_file()
+    )
+    if MILESTONES.is_file() and PROOF_GRAPH.is_file() and REPRODUCIBILITY.is_file():
+        milestones = MILESTONES.read_text(encoding="utf-8")
+        proof_graph = PROOF_GRAPH.read_text(encoding="utf-8")
+        reproducibility = REPRODUCIBILITY.read_text(encoding="utf-8")
+        checks["milestones_preserve_history_outside_readme"] = (
+            "v0.9.18-v0.9.19" in milestones
+            and "v0.10.13.1" in milestones
+            and "reference-result packaging pending" in milestones
+        )
+        checks["proof_graph_states_three_layers"] = (
+            "Layer I: Unconditional Local Theorem" in proof_graph
+            and "Layer II: Frozen-Instance Finite Continuation" in proof_graph
+            and "Layer III: Conditional / Next-Frame Continuation Work" in proof_graph
+            and "not yet certified" in proof_graph
+        )
+        checks["reproducibility_lists_full_chain"] = (
+            "python scripts/reproduce_v093.py" in reproducibility
+            and "python scripts/verify_reference_results.py" in reproducibility
+            and "python scripts/reproduce_finite_chain.py --run" in reproducibility
+            and "geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py" in reproducibility
+        )
+
+    if PAPER_WORDING.is_file():
+        paper = PAPER_WORDING.read_text(encoding="utf-8")
+        checks["paper_wording_states_three_layer_safe_language"] = (
+            "Layer I: Unconditional Local Theorem" in paper
+            and "Layer II: Frozen-Instance Finite Continuation" in paper
+            and "Layer III: Conditional / Next-Frame Work" in paper
+            and "Reference-Certified Vs Source-Certified" in paper
+            and "v0.10.15 harness certifies a fifth frame" in paper
+        )
+
+    checks["reproduction_scripts_exist"] = (
+        SCRIPT_REPRODUCE_V093.is_file()
+        and SCRIPT_VERIFY_REFERENCE.is_file()
+        and SCRIPT_REPRODUCE_FINITE.is_file()
+    )
 
     checks["v01013_script_exists"] = V01013_SCRIPT.is_file()
     if V01013_SCRIPT.is_file():

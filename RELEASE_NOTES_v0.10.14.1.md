@@ -17,7 +17,9 @@ support-flowpipe milestone.
 The delta does not add reference result certificates. The strongest packaged
 source claim ends at the reindexed ten-step local-root, second-order Taylor,
 and correlated affine/Lohner chain, plus a frozen terminal correlated set for a
-future fifth-frame transition audit.
+future fifth-frame transition audit. Reference-result packaging for v0.10.13.1
+is pending, so this update does not include a terminal-set certificate hash in
+the repository reference manifest.
 
 No fifth frame, fifth Picard chart, complete-child continuation,
 atlas-wide continuation, or global flow is claimed. The v0.10.15 native
