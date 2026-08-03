@@ -1,5 +1,44 @@
 # Changelog
 
+## v0.9.23 — signed endpoint and parametric-root inclusion
+
+- Correct the v0.9.18-v0.9.19 duplicated-dimension-factor diagnosis: the
+  v0.9.3 `cauchy_lipschitz_upper` quantity was already an induced infinity-norm
+  bound.
+- Restore the 557-step scalar continuation result under the corrected norm
+  interpretation.
+- Add a six-component signed intrinsic endpoint enclosure after 557
+  microsteps.
+- Add repository-native Arb export of the signed intrinsic-field intervals.
+- Certify that the complete endpoint box remains inside the parametric
+  fibre-graph domain.
+- Inherit unique normal-root existence for every tangent point in that endpoint
+  box.
+- Retain v0.9.18-v0.9.19 only as auditable correction history, not current
+  capability bounds.
+- Explicitly exclude a third frame, third Picard chart, complete-child
+  traversal, atlas-wide continuation, arbitrary-point connectivity, and global
+  flow.
+
+## v0.9.18 — validated continuation milestone
+
+- Certify a unique eight-dimensional normal correction at the frozen recenter
+  target.
+- Certify the recentered full-row-rank response Jacobian and tangent/normal
+  frame.
+- Add the second complex fibre graph, endpoint inclusion, and one recentered
+  Picard microstep.
+- Distinguish finite scalar reachability from a narrow identifiable trajectory
+  endpoint.
+- Harden the six-dimensional Lohner adapter interface against truthy-JSON sham
+  adapters.
+- Add the executable repository-native conservative formal adapter.
+- Quantify the global Cauchy-Jacobian bottleneck: 172 validated steps remain
+  inside the declared intrinsic domain, while step 173 exits it.
+- Explicitly exclude a 557-step endpoint, complete-child traversal,
+  ten-chart continuation, arbitrary-point connectivity, and global-flow
+  claims.
+
 ## v0.9.3 — validated intrinsic ODE microstep
 
 - Preserve the complete-parent-box v0.7.4 Stage-A descent certificate.

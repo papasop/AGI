@@ -1,218 +1,123 @@
-# Computation as Geometric Flow
+# Geometric-Flow — signed endpoint and parametric-root milestone v0.9.23
 
-## An Arb-Certified Local Intrinsic ODE on a Quantum-Control Response Fibre
+This development release extends the frozen v0.9.3 local response-fibre ODE
+theorem through a second recentered local chart and a certified signed
+six-component endpoint enclosure.
 
-[![Full joint verification](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_joint_v093.ipynb)
-[![reproduce-joint-geometric-flow](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-joint-geometric-flow.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-joint-geometric-flow.yml)
+## Strongest result
 
-Frozen research-software release **v0.9.3** for
-[`papasop/Geometric-Flow`](https://github.com/papasop/Geometric-Flow).
+For the frozen chart-9/child-15 instance, the repository-native Arb backend
+certifies:
 
-This repository studies a 14-phase driven-qubit model with response constraint
+1. a second recentered complex fibre graph and local Picard microstep;
+2. a 557-step scalar reachable tube within that second chart;
+3. six signed intrinsic-field component intervals;
+4. a nonzero six-dimensional endpoint box after 557 microsteps; and
+5. inclusion of the complete endpoint box in the certified parametric fibre
+   graph, hence a unique normal root for every tangent point in that box.
 
-$$
-R_3(\theta)=(\Re a_0,\Re a_1,\Re a_2,\Re a_3,
-             \Im a_0,\Im a_1,\Im a_2,\Im a_3)
-$$
-
-and independent objective $L_6$. The declared ambient metric is Euclidean in
-the fourteen phase coordinates. All theorem-bearing enclosures use
-outward-rounded Arb arithmetic at 192-bit precision; floating midpoint SVDs
-and inverses are frozen preconditioners only.
-
-## Strongest certified statement
-
-For child 15 of chart 9, subdivision 32, v0.9.3 constructs a local fibre chart
-
-$$
-\theta(a)=\theta_0+Ta+N\psi(a), \qquad a\in\mathbb R^6,
-$$
-
-certifies the complex parametric graph $b=\psi(a)$, pulls the Euclidean
-metric back through $W=T+N D\psi$, and validates one intrinsic normalized
-projected-gradient ODE microstep:
-
-$$
-\dot a=-\frac{H^{-1}W^\top\nabla L_6}
-{\sqrt{(W^\top\nabla L_6)^\top H^{-1}(W^\top\nabla L_6)}},
-\qquad H=W^\top W.
-$$
-
-The reference report has status:
+The endpoint-box centre is approximately
 
 ```text
-VALIDATED_INTRINSIC_RESPONSE_FIBRE_ODE_MICROSTEP_CERTIFIED
+(-2.426e-13, +1.537e-12, +2.212e-12,
+ +2.768e-12, +2.694e-12, -2.968e-12).
 ```
 
-It formally certifies, on the declared microstep $0\le t\le10^{-14}$:
+Its maximum absolute coordinate, including component uncertainty, is about
+`3.1814e-12`, leaving about `6.8186e-12` of strict margin inside the declared
+real intrinsic radius `1e-11`.
 
-- existence and uniqueness of the intrinsic six-dimensional ODE solution;
-- exact response preservation $R_3(\theta(t))=R_3(\theta(0))$;
-- nonstationarity of the intrinsic projected gradient; and
-- uniform strict descent
-  $$
-  \frac{dL_6}{dt}\le-0.6419529191591549<0.
-  $$
+## Certified milestones
 
-| quantity | certified value |
-| --- | ---: |
-| complex-graph Krawczyk utilization | `0.02316105051443677` |
-| pullback-metric Neumann defect | `0.000695359681037727` |
-| intrinsic projected-gradient norm lower bound | `0.6419529191591549` |
-| Picard contraction factor | `0.00348785915675938` |
-| Picard self-mapping utilization | `0.0005813098594598967` |
-| certified time step | `1e-14` |
+| Version | Result |
+|---|---|
+| v0.9.8 | Unique normal correction at the first recenter target |
+| v0.9.9 | Recentered tangent/normal frame |
+| v0.9.10 | Second complex fibre graph, overlap and Picard microstep |
+| v0.9.11–12 | 557-step scalar continuation and exact local-domain exhaustion point |
+| v0.9.13 | Route correction: chart 9 is terminal; same-chart recentering is required |
+| v0.9.15–17 | Lohner core, hardened adapter contract and executable conservative adapter |
+| v0.9.18 | Reproduced 172-step limit under an incorrectly overcounted adapter norm |
+| v0.9.19 | Quantified the consequence of that overcount; superseded by v0.9.20 |
+| v0.9.20 | Corrected the duplicated dimension factor and restored the 557-step scalar result |
+| v0.9.21 | Six-component symmetric endpoint enclosure |
+| v0.9.22 | Repository-native signed field and nonzero 557-step endpoint box |
+| v0.9.23 | Complete endpoint-box inclusion and inherited unique parametric normal root |
 
-The protocol SHA-256 is
-`6d0aaefabd71f1d2986515ed84673f0083ae90d0344b9a1e92d7697ac08d061a`.
+## Important correction to v0.9.18–19
 
-## Two distinct certified layers
-
-The release preserves v0.7.4 because its theorem and the v0.9.3 theorem have
-different scopes:
-
-| layer | certified result | coverage |
-| --- | --- | --- |
-| v0.7.4 | rank, response tangency, projected-gradient nonstationarity and strict atlas descent | one complete 1/64 parent box, covered by 16 children |
-| v0.9.3 | existence, uniqueness, exact response preservation and strict descent for the intrinsic ODE | one (10^{-14}) microstep near child 15 |
-
-The broader v0.7.4 result is not an ODE theorem. The v0.9.3 ODE theorem is not
-a complete-parent-box result.
-
-## What v0.9.3 does not claim
-
-- no validated traversal of the complete child interval;
-- no complete ten-chart flow;
-- no global connection between arbitrary response-equivalent controls;
-- no global response-fibre, holonomy, neural-network, cloud, or QPU theorem;
-- no practically large integration time—the certified step is deliberately
-  microscopic and establishes the first local theorem unit.
-
-See [`docs/CLAIM_SCOPE.md`](docs/CLAIM_SCOPE.md) and
-[`docs/PAPER_WORDING.md`](docs/PAPER_WORDING.md).
-
-## Repository layout
+The frozen v0.9.3 source defines
 
 ```text
-src/
-  response_fibre_arb_kkt_witness_alignment_v0_7_4.py
-  response_fibre_centered_mean_value_krawczyk_v0_9_2.py
-  response_fibre_intrinsic_picard_microstep_v0_9_3.py
-inputs/
-  response_fibre_v0_6_2_backend_inputs.zip
-results/
-  reference_run_summary.json
-  reference/
-    protocol.json
-    certificate.json
-    report.json
-  v0_9_3_reference/
-    protocol.json
-    intrinsic_picard_microstep_certificate.json
-    report.json
-docs/
-  CLAIM_SCOPE.md
-  NEURAL_NETWORK_RESPONSE_FIBRES.md
-  PAPER_WORDING.md
-notebooks/
-  reproduce_joint_v093.ipynb
-  reproduce_v093.ipynb
-tools/
-  verify_release.py
-.github/workflows/
-  reproduce-joint-geometric-flow.yml
-  structural-checks.yml
-  reproduce-validated-ode.yml
+cauchy_lipschitz_upper = d*M/(R-r)
 ```
 
-## Install
+as the **induced infinity-norm** Lipschitz bound. v0.9.17 placed this already
+induced bound into every entry of a `6x6` Jacobian box, and v0.9.18 then took
+the matrix infinity norm, multiplying by six a second time.
 
-Python 3.12 is recommended.
+Therefore these two earlier capability statements are withdrawn:
+
+- “the formal continuation is limited to 172 steps”; and
+- “the Jacobian must be tightened by 5.985x to reach 557 steps.”
+
+They describe the overcounted adapter, not the certified geometric flow.
+v0.9.20 independently recovers step 557 as strictly inside the domain and
+step 558 as the first non-strict step, agreeing with v0.9.12.
+
+The v0.9.18–19 scripts remain in this archive as an auditable correction
+history. They must not be cited as current capability bounds.
+
+## What is not certified
+
+- a third tangent/normal frame;
+- a third local fibre graph or Picard microstep;
+- a Taylor/Lohner stepwise flowpipe;
+- complete traversal of child 15;
+- a successor atlas chart after terminal chart 9;
+- ten-chart continuation or a global flow;
+- connectivity of arbitrary points in a response fibre.
+
+## Reproduction
+
+Python 3.12 and `python-flint==0.8.0` are recommended. The latest scripts are
+single-file Colab/Jupyter drivers and ignore the injected kernel `-f` option.
+
+Principal commands:
 
 ```bash
-python -m pip install -r requirements.txt
+python response_fibre_second_chart_v0_9_10_oneclick.py
+python response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py
+python response_fibre_signed_field_export_v0_9_22_oneclick.py
+python response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py
 ```
 
-## One-click external reproduction
-
-- Recommended: Full geometry + ODE verification:
-  [Open in Colab](https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_joint_v093.ipynb)
-  or
-  [![reproduce-joint-geometric-flow](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-joint-geometric-flow.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-joint-geometric-flow.yml)
-- Quick: Local ODE microstep only:
-  [Open in Colab](https://colab.research.google.com/github/papasop/Geometric-Flow/blob/main/notebooks/reproduce_v093.ipynb)
-  or
-  [![reproduce-validated-ode](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml)
-- Frozen structural verification: `python tools/verify_release.py`
-
-A successful joint reproduction must end with:
-
-```text
-STAGE_A_PARENT_BOX_GEOMETRY_CERTIFIED = true
-STAGE_B_LOCAL_ODE_MICROSTEP_CERTIFIED = true
-JOINT_GEOMETRIC_FLOW_RELEASE_GATE = true
-GLOBAL_FLOW_CLAIMED = false
-```
-
-The default `structural-checks` workflow verifies committed files and hashes.
-It is not an ODE reproduction. The `reproduce-joint-geometric-flow` workflow
-reruns the v0.7.4 complete-parent-box geometry certificate and the v0.9.3
-local ODE microstep as separate stages, then writes a joint summary without
-merging the original certificates or claiming a global flow. The
-`reproduce-validated-ode` workflow remains as a faster ODE-microstep-only
-entry point.
-
-## Full v0.9.3 Arb reproduction
+Verify this package with:
 
 ```bash
-python src/response_fibre_intrinsic_picard_microstep_v0_9_3.py \
-  --inputs-zip inputs/response_fibre_v0_6_2_backend_inputs.zip \
-  --v074-source src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py \
-  --no-download \
-  --output results/v0_9_3_reproduction
-```
-
-Expected high-level fields:
-
-```text
-all_gates_pass = true
-validated_ODE_claimed = true
-ODE_existence_certified = true
-ODE_uniqueness_certified = true
-exact_response_preservation_certified = true
-uniform_L6_descent_certified_for_validated_solution = true
-global_flow_claimed = false
-```
-
-The final report binds the generator source hash. Notebook-cell execution can
-leave `generator_source_sha256` null, so release-grade reproduction should run
-the saved `.py` file as shown above.
-
-## Reproduce the broader v0.7.4 descent audit
-
-```bash
-python src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py \
-  --inputs-zip inputs/response_fibre_v0_6_2_backend_inputs.zip \
-  --chart 9 \
-  --subdivision 32 \
-  --output results/v0_7_4_reproduction
-```
-
-## Verify the frozen package
-
-```bash
-python tools/verify_release.py
 sha256sum -c SHA256SUMS.txt
 ```
 
-## 中文说明
+## Frozen repository inputs
 
-v0.9.3 首次在响应纤维的六维内蕴坐标中，以 192-bit Arb 区间算术认证了
-一个投影梯度 ODE 微步：解存在且唯一，响应 $R_3$ 精确保持，并且
-$dL_6/dt\le-0.6419529191591549<0$。认证时间仅为 $10^{-14}$，因此这是
-严格的局部微步定理，不是完整 child、十图或全局几何流定理。
+```text
+v0.9.3 generator
+3be3e07146ff0e505f08bae7bd0ec7f2895955f2540647fea3278fdba51db79c
 
-## Citation and license
+v0.7.4 Arb backend
+1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8
 
-Use [`CITATION.cff`](CITATION.cff) and cite the exact v0.9.3 release or commit.
-The code is released under the MIT License.
+v0.6.2 input ZIP
+2efd863f5ff26da1067594f068bfe265678e6ebac480574ff0574ccc55f98666
+
+corrected atlas canonical hash
+c02acc1c76e0b670793340150d1a875fdc373e0ac7c46d3360a7824b66a3a5ef
+```
+
+## Next milestone
+
+Construct and Arb-certify a third tangent/normal frame at the frozen v0.9.23
+centre, transform the complete endpoint box into that frame, and then certify
+a third local fibre graph and Picard microstep.
+
+This package is a formal-development milestone, not a global-flow theorem.
