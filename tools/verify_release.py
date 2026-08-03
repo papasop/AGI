@@ -32,11 +32,18 @@ V0106_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.6.md"
 V010141_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.14.1.md"
 SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
 BACKEND_BINDING = ROOT / "docs" / "BACKEND_BINDING.md"
+ARTIFACT_INDEX = ROOT / "docs" / "ARTIFACT_INDEX.md"
 MILESTONES = ROOT / "docs" / "MILESTONES.md"
 PROOF_GRAPH = ROOT / "docs" / "PROOF_GRAPH.md"
 REPRODUCIBILITY = ROOT / "docs" / "REPRODUCIBILITY.md"
 PAPER_WORDING = ROOT / "docs" / "PAPER_WORDING.md"
 V010141_INTEGRATION = ROOT / "docs" / "archive" / "INTEGRATION_v0.10.14.1.md"
+SCRIPT_ENTRYPOINT_UTILS = ROOT / "scripts" / "_entrypoint_utils.py"
+SCRIPT_LOCAL_ODE = ROOT / "scripts" / "reproduce_local_ode.py"
+SCRIPT_FINITE_CONTINUATION = ROOT / "scripts" / "reproduce_finite_continuation.py"
+SCRIPT_FIELD_JACOBIAN = ROOT / "scripts" / "reproduce_field_jacobian.py"
+SCRIPT_LOHNER_FLOWPIPE = ROOT / "scripts" / "reproduce_lohner_flowpipe.py"
+SCRIPT_AUDIT_FIFTH_FRAME = ROOT / "scripts" / "audit_fifth_frame.py"
 SCRIPT_REPRODUCE_V093 = ROOT / "scripts" / "reproduce_v093.py"
 SCRIPT_VERIFY_REFERENCE = ROOT / "scripts" / "verify_reference_results.py"
 SCRIPT_REPRODUCE_FINITE = ROOT / "scripts" / "reproduce_finite_chain.py"
@@ -147,9 +154,16 @@ EXPECTED_V010141_FILES = {
     "src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
 }
 EXPECTED_NAVIGATION_FILES = {
+    "docs/ARTIFACT_INDEX.md",
     "docs/MILESTONES.md",
     "docs/PROOF_GRAPH.md",
     "docs/REPRODUCIBILITY.md",
+    "scripts/_entrypoint_utils.py",
+    "scripts/reproduce_local_ode.py",
+    "scripts/reproduce_finite_continuation.py",
+    "scripts/reproduce_field_jacobian.py",
+    "scripts/reproduce_lohner_flowpipe.py",
+    "scripts/audit_fifth_frame.py",
     "scripts/reproduce_v093.py",
     "scripts/verify_reference_results.py",
     "scripts/reproduce_finite_chain.py",
@@ -295,9 +309,15 @@ def main() -> int:
             and "v0.10.15 backend harness" in text
         )
         checks["readme_has_three_reproduction_entrypoints"] = (
-            "python scripts/reproduce_v093.py" in text
+            "python scripts/reproduce_local_ode.py" in text
             and "python scripts/verify_reference_results.py" in text
-            and "python scripts/reproduce_finite_chain.py" in text
+            and "python scripts/reproduce_lohner_flowpipe.py" in text
+        )
+        checks["readme_lists_additional_stable_entrypoints"] = (
+            "python scripts/reproduce_finite_continuation.py" in text
+            and "python scripts/reproduce_field_jacobian.py" in text
+            and "python scripts/audit_fifth_frame.py" in text
+            and "check the relevant frozen SHA-256 entries" in text
         )
         checks["readme_next_milestone_is_not_stale_v0946"] = (
             "implicit_fibre_root_solver(a_box)" not in text
@@ -450,15 +470,32 @@ def main() -> int:
         )
 
     checks["navigation_docs_exist"] = (
-        MILESTONES.is_file()
+        ARTIFACT_INDEX.is_file()
+        and MILESTONES.is_file()
         and PROOF_GRAPH.is_file()
         and REPRODUCIBILITY.is_file()
         and PAPER_WORDING.is_file()
     )
-    if MILESTONES.is_file() and PROOF_GRAPH.is_file() and REPRODUCIBILITY.is_file():
+    if (
+        ARTIFACT_INDEX.is_file()
+        and MILESTONES.is_file()
+        and PROOF_GRAPH.is_file()
+        and REPRODUCIBILITY.is_file()
+    ):
+        artifact_index = ARTIFACT_INDEX.read_text(encoding="utf-8")
         milestones = MILESTONES.read_text(encoding="utf-8")
         proof_graph = PROOF_GRAPH.read_text(encoding="utf-8")
         reproducibility = REPRODUCIBILITY.read_text(encoding="utf-8")
+        checks["artifact_index_maps_stable_entrypoints"] = (
+            "scripts/reproduce_local_ode.py" in artifact_index
+            and "scripts/reproduce_finite_continuation.py" in artifact_index
+            and "scripts/reproduce_field_jacobian.py" in artifact_index
+            and "scripts/reproduce_lohner_flowpipe.py" in artifact_index
+            and "scripts/audit_fifth_frame.py" in artifact_index
+            and "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py" in artifact_index
+            and "Each stable entry point verifies the relevant entries in `SHA256SUMS.txt`" in artifact_index
+            and "Fail-closed fifth-frame backend harness" in artifact_index
+        )
         checks["milestones_preserve_history_outside_readme"] = (
             "v0.9.18-v0.9.19" in milestones
             and "v0.10.13.1" in milestones
@@ -471,9 +508,10 @@ def main() -> int:
             and "not yet certified" in proof_graph
         )
         checks["reproducibility_lists_full_chain"] = (
-            "python scripts/reproduce_v093.py" in reproducibility
+            "python scripts/reproduce_local_ode.py" in reproducibility
             and "python scripts/verify_reference_results.py" in reproducibility
-            and "python scripts/reproduce_finite_chain.py --run" in reproducibility
+            and "python scripts/reproduce_lohner_flowpipe.py" in reproducibility
+            and "python scripts/reproduce_finite_continuation.py --run" in reproducibility
             and "geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py" in reproducibility
         )
 
@@ -488,10 +526,41 @@ def main() -> int:
         )
 
     checks["reproduction_scripts_exist"] = (
-        SCRIPT_REPRODUCE_V093.is_file()
+        SCRIPT_ENTRYPOINT_UTILS.is_file()
+        and SCRIPT_LOCAL_ODE.is_file()
+        and SCRIPT_FINITE_CONTINUATION.is_file()
+        and SCRIPT_FIELD_JACOBIAN.is_file()
+        and SCRIPT_LOHNER_FLOWPIPE.is_file()
+        and SCRIPT_AUDIT_FIFTH_FRAME.is_file()
+        and SCRIPT_REPRODUCE_V093.is_file()
         and SCRIPT_VERIFY_REFERENCE.is_file()
         and SCRIPT_REPRODUCE_FINITE.is_file()
     )
+    if (
+        SCRIPT_ENTRYPOINT_UTILS.is_file()
+        and SCRIPT_LOCAL_ODE.is_file()
+        and SCRIPT_FINITE_CONTINUATION.is_file()
+        and SCRIPT_FIELD_JACOBIAN.is_file()
+        and SCRIPT_LOHNER_FLOWPIPE.is_file()
+        and SCRIPT_AUDIT_FIFTH_FRAME.is_file()
+    ):
+        entry_utils = SCRIPT_ENTRYPOINT_UTILS.read_text(encoding="utf-8")
+        local_ode = SCRIPT_LOCAL_ODE.read_text(encoding="utf-8")
+        finite = SCRIPT_FINITE_CONTINUATION.read_text(encoding="utf-8")
+        field = SCRIPT_FIELD_JACOBIAN.read_text(encoding="utf-8")
+        lohner = SCRIPT_LOHNER_FLOWPIPE.read_text(encoding="utf-8")
+        fifth = SCRIPT_AUDIT_FIFTH_FRAME.read_text(encoding="utf-8")
+        checks["stable_entrypoints_fail_closed_on_sha256"] = (
+            "def fail_closed_sha256" in entry_utils
+            and "SHA-256 mismatch" in entry_utils
+            and "scripts/reproduce_v093.py" in local_ode
+            and "scripts/reproduce_finite_chain.py" in finite
+            and "geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py" in field
+            and "geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py" in lohner
+            and "--run-backend" in fifth
+            and "implementation-open fail-closed harness" in fifth
+            and "global flow is certified" in fifth
+        )
 
     checks["v01013_script_exists"] = V01013_SCRIPT.is_file()
     if V01013_SCRIPT.is_file():

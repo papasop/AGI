@@ -15,11 +15,11 @@ python -m pip install -r requirements.txt
 ## Core Theorem
 
 ```bash
-python scripts/reproduce_v093.py
+python scripts/reproduce_local_ode.py
 ```
 
 This reruns the frozen v0.9.3 local ODE theorem with `--no-download` against
-the repository inputs.
+the repository inputs after checking the frozen SHA-256 bindings.
 
 ## Stored Reference Results
 
@@ -28,6 +28,30 @@ python scripts/verify_reference_results.py
 ```
 
 This runs `tools/verify_release.py` and validates `SHA256SUMS.txt`.
+
+## Stable Entrypoints
+
+```bash
+python scripts/reproduce_local_ode.py
+python scripts/verify_reference_results.py
+python scripts/reproduce_lohner_flowpipe.py
+```
+
+Additional stable audit and reproduction entry points:
+
+```bash
+python scripts/reproduce_finite_continuation.py
+python scripts/reproduce_field_jacobian.py
+python scripts/audit_fifth_frame.py
+```
+
+These wrappers leave the long versioned proof scripts in place so historical
+hashes and audit trails remain unchanged.  Each wrapper verifies the relevant
+`SHA256SUMS.txt` entries before invoking its underlying artifact.
+
+`audit_fifth_frame.py` reports the v0.10.14/v0.10.15 scaffold status by
+default.  Pass `--run-backend` only when intentionally executing the
+implementation-open fail-closed backend harness.
 
 ## Full Finite-Continuation Entry Points
 
@@ -61,7 +85,7 @@ python src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py
 Use:
 
 ```bash
-python scripts/reproduce_finite_chain.py --run
+python scripts/reproduce_finite_continuation.py --run
 ```
 
 to execute this sequence. Without `--run`, the wrapper prints the exact
