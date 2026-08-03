@@ -10,8 +10,9 @@ Geometric-Flow studies a simple but important question:
 
 The repository develops that question for a frozen 14-phase driven-qubit
 model. The original v0.9.3 result proves one local intrinsic ODE microstep.
-The current v0.9.23 development milestone extends the certified chain through
-a second recentered local chart and a signed six-dimensional endpoint box.
+The current v0.9.32 certified development milestone extends the chain through
+third and fourth same-atlas-chart recenterings and a signed six-dimensional
+fourth-chart terminal endpoint box.
 
 Current status: strong local and finite-continuation results are certified
 for one frozen chart/child instance. A complete-child, atlas-wide, or global
@@ -31,36 +32,25 @@ envelope cannot be misreported as a point-dependent field.
 See [docs/BACKEND_BINDING.md](docs/BACKEND_BINDING.md) and
 [RELEASE_NOTES_v0.9.46.md](RELEASE_NOTES_v0.9.46.md).
 
-## Latest result: v0.9.23
+## Latest certified result: v0.9.32
 
 For the frozen chart-9 / child-15 instance, the repository-native 192-bit Arb
-backend certifies:
+chain now additionally certifies:
 
-- a second recentered complex response-fibre graph;
-- a local Picard existence-and-uniqueness microstep in that chart;
-- a 557-step scalar reachable tube that remains inside the declared domain;
-- six signed intrinsic-field component intervals;
-- a nonzero six-dimensional endpoint box after 557 microsteps; and
-- inclusion of the complete endpoint box in the certified parametric
-  fibre-graph domain.
+- a third recentered tangent/normal frame and complex fibre graph;
+- a third-chart Picard microstep and 263-step finite continuation;
+- a signed six-component third-chart terminal endpoint box;
+- a fourth parametric normal root and tangent/normal frame;
+- a fourth complex fibre graph and Picard microstep;
+- ten certified fourth-chart continuation steps; and
+- a signed six-component fourth-chart terminal endpoint box.
 
-The last item inherits a unique normal root for every tangent point in the
-endpoint box.
+The v0.9.32 endpoint box is strictly contained in the fourth local domain. Its
+maximum absolute coordinate is `1.39387284131938755e-11`, compared with the
+certified inner-domain radius `1.5e-11`.
 
-The certified endpoint-box centre is approximately
-
-```text
-(-2.426e-13, +1.537e-12, +2.212e-12,
- +2.768e-12, +2.694e-12, -2.968e-12).
-```
-
-Including component uncertainty, its maximum absolute coordinate is about
-`3.1814e-12`. The box therefore retains about `6.8186e-12` of strict margin
-inside the declared real intrinsic radius `1e-11`.
-
-This is the signed endpoint and parametric-root milestone v0.9.23: it
-contains six signed intrinsic-field component intervals and a nonzero
-six-dimensional endpoint box after 557 microsteps.
+This is a finite local-continuation milestone. The endpoint-box centre is an
+interval-enclosure convention, not a sharp trajectory midpoint.
 
 ## Mathematical object
 
@@ -121,6 +111,11 @@ preconditioners, not as proof objects.
 | v0.9.21 | Six-component symmetric endpoint enclosure |
 | v0.9.22 | Repository-native signed field and nonzero endpoint box |
 | v0.9.23 | Complete endpoint-box inclusion and inherited unique parametric normal root |
+| v0.9.24-26 | Third-centre proof target, Arb frame, complex graph, and Picard microstep |
+| v0.9.27-28 | 263-step third-chart continuation and signed terminal endpoint box |
+| v0.9.29-30 | Fourth parametric normal root, frame, complex graph, and Picard microstep |
+| v0.9.31-32 | Ten-step fourth-chart continuation and signed terminal endpoint box |
+| v0.9.46 | Implementation-open repository-native point/box field backend scaffold, not a certified field |
 
 The v0.7.4 and v0.9.3 results have different scopes: v0.7.4 covers broader
 geometry but is not an ODE theorem; v0.9.3 is an ODE theorem but only for one
@@ -156,9 +151,8 @@ See [SUPERSEDED_RESULTS.md](SUPERSEDED_RESULTS.md) for the correction record.
 
 The repository does not currently certify:
 
-- a third tangent/normal frame;
-- a third local fibre graph or Picard microstep;
-- a sharp Taylor/Lohner stepwise flowpipe;
+- a fifth tangent/normal frame or fifth local fibre graph;
+- a sharp, stepwise Taylor/Lohner trajectory midpoint or flowpipe;
 - complete traversal of child 15;
 - a successor atlas chart after terminal chart 9;
 - complete ten-chart continuation;
@@ -195,6 +189,14 @@ python response_fibre_second_chart_v0_9_10_oneclick.py
 python response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py
 python response_fibre_signed_field_export_v0_9_22_oneclick.py
 python response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py
+python response_fibre_third_frame_backend_v0_9_25_oneclick.py
+python response_fibre_third_picard_v0_9_26_oneclick.py
+python response_fibre_third_chart_finite_continuation_v0_9_27_oneclick.py
+python response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py
+python response_fibre_fourth_frame_v0_9_29_oneclick.py
+python response_fibre_fourth_picard_v0_9_30_oneclick.py
+python response_fibre_fourth_chart_finite_v0_9_31_oneclick.py
+python response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py
 ```
 
 Run the frozen v0.9.3 local ODE theorem directly:
@@ -227,7 +229,7 @@ docs/                        claim scope, paper wording, extensions
 notebooks/                   Colab/Jupyter reproduction entry points
 tools/                       structural and hash verification
 .github/workflows/           CI reproduction and consistency checks
-response_fibre_*_oneclick.py continuation milestones v0.9.4-v0.9.23
+response_fibre_*_oneclick.py continuation milestones v0.9.4-v0.9.32
 src/*_v0_9_46*.py            implementation-open backend binding scaffold
 frozen/                      hash-bound reference sources for v0.9.46
 tests/                       contract checks for open backend scaffolds
@@ -238,7 +240,8 @@ Useful documents:
 - [docs/CLAIM_SCOPE.md](docs/CLAIM_SCOPE.md): exact theorem boundary
 - [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md): safe paper language
 - [SUPERSEDED_RESULTS.md](SUPERSEDED_RESULTS.md): corrected intermediate results
-- [RELEASE_NOTES_v0.9.23.md](RELEASE_NOTES_v0.9.23.md): current milestone notes
+- [RELEASE_NOTES_v0.9.32.md](RELEASE_NOTES_v0.9.32.md): latest certified milestone notes
+- [RELEASE_NOTES_v0.9.23.md](RELEASE_NOTES_v0.9.23.md): second-chart milestone notes
 - [RELEASE_NOTES_v0.9.46.md](RELEASE_NOTES_v0.9.46.md): backend scaffold notes
 - [docs/BACKEND_BINDING.md](docs/BACKEND_BINDING.md): native Arb binding contract
 - [CHANGELOG.md](CHANGELOG.md): version history
@@ -281,9 +284,11 @@ recenter/overlap certificates to reach the child boundary.
 “响应保持”的纤维移动，同时严格降低另一个目标函数。
 
 v0.9.3 用 192-bit Arb 区间算术证明了一个六维内蕴 ODE 微步：解存在且唯一，
-响应精确保持，并且 \(L_6\) 严格下降。v0.9.23 进一步认证了第二个重定中心局部图、
-557 步可达管、六个带符号的向量场分量区间，以及非零六维终点盒；完整终点盒仍在
-参数化纤维图的认证域内，因此对盒内每个切向点都继承唯一法向根。
+响应精确保持，并且 \(L_6\) 严格下降。v0.9.32 进一步认证了第三和第四个同图
+重定中心局部延拓阶段，包括第三图 263 步有限延拓、第四图 10 步有限延拓，
+以及第四图带符号六维终点盒。
 
-目前仍未证明第三个局部图、完整 child 遍历、十图延拓或全局几何流。因而正确表述是
-“局部严格定理与有限延拓里程碑”，不是“全局流已证明”。
+v0.9.46 只是后端绑定重构脚手架，候选模块仍保留 fail-closed 的
+`NotImplementedError`，不能表述为已认证的点依赖场。目前仍未证明第五个局部图、
+完整 child 遍历、十图延拓或全局几何流。因而正确表述是“局部严格定理与有限延拓
+里程碑”，不是“全局流已证明”。
