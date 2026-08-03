@@ -304,7 +304,20 @@ def main() -> int:
     checks["readme_exists"] = README.is_file()
     if README.is_file():
         text = README.read_text(encoding="utf-8")
-        checks["readme_is_short_homepage"] = (
+        checks["readme_introduces_research_question"] = (
+            "Can a computation move through different control implementations"
+            in text
+            and "preserving its declared response" in text
+            and "192-bit Arb interval arithmetic" in text
+        )
+        checks["readme_has_what_is_proved"] = (
+            "## What Is Proved" in text
+            and "preserves the declared response map" in text
+            and "strictly decreases the independent objective" in text
+            and "formally validated local response-fibre chart" in text
+            and "They do not yet prove a global flow." in text
+        )
+        checks["readme_has_three_layer_status"] = (
             "## Three-Layer Status" in text
             and "| I. Local theorem | v0.9.3 intrinsic ODE microstep | Certified reference theorem |" in text
             and "| II. Frozen finite continuation | v0.10.6 fourth-chart Lohner support flowpipe | Latest stored repository reference certificate |" in text
@@ -325,16 +338,24 @@ def main() -> int:
             and "fifth-frame" in text
             and "fail-closed scaffold work" in text
         )
-        checks["readme_has_four_user_entrypoints"] = (
-            "python scripts/reproduce_local_ode.py" in text
-            and "python scripts/verify_reference_results.py" in text
-            and "python scripts/reproduce_lohner_flowpipe.py" in text
-            and "python scripts/audit_fifth_frame.py" in text
+        checks["readme_has_reproduction_path_table"] = (
+            "## Choose A Reproduction Path" in text
+            and "| Goal | Command |" in text
+            and "| Recompute the local ODE theorem | `python scripts/reproduce_local_ode.py` |" in text
+            and "| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |" in text
+            and "| Reproduce the fourth-chart Lohner flowpipe | `python scripts/reproduce_lohner_flowpipe.py` |" in text
+            and "| Audit the open fifth-frame target | `python scripts/audit_fifth_frame.py` |" in text
+            and "| Run the longer finite chain | `python scripts/reproduce_finite_continuation.py` |" in text
         )
-        checks["readme_lists_optional_finite_entrypoint"] = (
-            "python scripts/reproduce_finite_continuation.py" in text
-            and "python scripts/reproduce_field_jacobian.py" in text
+        checks["readme_lists_field_jacobian_entrypoint"] = (
+            "python scripts/reproduce_field_jacobian.py" in text
             and "verify the relevant frozen SHA-256 entries" in text
+        )
+        checks["readme_has_collapsible_chinese_overview"] = (
+            "<details>" in text
+            and "<summary>中文概览</summary>" in text
+            and "当前已严格证明局部 ODE 微步" in text
+            and "</details>" in text
         )
         checks["readme_next_milestone_is_not_stale_v0946"] = (
             "implicit_fibre_root_solver(a_box)" not in text
