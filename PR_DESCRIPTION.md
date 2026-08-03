@@ -1,35 +1,40 @@
 ## Summary
 
-This PR corrects the v0.10.4–v0.10.5 fourth-chart domain binding and adds the
-v0.10.6 ten-step Arb Lohner support-flowpipe milestone.
+This PR adds the v0.10.14.1 incremental source delta after the certified
+v0.10.6 support-flowpipe milestone.
 
-## What changed
+## What Changed
 
-- v0.10.4 and v0.10.5 now prefer the actual v0.9.30 fourth Picard certificate
-  with real inner radius `1.5e-11`.
-- Full-domain v0.10.4 and v0.10.5 certificates are included.
-- v0.10.6 checks the selected domain, rebuilds dependencies on the full domain
-  when needed, and propagates ten certified support-flowpipe steps.
-- Stepwise QR shape records and local-tail bounds are included.
+- Added `src/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py`.
+- Added `src/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py`.
+- Added `src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py`.
+- Added `docs/INTEGRATION.md` and `RELEASE_NOTES_v0.10.14.1.md`.
+- Updated README, changelog, claim-scope docs, release verification, and hash
+  manifests.
 
-## Why this correction is needed
+## Scientific Scope
 
-The earlier default could select a valid `1e-11` preflight subdomain, while the
-fourth-chart initial transformed set has support above `1e-11`. The old local
-certificate is not invalid; its scope was simply too small for the later
-ten-step propagation. This PR makes the claim/domain relationship explicit.
+The packaged source boundary is the reindexed ten-step local-root,
+second-order Taylor, and correlated affine/Lohner chain plus a frozen terminal
+correlated set for a fourth-to-fifth transition audit.
 
-## Verified outcome
+The v0.10.15 script is a fail-closed proof-producing backend harness. Its
+native Arb callbacks remain implementation-open until a real adapter replaces
+the generated template and all formal gates pass.
 
-- 10 steps at `h = 1e-14`
-- total certified time `1e-13`
-- maximum terminal support about `1.39384482482934e-11`
-- every support tube lies inside the real `1.5e-11` domain and complex
-  `2e-11` domain
-- same-expression six-component `X` and `6x6 DX` are bound to the selected
-  full-domain certificate
+## Claim Boundary
 
-## Claim boundary
+No fifth frame, fifth Picard chart, complete-child continuation,
+atlas-wide continuation, or global-flow theorem is claimed. This delta does
+not add repository reference result certificates beyond the existing v0.10.6
+reference set.
 
-No directional QR tightening, fifth recenter/frame, complete-child theorem, or
-global-flow theorem is claimed.
+## Checks
+
+- `/sbin/sha256sum /Users/bai/Downloads/Geometric-Flow_v0.10.14.1_update.zip`
+- `unzip -t /Users/bai/Downloads/Geometric-Flow_v0.10.14.1_update.zip`
+- `python3 tools/verify_release.py`
+- `/sbin/sha256sum -c SHA256SUMS.txt`
+- `/sbin/sha256sum -c SHA256SUMS_v0.9.32.txt`
+- `PYTHONPYCACHEPREFIX=/private/tmp/geoflow-v010141-pycache python3 -m compileall -q src tools tests`
+- `python3 -m pytest tests`
