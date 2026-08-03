@@ -1,6 +1,15 @@
 # Claim scope for v0.10.14.1 plus earlier continuation milestones
 
-## Strongest supported certified claim
+## Layer I: Unconditional Local Theorem
+
+The theorem-bearing reference result is v0.9.3: a local intrinsic ODE
+microstep with existence, uniqueness, exact preservation of the declared
+\(\mathcal R_3\), and strict \(L_6\) descent on `0 <= t <= 1e-14`.
+
+This is not a complete-parent-box ODE theorem, complete-child theorem,
+ten-chart theorem, or global-flow theorem.
+
+## Layer II: Frozen-Instance Finite Continuation
 
 The strongest repository reference result remains v0.10.6: a ten-step
 fourth-chart Arb Lohner support flowpipe backed by the repository-native
@@ -17,6 +26,30 @@ The packaged source boundary ends at the reindexed ten-step local-root,
 second-order Taylor, and correlated affine/Lohner chain plus a frozen terminal
 correlated set. It does not certify a fifth recenter/frame, fifth Picard chart,
 complete-child continuation, atlas-wide continuation, or a global flow theorem.
+
+`Reference-certified` means the repository stores hash-bound result artifacts
+under `results/`. `Source-certified` means the source can produce a certificate
+when predecessor artifacts are available, but reference-result packaging is
+pending.
+
+## Layer III: Conditional / Next-Frame Work
+
+The next proof-producing target is the fifth-frame nonlinear transition:
+
+1. lift the certified fourth-chart terminal correlated set to a complete
+   14-dimensional Arb phase enclosure;
+2. certify the fifth parametric normal root;
+3. construct and certify the fifth tangent/normal SVD frame;
+4. map the complete correlated terminal set through the nonlinear coordinate
+   transition with a formal remainder; and
+5. prove strict inclusion in the fifth-chart start domain.
+
+The v0.10.15 file is a fail-closed harness. No fifth-frame theorem is claimed
+until all native callbacks and formal gates pass.
+
+A separate analytic direction is a conditional continuation theorem. It does
+not replace the missing fifth-frame certificate for the frozen numerical
+instance.
 
 ## Strongest supported finite-continuation claim
 
