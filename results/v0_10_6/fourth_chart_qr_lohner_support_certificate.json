@@ -1,0 +1,38 @@
+{
+  "schema": "geometric-flow/fourth-chart-qr-lohner-support/v0.10.6",
+  "formal_backend": "python-flint/Arb",
+  "precision_bits": 192,
+  "v0105_certificate_sha256": "4d7aef49fecac1a7b6d15ec7d8bd210ca54bb1c9ee1205ecae56f58a51143fe5",
+  "frame_certificate_sha256": "066f44daf22c3df2c093927df54934adb63298c71e7f077d972960abdbc03dce",
+  "picard_certificate_sha256": "cea57567e9ef9430bd599a09aef624f438ffe3aaa8570ca3394354a22585c99f",
+  "steps": 10,
+  "dependencies_rebuilt_on_full_fourth_domain": false,
+  "time_step": "[1.00000000000000000000000000000000000000000000000000000000e-14 +/- 2.31e-72]",
+  "total_time": "[1.00000000000000000000000000000000000000000000000000000000e-13 +/- 2.31e-71]",
+  "induced_infinity_DX_upper": 11510.000045776367,
+  "field_absolute_upper": 0.5302000000374392,
+  "per_step_growth_upper": 1.0000000001151,
+  "per_step_local_tail_upper": 3.051301046849367e-25,
+  "initial_support_upper": [
+    1.2129689058184257e-11,
+    1.3730349770015896e-11,
+    1.381045965250221e-11,
+    1.3885428261839127e-11,
+    1.2517546569591755e-11,
+    1.168747200798806e-11
+  ],
+  "final_support_upper": [
+    1.2134859058194219e-11,
+    1.3764649770031101e-11,
+    1.385303965251139e-11,
+    1.3938448261845923e-11,
+    1.2571816569605534e-11,
+    1.1743572008001449e-11
+  ],
+  "maximum_final_support_upper": 1.3938448261845923e-11,
+  "real_inner_domain_radius": 1.5e-11,
+  "complex_outer_domain_radius": 2e-11,
+  "directional_qr_tightening_certified": false,
+  "reason_directional_false": "the full-box DX midpoint matrix is zero; QR history is retained but no directional gain is claimed",
+  "all_certificate_gates_pass": true
+}

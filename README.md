@@ -10,27 +10,29 @@ Geometric-Flow studies a simple but important question:
 
 The repository develops that question for a frozen 14-phase driven-qubit
 model. The original v0.9.3 result proves one local intrinsic ODE microstep.
-The current v0.10.5 certified development milestone constructs the
-repository-native fourth-chart intrinsic field `X` and its same-expression
-Jacobian `DX` using Arb jets.
+The current v0.10.6 certified development milestone corrects the fourth-chart
+domain binding and certifies ten Arb Lohner support-flowpipe steps using the
+repository-native fourth-chart field `X` and same-expression Jacobian `DX`.
 
 Current status: strong local and finite-continuation results are certified
 for one frozen chart/child instance. A complete-child, atlas-wide, or global
 flow theorem is not claimed.
 
-## Latest certified field/Jacobian result: v0.10.5
+## Latest certified support-flowpipe result: v0.10.6
 
-The v0.10.1-v0.10.5 chain removes the earlier fixed-envelope adapter
-bottleneck and constructs the fourth-chart intrinsic field and its Jacobian
-from one formally differentiated repository-native Arb expression.
+The v0.10.1-v0.10.6 chain removes the earlier fixed-envelope adapter
+bottleneck, constructs the fourth-chart intrinsic field and its Jacobian from
+one formally differentiated repository-native Arb expression, corrects the
+fourth-chart domain binding, and propagates ten certified Lohner support
+flowpipe steps.
 
 The strongest current result is:
 
 ```text
-VALIDATED_NATIVE_SAME_EXPRESSION_X_DX_CERTIFIED
+VALIDATED_TEN_STEP_FOURTH_CHART_LOHNER_SUPPORT_FLOWPIPE_CERTIFIED
 ```
 
-The certified v0.10.5 object is a local fourth-chart field/Jacobian enclosure:
+The certified v0.10.6 object is a fourth-chart support-flowpipe enclosure:
 
 - v0.10.1 retains the active repository-native Arb backend emitted by the
   frozen v0.9.30 chain;
@@ -41,19 +43,24 @@ The certified v0.10.5 object is a local fourth-chart field/Jacobian enclosure:
 - v0.10.4 certifies the parametric normal-graph derivative
   `Dpsi = -(d_b F)^-1 d_a F` on the complete certified graph box; and
 - v0.10.5 constructs `W`, `H`, normalized `X`, and the 6x6 `DX` from the
-  same native Jet expression.
+  same native Jet expression on the full fourth-chart domain; and
+- v0.10.6 certifies ten fourth-chart Arb support-flowpipe steps and emits
+  complete QR shape history.
 
 Reference metrics:
 
 ```text
-descent square enclosure       [0.4 +/- 0.0340] + [+/- 7.43e-3]j
-maximum |X| upper              0.5567255281
-maximum |DX| upper             4834.8689
-maximum |DR W| residual upper  0.0016352753
+steps                          10
+total certified time           1e-13
+maximum terminal support       1.3938448261845923e-11
+real inner domain radius       1.5e-11
+complex outer domain radius    2e-11
+induced infinity |DX| upper    11510.000045776367
 ```
 
-This milestone stops at `X,DX` certification. It deliberately does not include
-the not-yet-run v0.10.6 QR/Lohner result.
+This milestone certifies support radii and QR shape history. It deliberately
+does not certify directional QR tightening, a fifth recenter/frame,
+complete-child continuation, atlas-wide continuation, or a global-flow theorem.
 
 ## Implementation-open scaffold retained: v0.9.46
 
@@ -152,7 +159,8 @@ preconditioners, not as proof objects.
 | v0.9.29-30 | Fourth parametric normal root, frame, complex graph, and Picard microstep |
 | v0.9.31-32 | Ten-step fourth-chart continuation and signed terminal endpoint box |
 | v0.9.46 | Implementation-open repository-native point/box field backend scaffold, not a certified field |
-| v0.10.1-5 | Repository-native Arb field and same-expression 6x6 Jacobian `DX`; no QR/Lohner flowpipe |
+| v0.10.1-5 | Repository-native Arb field and same-expression 6x6 Jacobian `DX` |
+| v0.10.6 | Corrected full fourth-chart domain binding and ten-step Arb Lohner support-flowpipe certificate; no directional QR gain |
 
 The v0.7.4 and v0.9.3 results have different scopes: v0.7.4 covers broader
 geometry but is not an ODE theorem; v0.9.3 is an ODE theorem but only for one
@@ -189,8 +197,9 @@ See [SUPERSEDED_RESULTS.md](SUPERSEDED_RESULTS.md) for the correction record.
 The repository does not currently certify:
 
 - a fifth tangent/normal frame or fifth local fibre graph;
-- a sharp, stepwise Taylor/Lohner trajectory midpoint or flowpipe;
-- a v0.10.6 QR/Lohner propagation result;
+- a sharp, stepwise Taylor/Lohner trajectory midpoint or directional
+  QR-tightened flowpipe;
+- directional QR tightening;
 - complete traversal of child 15;
 - a successor atlas chart after terminal chart 9;
 - complete ten-chart continuation;
@@ -240,6 +249,7 @@ python src/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py
 python src/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py
 python src/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py
 python src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py
+python src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py
 ```
 
 Run the frozen v0.9.3 local ODE theorem directly:
@@ -274,9 +284,9 @@ tools/                       structural and hash verification
 .github/workflows/           CI reproduction and consistency checks
 response_fibre_*_oneclick.py continuation milestones v0.9.4-v0.9.32
 src/*_v0_9_46*.py            implementation-open backend binding scaffold
-src/geometric_flow_*v0_10*.py repository-native Arb X/DX milestones
+src/geometric_flow_*v0_10*.py repository-native Arb X/DX and support-flowpipe milestones
 frozen/                      hash-bound reference sources for v0.9.46
-results/v0_10_*/             v0.10.1-v0.10.5 reference summaries/certificates
+results/v0_10_*/             v0.10.1-v0.10.6 reference summaries/certificates
 tests/                       contract checks for open backend scaffolds
 ```
 
@@ -289,6 +299,7 @@ Useful documents:
 - [RELEASE_NOTES_v0.9.23.md](RELEASE_NOTES_v0.9.23.md): second-chart milestone notes
 - [RELEASE_NOTES_v0.9.46.md](RELEASE_NOTES_v0.9.46.md): backend scaffold notes
 - [RELEASE_NOTES_v0.10.5.md](RELEASE_NOTES_v0.10.5.md): repository-native X/DX milestone notes
+- [RELEASE_NOTES_v0.10.6.md](RELEASE_NOTES_v0.10.6.md): domain correction and support-flowpipe notes
 - [docs/BACKEND_BINDING.md](docs/BACKEND_BINDING.md): native Arb binding contract
 - [CHANGELOG.md](CHANGELOG.md): version history
 
@@ -334,7 +345,9 @@ v0.9.3 用 192-bit Arb 区间算术证明了一个六维内蕴 ODE 微步：解�
 重定中心局部延拓阶段，包括第三图 263 步有限延拓、第四图 10 步有限延拓，
 以及第四图带符号六维终点盒。
 
+v0.10.6 修正了 v0.10.4/5 的第四图完整域绑定，并认证了十步 Arb Lohner
+support flowpipe；所有支撑管都保持在实 `1.5e-11` 与复 `2e-11` 第四图域内。
 v0.9.46 只是后端绑定重构脚手架，候选模块仍保留 fail-closed 的
-`NotImplementedError`，不能表述为已认证的点依赖场。目前仍未证明第五个局部图、
-完整 child 遍历、十图延拓或全局几何流。因而正确表述是“局部严格定理与有限延拓
-里程碑”，不是“全局流已证明”。
+`NotImplementedError`，不能表述为已认证的点依赖场。目前仍未证明 directional QR
+tightening、第五个局部图、完整 child 遍历、十图延拓或全局几何流。因而正确表述是
+“局部严格定理与有限延拓里程碑”，不是“全局流已证明”。

@@ -68,6 +68,8 @@ def main():
         "/content/geometric_flow_native_source_v0_10_1_results/v0930_reproduction/v0929_formal_base/fourth_frame_arb_certificate.json"],
         "Fourth-frame certificate not found")
     picard_path = locate(args.picard_certificate, [
+        "geometric_flow_native_source_v0_10_1_results/v0930_reproduction/formal_fourth_picard_backend/formal_base/intrinsic_picard_microstep_certificate.json",
+        "/content/geometric_flow_native_source_v0_10_1_results/v0930_reproduction/formal_fourth_picard_backend/formal_base/intrinsic_picard_microstep_certificate.json",
         "geometric_flow_native_source_v0_10_1_results/v0930_reproduction/v0929_formal_base/formal_fourth_frame_backend/formal_base/intrinsic_picard_microstep_certificate.json",
         "/content/geometric_flow_native_source_v0_10_1_results/v0930_reproduction/v0929_formal_base/formal_fourth_frame_backend/formal_base/intrinsic_picard_microstep_certificate.json"],
         "Fourth Picard certificate not found")

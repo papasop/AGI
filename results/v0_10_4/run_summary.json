@@ -3,18 +3,18 @@
   "version": "0.10.4",
   "scientific_status": "VALIDATED_PARAMETRIC_NORMAL_GRAPH_ARB_JET_CERTIFIED",
   "formal_backend": "python-flint/Arb 192-bit",
-  "certificate": "/workspace/scratch/b481b397d7c6/parametric_graph_test_v0104/parametric_normal_graph_jet_arb_certificate.json",
+  "certificate": "/workspace/scratch/b481b397d7c6/corrected_test_v0104/parametric_normal_graph_jet_arb_certificate.json",
   "metrics": {
-    "tangent_box_radius": "[1.00000000000000000000000000000000000000000000000000000000e-11 +/- 3.66e-69]",
-    "normal_graph_box_radius": "[4.63615405742044000000000000000000000000000000000000000000e-13 +/- 2.08e-70]",
+    "tangent_box_radius": "[1.50000000000000000000000000000000000000000000000000000000e-11 +/- 6.65e-69]",
+    "normal_graph_box_radius": "[4.63615405548819200000000000000000000000000000000000000000e-13 +/- 2.33e-70]",
     "Dpsi_shape": [
       8,
       6
     ],
-    "maximum_Dpsi_absolute_upper": 1.3075060428135998e-05,
-    "inverse_residual_induced_infinity_upper": 0.0015984292154064262,
-    "maximum_implicit_derivative_residual_upper": 2.174524436276892e-06,
-    "maximum_discarded_imaginary_enclosure_upper": 3.2044343800663455e-07
+    "maximum_Dpsi_absolute_upper": 1.9232161411864013e-05,
+    "inverse_residual_induced_infinity_upper": 0.002350692673187048,
+    "maximum_implicit_derivative_residual_upper": 3.1984206041424476e-06,
+    "maximum_discarded_imaginary_enclosure_upper": 4.712572376774915e-07
   },
   "gates": {
     "v0103_frozen_scalar_binding": true,

@@ -28,6 +28,7 @@ V0923_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.23.md"
 V0932_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.32.md"
 V0946_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.46.md"
 V0105_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.5.md"
+V0106_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.6.md"
 SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
 BACKEND_BINDING = ROOT / "docs" / "BACKEND_BINDING.md"
 V0946_CANDIDATE = ROOT / "src" / "geometric_flow_native_point_field_candidate_v0_9_46.py"
@@ -37,6 +38,11 @@ V0105_SUMMARY = ROOT / "results" / "v0_10_5" / "run_summary.json"
 V0105_CERTIFICATE = (
     ROOT / "results" / "v0_10_5" / "same_expression_X_DX_arb_certificate.json"
 )
+V0106_SUMMARY = ROOT / "results" / "v0_10_6" / "run_summary.json"
+V0106_CERTIFICATE = (
+    ROOT / "results" / "v0_10_6" / "fourth_chart_qr_lohner_support_certificate.json"
+)
+V0106_STEP_RECORDS = ROOT / "results" / "v0_10_6" / "qr_lohner_step_records.json"
 
 EXPECTED = {
     V074_SOURCE: "1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8",
@@ -113,6 +119,13 @@ EXPECTED_V0105_FILES = {
     "results/v0_10_4/parametric_normal_graph_jet_arb_certificate.json",
     "results/v0_10_5/run_summary.json",
     "results/v0_10_5/same_expression_X_DX_arb_certificate.json",
+}
+EXPECTED_V0106_FILES = {
+    "RELEASE_NOTES_v0.10.6.md",
+    "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
+    "results/v0_10_6/run_summary.json",
+    "results/v0_10_6/fourth_chart_qr_lohner_support_certificate.json",
+    "results/v0_10_6/qr_lohner_step_records.json",
 }
 
 
@@ -217,6 +230,9 @@ def main() -> int:
         checks["v0105_all_expected_files_listed"] = (
             EXPECTED_V0105_FILES <= set(sums)
         )
+        checks["v0106_all_expected_files_listed"] = (
+            EXPECTED_V0106_FILES <= set(sums)
+        )
         for name, expected in sums.items():
             path = ROOT / name
             label = name.replace("/", "_")
@@ -232,11 +248,11 @@ def main() -> int:
             and "1.39387284131938755e-11" in text
             and "This package is a formal-development milestone, not a global-flow theorem." in text
         )
-        checks["readme_states_v0105_certified_x_dx"] = (
-            "Latest certified field/Jacobian result: v0.10.5" in text
-            and "VALIDATED_NATIVE_SAME_EXPRESSION_X_DX_CERTIFIED" in text
-            and "maximum |DX| upper             4834.8689" in text
-            and "not-yet-run v0.10.6 QR/Lohner result" in text
+        checks["readme_states_v0106_certified_support_flowpipe"] = (
+            "Latest certified support-flowpipe result: v0.10.6" in text
+            and "VALIDATED_TEN_STEP_FOURTH_CHART_LOHNER_SUPPORT_FLOWPIPE_CERTIFIED" in text
+            and "maximum terminal support       1.3938448261845923e-11" in text
+            and "does not certify directional QR tightening" in text
         )
         checks["readme_states_v0946_scaffold_only"] = (
             "Implementation-open scaffold retained: v0.9.46" in text
@@ -255,10 +271,11 @@ def main() -> int:
             "v0.9.32 certifies a signed six-component fourth-chart terminal" in scope
             and "not a sharp trajectory midpoint" in scope
         )
-        checks["claim_scope_states_v0105_boundary"] = (
-            "strongest current result is v0.10.5" in scope
-            and "same-expression Jacobian\n`DX`" in scope
-            and "not-yet-run\nv0.10.6 QR/Lohner propagation" in scope
+        checks["claim_scope_states_v0106_boundary"] = (
+            "strongest current result is v0.10.6" in scope
+            and "ten-step fourth-chart Arb Lohner\nsupport flowpipe" in scope
+            and "does not\ncertify directional QR tightening" in scope
+            and "global flow theorem" in scope
         )
         checks["claim_scope_states_v0946_scaffold_only"] = (
             "fail-closed\nbinding scaffold only" in scope
@@ -277,6 +294,7 @@ def main() -> int:
     checks["v0932_release_notes_exists"] = V0932_RELEASE_NOTES.is_file()
     checks["v0946_release_notes_exists"] = V0946_RELEASE_NOTES.is_file()
     checks["v0105_release_notes_exists"] = V0105_RELEASE_NOTES.is_file()
+    checks["v0106_release_notes_exists"] = V0106_RELEASE_NOTES.is_file()
     if V0946_RELEASE_NOTES.is_file():
         notes = V0946_RELEASE_NOTES.read_text(encoding="utf-8")
         checks["v0946_release_notes_state_implementation_open"] = (
@@ -290,6 +308,14 @@ def main() -> int:
             "VALIDATED_NATIVE_SAME_EXPRESSION_X_DX_CERTIFIED" in notes
             and "not a QR/Lohner\nflowpipe" in notes
             and "It is deliberately excluded from this update." in notes
+        )
+    if V0106_RELEASE_NOTES.is_file():
+        notes = V0106_RELEASE_NOTES.read_text(encoding="utf-8")
+        checks["v0106_release_notes_state_support_flowpipe_only"] = (
+            "VALIDATED_TEN_STEP_FOURTH_CHART_LOHNER_SUPPORT_FLOWPIPE_CERTIFIED" in notes
+            and "maximum terminal support      1.3938448261845923e-11" in notes
+            and "not a directional QR-tightening result" in notes
+            and "global-flow theorem" in notes
         )
 
     checks["v0923_superseded_results_exists"] = SUPERSEDED_RESULTS.is_file()
@@ -371,7 +397,44 @@ def main() -> int:
             == "geometric-flow/same-expression-intrinsic-X-DX/v0.10.5"
             and certificate.get("all_certificate_gates_pass") is True
             and certificate.get("DX_nonzero_entry_certified") is False
-            and certificate.get("maximum_DX_absolute_upper") == 4834.868911743164
+            and certificate.get("maximum_DX_absolute_upper") == 7939.247695922852
+        )
+
+    checks["v0106_summary_exists"] = V0106_SUMMARY.is_file()
+    checks["v0106_certificate_exists"] = V0106_CERTIFICATE.is_file()
+    checks["v0106_step_records_exists"] = V0106_STEP_RECORDS.is_file()
+    if (
+        V0106_SUMMARY.is_file()
+        and V0106_CERTIFICATE.is_file()
+        and V0106_STEP_RECORDS.is_file()
+    ):
+        summary = json.loads(V0106_SUMMARY.read_text(encoding="utf-8"))
+        certificate = json.loads(V0106_CERTIFICATE.read_text(encoding="utf-8"))
+        step_records = json.loads(V0106_STEP_RECORDS.read_text(encoding="utf-8"))
+        checks["v0106_summary_states_support_flowpipe"] = (
+            summary.get("scientific_status")
+            == "VALIDATED_TEN_STEP_FOURTH_CHART_LOHNER_SUPPORT_FLOWPIPE_CERTIFIED"
+            and summary.get("qr_lohner_support_flowpipe_certified") is True
+            and summary.get("directional_qr_tightening_certified") is False
+            and summary.get("fifth_frame_certified") is False
+            and summary.get("complete_child_certified") is False
+            and summary.get("global_flow_claimed") is False
+        )
+        checks["v0106_certificate_states_ten_step_domain_bound"] = (
+            certificate.get("schema")
+            == "geometric-flow/fourth-chart-qr-lohner-support/v0.10.6"
+            and certificate.get("all_certificate_gates_pass") is True
+            and certificate.get("steps") == 10
+            and certificate.get("maximum_final_support_upper")
+            == 1.3938448261845923e-11
+            and certificate.get("real_inner_domain_radius") == 1.5e-11
+            and certificate.get("complex_outer_domain_radius") == 2e-11
+            and certificate.get("directional_qr_tightening_certified") is False
+        )
+        checks["v0106_step_records_cover_ten_inside_steps"] = (
+            len(step_records) == 10
+            and all(record.get("strictly_inside_real_inner_domain") is True for record in step_records)
+            and all(record.get("strictly_inside_complex_outer_domain") is True for record in step_records)
         )
 
     print(json.dumps(checks, indent=2, sort_keys=True))
