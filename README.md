@@ -17,6 +17,20 @@ Current status: strong local and finite-continuation results are certified
 for one frozen chart/child instance. A complete-child, atlas-wide, or global
 flow theorem is not claimed.
 
+## Active backend scaffold: v0.9.46
+
+The current development branch also includes a v0.9.46 repository-native
+point/box Arb field backend refactor scaffold. Its status is
+`IMPLEMENTATION_OPEN`.
+
+This scaffold is **not** a certified point-dependent field, formal Jacobian,
+QR/Lohner flowpipe, fifth frame, or global-flow theorem. The candidate module
+intentionally retains `NotImplementedError` placeholders so that a fixed
+envelope cannot be misreported as a point-dependent field.
+
+See [docs/BACKEND_BINDING.md](docs/BACKEND_BINDING.md) and
+[RELEASE_NOTES_v0.9.46.md](RELEASE_NOTES_v0.9.46.md).
+
 ## Latest result: v0.9.23
 
 For the frozen chart-9 / child-15 instance, the repository-native 192-bit Arb
@@ -214,6 +228,9 @@ notebooks/                   Colab/Jupyter reproduction entry points
 tools/                       structural and hash verification
 .github/workflows/           CI reproduction and consistency checks
 response_fibre_*_oneclick.py continuation milestones v0.9.4-v0.9.23
+src/*_v0_9_46*.py            implementation-open backend binding scaffold
+frozen/                      hash-bound reference sources for v0.9.46
+tests/                       contract checks for open backend scaffolds
 ```
 
 Useful documents:
@@ -222,6 +239,8 @@ Useful documents:
 - [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md): safe paper language
 - [SUPERSEDED_RESULTS.md](SUPERSEDED_RESULTS.md): corrected intermediate results
 - [RELEASE_NOTES_v0.9.23.md](RELEASE_NOTES_v0.9.23.md): current milestone notes
+- [RELEASE_NOTES_v0.9.46.md](RELEASE_NOTES_v0.9.46.md): backend scaffold notes
+- [docs/BACKEND_BINDING.md](docs/BACKEND_BINDING.md): native Arb binding contract
 - [CHANGELOG.md](CHANGELOG.md): version history
 
 ## Frozen inputs
@@ -242,16 +261,19 @@ formal gates.
 
 ## Next milestone
 
-The next proof-producing step is to:
+The next proof-producing step is to replace the v0.9.46 scaffold placeholders
+with repository-native Arb closures that genuinely preserve the input `a_box`
+through the complete chain:
 
-- construct a tangent/normal frame at the frozen v0.9.23 recenter centre;
-- Arb-certify full row rank, orthogonality, and normal invertibility;
-- transform the complete endpoint box into the new frame;
-- certify overlap with the new local graph domain; and
-- build the third local fibre graph and Picard microstep.
+- `implicit_fibre_root_solver(a_box)`;
+- `pullback_metric(a_box, root_box)`;
+- `projected_gradient(a_box, root_box, metric_box)`; and
+- analytic normalization inside `formal_vector_field_X(a_box)`.
 
-Only after repeated recenter/overlap certificates reach the child boundary can
-the project claim complete-child traversal.
+Only after the executable candidate passes its binding harness, and a separate
+certificate audit exists, can the project begin claiming a completed
+point/box-field backend. Complete-child traversal still requires repeated
+recenter/overlap certificates to reach the child boundary.
 
 ## 中文摘要
 
