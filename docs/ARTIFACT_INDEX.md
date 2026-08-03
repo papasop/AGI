@@ -55,7 +55,7 @@ have been moved out of the repository root and maintenance `src/` surface into
 `archive/frozen_milestones/`.  Their original filenames are preserved, and the
 stable user interface remains the short wrappers under `scripts/`.
 Superseded, retracted, and corrected milestones are cross-referenced in
-`SUPERSEDED_RESULTS.md`.
+`docs/archive/SUPERSEDED_RESULTS.md`.
 
 | Class | Frozen artifacts | Current status | Archive target |
 | --- | --- | --- | --- |

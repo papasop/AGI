@@ -24,17 +24,21 @@ V093_REPORT = V093_DIR / "report.json"
 SHA256SUMS = ROOT / "SHA256SUMS.txt"
 README = ROOT / "README.md"
 CLAIM_SCOPE = ROOT / "docs" / "CLAIM_SCOPE.md"
-V0923_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.23.md"
-V0932_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.32.md"
-V0946_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.46.md"
-V0105_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.5.md"
-V0106_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.6.md"
-V010141_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.14.1.md"
-SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
+RELEASES_DIR = ROOT / "docs" / "releases"
+V0923_RELEASE_NOTES = RELEASES_DIR / "RELEASE_NOTES_v0.9.23.md"
+V0932_RELEASE_NOTES = RELEASES_DIR / "RELEASE_NOTES_v0.9.32.md"
+V0946_RELEASE_NOTES = RELEASES_DIR / "RELEASE_NOTES_v0.9.46.md"
+V0105_RELEASE_NOTES = RELEASES_DIR / "RELEASE_NOTES_v0.10.5.md"
+V0106_RELEASE_NOTES = RELEASES_DIR / "RELEASE_NOTES_v0.10.6.md"
+V010141_RELEASE_NOTES = RELEASES_DIR / "RELEASE_NOTES_v0.10.14.1.md"
+SUPERSEDED_RESULTS = ROOT / "docs" / "archive" / "SUPERSEDED_RESULTS.md"
 BACKEND_BINDING = ROOT / "docs" / "BACKEND_BINDING.md"
 ARTIFACT_INDEX = ROOT / "docs" / "ARTIFACT_INDEX.md"
 ARCHIVE_MIGRATION_JSON = ROOT / "docs" / "ARCHIVE_MIGRATION_PLAN.json"
 ARCHIVE_MIGRATION_MD = ROOT / "docs" / "ARCHIVE_MIGRATION_PLAN.md"
+MATHEMATICS = ROOT / "docs" / "MATHEMATICS.md"
+REFERENCE_RESULTS = ROOT / "docs" / "REFERENCE_RESULTS.md"
+PROOF_NAVIGATION = ROOT / "docs" / "PROOF_NAVIGATION.md"
 MILESTONES = ROOT / "docs" / "MILESTONES.md"
 PROOF_MAP = ROOT / "docs" / "PROOF_MAP.md"
 PROOF_GRAPH = ROOT / "docs" / "PROOF_GRAPH.md"
@@ -116,7 +120,7 @@ EXPECTED_V0932_SCRIPTS = {
     "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
 }
 EXPECTED_V0946_FILES = {
-    "RELEASE_NOTES_v0.9.46.md",
+    "docs/releases/RELEASE_NOTES_v0.9.46.md",
     "docs/BACKEND_BINDING.md",
     "src/geometric_flow_native_point_field_candidate_v0_9_46.py",
     "src/response_fibre_native_binding_harness_v0_9_46_standalone.py",
@@ -127,8 +131,8 @@ EXPECTED_V0946_FILES = {
     "tests/test_v0946_contract.py",
 }
 EXPECTED_V0105_FILES = {
-    "RELEASE_NOTES_v0.10.5.md",
-    "PR_DESCRIPTION.md",
+    "docs/releases/RELEASE_NOTES_v0.10.5.md",
+    "docs/REFERENCE_RESULTS.md",
     "tools/verify_update.py",
     "archive/frozen_milestones/06_taylor_lohner/geometric_flow_active_backend_export_v0_10_1_oneclick.py",
     "archive/frozen_milestones/06_taylor_lohner/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py",
@@ -144,14 +148,14 @@ EXPECTED_V0105_FILES = {
     "results/v0_10_5/same_expression_X_DX_arb_certificate.json",
 }
 EXPECTED_V0106_FILES = {
-    "RELEASE_NOTES_v0.10.6.md",
+    "docs/releases/RELEASE_NOTES_v0.10.6.md",
     "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
     "results/v0_10_6/run_summary.json",
     "results/v0_10_6/fourth_chart_qr_lohner_support_certificate.json",
     "results/v0_10_6/qr_lohner_step_records.json",
 }
 EXPECTED_V010141_FILES = {
-    "RELEASE_NOTES_v0.10.14.1.md",
+    "docs/releases/RELEASE_NOTES_v0.10.14.1.md",
     "docs/archive/INTEGRATION_v0.10.14.1.md",
     "archive/frozen_milestones/06_taylor_lohner/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
     "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
@@ -161,9 +165,12 @@ EXPECTED_NAVIGATION_FILES = {
     "docs/ARTIFACT_INDEX.md",
     "docs/ARCHIVE_MIGRATION_PLAN.json",
     "docs/ARCHIVE_MIGRATION_PLAN.md",
+    "docs/MATHEMATICS.md",
     "docs/MILESTONES.md",
+    "docs/PROOF_NAVIGATION.md",
     "docs/PROOF_MAP.md",
     "docs/PROOF_GRAPH.md",
+    "docs/REFERENCE_RESULTS.md",
     "docs/REPRODUCIBILITY.md",
     "scripts/_entrypoint_utils.py",
     "scripts/reproduce_local_ode.py",
@@ -297,24 +304,26 @@ def main() -> int:
     checks["readme_exists"] = README.is_file()
     if README.is_file():
         text = README.read_text(encoding="utf-8")
-        checks["readme_has_single_status_table"] = (
-            "## Status At A Glance" in text
-            and "| Intrinsic ODE microstep | v0.9.3 | Certified reference theorem |" in text
-            and "| Ten-step fourth-chart support flowpipe | v0.10.6 | Latest repository reference certificate |" in text
-            and "| Reindexed Taylor/affine-Lohner terminal set | v0.10.13.1 | Source-certified chain; reference-result packaging pending |" in text
+        checks["readme_is_short_homepage"] = (
+            "## Three-Layer Status" in text
+            and "| I. Local theorem | v0.9.3 intrinsic ODE microstep | Certified reference theorem |" in text
+            and "| II. Frozen finite continuation | v0.10.6 fourth-chart Lohner support flowpipe | Latest stored repository reference certificate |" in text
+            and "| III. Next-frame / global work | v0.10.13.1 source chain and v0.10.15 fail-closed harness | Implementation-open; not a fifth-frame or global-flow theorem |" in text
             and text.count("## Latest ") == 0
         )
-        checks["readme_states_main_theorem_and_v0106_reference"] = (
-            "## Main Theorem" in text
-            and "dL_6/dt <= -0.6419529191591549 < 0" in text
-            and "maximum terminal support       1.3938448261845923e-11" in text
-            and "v0.10.6 is the latest\nindependent reference certificate" in text
+        checks["readme_defers_details_to_docs"] = (
+            "docs/MATHEMATICS.md" in text
+            and "docs/REFERENCE_RESULTS.md" in text
+            and "docs/PROOF_NAVIGATION.md" in text
+            and "dL_6/dt <= -0.6419529191591549 < 0" not in text
+            and "maximum terminal support       1.3938448261845923e-11" not in text
         )
         checks["readme_states_source_vs_reference_boundary"] = (
-            "VALIDATED_REINDEXED_TAYLOR_DIRECTIONAL_AFFINE_LOHNER_CERTIFIED" in text
-            and "reference-result packaging pending" in text
-            and "implementation-open" in text
-            and "v0.10.15 backend harness" in text
+            "reference-result packaging is pending" in text
+            and "implementation-open" in text.lower()
+            and "v0.10.15" in text
+            and "fifth-frame" in text
+            and "fail-closed scaffold work" in text
         )
         checks["readme_has_four_user_entrypoints"] = (
             "python scripts/reproduce_local_ode.py" in text
@@ -324,8 +333,8 @@ def main() -> int:
         )
         checks["readme_lists_optional_finite_entrypoint"] = (
             "python scripts/reproduce_finite_continuation.py" in text
-            and "python scripts/reproduce_field_jacobian.py" not in text
-            and "check the relevant frozen SHA-256 entries" in text
+            and "python scripts/reproduce_field_jacobian.py" in text
+            and "verify the relevant frozen SHA-256 entries" in text
         )
         checks["readme_next_milestone_is_not_stale_v0946"] = (
             "implicit_fibre_root_solver(a_box)" not in text
@@ -368,6 +377,39 @@ def main() -> int:
         checks["claim_scope_states_correction"] = (
             "a second factor of six" in scope
             and "current limits on the flow" in scope
+        )
+
+    checks["mathematics_exists"] = MATHEMATICS.is_file()
+    if MATHEMATICS.is_file():
+        mathematics = MATHEMATICS.read_text(encoding="utf-8")
+        checks["mathematics_contains_local_ode_construction"] = (
+            "theta(a) = theta_0 + T a + N psi(a)" in mathematics
+            and "dot a = - H^{-1} W^T grad L_6" in mathematics
+            and "dL_6/dt <= -0.6419529191591549 < 0" in mathematics
+            and "outward-rounded Arb interval arithmetic" in mathematics
+        )
+
+    checks["reference_results_exists"] = REFERENCE_RESULTS.is_file()
+    if REFERENCE_RESULTS.is_file():
+        reference_results = REFERENCE_RESULTS.read_text(encoding="utf-8")
+        checks["reference_results_contains_v0106_metrics"] = (
+            "VALIDATED_TEN_STEP_FOURTH_CHART_LOHNER_SUPPORT_FLOWPIPE_CERTIFIED"
+            in reference_results
+            and "maximum terminal support       1.3938448261845923e-11"
+            in reference_results
+            and "VALIDATED_REINDEXED_TAYLOR_DIRECTIONAL_AFFINE_LOHNER_CERTIFIED"
+            in reference_results
+            and "reference-result packaging pending" in reference_results
+        )
+
+    checks["proof_navigation_exists"] = PROOF_NAVIGATION.is_file()
+    if PROOF_NAVIGATION.is_file():
+        proof_navigation = PROOF_NAVIGATION.read_text(encoding="utf-8")
+        checks["proof_navigation_links_core_docs"] = (
+            "PROOF_MAP.md" in proof_navigation
+            and "ARTIFACT_INDEX.md" in proof_navigation
+            and "CLAIM_SCOPE.md" in proof_navigation
+            and "archive/frozen_milestones/" in proof_navigation
         )
 
     checks["v0923_release_notes_exists"] = V0923_RELEASE_NOTES.is_file()
