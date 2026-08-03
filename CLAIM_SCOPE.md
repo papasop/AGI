@@ -1,13 +1,23 @@
-# Claim scope for v0.9.23
+# Claim scope for v0.9.32 plus v0.9.46 scaffold
 
-## Strongest supported claim
+## Strongest supported certified claim
 
-For the frozen chart-9/child-15 instance, a second recentered response-fibre
-chart is formally certified. Within that chart, a 557-step signed
-six-component endpoint box is certified. The complete endpoint box lies inside
-the already certified complex parametric fibre-graph domain, so the graph's
-Krawczyk theorem supplies a unique normal root for every tangent point in the
-box.
+For the frozen chart-9/child-15 instance, the repository certifies finite
+same-chart continuation through the fourth recentered local chart. In
+particular, v0.9.32 certifies a signed six-component fourth-chart terminal
+endpoint box after ten fourth-chart continuation steps. The endpoint box is
+strictly inside the declared fourth-chart inner radius.
+
+This is a certified finite local-continuation result. The endpoint-box centre
+is an interval-enclosure convention, not a sharp trajectory midpoint.
+
+## Implementation-open scaffold
+
+The v0.9.46 repository-native point/box Arb backend refactor is a fail-closed
+binding scaffold only. Its candidate module intentionally retains
+`NotImplementedError` placeholders. It must not be described as a certified
+point-dependent field, formal Jacobian, QR/Lohner flowpipe, fifth frame, or
+global-flow theorem.
 
 ## Correction boundary
 
@@ -18,6 +28,6 @@ current limits on the flow.
 
 ## Prohibited upgrades
 
-This package does not establish a third frame, a third Picard chart, a sharp
-Taylor/Lohner flowpipe, complete-child traversal, atlas-wide continuation,
-arbitrary-point connectivity or a global flow.
+This package does not establish a fifth frame, fifth Picard chart, sharp
+Taylor/Lohner trajectory midpoint, complete-child traversal, atlas-wide
+continuation, arbitrary-point connectivity, or global flow.

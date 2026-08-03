@@ -25,6 +25,7 @@ SHA256SUMS = ROOT / "SHA256SUMS.txt"
 README = ROOT / "README.md"
 CLAIM_SCOPE = ROOT / "docs" / "CLAIM_SCOPE.md"
 V0923_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.23.md"
+V0932_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.32.md"
 V0946_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.46.md"
 SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
 BACKEND_BINDING = ROOT / "docs" / "BACKEND_BINDING.md"
@@ -68,6 +69,17 @@ EXPECTED_V0923_SCRIPTS = {
     "response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
     "response_fibre_signed_field_export_v0_9_22_oneclick.py",
     "response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
+}
+EXPECTED_V0932_SCRIPTS = {
+    "response_fibre_third_frame_v0_9_24_oneclick.py",
+    "response_fibre_third_frame_backend_v0_9_25_oneclick.py",
+    "response_fibre_third_picard_v0_9_26_oneclick.py",
+    "response_fibre_third_chart_finite_continuation_v0_9_27_oneclick.py",
+    "response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py",
+    "response_fibre_fourth_frame_v0_9_29_oneclick.py",
+    "response_fibre_fourth_picard_v0_9_30_oneclick.py",
+    "response_fibre_fourth_chart_finite_v0_9_31_oneclick.py",
+    "response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
 }
 EXPECTED_V0946_FILES = {
     "RELEASE_NOTES_v0.9.46.md",
@@ -168,45 +180,74 @@ def main() -> int:
             and report.get("uniform_dL6_dt_upper", 0.0) < -0.55
         )
 
-    checks["v0923_sha256sums_exists"] = SHA256SUMS.is_file()
+    checks["sha256sums_exists"] = SHA256SUMS.is_file()
     if SHA256SUMS.is_file():
         sums = read_sha256sums(SHA256SUMS)
         checks["v0923_all_expected_scripts_listed"] = (
             EXPECTED_V0923_SCRIPTS <= set(sums)
         )
+        checks["v0932_all_expected_scripts_listed"] = (
+            EXPECTED_V0932_SCRIPTS <= set(sums)
+        )
+        checks["v0946_all_expected_files_listed"] = (
+            EXPECTED_V0946_FILES <= set(sums)
+        )
         for name, expected in sums.items():
             path = ROOT / name
-            label = f"v0923_{name.replace('/', '_')}"
+            label = name.replace("/", "_")
             checks[f"{label}_exists"] = path.is_file()
             checks[f"{label}_sha256"] = path.is_file() and sha256(path) == expected
 
-    checks["v0923_readme_exists"] = README.is_file()
+    checks["readme_exists"] = README.is_file()
     if README.is_file():
         text = README.read_text(encoding="utf-8")
-        checks["v0923_readme_states_endpoint"] = (
-            "signed endpoint and parametric-root milestone v0.9.23" in text
-            and "six signed intrinsic-field component intervals" in text
-            and "nonzero six-dimensional endpoint box after 557 microsteps" in text
+        checks["readme_states_v0932_certified_endpoint"] = (
+            "Latest certified result: v0.9.32" in text
+            and "signed six-component fourth-chart terminal endpoint box" in text
+            and "1.39387284131938755e-11" in text
             and "This package is a formal-development milestone, not a global-flow theorem." in text
         )
-        checks["v0923_readme_supersedes_v0918_limit"] = (
+        checks["readme_states_v0946_scaffold_only"] = (
+            "Active backend scaffold: v0.9.46" in text
+            and "`IMPLEMENTATION_OPEN`" in text
+            and "not** a certified point-dependent field" in text
+        )
+        checks["readme_supersedes_v0918_limit"] = (
             "the formal continuation is limited to 172 steps" in text
             and "They must not be cited as current capability bounds." in text
         )
 
-    checks["v0923_claim_scope_exists"] = CLAIM_SCOPE.is_file()
+    checks["claim_scope_exists"] = CLAIM_SCOPE.is_file()
     if CLAIM_SCOPE.is_file():
         scope = CLAIM_SCOPE.read_text(encoding="utf-8")
-        checks["v0923_claim_scope_rejects_global_flow"] = (
+        checks["claim_scope_states_v0932_boundary"] = (
+            "v0.9.32 certifies a signed six-component fourth-chart terminal" in scope
+            and "not a sharp trajectory midpoint" in scope
+        )
+        checks["claim_scope_states_v0946_scaffold_only"] = (
+            "fail-closed\nbinding scaffold only" in scope
+            and "must not be described as a certified\npoint-dependent field" in scope
+        )
+        checks["claim_scope_rejects_global_flow"] = (
             "does not establish" in scope
             and "global flow" in scope
         )
-        checks["v0923_claim_scope_states_correction"] = (
+        checks["claim_scope_states_correction"] = (
             "a second factor of six" in scope
             and "current limits on the flow" in scope
         )
 
     checks["v0923_release_notes_exists"] = V0923_RELEASE_NOTES.is_file()
+    checks["v0932_release_notes_exists"] = V0932_RELEASE_NOTES.is_file()
+    checks["v0946_release_notes_exists"] = V0946_RELEASE_NOTES.is_file()
+    if V0946_RELEASE_NOTES.is_file():
+        notes = V0946_RELEASE_NOTES.read_text(encoding="utf-8")
+        checks["v0946_release_notes_state_implementation_open"] = (
+            "`IMPLEMENTATION_OPEN`" in notes
+            and "must not be described as a certified\npoint-dependent field" in notes
+            and "NotImplementedError" in notes
+        )
+
     checks["v0923_superseded_results_exists"] = SUPERSEDED_RESULTS.is_file()
     if SUPERSEDED_RESULTS.is_file():
         superseded = SUPERSEDED_RESULTS.read_text(encoding="utf-8")
@@ -215,19 +256,6 @@ def main() -> int:
             and "v0.9.19" in superseded
             and "Resolution in v0.9.20" in superseded
             and "step 557" in superseded
-        )
-
-    if SHA256SUMS.is_file():
-        sums = read_sha256sums(SHA256SUMS)
-        checks["v0946_all_expected_files_listed"] = EXPECTED_V0946_FILES <= set(sums)
-
-    checks["v0946_release_notes_exists"] = V0946_RELEASE_NOTES.is_file()
-    if V0946_RELEASE_NOTES.is_file():
-        notes = V0946_RELEASE_NOTES.read_text(encoding="utf-8")
-        checks["v0946_release_notes_state_implementation_open"] = (
-            "`IMPLEMENTATION_OPEN`" in notes
-            and "must not be described as a certified\npoint-dependent field" in notes
-            and "NotImplementedError" in notes
         )
 
     checks["v0946_backend_binding_exists"] = BACKEND_BINDING.is_file()

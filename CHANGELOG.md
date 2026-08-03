@@ -16,6 +16,15 @@
 - Explicitly exclude any claim of a certified point-dependent field, formal
   Jacobian, QR/Lohner flowpipe, fifth frame, or global flow.
 
+## v0.9.32 — fourth-chart signed endpoint milestone
+
+- Add certified third-centre frame, fibre graph, and Picard continuation.
+- Add certified 263-step third-chart finite continuation and signed endpoint.
+- Add certified fourth-centre root/frame, fibre graph, and Picard microstep.
+- Add certified ten-step fourth-chart continuation and signed endpoint box.
+- Preserve the explicit boundary against sharp trajectory-midpoint,
+  complete-child, fifth-chart, atlas-wide, and global-flow claims.
+
 ## v0.9.23 — signed endpoint and parametric-root inclusion
 
 - Correct the v0.9.18-v0.9.19 duplicated-dimension-factor diagnosis: the
