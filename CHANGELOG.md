@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.10.5 — repository-native Arb field and same-expression Jacobian milestone
+
+- Preserve the active repository-native Arb backend rather than exporting
+  frozen interval constants.
+- Extract input-dependent scalar response/Jacobian/L6-gradient primitives.
+- Add six-variable complex Arb automatic differentiation without finite
+  differences.
+- Certify the implicit parametric normal-graph derivative on the full
+  fourth-chart graph box.
+- Construct the pullback tangent `W`, metric `H`, normalized intrinsic field
+  `X`, and formal 6x6 Jacobian `DX` from the same native Jet expression.
+- Verify interval response preservation, metric invertibility,
+  normalization-branch separation, and overlap with the frozen Picard field.
+- Retain explicit nonclaims for QR/Lohner propagation, fifth recenter,
+  complete-child continuation, ten-chart continuation, and global flow.
+- Deliberately exclude the not-yet-run v0.10.6 QR/Lohner milestone.
+
 ## v0.9.46 — repository-native point-field backend refactor scaffold
 
 - Add an implementation-open candidate module for the repository-native

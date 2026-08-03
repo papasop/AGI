@@ -10,19 +10,55 @@ Geometric-Flow studies a simple but important question:
 
 The repository develops that question for a frozen 14-phase driven-qubit
 model. The original v0.9.3 result proves one local intrinsic ODE microstep.
-The current v0.9.32 certified development milestone extends the chain through
-third and fourth same-atlas-chart recenterings and a signed six-dimensional
-fourth-chart terminal endpoint box.
+The current v0.10.5 certified development milestone constructs the
+repository-native fourth-chart intrinsic field `X` and its same-expression
+Jacobian `DX` using Arb jets.
 
 Current status: strong local and finite-continuation results are certified
 for one frozen chart/child instance. A complete-child, atlas-wide, or global
 flow theorem is not claimed.
 
-## Active backend scaffold: v0.9.46
+## Latest certified field/Jacobian result: v0.10.5
 
-The current development branch also includes a v0.9.46 repository-native
-point/box Arb field backend refactor scaffold. Its status is
-`IMPLEMENTATION_OPEN`.
+The v0.10.1-v0.10.5 chain removes the earlier fixed-envelope adapter
+bottleneck and constructs the fourth-chart intrinsic field and its Jacobian
+from one formally differentiated repository-native Arb expression.
+
+The strongest current result is:
+
+```text
+VALIDATED_NATIVE_SAME_EXPRESSION_X_DX_CERTIFIED
+```
+
+The certified v0.10.5 object is a local fourth-chart field/Jacobian enclosure:
+
+- v0.10.1 retains the active repository-native Arb backend emitted by the
+  frozen v0.9.30 chain;
+- v0.10.2 extracts dependency-closed scalar Arb response,
+  response-Jacobian, and L6-gradient primitives;
+- v0.10.3 lifts those primitives to six-variable complex Arb jets without
+  finite differences;
+- v0.10.4 certifies the parametric normal-graph derivative
+  `Dpsi = -(d_b F)^-1 d_a F` on the complete certified graph box; and
+- v0.10.5 constructs `W`, `H`, normalized `X`, and the 6x6 `DX` from the
+  same native Jet expression.
+
+Reference metrics:
+
+```text
+descent square enclosure       [0.4 +/- 0.0340] + [+/- 7.43e-3]j
+maximum |X| upper              0.5567255281
+maximum |DX| upper             4834.8689
+maximum |DR W| residual upper  0.0016352753
+```
+
+This milestone stops at `X,DX` certification. It deliberately does not include
+the not-yet-run v0.10.6 QR/Lohner result.
+
+## Implementation-open scaffold retained: v0.9.46
+
+The repository also retains the v0.9.46 repository-native point/box Arb field
+backend refactor scaffold. Its status is `IMPLEMENTATION_OPEN`.
 
 This scaffold is **not** a certified point-dependent field, formal Jacobian,
 QR/Lohner flowpipe, fifth frame, or global-flow theorem. The candidate module
@@ -32,7 +68,7 @@ envelope cannot be misreported as a point-dependent field.
 See [docs/BACKEND_BINDING.md](docs/BACKEND_BINDING.md) and
 [RELEASE_NOTES_v0.9.46.md](RELEASE_NOTES_v0.9.46.md).
 
-## Latest certified result: v0.9.32
+## Latest certified finite-continuation result: v0.9.32
 
 For the frozen chart-9 / child-15 instance, the repository-native 192-bit Arb
 chain now additionally certifies:
@@ -116,6 +152,7 @@ preconditioners, not as proof objects.
 | v0.9.29-30 | Fourth parametric normal root, frame, complex graph, and Picard microstep |
 | v0.9.31-32 | Ten-step fourth-chart continuation and signed terminal endpoint box |
 | v0.9.46 | Implementation-open repository-native point/box field backend scaffold, not a certified field |
+| v0.10.1-5 | Repository-native Arb field and same-expression 6x6 Jacobian `DX`; no QR/Lohner flowpipe |
 
 The v0.7.4 and v0.9.3 results have different scopes: v0.7.4 covers broader
 geometry but is not an ODE theorem; v0.9.3 is an ODE theorem but only for one
@@ -153,6 +190,7 @@ The repository does not currently certify:
 
 - a fifth tangent/normal frame or fifth local fibre graph;
 - a sharp, stepwise Taylor/Lohner trajectory midpoint or flowpipe;
+- a v0.10.6 QR/Lohner propagation result;
 - complete traversal of child 15;
 - a successor atlas chart after terminal chart 9;
 - complete ten-chart continuation;
@@ -197,6 +235,11 @@ python response_fibre_fourth_frame_v0_9_29_oneclick.py
 python response_fibre_fourth_picard_v0_9_30_oneclick.py
 python response_fibre_fourth_chart_finite_v0_9_31_oneclick.py
 python response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py
+python src/geometric_flow_active_backend_export_v0_10_1_oneclick.py
+python src/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py
+python src/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py
+python src/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py
+python src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py
 ```
 
 Run the frozen v0.9.3 local ODE theorem directly:
@@ -231,7 +274,9 @@ tools/                       structural and hash verification
 .github/workflows/           CI reproduction and consistency checks
 response_fibre_*_oneclick.py continuation milestones v0.9.4-v0.9.32
 src/*_v0_9_46*.py            implementation-open backend binding scaffold
+src/geometric_flow_*v0_10*.py repository-native Arb X/DX milestones
 frozen/                      hash-bound reference sources for v0.9.46
+results/v0_10_*/             v0.10.1-v0.10.5 reference summaries/certificates
 tests/                       contract checks for open backend scaffolds
 ```
 
@@ -243,6 +288,7 @@ Useful documents:
 - [RELEASE_NOTES_v0.9.32.md](RELEASE_NOTES_v0.9.32.md): latest certified milestone notes
 - [RELEASE_NOTES_v0.9.23.md](RELEASE_NOTES_v0.9.23.md): second-chart milestone notes
 - [RELEASE_NOTES_v0.9.46.md](RELEASE_NOTES_v0.9.46.md): backend scaffold notes
+- [RELEASE_NOTES_v0.10.5.md](RELEASE_NOTES_v0.10.5.md): repository-native X/DX milestone notes
 - [docs/BACKEND_BINDING.md](docs/BACKEND_BINDING.md): native Arb binding contract
 - [CHANGELOG.md](CHANGELOG.md): version history
 

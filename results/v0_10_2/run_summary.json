@@ -1,0 +1,25 @@
+{
+  "title": "GEOMETRIC-FLOW DEPENDENCY-CLOSED SCALAR ARB PRIMITIVE EXTRACTION",
+  "version": "0.10.2",
+  "scientific_status": "DEPENDENCY_CLOSED_NATIVE_SCALAR_ARB_PRIMITIVES_EXTRACTED",
+  "active_backend": "/workspace/scratch/b481b397d7c6/native_export_test2_v0101/active_repository_native_arb_backend_v0_9_30.py",
+  "active_backend_sha256": "d0ef55e1361f2c92d41dcdde0a9b3066e400d3d675d85a68ad69e6498620435d",
+  "candidate": "/workspace/scratch/b481b397d7c6/scalar_extract_test_v0102/geometric_flow_native_scalar_primitives_v0_10_2.py",
+  "candidate_sha256": "16e153347068b9f412fc01e2bb9eadf1aa4091b8dc4e3a62d6c7e691d960e417",
+  "gates": {
+    "active_hash_exact": true,
+    "dependency_definitions_complete": true,
+    "candidate_compiles": true,
+    "candidate_imports": true,
+    "response_dimension_eight": true,
+    "jacobian_shape_8x14": true,
+    "gradient_dimension_14": true,
+    "no_fixed_interval_shortcut": true
+  },
+  "scalar_arb_primitives_ready": true,
+  "six_variable_jet_ready": false,
+  "same_expression_DX_ready": false,
+  "all_scientific_gates_pass": false,
+  "next_required_step": "lift acb phase arithmetic through the v0.10.0 six-variable Jet so response, implicit graph, L6 gradient, X and DX share one expression",
+  "claim_boundary": "input-dependent scalar Arb response/Jacobian/L6-gradient primitives only; no six-variable DX, QR/Lohner flowpipe, fifth frame, or global flow"
+}

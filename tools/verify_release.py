@@ -27,11 +27,16 @@ CLAIM_SCOPE = ROOT / "docs" / "CLAIM_SCOPE.md"
 V0923_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.23.md"
 V0932_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.32.md"
 V0946_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.46.md"
+V0105_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.10.5.md"
 SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
 BACKEND_BINDING = ROOT / "docs" / "BACKEND_BINDING.md"
 V0946_CANDIDATE = ROOT / "src" / "geometric_flow_native_point_field_candidate_v0_9_46.py"
 V0946_HARNESS = ROOT / "src" / "response_fibre_native_binding_harness_v0_9_46_standalone.py"
 V0946_TEST = ROOT / "tests" / "test_v0946_contract.py"
+V0105_SUMMARY = ROOT / "results" / "v0_10_5" / "run_summary.json"
+V0105_CERTIFICATE = (
+    ROOT / "results" / "v0_10_5" / "same_expression_X_DX_arb_certificate.json"
+)
 
 EXPECTED = {
     V074_SOURCE: "1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8",
@@ -91,6 +96,23 @@ EXPECTED_V0946_FILES = {
     "frozen/response_fibre_fourth_picard_v0_9_30_standalone.py",
     "frozen/response_fibre_point_field_refactor_v0_9_45_standalone.py",
     "tests/test_v0946_contract.py",
+}
+EXPECTED_V0105_FILES = {
+    "RELEASE_NOTES_v0.10.5.md",
+    "PR_DESCRIPTION.md",
+    "tools/verify_update.py",
+    "src/geometric_flow_active_backend_export_v0_10_1_oneclick.py",
+    "src/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py",
+    "src/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py",
+    "src/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py",
+    "src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
+    "results/v0_10_1/run_summary.json",
+    "results/v0_10_2/run_summary.json",
+    "results/v0_10_3/run_summary.json",
+    "results/v0_10_4/run_summary.json",
+    "results/v0_10_4/parametric_normal_graph_jet_arb_certificate.json",
+    "results/v0_10_5/run_summary.json",
+    "results/v0_10_5/same_expression_X_DX_arb_certificate.json",
 }
 
 
@@ -192,6 +214,9 @@ def main() -> int:
         checks["v0946_all_expected_files_listed"] = (
             EXPECTED_V0946_FILES <= set(sums)
         )
+        checks["v0105_all_expected_files_listed"] = (
+            EXPECTED_V0105_FILES <= set(sums)
+        )
         for name, expected in sums.items():
             path = ROOT / name
             label = name.replace("/", "_")
@@ -202,13 +227,19 @@ def main() -> int:
     if README.is_file():
         text = README.read_text(encoding="utf-8")
         checks["readme_states_v0932_certified_endpoint"] = (
-            "Latest certified result: v0.9.32" in text
+            "Latest certified finite-continuation result: v0.9.32" in text
             and "signed six-component fourth-chart terminal endpoint box" in text
             and "1.39387284131938755e-11" in text
             and "This package is a formal-development milestone, not a global-flow theorem." in text
         )
+        checks["readme_states_v0105_certified_x_dx"] = (
+            "Latest certified field/Jacobian result: v0.10.5" in text
+            and "VALIDATED_NATIVE_SAME_EXPRESSION_X_DX_CERTIFIED" in text
+            and "maximum |DX| upper             4834.8689" in text
+            and "not-yet-run v0.10.6 QR/Lohner result" in text
+        )
         checks["readme_states_v0946_scaffold_only"] = (
-            "Active backend scaffold: v0.9.46" in text
+            "Implementation-open scaffold retained: v0.9.46" in text
             and "`IMPLEMENTATION_OPEN`" in text
             and "not** a certified point-dependent field" in text
         )
@@ -223,6 +254,11 @@ def main() -> int:
         checks["claim_scope_states_v0932_boundary"] = (
             "v0.9.32 certifies a signed six-component fourth-chart terminal" in scope
             and "not a sharp trajectory midpoint" in scope
+        )
+        checks["claim_scope_states_v0105_boundary"] = (
+            "strongest current result is v0.10.5" in scope
+            and "same-expression Jacobian\n`DX`" in scope
+            and "not-yet-run\nv0.10.6 QR/Lohner propagation" in scope
         )
         checks["claim_scope_states_v0946_scaffold_only"] = (
             "fail-closed\nbinding scaffold only" in scope
@@ -240,12 +276,20 @@ def main() -> int:
     checks["v0923_release_notes_exists"] = V0923_RELEASE_NOTES.is_file()
     checks["v0932_release_notes_exists"] = V0932_RELEASE_NOTES.is_file()
     checks["v0946_release_notes_exists"] = V0946_RELEASE_NOTES.is_file()
+    checks["v0105_release_notes_exists"] = V0105_RELEASE_NOTES.is_file()
     if V0946_RELEASE_NOTES.is_file():
         notes = V0946_RELEASE_NOTES.read_text(encoding="utf-8")
         checks["v0946_release_notes_state_implementation_open"] = (
             "`IMPLEMENTATION_OPEN`" in notes
             and "must not be described as a certified\npoint-dependent field" in notes
             and "NotImplementedError" in notes
+        )
+    if V0105_RELEASE_NOTES.is_file():
+        notes = V0105_RELEASE_NOTES.read_text(encoding="utf-8")
+        checks["v0105_release_notes_state_x_dx_only"] = (
+            "VALIDATED_NATIVE_SAME_EXPRESSION_X_DX_CERTIFIED" in notes
+            and "not a QR/Lohner\nflowpipe" in notes
+            and "It is deliberately excluded from this update." in notes
         )
 
     checks["v0923_superseded_results_exists"] = SUPERSEDED_RESULTS.is_file()
@@ -305,6 +349,29 @@ def main() -> int:
         checks["v0946_contract_test_expects_fail_closed_scaffold"] = (
             "test_unimplemented_candidate_is_explicitly_fail_closed" in test_text
             and "assert calls" in test_text
+        )
+
+    checks["v0105_summary_exists"] = V0105_SUMMARY.is_file()
+    checks["v0105_certificate_exists"] = V0105_CERTIFICATE.is_file()
+    if V0105_SUMMARY.is_file() and V0105_CERTIFICATE.is_file():
+        summary = json.loads(V0105_SUMMARY.read_text(encoding="utf-8"))
+        certificate = json.loads(V0105_CERTIFICATE.read_text(encoding="utf-8"))
+        checks["v0105_summary_states_same_expression_x_dx"] = (
+            summary.get("scientific_status")
+            == "VALIDATED_NATIVE_SAME_EXPRESSION_X_DX_CERTIFIED"
+            and summary.get("same_expression_X_ready") is True
+            and summary.get("same_expression_DX_ready") is True
+            and summary.get("qr_lohner_flowpipe_certified") is False
+            and summary.get("fifth_frame_certified") is False
+            and summary.get("complete_child_certified") is False
+            and summary.get("global_flow_claimed") is False
+        )
+        checks["v0105_certificate_states_finite_dx_only"] = (
+            certificate.get("schema")
+            == "geometric-flow/same-expression-intrinsic-X-DX/v0.10.5"
+            and certificate.get("all_certificate_gates_pass") is True
+            and certificate.get("DX_nonzero_entry_certified") is False
+            and certificate.get("maximum_DX_absolute_upper") == 4834.868911743164
         )
 
     print(json.dumps(checks, indent=2, sort_keys=True))

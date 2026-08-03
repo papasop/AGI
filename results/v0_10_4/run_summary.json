@@ -1,0 +1,41 @@
+{
+  "title": "GEOMETRIC-FLOW PARAMETRIC NORMAL-GRAPH ARB JET",
+  "version": "0.10.4",
+  "scientific_status": "VALIDATED_PARAMETRIC_NORMAL_GRAPH_ARB_JET_CERTIFIED",
+  "formal_backend": "python-flint/Arb 192-bit",
+  "certificate": "/workspace/scratch/b481b397d7c6/parametric_graph_test_v0104/parametric_normal_graph_jet_arb_certificate.json",
+  "metrics": {
+    "tangent_box_radius": "[1.00000000000000000000000000000000000000000000000000000000e-11 +/- 3.66e-69]",
+    "normal_graph_box_radius": "[4.63615405742044000000000000000000000000000000000000000000e-13 +/- 2.08e-70]",
+    "Dpsi_shape": [
+      8,
+      6
+    ],
+    "maximum_Dpsi_absolute_upper": 1.3075060428135998e-05,
+    "inverse_residual_induced_infinity_upper": 0.0015984292154064262,
+    "maximum_implicit_derivative_residual_upper": 2.174524436276892e-06,
+    "maximum_discarded_imaginary_enclosure_upper": 3.2044343800663455e-07
+  },
+  "gates": {
+    "v0103_frozen_scalar_binding": true,
+    "six_variable_same_expression_response_jet": true,
+    "formal_precision_at_least_192_bits": true,
+    "frame_14_by_6_and_normal_14_by_8": true,
+    "inherited_parametric_graph_krawczyk_strict": true,
+    "complete_real_tangent_box_used": true,
+    "complete_refined_normal_graph_box_used": true,
+    "normal_response_block_arb_invertible": true,
+    "implicit_derivative_residual_contains_zero": true,
+    "no_finite_difference": true
+  },
+  "implicit_normal_graph_jet_ready": true,
+  "same_expression_response_derivative_ready": true,
+  "same_expression_X_ready": false,
+  "same_expression_DX_ready": false,
+  "qr_lohner_flowpipe_certified": false,
+  "fifth_frame_certified": false,
+  "global_flow_claimed": false,
+  "all_scientific_gates_pass": false,
+  "next_required_step": "assemble W(a), H(a), normalized X(a), and same-expression DX(a) from the certified psi/Dpsi enclosure",
+  "claim_boundary": "parametric implicit normal-graph derivative over the certified fourth-chart (a,b) box only; no X/DX, QR/Lohner flowpipe, fifth frame, complete child, or global flow"
+}

@@ -1,0 +1,18 @@
+{
+  "title": "GEOMETRIC-FLOW ACTIVE ARB BACKEND SOURCE RETENTION",
+  "version": "0.10.1",
+  "scientific_status": "ACTIVE_REPOSITORY_NATIVE_ARB_SOURCE_RETAINED",
+  "v0930_exit_zero": true,
+  "active_backend": "/workspace/scratch/b481b397d7c6/native_export_test2_v0101/active_repository_native_arb_backend_v0_9_30.py",
+  "active_backend_sha256": "d0ef55e1361f2c92d41dcdde0a9b3066e400d3d675d85a68ad69e6498620435d",
+  "active_backend_size": 115625,
+  "formula_entry_points": {
+    "response_jacobian_and_gradient": true,
+    "projective_jet_and_derivatives": true,
+    "phase_and_derivative_at": true
+  },
+  "all_scientific_gates_pass": false,
+  "repository_native_primitives_ready": false,
+  "next_required_step": "extract dependency-closed public response_map, response_jacobian_and_gradient, and L6 gradient callbacks from the retained source",
+  "claim_boundary": "source retention only; no point/box field, same-expression DX, QR/Lohner flowpipe, fifth frame, or global flow"
+}
