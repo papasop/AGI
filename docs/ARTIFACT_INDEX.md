@@ -29,6 +29,57 @@ before invoking the long versioned artifact.  A mismatch fails closed.
 | v0.10.14.1 | `src/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py` | No new reference result certificate | Integration and inclusion-gate wiring; no fifth-frame theorem. |
 | v0.10.15 | `src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py` | No certificate unless native callbacks pass | Fail-closed fifth-frame backend harness; implementation remains open. |
 
+## Root-Level Frozen Milestone Classes
+
+The root-level `response_fibre_*_oneclick.py` files are intentionally left at
+their historical paths for this release.  They should be treated as frozen
+milestone artifacts, not as the preferred user interface.
+
+| Class | Frozen artifacts | Current status | Future archive target |
+| --- | --- | --- | --- |
+| Early continuation preflight | `response_fibre_validated_continuation_v0_9_4_1_oneclick.py`, `response_fibre_two_step_continuation_v0_9_5_oneclick.py` | Audit history and finite-continuation inputs | `src/frozen_milestones/continuation_preflight/` |
+| Recenter and normal-root setup | `response_fibre_recenter_preflight_v0_9_6_oneclick.py`, `response_fibre_normal_root_v0_9_7_oneclick.py`, `response_fibre_arb_normal_root_v0_9_8_oneclick.py` | Valid frozen setup artifacts | `src/frozen_milestones/recentered_charts/second_chart/` |
+| Second local chart | `response_fibre_recentered_frame_v0_9_9_oneclick.py`, `response_fibre_second_chart_v0_9_10_oneclick.py`, `response_fibre_finite_continuation_v0_9_11_oneclick.py` | Certified local continuation chain | `src/frozen_milestones/recentered_charts/second_chart/` |
+| Route correction and diagnostics | `response_fibre_transition_preflight_v0_9_12_oneclick.py`, `response_fibre_route_correction_v0_9_13_oneclick.py`, `response_fibre_endpoint_identifiability_v0_9_14_oneclick.py` | Correction and scope-setting artifacts | `src/frozen_milestones/superseded_audits/` |
+| Lohner and adapter exploration | `response_fibre_validated_lohner_v0_9_15_oneclick.py`, `response_fibre_adapter_hardening_v0_9_16_oneclick.py`, `response_fibre_executable_adapter_v0_9_17_oneclick.py`, `response_fibre_lohner_stress_v0_9_18_oneclick.py`, `response_fibre_local_dx_target_v0_9_19_oneclick.py`, `response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py` | Mixed certified components and superseded stress/audit results; see `SUPERSEDED_RESULTS.md` | `src/frozen_milestones/superseded_audits/` |
+| Endpoint enclosures | `response_fibre_six_component_endpoint_v0_9_21_oneclick.py`, `response_fibre_signed_field_export_v0_9_22_oneclick.py`, `response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py`, `response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py` | Endpoint-box and signed-field evidence; no arbitrary endpoint connectivity | `src/frozen_milestones/endpoint_enclosures/` |
+| Third-chart chain | `response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py` through `response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py` | Valid finite continuation chain | `src/frozen_milestones/recentered_charts/third_chart/` |
+| Fourth-chart chain | `response_fibre_fourth_frame_v0_9_29_oneclick.py` through `response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py` | Valid finite continuation chain feeding later v0.10 work | `src/frozen_milestones/recentered_charts/fourth_chart/` |
+
+Moving these files now would not change their content hashes, but it would
+change paths, raw GitHub URLs, embedded file discovery assumptions, and any
+certificate metadata that records source locations.  For that reason, this
+release improves navigation through stable wrappers and this index only.
+
+## Proposed v1.0 Archive Layout
+
+```text
+src/
+  core/
+    geometric_flow/
+  frozen_milestones/
+    local_ode/
+      v0_9_3/
+    continuation_preflight/
+      v0_9_4/
+      v0_9_5/
+      v0_9_6/
+    recentered_charts/
+      second_chart/
+      third_chart/
+      fourth_chart/
+    endpoint_enclosures/
+      v0_9_21/
+      v0_9_22/
+      v0_9_28/
+      v0_9_32/
+    superseded_audits/
+```
+
+The v1.0 migration should include a machine-readable manifest, compatibility
+wrappers at the old paths, SHA-256 checks from wrapper to relocated target, CI
+coverage for both old and new entry points, and an explicit migration map.
+
 ## Future Package Boundary
 
 The future importable package can live under `geometric_flow/` with modules such

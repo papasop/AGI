@@ -496,6 +496,28 @@ def main() -> int:
             and "Each stable entry point verifies the relevant entries in `SHA256SUMS.txt`" in artifact_index
             and "Fail-closed fifth-frame backend harness" in artifact_index
         )
+        checks["artifact_index_classifies_root_frozen_files"] = (
+            "Root-Level Frozen Milestone Classes" in artifact_index
+            and "Early continuation preflight" in artifact_index
+            and "Recenter and normal-root setup" in artifact_index
+            and "Second local chart" in artifact_index
+            and "Route correction and diagnostics" in artifact_index
+            and "Lohner and adapter exploration" in artifact_index
+            and "Endpoint enclosures" in artifact_index
+            and "Third-chart chain" in artifact_index
+            and "Fourth-chart chain" in artifact_index
+            and "response_fibre_lohner_stress_v0_9_18_oneclick.py" in artifact_index
+            and "response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py" in artifact_index
+            and "SUPERSEDED_RESULTS.md" in artifact_index
+        )
+        checks["artifact_index_defers_archive_move_to_v1"] = (
+            "Proposed v1.0 Archive Layout" in artifact_index
+            and "src/frozen_milestones/" in artifact_index
+            and "Moving these files now would not change their content hashes" in artifact_index
+            and "change paths, raw GitHub URLs" in artifact_index
+            and "compatibility\nwrappers at the old paths" in artifact_index
+            and "CI\ncoverage for both old and new entry points" in artifact_index
+        )
         checks["milestones_preserve_history_outside_readme"] = (
             "v0.9.18-v0.9.19" in milestones
             and "v0.10.13.1" in milestones

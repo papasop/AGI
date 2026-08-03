@@ -166,7 +166,7 @@ calling their underlying long versioned proof files.
 ## Repository Navigation
 
 - [docs/MILESTONES.md](docs/MILESTONES.md): complete milestone table
-- [docs/ARTIFACT_INDEX.md](docs/ARTIFACT_INDEX.md): stable entry points and frozen artifact mapping
+- [docs/ARTIFACT_INDEX.md](docs/ARTIFACT_INDEX.md): stable entry points, frozen artifact classes, and future archive map
 - [docs/PROOF_GRAPH.md](docs/PROOF_GRAPH.md): dependency graph and proof layers
 - [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md): full one-click script order
 - [docs/CLAIM_SCOPE.md](docs/CLAIM_SCOPE.md): allowed and forbidden claims
