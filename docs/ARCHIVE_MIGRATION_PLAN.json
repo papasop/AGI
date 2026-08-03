@@ -1,277 +1,284 @@
 {
-  "apply_policy": "do not move files until a dedicated migration PR updates wrappers, manifests, references, and CI",
+  "all_archive_paths_present": true,
+  "all_legacy_paths_removed": true,
+  "apply_policy": "migration already performed by git mv; this tool remains read-only",
   "content_rewrite_planned": false,
   "entries": [
     {
+      "archive_path": "archive/frozen_milestones/01_local_foundation/response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "2818ab0621cea12424b2dca9e040393fe36986524d37052412d91ee03454333d",
       "classification": "01_local_foundation",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "docs/ARTIFACT_INDEX.md"
-      ],
-      "sha256": "8edc06c286c5d1544ae8b30c82ea2ab4fc40a017b2a99cde8d165b613804ce95",
-      "source": "response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
-      "source_exists": true,
-      "status": "audit_history",
-      "target": "archive/frozen_milestones/01_local_foundation/response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
-      "target_exists": false
-    },
-    {
-      "classification": "01_local_foundation",
-      "references": [
+      "legacy_path": "response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
+        "archive/frozen_milestones/01_local_foundation/response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "83d45ad90c13578c03dd6e56cc2f9d91892e6b3f26faacfb2f0a43108328f5be",
-      "source": "response_fibre_two_step_continuation_v0_9_5_oneclick.py",
-      "source_exists": true,
-      "status": "finite_continuation_input",
-      "target": "archive/frozen_milestones/01_local_foundation/response_fibre_two_step_continuation_v0_9_5_oneclick.py",
-      "target_exists": false
+      "status": "audit_history"
     },
     {
+      "archive_path": "archive/frozen_milestones/01_local_foundation/response_fibre_two_step_continuation_v0_9_5_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "83d45ad90c13578c03dd6e56cc2f9d91892e6b3f26faacfb2f0a43108328f5be",
       "classification": "01_local_foundation",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "response_fibre_normal_root_v0_9_7_oneclick.py",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "docs/ARTIFACT_INDEX.md"
-      ],
-      "sha256": "014d265a818bbd82c8aa8805317e61222ccf13136df871947a71ffa9e0e38291",
-      "source": "response_fibre_recenter_preflight_v0_9_6_oneclick.py",
-      "source_exists": true,
-      "status": "normal_root_preflight",
-      "target": "archive/frozen_milestones/01_local_foundation/response_fibre_recenter_preflight_v0_9_6_oneclick.py",
-      "target_exists": false
-    },
-    {
-      "classification": "01_local_foundation",
-      "references": [
+      "legacy_path": "response_fibre_two_step_continuation_v0_9_5_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "3dc01304cb4c3f58947d3bb1468f3c6bf3162acd15407d87b5e39f315ef17103",
-      "source": "response_fibre_normal_root_v0_9_7_oneclick.py",
-      "source_exists": true,
-      "status": "normal_root_setup",
-      "target": "archive/frozen_milestones/01_local_foundation/response_fibre_normal_root_v0_9_7_oneclick.py",
-      "target_exists": false
+      "status": "finite_continuation_input"
     },
     {
+      "archive_path": "archive/frozen_milestones/01_local_foundation/response_fibre_recenter_preflight_v0_9_6_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "014d265a818bbd82c8aa8805317e61222ccf13136df871947a71ffa9e0e38291",
       "classification": "01_local_foundation",
-      "references": [
+      "legacy_path": "response_fibre_recenter_preflight_v0_9_6_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "SHA256SUMS_v0.9.32.txt",
+        "SHA256SUMS.txt",
+        "tools/plan_archive_migration.py",
+        "tools/verify_release.py",
+        "archive/frozen_milestones/01_local_foundation/response_fibre_normal_root_v0_9_7_oneclick.py",
+        "docs/ARTIFACT_INDEX.md"
+      ],
+      "status": "normal_root_preflight"
+    },
+    {
+      "archive_path": "archive/frozen_milestones/01_local_foundation/response_fibre_normal_root_v0_9_7_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "0f3cc380236601f56b96ac7e89ba77c861d3822eb4a91ef99b3ad6daa26af1a9",
+      "classification": "01_local_foundation",
+      "legacy_path": "response_fibre_normal_root_v0_9_7_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "666fad44e9d370466f43860cd4e04ebb48769fc1d92f88bbf3fc139c8e6a1cdb",
-      "source": "response_fibre_arb_normal_root_v0_9_8_oneclick.py",
-      "source_exists": true,
-      "status": "normal_root_setup",
-      "target": "archive/frozen_milestones/01_local_foundation/response_fibre_arb_normal_root_v0_9_8_oneclick.py",
-      "target_exists": false
+      "status": "normal_root_setup"
     },
     {
+      "archive_path": "archive/frozen_milestones/01_local_foundation/response_fibre_arb_normal_root_v0_9_8_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "666fad44e9d370466f43860cd4e04ebb48769fc1d92f88bbf3fc139c8e6a1cdb",
+      "classification": "01_local_foundation",
+      "legacy_path": "response_fibre_arb_normal_root_v0_9_8_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "SHA256SUMS_v0.9.32.txt",
+        "SHA256SUMS.txt",
+        "tools/plan_archive_migration.py",
+        "tools/verify_release.py",
+        "docs/ARTIFACT_INDEX.md"
+      ],
+      "status": "normal_root_setup"
+    },
+    {
+      "archive_path": "archive/frozen_milestones/02_second_chart/response_fibre_recentered_frame_v0_9_9_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "5c95b625279c024168123b9ff0ca11451feb43794ce926f518920b6b4380ed10",
       "classification": "02_second_chart",
-      "references": [
+      "legacy_path": "response_fibre_recentered_frame_v0_9_9_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
-        "response_fibre_second_chart_v0_9_10_oneclick.py",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
+        "archive/frozen_milestones/02_second_chart/response_fibre_second_chart_v0_9_10_oneclick.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "5c95b625279c024168123b9ff0ca11451feb43794ce926f518920b6b4380ed10",
-      "source": "response_fibre_recentered_frame_v0_9_9_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/02_second_chart/response_fibre_recentered_frame_v0_9_9_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/02_second_chart/response_fibre_second_chart_v0_9_10_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "c2c1dfca9504ae7a6efa1d698839054099ea04ef154c8a8873f6fd410562fe4a",
       "classification": "02_second_chart",
-      "references": [
+      "legacy_path": "response_fibre_second_chart_v0_9_10_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
-        "response_fibre_signed_field_export_v0_9_22_oneclick.py",
-        "response_fibre_finite_continuation_v0_9_11_oneclick.py",
-        "response_fibre_executable_adapter_v0_9_17_oneclick.py",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
+        "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_signed_field_export_v0_9_22_oneclick.py",
+        "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_executable_adapter_v0_9_17_oneclick.py",
+        "archive/frozen_milestones/02_second_chart/response_fibre_finite_continuation_v0_9_11_oneclick.py",
         "docs/ARTIFACT_INDEX.md",
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py",
         "scripts/reproduce_finite_continuation.py"
       ],
-      "sha256": "e83ba04cf823b99ee1ae01d0d3d06c229e8699640950ff41e97730bc01a5e48c",
-      "source": "response_fibre_second_chart_v0_9_10_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/02_second_chart/response_fibre_second_chart_v0_9_10_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/02_second_chart/response_fibre_finite_continuation_v0_9_11_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "2ef03361e3654b8dbf5e6bbb773094a30f1ea5d67c084344f6032a2b746da72a",
       "classification": "02_second_chart",
-      "references": [
+      "legacy_path": "response_fibre_finite_continuation_v0_9_11_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
-        "response_fibre_transition_preflight_v0_9_12_oneclick.py",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
+        "archive/frozen_milestones/02_second_chart/response_fibre_transition_preflight_v0_9_12_oneclick.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "a589f46b25be3eb8876dcfa2da3b1ed0687eb2215782346e516049e5db39a7ab",
-      "source": "response_fibre_finite_continuation_v0_9_11_oneclick.py",
-      "source_exists": true,
-      "status": "finite_continuation_input",
-      "target": "archive/frozen_milestones/02_second_chart/response_fibre_finite_continuation_v0_9_11_oneclick.py",
-      "target_exists": false
+      "status": "finite_continuation_input"
     },
     {
+      "archive_path": "archive/frozen_milestones/02_second_chart/response_fibre_transition_preflight_v0_9_12_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "3e659124c4148d6747b219853795a087b09e8383b08a2ab09827a8ac2756d5fb",
       "classification": "02_second_chart",
-      "references": [
+      "legacy_path": "response_fibre_transition_preflight_v0_9_12_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "57259b57fcb51fcd0ff84ff9650d43f85359924acac28726080eed51836731e7",
-      "source": "response_fibre_transition_preflight_v0_9_12_oneclick.py",
-      "source_exists": true,
-      "status": "diagnostic",
-      "target": "archive/frozen_milestones/02_second_chart/response_fibre_transition_preflight_v0_9_12_oneclick.py",
-      "target_exists": false
+      "status": "diagnostic"
     },
     {
+      "archive_path": "archive/frozen_milestones/02_second_chart/response_fibre_route_correction_v0_9_13_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "8bfc1fe6cb67ac7c5cc626e01fd1d3b29ad903c691955dcee90df60ca1df04b5",
       "classification": "02_second_chart",
-      "references": [
+      "legacy_path": "response_fibre_route_correction_v0_9_13_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "8bfc1fe6cb67ac7c5cc626e01fd1d3b29ad903c691955dcee90df60ca1df04b5",
-      "source": "response_fibre_route_correction_v0_9_13_oneclick.py",
-      "source_exists": true,
-      "status": "scope_correction",
-      "target": "archive/frozen_milestones/02_second_chart/response_fibre_route_correction_v0_9_13_oneclick.py",
-      "target_exists": false
+      "status": "scope_correction"
     },
     {
+      "archive_path": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_endpoint_identifiability_v0_9_14_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "46255effc628a41de3357d7f3b8cae9675d06b4e64f5d0bf4d65876ab9e56f9f",
       "classification": "03_endpoint_enclosure",
-      "references": [
+      "legacy_path": "response_fibre_endpoint_identifiability_v0_9_14_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "46255effc628a41de3357d7f3b8cae9675d06b4e64f5d0bf4d65876ab9e56f9f",
-      "source": "response_fibre_endpoint_identifiability_v0_9_14_oneclick.py",
-      "source_exists": true,
-      "status": "endpoint_diagnostic",
-      "target": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_endpoint_identifiability_v0_9_14_oneclick.py",
-      "target_exists": false
+      "status": "endpoint_diagnostic"
     },
     {
+      "archive_path": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_validated_lohner_v0_9_15_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "1f16a9eecf9439396d9c2a7e139aef5131e7d066466331e637b35f4b39d432f0",
       "classification": "03_endpoint_enclosure",
-      "references": [
+      "legacy_path": "response_fibre_validated_lohner_v0_9_15_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "1f16a9eecf9439396d9c2a7e139aef5131e7d066466331e637b35f4b39d432f0",
-      "source": "response_fibre_validated_lohner_v0_9_15_oneclick.py",
-      "source_exists": true,
-      "status": "adapter_exploration",
-      "target": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_validated_lohner_v0_9_15_oneclick.py",
-      "target_exists": false
+      "status": "adapter_exploration"
     },
     {
+      "archive_path": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_adapter_hardening_v0_9_16_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "ab048fa61d8d4dd7016f13648cb2b3a9bd249b66b279ab3a6702cde9ceccf098",
       "classification": "03_endpoint_enclosure",
-      "references": [
+      "legacy_path": "response_fibre_adapter_hardening_v0_9_16_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "ab048fa61d8d4dd7016f13648cb2b3a9bd249b66b279ab3a6702cde9ceccf098",
-      "source": "response_fibre_adapter_hardening_v0_9_16_oneclick.py",
-      "source_exists": true,
-      "status": "adapter_hardening",
-      "target": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_adapter_hardening_v0_9_16_oneclick.py",
-      "target_exists": false
+      "status": "adapter_hardening"
     },
     {
+      "archive_path": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_executable_adapter_v0_9_17_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "a7fb6e2e4d746c85f9a9b719052312758b38d615f4341c1b843921810020d799",
       "classification": "03_endpoint_enclosure",
-      "references": [
+      "legacy_path": "response_fibre_executable_adapter_v0_9_17_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
-        "response_fibre_lohner_stress_v0_9_18_oneclick.py",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
+        "archive/frozen_milestones/superseded/v0_9_18/response_fibre_lohner_stress_v0_9_18_oneclick.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "192ccc65352d7f5473cfb22a295ebbaf5e9a22757083232bb2b1a3a78c56e8c0",
-      "source": "response_fibre_executable_adapter_v0_9_17_oneclick.py",
-      "source_exists": true,
-      "status": "adapter_hardening",
-      "target": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_executable_adapter_v0_9_17_oneclick.py",
-      "target_exists": false
+      "status": "adapter_hardening"
     },
     {
+      "archive_path": "archive/frozen_milestones/superseded/v0_9_18/response_fibre_lohner_stress_v0_9_18_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "ecae4aca0ad0dc4952c67ed97795964d2a8942d97d08de5e095bca2ca800793c",
       "classification": "superseded/v0_9_18",
-      "references": [
+      "legacy_path": "response_fibre_lohner_stress_v0_9_18_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "da3aaaa556c1acd92d8a0c496593fc905bf1b152dc0b072120a5fe558b081377",
-      "source": "response_fibre_lohner_stress_v0_9_18_oneclick.py",
-      "source_exists": true,
-      "status": "superseded_by_v0_9_20",
-      "target": "archive/frozen_milestones/superseded/v0_9_18/response_fibre_lohner_stress_v0_9_18_oneclick.py",
-      "target_exists": false
+      "status": "superseded_by_v0_9_20"
     },
     {
+      "archive_path": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_local_dx_target_v0_9_19_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "faebdc7ad3944b8a720a2c34185fec07ded620a9f02df998131536984b57e9e6",
       "classification": "03_endpoint_enclosure",
-      "references": [
+      "legacy_path": "response_fibre_local_dx_target_v0_9_19_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "faebdc7ad3944b8a720a2c34185fec07ded620a9f02df998131536984b57e9e6",
-      "source": "response_fibre_local_dx_target_v0_9_19_oneclick.py",
-      "source_exists": true,
-      "status": "norm_diagnostic",
-      "target": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_local_dx_target_v0_9_19_oneclick.py",
-      "target_exists": false
+      "status": "norm_diagnostic"
     },
     {
+      "archive_path": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "d0d98c395cc84c89322a62d6a5ce46430e42df80d0511b16f4623e119765a105",
       "classification": "03_endpoint_enclosure",
-      "references": [
+      "legacy_path": "response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
@@ -280,88 +287,88 @@
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "d0d98c395cc84c89322a62d6a5ce46430e42df80d0511b16f4623e119765a105",
-      "source": "response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py",
-      "source_exists": true,
-      "status": "norm_correction",
-      "target": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py",
-      "target_exists": false
+      "status": "norm_correction"
     },
     {
+      "archive_path": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "0b66ce711aeb6c27a889a7eab264b8517c1b8b094d9fa833516130337ac5ab03",
       "classification": "03_endpoint_enclosure",
-      "references": [
+      "legacy_path": "response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "0b66ce711aeb6c27a889a7eab264b8517c1b8b094d9fa833516130337ac5ab03",
-      "source": "response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
-      "source_exists": true,
-      "status": "endpoint_enclosure",
-      "target": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
-      "target_exists": false
+      "status": "endpoint_enclosure"
     },
     {
+      "archive_path": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_signed_field_export_v0_9_22_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "7620b0b07c233e2b4bbaee61eba19093fe65bd92437fefff29043787e9c5a624",
       "classification": "03_endpoint_enclosure",
-      "references": [
+      "legacy_path": "response_fibre_signed_field_export_v0_9_22_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
-        "response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
+        "archive/frozen_milestones/04_third_chart/response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
         "docs/ARTIFACT_INDEX.md",
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "22c1d0f0f4ae736e22e317fe90371a0b160140176a8c214e18d2f151be2d3cf7",
-      "source": "response_fibre_signed_field_export_v0_9_22_oneclick.py",
-      "source_exists": true,
-      "status": "signed_field_export",
-      "target": "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_signed_field_export_v0_9_22_oneclick.py",
-      "target_exists": false
+      "status": "signed_field_export"
     },
     {
+      "archive_path": "archive/frozen_milestones/04_third_chart/response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "54a8a7e61ee09c683507964d55ddffbc24bd550ec9be935bdfe8649ce2d4898d",
       "classification": "04_third_chart",
-      "references": [
+      "legacy_path": "response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
-        "response_fibre_third_frame_v0_9_24_oneclick.py",
         "SHA256SUMS.txt",
-        "response_fibre_third_frame_backend_v0_9_25_oneclick.py",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
+        "archive/frozen_milestones/04_third_chart/response_fibre_third_frame_v0_9_24_oneclick.py",
+        "archive/frozen_milestones/04_third_chart/response_fibre_third_frame_backend_v0_9_25_oneclick.py",
         "docs/ARTIFACT_INDEX.md",
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "c4099345b0479bc52fffbc9a5e1b376261ec1c49d64d606505d5ac50a3b6db22",
-      "source": "response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/04_third_chart/response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/04_third_chart/response_fibre_third_frame_v0_9_24_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "cc17c3b4d7907c0e2e5b8ebffa9db6c876593864776a8d378b943e8b1cf5ed35",
       "classification": "04_third_chart",
-      "references": [
+      "legacy_path": "response_fibre_third_frame_v0_9_24_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
-        "response_fibre_third_frame_backend_v0_9_25_oneclick.py",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
+        "archive/frozen_milestones/04_third_chart/response_fibre_third_frame_backend_v0_9_25_oneclick.py",
         "docs/ARTIFACT_INDEX.md"
       ],
-      "sha256": "e74f427355513d4f56bdfa1eb3f251bcac7b9dbff644e3ea4c776aa19f617fa2",
-      "source": "response_fibre_third_frame_v0_9_24_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/04_third_chart/response_fibre_third_frame_v0_9_24_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/04_third_chart/response_fibre_third_frame_backend_v0_9_25_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "d43c88eeff59f8a78abef20f86f420157faa7635baac38bbd6019c4770fc78ce",
       "classification": "04_third_chart",
-      "references": [
+      "legacy_path": "response_fibre_third_frame_backend_v0_9_25_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
@@ -369,16 +376,16 @@
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "a94ba1ab6b5161037b1db0e0d7681487d638ec02e6a78a51739dff9b7935305d",
-      "source": "response_fibre_third_frame_backend_v0_9_25_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/04_third_chart/response_fibre_third_frame_backend_v0_9_25_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/04_third_chart/response_fibre_third_picard_v0_9_26_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "be24417a092ae0cd21d9394bd2ac2a36edb696b1ec56bdc516e0a3bfc8f65f15",
       "classification": "04_third_chart",
-      "references": [
+      "legacy_path": "response_fibre_third_picard_v0_9_26_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
@@ -386,16 +393,16 @@
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "be24417a092ae0cd21d9394bd2ac2a36edb696b1ec56bdc516e0a3bfc8f65f15",
-      "source": "response_fibre_third_picard_v0_9_26_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/04_third_chart/response_fibre_third_picard_v0_9_26_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/04_third_chart/response_fibre_third_chart_finite_continuation_v0_9_27_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "7582eb9431d03ab6c66102977590fd5f827e38cadb1b8944833ca4328db629b5",
       "classification": "04_third_chart",
-      "references": [
+      "legacy_path": "response_fibre_third_chart_finite_continuation_v0_9_27_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
@@ -403,16 +410,16 @@
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "7582eb9431d03ab6c66102977590fd5f827e38cadb1b8944833ca4328db629b5",
-      "source": "response_fibre_third_chart_finite_continuation_v0_9_27_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/04_third_chart/response_fibre_third_chart_finite_continuation_v0_9_27_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/04_third_chart/response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "a3422754f2b7c2359d03187c441a70421b5368bcee0fb61c2598eef674b9727a",
       "classification": "04_third_chart",
-      "references": [
+      "legacy_path": "response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
@@ -421,16 +428,16 @@
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "a3422754f2b7c2359d03187c441a70421b5368bcee0fb61c2598eef674b9727a",
-      "source": "response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py",
-      "source_exists": true,
-      "status": "endpoint_enclosure",
-      "target": "archive/frozen_milestones/04_third_chart/response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py",
-      "target_exists": false
+      "status": "endpoint_enclosure"
     },
     {
+      "archive_path": "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_frame_v0_9_29_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "c2905366bab8fd1efd323f5b01d2c11ba42451b43c0f6a0f1f525008e55ddda3",
       "classification": "05_fourth_chart",
-      "references": [
+      "legacy_path": "response_fibre_fourth_frame_v0_9_29_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
@@ -439,16 +446,16 @@
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "c2905366bab8fd1efd323f5b01d2c11ba42451b43c0f6a0f1f525008e55ddda3",
-      "source": "response_fibre_fourth_frame_v0_9_29_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_frame_v0_9_29_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_picard_v0_9_30_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "426b55e5f8d2b37f2d62a597fbc8f82dc9bba42cc46903c35c553905699b4e52",
       "classification": "05_fourth_chart",
-      "references": [
+      "legacy_path": "response_fibre_fourth_picard_v0_9_30_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
@@ -456,16 +463,16 @@
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "426b55e5f8d2b37f2d62a597fbc8f82dc9bba42cc46903c35c553905699b4e52",
-      "source": "response_fibre_fourth_picard_v0_9_30_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_picard_v0_9_30_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_chart_finite_v0_9_31_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "8a295223ce0b4dde30019b45943b0810e3731e6276abc7b2d56110cfd212d454",
       "classification": "05_fourth_chart",
-      "references": [
+      "legacy_path": "response_fibre_fourth_chart_finite_v0_9_31_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
@@ -473,16 +480,16 @@
         "docs/REPRODUCIBILITY.md",
         "scripts/reproduce_finite_chain.py"
       ],
-      "sha256": "8a295223ce0b4dde30019b45943b0810e3731e6276abc7b2d56110cfd212d454",
-      "source": "response_fibre_fourth_chart_finite_v0_9_31_oneclick.py",
-      "source_exists": true,
-      "status": "valid_milestone",
-      "target": "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_chart_finite_v0_9_31_oneclick.py",
-      "target_exists": false
+      "status": "valid_milestone"
     },
     {
+      "archive_path": "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "2afab46cbce1693537a14ff02f2c979f0df19031ba75387d59c2da7b17ec7831",
       "classification": "05_fourth_chart",
-      "references": [
+      "legacy_path": "response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
         "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
@@ -492,184 +499,118 @@
         "scripts/reproduce_finite_chain.py",
         "scripts/reproduce_finite_continuation.py"
       ],
-      "sha256": "2afab46cbce1693537a14ff02f2c979f0df19031ba75387d59c2da7b17ec7831",
-      "source": "response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
-      "source_exists": true,
-      "status": "valid_input_to_v0_10_chain",
-      "target": "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
-      "target_exists": false
+      "status": "valid_input_to_v0_10_chain"
     },
     {
+      "archive_path": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_active_backend_export_v0_10_1_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "1bc61869f4dda75753fe5f44722cb308cecc7d335b1e619d18b570f99234f93e",
       "classification": "06_taylor_lohner",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "docs/ARTIFACT_INDEX.md",
-        "docs/REPRODUCIBILITY.md",
-        "scripts/reproduce_finite_chain.py"
+      "legacy_path": "src/geometric_flow_active_backend_export_v0_10_1_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "tools/plan_archive_migration.py"
       ],
-      "sha256": "1bc61869f4dda75753fe5f44722cb308cecc7d335b1e619d18b570f99234f93e",
-      "source": "src/geometric_flow_active_backend_export_v0_10_1_oneclick.py",
-      "source_exists": true,
-      "status": "valid_chain_component",
-      "target": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_active_backend_export_v0_10_1_oneclick.py",
-      "target_exists": false
+      "status": "valid_chain_component"
     },
     {
+      "archive_path": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "39fe04f762f5ad50e894bbe86ce9c2f7267c75ece1ed461f4b67059f50fb4337",
       "classification": "06_taylor_lohner",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "docs/REPRODUCIBILITY.md",
-        "scripts/reproduce_finite_chain.py"
+      "legacy_path": "src/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "tools/plan_archive_migration.py"
       ],
-      "sha256": "39fe04f762f5ad50e894bbe86ce9c2f7267c75ece1ed461f4b67059f50fb4337",
-      "source": "src/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py",
-      "source_exists": true,
-      "status": "valid_chain_component",
-      "target": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py",
-      "target_exists": false
+      "status": "valid_chain_component"
     },
     {
+      "archive_path": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "a0a524b34011e8646d19cfecc45ca52c0475efc8af6a5f62cd4e5c9459c6416e",
       "classification": "06_taylor_lohner",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "docs/REPRODUCIBILITY.md",
-        "scripts/reproduce_finite_chain.py"
+      "legacy_path": "src/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "tools/plan_archive_migration.py"
       ],
-      "sha256": "a0a524b34011e8646d19cfecc45ca52c0475efc8af6a5f62cd4e5c9459c6416e",
-      "source": "src/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py",
-      "source_exists": true,
-      "status": "current_effective_chain",
-      "target": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py",
-      "target_exists": false
+      "status": "current_effective_chain"
     },
     {
+      "archive_path": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "bd8ded771c53460f7bb8cf216b7f3e2a4837bf45186d9f632e77a5a392b195e2",
       "classification": "06_taylor_lohner",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "tools/verify_update.py",
-        "docs/REPRODUCIBILITY.md",
-        "scripts/reproduce_finite_chain.py",
-        "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py"
+      "legacy_path": "src/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "tools/plan_archive_migration.py"
       ],
-      "sha256": "bd8ded771c53460f7bb8cf216b7f3e2a4837bf45186d9f632e77a5a392b195e2",
-      "source": "src/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py",
-      "source_exists": true,
-      "status": "current_effective_chain",
-      "target": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py",
-      "target_exists": false
+      "status": "current_effective_chain"
     },
     {
+      "archive_path": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "d46a36c7c269bbc16b44221aa32bb3d8e2daaed2812ed97e517c2c98f3d38df8",
       "classification": "06_taylor_lohner",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "tools/verify_update.py",
-        "docs/ARTIFACT_INDEX.md",
-        "docs/REPRODUCIBILITY.md",
-        "scripts/reproduce_finite_chain.py",
-        "scripts/reproduce_field_jacobian.py",
-        "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py"
+      "legacy_path": "src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "tools/plan_archive_migration.py"
       ],
-      "sha256": "d46a36c7c269bbc16b44221aa32bb3d8e2daaed2812ed97e517c2c98f3d38df8",
-      "source": "src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
-      "source_exists": true,
-      "status": "current_effective_chain",
-      "target": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
-      "target_exists": false
+      "status": "current_effective_chain"
     },
     {
+      "archive_path": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "fa874ac178ad53fc622e3e34ae6bc818b3aab87991c7c729ac643cf7cdeb1113",
       "classification": "06_taylor_lohner",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "tools/verify_update.py",
-        "docs/ARTIFACT_INDEX.md",
-        "docs/REPRODUCIBILITY.md",
-        "scripts/reproduce_finite_chain.py",
-        "scripts/reproduce_lohner_flowpipe.py"
+      "legacy_path": "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "tools/plan_archive_migration.py"
       ],
-      "sha256": "dd07f58657ebb20f706061141634be679a7f8706a2b1c6cf432f8ebe38a4581f",
-      "source": "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
-      "source_exists": true,
-      "status": "latest_reference_certificate",
-      "target": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
-      "target_exists": false
+      "status": "latest_reference_certificate"
     },
     {
+      "archive_path": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "d1723083ca718719f716de0af384cc9fd813d5504cbeb24017f5a63b3794ec46",
       "classification": "06_taylor_lohner",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "docs/ARTIFACT_INDEX.md",
-        "docs/REPRODUCIBILITY.md",
-        "scripts/reproduce_finite_chain.py",
-        "scripts/reproduce_finite_continuation.py"
+      "legacy_path": "src/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "tools/plan_archive_migration.py"
       ],
-      "sha256": "d1723083ca718719f716de0af384cc9fd813d5504cbeb24017f5a63b3794ec46",
-      "source": "src/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
-      "source_exists": true,
-      "status": "source_certified_packaging_pending",
-      "target": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
-      "target_exists": false
+      "status": "source_certified_packaging_pending"
     },
     {
+      "archive_path": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "6087b72c324d7ec62c0271cf39fe04586db538753542c518333bbf1c34b0aac1",
       "classification": "06_taylor_lohner",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "docs/ARTIFACT_INDEX.md",
-        "docs/REPRODUCIBILITY.md",
-        "scripts/reproduce_finite_chain.py",
-        "scripts/audit_fifth_frame.py"
+      "legacy_path": "src/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "tools/plan_archive_migration.py"
       ],
-      "sha256": "6087b72c324d7ec62c0271cf39fe04586db538753542c518333bbf1c34b0aac1",
-      "source": "src/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
-      "source_exists": true,
-      "status": "fifth_frame_contract_open",
-      "target": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
-      "target_exists": false
+      "status": "fifth_frame_contract_open"
     },
     {
+      "archive_path": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
+      "archive_path_exists": true,
+      "archive_sha256": "ae9ae252963891a712367cbbb29adc784a23899cbddce6e625e7ede02d12f82d",
       "classification": "06_taylor_lohner",
-      "references": [
-        "SHA256SUMS_v0.9.32.txt",
-        "SHA256SUMS.txt",
-        "tools/plan_archive_migration.py",
-        "tools/verify_release.py",
-        "docs/ARTIFACT_INDEX.md",
-        "docs/REPRODUCIBILITY.md",
-        "scripts/reproduce_finite_chain.py",
-        "scripts/audit_fifth_frame.py"
+      "legacy_path": "src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
+      "legacy_path_exists": false,
+      "remaining_legacy_references": [
+        "tools/plan_archive_migration.py"
       ],
-      "sha256": "08dbe380fdbd130826819d85bf278d9b7aa9fb4a8bdc905a983f86579909ae7f",
-      "source": "src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
-      "source_exists": true,
-      "status": "implementation_open_fail_closed",
-      "target": "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
-      "target_exists": false
+      "status": "implementation_open_fail_closed"
     }
   ],
-  "mode": "preview_only",
-  "moves_planned": 38,
+  "mode": "archive_migration_applied",
+  "moves_audited": 38,
   "scientific_claim_change_planned": false
 }

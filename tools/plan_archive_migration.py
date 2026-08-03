@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Preview a safe archive migration for frozen milestone scripts.
+"""Audit the frozen milestone archive migration.
 
-The default mode is read-only.  It writes a migration report but does not move
-or rewrite any frozen proof artifact.
+This tool is read-only.  It verifies the old-to-new path map after the archive
+migration and writes a report with archived SHA-256 values and remaining legacy
+text references.
 """
 
 from __future__ import annotations
@@ -300,44 +301,48 @@ def build_report() -> dict[str, object]:
     for plan in PLANS:
         source_path = ROOT / plan.source
         target_path = ROOT / plan.target
+        source_exists = source_path.is_file()
+        target_exists = target_path.is_file()
         entries.append(
             {
-                "source": plan.source,
-                "target": plan.target,
+                "legacy_path": plan.source,
+                "archive_path": plan.target,
                 "classification": plan.classification,
                 "status": plan.status,
-                "source_exists": source_path.is_file(),
-                "target_exists": target_path.exists(),
-                "sha256": sha256(source_path) if source_path.is_file() else None,
-                "references": references_for(plan.source, text_files),
+                "legacy_path_exists": source_exists,
+                "archive_path_exists": target_exists,
+                "archive_sha256": sha256(target_path) if target_exists else None,
+                "remaining_legacy_references": references_for(plan.source, text_files),
             }
         )
     return {
-        "mode": "preview_only",
-        "moves_planned": len(entries),
+        "mode": "archive_migration_applied",
+        "moves_audited": len(entries),
+        "all_legacy_paths_removed": all(not entry["legacy_path_exists"] for entry in entries),
+        "all_archive_paths_present": all(entry["archive_path_exists"] for entry in entries),
         "content_rewrite_planned": False,
         "scientific_claim_change_planned": False,
-        "apply_policy": "do not move files until a dedicated migration PR updates wrappers, manifests, references, and CI",
+        "apply_policy": "migration already performed by git mv; this tool remains read-only",
         "entries": entries,
     }
 
 
 def write_markdown(report: dict[str, object], path: Path) -> None:
     lines = [
-        "# Archive Migration Plan",
+        "# Archive Migration Audit",
         "",
-        "Mode: preview only.",
+        f"Mode: {report['mode']}.",
         "",
-        "No theorem-producing expression is modified, no certificate is promoted,",
-        "and no frozen file is moved by this report generator.",
+        "No theorem-producing expression was intentionally modified, no certificate",
+        "was promoted, and this report generator does not move files.",
         "",
-        "| Source | Target | Status | References |",
+        "| Legacy path | Archive path | Status | Remaining legacy references |",
         "| --- | --- | --- | --- |",
     ]
     for entry in report["entries"]:
-        refs = ", ".join(entry["references"]) if entry["references"] else "-"
+        refs = ", ".join(entry["remaining_legacy_references"]) if entry["remaining_legacy_references"] else "-"
         lines.append(
-            f"| `{entry['source']}` | `{entry['target']}` | "
+            f"| `{entry['legacy_path']}` | `{entry['archive_path']}` | "
             f"{entry['status']} | {refs} |"
         )
     lines.append("")
@@ -351,11 +356,11 @@ def main() -> int:
     parser.add_argument(
         "--apply",
         action="store_true",
-        help="reserved for a dedicated migration PR; always fails closed here",
+        help="disabled; this audit tool never moves files",
     )
     args = parser.parse_args()
     if args.apply:
-        raise SystemExit("--apply is intentionally disabled in this safety package")
+        raise SystemExit("--apply is intentionally disabled; use explicit git mv in a reviewed migration PR")
     report = build_report()
     json_path = Path(args.json)
     md_path = Path(args.markdown)
@@ -365,7 +370,7 @@ def main() -> int:
     write_markdown(report, md_path)
     print(f"wrote {json_path}")
     print(f"wrote {md_path}")
-    print("mode: preview_only")
+    print("mode: archive_migration_applied")
     return 0
 
 
