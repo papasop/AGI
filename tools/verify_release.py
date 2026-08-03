@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Fail-closed structural/hash verification for the v0.9.23 milestone."""
+"""Fail-closed structural/hash verification for the current release package."""
 
 from __future__ import annotations
 
+import ast
 import hashlib
 import json
 import sys
@@ -24,7 +25,12 @@ SHA256SUMS = ROOT / "SHA256SUMS.txt"
 README = ROOT / "README.md"
 CLAIM_SCOPE = ROOT / "docs" / "CLAIM_SCOPE.md"
 V0923_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.23.md"
+V0946_RELEASE_NOTES = ROOT / "RELEASE_NOTES_v0.9.46.md"
 SUPERSEDED_RESULTS = ROOT / "SUPERSEDED_RESULTS.md"
+BACKEND_BINDING = ROOT / "docs" / "BACKEND_BINDING.md"
+V0946_CANDIDATE = ROOT / "src" / "geometric_flow_native_point_field_candidate_v0_9_46.py"
+V0946_HARNESS = ROOT / "src" / "response_fibre_native_binding_harness_v0_9_46_standalone.py"
+V0946_TEST = ROOT / "tests" / "test_v0946_contract.py"
 
 EXPECTED = {
     V074_SOURCE: "1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8",
@@ -62,6 +68,17 @@ EXPECTED_V0923_SCRIPTS = {
     "response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
     "response_fibre_signed_field_export_v0_9_22_oneclick.py",
     "response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
+}
+EXPECTED_V0946_FILES = {
+    "RELEASE_NOTES_v0.9.46.md",
+    "docs/BACKEND_BINDING.md",
+    "src/geometric_flow_native_point_field_candidate_v0_9_46.py",
+    "src/response_fibre_native_binding_harness_v0_9_46_standalone.py",
+    "frozen/response_fibre_center_box_field_v0_9_43_3_standalone.py",
+    "frozen/response_fibre_displaced_box_diagnostic_v0_9_44_standalone.py",
+    "frozen/response_fibre_fourth_picard_v0_9_30_standalone.py",
+    "frozen/response_fibre_point_field_refactor_v0_9_45_standalone.py",
+    "tests/test_v0946_contract.py",
 }
 
 
@@ -198,6 +215,68 @@ def main() -> int:
             and "v0.9.19" in superseded
             and "Resolution in v0.9.20" in superseded
             and "step 557" in superseded
+        )
+
+    if SHA256SUMS.is_file():
+        sums = read_sha256sums(SHA256SUMS)
+        checks["v0946_all_expected_files_listed"] = EXPECTED_V0946_FILES <= set(sums)
+
+    checks["v0946_release_notes_exists"] = V0946_RELEASE_NOTES.is_file()
+    if V0946_RELEASE_NOTES.is_file():
+        notes = V0946_RELEASE_NOTES.read_text(encoding="utf-8")
+        checks["v0946_release_notes_state_implementation_open"] = (
+            "`IMPLEMENTATION_OPEN`" in notes
+            and "must not be described as a certified\npoint-dependent field" in notes
+            and "NotImplementedError" in notes
+        )
+
+    checks["v0946_backend_binding_exists"] = BACKEND_BINDING.is_file()
+    if BACKEND_BINDING.is_file():
+        binding = BACKEND_BINDING.read_text(encoding="utf-8")
+        checks["v0946_backend_binding_forbids_shortcuts"] = (
+            "Forbidden shortcuts" in binding
+            and "Returning frozen `FIELD_MIDPOINTS/FIELD_RADII`" in binding
+            and "formal Jacobian" in binding
+        )
+
+    checks["v0946_candidate_exists"] = V0946_CANDIDATE.is_file()
+    if V0946_CANDIDATE.is_file():
+        candidate = V0946_CANDIDATE.read_text(encoding="utf-8")
+        tree = ast.parse(candidate)
+        funcs = {n.name for n in tree.body if isinstance(n, ast.FunctionDef)}
+        not_implemented_calls = [
+            n for n in ast.walk(tree)
+            if isinstance(n, ast.Call)
+            and isinstance(n.func, ast.Name)
+            and n.func.id == "NotImplementedError"
+        ]
+        checks["v0946_candidate_required_callbacks_exist"] = {
+            "implicit_fibre_root_solver",
+            "pullback_metric",
+            "projected_gradient",
+            "formal_vector_field_X",
+        } <= funcs
+        checks["v0946_candidate_remains_fail_closed"] = bool(not_implemented_calls)
+        checks["v0946_candidate_has_no_fixed_field_shortcut"] = (
+            "FIELD_MIDPOINTS" not in candidate
+            and "FIELD_RADII" not in candidate
+        )
+
+    checks["v0946_harness_exists"] = V0946_HARNESS.is_file()
+    if V0946_HARNESS.is_file():
+        harness = V0946_HARNESS.read_text(encoding="utf-8")
+        checks["v0946_harness_states_nonclaim"] = (
+            "IMPLEMENTATION_OPEN" in harness
+            and "formal_jacobian_DX_ready\":False" in harness
+            and "global_flow_claimed\":False" in harness
+        )
+
+    checks["v0946_contract_test_exists"] = V0946_TEST.is_file()
+    if V0946_TEST.is_file():
+        test_text = V0946_TEST.read_text(encoding="utf-8")
+        checks["v0946_contract_test_expects_fail_closed_scaffold"] = (
+            "test_unimplemented_candidate_is_explicitly_fail_closed" in test_text
+            and "assert calls" in test_text
         )
 
     print(json.dumps(checks, indent=2, sort_keys=True))

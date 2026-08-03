@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.9.46 — repository-native point-field backend refactor scaffold
+
+- Add an implementation-open candidate module for the repository-native
+  point/box Arb field backend.
+- Add a strict binding harness that rejects fixed-envelope shortcuts, truthy
+  JSON shams, invalid input handling, and candidates that leave
+  `NotImplementedError` in place.
+- Add contract tests that intentionally require the scaffold candidate to
+  remain fail-closed until a real implementation replaces the placeholders.
+- Add hash-bound frozen reference sources from the v0.9.30, v0.9.43.3,
+  v0.9.44, and v0.9.45 development chain.
+- Document the required `a_box -> root -> metric -> projected gradient ->
+  normalized field` dependency chain in `docs/BACKEND_BINDING.md`.
+- Explicitly exclude any claim of a certified point-dependent field, formal
+  Jacobian, QR/Lohner flowpipe, fifth frame, or global flow.
+
 ## v0.9.23 — signed endpoint and parametric-root inclusion
 
 - Correct the v0.9.18-v0.9.19 duplicated-dimension-factor diagnosis: the
