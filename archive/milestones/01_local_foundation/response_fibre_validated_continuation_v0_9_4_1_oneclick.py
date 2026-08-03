@@ -321,7 +321,7 @@ def one_click(outdir: Path, explicit_v093: Optional[str]=None) -> Dict[str,Any]:
         "emit a formal chart transition image box at every chart boundary"
       ],
       "next_command_after_backend_outputs":(
-        "python archive/frozen_milestones/01_local_foundation/response_fibre_validated_continuation_v0_9_4_1_oneclick.py "
+        "python archive/milestones/01_local_foundation/response_fibre_validated_continuation_v0_9_4_1_oneclick.py "
         "--certificates 'certificates/step_*.json'"),
       "claim_boundary":"This preflight defines and tests the continuation proof contract; it is not a multi-step or global-flow certificate."
     }

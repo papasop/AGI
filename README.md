@@ -37,15 +37,28 @@ Python 3.12 and `python-flint==0.8.0` are recommended.
 
 | Goal | Command |
 | --- | --- |
-| Recompute the local ODE theorem | `python scripts/reproduce_local_ode.py` |
+| Recompute the local ODE theorem | `python reproduce/local_theorem.py` |
 | Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |
-| Reproduce the fourth-chart Lohner flowpipe | `python scripts/reproduce_lohner_flowpipe.py` |
-| Audit the open fifth-frame target | `python scripts/audit_fifth_frame.py` |
+| Reproduce the fourth-chart Lohner flowpipe | `python reproduce/finite_continuation.py` |
+| Audit the open fifth-frame target | `python reproduce/open_next_frame_audit.py` |
 | Run the longer finite chain | `python scripts/reproduce_finite_continuation.py` |
 | Reproduce the same-expression field/Jacobian milestone | `python scripts/reproduce_field_jacobian.py` |
 
 The stable scripts verify the relevant frozen SHA-256 entries before calling
-their archived long-form proof drivers in `archive/frozen_milestones/`.
+their archived long-form proof drivers in `archive/milestones/`.
+
+## Repository Shape
+
+The visible repository structure is intentionally small:
+
+- `src/`: core geometric code and maintained formal backends;
+- `reproduce/`: the three paper-level reproduction entry points;
+- `archive/milestones/`: historical v0.9.x/v0.10.x milestone scripts with
+  original filenames preserved.
+
+New proof work should first attach to `src/` and the three `reproduce/`
+entry points. Avoid adding another user-facing versioned script unless it is
+also archived and indexed.
 
 ## Claim Boundary
 

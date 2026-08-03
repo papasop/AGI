@@ -2,6 +2,11 @@
 
 ## Unreleased — root and README navigation cleanup
 
+- Add `reproduce/` as the preferred three-layer reproduction surface and
+  shorten the historical archive path to `archive/milestones/`.
+- Keep `scripts/` as compatibility wrappers, while directing new proof work to
+  route through `src/`, `reproduce/`, and archived milestone files instead of
+  mechanically adding user-facing versioned scripts.
 - Remove root-level PR packaging text and duplicate claim-scope documentation.
 - Move release notes under `docs/releases/`, historical update/supersession
   notes under `docs/archive/`, and old release hash manifests under

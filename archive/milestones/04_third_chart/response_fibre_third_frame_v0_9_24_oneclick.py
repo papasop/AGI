@@ -30,7 +30,7 @@ VERSION = "0.9.24"
 TITLE = "GEOMETRIC-FLOW FORMAL THIRD-RECENTERED TANGENT-NORMAL FRAME AUDIT"
 REPOSITORY = "https://github.com/papasop/Geometric-Flow"
 FROZEN_COMMIT = "7e4a17e7fa8de859660694fef85ecd0990a9f577"
-V0923_NAME = "archive/frozen_milestones/04_third_chart/response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py"
+V0923_NAME = "archive/milestones/04_third_chart/response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py"
 V0923_URL = (
     "https://raw.githubusercontent.com/papasop/Geometric-Flow/"
     f"{FROZEN_COMMIT}/{V0923_NAME}"

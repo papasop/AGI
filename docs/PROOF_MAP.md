@@ -21,5 +21,5 @@ python scripts/audit_fifth_frame.py
 ```
 
 Historical proof scripts are indexed in `docs/ARTIFACT_INDEX.md` and stored
-under `archive/frozen_milestones/`.  The short wrappers under `scripts/` are
+under `archive/milestones/`.  The short wrappers under `scripts/` are
 the stable user-facing commands.

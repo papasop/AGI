@@ -36,7 +36,7 @@ VERSION = "0.9.25"
 TITLE = "GEOMETRIC-FLOW REPOSITORY-NATIVE ARB THIRD-FRAME CERTIFICATE GENERATOR"
 REPOSITORY = "https://github.com/papasop/Geometric-Flow"
 FROZEN_COMMIT = "7e4a17e7fa8de859660694fef85ecd0990a9f577"
-V0923_NAME = "archive/frozen_milestones/04_third_chart/response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py"
+V0923_NAME = "archive/milestones/04_third_chart/response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py"
 V0923_URL = (
     "https://raw.githubusercontent.com/papasop/Geometric-Flow/"
     f"{FROZEN_COMMIT}/{V0923_NAME}"
@@ -453,7 +453,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "ten_chart_continuation_certified": False,
         "global_flow_claimed": False,
         "next_command": (
-            "python archive/frozen_milestones/04_third_chart/response_fibre_third_frame_v0_9_24_oneclick.py "
+            "python archive/milestones/04_third_chart/response_fibre_third_frame_v0_9_24_oneclick.py "
             f"--frame-certificate {certificate_path}"
         ),
         "next_required_step": (

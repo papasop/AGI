@@ -9,9 +9,9 @@ from _entrypoint_utils import fail_closed_sha256, run_python_script, stable_pars
 
 
 ARTIFACTS = [
-    "archive/frozen_milestones/02_second_chart/response_fibre_second_chart_v0_9_10_oneclick.py",
-    "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
-    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
+    "archive/milestones/02_second_chart/response_fibre_second_chart_v0_9_10_oneclick.py",
+    "archive/milestones/05_fourth_chart/response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
+    "archive/milestones/06_taylor_lohner/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
 ]
 TARGET = "scripts/reproduce_finite_chain.py"
 

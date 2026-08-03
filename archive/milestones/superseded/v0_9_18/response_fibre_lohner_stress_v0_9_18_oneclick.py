@@ -9,7 +9,7 @@ def atomic(p,o):p.parent.mkdir(parents=True,exist_ok=True);q=p.with_suffix(p.suf
 def materialize(out):
  b=zlib.decompress(base64.b64decode(EMBEDDED));
  if hashlib.sha256(b).hexdigest()!=V0917_SHA:raise RuntimeError("embedded v0.9.17 hash mismatch")
- p=out/"embedded_backend"/"archive/frozen_milestones/03_endpoint_enclosure/response_fibre_executable_adapter_v0_9_17_oneclick.py";p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b);return p
+ p=out/"embedded_backend"/"archive/milestones/03_endpoint_enclosure/response_fibre_executable_adapter_v0_9_17_oneclick.py";p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b);return p
 def load(p):s=importlib.util.spec_from_file_location("gf_adapter",p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 def parse():
  p=argparse.ArgumentParser();p.add_argument("--outdir",default="response_fibre_lohner_stress_v0_9_18_results");p.add_argument("--target-steps",type=int,default=557);p.add_argument("--time-step",default="1e-14");return p.parse_known_args()

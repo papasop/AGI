@@ -10,10 +10,10 @@ from _entrypoint_utils import fail_closed_sha256, run_python_script
 
 
 ARTIFACTS = [
-    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
-    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
+    "archive/milestones/06_taylor_lohner/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
+    "archive/milestones/06_taylor_lohner/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
 ]
-TARGET = "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py"
+TARGET = "archive/milestones/06_taylor_lohner/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py"
 
 
 def main(argv: list[str] | None = None) -> int:

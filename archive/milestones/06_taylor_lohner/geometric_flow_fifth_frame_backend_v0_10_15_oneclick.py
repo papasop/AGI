@@ -244,7 +244,7 @@ def main():
         "fifth_frame_certificate_generated": passed,
         "fifth_local_picard_chart_certified": False,
         "complete_child_certified": False, "global_flow_claimed": False,
-        "next_command": (f"python archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py --backend-certificate {cert_path}"
+        "next_command": (f"python archive/milestones/06_taylor_lohner/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py --backend-certificate {cert_path}"
                          if passed else None),
         "next_required_step": ("feed the generated certificate to v0.10.14.1"
                                if passed else "replace the generated adapter template callbacks with repository-native Arb operations and rerun using --native-adapter"),
