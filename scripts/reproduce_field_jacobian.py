@@ -9,10 +9,10 @@ from _entrypoint_utils import fail_closed_sha256, run_python_script, stable_pars
 
 
 ARTIFACTS = [
-    "src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
     "results/v0_10_5/same_expression_X_DX_arb_certificate.json",
 ]
-TARGET = "src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py"
+TARGET = "archive/frozen_milestones/06_taylor_lohner/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py"
 
 
 def main(argv: list[str] | None = None) -> int:

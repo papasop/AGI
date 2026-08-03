@@ -91,8 +91,8 @@ def corrected_xdx_if_required(xdx_path, picard_path, frame_path, six_path, outdi
     embedded = outdir / "embedded_frozen_sources"
     v104_script = embedded / "geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py"
     v105_script = embedded / "geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py"
-    frozen_download("src/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py", v104_script, V0104_SHA)
-    frozen_download("src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py", v105_script, V0105_SHA)
+    frozen_download("archive/frozen_milestones/06_taylor_lohner/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py", v104_script, V0104_SHA)
+    frozen_download("archive/frozen_milestones/06_taylor_lohner/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py", v105_script, V0105_SHA)
     corrected104 = outdir / "corrected_v0104_dependency"
     corrected105 = outdir / "corrected_v0105_dependency"
     env = dict(os.environ)

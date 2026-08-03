@@ -9,11 +9,11 @@ from _entrypoint_utils import fail_closed_sha256, run_python_script, stable_pars
 
 
 ARTIFACTS = [
-    "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
     "results/v0_10_6/fourth_chart_qr_lohner_support_certificate.json",
     "results/v0_10_6/qr_lohner_step_records.json",
 ]
-TARGET = "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py"
+TARGET = "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py"
 
 
 def main(argv: list[str] | None = None) -> int:

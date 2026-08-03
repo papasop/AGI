@@ -54,9 +54,9 @@ TOOL_ARCHIVE_PLAN = ROOT / "tools" / "plan_archive_migration.py"
 V0946_CANDIDATE = ROOT / "src" / "geometric_flow_native_point_field_candidate_v0_9_46.py"
 V0946_HARNESS = ROOT / "src" / "response_fibre_native_binding_harness_v0_9_46_standalone.py"
 V0946_TEST = ROOT / "tests" / "test_v0946_contract.py"
-V01013_SCRIPT = ROOT / "src" / "geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py"
-V01014_SCRIPT = ROOT / "src" / "geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py"
-V01015_SCRIPT = ROOT / "src" / "geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py"
+V01013_SCRIPT = ROOT / "archive" / "frozen_milestones" / "06_taylor_lohner" / "geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py"
+V01014_SCRIPT = ROOT / "archive" / "frozen_milestones" / "06_taylor_lohner" / "geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py"
+V01015_SCRIPT = ROOT / "archive" / "frozen_milestones" / "06_taylor_lohner" / "geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py"
 V0105_SUMMARY = ROOT / "results" / "v0_10_5" / "run_summary.json"
 V0105_CERTIFICATE = (
     ROOT / "results" / "v0_10_5" / "same_expression_X_DX_arb_certificate.json"
@@ -83,37 +83,37 @@ EXPECTED_PROTOCOL_SHA256 = (
     "6d0aaefabd71f1d2986515ed84673f0083ae90d0344b9a1e92d7697ac08d061a"
 )
 EXPECTED_V0923_SCRIPTS = {
-    "response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
-    "response_fibre_two_step_continuation_v0_9_5_oneclick.py",
-    "response_fibre_recenter_preflight_v0_9_6_oneclick.py",
-    "response_fibre_normal_root_v0_9_7_oneclick.py",
-    "response_fibre_arb_normal_root_v0_9_8_oneclick.py",
-    "response_fibre_recentered_frame_v0_9_9_oneclick.py",
-    "response_fibre_second_chart_v0_9_10_oneclick.py",
-    "response_fibre_finite_continuation_v0_9_11_oneclick.py",
-    "response_fibre_transition_preflight_v0_9_12_oneclick.py",
-    "response_fibre_route_correction_v0_9_13_oneclick.py",
-    "response_fibre_endpoint_identifiability_v0_9_14_oneclick.py",
-    "response_fibre_validated_lohner_v0_9_15_oneclick.py",
-    "response_fibre_adapter_hardening_v0_9_16_oneclick.py",
-    "response_fibre_executable_adapter_v0_9_17_oneclick.py",
-    "response_fibre_lohner_stress_v0_9_18_oneclick.py",
-    "response_fibre_local_dx_target_v0_9_19_oneclick.py",
-    "response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py",
-    "response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
-    "response_fibre_signed_field_export_v0_9_22_oneclick.py",
-    "response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
+    "archive/frozen_milestones/01_local_foundation/response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
+    "archive/frozen_milestones/01_local_foundation/response_fibre_two_step_continuation_v0_9_5_oneclick.py",
+    "archive/frozen_milestones/01_local_foundation/response_fibre_recenter_preflight_v0_9_6_oneclick.py",
+    "archive/frozen_milestones/01_local_foundation/response_fibre_normal_root_v0_9_7_oneclick.py",
+    "archive/frozen_milestones/01_local_foundation/response_fibre_arb_normal_root_v0_9_8_oneclick.py",
+    "archive/frozen_milestones/02_second_chart/response_fibre_recentered_frame_v0_9_9_oneclick.py",
+    "archive/frozen_milestones/02_second_chart/response_fibre_second_chart_v0_9_10_oneclick.py",
+    "archive/frozen_milestones/02_second_chart/response_fibre_finite_continuation_v0_9_11_oneclick.py",
+    "archive/frozen_milestones/02_second_chart/response_fibre_transition_preflight_v0_9_12_oneclick.py",
+    "archive/frozen_milestones/02_second_chart/response_fibre_route_correction_v0_9_13_oneclick.py",
+    "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_endpoint_identifiability_v0_9_14_oneclick.py",
+    "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_validated_lohner_v0_9_15_oneclick.py",
+    "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_adapter_hardening_v0_9_16_oneclick.py",
+    "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_executable_adapter_v0_9_17_oneclick.py",
+    "archive/frozen_milestones/superseded/v0_9_18/response_fibre_lohner_stress_v0_9_18_oneclick.py",
+    "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_local_dx_target_v0_9_19_oneclick.py",
+    "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py",
+    "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
+    "archive/frozen_milestones/03_endpoint_enclosure/response_fibre_signed_field_export_v0_9_22_oneclick.py",
+    "archive/frozen_milestones/04_third_chart/response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
 }
 EXPECTED_V0932_SCRIPTS = {
-    "response_fibre_third_frame_v0_9_24_oneclick.py",
-    "response_fibre_third_frame_backend_v0_9_25_oneclick.py",
-    "response_fibre_third_picard_v0_9_26_oneclick.py",
-    "response_fibre_third_chart_finite_continuation_v0_9_27_oneclick.py",
-    "response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py",
-    "response_fibre_fourth_frame_v0_9_29_oneclick.py",
-    "response_fibre_fourth_picard_v0_9_30_oneclick.py",
-    "response_fibre_fourth_chart_finite_v0_9_31_oneclick.py",
-    "response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
+    "archive/frozen_milestones/04_third_chart/response_fibre_third_frame_v0_9_24_oneclick.py",
+    "archive/frozen_milestones/04_third_chart/response_fibre_third_frame_backend_v0_9_25_oneclick.py",
+    "archive/frozen_milestones/04_third_chart/response_fibre_third_picard_v0_9_26_oneclick.py",
+    "archive/frozen_milestones/04_third_chart/response_fibre_third_chart_finite_continuation_v0_9_27_oneclick.py",
+    "archive/frozen_milestones/04_third_chart/response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py",
+    "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_frame_v0_9_29_oneclick.py",
+    "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_picard_v0_9_30_oneclick.py",
+    "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_chart_finite_v0_9_31_oneclick.py",
+    "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
 }
 EXPECTED_V0946_FILES = {
     "RELEASE_NOTES_v0.9.46.md",
@@ -130,11 +130,11 @@ EXPECTED_V0105_FILES = {
     "RELEASE_NOTES_v0.10.5.md",
     "PR_DESCRIPTION.md",
     "tools/verify_update.py",
-    "src/geometric_flow_active_backend_export_v0_10_1_oneclick.py",
-    "src/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py",
-    "src/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py",
-    "src/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py",
-    "src/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_active_backend_export_v0_10_1_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_scalar_primitives_extract_v0_10_2_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_six_variable_jet_lift_v0_10_3_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_parametric_normal_graph_jet_v0_10_4_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py",
     "results/v0_10_1/run_summary.json",
     "results/v0_10_2/run_summary.json",
     "results/v0_10_3/run_summary.json",
@@ -145,7 +145,7 @@ EXPECTED_V0105_FILES = {
 }
 EXPECTED_V0106_FILES = {
     "RELEASE_NOTES_v0.10.6.md",
-    "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py",
     "results/v0_10_6/run_summary.json",
     "results/v0_10_6/fourth_chart_qr_lohner_support_certificate.json",
     "results/v0_10_6/qr_lohner_step_records.json",
@@ -153,9 +153,9 @@ EXPECTED_V0106_FILES = {
 EXPECTED_V010141_FILES = {
     "RELEASE_NOTES_v0.10.14.1.md",
     "docs/archive/INTEGRATION_v0.10.14.1.md",
-    "src/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
-    "src/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
-    "src/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_reindexed_taylor_chain_v0_10_13_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_inclusion_v0_10_14_oneclick.py",
+    "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fifth_frame_backend_v0_10_15_oneclick.py",
 }
 EXPECTED_NAVIGATION_FILES = {
     "docs/ARTIFACT_INDEX.md",
@@ -509,12 +509,12 @@ def main() -> int:
             and "scripts/reproduce_field_jacobian.py" in artifact_index
             and "scripts/reproduce_lohner_flowpipe.py" in artifact_index
             and "scripts/audit_fifth_frame.py" in artifact_index
-            and "src/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py" in artifact_index
+            and "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py" in artifact_index
             and "Each stable entry point verifies the relevant entries in `SHA256SUMS.txt`" in artifact_index
             and "Fail-closed fifth-frame backend harness" in artifact_index
         )
         checks["artifact_index_classifies_root_frozen_files"] = (
-            "Root-Level Frozen Milestone Classes" in artifact_index
+            "Archived Frozen Milestone Classes" in artifact_index
             and "01 local foundation" in artifact_index
             and "02 second chart" in artifact_index
             and "03 endpoint enclosure" in artifact_index
@@ -522,18 +522,18 @@ def main() -> int:
             and "04 third chart" in artifact_index
             and "05 fourth chart" in artifact_index
             and "06 Taylor/Lohner" in artifact_index
-            and "response_fibre_lohner_stress_v0_9_18_oneclick.py" in artifact_index
-            and "response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py" in artifact_index
+            and "archive/frozen_milestones/superseded/v0_9_18/response_fibre_lohner_stress_v0_9_18_oneclick.py" in artifact_index
+            and "archive/frozen_milestones/05_fourth_chart/response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py" in artifact_index
             and "SUPERSEDED_RESULTS.md" in artifact_index
         )
         checks["artifact_index_defers_archive_move_to_dedicated_pr"] = (
             "Target Archive Layout" in artifact_index
             and "archive/frozen_milestones/" in artifact_index
-            and "Moving these files now would not change their content hashes" in artifact_index
-            and "change paths, raw GitHub URLs" in artifact_index
+            and "have been moved out of the repository root" in artifact_index
+            and "changes repository paths and raw GitHub URLs" in artifact_index
             and "Run `python tools/plan_archive_migration.py`" in artifact_index
             and "refuses `--apply`" in artifact_index
-            and "dedicated migration PR" in artifact_index
+            and "read-only" in artifact_index
         )
         checks["artifact_index_records_proof_map_and_history"] = (
             "Proof Map Summary" in artifact_index
@@ -553,15 +553,17 @@ def main() -> int:
             and "III: conditional continuation" in proof_map
             and "Open backend work" in proof_map
             and "python scripts/audit_fifth_frame.py" in proof_map
-            and "Historical proof scripts are indexed" in proof_map
+            and "archive/frozen_milestones/" in proof_map
         )
-        checks["archive_migration_report_is_preview_only"] = (
-            archive_migration.get("mode") == "preview_only"
+        checks["archive_migration_report_is_applied"] = (
+            archive_migration.get("mode") == "archive_migration_applied"
+            and archive_migration.get("all_legacy_paths_removed") is True
+            and archive_migration.get("all_archive_paths_present") is True
             and archive_migration.get("content_rewrite_planned") is False
             and archive_migration.get("scientific_claim_change_planned") is False
-            and archive_migration.get("moves_planned", 0) >= 30
+            and archive_migration.get("moves_audited", 0) >= 30
             and "archive/frozen_milestones/06_taylor_lohner" in archive_migration_md
-            and "response_fibre_lohner_stress_v0_9_18_oneclick.py" in archive_migration_md
+            and "archive/frozen_milestones/superseded/v0_9_18/response_fibre_lohner_stress_v0_9_18_oneclick.py" in archive_migration_md
         )
         checks["proof_graph_states_three_layers"] = (
             "Layer I: Unconditional Local Theorem" in proof_graph
@@ -619,20 +621,22 @@ def main() -> int:
             and "SHA-256 mismatch" in entry_utils
             and "scripts/reproduce_v093.py" in local_ode
             and "scripts/reproduce_finite_chain.py" in finite
-            and "geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py" in field
-            and "geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py" in lohner
+            and "archive/frozen_milestones/06_taylor_lohner/geometric_flow_same_expression_field_dx_v0_10_5_oneclick.py" in field
+            and "archive/frozen_milestones/06_taylor_lohner/geometric_flow_fourth_chart_qr_lohner_v0_10_6_oneclick.py" in lohner
             and "--run-backend" in fifth
             and "implementation-open fail-closed harness" in fifth
             and "global flow is certified" in fifth
         )
     if TOOL_ARCHIVE_PLAN.is_file():
         archive_plan = TOOL_ARCHIVE_PLAN.read_text(encoding="utf-8")
-        checks["archive_plan_tool_is_preview_only"] = (
-            "preview_only" in archive_plan
+        checks["archive_plan_tool_audits_applied_migration"] = (
+            "archive_migration_applied" in archive_plan
             and "--apply is intentionally disabled" in archive_plan
+            and "all_legacy_paths_removed" in archive_plan
+            and "all_archive_paths_present" in archive_plan
             and "archive/frozen_milestones/01_local_foundation" in archive_plan
             and "archive/frozen_milestones/06_taylor_lohner" in archive_plan
-            and "response_fibre_lohner_stress_v0_9_18_oneclick.py" in archive_plan
+            and "archive/frozen_milestones/superseded/v0_9_18/response_fibre_lohner_stress_v0_9_18_oneclick.py" in archive_plan
             and "superseded_by_v0_9_20" in archive_plan
             and "content_rewrite_planned" in archive_plan
             and "scientific_claim_change_planned" in archive_plan

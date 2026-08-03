@@ -20,6 +20,6 @@ python scripts/reproduce_lohner_flowpipe.py
 python scripts/audit_fifth_frame.py
 ```
 
-Historical proof scripts are indexed in `docs/ARTIFACT_INDEX.md`.  They remain
-at their current paths until a dedicated archive migration updates wrappers,
-manifests, references, and CI together.
+Historical proof scripts are indexed in `docs/ARTIFACT_INDEX.md` and stored
+under `archive/frozen_milestones/`.  The short wrappers under `scripts/` are
+the stable user-facing commands.

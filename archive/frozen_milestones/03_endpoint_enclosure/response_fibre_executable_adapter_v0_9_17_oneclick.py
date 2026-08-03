@@ -10,7 +10,7 @@ def atomic(p,o):p.parent.mkdir(parents=True,exist_ok=True);q=p.with_suffix(p.suf
 def materialize(out):
  b=zlib.decompress(base64.b64decode(EMBEDDED));
  if hashlib.sha256(b).hexdigest()!=V0910_SHA:raise RuntimeError("embedded v0.9.10 hash mismatch")
- p=out/"embedded_backend"/"response_fibre_second_chart_v0_9_10_oneclick.py";p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b);return p
+ p=out/"embedded_backend"/"archive/frozen_milestones/02_second_chart/response_fibre_second_chart_v0_9_10_oneclick.py";p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b);return p
 def parse():
  p=argparse.ArgumentParser();p.add_argument("--outdir",default="response_fibre_executable_adapter_v0_9_17_results");p.add_argument("--root-radius",default="2e-18");return p.parse_known_args()
 def load(p):
