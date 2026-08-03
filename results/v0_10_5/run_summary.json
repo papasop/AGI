@@ -1,0 +1,38 @@
+{
+  "title": "GEOMETRIC-FLOW SAME-EXPRESSION INTRINSIC FIELD / JACOBIAN",
+  "version": "0.10.5",
+  "scientific_status": "VALIDATED_NATIVE_SAME_EXPRESSION_X_DX_CERTIFIED",
+  "formal_backend": "python-flint/Arb 192-bit",
+  "certificate": "/workspace/scratch/b481b397d7c6/same_expression_test_v0105/same_expression_X_DX_arb_certificate.json",
+  "metrics": {
+    "descent_square": "[0.4 +/- 0.0340] + [+/- 7.43e-3]j",
+    "maximum_X_absolute_upper": 0.5567255280911922,
+    "maximum_DX_absolute_upper": 4834.868911743164,
+    "maximum_response_tangent_residual_upper": 0.0016352752609236632
+  },
+  "gates": {
+    "v0104_parametric_normal_graph_jet": true,
+    "native_scalar_hash_chain_exact": true,
+    "complete_fourth_graph_box_used": true,
+    "Dpsi_and_second_derivative_same_expression": true,
+    "graph_tangent_response_preservation": true,
+    "pullback_metric_inverse_certified": true,
+    "analytic_normalization_branch_separated_from_zero": true,
+    "six_component_X_cjets": true,
+    "six_by_six_DX_from_same_expression": true,
+    "DX_enclosure_finite": true,
+    "field_imaginary_enclosures_contain_zero": true,
+    "field_overlaps_frozen_repository_picard_enclosure": true,
+    "no_finite_difference": true
+  },
+  "implicit_normal_graph_jet_ready": true,
+  "same_expression_X_ready": true,
+  "same_expression_DX_ready": true,
+  "qr_lohner_flowpipe_certified": false,
+  "fifth_frame_certified": false,
+  "complete_child_certified": false,
+  "global_flow_claimed": false,
+  "all_scientific_gates_pass": false,
+  "next_required_step": "feed the certified same-expression X/DX callback into the ten-step fourth-chart QR/Lohner propagator and prove the flowpipe remains inside the complex domain",
+  "claim_boundary": "native same-expression fourth-chart X and DX enclosure only; no QR/Lohner flowpipe, fifth frame, complete child, or global flow"
+}

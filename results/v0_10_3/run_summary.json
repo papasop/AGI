@@ -1,0 +1,28 @@
+{
+  "title": "GEOMETRIC-FLOW NATIVE SIX-VARIABLE COMPLEX ARB JET LIFT",
+  "version": "0.10.3",
+  "scientific_status": "NATIVE_SIX_VARIABLE_COMPLEX_ARB_JET_PRIMITIVES_CERTIFIED",
+  "scalar_source": "/workspace/scratch/b481b397d7c6/scalar_extract_test_v0102/geometric_flow_native_scalar_primitives_v0_10_2.py",
+  "frame_certificate": "/workspace/scratch/b481b397d7c6/native_export_test2_v0101/v0930_reproduction/v0929_formal_base/fourth_frame_arb_certificate.json",
+  "candidate": "/workspace/scratch/b481b397d7c6/sixjet_test_v0103/geometric_flow_native_six_jet_primitives_v0_10_3.py",
+  "candidate_sha256": "2829e10725ae00906add01fbb9195ccf7eaf798ace53c6d8619169206a9f5087",
+  "gates": {
+    "scalar_hash_exact": true,
+    "frame_14x6": true,
+    "candidate_compiles": true,
+    "candidate_imports": true,
+    "response_eight_cjets": true,
+    "jacobian_8x14_cjets": true,
+    "gradient_14_cjets": true,
+    "six_derivatives_each": true,
+    "nonzero_tangent_derivative_observed": true,
+    "no_finite_difference": true
+  },
+  "six_variable_jet_ready": true,
+  "same_expression_response_derivative_ready": true,
+  "same_expression_DX_ready": false,
+  "implicit_normal_graph_jet_ready": false,
+  "all_scientific_gates_pass": false,
+  "next_required_step": "differentiate the parametric Krawczyk normal solve to obtain psi(a) and Dpsi(a), then assemble W,H,X and DX",
+  "claim_boundary": "six-variable complex Arb jets for native response/Jacobian/L6-gradient formulas only; no implicit graph jet, X/DX, QR/Lohner flowpipe, fifth frame, or global flow"
+}
