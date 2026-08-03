@@ -12,7 +12,6 @@
       "legacy_path": "response_fibre_validated_continuation_v0_9_4_1_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -29,7 +28,6 @@
       "legacy_path": "response_fibre_two_step_continuation_v0_9_5_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -45,7 +43,6 @@
       "legacy_path": "response_fibre_recenter_preflight_v0_9_6_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -62,7 +59,6 @@
       "legacy_path": "response_fibre_normal_root_v0_9_7_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -78,7 +74,6 @@
       "legacy_path": "response_fibre_arb_normal_root_v0_9_8_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -94,7 +89,6 @@
       "legacy_path": "response_fibre_recentered_frame_v0_9_9_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -111,7 +105,6 @@
       "legacy_path": "response_fibre_second_chart_v0_9_10_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -133,7 +126,6 @@
       "legacy_path": "response_fibre_finite_continuation_v0_9_11_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -150,7 +142,6 @@
       "legacy_path": "response_fibre_transition_preflight_v0_9_12_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -166,7 +157,6 @@
       "legacy_path": "response_fibre_route_correction_v0_9_13_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -182,7 +172,6 @@
       "legacy_path": "response_fibre_endpoint_identifiability_v0_9_14_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -198,7 +187,6 @@
       "legacy_path": "response_fibre_validated_lohner_v0_9_15_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -214,7 +202,6 @@
       "legacy_path": "response_fibre_adapter_hardening_v0_9_16_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -230,7 +217,6 @@
       "legacy_path": "response_fibre_executable_adapter_v0_9_17_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -247,7 +233,6 @@
       "legacy_path": "response_fibre_lohner_stress_v0_9_18_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -263,7 +248,6 @@
       "legacy_path": "response_fibre_local_dx_target_v0_9_19_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -279,7 +263,6 @@
       "legacy_path": "response_fibre_cauchy_norm_correction_v0_9_20_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -297,7 +280,6 @@
       "legacy_path": "response_fibre_six_component_endpoint_v0_9_21_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -313,7 +295,6 @@
       "legacy_path": "response_fibre_signed_field_export_v0_9_22_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -332,7 +313,6 @@
       "legacy_path": "response_fibre_third_recenter_inclusion_v0_9_23_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -352,7 +332,6 @@
       "legacy_path": "response_fibre_third_frame_v0_9_24_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -369,7 +348,6 @@
       "legacy_path": "response_fibre_third_frame_backend_v0_9_25_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -386,7 +364,6 @@
       "legacy_path": "response_fibre_third_picard_v0_9_26_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -403,7 +380,6 @@
       "legacy_path": "response_fibre_third_chart_finite_continuation_v0_9_27_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -420,7 +396,6 @@
       "legacy_path": "response_fibre_third_chart_signed_endpoint_v0_9_28_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -438,7 +413,6 @@
       "legacy_path": "response_fibre_fourth_frame_v0_9_29_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -456,7 +430,6 @@
       "legacy_path": "response_fibre_fourth_picard_v0_9_30_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -473,7 +446,6 @@
       "legacy_path": "response_fibre_fourth_chart_finite_v0_9_31_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",
@@ -490,7 +462,6 @@
       "legacy_path": "response_fibre_fourth_chart_signed_endpoint_v0_9_32_oneclick.py",
       "legacy_path_exists": false,
       "remaining_legacy_references": [
-        "SHA256SUMS_v0.9.32.txt",
         "SHA256SUMS.txt",
         "tools/plan_archive_migration.py",
         "tools/verify_release.py",

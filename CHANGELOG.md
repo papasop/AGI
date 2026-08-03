@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased — root and README navigation cleanup
+
+- Remove root-level PR packaging text and duplicate claim-scope documentation.
+- Move release notes under `docs/releases/`, historical update/supersession
+  notes under `docs/archive/`, and old release hash manifests under
+  `manifests/releases/`.
+- Shorten the README to the project summary, three-layer status, quick-start
+  commands, claim boundary, and documentation entry points.
+- Move detailed mathematical construction and numerical reference metrics into
+  `docs/MATHEMATICS.md` and `docs/REFERENCE_RESULTS.md`.
+- Retain all frozen milestone script filenames and archived audit paths
+  unchanged.
+- Make no proof-logic, certificate, hash, numerical-result, fifth-frame, or
+  global-flow claim upgrade.
+
 ## v0.10.14.1 — reindexed Taylor chain and fifth-frame transition contract
 
 - Add the v0.10.13.1 reindexed input-parent Taylor/affine Lohner chain driver.

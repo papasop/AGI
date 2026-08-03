@@ -274,6 +274,8 @@ def tracked_text_files() -> list[Path]:
     for path in ROOT.rglob("*"):
         if not path.is_file() or ".git" in path.parts:
             continue
+        if path.is_relative_to(ROOT / "manifests" / "releases"):
+            continue
         if path.resolve() in excluded:
             continue
         if path.suffix.lower() in {".zip", ".json", ".ipynb", ".pyc"}:
