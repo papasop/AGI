@@ -12,10 +12,10 @@ quantum-control model: fourteen phase parameters for a driven-qubit detuning
 scan. Its reference result is a computer-assisted local theorem verified with
 192-bit Arb interval arithmetic.
 
-Paper-facing wording for the companion paper, *Computation as Geometric Flow:
-Certified Intrinsic ODEs and Conditional Continuation*, is tracked in
-[docs/PAPER_WORDING.md](docs/PAPER_WORDING.md) until a PDF or preprint link is
-released.
+The companion paper, *Computation as Geometric Flow: Certified Intrinsic ODEs
+and Conditional Continuation*, is available on
+[Zenodo](https://zenodo.org/records/21728432). Paper-facing claim wording is
+tracked in [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md).
 
 ## What Is Proved
 
@@ -157,6 +157,8 @@ stability. This README changes reading order only, not proof content.
 
 Suggested citation for the local theorem: cite the repository artifact and the
 exact v0.9.3 release or commit, as recorded in [CITATION.cff](CITATION.cff).
+For the companion paper, use the
+[Zenodo record](https://zenodo.org/records/21728432).
 Treat v0.10.14.1/v0.10.15 material as development milestones, not as
 fifth-frame or global-flow theorems. The project is released under the
 [MIT license](LICENSE).

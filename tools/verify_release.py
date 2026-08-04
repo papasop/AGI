@@ -314,7 +314,8 @@ def main() -> int:
             and "preserving its declared response" in text
             and "fourteen phase parameters for a driven-qubit detuning\nscan" in text
             and "192-bit Arb interval arithmetic" in text
-            and "Computation as Geometric Flow:\nCertified Intrinsic ODEs and Conditional Continuation" in text
+            and "Computation as Geometric Flow: Certified Intrinsic ODEs\nand Conditional Continuation" in text
+            and "https://zenodo.org/records/21728432" in text
             and "docs/PAPER_WORDING.md" in text
         )
         checks["readme_has_what_is_proved"] = (
@@ -402,6 +403,7 @@ def main() -> int:
         )
         checks["readme_has_citation_and_paper_navigation"] = (
             "docs/PAPER_WORDING.md" in text
+            and "[Zenodo record](https://zenodo.org/records/21728432)" in text
             and "Suggested citation for the local theorem" in text
             and "exact v0.9.3 release or commit" in text
             and "[MIT license](LICENSE)" in text
