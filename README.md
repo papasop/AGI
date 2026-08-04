@@ -38,13 +38,27 @@ reference certificate.
 conditional on supplying the missing next-frame certificates. The repository
 does not yet prove a fifth frame or a global flow.
 
+## Theory Boundary In One Paragraph
+
+The computation acts on a frozen analytic pulse model: fourteen phase
+coordinates \(\theta\in\mathbb R^{14}\), exact segment propagators, and a
+projective jet response \(\mathcal R_3=(a_0,\dots,a_3)\) produced by exact
+finite jet recurrences, not polynomial truncation. "Exact preservation" means
+this declared finite response map only: not higher-order coefficients, the
+full physical output, or hardware behaviour. Improvement means strict decrease
+of the independent objective \(L_6\) along the response fibre. Everything
+outside the three layers below, including the fifth frame, complete-child
+traversal, ten-chart continuation, fibre connectedness, arbitrary endpoint
+connection, and any unconditional global flow, is not claimed anywhere in this
+repository.
+
 ## Three-Layer Status
 
-| Layer | Current Repository Status | Claim |
-| --- | --- | --- |
-| I. Local theorem | v0.9.3 intrinsic ODE microstep | Certified reference theorem |
-| II. Frozen finite continuation | v0.10.6 fourth-chart Lohner support flowpipe | Latest stored repository reference certificate |
-| III. Next-frame / global work | v0.10.13.1 source chain and v0.10.15 fail-closed harness | Implementation-open; not a fifth-frame or global-flow theorem |
+| Layer | Current Repository Status | Claim | Boundary |
+| --- | --- | --- | --- |
+| I. Local theorem | v0.9.3 intrinsic ODE microstep | Certified reference theorem | One Picard microstep, \(0\le t\le 10^{-14}\), near child 15 |
+| II. Frozen finite continuation | v0.10.6 fourth-chart Lohner support flowpipe | Latest stored repository reference certificate | Declared finite chain of recentered charts only; instance-specific |
+| III. Next-frame / global work | v0.10.13.1 source chain and v0.10.15 fail-closed harness | Implementation-open; not a fifth-frame or global-flow theorem | Holds only where compactness, uniform rank, and uniform nonstationarity are assumed; not certified on the complete fibre |
 
 For Layer II, v0.10.6 is the packaged reference certificate stored under
 `results/`; v0.10.13.1 records a stronger reindexed source chain whose

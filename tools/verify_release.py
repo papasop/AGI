@@ -331,11 +331,26 @@ def main() -> int:
             and "conditional on supplying the missing next-frame certificates" in text
             and "does not yet prove a fifth frame or a global flow" in text
         )
+        checks["readme_has_theory_boundary_paragraph"] = (
+            "## Theory Boundary In One Paragraph" in text
+            and "fourteen phase\ncoordinates" in text
+            and r"\(\theta\in\mathbb R^{14}\)" in text
+            and "projective jet response" in text
+            and "exact\nfinite jet recurrences, not polynomial truncation" in text
+            and '"Exact preservation" means\nthis declared finite response map only' in text
+            and "not higher-order coefficients" in text
+            and "not" in text
+            and "hardware behaviour" in text
+            and r"objective \(L_6\)" in text
+            and "arbitrary endpoint\nconnection" in text
+            and "unconditional global flow" in text
+        )
         checks["readme_has_three_layer_status"] = (
             "## Three-Layer Status" in text
-            and "| I. Local theorem | v0.9.3 intrinsic ODE microstep | Certified reference theorem |" in text
-            and "| II. Frozen finite continuation | v0.10.6 fourth-chart Lohner support flowpipe | Latest stored repository reference certificate |" in text
-            and "| III. Next-frame / global work | v0.10.13.1 source chain and v0.10.15 fail-closed harness | Implementation-open; not a fifth-frame or global-flow theorem |" in text
+            and "| Layer | Current Repository Status | Claim | Boundary |" in text
+            and r"| I. Local theorem | v0.9.3 intrinsic ODE microstep | Certified reference theorem | One Picard microstep, \(0\le t\le 10^{-14}\), near child 15 |" in text
+            and "| II. Frozen finite continuation | v0.10.6 fourth-chart Lohner support flowpipe | Latest stored repository reference certificate | Declared finite chain of recentered charts only; instance-specific |" in text
+            and "| III. Next-frame / global work | v0.10.13.1 source chain and v0.10.15 fail-closed harness | Implementation-open; not a fifth-frame or global-flow theorem | Holds only where compactness, uniform rank, and uniform nonstationarity are assumed; not certified on the complete fibre |" in text
             and text.count("## Latest ") == 0
         )
         checks["readme_defers_details_to_docs"] = (
