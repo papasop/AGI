@@ -314,6 +314,8 @@ def main() -> int:
             and "preserving its declared response" in text
             and "fourteen phase parameters for a driven-qubit detuning\nscan" in text
             and "192-bit Arb interval arithmetic" in text
+            and "Computation as Geometric Flow:\nCertified Intrinsic ODEs and Conditional Continuation" in text
+            and "docs/PAPER_WORDING.md" in text
         )
         checks["readme_has_what_is_proved"] = (
             "## What Is Proved" in text
@@ -321,6 +323,7 @@ def main() -> int:
             and "preserves the declared response map" in text
             and "strictly decreases the independent objective" in text
             and "formally validated local response-fibre chart" in text
+            and '"Frozen" means the model parameters, atlas coefficients, code, and reference\nartifacts are hash-bound' in text
             and "**Milestone, Level II.**" in text
             and "v0.10.6 as the latest stored\nreference certificate" in text
             and "**Conditional theorem, Level III.**" in text
@@ -354,7 +357,9 @@ def main() -> int:
             "## Quick Start" in text
             and "git clone https://github.com/papasop/Geometric-Flow.git" in text
             and "python -m pip install -r requirements.txt" in text
+            and "python scripts/verify_reference_results.py" in text
             and "python reproduce/local_theorem.py --check-only" in text
+            and "checks frozen SHA-256 entries and stored reference\ncertificates" in text
         )
         checks["readme_has_reproduction_path_table"] = (
             "## Choose A Reproduction Path" in text
@@ -378,11 +383,21 @@ def main() -> int:
             and "`archive/milestones/`: historical v0.9.x/v0.10.x milestone scripts" in text
             and "Avoid adding another user-facing versioned script" in text
         )
+        checks["readme_has_scoped_roadmap"] = (
+            "## Roadmap" in text
+            and "Two logically independent directions" in text
+            and "**Toward a global response-fibre flow**" in text
+            and "The immediate\n  open step is the fifth-frame backend" in text
+            and "v0.10.15 is fail-closed scaffold work" in text
+            and "**Neural-network parameter fibres**" in text
+            and "This direction does not depend on completing the global flow" in text
+        )
         checks["readme_has_collapsible_chinese_overview"] = (
             "## 中文概览" in text
             and "<details>" in text
             and "<summary>中文概览</summary>" in text
             and "当前已严格证明局部 ODE 微步" in text
+            and "未来工作分为两个相互独立的方向" in text
             and "</details>" in text
         )
         checks["readme_has_citation_and_paper_navigation"] = (

@@ -12,6 +12,11 @@ quantum-control model: fourteen phase parameters for a driven-qubit detuning
 scan. Its reference result is a computer-assisted local theorem verified with
 192-bit Arb interval arithmetic.
 
+Paper-facing wording for the companion paper, *Computation as Geometric Flow:
+Certified Intrinsic ODEs and Conditional Continuation*, is tracked in
+[docs/PAPER_WORDING.md](docs/PAPER_WORDING.md) until a PDF or preprint link is
+released.
+
 ## What Is Proved
 
 **Proved, Level I.** For the frozen v0.9.3 instance, the repository certifies a
@@ -20,6 +25,10 @@ unique six-dimensional intrinsic ODE microstep that:
 - preserves the declared response map \(\mathcal R_3\);
 - strictly decreases the independent objective \(L_6\);
 - remains inside a formally validated local response-fibre chart.
+
+"Frozen" means the model parameters, atlas coefficients, code, and reference
+artifacts are hash-bound; changing any of them defines a different
+computational statement.
 
 **Milestone, Level II.** Later repository artifacts extend this construction
 through finite same-chart continuation, with v0.10.6 as the latest stored
@@ -48,8 +57,12 @@ harness is fail-closed scaffold work.
 git clone https://github.com/papasop/Geometric-Flow.git
 cd Geometric-Flow
 python -m pip install -r requirements.txt
+python scripts/verify_reference_results.py
 python reproduce/local_theorem.py --check-only
 ```
+
+The verification command checks frozen SHA-256 entries and stored reference
+certificates before you rerun any proof driver.
 
 ## Choose A Reproduction Path
 
@@ -82,6 +95,20 @@ The visible repository structure is intentionally small:
 New proof work should first attach to `src/` and the three `reproduce/`
 entry points. Avoid adding another user-facing versioned script unless it is
 also archived and indexed.
+
+## Roadmap
+
+Two logically independent directions, matching the paper Outlook:
+
+- **Toward a global response-fibre flow** — local-to-global programme for the
+  quantum-control model: certified chart overlaps, uniform rank and
+  nonstationarity bounds across a complete response component. The immediate
+  open step is the fifth-frame backend (`reproduce/open_next_frame_audit.py`
+  audits the target; v0.10.15 is fail-closed scaffold work).
+- **Neural-network parameter fibres** — separate analogue: finite probe
+  responses (logits/features on frozen inputs) define parameter-equivalence
+  fibres for function-preserving compression, quantization, and continual
+  learning. This direction does not depend on completing the global flow.
 
 ## Claim Boundary
 
@@ -119,6 +146,10 @@ stability. This README changes reading order only, not proof content.
 
 当前已严格证明局部 ODE 微步和冻结实例上的有限同图延拓；尚未证明第五局部图、
 完整子域遍历或全局几何流。
+
+未来工作分为两个相互独立的方向：一是继续补全量子控制模型中的局部到全局
+响应纤维流证明；二是研究神经网络参数纤维，用有限探针响应刻画函数保持的
+参数等价类。两者不互相依赖。
 
 </details>
 
