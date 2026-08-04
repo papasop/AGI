@@ -12,6 +12,11 @@ quantum-control model: fourteen phase parameters for a driven-qubit detuning
 scan. Its reference result is a computer-assisted local theorem verified with
 192-bit Arb interval arithmetic.
 
+The companion paper, *Computation as Geometric Flow: Certified Intrinsic ODEs
+and Conditional Continuation*, is available on
+[Zenodo](https://zenodo.org/records/21728432). Paper-facing claim wording is
+tracked in [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md).
+
 ## What Is Proved
 
 **Proved, Level I.** For the frozen v0.9.3 instance, the repository certifies a
@@ -21,6 +26,10 @@ unique six-dimensional intrinsic ODE microstep that:
 - strictly decreases the independent objective \(L_6\);
 - remains inside a formally validated local response-fibre chart.
 
+"Frozen" means the model parameters, atlas coefficients, code, and reference
+artifacts are hash-bound; changing any of them defines a different
+computational statement.
+
 **Milestone, Level II.** Later repository artifacts extend this construction
 through finite same-chart continuation, with v0.10.6 as the latest stored
 reference certificate.
@@ -29,13 +38,27 @@ reference certificate.
 conditional on supplying the missing next-frame certificates. The repository
 does not yet prove a fifth frame or a global flow.
 
+## Theory Boundary In One Paragraph
+
+The computation acts on a frozen analytic pulse model: fourteen phase
+coordinates \(\theta\in\mathbb R^{14}\), exact segment propagators, and a
+projective jet response \(\mathcal R_3=(a_0,\dots,a_3)\) produced by exact
+finite jet recurrences, not polynomial truncation. "Exact preservation" means
+this declared finite response map only: not higher-order coefficients, the
+full physical output, or hardware behaviour. Improvement means strict decrease
+of the independent objective \(L_6\) along the response fibre. Everything
+outside the three layers below, including the fifth frame, complete-child
+traversal, ten-chart continuation, fibre connectedness, arbitrary endpoint
+connection, and any unconditional global flow, is not claimed anywhere in this
+repository.
+
 ## Three-Layer Status
 
-| Layer | Current Repository Status | Claim |
-| --- | --- | --- |
-| I. Local theorem | v0.9.3 intrinsic ODE microstep | Certified reference theorem |
-| II. Frozen finite continuation | v0.10.6 fourth-chart Lohner support flowpipe | Latest stored repository reference certificate |
-| III. Next-frame / global work | v0.10.13.1 source chain and v0.10.15 fail-closed harness | Implementation-open; not a fifth-frame or global-flow theorem |
+| Layer | Current Repository Status | Claim | Boundary |
+| --- | --- | --- | --- |
+| I. Local theorem | v0.9.3 intrinsic ODE microstep | Certified reference theorem | One Picard microstep, \(0\le t\le 10^{-14}\), near child 15 |
+| II. Frozen finite continuation | v0.10.6 fourth-chart Lohner support flowpipe | Latest stored repository reference certificate | Declared finite chain of recentered charts only; instance-specific |
+| III. Next-frame / global work | v0.10.13.1 source chain and v0.10.15 fail-closed harness | Implementation-open; not a fifth-frame or global-flow theorem | Holds only where compactness, uniform rank, and uniform nonstationarity are assumed; not certified on the complete fibre |
 
 For Layer II, v0.10.6 is the packaged reference certificate stored under
 `results/`; v0.10.13.1 records a stronger reindexed source chain whose
@@ -48,8 +71,12 @@ harness is fail-closed scaffold work.
 git clone https://github.com/papasop/Geometric-Flow.git
 cd Geometric-Flow
 python -m pip install -r requirements.txt
+python scripts/verify_reference_results.py
 python reproduce/local_theorem.py --check-only
 ```
+
+The verification command checks frozen SHA-256 entries and stored reference
+certificates before you rerun any proof driver.
 
 ## Choose A Reproduction Path
 
@@ -82,6 +109,20 @@ The visible repository structure is intentionally small:
 New proof work should first attach to `src/` and the three `reproduce/`
 entry points. Avoid adding another user-facing versioned script unless it is
 also archived and indexed.
+
+## Roadmap
+
+Two logically independent directions, matching the paper Outlook:
+
+- **Toward a global response-fibre flow** — local-to-global programme for the
+  quantum-control model: certified chart overlaps, uniform rank and
+  nonstationarity bounds across a complete response component. The immediate
+  open step is the fifth-frame backend (`reproduce/open_next_frame_audit.py`
+  audits the target; v0.10.15 is fail-closed scaffold work).
+- **Neural-network parameter fibres** — separate analogue: finite probe
+  responses (logits/features on frozen inputs) define parameter-equivalence
+  fibres for function-preserving compression, quantization, and continual
+  learning. This direction does not depend on completing the global flow.
 
 ## Claim Boundary
 
@@ -120,12 +161,18 @@ stability. This README changes reading order only, not proof content.
 当前已严格证明局部 ODE 微步和冻结实例上的有限同图延拓；尚未证明第五局部图、
 完整子域遍历或全局几何流。
 
+未来工作分为两个相互独立的方向：一是继续补全量子控制模型中的局部到全局
+响应纤维流证明；二是研究神经网络参数纤维，用有限探针响应刻画函数保持的
+参数等价类。两者不互相依赖。
+
 </details>
 
 ## Citation And Licence
 
 Suggested citation for the local theorem: cite the repository artifact and the
 exact v0.9.3 release or commit, as recorded in [CITATION.cff](CITATION.cff).
+For the companion paper, use the
+[Zenodo record](https://zenodo.org/records/21728432).
 Treat v0.10.14.1/v0.10.15 material as development milestones, not as
 fifth-frame or global-flow theorems. The project is released under the
 [MIT license](LICENSE).
