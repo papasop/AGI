@@ -34,9 +34,10 @@ computational statement.
 through finite same-chart continuation, with v0.10.6 as the latest stored
 reference certificate.
 
-**Conditional theorem, Level III.** The paper-level continuation statement is
-conditional on supplying the missing next-frame certificates. The repository
-does not yet prove a fifth frame or a global flow.
+**Conditional theorem, Level III.** The paper-level continuation theorem is
+proved analytically; its hypotheses, compactness, uniform rank, and uniform
+nonstationarity, are not yet certified on the complete response fibre. The
+repository does not yet prove a fifth frame or a global flow.
 
 ## Theory Boundary In One Paragraph
 
@@ -153,7 +154,7 @@ stability. This README changes reading order only, not proof content.
 ## 中文概览
 
 <details>
-<summary>中文概览</summary>
+<summary>展开摘要</summary>
 
 本仓库研究：当多组量子控制参数产生相同的声明响应时，是否可以沿响应纤维
 连续移动，同时严格降低另一个目标函数。

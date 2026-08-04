@@ -328,7 +328,9 @@ def main() -> int:
             and "**Milestone, Level II.**" in text
             and "v0.10.6 as the latest stored\nreference certificate" in text
             and "**Conditional theorem, Level III.**" in text
-            and "conditional on supplying the missing next-frame certificates" in text
+            and "proved analytically" in text
+            and "compactness, uniform rank, and uniform\nnonstationarity" in text
+            and "not yet certified on the complete response fibre" in text
             and "does not yet prove a fifth frame or a global flow" in text
         )
         checks["readme_has_theory_boundary_paragraph"] = (
@@ -411,7 +413,7 @@ def main() -> int:
         checks["readme_has_collapsible_chinese_overview"] = (
             "## 中文概览" in text
             and "<details>" in text
-            and "<summary>中文概览</summary>" in text
+            and "<summary>展开摘要</summary>" in text
             and "当前已严格证明局部 ODE 微步" in text
             and "未来工作分为两个相互独立的方向" in text
             and "</details>" in text
