@@ -312,14 +312,20 @@ def main() -> int:
             "Can a computation move through different control implementations"
             in text
             and "preserving its declared response" in text
+            and "fourteen phase parameters for a driven-qubit detuning\nscan" in text
             and "192-bit Arb interval arithmetic" in text
         )
         checks["readme_has_what_is_proved"] = (
             "## What Is Proved" in text
+            and "**Proved, Level I.**" in text
             and "preserves the declared response map" in text
             and "strictly decreases the independent objective" in text
             and "formally validated local response-fibre chart" in text
-            and "They do not yet prove a global flow." in text
+            and "**Milestone, Level II.**" in text
+            and "v0.10.6 as the latest stored\nreference certificate" in text
+            and "**Conditional theorem, Level III.**" in text
+            and "conditional on supplying the missing next-frame certificates" in text
+            and "does not yet prove a fifth frame or a global flow" in text
         )
         checks["readme_has_three_layer_status"] = (
             "## Three-Layer Status" in text
@@ -336,23 +342,33 @@ def main() -> int:
             and "maximum terminal support       1.3938448261845923e-11" not in text
         )
         checks["readme_states_source_vs_reference_boundary"] = (
-            "reference-result packaging is pending" in text
+            "v0.10.6 is the packaged reference certificate" in text
+            and "v0.10.13.1 records a stronger reindexed source chain" in text
+            and "reference-result packaging is still pending" in text
             and "implementation-open" in text.lower()
             and "v0.10.15" in text
             and "fifth-frame" in text
             and "fail-closed scaffold work" in text
         )
+        checks["readme_has_quick_start"] = (
+            "## Quick Start" in text
+            and "git clone https://github.com/papasop/Geometric-Flow.git" in text
+            and "python -m pip install -r requirements.txt" in text
+            and "python reproduce/local_theorem.py --check-only" in text
+        )
         checks["readme_has_reproduction_path_table"] = (
             "## Choose A Reproduction Path" in text
             and "| Goal | Command |" in text
             and "| Recompute the local ODE theorem | `python reproduce/local_theorem.py` |" in text
-            and "| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |" in text
             and "| Reproduce the fourth-chart Lohner flowpipe | `python reproduce/finite_continuation.py` |" in text
             and "| Audit the open fifth-frame target | `python reproduce/open_next_frame_audit.py` |" in text
-            and "| Run the longer finite chain | `python scripts/reproduce_finite_continuation.py` |" in text
+            and "| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |" in text
+            and "| Run the longer finite chain |" not in text
         )
-        checks["readme_lists_field_jacobian_entrypoint"] = (
-            "python scripts/reproduce_field_jacobian.py" in text
+        checks["readme_lists_compatibility_commands_outside_main_table"] = (
+            "Compatibility commands remain available under `scripts/`" in text
+            and "scripts/reproduce_finite_continuation.py" in text
+            and "scripts/reproduce_field_jacobian.py" in text
             and "verify the relevant frozen SHA-256 entries" in text
         )
         checks["readme_states_visible_repository_shape"] = (
@@ -363,10 +379,17 @@ def main() -> int:
             and "Avoid adding another user-facing versioned script" in text
         )
         checks["readme_has_collapsible_chinese_overview"] = (
-            "<details>" in text
+            "## 中文概览" in text
+            and "<details>" in text
             and "<summary>中文概览</summary>" in text
             and "当前已严格证明局部 ODE 微步" in text
             and "</details>" in text
+        )
+        checks["readme_has_citation_and_paper_navigation"] = (
+            "docs/PAPER_WORDING.md" in text
+            and "Suggested citation for the local theorem" in text
+            and "exact v0.9.3 release or commit" in text
+            and "[MIT license](LICENSE)" in text
         )
         checks["readme_next_milestone_is_not_stale_v0946"] = (
             "implicit_fibre_root_solver(a_box)" not in text
