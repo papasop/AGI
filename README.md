@@ -4,13 +4,18 @@
 [![Validated ODE reproduction](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Can a computation move through different control implementations while
-preserving its declared response and strictly improving another objective?
+This repository contains the frozen sources, interval certificates, and
+reproduction entrypoints for the published local response-fibre theorem.
 
-This repository studies that question on a frozen fourteen-phase
-quantum-control model: fourteen phase parameters for a driven-qubit detuning
-scan. Its reference result is a computer-assisted local theorem verified with
-192-bit Arb interval arithmetic.
+The central result separates response invariance from dynamical stationarity:
+a direction invisible to the declared finite response may still carry strict
+descent of an independent objective. In the certified model, this residual
+freedom supports a six-dimensional intrinsic normalized projected-gradient
+dynamics.
+
+The model is a frozen fourteen-phase quantum-control model: fourteen phase
+parameters for a driven-qubit detuning scan. Its reference result is a
+computer-assisted local theorem verified with 192-bit Arb interval arithmetic.
 
 The published Zenodo paper, *Computation as Geometric Flow: An Arb-Certified
 Local Intrinsic ODE on a Quantum-Control Response Fibre*, establishes the
@@ -24,8 +29,9 @@ published Zenodo version. See the
 
 ## What Is Proved
 
-**Proved, Level I.** For the frozen v0.9.3 instance, the repository certifies a
-unique six-dimensional intrinsic ODE microstep that:
+**Proved, Level I.** For the frozen v0.9.3 instance, the repository certifies
+existence and uniqueness of a local solution to a six-dimensional intrinsic
+ODE initial-value problem over one validated microstep. The solution:
 
 - preserves the declared response map \(\mathcal R_3\);
 - strictly decreases the independent objective \(L_6\);
@@ -38,6 +44,11 @@ computational statement.
 **Milestone, Level II.** Later repository artifacts extend this construction
 through finite same-chart continuation, with v0.10.6 as the latest stored
 reference certificate.
+
+For v0.7.4, all 16 theorem-bearing rank, near-tangency, nonstationarity, and
+descent boxes pass. A separate KKT-alignment diagnostic misses its predeclared
+threshold. Consequently, the serialized parent-box atlas is not claimed to be
+an ODE trajectory.
 
 **Conditional theorem, Level III.** A separate analytic
 conditional-continuation manuscript proves a continuation criterion from
@@ -84,7 +95,10 @@ python reproduce/published_paper.py
 ```
 
 The verification command checks frozen SHA-256 entries and stored reference
-certificates before you rerun any proof driver.
+certificates before you rerun any proof driver. By default,
+`python reproduce/published_paper.py` checks frozen stored artifacts; only
+`python reproduce/published_paper.py --run` recomputes the v0.7.4 + v0.9.3
+theorem pair from frozen source.
 
 ## Choose A Reproduction Path
 
@@ -116,27 +130,27 @@ three `reproduce/` entry points above.
 The visible repository structure is intentionally small:
 
 - `src/`: core geometric code and maintained formal backends;
-- `reproduce/`: the three paper-level reproduction entry points;
+- `reproduce/`: published-paper and research-line reproduction entry points;
 - `archive/milestones/`: historical v0.9.x/v0.10.x milestone scripts with
   original filenames preserved.
 
-New proof work should first attach to `src/` and the three `reproduce/`
+New proof work should first attach to `src/` and the visible `reproduce/`
 entry points. Avoid adding another user-facing versioned script unless it is
 also archived and indexed.
 
 ## Roadmap
 
-Two logically independent directions, matching the paper Outlook:
+The immediate continuation research direction, matching the paper Outlook:
 
 - **Toward a global response-fibre flow** — local-to-global programme for the
   quantum-control model: certified chart overlaps, uniform rank and
   nonstationarity bounds across a complete response component. The immediate
   open step is the fifth-frame backend (`reproduce/open_next_frame_audit.py`
   audits the target; v0.10.15 is fail-closed scaffold work).
-- **Neural-network parameter fibres** — separate analogue: finite probe
-  responses (logits/features on frozen inputs) define parameter-equivalence
-  fibres for function-preserving compression, quantization, and continual
-  learning. This direction does not depend on completing the global flow.
+
+A separate neural-network response-fibre analogy is tracked in
+[docs/NEURAL_NETWORK_RESPONSE_FIBRES.md](docs/NEURAL_NETWORK_RESPONSE_FIBRES.md);
+it is not a theorem of the published paper.
 
 ## Claim Boundary
 
@@ -176,9 +190,8 @@ stability. This README changes reading order only, not proof content.
 当前已严格证明局部 ODE 微步和冻结实例上的有限同图延拓；尚未证明第五局部图、
 完整子域遍历或全局几何流。
 
-未来工作分为两个相互独立的方向：一是继续补全量子控制模型中的局部到全局
-响应纤维流证明；二是研究神经网络参数纤维，用有限探针响应刻画函数保持的
-参数等价类。两者不互相依赖。
+未来工作主要是继续补全量子控制模型中的局部到全局响应纤维流证明。神经网络
+响应纤维只是独立类比方向，不属于本文发表定理。
 
 </details>
 

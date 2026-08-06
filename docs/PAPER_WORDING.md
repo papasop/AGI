@@ -18,6 +18,12 @@ Use `validated intrinsic response-fibre ODE microstep` for v0.9.3 and
 `certified complete-parent-box strict descent` for v0.7.4. Do not collapse the
 two labels into `validated global geometric flow`.
 
+Allowed framing:
+
+> Response invisibility does not imply dynamical irrelevance: a direction
+> invisible to the declared finite response may still support strict descent
+> of an independent objective.
+
 ## Layer II: Frozen-Instance Finite Continuation
 
 Safe wording:
@@ -73,3 +79,6 @@ source-certified with reference-result packaging pending.
 - “The v0.10.15 harness certifies a fifth frame.”
 - “A global fibre or holonomy theorem is proved.”
 - “The result has already been transferred to neural networks.”
+- “The response fibre is a gauge orbit.”
+- “Gauge redundancy cannot be fixed.”
+- “The response fibre is the unique driver of optimization.”
