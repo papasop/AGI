@@ -18,7 +18,7 @@ jobs:
         run: python tools/verify_release.py
       - name: Test public verification entrypoint
         run: python scripts/verify_reference_results.py
-      - name: Test published paper entrypoint
+      - name: Test archived manuscript entrypoint
         run: python reproduce/published_paper.py
       - name: Verify complete release manifest
         run: sha256sum -c SHA256SUMS.txt

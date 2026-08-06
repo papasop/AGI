@@ -17,7 +17,7 @@ repository homepage.
 
 ## v0.7.4 Numerical Source
 
-The numerical constants printed in the published paper are taken from
+The numerical constants printed in the archived manuscript are taken from
 `results/reference_run_summary.json`, transcribed from the completed frozen
 v0.7.4 reference run. The artifacts under `results/reference/` are local
 recomputations and may differ in the final displayed digits because of

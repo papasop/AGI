@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 This repository contains the frozen sources, interval certificates, and
-reproduction entrypoints for the published local response-fibre theorem.
+reproduction entrypoints for the archived local response-fibre theorem.
 
 The central result separates response invariance from dynamical stationarity:
 a direction invisible to the declared finite response may still carry strict
@@ -17,13 +17,13 @@ The model is a frozen fourteen-phase quantum-control model: fourteen phase
 parameters for a driven-qubit detuning scan. Its reference result is a
 computer-assisted local theorem verified with 192-bit Arb interval arithmetic.
 
-The published Zenodo paper, *Computation as Geometric Flow: An Arb-Certified
+The archived Zenodo preprint, *Computation as Geometric Flow: An Arb-Certified
 Local Intrinsic ODE on a Quantum-Control Response Fibre*, establishes the
 Level-I local theorem: a complete-parent-box descent certificate and a
 validated intrinsic response-fibre ODE microstep. Later finite-continuation
 artifacts and the analytic conditional-continuation manuscript are continuing
 work in the same repository and are outside the theorem boundary of the
-published Zenodo version. See the
+archived Zenodo version. See the
 [Zenodo record](https://zenodo.org/records/21728432) and
 [docs/PUBLISHED_PAPER_BOUNDARY.md](docs/PUBLISHED_PAPER_BOUNDARY.md).
 
@@ -54,7 +54,7 @@ an ODE trajectory.
 conditional-continuation manuscript proves a continuation criterion from
 compactness, uniform rank, and uniform nonstationarity hypotheses. Those
 hypotheses are not yet certified on the complete response fibre, and this work
-is outside the theorem boundary of the published Zenodo paper. The repository
+is outside the theorem boundary of the archived Zenodo preprint. The repository
 does not yet prove a fifth frame or a global flow.
 
 ## Theory Boundary In One Paragraph
@@ -106,8 +106,8 @@ Python 3.12 and `python-flint==0.8.0` are recommended.
 
 | Goal | Command |
 | --- | --- |
-| Verify the published Zenodo paper boundary | `python reproduce/published_paper.py` |
-| Recompute the published v0.7.4 + v0.9.3 theorem pair | `python reproduce/published_paper.py --run` |
+| Verify the archived Zenodo manuscript boundary | `python reproduce/published_paper.py` |
+| Recompute the archived v0.7.4 + v0.9.3 theorem pair | `python reproduce/published_paper.py --run` |
 | Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |
 | Recompute the v0.9.3 local ODE theorem only | `python reproduce/local_theorem.py` |
 | Reproduce the fourth-chart Lohner flowpipe | `python reproduce/finite_continuation.py` |
@@ -117,8 +117,21 @@ The stable scripts verify the relevant frozen SHA-256 entries before calling
 their archived long-form proof drivers in `archive/milestones/`.
 
 `finite_continuation.py` and `open_next_frame_audit.py` are continuing global
-flow research-line entry points; they are not part of the published Zenodo
-paper theorem boundary.
+flow research-line entry points; they are not part of the archived Zenodo
+manuscript theorem boundary.
+
+## Reviewer Reproduction
+
+```bash
+python -m pip install -r requirements.txt
+python reproduce/published_paper.py
+python reproduce/published_paper.py --run
+```
+
+The first command installs the frozen dependencies. The second command is the
+fast check of stored certificates, hashes, and manuscript boundary metadata.
+The third command is slower and recomputes the v0.7.4 parent-box certificate
+and v0.9.3 intrinsic ODE microstep from frozen source.
 
 Compatibility commands remain available under `scripts/`, including
 `scripts/reproduce_finite_continuation.py` and
@@ -130,7 +143,7 @@ three `reproduce/` entry points above.
 The visible repository structure is intentionally small:
 
 - `src/`: core geometric code and maintained formal backends;
-- `reproduce/`: published-paper and research-line reproduction entry points;
+- `reproduce/`: archived-manuscript and research-line reproduction entry points;
 - `archive/milestones/`: historical v0.9.x/v0.10.x milestone scripts with
   original filenames preserved.
 
@@ -150,7 +163,7 @@ The immediate continuation research direction, matching the paper Outlook:
 
 A separate neural-network response-fibre analogy is tracked in
 [docs/NEURAL_NETWORK_RESPONSE_FIBRES.md](docs/NEURAL_NETWORK_RESPONSE_FIBRES.md);
-it is not a theorem of the published paper.
+it is not a theorem of the archived manuscript.
 
 ## Claim Boundary
 
@@ -174,6 +187,7 @@ stability. This README changes reading order only, not proof content.
 - [docs/REFERENCE_RESULTS.md](docs/REFERENCE_RESULTS.md): stored numerical certificates and metrics
 - [docs/PROOF_NAVIGATION.md](docs/PROOF_NAVIGATION.md): guide to proof maps, artifact indexes, and reproduction docs
 - [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md): full script order and audit notes
+- [docs/MANUSCRIPT_PROVENANCE.md](docs/MANUSCRIPT_PROVENANCE.md): manuscript hash and archival status
 - [docs/PUBLISHED_PAPER_BOUNDARY.md](docs/PUBLISHED_PAPER_BOUNDARY.md): Zenodo theorem boundary
 - [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md): paper wording and citation boundary
 - [docs/releases/](docs/releases/): release notes
@@ -197,9 +211,10 @@ stability. This README changes reading order only, not proof content.
 
 ## Citation And Licence
 
-Suggested citation for the local theorem and published paper boundary is
+Suggested citation for the local theorem and archived manuscript boundary is
 recorded in [CITATION.cff](CITATION.cff). The Zenodo paper DOI is
 [10.5281/zenodo.21728432](https://doi.org/10.5281/zenodo.21728432).
 Treat v0.10.14.1/v0.10.15 material as development milestones, not as
-fifth-frame or global-flow theorems. The project is released under the
-[MIT license](LICENSE).
+fifth-frame or global-flow theorems. Source code is released under the
+[MIT license](LICENSE). The manuscript and associated textual material are
+released under CC BY 4.0 unless otherwise stated.

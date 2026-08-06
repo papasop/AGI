@@ -47,6 +47,7 @@ PROOF_GRAPH = ROOT / "docs" / "PROOF_GRAPH.md"
 REPRODUCIBILITY = ROOT / "docs" / "REPRODUCIBILITY.md"
 PAPER_WORDING = ROOT / "docs" / "PAPER_WORDING.md"
 PUBLISHED_PAPER_BOUNDARY = ROOT / "docs" / "PUBLISHED_PAPER_BOUNDARY.md"
+MANUSCRIPT_PROVENANCE = ROOT / "docs" / "MANUSCRIPT_PROVENANCE.md"
 V010141_INTEGRATION = ROOT / "docs" / "archive" / "INTEGRATION_v0.10.14.1.md"
 SCRIPT_ENTRYPOINT_UTILS = ROOT / "scripts" / "_entrypoint_utils.py"
 SCRIPT_LOCAL_ODE = ROOT / "scripts" / "reproduce_local_ode.py"
@@ -176,6 +177,7 @@ EXPECTED_NAVIGATION_FILES = {
     "docs/PROOF_GRAPH.md",
     "docs/REFERENCE_RESULTS.md",
     "docs/REPRODUCIBILITY.md",
+    "docs/MANUSCRIPT_PROVENANCE.md",
     "docs/PUBLISHED_PAPER_BOUNDARY.md",
     "reproduce/README.md",
     "reproduce/published_paper.py",
@@ -316,6 +318,7 @@ def main() -> int:
         text = README.read_text(encoding="utf-8")
         checks["readme_introduces_research_question"] = (
             "frozen sources, interval certificates, and\nreproduction entrypoints" in text
+            and "archived local response-fibre theorem" in text
             and "response invariance from dynamical stationarity" in text
             and "invisible to the declared finite response" in text
             and "strict\ndescent of an independent objective" in text
@@ -323,7 +326,8 @@ def main() -> int:
             and "192-bit Arb interval arithmetic" in text
             and "Computation as Geometric Flow: An Arb-Certified\nLocal Intrinsic ODE on a Quantum-Control Response Fibre" in text
             and "establishes the\nLevel-I local theorem" in text
-            and "outside the theorem boundary of the\npublished Zenodo version" in text
+            and "archived Zenodo preprint" in text
+            and "outside the theorem boundary of the\narchived Zenodo version" in text
             and "https://zenodo.org/records/21728432" in text
             and "docs/PUBLISHED_PAPER_BOUNDARY.md" in text
         )
@@ -343,7 +347,7 @@ def main() -> int:
             and "A separate analytic\nconditional-continuation manuscript" in text
             and "compactness, uniform rank, and uniform nonstationarity" in text
             and "not yet certified on the complete response fibre" in text
-            and "outside the theorem boundary of the published Zenodo paper" in text
+            and "outside the theorem boundary of the archived Zenodo preprint" in text
             and "does not yet prove a fifth frame or a global flow" in text
         )
         checks["readme_states_v074_diagnostic_boundary"] = (
@@ -402,15 +406,23 @@ def main() -> int:
         checks["readme_has_reproduction_path_table"] = (
             "## Choose A Reproduction Path" in text
             and "| Goal | Command |" in text
-            and "| Verify the published Zenodo paper boundary | `python reproduce/published_paper.py` |" in text
-            and "| Recompute the published v0.7.4 + v0.9.3 theorem pair | `python reproduce/published_paper.py --run` |" in text
+            and "| Verify the archived Zenodo manuscript boundary | `python reproduce/published_paper.py` |" in text
+            and "| Recompute the archived v0.7.4 + v0.9.3 theorem pair | `python reproduce/published_paper.py --run` |" in text
             and "| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |" in text
             and "| Recompute the v0.9.3 local ODE theorem only | `python reproduce/local_theorem.py` |" in text
             and "| Recompute the local ODE theorem | `python reproduce/local_theorem.py` |" not in text
             and "| Reproduce the fourth-chart Lohner flowpipe | `python reproduce/finite_continuation.py` |" in text
             and "| Audit the open fifth-frame target | `python reproduce/open_next_frame_audit.py` |" in text
-            and "not part of the published Zenodo\npaper theorem boundary" in text
+            and "not part of the archived Zenodo\nmanuscript theorem boundary" in text
             and "| Run the longer finite chain |" not in text
+        )
+        checks["readme_has_reviewer_reproduction"] = (
+            "## Reviewer Reproduction" in text
+            and "python -m pip install -r requirements.txt" in text
+            and "python reproduce/published_paper.py" in text
+            and "python reproduce/published_paper.py --run" in text
+            and "fast check of stored certificates, hashes, and manuscript boundary metadata" in text
+            and "recomputes the v0.7.4 parent-box certificate\nand v0.9.3 intrinsic ODE microstep" in text
         )
         checks["readme_lists_compatibility_commands_outside_main_table"] = (
             "Compatibility commands remain available under `scripts/`" in text
@@ -421,7 +433,7 @@ def main() -> int:
         checks["readme_states_visible_repository_shape"] = (
             "## Repository Shape" in text
             and "`src/`: core geometric code" in text
-            and "`reproduce/`: published-paper and research-line reproduction entry points" in text
+            and "`reproduce/`: archived-manuscript and research-line reproduction entry points" in text
             and "`archive/milestones/`: historical v0.9.x/v0.10.x milestone scripts" in text
             and "Avoid adding another user-facing versioned script" in text
         )
@@ -432,7 +444,7 @@ def main() -> int:
             and "The immediate\n  open step is the fifth-frame backend" in text
             and "v0.10.15 is fail-closed scaffold work" in text
             and "docs/NEURAL_NETWORK_RESPONSE_FIBRES.md" in text
-            and "not a theorem of the published paper" in text
+            and "not a theorem of the archived manuscript" in text
             and "**Neural-network parameter fibres**" not in text
         )
         checks["readme_has_collapsible_chinese_overview"] = (
@@ -445,9 +457,11 @@ def main() -> int:
         )
         checks["readme_has_citation_and_paper_navigation"] = (
             "docs/PAPER_WORDING.md" in text
+            and "docs/MANUSCRIPT_PROVENANCE.md" in text
             and "docs/PUBLISHED_PAPER_BOUNDARY.md" in text
             and "10.5281/zenodo.21728432" in text
-            and "Suggested citation for the local theorem and published paper boundary" in text
+            and "Suggested citation for the local theorem and archived manuscript boundary" in text
+            and "CC BY 4.0" in text
             and "[MIT license](LICENSE)" in text
         )
         checks["readme_next_milestone_is_not_stale_v0946"] = (
@@ -761,13 +775,32 @@ def main() -> int:
             and "The response fibre is the unique driver of optimization" in paper
         )
 
+    checks["manuscript_provenance_exists"] = MANUSCRIPT_PROVENANCE.is_file()
+    if MANUSCRIPT_PROVENANCE.is_file():
+        provenance = MANUSCRIPT_PROVENANCE.read_text(encoding="utf-8")
+        checks["manuscript_provenance_records_candidate_and_zenodo_hashes"] = (
+            "submission candidate `(4)(6)`" in provenance
+            and "7ee7ce97fda5eaca79a18ba9cba48e4e72bf312e41dbc718094b9492cb235685" in provenance
+            and "958d1bf3cab237c57ddba9031758559c353cd9f8d2c0380c9276c3ebb79fe5f4" in provenance
+            and "3ed12cab486c42dc55aca020bcd100962a556cd536b24e5ce5b6404b5460b29a" in provenance
+            and "10.5281/zenodo.21728432" in provenance
+            and "Zenodo `(4)(6)` version DOI: `PENDING`" in provenance
+            and "structural-checks`: `PENDING`" in provenance
+            and "reproduce-joint-geometric-flow`: `PENDING`" in provenance
+            and "paper-local-ode-v1.1" in provenance
+            and "paper-local-ode-v1.0" in provenance
+            and "theorem-bearing\nnumerical certificates are unchanged" in provenance
+        )
+
     checks["published_paper_boundary_exists"] = PUBLISHED_PAPER_BOUNDARY.is_file()
     if PUBLISHED_PAPER_BOUNDARY.is_file():
         boundary = PUBLISHED_PAPER_BOUNDARY.read_text(encoding="utf-8")
         checks["published_paper_boundary_scopes_zenodo_local_theorem"] = (
-            "Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on" in boundary
+            "archived Zenodo manuscript" in boundary
+            and "Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on" in boundary
             and "https://zenodo.org/records/21728432" in boundary
             and "10.5281/zenodo.21728432" in boundary
+            and "docs/MANUSCRIPT_PROVENANCE.md" in boundary
             and "v0.7.4 complete-parent-box descent certificate" in boundary
             and "v0.9.3 validated intrinsic response-fibre ODE microstep" in boundary
             and "python reproduce/published_paper.py" in boundary
@@ -775,6 +808,8 @@ def main() -> int:
             and "The analytic conditional-continuation manuscript" in boundary
             and "unconditional global flow" in boundary
             and "paper-local-ode-v1.0" in boundary
+            and "paper-local-ode-v1.1" in boundary
+            and "does not change theorem-bearing numerical\ncertificates" in boundary
         )
 
     checks["citation_exists"] = CITATION.is_file()
@@ -807,7 +842,7 @@ def main() -> int:
             and
             "Test public verification entrypoint" in structural_workflow
             and "python scripts/verify_reference_results.py" in structural_workflow
-            and "Test published paper entrypoint" in structural_workflow
+            and "Test archived manuscript entrypoint" in structural_workflow
             and "python reproduce/published_paper.py" in structural_workflow
         )
 
@@ -830,7 +865,7 @@ def main() -> int:
             "python reproduce/published_paper.py" in reproduce_docs
             and "python reproduce/published_paper.py --run" in reproduce_docs
             and "v0.7.4 parent-box descent, v0.9.3 intrinsic ODE" in reproduce_docs
-            and "not part of the\npublished Zenodo paper theorem boundary" in reproduce_docs
+            and "not part of the\narchived Zenodo manuscript theorem boundary" in reproduce_docs
         )
 
     checks["reproduction_scripts_exist"] = (
