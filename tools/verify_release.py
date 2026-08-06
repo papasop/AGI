@@ -315,10 +315,11 @@ def main() -> int:
     if README.is_file():
         text = README.read_text(encoding="utf-8")
         checks["readme_introduces_research_question"] = (
-            "Can a computation move through different control implementations"
-            in text
-            and "preserving its declared response" in text
-            and "fourteen phase parameters for a driven-qubit detuning\nscan" in text
+            "frozen sources, interval certificates, and\nreproduction entrypoints" in text
+            and "response invariance from dynamical stationarity" in text
+            and "invisible to the declared finite response" in text
+            and "strict\ndescent of an independent objective" in text
+            and "fourteen phase\nparameters for a driven-qubit detuning scan" in text
             and "192-bit Arb interval arithmetic" in text
             and "Computation as Geometric Flow: An Arb-Certified\nLocal Intrinsic ODE on a Quantum-Control Response Fibre" in text
             and "establishes the\nLevel-I local theorem" in text
@@ -329,6 +330,9 @@ def main() -> int:
         checks["readme_has_what_is_proved"] = (
             "## What Is Proved" in text
             and "**Proved, Level I.**" in text
+            and "existence and uniqueness of a local solution" in text
+            and "initial-value problem over one validated microstep" in text
+            and "unique six-dimensional intrinsic ODE microstep" not in text
             and "preserves the declared response map" in text
             and "strictly decreases the independent objective" in text
             and "formally validated local response-fibre chart" in text
@@ -341,6 +345,11 @@ def main() -> int:
             and "not yet certified on the complete response fibre" in text
             and "outside the theorem boundary of the published Zenodo paper" in text
             and "does not yet prove a fifth frame or a global flow" in text
+        )
+        checks["readme_states_v074_diagnostic_boundary"] = (
+            "For v0.7.4, all 16 theorem-bearing rank, near-tangency, nonstationarity, and\ndescent boxes pass" in text
+            and "A separate KKT-alignment diagnostic misses its predeclared\nthreshold" in text
+            and "serialized parent-box atlas is not claimed to be\nan ODE trajectory" in text
         )
         checks["readme_has_theory_boundary_paragraph"] = (
             "## Theory Boundary In One Paragraph" in text
@@ -387,6 +396,8 @@ def main() -> int:
             and "python scripts/verify_reference_results.py" in text
             and "python reproduce/published_paper.py" in text
             and "checks frozen SHA-256 entries and stored reference\ncertificates" in text
+            and "checks frozen stored artifacts" in text
+            and "only\n`python reproduce/published_paper.py --run` recomputes" in text
         )
         checks["readme_has_reproduction_path_table"] = (
             "## Choose A Reproduction Path" in text
@@ -410,25 +421,26 @@ def main() -> int:
         checks["readme_states_visible_repository_shape"] = (
             "## Repository Shape" in text
             and "`src/`: core geometric code" in text
-            and "`reproduce/`: the three paper-level reproduction entry points" in text
+            and "`reproduce/`: published-paper and research-line reproduction entry points" in text
             and "`archive/milestones/`: historical v0.9.x/v0.10.x milestone scripts" in text
             and "Avoid adding another user-facing versioned script" in text
         )
         checks["readme_has_scoped_roadmap"] = (
             "## Roadmap" in text
-            and "Two logically independent directions" in text
+            and "immediate continuation research direction" in text
             and "**Toward a global response-fibre flow**" in text
             and "The immediate\n  open step is the fifth-frame backend" in text
             and "v0.10.15 is fail-closed scaffold work" in text
-            and "**Neural-network parameter fibres**" in text
-            and "This direction does not depend on completing the global flow" in text
+            and "docs/NEURAL_NETWORK_RESPONSE_FIBRES.md" in text
+            and "not a theorem of the published paper" in text
+            and "**Neural-network parameter fibres**" not in text
         )
         checks["readme_has_collapsible_chinese_overview"] = (
             "## 中文概览" in text
             and "<details>" in text
             and "<summary>展开摘要</summary>" in text
             and "当前已严格证明局部 ODE 微步" in text
-            and "未来工作分为两个相互独立的方向" in text
+            and "神经网络\n响应纤维只是独立类比方向" in text
             and "</details>" in text
         )
         checks["readme_has_citation_and_paper_navigation"] = (
@@ -447,6 +459,9 @@ def main() -> int:
     checks["claim_scope_exists"] = CLAIM_SCOPE.is_file()
     if CLAIM_SCOPE.is_file():
         scope = CLAIM_SCOPE.read_text(encoding="utf-8")
+        checks["claim_scope_title_is_version_stable"] = (
+            scope.startswith("# Current Claim Scope")
+        )
         checks["claim_scope_states_v0932_boundary"] = (
             "v0.9.32 certifies a signed six-component fourth-chart terminal" in scope
             and "not a sharp trajectory midpoint" in scope
@@ -502,6 +517,14 @@ def main() -> int:
             and "VALIDATED_REINDEXED_TAYLOR_DIRECTIONAL_AFFINE_LOHNER_CERTIFIED"
             in reference_results
             and "reference-result packaging pending" in reference_results
+        )
+        checks["reference_results_states_v074_numeric_source"] = (
+            "## v0.7.4 Numerical Source" in reference_results
+            and "results/reference_run_summary.json" in reference_results
+            and "results/reference/" in reference_results
+            and "may differ in the final displayed digits" in reference_results
+            and "do not change any\ntheorem-bearing Boolean gate" in reference_results
+            and "do not mix\ndisplayed constants" in reference_results
         )
 
     checks["proof_navigation_exists"] = PROOF_NAVIGATION.is_file()
@@ -731,7 +754,11 @@ def main() -> int:
             and "Layer II: Frozen-Instance Finite Continuation" in paper
             and "Layer III: Conditional / Next-Frame Work" in paper
             and "Reference-Certified Vs Source-Certified" in paper
+            and "Response invisibility does not imply dynamical irrelevance" in paper
             and "v0.10.15 harness certifies a fifth frame" in paper
+            and "The response fibre is a gauge orbit" in paper
+            and "Gauge redundancy cannot be fixed" in paper
+            and "The response fibre is the unique driver of optimization" in paper
         )
 
     checks["published_paper_boundary_exists"] = PUBLISHED_PAPER_BOUNDARY.is_file()
@@ -776,6 +803,8 @@ def main() -> int:
     if STRUCTURAL_WORKFLOW.is_file():
         structural_workflow = STRUCTURAL_WORKFLOW.read_text(encoding="utf-8")
         checks["ci_tests_public_verify_entrypoint"] = (
+            "python -m compileall -q src tools scripts reproduce" in structural_workflow
+            and
             "Test public verification entrypoint" in structural_workflow
             and "python scripts/verify_reference_results.py" in structural_workflow
             and "Test published paper entrypoint" in structural_workflow

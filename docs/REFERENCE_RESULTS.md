@@ -15,6 +15,19 @@ repository homepage.
 | v0.10.15 fifth nonlinear frame transition | Implementation-open fail-closed harness |
 | Complete fibre/global flow | Not proved |
 
+## v0.7.4 Numerical Source
+
+The numerical constants printed in the published paper are taken from
+`results/reference_run_summary.json`, transcribed from the completed frozen
+v0.7.4 reference run. The artifacts under `results/reference/` are local
+recomputations and may differ in the final displayed digits because of
+environment and outward-rounding details. These differences do not change any
+theorem-bearing Boolean gate.
+
+Until a single canonical v0.7.4 artifact package is designated, do not mix
+displayed constants from `results/reference_run_summary.json` and
+`results/reference/` in the same citation.
+
 ## v0.10.6 Reference Certificate
 
 The strongest stored repository reference continuation result is v0.10.6:

@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Compile frozen source
-        run: python -m compileall -q src tools
+        run: python -m compileall -q src tools scripts reproduce
       - name: Verify frozen release hashes and metadata
         run: python tools/verify_release.py
       - name: Test public verification entrypoint

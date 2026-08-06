@@ -1,4 +1,4 @@
-# Claim scope for v0.10.14.1 plus earlier continuation milestones
+# Current Claim Scope
 
 ## Layer I: Unconditional Local Theorem
 
