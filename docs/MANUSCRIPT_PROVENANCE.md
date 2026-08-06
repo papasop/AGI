@@ -1,37 +1,28 @@
 # Manuscript Provenance
 
-This file separates three objects that must not be conflated:
+This document binds the submission manuscript to its source archive,
+repository state, theorem-bearing software boundary, and public archive status.
+It separates three objects that must not be conflated:
 
-- the archived manuscript/preprint version;
+- the manuscript/preprint file version;
 - the theorem-bearing software certificate boundary;
 - later continuation research code in the same repository.
 
-## Submission Candidate
+## Repository Submission Candidate
 
-- Manuscript version: submission candidate `(4)(6)` local-theorem manuscript.
-- Theorem software boundary: v0.7.4 complete-parent-box descent certificate +
-  v0.9.3 validated intrinsic response-fibre ODE microstep.
-- Later research code excluded from this manuscript boundary: v0.10.x finite
-  continuation, v0.10.13.1 source chain, v0.10.14.1/v0.10.15 fifth-frame work,
-  analytic conditional-continuation manuscript, neural-network analogies, and
-  global-flow claims.
-
-## Local Candidate Files
-
-The following local submission-candidate archive was inspected before archival:
-
-- PDF filename: `geometric_flow_v0.9.3_paper.pdf`
+- Manuscript version: submission candidate v1.1 local-theorem manuscript.
+- Title: *Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE
+  on a Quantum-Control Response Fibre*
+- PDF: `manuscripts/submission/v1.1/geometric_flow_submission_candidate_v1.1.pdf`
 - PDF SHA-256:
-  `7ee7ce97fda5eaca79a18ba9cba48e4e72bf312e41dbc718094b9492cb235685`
+  `86edef125808640fc7c59b2ceec39d3fd36954b4b395b20f5949de13d0364b96`
+- Source archive:
+  `manuscripts/submission/v1.1/geometric_flow_submission_candidate_v1.1_source.zip`
+- Source archive SHA-256:
+  `70526251604b9ed67997610ea370365f38f1d591b5c7a53c51fdf6bdc503e328`
 - PDF pages: 14
-- Source ZIP filename: `geometric-flow-latex (2).zip`
-- Source ZIP SHA-256:
-  `958d1bf3cab237c57ddba9031758559c353cd9f8d2c0380c9276c3ebb79fe5f4`
-- Identical local copy: `geometric-flow-latex (3).zip`
-- Identical local copy SHA-256:
-  `958d1bf3cab237c57ddba9031758559c353cd9f8d2c0380c9276c3ebb79fe5f4`
 
-Local text/source checks observed:
+Local PDF/source checks observed:
 
 - theorem statement uses existence and uniqueness of the ODE solution;
 - Introduction includes the Lanford--Tucker validated-numerics comparison;
@@ -39,66 +30,61 @@ Local text/source checks observed:
 - endpoint inclusion, adjacent microstep chaining, ten-chart continuation, and
   global response-fibre flow remain open.
 
-## Previous Zenodo Record Inspected
+## Public Archive Status
 
-- Zenodo record: https://zenodo.org/records/21728432
-- Version DOI inspected: `10.5281/zenodo.21728432`
-- Concept DOI: `10.5281/zenodo.15879392`
-- Zenodo PDF filename: `geometric_flow_v0.9.3_paper.pdf`
-- Zenodo PDF SHA-256:
-  `3ed12cab486c42dc55aca020bcd100962a556cd536b24e5ce5b6404b5460b29a`
-- Zenodo PDF MD5:
-  `9f9b6679d6a6e4a7d6e31f5e3ec62e02`
-- Zenodo PDF pages: 14
-
-Status: this previous Zenodo PDF SHA-256 differs from the local `(4)(6)`
-submission-candidate PDF SHA-256 above.
-
-## Archived Zenodo Version
-
-- Zenodo `(4)(6)` record: https://zenodo.org/records/21830043
-- Zenodo `(4)(6)` version DOI: `10.5281/zenodo.21830043`
-- Concept DOI: `10.5281/zenodo.15879392`
-- Zenodo `(4)(6)` PDF filename: `geometric_flow_v0.9.3_paper.pdf`
-- Zenodo `(4)(6)` PDF SHA-256:
+- Zenodo concept DOI: `10.5281/zenodo.15879392`
+- Latest inspected Zenodo record: https://zenodo.org/records/21830043
+- Latest inspected Zenodo version DOI: `10.5281/zenodo.21830043`
+- Latest inspected Zenodo PDF SHA-256:
   `e74467003ba39666b309fa6babbb467bd77206cbf556348f0fb50f04605c628c`
-- Zenodo `(4)(6)` PDF MD5:
+- Latest inspected Zenodo PDF MD5:
   `bf73435c15ebf145a6686a0b69d4b167`
-- Zenodo `(4)(6)` PDF pages: 14
 
-The archived Zenodo PDF was generated at a later time than the local candidate
-PDF and is not byte-identical to the local candidate hash above. Text extraction
-checks confirm that it contains the local-theorem wording required for
-submission:
+Status: the latest inspected Zenodo PDF is not byte-identical to the repository
+submission candidate above. It passed text-level checks for the local-theorem
+wording, but it does not bind the exact repository PDF/source archive bytes.
 
-- there exists a unique solution;
-- existence and uniqueness;
-- the Lanford--Tucker validated-numerics comparison;
-- endpoint inclusion and adjacent microstep chaining remain open;
-- complete-atlas and global continuation remain open.
+Required archival action: create a new Zenodo version for the repository
+submission candidate if byte-identical public archival is required. Preserve
+the existing Zenodo version chain; do not overwrite an earlier version.
 
-## Remaining Archival Fields To Complete
+## Fields To Complete Before Final Submission
 
-- Zenodo `(4)(6)` source ZIP SHA-256: `PENDING`
-- GitHub paper tag: `paper-local-ode-v1.1`
-- Git commit: the commit pointed to by `paper-local-ode-v1.1`
-- SHA-256 manifest: `SHA256SUMS.txt` in the tagged commit
+- Zenodo version DOI for the exact repository PDF/source archive: `PENDING`
+- GitHub release URL containing the exact PDF/source archive: `PENDING`
+- immutable paper-boundary tag: `paper-local-ode-v1.3`
+- repository commit: commit pointed to by `paper-local-ode-v1.3`
+- exact workflow commit: `PENDING`
 
-The previous immutable tag `paper-local-ode-v1.0` is retained. The v1.1 tag is
-for manuscript wording and provenance documentation only; theorem-bearing
-numerical certificates are unchanged.
+The previous immutable tags `paper-local-ode-v1.0`, `paper-local-ode-v1.1`, and
+`paper-local-ode-v1.2` are retained and must not be moved. The v1.3 tag is for
+the repository submission-candidate PDF/source archive and provenance update
+only; theorem-bearing numerical certificates are unchanged.
 
-## CI Evidence To Complete
+## Theorem-Bearing Boundary
 
-Record successful GitHub Actions URLs for the submission-candidate commit:
+- v0.7.4: complete-parent-box rank, near-tangency, nonstationarity, and strict
+  descent certificate on 16 theorem-bearing child boxes.
+- v0.7.4 diagnostic exclusion: the frozen KKT-alignment threshold is not met;
+  the serialized atlas is not certified as an ODE trajectory.
+- v0.9.3: existence and uniqueness of a local solution to the intrinsic
+  response-fibre ODE, exact declared-response preservation, and strict `L6`
+  descent on `0 <= t <= 1e-14`.
+- v0.10.x: later continuation research, excluded from this manuscript theorem.
 
-- `structural-checks`: `PENDING`
-- `reproduce-validated-ode`: `PENDING`
-- `reproduce-joint-geometric-flow`: `PENDING`
+## Reproduction Record
 
-The third workflow is the most important external CI reproduction gate because
-it recomputes both theorem-bearing components:
+- structural-checks workflow URL: `PENDING`
+- reproduce-validated-ode workflow URL: `PENDING`
+- reproduce-joint-geometric-flow workflow URL: `PENDING`
 
-- v0.7.4 parent-box geometry;
-- v0.9.3 intrinsic ODE microstep;
-- joint local-paper release gate.
+The URLs above must refer to successful runs on the exact immutable submission
+commit. An empty or unavailable status is not evidence of success.
+
+## Licensing
+
+- software licence: MIT
+- manuscript licence: CC BY 4.0, matching the Zenodo record metadata unless a
+  later public archive version states otherwise
+
+Do not assume that the software licence also governs the manuscript.

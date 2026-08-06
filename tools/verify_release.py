@@ -48,6 +48,21 @@ REPRODUCIBILITY = ROOT / "docs" / "REPRODUCIBILITY.md"
 PAPER_WORDING = ROOT / "docs" / "PAPER_WORDING.md"
 PUBLISHED_PAPER_BOUNDARY = ROOT / "docs" / "PUBLISHED_PAPER_BOUNDARY.md"
 MANUSCRIPT_PROVENANCE = ROOT / "docs" / "MANUSCRIPT_PROVENANCE.md"
+REVIEWER_REPRODUCTION = ROOT / "docs" / "REVIEWER_REPRODUCTION.md"
+SUBMISSION_V11_PDF = (
+    ROOT
+    / "manuscripts"
+    / "submission"
+    / "v1.1"
+    / "geometric_flow_submission_candidate_v1.1.pdf"
+)
+SUBMISSION_V11_SOURCE_ZIP = (
+    ROOT
+    / "manuscripts"
+    / "submission"
+    / "v1.1"
+    / "geometric_flow_submission_candidate_v1.1_source.zip"
+)
 V010141_INTEGRATION = ROOT / "docs" / "archive" / "INTEGRATION_v0.10.14.1.md"
 SCRIPT_ENTRYPOINT_UTILS = ROOT / "scripts" / "_entrypoint_utils.py"
 SCRIPT_LOCAL_ODE = ROOT / "scripts" / "reproduce_local_ode.py"
@@ -177,8 +192,11 @@ EXPECTED_NAVIGATION_FILES = {
     "docs/PROOF_GRAPH.md",
     "docs/REFERENCE_RESULTS.md",
     "docs/REPRODUCIBILITY.md",
+    "docs/REVIEWER_REPRODUCTION.md",
     "docs/MANUSCRIPT_PROVENANCE.md",
     "docs/PUBLISHED_PAPER_BOUNDARY.md",
+    "manuscripts/submission/v1.1/geometric_flow_submission_candidate_v1.1.pdf",
+    "manuscripts/submission/v1.1/geometric_flow_submission_candidate_v1.1_source.zip",
     "reproduce/README.md",
     "reproduce/published_paper.py",
     "reproduce/local_theorem.py",
@@ -457,6 +475,7 @@ def main() -> int:
         )
         checks["readme_has_citation_and_paper_navigation"] = (
             "docs/PAPER_WORDING.md" in text
+            and "docs/REVIEWER_REPRODUCTION.md" in text
             and "docs/MANUSCRIPT_PROVENANCE.md" in text
             and "docs/PUBLISHED_PAPER_BOUNDARY.md" in text
             and "10.5281/zenodo.21830043" in text
@@ -779,23 +798,52 @@ def main() -> int:
     if MANUSCRIPT_PROVENANCE.is_file():
         provenance = MANUSCRIPT_PROVENANCE.read_text(encoding="utf-8")
         checks["manuscript_provenance_records_candidate_and_zenodo_hashes"] = (
-            "submission candidate `(4)(6)`" in provenance
-            and "7ee7ce97fda5eaca79a18ba9cba48e4e72bf312e41dbc718094b9492cb235685" in provenance
-            and "958d1bf3cab237c57ddba9031758559c353cd9f8d2c0380c9276c3ebb79fe5f4" in provenance
-            and "3ed12cab486c42dc55aca020bcd100962a556cd536b24e5ce5b6404b5460b29a" in provenance
+            "submission candidate v1.1 local-theorem manuscript" in provenance
+            and "manuscripts/submission/v1.1/geometric_flow_submission_candidate_v1.1.pdf" in provenance
+            and "86edef125808640fc7c59b2ceec39d3fd36954b4b395b20f5949de13d0364b96" in provenance
+            and "manuscripts/submission/v1.1/geometric_flow_submission_candidate_v1.1_source.zip" in provenance
+            and "70526251604b9ed67997610ea370365f38f1d591b5c7a53c51fdf6bdc503e328" in provenance
             and "e74467003ba39666b309fa6babbb467bd77206cbf556348f0fb50f04605c628c" in provenance
             and "bf73435c15ebf145a6686a0b69d4b167" in provenance
-            and "10.5281/zenodo.21728432" in provenance
             and "10.5281/zenodo.21830043" in provenance
             and "https://zenodo.org/records/21830043" in provenance
-            and "Zenodo `(4)(6)` source ZIP SHA-256: `PENDING`" in provenance
-            and "there exists a unique solution" in provenance
-            and "structural-checks`: `PENDING`" in provenance
-            and "reproduce-joint-geometric-flow`: `PENDING`" in provenance
-            and "paper-local-ode-v1.1" in provenance
+            and "Zenodo version DOI for the exact repository PDF/source archive: `PENDING`" in provenance
+            and "GitHub release URL containing the exact PDF/source archive: `PENDING`" in provenance
+            and "existence and uniqueness of the ODE solution" in provenance
+            and "the latest inspected Zenodo PDF is not byte-identical" in provenance
+            and "structural-checks workflow URL: `PENDING`" in provenance
+            and "reproduce-joint-geometric-flow workflow URL: `PENDING`" in provenance
+            and "paper-local-ode-v1.3" in provenance
+            and "paper-local-ode-v1.2" in provenance
             and "paper-local-ode-v1.0" in provenance
-            and "theorem-bearing\nnumerical certificates are unchanged" in provenance
+            and "theorem-bearing numerical certificates are unchanged" in provenance
         )
+
+    checks["reviewer_reproduction_exists"] = REVIEWER_REPRODUCTION.is_file()
+    if REVIEWER_REPRODUCTION.is_file():
+        reviewer = REVIEWER_REPRODUCTION.read_text(encoding="utf-8")
+        checks["reviewer_reproduction_scopes_archived_local_theorem"] = (
+            "python reproduce/published_paper.py" in reviewer
+            and "python reproduce/published_paper.py --run" in reviewer
+            and "PUBLISHED_LOCAL_PAPER_RELEASE_GATE = true" in reviewer
+            and "all_gates_pass" in reviewer
+            and "separate unresolved alignment diagnostic" in reviewer
+            and "not part of\nthis reproduction" in reviewer
+            and "global response-fibre\nflow" in reviewer
+        )
+
+    checks["manuscript_pdf_exists"] = SUBMISSION_V11_PDF.is_file()
+    checks["manuscript_pdf_sha256"] = (
+        SUBMISSION_V11_PDF.is_file()
+        and sha256(SUBMISSION_V11_PDF)
+        == "86edef125808640fc7c59b2ceec39d3fd36954b4b395b20f5949de13d0364b96"
+    )
+    checks["manuscript_source_zip_exists"] = SUBMISSION_V11_SOURCE_ZIP.is_file()
+    checks["manuscript_source_zip_sha256"] = (
+        SUBMISSION_V11_SOURCE_ZIP.is_file()
+        and sha256(SUBMISSION_V11_SOURCE_ZIP)
+        == "70526251604b9ed67997610ea370365f38f1d591b5c7a53c51fdf6bdc503e328"
+    )
 
     checks["published_paper_boundary_exists"] = PUBLISHED_PAPER_BOUNDARY.is_file()
     if PUBLISHED_PAPER_BOUNDARY.is_file():

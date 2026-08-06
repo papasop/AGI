@@ -187,6 +187,7 @@ stability. This README changes reading order only, not proof content.
 - [docs/REFERENCE_RESULTS.md](docs/REFERENCE_RESULTS.md): stored numerical certificates and metrics
 - [docs/PROOF_NAVIGATION.md](docs/PROOF_NAVIGATION.md): guide to proof maps, artifact indexes, and reproduction docs
 - [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md): full script order and audit notes
+- [docs/REVIEWER_REPRODUCTION.md](docs/REVIEWER_REPRODUCTION.md): minimal reviewer reproduction route
 - [docs/MANUSCRIPT_PROVENANCE.md](docs/MANUSCRIPT_PROVENANCE.md): manuscript hash and archival status
 - [docs/PUBLISHED_PAPER_BOUNDARY.md](docs/PUBLISHED_PAPER_BOUNDARY.md): Zenodo theorem boundary
 - [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md): paper wording and citation boundary
