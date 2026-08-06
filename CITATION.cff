@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use this research artifact, cite the repository and the exact v0.9.3 release or commit."
-title: "Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on a Quantum-Control Response Fibre"
+message: "If you use this research artifact, cite the repository and the exact theorem boundary you rely on."
+title: "Geometric-Flow"
 type: software
 authors:
   - family-names: "Li"
@@ -11,3 +11,13 @@ date-released: "2026-08-01"
 repository-code: "https://github.com/papasop/Geometric-Flow"
 license: MIT
 version: 0.9.3
+preferred-citation:
+  type: article
+  title: "Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on a Quantum-Control Response Fibre"
+  authors:
+    - family-names: "Li"
+      given-names: "Y. Y. N."
+      orcid: "https://orcid.org/0009-0002-6471-139X"
+  year: 2026
+  doi: "10.5281/zenodo.21728432"
+  url: "https://zenodo.org/records/21728432"

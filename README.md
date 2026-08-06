@@ -12,10 +12,15 @@ quantum-control model: fourteen phase parameters for a driven-qubit detuning
 scan. Its reference result is a computer-assisted local theorem verified with
 192-bit Arb interval arithmetic.
 
-The companion paper, *Computation as Geometric Flow: Certified Intrinsic ODEs
-and Conditional Continuation*, is available on
-[Zenodo](https://zenodo.org/records/21728432). Paper-facing claim wording is
-tracked in [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md).
+The published Zenodo paper, *Computation as Geometric Flow: An Arb-Certified
+Local Intrinsic ODE on a Quantum-Control Response Fibre*, establishes the
+Level-I local theorem: a complete-parent-box descent certificate and a
+validated intrinsic response-fibre ODE microstep. Later finite-continuation
+artifacts and the analytic conditional-continuation manuscript are continuing
+work in the same repository and are outside the theorem boundary of the
+published Zenodo version. See the
+[Zenodo record](https://zenodo.org/records/21728432) and
+[docs/PUBLISHED_PAPER_BOUNDARY.md](docs/PUBLISHED_PAPER_BOUNDARY.md).
 
 ## What Is Proved
 
@@ -34,10 +39,12 @@ computational statement.
 through finite same-chart continuation, with v0.10.6 as the latest stored
 reference certificate.
 
-**Conditional theorem, Level III.** The paper-level continuation theorem is
-proved analytically; its hypotheses, compactness, uniform rank, and uniform
-nonstationarity, are not yet certified on the complete response fibre. The
-repository does not yet prove a fifth frame or a global flow.
+**Conditional theorem, Level III.** A separate analytic
+conditional-continuation manuscript proves a continuation criterion from
+compactness, uniform rank, and uniform nonstationarity hypotheses. Those
+hypotheses are not yet certified on the complete response fibre, and this work
+is outside the theorem boundary of the published Zenodo paper. The repository
+does not yet prove a fifth frame or a global flow.
 
 ## Theory Boundary In One Paragraph
 
@@ -147,6 +154,7 @@ stability. This README changes reading order only, not proof content.
 - [docs/REFERENCE_RESULTS.md](docs/REFERENCE_RESULTS.md): stored numerical certificates and metrics
 - [docs/PROOF_NAVIGATION.md](docs/PROOF_NAVIGATION.md): guide to proof maps, artifact indexes, and reproduction docs
 - [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md): full script order and audit notes
+- [docs/PUBLISHED_PAPER_BOUNDARY.md](docs/PUBLISHED_PAPER_BOUNDARY.md): Zenodo theorem boundary
 - [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md): paper wording and citation boundary
 - [docs/releases/](docs/releases/): release notes
 - [docs/archive/](docs/archive/): historical migration and supersession notes
@@ -170,10 +178,9 @@ stability. This README changes reading order only, not proof content.
 
 ## Citation And Licence
 
-Suggested citation for the local theorem: cite the repository artifact and the
-exact v0.9.3 release or commit, as recorded in [CITATION.cff](CITATION.cff).
-For the companion paper, use the
-[Zenodo record](https://zenodo.org/records/21728432).
+Suggested citation for the local theorem and published paper boundary is
+recorded in [CITATION.cff](CITATION.cff). The Zenodo paper DOI is
+[10.5281/zenodo.21728432](https://doi.org/10.5281/zenodo.21728432).
 Treat v0.10.14.1/v0.10.15 material as development milestones, not as
 fifth-frame or global-flow theorems. The project is released under the
 [MIT license](LICENSE).
