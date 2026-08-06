@@ -24,7 +24,7 @@ validated intrinsic response-fibre ODE microstep. Later finite-continuation
 artifacts and the analytic conditional-continuation manuscript are continuing
 work in the same repository and are outside the theorem boundary of the
 archived Zenodo version. See the
-[Zenodo record](https://zenodo.org/records/21728432) and
+[Zenodo record](https://zenodo.org/records/21830043) and
 [docs/PUBLISHED_PAPER_BOUNDARY.md](docs/PUBLISHED_PAPER_BOUNDARY.md).
 
 ## What Is Proved
@@ -213,7 +213,7 @@ stability. This README changes reading order only, not proof content.
 
 Suggested citation for the local theorem and archived manuscript boundary is
 recorded in [CITATION.cff](CITATION.cff). The Zenodo paper DOI is
-[10.5281/zenodo.21728432](https://doi.org/10.5281/zenodo.21728432).
+[10.5281/zenodo.21830043](https://doi.org/10.5281/zenodo.21830043).
 Treat v0.10.14.1/v0.10.15 material as development milestones, not as
 fifth-frame or global-flow theorems. Source code is released under the
 [MIT license](LICENSE). The manuscript and associated textual material are

@@ -39,30 +39,46 @@ Local text/source checks observed:
 - endpoint inclusion, adjacent microstep chaining, ten-chart continuation, and
   global response-fibre flow remain open.
 
-## Current Zenodo Record Inspected
+## Previous Zenodo Record Inspected
 
 - Zenodo record: https://zenodo.org/records/21728432
-- Current version DOI inspected: `10.5281/zenodo.21728432`
+- Version DOI inspected: `10.5281/zenodo.21728432`
 - Concept DOI: `10.5281/zenodo.15879392`
-- Current Zenodo PDF filename: `geometric_flow_v0.9.3_paper.pdf`
-- Current Zenodo PDF SHA-256:
+- Zenodo PDF filename: `geometric_flow_v0.9.3_paper.pdf`
+- Zenodo PDF SHA-256:
   `3ed12cab486c42dc55aca020bcd100962a556cd536b24e5ce5b6404b5460b29a`
-- Current Zenodo PDF MD5:
+- Zenodo PDF MD5:
   `9f9b6679d6a6e4a7d6e31f5e3ec62e02`
-- Current Zenodo PDF pages: 14
+- Zenodo PDF pages: 14
 
-Status: the current Zenodo PDF SHA-256 differs from the local `(4)(6)`
-submission-candidate PDF SHA-256 above. Therefore the `(4)(6)` candidate is not
-yet proven to be archived in the inspected Zenodo version.
+Status: this previous Zenodo PDF SHA-256 differs from the local `(4)(6)`
+submission-candidate PDF SHA-256 above.
 
-Required archival action: create a new Zenodo version for the `(4)(6)` candidate
-instead of overwriting the current record. Record the new version DOI below once
-Zenodo assigns it.
+## Archived Zenodo Version
 
-## Archival Fields To Complete
+- Zenodo `(4)(6)` record: https://zenodo.org/records/21830043
+- Zenodo `(4)(6)` version DOI: `10.5281/zenodo.21830043`
+- Concept DOI: `10.5281/zenodo.15879392`
+- Zenodo `(4)(6)` PDF filename: `geometric_flow_v0.9.3_paper.pdf`
+- Zenodo `(4)(6)` PDF SHA-256:
+  `e74467003ba39666b309fa6babbb467bd77206cbf556348f0fb50f04605c628c`
+- Zenodo `(4)(6)` PDF MD5:
+  `bf73435c15ebf145a6686a0b69d4b167`
+- Zenodo `(4)(6)` PDF pages: 14
 
-- Zenodo `(4)(6)` version DOI: `PENDING`
-- Zenodo `(4)(6)` PDF SHA-256: `PENDING`
+The archived Zenodo PDF was generated at a later time than the local candidate
+PDF and is not byte-identical to the local candidate hash above. Text extraction
+checks confirm that it contains the local-theorem wording required for
+submission:
+
+- there exists a unique solution;
+- existence and uniqueness;
+- the Lanford--Tucker validated-numerics comparison;
+- endpoint inclusion and adjacent microstep chaining remain open;
+- complete-atlas and global continuation remain open.
+
+## Remaining Archival Fields To Complete
+
 - Zenodo `(4)(6)` source ZIP SHA-256: `PENDING`
 - GitHub paper tag: `paper-local-ode-v1.1`
 - Git commit: the commit pointed to by `paper-local-ode-v1.1`

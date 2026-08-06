@@ -328,7 +328,7 @@ def main() -> int:
             and "establishes the\nLevel-I local theorem" in text
             and "archived Zenodo preprint" in text
             and "outside the theorem boundary of the\narchived Zenodo version" in text
-            and "https://zenodo.org/records/21728432" in text
+            and "https://zenodo.org/records/21830043" in text
             and "docs/PUBLISHED_PAPER_BOUNDARY.md" in text
         )
         checks["readme_has_what_is_proved"] = (
@@ -459,7 +459,7 @@ def main() -> int:
             "docs/PAPER_WORDING.md" in text
             and "docs/MANUSCRIPT_PROVENANCE.md" in text
             and "docs/PUBLISHED_PAPER_BOUNDARY.md" in text
-            and "10.5281/zenodo.21728432" in text
+            and "10.5281/zenodo.21830043" in text
             and "Suggested citation for the local theorem and archived manuscript boundary" in text
             and "CC BY 4.0" in text
             and "[MIT license](LICENSE)" in text
@@ -783,8 +783,13 @@ def main() -> int:
             and "7ee7ce97fda5eaca79a18ba9cba48e4e72bf312e41dbc718094b9492cb235685" in provenance
             and "958d1bf3cab237c57ddba9031758559c353cd9f8d2c0380c9276c3ebb79fe5f4" in provenance
             and "3ed12cab486c42dc55aca020bcd100962a556cd536b24e5ce5b6404b5460b29a" in provenance
+            and "e74467003ba39666b309fa6babbb467bd77206cbf556348f0fb50f04605c628c" in provenance
+            and "bf73435c15ebf145a6686a0b69d4b167" in provenance
             and "10.5281/zenodo.21728432" in provenance
-            and "Zenodo `(4)(6)` version DOI: `PENDING`" in provenance
+            and "10.5281/zenodo.21830043" in provenance
+            and "https://zenodo.org/records/21830043" in provenance
+            and "Zenodo `(4)(6)` source ZIP SHA-256: `PENDING`" in provenance
+            and "there exists a unique solution" in provenance
             and "structural-checks`: `PENDING`" in provenance
             and "reproduce-joint-geometric-flow`: `PENDING`" in provenance
             and "paper-local-ode-v1.1" in provenance
@@ -798,8 +803,8 @@ def main() -> int:
         checks["published_paper_boundary_scopes_zenodo_local_theorem"] = (
             "archived Zenodo manuscript" in boundary
             and "Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on" in boundary
-            and "https://zenodo.org/records/21728432" in boundary
-            and "10.5281/zenodo.21728432" in boundary
+            and "https://zenodo.org/records/21830043" in boundary
+            and "10.5281/zenodo.21830043" in boundary
             and "docs/MANUSCRIPT_PROVENANCE.md" in boundary
             and "v0.7.4 complete-parent-box descent certificate" in boundary
             and "v0.9.3 validated intrinsic response-fibre ODE microstep" in boundary
@@ -821,8 +826,8 @@ def main() -> int:
             and "version: 0.9.3" in citation
             and "preferred-citation:" in citation
             and "An Arb-Certified Local Intrinsic ODE on a Quantum-Control Response Fibre" in citation
-            and 'doi: "10.5281/zenodo.21728432"' in citation
-            and 'url: "https://zenodo.org/records/21728432"' in citation
+            and 'doi: "10.5281/zenodo.21830043"' in citation
+            and 'url: "https://zenodo.org/records/21830043"' in citation
         )
 
     if SCRIPT_VERIFY_REFERENCE.is_file():

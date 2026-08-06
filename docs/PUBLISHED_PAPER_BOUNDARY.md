@@ -7,8 +7,8 @@ separates it from later repository development milestones.
 
 - Title: *Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on
   a Quantum-Control Response Fibre*
-- Zenodo record: https://zenodo.org/records/21728432
-- DOI: https://doi.org/10.5281/zenodo.21728432
+- Zenodo record: https://zenodo.org/records/21830043
+- DOI: https://doi.org/10.5281/zenodo.21830043
 
 For manuscript/PDF/source-archive hashes and the `(4)(6)` submission-candidate
 archival status, see `docs/MANUSCRIPT_PROVENANCE.md`.
