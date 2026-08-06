@@ -14,6 +14,8 @@ separates it from later repository development milestones.
 
 - v0.7.4 complete-parent-box descent certificate.
 - v0.9.3 validated intrinsic response-fibre ODE microstep.
+- `python reproduce/published_paper.py` as the local verification entry point
+  for the stored published-paper boundary.
 - The frozen v0.9.3 software theorem boundary recorded in `CITATION.cff`,
   `results/v0_9_3_reference/`, and the hash manifest.
 

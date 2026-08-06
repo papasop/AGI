@@ -58,6 +58,7 @@ SCRIPT_REPRODUCE_V093 = ROOT / "scripts" / "reproduce_v093.py"
 SCRIPT_VERIFY_REFERENCE = ROOT / "scripts" / "verify_reference_results.py"
 SCRIPT_REPRODUCE_FINITE = ROOT / "scripts" / "reproduce_finite_chain.py"
 TOOL_ARCHIVE_PLAN = ROOT / "tools" / "plan_archive_migration.py"
+REPRODUCE_PUBLISHED_PAPER = ROOT / "reproduce" / "published_paper.py"
 V0946_CANDIDATE = ROOT / "src" / "geometric_flow_native_point_field_candidate_v0_9_46.py"
 V0946_HARNESS = ROOT / "src" / "response_fibre_native_binding_harness_v0_9_46_standalone.py"
 V0946_TEST = ROOT / "tests" / "test_v0946_contract.py"
@@ -177,6 +178,7 @@ EXPECTED_NAVIGATION_FILES = {
     "docs/REPRODUCIBILITY.md",
     "docs/PUBLISHED_PAPER_BOUNDARY.md",
     "reproduce/README.md",
+    "reproduce/published_paper.py",
     "reproduce/local_theorem.py",
     "reproduce/finite_continuation.py",
     "reproduce/open_next_frame_audit.py",
@@ -383,16 +385,20 @@ def main() -> int:
             and "git clone https://github.com/papasop/Geometric-Flow.git" in text
             and "python -m pip install -r requirements.txt" in text
             and "python scripts/verify_reference_results.py" in text
-            and "python reproduce/local_theorem.py --check-only" in text
+            and "python reproduce/published_paper.py" in text
             and "checks frozen SHA-256 entries and stored reference\ncertificates" in text
         )
         checks["readme_has_reproduction_path_table"] = (
             "## Choose A Reproduction Path" in text
             and "| Goal | Command |" in text
-            and "| Recompute the local ODE theorem | `python reproduce/local_theorem.py` |" in text
+            and "| Verify the published Zenodo paper boundary | `python reproduce/published_paper.py` |" in text
+            and "| Recompute the published v0.7.4 + v0.9.3 theorem pair | `python reproduce/published_paper.py --run` |" in text
+            and "| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |" in text
+            and "| Recompute the v0.9.3 local ODE theorem only | `python reproduce/local_theorem.py` |" in text
+            and "| Recompute the local ODE theorem | `python reproduce/local_theorem.py` |" not in text
             and "| Reproduce the fourth-chart Lohner flowpipe | `python reproduce/finite_continuation.py` |" in text
             and "| Audit the open fifth-frame target | `python reproduce/open_next_frame_audit.py` |" in text
-            and "| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |" in text
+            and "not part of the published Zenodo\npaper theorem boundary" in text
             and "| Run the longer finite chain |" not in text
         )
         checks["readme_lists_compatibility_commands_outside_main_table"] = (
@@ -737,6 +743,7 @@ def main() -> int:
             and "10.5281/zenodo.21728432" in boundary
             and "v0.7.4 complete-parent-box descent certificate" in boundary
             and "v0.9.3 validated intrinsic response-fibre ODE microstep" in boundary
+            and "python reproduce/published_paper.py" in boundary
             and "v0.10.6 finite continuation" in boundary
             and "The analytic conditional-continuation manuscript" in boundary
             and "unconditional global flow" in boundary
@@ -771,6 +778,30 @@ def main() -> int:
         checks["ci_tests_public_verify_entrypoint"] = (
             "Test public verification entrypoint" in structural_workflow
             and "python scripts/verify_reference_results.py" in structural_workflow
+            and "Test published paper entrypoint" in structural_workflow
+            and "python reproduce/published_paper.py" in structural_workflow
+        )
+
+    checks["published_paper_entrypoint_exists"] = REPRODUCE_PUBLISHED_PAPER.is_file()
+    if REPRODUCE_PUBLISHED_PAPER.is_file():
+        published_entrypoint = REPRODUCE_PUBLISHED_PAPER.read_text(encoding="utf-8")
+        checks["published_paper_entrypoint_checks_joint_boundary"] = (
+            "PUBLISHED_LOCAL_PAPER_RELEASE_GATE" in published_entrypoint
+            and "scripts/verify_reference_results.py" in published_entrypoint
+            and "response_fibre_arb_kkt_witness_alignment_v0_7_4.py" in published_entrypoint
+            and "response_fibre_intrinsic_picard_microstep_v0_9_3.py" in published_entrypoint
+            and "--run" in published_entrypoint
+            and "not_global_flow" in published_entrypoint
+        )
+
+    reproduce_readme = ROOT / "reproduce" / "README.md"
+    if reproduce_readme.is_file():
+        reproduce_docs = reproduce_readme.read_text(encoding="utf-8")
+        checks["reproduce_readme_separates_published_and_research"] = (
+            "python reproduce/published_paper.py" in reproduce_docs
+            and "python reproduce/published_paper.py --run" in reproduce_docs
+            and "v0.7.4 parent-box descent, v0.9.3 intrinsic ODE" in reproduce_docs
+            and "not part of the\npublished Zenodo paper theorem boundary" in reproduce_docs
         )
 
     checks["reproduction_scripts_exist"] = (
@@ -784,6 +815,7 @@ def main() -> int:
         and SCRIPT_VERIFY_REFERENCE.is_file()
         and SCRIPT_REPRODUCE_FINITE.is_file()
         and TOOL_ARCHIVE_PLAN.is_file()
+        and REPRODUCE_PUBLISHED_PAPER.is_file()
     )
     if (
         SCRIPT_ENTRYPOINT_UTILS.is_file()
