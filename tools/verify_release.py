@@ -23,6 +23,8 @@ V093_CERTIFICATE = V093_DIR / "intrinsic_picard_microstep_certificate.json"
 V093_REPORT = V093_DIR / "report.json"
 SHA256SUMS = ROOT / "SHA256SUMS.txt"
 README = ROOT / "README.md"
+CITATION = ROOT / "CITATION.cff"
+STRUCTURAL_WORKFLOW = ROOT / ".github" / "workflows" / "structural-checks.yml"
 CLAIM_SCOPE = ROOT / "docs" / "CLAIM_SCOPE.md"
 RELEASES_DIR = ROOT / "docs" / "releases"
 V0923_RELEASE_NOTES = RELEASES_DIR / "RELEASE_NOTES_v0.9.23.md"
@@ -44,6 +46,7 @@ PROOF_MAP = ROOT / "docs" / "PROOF_MAP.md"
 PROOF_GRAPH = ROOT / "docs" / "PROOF_GRAPH.md"
 REPRODUCIBILITY = ROOT / "docs" / "REPRODUCIBILITY.md"
 PAPER_WORDING = ROOT / "docs" / "PAPER_WORDING.md"
+PUBLISHED_PAPER_BOUNDARY = ROOT / "docs" / "PUBLISHED_PAPER_BOUNDARY.md"
 V010141_INTEGRATION = ROOT / "docs" / "archive" / "INTEGRATION_v0.10.14.1.md"
 SCRIPT_ENTRYPOINT_UTILS = ROOT / "scripts" / "_entrypoint_utils.py"
 SCRIPT_LOCAL_ODE = ROOT / "scripts" / "reproduce_local_ode.py"
@@ -172,6 +175,7 @@ EXPECTED_NAVIGATION_FILES = {
     "docs/PROOF_GRAPH.md",
     "docs/REFERENCE_RESULTS.md",
     "docs/REPRODUCIBILITY.md",
+    "docs/PUBLISHED_PAPER_BOUNDARY.md",
     "reproduce/README.md",
     "reproduce/local_theorem.py",
     "reproduce/finite_continuation.py",
@@ -314,9 +318,11 @@ def main() -> int:
             and "preserving its declared response" in text
             and "fourteen phase parameters for a driven-qubit detuning\nscan" in text
             and "192-bit Arb interval arithmetic" in text
-            and "Computation as Geometric Flow: Certified Intrinsic ODEs\nand Conditional Continuation" in text
+            and "Computation as Geometric Flow: An Arb-Certified\nLocal Intrinsic ODE on a Quantum-Control Response Fibre" in text
+            and "establishes the\nLevel-I local theorem" in text
+            and "outside the theorem boundary of the\npublished Zenodo version" in text
             and "https://zenodo.org/records/21728432" in text
-            and "docs/PAPER_WORDING.md" in text
+            and "docs/PUBLISHED_PAPER_BOUNDARY.md" in text
         )
         checks["readme_has_what_is_proved"] = (
             "## What Is Proved" in text
@@ -328,9 +334,10 @@ def main() -> int:
             and "**Milestone, Level II.**" in text
             and "v0.10.6 as the latest stored\nreference certificate" in text
             and "**Conditional theorem, Level III.**" in text
-            and "proved analytically" in text
-            and "compactness, uniform rank, and uniform\nnonstationarity" in text
+            and "A separate analytic\nconditional-continuation manuscript" in text
+            and "compactness, uniform rank, and uniform nonstationarity" in text
             and "not yet certified on the complete response fibre" in text
+            and "outside the theorem boundary of the published Zenodo paper" in text
             and "does not yet prove a fifth frame or a global flow" in text
         )
         checks["readme_has_theory_boundary_paragraph"] = (
@@ -420,9 +427,9 @@ def main() -> int:
         )
         checks["readme_has_citation_and_paper_navigation"] = (
             "docs/PAPER_WORDING.md" in text
-            and "[Zenodo record](https://zenodo.org/records/21728432)" in text
-            and "Suggested citation for the local theorem" in text
-            and "exact v0.9.3 release or commit" in text
+            and "docs/PUBLISHED_PAPER_BOUNDARY.md" in text
+            and "10.5281/zenodo.21728432" in text
+            and "Suggested citation for the local theorem and published paper boundary" in text
             and "[MIT license](LICENSE)" in text
         )
         checks["readme_next_milestone_is_not_stale_v0946"] = (
@@ -719,6 +726,51 @@ def main() -> int:
             and "Layer III: Conditional / Next-Frame Work" in paper
             and "Reference-Certified Vs Source-Certified" in paper
             and "v0.10.15 harness certifies a fifth frame" in paper
+        )
+
+    checks["published_paper_boundary_exists"] = PUBLISHED_PAPER_BOUNDARY.is_file()
+    if PUBLISHED_PAPER_BOUNDARY.is_file():
+        boundary = PUBLISHED_PAPER_BOUNDARY.read_text(encoding="utf-8")
+        checks["published_paper_boundary_scopes_zenodo_local_theorem"] = (
+            "Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on" in boundary
+            and "https://zenodo.org/records/21728432" in boundary
+            and "10.5281/zenodo.21728432" in boundary
+            and "v0.7.4 complete-parent-box descent certificate" in boundary
+            and "v0.9.3 validated intrinsic response-fibre ODE microstep" in boundary
+            and "v0.10.6 finite continuation" in boundary
+            and "The analytic conditional-continuation manuscript" in boundary
+            and "unconditional global flow" in boundary
+            and "paper-local-ode-v1.0" in boundary
+        )
+
+    checks["citation_exists"] = CITATION.is_file()
+    if CITATION.is_file():
+        citation = CITATION.read_text(encoding="utf-8")
+        checks["citation_separates_software_and_paper"] = (
+            'title: "Geometric-Flow"' in citation
+            and "type: software" in citation
+            and "version: 0.9.3" in citation
+            and "preferred-citation:" in citation
+            and "An Arb-Certified Local Intrinsic ODE on a Quantum-Control Response Fibre" in citation
+            and 'doi: "10.5281/zenodo.21728432"' in citation
+            and 'url: "https://zenodo.org/records/21728432"' in citation
+        )
+
+    if SCRIPT_VERIFY_REFERENCE.is_file():
+        verify_reference = SCRIPT_VERIFY_REFERENCE.read_text(encoding="utf-8")
+        checks["public_verify_entrypoint_is_portable"] = (
+            '"/sbin/sha256sum"' not in verify_reference
+            and "import hashlib" in verify_reference
+            and "def verify_manifest()" in verify_reference
+            and "tools/verify_release.py" in verify_reference
+        )
+
+    checks["structural_workflow_exists"] = STRUCTURAL_WORKFLOW.is_file()
+    if STRUCTURAL_WORKFLOW.is_file():
+        structural_workflow = STRUCTURAL_WORKFLOW.read_text(encoding="utf-8")
+        checks["ci_tests_public_verify_entrypoint"] = (
+            "Test public verification entrypoint" in structural_workflow
+            and "python scripts/verify_reference_results.py" in structural_workflow
         )
 
     checks["reproduction_scripts_exist"] = (
