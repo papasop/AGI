@@ -80,7 +80,7 @@ git clone https://github.com/papasop/Geometric-Flow.git
 cd Geometric-Flow
 python -m pip install -r requirements.txt
 python scripts/verify_reference_results.py
-python reproduce/local_theorem.py --check-only
+python reproduce/published_paper.py
 ```
 
 The verification command checks frozen SHA-256 entries and stored reference
@@ -92,13 +92,19 @@ Python 3.12 and `python-flint==0.8.0` are recommended.
 
 | Goal | Command |
 | --- | --- |
-| Recompute the local ODE theorem | `python reproduce/local_theorem.py` |
+| Verify the published Zenodo paper boundary | `python reproduce/published_paper.py` |
+| Recompute the published v0.7.4 + v0.9.3 theorem pair | `python reproduce/published_paper.py --run` |
+| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |
+| Recompute the v0.9.3 local ODE theorem only | `python reproduce/local_theorem.py` |
 | Reproduce the fourth-chart Lohner flowpipe | `python reproduce/finite_continuation.py` |
 | Audit the open fifth-frame target | `python reproduce/open_next_frame_audit.py` |
-| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |
 
 The stable scripts verify the relevant frozen SHA-256 entries before calling
 their archived long-form proof drivers in `archive/milestones/`.
+
+`finite_continuation.py` and `open_next_frame_audit.py` are continuing global
+flow research-line entry points; they are not part of the published Zenodo
+paper theorem boundary.
 
 Compatibility commands remain available under `scripts/`, including
 `scripts/reproduce_finite_continuation.py` and
