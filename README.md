@@ -176,6 +176,8 @@ stability. This README changes reading order only, not proof content.
 - [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md): full script order and audit notes
 - [docs/PUBLISHED_PAPER_BOUNDARY.md](docs/PUBLISHED_PAPER_BOUNDARY.md): Zenodo theorem boundary
 - [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md): paper wording and citation boundary
+- [docs/MANUSCRIPT_PROVENANCE.md](docs/MANUSCRIPT_PROVENANCE.md): submission manuscript hashes, archive status, and release fields
+- [docs/REVIEWER_REPRODUCTION.md](docs/REVIEWER_REPRODUCTION.md): minimal reviewer reproduction route for the frozen theorem boundary
 - [docs/releases/](docs/releases/): release notes
 - [docs/archive/](docs/archive/): historical migration and supersession notes
 
