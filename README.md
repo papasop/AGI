@@ -138,19 +138,37 @@ New proof work should first attach to `src/` and the visible `reproduce/`
 entry points. Avoid adding another user-facing versioned script unless it is
 also archived and indexed.
 
-## Roadmap
+## Post-publication Research Roadmap
 
-The immediate continuation research direction, matching the paper Outlook:
+Former `## Roadmap` content is now claim-bounded by this post-publication
+roadmap.
 
-- **Toward a global response-fibre flow** — local-to-global programme for the
-  quantum-control model: certified chart overlaps, uniform rank and
-  nonstationarity bounds across a complete response component. The immediate
-  open step is the fifth-frame backend (`reproduce/open_next_frame_audit.py`
-  audits the target; v0.10.15 is fail-closed scaffold work).
+The published local theorem remains frozen at the immutable paper boundary.
+The tracks below are post-publication research directions and do not enlarge
+the v0.7.4 + v0.9.3 theorem claims.
 
-A separate neural-network response-fibre analogy is tracked in
-[docs/NEURAL_NETWORK_RESPONSE_FIBRES.md](docs/NEURAL_NETWORK_RESPONSE_FIBRES.md);
-it is not a theorem of the published paper.
+| Track | Long-term objective | Current repository status | Claim status |
+| --- | --- | --- | --- |
+| P - Frozen paper core | Preserve the v0.7.4 + v0.9.3 local theorem boundary | Frozen published theorem | Closed; not enlarged by later tracks |
+| G - Geometric continuation | Certified multi-chart and potentially global response-fibre flow | v0.10.6 finite continuation; fifth-frame backend remains open | Open beyond the stored finite certificate |
+| C - Controlled attraction | Tangential descent plus normal response recovery | Floating-point development evidence only; no Arb-controlled tube certificate | Development evidence only |
+| M - Two-metric geometry | Riemannian cost geometry plus a candidate pseudo-Riemannian critical/null layer | Conceptual research direction | Open; no physical spacetime claim |
+| D - Certificate execution graph | Validated boxes as nodes and certified transitions as directed edges | Design stage | Open; the continuous fibre is not a DAG |
+| K - K=1 bridge | Test whether spectral closure, rank reduction, null-image formation, and process-cost divergence coexist in a concrete response-fibre model | No bridge certificate | Speculative/open |
+
+Detailed scope is recorded in [docs/ROADMAP.md](docs/ROADMAP.md). Currently
+running or external numerical experiments must not be described as stored
+repository evidence until their scripts, protocols, and reports are separately
+reviewed and archived. Protected residuals, matter-like modes, and fundamental
+constants are speculative foundational horizons, not present repository
+claims.
+
+Scoped roadmap note: the immediate continuation research direction,
+**Toward a global response-fibre flow**, remains an open G-track objective, not
+a paper claim and not a theorem of the published paper. The immediate
+  open step is the fifth-frame backend; v0.10.15 is fail-closed scaffold work,
+not a fifth-frame theorem. The separate neural-network analogy remains in
+[docs/NEURAL_NETWORK_RESPONSE_FIBRES.md](docs/NEURAL_NETWORK_RESPONSE_FIBRES.md).
 
 ## Claim Boundary
 
@@ -178,6 +196,11 @@ stability. This README changes reading order only, not proof content.
 - [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md): paper wording and citation boundary
 - [docs/MANUSCRIPT_PROVENANCE.md](docs/MANUSCRIPT_PROVENANCE.md): submission manuscript hashes, archive status, and release fields
 - [docs/REVIEWER_REPRODUCTION.md](docs/REVIEWER_REPRODUCTION.md): minimal reviewer reproduction route for the frozen theorem boundary
+- [docs/ROADMAP.md](docs/ROADMAP.md): post-publication research roadmap and stop/go gates
+- [docs/CONTROL_EXTENSION_SCOPE.md](docs/CONTROL_EXTENSION_SCOPE.md): normally attracting controlled-flow boundary
+- [docs/TWO_METRIC_SCOPE.md](docs/TWO_METRIC_SCOPE.md): two-metric geometry scope
+- [docs/CERTIFICATE_DAG_SCOPE.md](docs/CERTIFICATE_DAG_SCOPE.md): certificate execution graph semantics
+- [docs/K1_BRIDGE_SCOPE.md](docs/K1_BRIDGE_SCOPE.md): open K=1 bridge boundary
 - [docs/releases/](docs/releases/): release notes
 - [docs/archive/](docs/archive/): historical migration and supersession notes
 
