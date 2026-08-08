@@ -4,6 +4,9 @@ This document scopes the post-publication two-metric research track. It does
 not modify the frozen paper theorem, and it makes no physical spacetime or
 general relativity claim.
 
+Within the roadmap hierarchy, this is a Level-B mathematical extension and a
+possible input to a future K=1 bridge, not evidence for that bridge by itself.
+
 ## Intended Separation
 
 - `g_+`: a positive Riemannian metric for path length, optimization cost, and

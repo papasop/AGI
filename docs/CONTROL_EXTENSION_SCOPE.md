@@ -1,8 +1,8 @@
 # Normally Attracting Control Extension Scope
 
 This document scopes the post-publication controlled-flow track. It is not part
-of `paper-local-ode-v1.4` and does not enlarge the frozen v0.7.4 + v0.9.3
-paper theorem.
+of the frozen published-paper theorem boundary and does not enlarge the frozen
+v0.7.4 + v0.9.3 paper theorem.
 
 ## Boundary
 

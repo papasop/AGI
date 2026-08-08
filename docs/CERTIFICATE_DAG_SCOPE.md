@@ -4,6 +4,10 @@ This document scopes the certificate-DAG track. It is a derived execution graph
 for finite certification records, not a claim that the continuous response
 fibre is itself a DAG.
 
+Within the roadmap hierarchy, this is a Level-C certification bridge depending
+on certified geometric continuation and controlled-flow ingredients, not a
+new scientific result by itself.
+
 ## Semantics
 
 | Object | Meaning |
