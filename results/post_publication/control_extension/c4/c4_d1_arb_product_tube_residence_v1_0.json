@@ -1,0 +1,55 @@
+{
+  "all_gates_pass": true,
+  "bounds": {
+    "JY0_inverse_2_norm_upper": 3.3838346690497936,
+    "certified_residence_time_lower_bound": 7.411470824781493e-09,
+    "forward_projective_denominator_abs_lower": 0.9999951319769025,
+    "frozen_right_inverse_frobenius_upper": 221.85258145452755,
+    "full_vector_field_2_norm_upper": 101.19448861516793,
+    "maximum_phase_coordinate_radius": 8.469900025670189e-06,
+    "minimum_centre_singular_value": 0.004884522614121863,
+    "mirror_projective_denominator_abs_lower": 0.9999951319769025,
+    "moore_penrose_inverse_2_norm_upper": 750.7124565440237,
+    "neumann_defect_inf_norm": {
+      "ball": "[+/- 0.165]",
+      "lower": -0.1641355436972155,
+      "upper": 0.16413554402749997
+    },
+    "normal_boundary_margin": 2.6516504294495534e-06,
+    "objective_gradient_inf_norm_upper": 19.680252793438424,
+    "recovery_field_2_norm_upper": 27.55772537702056,
+    "response_error_inf_norm_upper": 0.00012978507495316297,
+    "tangent_boundary_margin": 7.5e-07,
+    "tangent_field_2_norm_upper": 73.63676323814737
+  },
+  "claim_boundary": "Rigorous 256-bit outward-rounded finite-residence certificate for initial data in the declared inner product subbox and the unsaturated dynamic Moore-Penrose controlled flow. It does not prove positive invariance or continuation beyond T_cert.",
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.13",
+    "python_flint": "0.8.0-compatible"
+  },
+  "gates": {
+    "projective_denominators_exclude_zero": true,
+    "response_and_gradient_bounds_finite": true,
+    "strictly_positive_certified_residence_time": true,
+    "uniform_neumann_defect_below_one": true,
+    "uniform_vector_field_speed_bound_finite": true
+  },
+  "protocol": {
+    "beta": 100.0,
+    "chart": "theta_ref+T0*xi+N0*z",
+    "criterion": "q=||I-JY0||_inf<1 and outward-rounded finite speed bound",
+    "flow": "theta_dot=-P_MP gradL-beta J^+(R-R_star)",
+    "initial_subbox_fraction": 0.25,
+    "normal_radius_parameter": 1e-05,
+    "outer_normal_coordinate_half_width": 3.5355339059327378e-06,
+    "outer_tangent_half_width": 1e-06,
+    "precision_bits": 256,
+    "version": "1.0"
+  },
+  "protocol_sha256": "6f7eea6b906e06575f3ec999126032c5e89476aa600c0fb5b08f449af88fd8a8",
+  "required_next_step": "C4-E moving-chart recentering/overlap certification is required for continuation beyond the single certified residence window.",
+  "scientific_status": "C4_D1_FINITE_RESIDENCE_CERTIFIED",
+  "title": "C4-D1 ARB PRODUCT-TUBE FINITE-RESIDENCE CERTIFICATE",
+  "version": "1.0"
+}
