@@ -1,0 +1,98 @@
+{
+  "all_gates_pass": true,
+  "claim_boundary": "Floating-point sampled-ray residence diagnostic only. It neither proves positive invariance nor certifies unsampled initial data.",
+  "convergence": {
+    "coarse_final_response": 5.3458387633243336e-05,
+    "coarse_success": true,
+    "endpoint_difference": 4.247264603599396e-09,
+    "fine_final_response": 5.34594772556096e-05,
+    "fine_success": true,
+    "probe": "mixed_0"
+  },
+  "environment": {
+    "numpy": "2.3.5",
+    "python": "3.12.13"
+  },
+  "gates": {
+    "all_integrations_successful": true,
+    "all_trials_reside_for_declared_duration": true,
+    "all_values_finite": true,
+    "reference_full_row_rank": true,
+    "step_halving_endpoint_converged": true,
+    "trajectory_rank_margin_positive": true
+  },
+  "protocol": {
+    "beta": 100.0,
+    "chart": "theta_ref+T0*xi+N0*z",
+    "declared_atol_metadata": 1e-12,
+    "declared_rtol_metadata": 1e-10,
+    "duration": 0.002,
+    "initial_fraction": 0.25,
+    "normal_coordinate_half_width": 0.00011490485194281395,
+    "normal_dimension": 8,
+    "normal_radius": 0.000325,
+    "seed": 20260809,
+    "solver": "deterministic explicit midpoint; 10/20-step convergence pair",
+    "tangent_dimension": 6,
+    "tangent_half_width": 0.02,
+    "version": "1.0"
+  },
+  "protocol_sha256": "fb83feb59267b48ff0c559fd9f5ef4def59e929603b6b9304b6018644a25f136",
+  "reference_minimum_singular_value": 0.004884522614121863,
+  "required_next_step": "C4-D1 must replace sampled trajectories by outward-rounded bounds over the full 6D tangent x 8D normal product tube and derive a certified residence time or moving-chart continuation theorem.",
+  "scientific_status": "C4_D0_PRODUCT_CHART_PREFLIGHT_SUPPORTED",
+  "summary": {
+    "full_residence_fraction": 1.0,
+    "minimum_observed_residence_time_lower_bound": 0.002,
+    "minimum_observed_singular_value": 0.004859802398121294
+  },
+  "title": "C4-D0 PRODUCT-CHART RESIDENCE-TIME PREFLIGHT",
+  "trials": [
+    {
+      "final_loss": 148.845245564862,
+      "final_response_norm": 4.8286085360339184e-05,
+      "first_exit_time": null,
+      "initial_loss": 148.85004821282917,
+      "initial_response_norm": 5.897729495049863e-05,
+      "maximum_xi_inf": 0.004136470199109175,
+      "maximum_z_inf": 1.932783152019098e-05,
+      "message": "fixed-step explicit midpoint",
+      "minimum_sigma": 0.004859802398121294,
+      "name": "tangent_0",
+      "resided_for_full_duration": true,
+      "steps": 11,
+      "success": true
+    },
+    {
+      "final_loss": 148.8458554385494,
+      "final_response_norm": 7.560259659005519e-05,
+      "first_exit_time": null,
+      "initial_loss": 148.85064584827262,
+      "initial_response_norm": 9.234262775635554e-05,
+      "maximum_xi_inf": 0.0019934135778023688,
+      "maximum_z_inf": 3.059859214494925e-05,
+      "message": "fixed-step explicit midpoint",
+      "minimum_sigma": 0.004868269343376536,
+      "name": "normal_0",
+      "resided_for_full_duration": true,
+      "steps": 11,
+      "success": true
+    },
+    {
+      "final_loss": 148.84586565469147,
+      "final_response_norm": 5.3458387633243336e-05,
+      "first_exit_time": null,
+      "initial_loss": 148.85065840879588,
+      "initial_response_norm": 6.529599436851039e-05,
+      "maximum_xi_inf": 0.0019890555735279677,
+      "maximum_z_inf": 2.5240897010517506e-05,
+      "message": "fixed-step explicit midpoint",
+      "minimum_sigma": 0.0048683126454351485,
+      "name": "mixed_0",
+      "resided_for_full_duration": true,
+      "steps": 11,
+      "success": true
+    }
+  ],
+  "version": "1.0"
+}

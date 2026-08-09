@@ -1,0 +1,38 @@
+name: Post-publication C4 controlled-attraction audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "research/control_extension/c4/**"
+      - "results/post_publication/control_extension/c4/**"
+      - "docs/post_publication/C4_CONTROLLED_ATTRACTION_MILESTONE.md"
+      - ".github/workflows/control-extension-c4.yml"
+
+jobs:
+  c4-control-extension:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install formal dependencies
+        run: python -m pip install -r requirements-formal.txt
+      - name: Compile post-publication C4 sources
+        run: python -m compileall -q research/control_extension/c4
+      - name: Recompute C4-D0 sampled preflight
+        run: |
+          python research/control_extension/c4/c4_d0_product_chart_residence_preflight_v1_0.py \
+            --report /tmp/c4_d0.json
+      - name: Recompute C4-D1 Arb certificate
+        run: |
+          python research/control_extension/c4/c4_d1_arb_product_tube_residence_v1_0.py \
+            --report /tmp/c4_d1.json
+      - name: Verify semantic gates
+        run: |
+          python research/control_extension/c4/verify_c4_control_extension.py \
+            --d0 /tmp/c4_d0.json --d1 /tmp/c4_d1.json
+

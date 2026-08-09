@@ -1,0 +1,29 @@
+# C4 controlled-attraction extension
+
+This directory is a post-publication research extension. It does not modify or
+enlarge the theorem proved by the published Zenodo paper.
+
+Evidence layers:
+
+- `c4_d0_product_chart_residence_preflight_v1_0.py` is a floating-point,
+  sampled product-chart preflight. It is not an interval proof.
+- `c4_d1_arb_product_tube_residence_v1_0.py` is a 256-bit Arb certificate of a
+  strictly positive finite residence time for an unsaturated controlled flow
+  in one fixed 6D tangent x 8D normal product tube.
+
+The D1 certificate proves neither positive invariance nor continuation beyond
+its single certified residence window. Moving-chart overlap/recentring remains
+future work (C4-E). No K=1, Pulser, cloud, hardware, or QPU claim is made.
+
+Run from the repository root:
+
+```bash
+python -m pip install -r requirements-formal.txt
+python research/control_extension/c4/c4_d0_product_chart_residence_preflight_v1_0.py \
+  --report /tmp/c4_d0.json
+python research/control_extension/c4/c4_d1_arb_product_tube_residence_v1_0.py \
+  --report /tmp/c4_d1.json
+python research/control_extension/c4/verify_c4_control_extension.py \
+  --d0 /tmp/c4_d0.json --d1 /tmp/c4_d1.json
+```
+
