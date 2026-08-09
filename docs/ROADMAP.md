@@ -11,19 +11,28 @@ between certified result, floating-point development evidence, design stage,
 open theorem work, and speculative horizon. This roadmap is not a completion
 schedule.
 
-The organizing principle is deliberately separated across three levels:
+The organizing principle is deliberately separated across four levels:
 
 - Level A, frozen result: P;
 - Level B, mathematical/dynamical extensions: G, C, M;
-- Level C, certification/foundational bridges: D, K.
+- Level C, control and execution extensions: W, D;
+- Level D, foundational candidates: T, K.
 
-The six-track dependency structure is:
+The dependency structure is:
 
 - P -> G;
 - P -> C;
 - P -> M;
+- C -> W;
+- (C, W, M) -> T;
 - (G, C) -> D;
 - (C, M) -> K.
+
+Dependency arrows are not proof arrows. W success does not automatically
+prove T, T success does not automatically prove K=1, and C4 is not a Wiener
+theory. Process time is not physical time unless future work proves
+coordinate invariance, a reparameterization law, and independent experimental
+support.
 
 Realizability is only an upstream motivation: equal declared response does not
 imply equal implementation, and a nonconstant response-fibre curve is a
@@ -87,20 +96,21 @@ $$
 | Stage | Objective | Status |
 | --- | --- | --- |
 | C0 | Tangential intrinsic descent | Frozen local theorem |
-| C1 | Normal response-recovery feedback | Floating-point development evidence |
-| C2 | Gain, radius, solver and saturation robustness | Floating-point development evidence |
-| C3 | Refined numerical attraction-tube boundary | In progress/not repository-certified |
-| C4 | Nonzero Arb-certified local controlled tube | Next formal milestone |
+| C1 | Normal response-recovery feedback | Numerical preflight history |
+| C2 | Gain, radius, solver and saturation robustness | Numerical preflight history |
+| C3 | Refined numerical attraction-tube boundary | Superseded by C4-D1/C4-E2a local certificates |
+| C4-D1 | Nonzero finite product-tube residence | Arb-certified local |
+| C4-E2a | Nine-chart moving-atlas overlap chain | Arb-certified local |
+| C4-E2b | Validated flowpipe transport | Open theorem |
 | C5 | Controlled multi-chart continuation | Open |
 | C6 | Long-time normal attraction | Open |
 
-Versions v1.1 through v1.3.1 are floating-point development evidence unless
-their scripts, protocols, and reports are separately reviewed and archived as
-repository evidence. They are not Arb-certified controlled-flow theorems and
-must not be written as PASS for the frozen paper.
+The current C4 certificates are post-publication controlled-geometry evidence.
+They do not modify the published local ODE theorem, do not claim positive
+invariance, and do not establish Wiener-type observation-memory feedback.
+C4-E2a is an overlap-chain certificate, not a validated-flowpipe continuation.
 
-C4 is the recommended closure milestone for the current control track. It must
-strictly certify at least:
+C4-style closure milestones must strictly certify at least:
 
 - some `rho_certified > 0`;
 - uniform full-row-rank margin;
@@ -113,12 +123,68 @@ strictly certify at least:
 
 Stop/go gates:
 
-- After C4 is completed, pause the control line and turn to either the K=1
-  bridge or a two-metric theorem.
+- After C4-E2b is completed, pause the control line and turn to either the
+  W-layer feedback protocol, the K=1 bridge, or a two-metric theorem.
 - If C3 numerical boundaries are unstable under solver tolerances, stop and
   repair the numerical setup before claiming progress.
 
 See [CONTROL_EXTENSION_SCOPE.md](CONTROL_EXTENSION_SCOPE.md).
+
+## W - Wiener-Type Observation, Memory And Delayed Feedback
+
+The W layer is not a restatement of C4. It adds noisy observation, state
+estimation, finite memory, delay, drift, saturation, and controller updates
+based on historical observations.
+
+| Stage | Objective | Status |
+| --- | --- | --- |
+| W0 | Memoryless feedback baseline | External/local indications only; not archived |
+| W1 | Finite-shot observation model | External/local indications only; not archived |
+| W2 | Delay/drift/saturation decomposition | External/local indications only; not archived |
+| W3 | Explicit estimator and memory state | Open |
+| W4 | Held-out stability map | Open |
+| W5 | Emulator cross-model validation | Open |
+| W6 | Hardware protocol | Open |
+| W7 | Independent QPU evidence | Open |
+
+Do not cite unmerged Pulser v1.0-v1.3 outputs as repository evidence. A future
+W-layer evidence PR must archive scripts, protocols, reports, manifests,
+seeds, software versions, negative controls, claim boundaries, and failure
+status.
+
+W-layer evidence must not be described as QPU or hardware evidence unless an
+independent hardware protocol and result are actually archived.
+
+See [WIENER_FEEDBACK_SCOPE.md](WIENER_FEEDBACK_SCOPE.md).
+
+## T - Candidate Process-Time Geometry
+
+The current control and emulator protocols use external integration time
+`t_ext`. The T layer is reserved for a candidate accumulated recovery/process
+coordinate such as `tau_rec`; it is not established.
+
+| Stage | Objective | Status |
+| --- | --- | --- |
+| T0 | Define candidate process increment | DESIGN_ONLY |
+| T1 | Positivity and monotonicity | OPEN_THEOREM |
+| T2 | Coordinate invariance | OPEN_THEOREM |
+| T3 | Reparameterization law | OPEN_THEOREM |
+| T4 | Coupling to estimator-memory dynamics | OPEN_THEOREM |
+| T5 | Independent protocol equivalence test | OPEN_THEOREM |
+| T6 | Arb-certified example | OPEN_THEOREM |
+| T7 | Hardware falsification test | OPEN_THEOREM |
+
+Stop rules:
+
+- Without `kappa_rec > 0`, do not call the coordinate a time.
+- Without coordinate invariance, do not call it a geometric scalar.
+- Without a reparameterization law, do not call it an intrinsic clock.
+- Without independent protocol equivalence tests, do not call it physical
+  time.
+- Do not define process time directly as `K_rec`.
+- Do not claim changes to relativity, thermodynamics, or quantum mechanics.
+
+See [PROCESS_TIME_SCOPE.md](PROCESS_TIME_SCOPE.md).
 
 ## M - Two-metric Geometry
 
@@ -196,30 +262,29 @@ See [K1_BRIDGE_SCOPE.md](K1_BRIDGE_SCOPE.md).
 ## Dependency Order
 
 ```text
-Level A: frozen result
+Level A - frozen theorem
+P
 
-P: frozen published core
-|
-|-- Level B: mathematical/dynamical extensions
-|   |-- G: geometric continuation
-|   |-- C: normally attracting control
-|   `-- M: two-metric geometry
-|
-`-- Level C: certification/foundational bridges
-    |-- D: certificate execution graph
-    |       depends on (G, C)
-    |
-    `-- K: K=1 bridge
-            depends on (C, M)
-            |
-            `-- protected residuals / constants
-                (speculative horizon)
+Level B - geometric extensions
+P -> G
+P -> C
+P -> M
+
+Level C - control and execution extensions
+C -> W
+(G, C) -> D
+
+Level D - foundational candidates
+(C, W, M) -> T
+(C, M) -> K
 ```
 
 The Riemannian and pseudo-Riemannian structures describe continuous geometry;
 the control law selects dynamics; the certificate DAG records finite certified
 execution. Geometric continuation and certificate execution can develop in
-parallel as long as D records only certified finite transitions. C4 remains
-the recommended closure milestone for the current control track before turning
-to K=1 bridge work or a two-metric theorem. K=1 bridge work is a separate
-bridge problem, not an automatic consequence of the first three tracks.
+parallel as long as D records only certified finite transitions.
+
+C4 does not equal Wiener theory. W success would not automatically prove T,
+and T success would not automatically prove K=1. K=1 bridge work is a
+separate bridge problem, not an automatic consequence of geometric
+continuation, controlled attraction, or process-time definitions.

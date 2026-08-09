@@ -144,24 +144,30 @@ Former `## Roadmap` content is now claim-bounded by this post-publication
 roadmap.
 
 The published local theorem remains frozen at the immutable paper boundary.
-The six tracks below are post-publication research directions and do not
-enlarge the v0.7.4 + v0.9.3 theorem claims.
+The tracks below are post-publication research directions and do not enlarge
+the v0.7.4 + v0.9.3 theorem claims. If future W/T work succeeds, P remains a
+strict frozen submodule of a larger process-control geometry theory; later
+extensions do not rewrite the original paper.
 
 | Level | Track | Long-term objective | Current repository status | Claim status |
 | --- | --- | --- | --- | --- |
 | A - Frozen result | P - Frozen published core | Preserve the v0.7.4 + v0.9.3 local theorem boundary | Frozen published theorem | Closed; not enlarged by later tracks |
 | B - Mathematical/dynamical extensions | G - Geometric continuation | Certified multi-chart and potentially global response-fibre flow | v0.10.6 finite continuation; fifth-frame backend remains open | Open beyond the stored finite certificate |
-| B - Mathematical/dynamical extensions | C - Controlled attraction | Tangential descent plus normal response recovery | Floating-point development evidence only; no Arb-controlled tube certificate | Development evidence only; C4 is the recommended closure milestone |
+| B - Mathematical/dynamical extensions | C - Controlled attraction | Tangential descent plus normal response recovery | C4-D1 finite product-tube residence and C4-E2a overlap-chain certificates | Local controlled-geometry evidence; no global continuation |
+| C - Control and execution extensions | W - Wiener feedback | Observation, memory, delay, drift, saturation, and feedback under finite shots | Not yet archived as repository evidence | Open; future evidence PR required |
+| D - Foundational candidates | T - Candidate process time | State-dependent clock or accumulated process cost | Design only | Open; not physical time |
 | B - Mathematical/dynamical extensions | M - Two-metric geometry | Riemannian cost geometry plus a candidate pseudo-Riemannian critical/null layer | Conceptual research direction | Open; no physical spacetime claim |
-| C - Certification/foundational bridges | D - Certificate execution graph | Validated boxes as nodes and certified transitions as directed edges | Design stage | Open; depends on geometric/control certificates |
-| C - Certification/foundational bridges | K - K=1 bridge | Test whether spectral closure, rank reduction, null-image formation, and process-cost divergence coexist in a concrete response-fibre model | No bridge certificate | Speculative/open; depends on control and two-metric definitions |
+| C - Control and execution extensions | D - Certificate execution graph | Validated boxes as nodes and certified transitions as directed edges | Design stage | Open; depends on geometric/control certificates |
+| D - Foundational candidates | K - K=1 bridge | Test whether spectral closure, rank reduction, null-image formation, and process-cost divergence coexist in a concrete response-fibre model | No bridge certificate | Speculative/open; depends on control and two-metric definitions |
 
-Detailed scope is recorded in [docs/ROADMAP.md](docs/ROADMAP.md). Currently
+Detailed scope is recorded in [docs/ROADMAP.md](docs/ROADMAP.md),
+[docs/THEORY_ARCHITECTURE.md](docs/THEORY_ARCHITECTURE.md), and
+[docs/RESEARCH_STATUS_MATRIX.md](docs/RESEARCH_STATUS_MATRIX.md). Currently
 running or external numerical experiments must not be described as stored
 repository evidence until their scripts, protocols, and reports are separately
-reviewed and archived. Protected residuals, matter-like modes, and fundamental
-constants are speculative foundational horizons, not present repository
-claims.
+reviewed and archived. Protected residuals, matter-like modes, process time,
+and fundamental constants are speculative/open horizons, not present
+repository claims.
 
 Realizability is only an upstream motivation here: equal declared response
 does not imply equal implementation, and a nonconstant response-fibre curve is
@@ -176,6 +182,10 @@ a paper claim and not a theorem of the published paper. The immediate
   open step is the fifth-frame backend; v0.10.15 is fail-closed scaffold work,
 not a fifth-frame theorem. The separate neural-network analogy remains in
 [docs/NEURAL_NETWORK_RESPONSE_FIBRES.md](docs/NEURAL_NETWORK_RESPONSE_FIBRES.md).
+The W-layer Wiener feedback scope and T-layer process-time scope are separate
+open research interfaces; see
+[docs/WIENER_FEEDBACK_SCOPE.md](docs/WIENER_FEEDBACK_SCOPE.md) and
+[docs/PROCESS_TIME_SCOPE.md](docs/PROCESS_TIME_SCOPE.md).
 
 ## Claim Boundary
 
@@ -204,7 +214,11 @@ stability. This README changes reading order only, not proof content.
 - [docs/MANUSCRIPT_PROVENANCE.md](docs/MANUSCRIPT_PROVENANCE.md): submission manuscript hashes, archive status, and release fields
 - [docs/REVIEWER_REPRODUCTION.md](docs/REVIEWER_REPRODUCTION.md): minimal reviewer reproduction route for the frozen theorem boundary
 - [docs/ROADMAP.md](docs/ROADMAP.md): post-publication research roadmap and stop/go gates
+- [docs/THEORY_ARCHITECTURE.md](docs/THEORY_ARCHITECTURE.md): P/G/C/W/T/M/D/K architecture and dependency boundaries
+- [docs/RESEARCH_STATUS_MATRIX.md](docs/RESEARCH_STATUS_MATRIX.md): evidence-class ledger for frozen, certified, design, and open tracks
 - [docs/CONTROL_EXTENSION_SCOPE.md](docs/CONTROL_EXTENSION_SCOPE.md): normally attracting controlled-flow boundary
+- [docs/WIENER_FEEDBACK_SCOPE.md](docs/WIENER_FEEDBACK_SCOPE.md): observation-memory-delay feedback boundary
+- [docs/PROCESS_TIME_SCOPE.md](docs/PROCESS_TIME_SCOPE.md): candidate process-time definitions and stop rules
 - [docs/TWO_METRIC_SCOPE.md](docs/TWO_METRIC_SCOPE.md): two-metric geometry scope
 - [docs/CERTIFICATE_DAG_SCOPE.md](docs/CERTIFICATE_DAG_SCOPE.md): certificate execution graph semantics
 - [docs/K1_BRIDGE_SCOPE.md](docs/K1_BRIDGE_SCOPE.md): open K=1 bridge boundary
@@ -222,10 +236,11 @@ stability. This README changes reading order only, not proof content.
 当前已严格证明局部 ODE 微步和冻结实例上的有限同图延拓；尚未证明第五局部图、
 完整子域遍历或全局几何流。
 
-发表后路线保持六条：冻结论文核心、几何延拓、正常吸引控制、双层度量、
-证书执行图与开放的 K=1 桥；这些方向均不扩大冻结论文定理。当前只严格证明
-局部 ODE 和有限冻结实例延拓；C/M/D/K 均不是冻结论文结论，也未建立普遍可实现性、
-K=1 桥或物理时空涌现。神经网络
+发表后路线区分为冻结论文核心、几何延拓、正常吸引控制、Wiener 型观测-
+记忆-延迟反馈、候选过程时间、双层度量、证书执行图与开放的 K=1 桥；这些
+方向均不扩大冻结论文定理。当前只严格证明局部 ODE 和有限冻结实例延拓；W/T
+仍是开放研究接口，过程时间不是物理时间，K=1 桥或物理时空涌现也未建立。
+神经网络
 响应纤维只是独立类比方向，不属于本文发表定理。
 
 </details>
