@@ -169,6 +169,13 @@ reviewed and archived. Protected residuals, matter-like modes, process time,
 and fundamental constants are speculative/open horizons, not present
 repository claims.
 
+Post-publication prospective emulator evidence is tracked separately from the
+formal theorem chain. The archived Pulser shot-delay stability map v1.3 records
+a reproducible low-shot memory benefit in two frozen seeds, with only
+`agreement_fraction = 0.5` for the seedwise optimal delay; see
+[docs/post_publication/PULSER_WIENER_STABILITY_MAP_V1_3.md](docs/post_publication/PULSER_WIENER_STABILITY_MAP_V1_3.md).
+It is not process-time, K=1, QPU, hardware, or formal theorem evidence.
+
 Realizability is only an upstream motivation here: equal declared response
 does not imply equal implementation, and a nonconstant response-fibre curve is
 a model-level example of implementation freedom. The repository does not
@@ -219,6 +226,7 @@ stability. This README changes reading order only, not proof content.
 - [docs/CONTROL_EXTENSION_SCOPE.md](docs/CONTROL_EXTENSION_SCOPE.md): normally attracting controlled-flow boundary
 - [docs/WIENER_FEEDBACK_SCOPE.md](docs/WIENER_FEEDBACK_SCOPE.md): observation-memory-delay feedback boundary
 - [docs/PROCESS_TIME_SCOPE.md](docs/PROCESS_TIME_SCOPE.md): candidate process-time definitions and stop rules
+- [docs/post_publication/PULSER_WIENER_STABILITY_MAP_V1_3.md](docs/post_publication/PULSER_WIENER_STABILITY_MAP_V1_3.md): Pulser shot-delay memory preflight boundary
 - [docs/TWO_METRIC_SCOPE.md](docs/TWO_METRIC_SCOPE.md): two-metric geometry scope
 - [docs/CERTIFICATE_DAG_SCOPE.md](docs/CERTIFICATE_DAG_SCOPE.md): certificate execution graph semantics
 - [docs/K1_BRIDGE_SCOPE.md](docs/K1_BRIDGE_SCOPE.md): open K=1 bridge boundary
