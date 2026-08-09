@@ -18,10 +18,17 @@ its single certified residence window.
   sampled-trajectory moving-chart overlap/recentring preflight. It completes
   eight pointwise chart transitions in the documented real 14-phase model, but
   it is not an interval proof.
+- `c4_e1a_arb_first_chart_overlap_certificate_v1_0.py` and
+  `c4_e2a_arb_multichart_overlap_chain_v1_0.py` archive the Arb-certified
+  moving-atlas overlap chain: 9 charts, 8 adjacent transitions, and 8/8
+  positive-volume overlap boxes. The frozen E2a report records maximum
+  Neumann-defect upper bound `0.018601705183309603`, minimum local
+  residence-time lower bound `6.050195285542712e-10`, and aggregate local
+  residence budget `4.844642545380921e-09`.
 
-C4-E1 remains the required outward-rounded full-tube overlap/recentring
-certificate. No positive invariance, global continuation, K=1, Pulser, cloud,
-hardware, or QPU claim is made.
+The E2a aggregate budget is not a continuation time. C4-E2b validated-flowpipe
+continuation remains the next required step. No positive invariance, global
+continuation, K=1, Pulser, cloud, hardware, or QPU claim is made.
 
 Run from the repository root:
 
@@ -36,4 +43,5 @@ python research/control_extension/c4/verify_c4_control_extension.py \
 cd research/control_extension/c4
 python c4_e0_moving_chart_overlap_preflight_v1_0.py \
   --report /tmp/c4_e0.json
+python -m json.tool ../../../results/post_publication/control_extension/c4/c4_e2a_arb_multichart_overlap_chain_v1_0.json >/dev/null
 ```

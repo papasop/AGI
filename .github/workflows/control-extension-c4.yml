@@ -34,5 +34,37 @@ jobs:
       - name: Verify semantic gates
         run: |
           python research/control_extension/c4/verify_c4_control_extension.py \
-            --d0 /tmp/c4_d0.json --d1 /tmp/c4_d1.json
-
+            --d0 /tmp/c4_d0.json --d1 /tmp/c4_d1.json \
+            --e2a results/post_publication/control_extension/c4/c4_e2a_arb_multichart_overlap_chain_v1_0.json
+      - name: Validate frozen C4-E2a JSON
+        run: |
+          python -m json.tool \
+            results/post_publication/control_extension/c4/c4_e2a_arb_multichart_overlap_chain_v1_0.json \
+            >/dev/null
+          python -m unittest discover -s tests -v
+      - name: Optionally recompute C4-E2a Arb overlap chain
+        run: |
+          python - <<'PY'
+          import importlib.util
+          if not importlib.util.find_spec("flint"):
+              print("python-flint unavailable; skipping optional C4-E2a Arb rerun")
+              raise SystemExit(0)
+          PY
+          cd research/control_extension/c4
+          python c4_e2a_arb_multichart_overlap_chain_v1_0.py \
+            --report /tmp/c4_e2a.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          frozen = json.loads(Path(
+              "../../../results/post_publication/control_extension/c4/"
+              "c4_e2a_arb_multichart_overlap_chain_v1_0.json"
+          ).read_text())
+          rerun = json.loads(Path("/tmp/c4_e2a.json").read_text())
+          keys = ["summary", "gates", "all_gates_pass", "scientific_status",
+                  "claim_boundary", "required_next_step"]
+          for key in keys:
+              if rerun[key] != frozen[key]:
+                  raise SystemExit(f"C4-E2a rerun mismatch for {key}")
+          print("C4-E2a optional Arb rerun matches frozen claim-bearing fields")
+          PY

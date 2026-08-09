@@ -1,0 +1,842 @@
+{
+  "all_gates_pass": true,
+  "claim_boundary": "A 256-bit outward-rounded chain of eight positive-volume regular overlap boxes is certified for nine frozen charts. Positive local residence holds at each chart. The calculation does not transport an interval flowpipe between overlap boxes; the aggregate local budget is therefore not a certified continuation horizon.",
+  "environment": {
+    "numpy": "2.0.2",
+    "python": "3.12.13",
+    "python_flint": "0.8.0-compatible"
+  },
+  "gates": {
+    "all_new_charts_have_positive_local_residence": true,
+    "all_old_new_neumann_defects_below_one": true,
+    "all_overlap_boxes_inside_both_charts": true,
+    "all_positive_volume_overlap_boxes_certified": true,
+    "all_projective_denominators_exclude_zero": true,
+    "all_transition_certificates_pass": true,
+    "eight_adjacent_transitions_evaluated": true,
+    "nine_frozen_charts_constructed": true
+  },
+  "protocol": {
+    "beta": 100.0,
+    "chart_count": 9,
+    "chart_normal_half": 0.0001,
+    "chart_tangent_half": 0.02,
+    "criterion": "all eight adjacent chart pairs have certified positive-volume regular overlap boxes",
+    "model_sha256": "2ba9e8739c328d97e4074f6f2ce8c0adbdf678c6f18e37bfb72cba2919b81529",
+    "overlap_normal_half": 1e-07,
+    "overlap_tangent_half": 1e-07,
+    "precision_bits": 256,
+    "trajectory": "C4-E0 frozen mixed trajectory",
+    "transition_count": 8,
+    "version": "1.0"
+  },
+  "protocol_sha256": "f4bfc45c1f68899f6df982ee1a719f07b0d9eebf8320bae891a28181b538d452",
+  "required_next_step": "C4-E2b must use a validated ODE integrator or Taylor-model flowpipe to prove that an initial interval set reaches each certified overlap box in sequence. Only then may a finite moving-chart continuation time be claimed.",
+  "scientific_status": "C4_E2A_ARB_MULTICHART_ATLAS_OVERLAP_CHAIN_CERTIFIED",
+  "summary": {
+    "aggregate_budget_is_not_a_continuation_time": true,
+    "aggregate_local_residence_budget_lower": 4.844642545380921e-09,
+    "chart_count": 9,
+    "maximum_neumann_defect_upper": 0.018601705183309603,
+    "minimum_local_residence_time_lower": 6.050195285542712e-10,
+    "minimum_new_chart_membership_margin": 9.988209503488068e-05,
+    "minimum_old_chart_membership_margin": 9.988401380860775e-05,
+    "transition_count": 8
+  },
+  "title": "C4-E2a ARB MULTICHART OVERLAP-CHAIN CERTIFICATE",
+  "transition_certificates": [
+    {
+      "all_gates_pass": true,
+      "bounds": {
+        "JY_inverse_2_upper": 2.882002641718339,
+        "field_speed_2_upper": 82.64196053221266,
+        "forward_projective_denominator_abs_lower": 0.9999998511944197,
+        "local_residence_time_lower": 6.050195285542712e-10,
+        "mirror_projective_denominator_abs_lower": 0.9999998511944197,
+        "moore_penrose_inverse_2_upper": 639.4287926694393,
+        "new_centre_minimum_singular_value": 0.004884089501310192,
+        "new_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0002732117590176e-07,
+          "minimum_margin_lower": 9.988209503488068e-05
+        },
+        "new_chart_neumann_defect_inf_upper": 0.0185896835057046,
+        "objective_gradient_inf_upper": 19.678423788139312,
+        "old_centre_minimum_singular_value": 0.0048842899594564925,
+        "old_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0000000000000017e-07,
+          "minimum_margin_lower": 9.988401380860775e-05
+        },
+        "old_chart_neumann_defect_inf_upper": 0.018590394466474747,
+        "recovery_field_2_upper": 9.012040805253168,
+        "response_error_inf_upper": 4.9829435574218194e-05,
+        "right_inverse_frobenius": 221.86960671493074,
+        "tangent_field_2_upper": 73.6299197269595
+      },
+      "frozen_centres": {
+        "new": [
+          3.006786275963079,
+          2.7106785052112348,
+          1.1306832575498782,
+          -2.6568390482294557,
+          1.4365344137402483,
+          -2.077293163015501,
+          0.1631942866181554,
+          3.089655806386923,
+          -0.8755229879132288,
+          -2.6499940683947316,
+          0.9588756949149368,
+          -3.107591024952254,
+          0.7072947192691803,
+          -0.48363533953539184
+        ],
+        "old": [
+          3.0067862710620945,
+          2.7106830258052113,
+          1.1306725030045934,
+          -2.656848267674897,
+          1.4365196945194043,
+          -2.0772964067596282,
+          0.16321128188195058,
+          3.089650267202349,
+          -0.8755378447580239,
+          -2.6499931948664965,
+          0.9588833703160898,
+          -3.107572653575284,
+          0.7072946238736744,
+          -0.48362487792177977
+        ],
+        "overlap_midpoint": [
+          3.0067862735125868,
+          2.710680765508223,
+          1.130677880277236,
+          -2.6568436579521766,
+          1.4365270541298263,
+          -2.077294784887565,
+          0.163202784250053,
+          3.089653036794636,
+          -0.8755304163356263,
+          -2.649993631630614,
+          0.9588795326155133,
+          -3.107581839263769,
+          0.7072946715714273,
+          -0.4836301087285858
+        ]
+      },
+      "gates": {
+        "new_chart_uniform_neumann_defect_below_one": true,
+        "old_chart_uniform_neumann_defect_below_one": true,
+        "overlap_box_strictly_inside_new_chart": true,
+        "overlap_box_strictly_inside_old_chart": true,
+        "positive_volume_overlap_box": true,
+        "projective_denominators_exclude_zero": true,
+        "strictly_positive_new_chart_local_residence": true
+      },
+      "overlap_box": {
+        "frame": "old frozen orthonormal SVD frame",
+        "log10_volume": -93.78558006070426,
+        "normal_coordinate_half_width": 1e-07,
+        "tangent_coordinate_half_width": 1e-07
+      },
+      "transition": [
+        0,
+        1
+      ]
+    },
+    {
+      "all_gates_pass": true,
+      "bounds": {
+        "JY_inverse_2_upper": 2.8820073920799825,
+        "field_speed_2_upper": 82.61999888400217,
+        "forward_projective_denominator_abs_lower": 0.9999998511950339,
+        "local_residence_time_lower": 6.051803519169687e-10,
+        "mirror_projective_denominator_abs_lower": 0.9999998511950339,
+        "moore_penrose_inverse_2_upper": 639.4523191949324,
+        "new_centre_minimum_singular_value": 0.004883889070559043,
+        "new_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0002732675609563e-07,
+          "minimum_margin_lower": 9.988213322321947e-05
+        },
+        "new_chart_neumann_defect_inf_upper": 0.018591301146914277,
+        "objective_gradient_inf_upper": 19.67828893022208,
+        "old_centre_minimum_singular_value": 0.004884089501310192,
+        "old_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0000000000000029e-07,
+          "minimum_margin_lower": 9.988405245936797e-05
+        },
+        "old_chart_neumann_defect_inf_upper": 0.018592013054819712,
+        "recovery_field_2_upper": 8.990583749164841,
+        "response_error_inf_upper": 4.9708966134205664e-05,
+        "right_inverse_frobenius": 221.87740425378692,
+        "tangent_field_2_upper": 73.62941513483733
+      },
+      "frozen_centres": {
+        "new": [
+          3.0067862801058696,
+          2.710673985193403,
+          1.1306940148183129,
+          -2.6568298295241273,
+          1.4365491321813035,
+          -2.077289916624414,
+          0.16317729045173215,
+          3.089661345887081,
+          -0.8755081301333728,
+          -2.6499949413224133,
+          0.9588680203042739,
+          -3.1076093969713625,
+          0.7072948147559683,
+          -0.4836458016214962
+        ],
+        "old": [
+          3.006786275963079,
+          2.7106785052112348,
+          1.1306832575498782,
+          -2.6568390482294557,
+          1.4365344137402483,
+          -2.077293163015501,
+          0.1631942866181554,
+          3.089655806386923,
+          -0.8755229879132288,
+          -2.6499940683947316,
+          0.9588756949149368,
+          -3.107591024952254,
+          0.7072947192691803,
+          -0.48363533953539184
+        ],
+        "overlap_midpoint": [
+          3.0067862780344745,
+          2.710676245202319,
+          1.1306886361840955,
+          -2.6568344388767917,
+          1.436541772960776,
+          -2.0772915398199574,
+          0.16318578853494378,
+          3.089658576137002,
+          -0.8755155590233008,
+          -2.6499945048585722,
+          0.9588718576096054,
+          -3.107600210961808,
+          0.7072947670125743,
+          -0.483640570578444
+        ]
+      },
+      "gates": {
+        "new_chart_uniform_neumann_defect_below_one": true,
+        "old_chart_uniform_neumann_defect_below_one": true,
+        "overlap_box_strictly_inside_new_chart": true,
+        "overlap_box_strictly_inside_old_chart": true,
+        "positive_volume_overlap_box": true,
+        "projective_denominators_exclude_zero": true,
+        "strictly_positive_new_chart_local_residence": true
+      },
+      "overlap_box": {
+        "frame": "old frozen orthonormal SVD frame",
+        "log10_volume": -93.78558006070426,
+        "normal_coordinate_half_width": 1e-07,
+        "tangent_coordinate_half_width": 1e-07
+      },
+      "transition": [
+        1,
+        2
+      ]
+    },
+    {
+      "all_gates_pass": true,
+      "bounds": {
+        "JY_inverse_2_upper": 2.88201214011228,
+        "field_speed_2_upper": 82.59808975780008,
+        "forward_projective_denominator_abs_lower": 0.9999998511951813,
+        "local_residence_time_lower": 6.053408758799811e-10,
+        "mirror_projective_denominator_abs_lower": 0.9999998511951813,
+        "moore_penrose_inverse_2_upper": 639.4758443582443,
+        "new_centre_minimum_singular_value": 0.004883688667227812,
+        "new_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0002733233622474e-07,
+          "minimum_margin_lower": 9.988217132542377e-05
+        },
+        "new_chart_neumann_defect_inf_upper": 0.018592917989582892,
+        "objective_gradient_inf_upper": 19.67815400197513,
+        "old_centre_minimum_singular_value": 0.004883889070559043,
+        "old_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0000000000000022e-07,
+          "minimum_margin_lower": 9.988409102283952e-05
+        },
+        "old_chart_neumann_defect_inf_upper": 0.018593629937422997,
+        "recovery_field_2_upper": 8.969179478234638,
+        "response_error_inf_upper": 4.95887975026149e-05,
+        "right_inverse_frobenius": 221.88520147362428,
+        "tangent_field_2_upper": 73.62891027956545
+      },
+      "frozen_centres": {
+        "new": [
+          3.0067862834905177,
+          2.7106694657517987,
+          1.1307047748103494,
+          -2.6568206115590423,
+          1.4365638498420337,
+          -2.077286667585788,
+          0.16316029338297602,
+          3.0896668857026777,
+          -0.8754932714186171,
+          -2.6499958136493893,
+          0.9588603464844979,
+          -3.1076277696322125,
+          0.7072949103340191,
+          -0.4836562641799641
+        ],
+        "old": [
+          3.0067862801058696,
+          2.710673985193403,
+          1.1306940148183129,
+          -2.6568298295241273,
+          1.4365491321813035,
+          -2.077289916624414,
+          0.16317729045173215,
+          3.089661345887081,
+          -0.8755081301333728,
+          -2.6499949413224133,
+          0.9588680203042739,
+          -3.1076093969713625,
+          0.7072948147559683,
+          -0.4836458016214962
+        ],
+        "overlap_midpoint": [
+          3.0067862817981936,
+          2.7106717254726007,
+          1.1306993948143311,
+          -2.6568252205415845,
+          1.4365564910116686,
+          -2.0772882921051012,
+          0.1631687919173541,
+          3.0896641157948794,
+          -0.875500700775995,
+          -2.6499953774859013,
+          0.9588641833943858,
+          -3.1076185833017878,
+          0.7072948625449937,
+          -0.48365103290073014
+        ]
+      },
+      "gates": {
+        "new_chart_uniform_neumann_defect_below_one": true,
+        "old_chart_uniform_neumann_defect_below_one": true,
+        "overlap_box_strictly_inside_new_chart": true,
+        "overlap_box_strictly_inside_old_chart": true,
+        "positive_volume_overlap_box": true,
+        "projective_denominators_exclude_zero": true,
+        "strictly_positive_new_chart_local_residence": true
+      },
+      "overlap_box": {
+        "frame": "old frozen orthonormal SVD frame",
+        "log10_volume": -93.78558006070426,
+        "normal_coordinate_half_width": 1e-07,
+        "tangent_coordinate_half_width": 1e-07
+      },
+      "transition": [
+        2,
+        3
+      ]
+    },
+    {
+      "all_gates_pass": true,
+      "bounds": {
+        "JY_inverse_2_upper": 2.8820168834756084,
+        "field_speed_2_upper": 82.57623301563473,
+        "forward_projective_denominator_abs_lower": 0.9999998511953292,
+        "local_residence_time_lower": 6.055011009103934e-10,
+        "mirror_projective_denominator_abs_lower": 0.9999998511953292,
+        "moore_penrose_inverse_2_upper": 639.4993675998815,
+        "new_centre_minimum_singular_value": 0.004883488291341711,
+        "new_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0002733791629738e-07,
+          "minimum_margin_lower": 9.988220933996519e-05
+        },
+        "new_chart_neumann_defect_inf_upper": 0.018594533237012472,
+        "objective_gradient_inf_upper": 19.678019003405517,
+        "old_centre_minimum_singular_value": 0.004883688667227812,
+        "old_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0000000000000013e-07,
+          "minimum_margin_lower": 9.988412950025295e-05
+        },
+        "old_chart_neumann_defect_inf_upper": 0.018595246060024617,
+        "recovery_field_2_upper": 8.94782785446448,
+        "response_error_inf_upper": 4.946892892582496e-05,
+        "right_inverse_frobenius": 221.89299836046357,
+        "tangent_field_2_upper": 73.62840516117025
+      },
+      "frozen_centres": {
+        "new": [
+          3.0067862861170758,
+          2.7106649468865016,
+          1.1307155375264386,
+          -2.6568113943343303,
+          1.4365785667219015,
+          -2.0772834158990436,
+          0.1631432954121824,
+          3.089672425833567,
+          -0.8754784117691234,
+          -2.6499966853755073,
+          0.9588526734560062,
+          -3.1076461429344073,
+          0.7072950060033133,
+          -0.48366672721066667
+        ],
+        "old": [
+          3.0067862834905177,
+          2.7106694657517987,
+          1.1307047748103494,
+          -2.6568206115590423,
+          1.4365638498420337,
+          -2.077286667585788,
+          0.16316029338297602,
+          3.0896668857026777,
+          -0.8754932714186171,
+          -2.6499958136493893,
+          0.9588603464844979,
+          -3.1076277696322125,
+          0.7072949103340191,
+          -0.4836562641799641
+        ],
+        "overlap_midpoint": [
+          3.0067862848037965,
+          2.71066720631915,
+          1.1307101561683939,
+          -2.6568160029466865,
+          1.4365712082819675,
+          -2.0772850417424156,
+          0.1631517943975792,
+          3.0896696557681222,
+          -0.8754858415938702,
+          -2.6499962495124483,
+          0.9588565099702521,
+          -3.1076369562833097,
+          0.7072949581686663,
+          -0.48366149569531536
+        ]
+      },
+      "gates": {
+        "new_chart_uniform_neumann_defect_below_one": true,
+        "old_chart_uniform_neumann_defect_below_one": true,
+        "overlap_box_strictly_inside_new_chart": true,
+        "overlap_box_strictly_inside_old_chart": true,
+        "positive_volume_overlap_box": true,
+        "projective_denominators_exclude_zero": true,
+        "strictly_positive_new_chart_local_residence": true
+      },
+      "overlap_box": {
+        "frame": "old frozen orthonormal SVD frame",
+        "log10_volume": -93.78558006070426,
+        "normal_coordinate_half_width": 1e-07,
+        "tangent_coordinate_half_width": 1e-07
+      },
+      "transition": [
+        3,
+        4
+      ]
+    },
+    {
+      "all_gates_pass": true,
+      "bounds": {
+        "JY_inverse_2_upper": 2.8820216249349957,
+        "field_speed_2_upper": 82.55442853650683,
+        "forward_projective_denominator_abs_lower": 0.9999998511954775,
+        "local_residence_time_lower": 6.056610273534778e-10,
+        "mirror_projective_denominator_abs_lower": 0.9999998511954775,
+        "moore_penrose_inverse_2_upper": 639.5228895632274,
+        "new_centre_minimum_singular_value": 0.004883287942925535,
+        "new_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0002734349631207e-07,
+          "minimum_margin_lower": 9.988224726853212e-05
+        },
+        "new_chart_neumann_defect_inf_upper": 0.01859614783078337,
+        "objective_gradient_inf_upper": 19.677883934520192,
+        "old_centre_minimum_singular_value": 0.004883488291341711,
+        "old_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0000000000000013e-07,
+          "minimum_margin_lower": 9.988416789087723e-05
+        },
+        "old_chart_neumann_defect_inf_upper": 0.01859686223122041,
+        "recovery_field_2_upper": 8.926528756829093,
+        "response_error_inf_upper": 4.934935965092244e-05,
+        "right_inverse_frobenius": 221.90079492469178,
+        "tangent_field_2_upper": 73.62789977967775
+      },
+      "frozen_centres": {
+        "new": [
+          3.0067862879855944,
+          2.7106604285975937,
+          1.1307263029670322,
+          -2.656802177850122,
+          1.4365932828203702,
+          -2.0772801615636016,
+          0.1631262965396469,
+          3.089677966279603,
+          -0.8754635511850538,
+          -2.649997556500614,
+          0.9588450012191965,
+          -3.1076645168775494,
+          0.7072951017638318,
+          -0.48367719071347454
+        ],
+        "old": [
+          3.0067862861170758,
+          2.7106649468865016,
+          1.1307155375264386,
+          -2.6568113943343303,
+          1.4365785667219015,
+          -2.0772834158990436,
+          0.1631432954121824,
+          3.089672425833567,
+          -0.8754784117691234,
+          -2.6499966853755073,
+          0.9588526734560062,
+          -3.1076461429344073,
+          0.7072950060033133,
+          -0.48366672721066667
+        ],
+        "overlap_midpoint": [
+          3.006786287051335,
+          2.7106626877420474,
+          1.1307209202467354,
+          -2.6568067860922264,
+          1.436585924771136,
+          -2.0772817887313226,
+          0.16313479597591463,
+          3.089675196056585,
+          -0.8754709814770887,
+          -2.6499971209380604,
+          0.9588488373376014,
+          -3.1076553299059784,
+          0.7072950538835725,
+          -0.4836719589620706
+        ]
+      },
+      "gates": {
+        "new_chart_uniform_neumann_defect_below_one": true,
+        "old_chart_uniform_neumann_defect_below_one": true,
+        "overlap_box_strictly_inside_new_chart": true,
+        "overlap_box_strictly_inside_old_chart": true,
+        "positive_volume_overlap_box": true,
+        "projective_denominators_exclude_zero": true,
+        "strictly_positive_new_chart_local_residence": true
+      },
+      "overlap_box": {
+        "frame": "old frozen orthonormal SVD frame",
+        "log10_volume": -93.78558006070426,
+        "normal_coordinate_half_width": 1e-07,
+        "tangent_coordinate_half_width": 1e-07
+      },
+      "transition": [
+        4,
+        5
+      ]
+    },
+    {
+      "all_gates_pass": true,
+      "bounds": {
+        "JY_inverse_2_upper": 2.882026368439831,
+        "field_speed_2_upper": 82.53267620401624,
+        "forward_projective_denominator_abs_lower": 0.9999998511956258,
+        "local_residence_time_lower": 6.058206555231863e-10,
+        "mirror_projective_denominator_abs_lower": 0.9999998511956258,
+        "moore_penrose_inverse_2_upper": 639.5464111398071,
+        "new_centre_minimum_singular_value": 0.0048830876220047606,
+        "new_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0002734907626664e-07,
+          "minimum_margin_lower": 9.988228511081502e-05
+        },
+        "new_chart_neumann_defect_inf_upper": 0.01859776311576772,
+        "objective_gradient_inf_upper": 19.677748795325968,
+        "old_centre_minimum_singular_value": 0.004883287942925535,
+        "old_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0000000000000025e-07,
+          "minimum_margin_lower": 9.988420619507066e-05
+        },
+        "old_chart_neumann_defect_inf_upper": 0.018598477524115038,
+        "recovery_field_2_upper": 8.905282068902807,
+        "response_error_inf_upper": 4.923008893191645e-05,
+        "right_inverse_frobenius": 221.9085911715728,
+        "tangent_field_2_upper": 73.62739413511343
+      },
+      "frozen_centres": {
+        "new": [
+          3.0067862890961243,
+          2.710655910885155,
+          1.130737071132582,
+          -2.656792962106547,
+          1.436607998136903,
+          -2.077276904578882,
+          0.16310929676566538,
+          3.089683507040641,
+          -0.8754486896665706,
+          -2.649998427024558,
+          0.9588373297744667,
+          -3.1076828914612404,
+          0.7072951976155555,
+          -0.483687654688258
+        ],
+        "old": [
+          3.0067862879855944,
+          2.7106604285975937,
+          1.1307263029670322,
+          -2.656802177850122,
+          1.4365932828203702,
+          -2.0772801615636016,
+          0.1631262965396469,
+          3.089677966279603,
+          -0.8754635511850538,
+          -2.649997556500614,
+          0.9588450012191965,
+          -3.1076645168775494,
+          0.7072951017638318,
+          -0.48367719071347454
+        ],
+        "overlap_midpoint": [
+          3.0067862885408596,
+          2.7106581697413743,
+          1.1307316870498072,
+          -2.656797569978335,
+          1.4366006404786367,
+          -2.077278533071242,
+          0.16311779665265613,
+          3.0896807366601218,
+          -0.8754561204258122,
+          -2.6499979917625858,
+          0.9588411654968316,
+          -3.107673704169395,
+          0.7072951496896936,
+          -0.48368242270086625
+        ]
+      },
+      "gates": {
+        "new_chart_uniform_neumann_defect_below_one": true,
+        "old_chart_uniform_neumann_defect_below_one": true,
+        "overlap_box_strictly_inside_new_chart": true,
+        "overlap_box_strictly_inside_old_chart": true,
+        "positive_volume_overlap_box": true,
+        "projective_denominators_exclude_zero": true,
+        "strictly_positive_new_chart_local_residence": true
+      },
+      "overlap_box": {
+        "frame": "old frozen orthonormal SVD frame",
+        "log10_volume": -93.78558006070426,
+        "normal_coordinate_half_width": 1e-07,
+        "tangent_coordinate_half_width": 1e-07
+      },
+      "transition": [
+        5,
+        6
+      ]
+    },
+    {
+      "all_gates_pass": true,
+      "bounds": {
+        "JY_inverse_2_upper": 2.882031102686464,
+        "field_speed_2_upper": 82.51097585456485,
+        "forward_projective_denominator_abs_lower": 0.9999998511957737,
+        "local_residence_time_lower": 6.059799860824672e-10,
+        "mirror_projective_denominator_abs_lower": 0.9999998511957737,
+        "moore_penrose_inverse_2_upper": 639.5699297677202,
+        "new_centre_minimum_singular_value": 0.004882887328604318,
+        "new_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0002735465613471e-07,
+          "minimum_margin_lower": 9.988232286677425e-05
+        },
+        "new_chart_neumann_defect_inf_upper": 0.018599375242795597,
+        "objective_gradient_inf_upper": 19.67761358582973,
+        "old_centre_minimum_singular_value": 0.0048830876220047606,
+        "old_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0000000000000023e-07,
+          "minimum_margin_lower": 9.988424441357896e-05
+        },
+        "old_chart_neumann_defect_inf_upper": 0.01860009054858299,
+        "recovery_field_2_upper": 8.88408762706178,
+        "response_error_inf_upper": 4.91111160278626e-05,
+        "right_inverse_frobenius": 221.91638708255087,
+        "tangent_field_2_upper": 73.62688822750307
+      },
+      "frozen_centres": {
+        "new": [
+          3.006786289448717,
+          2.710651393749265,
+          1.1307478420235395,
+          -2.656783747103737,
+          1.4366227126709623,
+          -2.0772736449443054,
+          0.16309229609053377,
+          3.0896890481165347,
+          -0.8754338272138367,
+          -2.6499992969471866,
+          0.9588296591222152,
+          -3.1077012666850825,
+          0.7072952935584653,
+          -0.4836981191348869
+        ],
+        "old": [
+          3.0067862890961243,
+          2.710655910885155,
+          1.130737071132582,
+          -2.656792962106547,
+          1.436607998136903,
+          -2.077276904578882,
+          0.16310929676566538,
+          3.089683507040641,
+          -0.8754486896665706,
+          -2.649998427024558,
+          0.9588373297744667,
+          -3.1076828914612404,
+          0.7072951976155555,
+          -0.483687654688258
+        ],
+        "overlap_midpoint": [
+          3.0067862892724206,
+          2.71065365231721,
+          1.1307424565780608,
+          -2.6567883546051423,
+          1.4366153554039327,
+          -2.0772752747615937,
+          0.16310079642809958,
+          3.089686277578588,
+          -0.8754412584402036,
+          -2.649998861985872,
+          0.958833494448341,
+          -3.1076920790731615,
+          0.7072952455870104,
+          -0.4836928869115724
+        ]
+      },
+      "gates": {
+        "new_chart_uniform_neumann_defect_below_one": true,
+        "old_chart_uniform_neumann_defect_below_one": true,
+        "overlap_box_strictly_inside_new_chart": true,
+        "overlap_box_strictly_inside_old_chart": true,
+        "positive_volume_overlap_box": true,
+        "projective_denominators_exclude_zero": true,
+        "strictly_positive_new_chart_local_residence": true
+      },
+      "overlap_box": {
+        "frame": "old frozen orthonormal SVD frame",
+        "log10_volume": -93.78558006070426,
+        "normal_coordinate_half_width": 1e-07,
+        "tangent_coordinate_half_width": 1e-07
+      },
+      "transition": [
+        6,
+        7
+      ]
+    },
+    {
+      "all_gates_pass": true,
+      "bounds": {
+        "JY_inverse_2_upper": 2.8820358403532524,
+        "field_speed_2_upper": 82.48932739765964,
+        "forward_projective_denominator_abs_lower": 0.9999998511959225,
+        "local_residence_time_lower": 6.061390191601754e-10,
+        "mirror_projective_denominator_abs_lower": 0.9999998511959225,
+        "moore_penrose_inverse_2_upper": 639.5934482845681,
+        "new_centre_minimum_singular_value": 0.004882687062748942,
+        "new_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0002736023597317e-07,
+          "minimum_margin_lower": 9.988236053729013e-05
+        },
+        "new_chart_neumann_defect_inf_upper": 0.018600988529168028,
+        "objective_gradient_inf_upper": 19.677478306038363,
+        "old_centre_minimum_singular_value": 0.004882887328604318,
+        "old_chart_membership": {
+          "all_coordinates_strictly_inside": true,
+          "maximum_coordinate_radius_upper": 1.0000000000000037e-07,
+          "minimum_margin_lower": 9.988428254553469e-05
+        },
+        "old_chart_neumann_defect_inf_upper": 0.018601705183309603,
+        "recovery_field_2_upper": 8.862945340787212,
+        "response_error_inf_upper": 4.899244018653561e-05,
+        "right_inverse_frobenius": 221.9241826660188,
+        "tangent_field_2_upper": 73.62638205687243
+      },
+      "frozen_centres": {
+        "new": [
+          3.006786289043422,
+          2.710646877190005,
+          1.1307586156403566,
+          -2.6567745328418213,
+          1.4366374264220105,
+          -2.0772703826592913,
+          0.16307529451454836,
+          3.0896945895071384,
+          -0.8754189638270151,
+          -2.650000166268348,
+          0.9588219892628403,
+          -3.107719642548677,
+          0.7072953895925423,
+          -0.483708584053231
+        ],
+        "old": [
+          3.006786289448717,
+          2.710651393749265,
+          1.1307478420235395,
+          -2.656783747103737,
+          1.4366227126709623,
+          -2.0772736449443054,
+          0.16309229609053377,
+          3.0896890481165347,
+          -0.8754338272138367,
+          -2.6499992969471866,
+          0.9588296591222152,
+          -3.1077012666850825,
+          0.7072952935584653,
+          -0.4836981191348869
+        ],
+        "overlap_midpoint": [
+          3.0067862892460697,
+          2.710649135469635,
+          1.130753228831948,
+          -2.6567791399727794,
+          1.4366300695464864,
+          -2.0772720138017986,
+          0.16308379530254108,
+          3.0896918188118363,
+          -0.8754263955204259,
+          -2.6499997316077675,
+          0.9588258241925278,
+          -3.1077104546168797,
+          0.7072953415755039,
+          -0.483703351594059
+        ]
+      },
+      "gates": {
+        "new_chart_uniform_neumann_defect_below_one": true,
+        "old_chart_uniform_neumann_defect_below_one": true,
+        "overlap_box_strictly_inside_new_chart": true,
+        "overlap_box_strictly_inside_old_chart": true,
+        "positive_volume_overlap_box": true,
+        "projective_denominators_exclude_zero": true,
+        "strictly_positive_new_chart_local_residence": true
+      },
+      "overlap_box": {
+        "frame": "old frozen orthonormal SVD frame",
+        "log10_volume": -93.78558006070426,
+        "normal_coordinate_half_width": 1e-07,
+        "tangent_coordinate_half_width": 1e-07
+      },
+      "transition": [
+        7,
+        8
+      ]
+    }
+  ],
+  "version": "1.0"
+}
