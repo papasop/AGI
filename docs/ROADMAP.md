@@ -11,7 +11,28 @@ between certified result, floating-point development evidence, design stage,
 open theorem work, and speculative horizon. This roadmap is not a completion
 schedule.
 
-The organizing principle is deliberately separated:
+The organizing principle is deliberately separated across three levels:
+
+- Level A, frozen result: P;
+- Level B, mathematical/dynamical extensions: G, C, M;
+- Level C, certification/foundational bridges: D, K.
+
+The six-track dependency structure is:
+
+- P -> G;
+- P -> C;
+- P -> M;
+- (G, C) -> D;
+- (C, M) -> K.
+
+Realizability is only an upstream motivation: equal declared response does not
+imply equal implementation, and a nonconstant response-fibre curve is a
+model-level example of implementation freedom. This repository does not
+establish a universal realizability principle, an extension or replacement of
+the real numbers, a general nonfaithfulness theorem for real-valued
+observables, a K=1 bridge, or physical spacetime emergence.
+
+The role separation is deliberately narrow:
 
 - geometry describes legal directions;
 - the control law restores response and selects motion;
@@ -21,7 +42,7 @@ The organizing principle is deliberately separated:
 
 These roles cannot be unified by terminology alone.
 
-## P - Frozen Paper Core
+## P - Frozen Published Core
 
 | Stage | Objective | Status |
 | --- | --- | --- |
@@ -92,7 +113,7 @@ strictly certify at least:
 
 Stop/go gates:
 
-- After C4 is completed, pause the control line and turn to either the K1
+- After C4 is completed, pause the control line and turn to either the K=1
   bridge or a two-metric theorem.
 - If C3 numerical boundaries are unstable under solver tolerances, stop and
   repair the numerical setup before claiming progress.
@@ -175,21 +196,30 @@ See [K1_BRIDGE_SCOPE.md](K1_BRIDGE_SCOPE.md).
 ## Dependency Order
 
 ```text
-Frozen local theorem
-|-- geometric continuation
-|-- normally attracting control
-|-- two-metric formulation
-`-- certificate execution semantics
-             |
-             v
-       K=1 bridge tests
-             |
-             v
-protected residuals / constants
-(speculative horizon)
+Level A: frozen result
+
+P: frozen published core
+|
+|-- Level B: mathematical/dynamical extensions
+|   |-- G: geometric continuation
+|   |-- C: normally attracting control
+|   `-- M: two-metric geometry
+|
+`-- Level C: certification/foundational bridges
+    |-- D: certificate execution graph
+    |       depends on (G, C)
+    |
+    `-- K: K=1 bridge
+            depends on (C, M)
+            |
+            `-- protected residuals / constants
+                (speculative horizon)
 ```
 
 The Riemannian and pseudo-Riemannian structures describe continuous geometry;
 the control law selects dynamics; the certificate DAG records finite certified
-execution. K=1 bridge work is a separate bridge problem, not an automatic
-consequence of the first three tracks.
+execution. Geometric continuation and certificate execution can develop in
+parallel as long as D records only certified finite transitions. C4 remains
+the recommended closure milestone for the current control track before turning
+to K=1 bridge work or a two-metric theorem. K=1 bridge work is a separate
+bridge problem, not an automatic consequence of the first three tracks.

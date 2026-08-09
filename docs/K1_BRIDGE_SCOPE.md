@@ -3,6 +3,10 @@
 This document scopes the open K=1 bridge. The bridge has not been established
 in `papasop/Geometric-Flow` and is not part of the frozen paper theorem.
 
+Within the roadmap hierarchy, this is a Level-C foundational bridge depending
+on control-track and two-metric definitions. It is not implied by geometric
+continuation or certificate-DAG terminology.
+
 ## Roadmap
 
 | Stage | Objective | Status |
