@@ -1,0 +1,444 @@
+{
+  "title": "C4-E0 MOVING-CHART RECENTRING AND OVERLAP PREFLIGHT v1.0",
+  "scope": "floating-point moving-chart overlap/recentring preflight on the frozen real 14-phase model; not Arb tube invariance, global continuation, K=1, Pulser, or QPU evidence",
+  "protocol": {
+    "model_commit": "784ba5523cb3e1e2be7def3362c1722149df7360",
+    "model_sha256": "2ba9e8739c328d97e4074f6f2ce8c0adbdf678c6f18e37bfb72cba2919b81529",
+    "seed": 20260809,
+    "windows": 8,
+    "window_duration": 2.5e-05,
+    "steps_per_window": 4,
+    "beta": 100.0,
+    "tangent_half": 0.02,
+    "normal_half": 0.0001,
+    "perturbation_scale": 2.5e-05
+  },
+  "protocol_sha256": "5bfdde3b865c7d305e9fb41fd9942a5fbc76637f21055ae0a9906515f7bd5379",
+  "trials": [
+    {
+      "name": "tangent",
+      "steps_per_window": 4,
+      "initial_response_error": 1.474549158819532e-09,
+      "final_response_error": 1.4452559653790863e-09,
+      "response_reduction": 0.019865864264502875,
+      "initial_loss": 148.8506937311946,
+      "final_loss": 148.8502152487199,
+      "minimum_singular_value": 0.004882872208258002,
+      "maximum_response_error": 1.474549158819532e-09,
+      "all_finite": true,
+      "chart_count": 9,
+      "transition_count": 8,
+      "all_midpoint_overlaps": true,
+      "minimum_tangent_alignment": 0.9999999936908597,
+      "minimum_normal_alignment": 0.9999999936908596,
+      "maximum_reconstruction_error": 0.0,
+      "overlaps": [
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.24439837795055e-05,
+            "normal_coordinate_inf": 9.474437103547124e-10
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2443728579726072e-05,
+            "normal_coordinate_inf": 9.47146726899603e-10
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937070626,
+          "minimum_normal_frame_alignment": 0.999999993707062
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444077893319172e-05,
+            "normal_coordinate_inf": 9.476677755259223e-10
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2443822594155758e-05,
+            "normal_coordinate_inf": 9.47371652519121e-10
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937047495,
+          "minimum_normal_frame_alignment": 0.9999999937047495
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444171820078527e-05,
+            "normal_coordinate_inf": 9.478917440262942e-10
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.244391642147338e-05,
+            "normal_coordinate_inf": 9.475965691470665e-10
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.999999993702436,
+          "minimum_normal_frame_alignment": 0.9999999937024362
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444265559986273e-05,
+            "normal_coordinate_inf": 9.481162590029423e-10
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.244401006165723e-05,
+            "normal_coordinate_inf": 9.47821659632786e-10
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937001217,
+          "minimum_normal_frame_alignment": 0.9999999937001216
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444359112600667e-05,
+            "normal_coordinate_inf": 9.483403819240114e-10
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444103515026039e-05,
+            "normal_coordinate_inf": 9.480465113407649e-10
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999936978071,
+          "minimum_normal_frame_alignment": 0.9999999936978072
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.244445247835644e-05,
+            "normal_coordinate_inf": 9.485641530033174e-10
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444196781042409e-05,
+            "normal_coordinate_inf": 9.48271892297296e-10
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999936954916,
+          "minimum_normal_frame_alignment": 0.9999999936954919
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444545656305504e-05,
+            "normal_coordinate_inf": 9.487886504414071e-10
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444289859711565e-05,
+            "normal_coordinate_inf": 9.484966682315338e-10
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999936931759,
+          "minimum_normal_frame_alignment": 0.9999999936931754
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444638646923418e-05,
+            "normal_coordinate_inf": 9.49012834110647e-10
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444382750523192e-05,
+            "normal_coordinate_inf": 9.487215789467923e-10
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999936908597,
+          "minimum_normal_frame_alignment": 0.9999999936908596
+        }
+      ]
+    },
+    {
+      "name": "normal",
+      "steps_per_window": 4,
+      "initial_response_error": 8.036459042386585e-05,
+      "final_response_error": 7.877326480099289e-05,
+      "response_reduction": 0.019801328103333238,
+      "initial_loss": 148.85065242757105,
+      "final_loss": 148.85017468760452,
+      "minimum_singular_value": 0.00488263587345163,
+      "maximum_response_error": 8.036459042386585e-05,
+      "all_finite": true,
+      "chart_count": 9,
+      "transition_count": 8,
+      "all_midpoint_overlaps": true,
+      "minimum_tangent_alignment": 0.999999993721417,
+      "minimum_normal_alignment": 0.999999993721417,
+      "maximum_reconstruction_error": 0.0,
+      "overlaps": [
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444856357479418e-05,
+            "normal_coordinate_inf": 2.29998537338707e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444600491831581e-05,
+            "normal_coordinate_inf": 2.4889948644999287e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937380905,
+          "minimum_normal_frame_alignment": 0.9999999937380908
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.244494832136639e-05,
+            "normal_coordinate_inf": 2.2945291296855847e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444692357383852e-05,
+            "normal_coordinate_inf": 2.4835845168199665e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937357096,
+          "minimum_normal_frame_alignment": 0.9999999937357099
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2445040103535446e-05,
+            "normal_coordinate_inf": 2.2890850832309716e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444784041559225e-05,
+            "normal_coordinate_inf": 2.4781864613012143e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937333285,
+          "minimum_normal_frame_alignment": 0.9999999937333287
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.24451317045886e-05,
+            "normal_coordinate_inf": 2.283653337002103e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.244487554443864e-05,
+            "normal_coordinate_inf": 2.4728006445866182e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937309472,
+          "minimum_normal_frame_alignment": 0.999999993730947
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2445223123973631e-05,
+            "normal_coordinate_inf": 2.278233781356771e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444966865553117e-05,
+            "normal_coordinate_inf": 2.467427108584404e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937285649,
+          "minimum_normal_frame_alignment": 0.9999999937285653
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2445314361580966e-05,
+            "normal_coordinate_inf": 2.2728264749296166e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2445058004843823e-05,
+            "normal_coordinate_inf": 2.4620656713785733e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937261826,
+          "minimum_normal_frame_alignment": 0.999999993726183
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2445405417404377e-05,
+            "normal_coordinate_inf": 2.267431337586971e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2445148962318082e-05,
+            "normal_coordinate_inf": 2.456716508008371e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937238002,
+          "minimum_normal_frame_alignment": 0.9999999937238001
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2445496291227614e-05,
+            "normal_coordinate_inf": 2.2620482907631962e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2445239737895609e-05,
+            "normal_coordinate_inf": 2.451379435290206e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.999999993721417,
+          "minimum_normal_frame_alignment": 0.999999993721417
+        }
+      ]
+    },
+    {
+      "name": "mixed",
+      "steps_per_window": 4,
+      "initial_response_error": 5.6826268154816305e-05,
+      "final_response_error": 5.570103247471641e-05,
+      "response_reduction": 0.019801329853903593,
+      "initial_loss": 148.85066335808904,
+      "final_loss": 148.8501853969143,
+      "minimum_singular_value": 0.004882687062748942,
+      "maximum_response_error": 5.6826268154816305e-05,
+      "all_finite": true,
+      "chart_count": 9,
+      "transition_count": 8,
+      "all_midpoint_overlaps": true,
+      "minimum_tangent_alignment": 0.9999999937122668,
+      "minimum_normal_alignment": 0.9999999937122669,
+      "maximum_reconstruction_error": 0.0,
+      "overlaps": [
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444578409855378e-05,
+            "normal_coordinate_inf": 1.5986191392257252e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444322734851339e-05,
+            "normal_coordinate_inf": 1.7877643943421642e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937288032,
+          "minimum_normal_frame_alignment": 0.9999999937288032
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444671001973385e-05,
+            "normal_coordinate_inf": 1.5947540632044766e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444415228497351e-05,
+            "normal_coordinate_inf": 1.7839450024429432e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937264423,
+          "minimum_normal_frame_alignment": 0.9999999937264422
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.244476341122567e-05,
+            "normal_coordinate_inf": 1.590897716049012e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444507538999257e-05,
+            "normal_coordinate_inf": 1.7801342240017756e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937240808,
+          "minimum_normal_frame_alignment": 0.9999999937240812
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444855637149511e-05,
+            "normal_coordinate_inf": 1.5870499747048364e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444599666589839e-05,
+            "normal_coordinate_inf": 1.7763322118516666e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.999999993721719,
+          "minimum_normal_frame_alignment": 0.9999999937217191
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444947679919339e-05,
+            "normal_coordinate_inf": 1.5832109122770733e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.244469161069485e-05,
+            "normal_coordinate_inf": 1.772538797156501e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937193568,
+          "minimum_normal_frame_alignment": 0.9999999937193568
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2445039539560975e-05,
+            "normal_coordinate_inf": 1.5793804929342308e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444783371832844e-05,
+            "normal_coordinate_inf": 1.7687540108711562e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937169938,
+          "minimum_normal_frame_alignment": 0.9999999937169942
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.244513121580608e-05,
+            "normal_coordinate_inf": 1.5755586421047776e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.2444874948964796e-05,
+            "normal_coordinate_inf": 1.7649778569620966e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937146306,
+          "minimum_normal_frame_alignment": 0.9999999937146303
+        },
+        {
+          "midpoint_in_both_charts": true,
+          "old_chart_coordinates": {
+            "tangent_coordinate_inf": 1.24452227080435e-05,
+            "normal_coordinate_inf": 1.571745446531235e-08
+          },
+          "new_chart_coordinates": {
+            "tangent_coordinate_inf": 1.244496634289818e-05,
+            "normal_coordinate_inf": 1.761210247389573e-08
+          },
+          "maximum_reconstruction_error": 0.0,
+          "minimum_tangent_frame_alignment": 0.9999999937122668,
+          "minimum_normal_frame_alignment": 0.9999999937122669
+        }
+      ]
+    }
+  ],
+  "convergence": [
+    {
+      "name": "mixed",
+      "endpoint_difference": 4.432258696105874e-13
+    }
+  ],
+  "summary": {
+    "trial_count": 3,
+    "minimum_singular_value": 0.00488263587345163,
+    "minimum_frame_alignment": 0.9999999936908596,
+    "maximum_coordinate_reconstruction_error": 0.0,
+    "minimum_normal_mixed_response_reduction": 0.019801328103333238,
+    "linearised_finite_horizon_reduction": 0.019801326693244747,
+    "maximum_step_halving_endpoint_difference": 4.432258696105874e-13
+  },
+  "gates": {
+    "all_finite": true,
+    "multi_chart_recentring_completed": true,
+    "explicit_overlap_witness_for_every_transition": true,
+    "coordinate_reconstruction_accurate": true,
+    "chart_frames_remain_compatible": true,
+    "trajectory_rank_margin_positive": true,
+    "normal_and_mixed_recovery_matches_finite_horizon_rate": true,
+    "objective_not_spoiled": true,
+    "step_halving_endpoint_converged": true
+  },
+  "all_gates_pass": true,
+  "scientific_status": "C4_E0_MOVING_CHART_OVERLAP_PREFLIGHT_SUPPORTED",
+  "required_next_step": "C4-E1 must replace sampled trajectories and pointwise midpoint-overlap witnesses with outward-rounded full-tube chart-overlap/recentring bounds, then certify a finite moving-chart continuation horizon."
+}
