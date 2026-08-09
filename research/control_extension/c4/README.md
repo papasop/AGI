@@ -12,8 +12,16 @@ Evidence layers:
   in one fixed 6D tangent x 8D normal product tube.
 
 The D1 certificate proves neither positive invariance nor continuation beyond
-its single certified residence window. Moving-chart overlap/recentring remains
-future work (C4-E). No K=1, Pulser, cloud, hardware, or QPU claim is made.
+its single certified residence window.
+
+- `c4_e0_moving_chart_overlap_preflight_v1_0.py` is a floating-point,
+  sampled-trajectory moving-chart overlap/recentring preflight. It completes
+  eight pointwise chart transitions in the documented real 14-phase model, but
+  it is not an interval proof.
+
+C4-E1 remains the required outward-rounded full-tube overlap/recentring
+certificate. No positive invariance, global continuation, K=1, Pulser, cloud,
+hardware, or QPU claim is made.
 
 Run from the repository root:
 
@@ -25,5 +33,7 @@ python research/control_extension/c4/c4_d1_arb_product_tube_residence_v1_0.py \
   --report /tmp/c4_d1.json
 python research/control_extension/c4/verify_c4_control_extension.py \
   --d0 /tmp/c4_d0.json --d1 /tmp/c4_d1.json
+cd research/control_extension/c4
+python c4_e0_moving_chart_overlap_preflight_v1_0.py \
+  --report /tmp/c4_e0.json
 ```
-
