@@ -138,34 +138,37 @@ New proof work should first attach to `src/` and the visible `reproduce/`
 entry points. Avoid adding another user-facing versioned script unless it is
 also archived and indexed.
 
-## Post-publication Research Roadmap
+## Active Five-Stage Research Programme
 
-Former `## Roadmap` content is now claim-bounded by this post-publication
-roadmap.
+The frozen paper theorem remains unchanged. Post-publication work now follows
+one sequential validation chain: certified intrinsic response-fibre motion;
+certified normal recovery; a coordinate-invariant process-cost definition; an
+independently defined critical zero-mode test; and only then a possible
+co-location theorem. Later stages are not interpretations of earlier numerical
+results and may fail without invalidating the published local theorem.
 
-The published local theorem remains frozen at the immutable paper boundary.
-The tracks below are post-publication research directions and do not enlarge
-the v0.7.4 + v0.9.3 theorem claims.
+| Stage | Object | Current status | Promotion gate |
+| ----- | ------ | -------------- | -------------- |
+| 1 | Intrinsic response-fibre flow | Frozen local theorem | Already certified within published boundary |
+| 2 | Normally attracting controlled flow | Floating-point development evidence | Nonzero Arb-certified controlled tube |
+| 3 | Process-cost/process-time functional | Open definition | Coordinate-invariant operational law |
+| 4 | Critical zero mode | Open bridge test | Predeclared Arb-certified critical co-location |
+| 5 | Unified controlled geometry | Not established | Joint certificate plus independent observable |
 
-| Track | Long-term objective | Current repository status | Claim status |
-| --- | --- | --- | --- |
-| P - Frozen paper core | Preserve the v0.7.4 + v0.9.3 local theorem boundary | Frozen published theorem | Closed; not enlarged by later tracks |
-| G - Geometric continuation | Certified multi-chart and potentially global response-fibre flow | v0.10.6 finite continuation; fifth-frame backend remains open | Open beyond the stored finite certificate |
-| C - Controlled attraction | Tangential descent plus normal response recovery | Floating-point development evidence only; no Arb-controlled tube certificate | Development evidence only |
-| M - Two-metric geometry | Riemannian cost geometry plus a candidate pseudo-Riemannian critical/null layer | Conceptual research direction | Open; no physical spacetime claim |
-| D - Certificate execution graph | Validated boxes as nodes and certified transitions as directed edges | Design stage | Open; the continuous fibre is not a DAG |
-| K - K=1 bridge | Test whether spectral closure, rank reduction, null-image formation, and process-cost divergence coexist in a concrete response-fibre model | No bridge certificate | Speculative/open |
+The full active programme is documented in
+[docs/FIVE_STAGE_CONTROL_GEOMETRY_PROGRAM.md](docs/FIVE_STAGE_CONTROL_GEOMETRY_PROGRAM.md).
+Global continuation may remain an open mathematical problem, but it is not an
+active numbered stage. The programme does not prove K=1, pseudo-Riemannian
+geometry, process-relative time, global flow, physical spacetime, matter
+emergence, fundamental constants, or hardware behaviour.
 
-Detailed scope is recorded in [docs/ROADMAP.md](docs/ROADMAP.md). Currently
-running or external numerical experiments must not be described as stored
-repository evidence until their scripts, protocols, and reports are separately
-reviewed and archived. Protected residuals, matter-like modes, and fundamental
-constants are speculative foundational horizons, not present repository
-claims.
+## Roadmap
 
-Scoped roadmap note: the immediate continuation research direction,
-**Toward a global response-fibre flow**, remains an open G-track objective, not
-a paper claim and not a theorem of the published paper. The immediate
+Compatibility note for existing release checks: the immediate continuation research direction,
+**Toward a global response-fibre flow**, remains outside the active numbered
+stages and is not a theorem of the published paper.
+
+The immediate
   open step is the fifth-frame backend; v0.10.15 is fail-closed scaffold work,
 not a fifth-frame theorem. The separate neural-network analogy remains in
 [docs/NEURAL_NETWORK_RESPONSE_FIBRES.md](docs/NEURAL_NETWORK_RESPONSE_FIBRES.md).
@@ -196,11 +199,7 @@ stability. This README changes reading order only, not proof content.
 - [docs/PAPER_WORDING.md](docs/PAPER_WORDING.md): paper wording and citation boundary
 - [docs/MANUSCRIPT_PROVENANCE.md](docs/MANUSCRIPT_PROVENANCE.md): submission manuscript hashes, archive status, and release fields
 - [docs/REVIEWER_REPRODUCTION.md](docs/REVIEWER_REPRODUCTION.md): minimal reviewer reproduction route for the frozen theorem boundary
-- [docs/ROADMAP.md](docs/ROADMAP.md): post-publication research roadmap and stop/go gates
-- [docs/CONTROL_EXTENSION_SCOPE.md](docs/CONTROL_EXTENSION_SCOPE.md): normally attracting controlled-flow boundary
-- [docs/TWO_METRIC_SCOPE.md](docs/TWO_METRIC_SCOPE.md): two-metric geometry scope
-- [docs/CERTIFICATE_DAG_SCOPE.md](docs/CERTIFICATE_DAG_SCOPE.md): certificate execution graph semantics
-- [docs/K1_BRIDGE_SCOPE.md](docs/K1_BRIDGE_SCOPE.md): open K=1 bridge boundary
+- [docs/FIVE_STAGE_CONTROL_GEOMETRY_PROGRAM.md](docs/FIVE_STAGE_CONTROL_GEOMETRY_PROGRAM.md): active post-publication five-stage validation programme
 - [docs/releases/](docs/releases/): release notes
 - [docs/archive/](docs/archive/): historical migration and supersession notes
 
@@ -215,7 +214,10 @@ stability. This README changes reading order only, not proof content.
 当前已严格证明局部 ODE 微步和冻结实例上的有限同图延拓；尚未证明第五局部图、
 完整子域遍历或全局几何流。
 
-未来工作主要是继续补全量子控制模型中的局部到全局响应纤维流证明。神经网络
+发表后的研究不再按多个并行理论标签组织，而采用五阶段验证链：局部响应纤维流、
+受控吸引、过程成本定义、临界零模检验和最终共定位检验。当前只有第一阶段属于
+冻结的严格论文结果；第二阶段仍在从浮点数值证据走向 Arb 认证；第三至第五阶段
+均为开放问题。神经网络
 响应纤维只是独立类比方向，不属于本文发表定理。
 
 </details>
