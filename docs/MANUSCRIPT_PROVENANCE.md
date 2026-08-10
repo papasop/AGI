@@ -21,17 +21,27 @@ repository state, theorem-bearing software boundary, and public archive.
 - Revision: `v1.1.1_parameter_erratum`
 - Scope: corrects the v0.7.4 complete-parent-box derivative label from
   serialized Chebyshev-coordinate `dL6/ds` to affine atlas-arclength
-  `dL6/dell`; no theorem-bearing value or proof computation is changed.
-- source archive:
+  `dL6/dell`, closes the associated manuscript-internal definition and
+  provenance wording obligations, and changes no theorem-bearing value or
+  proof computation.
+- intermediate source archive (does not reproduce the final PDF below):
   `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum_source.zip`
-- source SHA-256:
+- intermediate source SHA-256:
   `5de3c7599cdff6bc3734483af1a0986dc4755df04177077e6e5a81e2781e1fb9`
-- compiled PDF: `PENDING_LATEX_ENGINE`
+- matching final source archive:
+  `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum_final_source.zip`
+- matching final source SHA-256:
+  `0c1eb8b3a881e6b0e0fdf466ed84bbaa603b7c9f5257e7745a27da0adc3473cb`
+- compiled PDF:
+  `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum.pdf`
+- compiled PDF SHA-256:
+  `18d11f4fdeef27bf053ab1924b04ec626a51526de9a0e934a84666532d96258a`
 
 The old v1.1 manuscript candidate files above are preserved for auditability.
-The current Codex workspace did not provide `pdflatex`, `xelatex`, `lualatex`,
-`latexmk`, `tectonic`, or `pandoc`, so this branch records the corrected source
-archive but does not claim a freshly compiled PDF.
+The v1.1.1 final PDF was checked for the corrected affine atlas-arclength
+notation in Theorem 2 and Corollary 2 and for closure of the subsequent
+manuscript-internal review findings. The matching final source archive listed
+above has been exported and hashed for the immutable archival release candidate.
 
 ## Public archive and repository binding
 
