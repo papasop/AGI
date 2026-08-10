@@ -26,12 +26,14 @@ repository state, theorem-bearing software boundary, and public archive.
   `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum_source.zip`
 - source SHA-256:
   `5de3c7599cdff6bc3734483af1a0986dc4755df04177077e6e5a81e2781e1fb9`
-- compiled PDF: `PENDING_LATEX_ENGINE`
+- compiled PDF:
+  `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum.pdf`
+- compiled PDF SHA-256:
+  `d7e7ada905fed3c5e49f84f83557620e90327a2cb3eccc84e6e74c54cb5a5124`
 
 The old v1.1 manuscript candidate files above are preserved for auditability.
-The current Codex workspace did not provide `pdflatex`, `xelatex`, `lualatex`,
-`latexmk`, `tectonic`, or `pandoc`, so this branch records the corrected source
-archive but does not claim a freshly compiled PDF.
+The v1.1.1 PDF was compiled from the parameter-erratum source and checked for
+the corrected affine atlas-arclength notation in Theorem 2 and Corollary 2.
 
 ## Public archive and repository binding
 
