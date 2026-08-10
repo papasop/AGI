@@ -28,8 +28,10 @@ repository state, theorem-bearing software boundary, and public archive.
   `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum_source.zip`
 - intermediate source SHA-256:
   `5de3c7599cdff6bc3734483af1a0986dc4755df04177077e6e5a81e2781e1fb9`
-- matching final source archive: `PENDING_EXPORT`
-- matching final source SHA-256: `PENDING_EXPORT`
+- matching final source archive:
+  `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum_final_source.zip`
+- matching final source SHA-256:
+  `d3139e9037530a91171b7db6542b95cb3069d19b88f7eab2caa641bb65516976`
 - compiled PDF:
   `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum.pdf`
 - compiled PDF SHA-256:
@@ -38,8 +40,8 @@ repository state, theorem-bearing software boundary, and public archive.
 The old v1.1 manuscript candidate files above are preserved for auditability.
 The v1.1.1 final PDF was checked for the corrected affine atlas-arclength
 notation in Theorem 2 and Corollary 2 and for closure of the subsequent
-manuscript-internal review findings. A matching final source archive must be
-exported and hashed before the immutable archival release is created.
+manuscript-internal review findings. The matching final source archive listed
+above has been exported and hashed for the immutable archival release candidate.
 
 ## Public archive and repository binding
 
