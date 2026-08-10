@@ -18,6 +18,13 @@ Use `validated intrinsic response-fibre ODE microstep` for v0.9.3 and
 `certified complete-parent-box strict descent` for v0.7.4. Do not collapse the
 two labels into `validated global geometric flow`.
 
+When citing the v0.7.4 complete-parent-box descent certificate, state the loss
+derivative bound as
+`dL6/dell <= -0.6530784697700559`, where `ell` is the affine atlas arclength
+coordinate. The serialized Chebyshev coordinate `s` remains a monotone local
+chart parameter, so strict ordering in `s` is preserved by the affine map
+`ell(s)`.
+
 Allowed framing:
 
 > Response invisibility does not imply dynamical irrelevance: a direction

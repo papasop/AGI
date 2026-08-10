@@ -16,6 +16,23 @@ repository state, theorem-bearing software boundary, and public archive.
 - source SHA-256:
   `70526251604b9ed67997610ea370365f38f1d591b5c7a53c51fdf6bdc503e328`
 
+## Parameter-label erratum source
+
+- Revision: `v1.1.1_parameter_erratum`
+- Scope: corrects the v0.7.4 complete-parent-box derivative label from
+  serialized Chebyshev-coordinate `dL6/ds` to affine atlas-arclength
+  `dL6/dell`; no theorem-bearing value or proof computation is changed.
+- source archive:
+  `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum_source.zip`
+- source SHA-256:
+  `5de3c7599cdff6bc3734483af1a0986dc4755df04177077e6e5a81e2781e1fb9`
+- compiled PDF: `PENDING_LATEX_ENGINE`
+
+The old v1.1 manuscript candidate files above are preserved for auditability.
+The current Codex workspace did not provide `pdflatex`, `xelatex`, `lualatex`,
+`latexmk`, `tectonic`, or `pandoc`, so this branch records the corrected source
+archive but does not claim a freshly compiled PDF.
+
 ## Public archive and repository binding
 
 - Zenodo concept DOI: `10.5281/zenodo.21728432`

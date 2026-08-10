@@ -19,6 +19,15 @@ separates it from later repository development milestones.
 - The frozen v0.9.3 software theorem boundary recorded in `CITATION.cff`,
   `results/v0_9_3_reference/`, and the hash manifest.
 
+## Erratum
+
+The complete-parent-box loss derivative constant `-0.6530784697700559` is a
+bound on `dL6/dell`, where `ell` is the affine atlas arclength coordinate
+recorded by the serialized chart. It is not a bound on `dL6/ds` in the local
+Chebyshev coordinate. The monotone affine relation between `s` and `ell`
+preserves the strict ordering statement; no frozen certificate value, proof
+gate, hash-bound input, or Arb algorithm is changed.
+
 ## Excluded
 
 - v0.10.6 finite continuation and fourth-chart Lohner support flowpipe.

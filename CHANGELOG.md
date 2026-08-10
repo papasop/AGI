@@ -2,6 +2,12 @@
 
 ## Unreleased — root and README navigation cleanup
 
+- Correct the v0.9.3 manuscript parameter label for the v0.7.4
+  complete-parent-box descent certificate: the frozen constant
+  `-0.6530784697700559` bounds `dL6/dell`, where `ell` is the affine atlas
+  arclength coordinate, not `dL6/ds` in the serialized Chebyshev coordinate.
+  No theorem-bearing value, certificate, hash-bound input, or core Arb
+  algorithm is changed.
 - Add `reproduce/` as the preferred three-layer reproduction surface and
   shorten the historical archive path to `archive/milestones/`.
 - Keep `scripts/` as compatibility wrappers, while directing new proof work to

@@ -27,6 +27,12 @@ published Zenodo version. See the
 [Zenodo record](https://zenodo.org/records/21728432) and
 [docs/PUBLISHED_PAPER_BOUNDARY.md](docs/PUBLISHED_PAPER_BOUNDARY.md).
 
+Erratum note: the v0.7.4 complete-parent-box loss derivative constant
+`-0.6530784697700559` is an affine atlas-arclength derivative bound
+`dL6/dell`, not a serialized Chebyshev-coordinate `dL6/ds` bound. This is a
+paper parameter-label correction only; the frozen certificates and strict
+descent claim are unchanged.
+
 ## What Is Proved
 
 **Proved, Level I.** For the frozen v0.9.3 instance, the repository certifies

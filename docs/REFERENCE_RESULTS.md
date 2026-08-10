@@ -28,6 +28,14 @@ Until a single canonical v0.7.4 artifact package is designated, do not mix
 displayed constants from `results/reference_run_summary.json` and
 `results/reference/` in the same citation.
 
+Parameter-label erratum: the complete-parent-box loss derivative constant
+`-0.6530784697700559` is a bound on `dL6/dell`, where `ell` is the affine
+atlas arclength coordinate recorded by the serialized chart. It is not a
+bound on `dL6/ds` in the local Chebyshev coordinate. For chart 9,
+`dell/ds = 0.020008123476294425`, so the certified strict ordering in `s`
+is obtained by composing the monotone affine map `ell(s)` with the
+`dL6/dell` bound. No numerical certificate or frozen proof code is changed.
+
 ## v0.10.6 Reference Certificate
 
 The strongest stored repository reference continuation result is v0.10.6:
