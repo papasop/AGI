@@ -31,7 +31,7 @@ repository state, theorem-bearing software boundary, and public archive.
 - matching final source archive:
   `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum_final_source.zip`
 - matching final source SHA-256:
-  `265042b0689b12e4d16f1ae5d498eae4b7ea4cd9adf9f5bd36bc294d55d4f01b`
+  `a15a43c3579f43d5ccb5980bee88831ebba10098d91b1a1b8d89b9a276cc4771`
 - compiled PDF:
   `docs/manuscript/geometric_flow_submission_candidate_v1.1.1_parameter_erratum.pdf`
 - compiled PDF SHA-256:
