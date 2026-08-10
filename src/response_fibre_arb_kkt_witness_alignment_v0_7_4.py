@@ -571,9 +571,6 @@ def main() -> None:
         ]
         chart_interval = chart["arclength_interval"]
         chart_length = ap(chart_interval[1]) - ap(chart_interval[0])
-        # Convert the Chebyshev derivative d/ds to the affine atlas
-        # arclength derivative d/dell, where
-        # ell(s) = ell_left + (s + 1) * chart_length / 2.
         analytic_derivatives = [
             (
                 chebyshev_evaluate(
@@ -644,8 +641,6 @@ def main() -> None:
             )
             for row in range(RESPONSE_DIMENSION)
         ]
-        # This is the certified dL6/dell contraction. The serialized
-        # Chebyshev parameter s is only the local chart coordinate.
         loss_derivative = sum(
             (
                 gradient[column] * curve_derivative[column]
