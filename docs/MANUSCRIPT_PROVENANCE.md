@@ -115,7 +115,7 @@ frozen PDF above remains the archival manuscript.
 
 ## Public archive and repository binding
 
-- Zenodo concept DOI: `10.5281/zenodo.21728432`
+- Historical Zenodo version DOI: `10.5281/zenodo.21728432`
 - Zenodo version DOI: `10.5281/zenodo.21882158`
 - Zenodo DOI URL: `https://doi.org/10.5281/zenodo.21882158`
 - GitHub release URL:
@@ -128,11 +128,12 @@ frozen PDF above remains the archival manuscript.
 - repository commit:
   `8742913c3ba992db98b90bc79cd691a31199d1e7`
 
-The Zenodo version DOI above identifies the archived v1.2.9 manuscript files.
-The earlier public record `https://zenodo.org/records/21728432` is retained as
-the concept DOI and historical public boundary for prior manuscript packaging.
-The frozen v1.2.9 manuscript is archived under version DOI
-`10.5281/zenodo.21882158`.
+The Zenodo version DOI `10.5281/zenodo.21882158` identifies the frozen v1.2.9
+manuscript. The historical Zenodo version DOI `10.5281/zenodo.21728432` and
+the public record `https://zenodo.org/records/21728432` identify an earlier
+public manuscript version and boundary. The actual all-versions Concept DOI is
+not recorded here because it has not been independently verified from the
+authoritative Zenodo metadata.
 
 Observed GitHub tags during this update: `paper-local-ode-v1.0`,
 `paper-local-ode-v1.1`, `paper-local-ode-v1.2`, `paper-local-ode-v1.3`, and

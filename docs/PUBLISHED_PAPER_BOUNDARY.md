@@ -69,6 +69,9 @@ local-paper title, the v0.7.4 + v0.9.3 theorem-bearing software boundary, the
 SHA-256 manifest, and the explicit exclusion of v0.10.x continuation work from
 the published-paper theorem claim. It must not be moved or reused.
 
-Historical note: `paper-local-ode-v1.0`, `10.5281/zenodo.21728432`, and
-`https://zenodo.org/records/21728432` belong to an earlier public boundary and
-are not the current v1.2.9 manuscript/release boundary.
+Historical note: `paper-local-ode-v1.0`, the historical version DOI
+`10.5281/zenodo.21728432`, and `https://zenodo.org/records/21728432` belong to
+an earlier public manuscript boundary and are not the current v1.2.9
+manuscript/release boundary. The actual all-versions Concept DOI is not
+recorded here because it has not been independently verified from the
+authoritative Zenodo metadata.
