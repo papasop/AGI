@@ -3,12 +3,12 @@
 This document binds the submission manuscript to its source archive,
 repository state, theorem-bearing software boundary, and public archive.
 
-## Manuscript
+## Historical manuscript candidates
 
 - Title: *Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE
   on a Quantum-Control Response Fibre*
-- Status: submission candidate; verify public archive status before changing
-  this description
+- Status: historical v1.1 candidate retained for audit history. The current
+  frozen manuscript is v1.2.9; see "v1.2.9 manuscript" below.
 - PDF: `docs/manuscript/geometric_flow_submission_candidate_v1.1.pdf`
 - PDF SHA-256:
   `86edef125808640fc7c59b2ceec39d3fd36954b4b395b20f5949de13d0364b96`
@@ -128,15 +128,11 @@ frozen PDF above remains the archival manuscript.
 - repository commit:
   `8742913c3ba992db98b90bc79cd691a31199d1e7`
 
-Do not fill these fields by inference. The version DOI must identify the exact
-archived files above. If the current Zenodo version contains an earlier PDF,
-create a new Zenodo version and preserve the earlier record.
-
-Observed during this update: the public Zenodo record
-`https://zenodo.org/records/21728432` advertises
-`geometric_flow_v0.9.3_paper.pdf`, not the v1.1 candidate files listed above.
-Therefore the v1.1 manuscript candidate requires a new Zenodo version before
-the version DOI and public release fields can be completed.
+The Zenodo version DOI above identifies the archived v1.2.9 manuscript files.
+The earlier public record `https://zenodo.org/records/21728432` is retained as
+the concept DOI and historical public boundary for prior manuscript packaging.
+The frozen v1.2.9 manuscript is archived under version DOI
+`10.5281/zenodo.21882158`.
 
 Observed GitHub tags during this update: `paper-local-ode-v1.0`,
 `paper-local-ode-v1.1`, `paper-local-ode-v1.2`, `paper-local-ode-v1.3`, and
