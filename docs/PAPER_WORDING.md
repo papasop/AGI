@@ -25,6 +25,13 @@ coordinate. The serialized Chebyshev coordinate `s` remains a monotone local
 chart parameter, so strict ordering in `s` is preserved by the affine map
 `ell(s)`.
 
+Long decimal values in the manuscript are outward-safe quotations of the
+hash-bound certificate inequalities. When a certificate or script renders a
+long value through binary64 formatting, that rendering is a nearest-rounded
+display of the stored numerical certificate, not a new mathematical endpoint
+or a relaxed proof gate. Prefer the manuscript's outward-safe decimal wording
+when writing theorem statements, abstracts, conclusions, and public summaries.
+
 Allowed framing:
 
 > Response invisibility does not imply dynamical irrelevance: a direction

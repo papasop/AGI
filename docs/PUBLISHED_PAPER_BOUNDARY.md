@@ -28,6 +28,12 @@ Chebyshev coordinate. The monotone affine relation between `s` and `ell`
 preserves the strict ordering statement; no frozen certificate value, proof
 gate, hash-bound input, or Arb algorithm is changed.
 
+When certificates or scripts display longer decimal values, those displays are
+nearest-rounded binary64 renderings of the stored certificate data. The
+manuscript uses outward-safe decimal quotations for public theorem wording.
+This display convention does not change any theorem-bearing source, input,
+certificate, protocol, report, numerical constant, or validation threshold.
+
 ## Excluded
 
 - v0.10.6 finite continuation and fourth-chart Lohner support flowpipe.
