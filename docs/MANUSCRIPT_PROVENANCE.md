@@ -43,13 +43,50 @@ notation in Theorem 2 and Corollary 2 and for closure of the subsequent
 manuscript-internal review findings. The matching final source archive listed
 above has been exported and hashed for the immutable archival release candidate.
 
+## v1.2.9 freeze candidate
+
+- Revision: `v1.2.9`
+- Scope: manuscript freeze candidate with no Arb rerun and no change to the
+  v0.7.4 or v0.9.3 theorem-bearing software boundary.
+- PDF:
+  `docs/manuscript/geometric_flow_v1_2_9_freeze_candidate.pdf`
+- PDF SHA-256:
+  `1755b3ac6ea6f2efb5115a4b54591083cfbe57a1738b9dac1ca34e211d5760b7`
+- source archive:
+  `docs/manuscript/geometric_flow_v1_2_9_source.zip`
+- source SHA-256:
+  `6c6d842c8ca6a31631cee3f83e42f52d8accabe34950d8c8683ce457b35b713a`
+- pages: 19, A4
+- last displayed equation: (37)
+- references: [1]-[18]
+- theorem software boundary: unchanged v0.7.4 parent-box certificate and
+  unchanged v0.9.3 intrinsic ODE certificate.
+- Arb rerun: not performed for this manuscript freeze; the existing frozen
+  theorem certificates remain the governing numerical evidence.
+
+Release identifiers for this revision are pending until publication:
+
+- Zenodo version DOI: `PENDING_UNTIL_RELEASE`
+- GitHub release URL: `PENDING_UNTIL_RELEASE`
+- immutable paper-boundary tag: `PENDING_UNTIL_RELEASE`
+- repository commit: `PENDING_UNTIL_RELEASE`
+- workflow URLs: `PENDING_UNTIL_RELEASE`
+
+The v1.2.9 source archive contains its own `README_BUILD.md` and
+`SOURCE_MANIFEST.md`. The handoff review reports that its source-file manifest
+passes, a clean three-pass `pdflatex` build produces a 19-page A4 PDF, and the
+rebuilt/frozen `pdftotext -layout` comparison is identical. The rebuilt PDF
+byte hash may differ because pdfTeX regenerates time and ID metadata; the
+frozen PDF above remains the archival manuscript.
+
 ## Public archive and repository binding
 
 - Zenodo concept DOI: `10.5281/zenodo.21728432`
-- Zenodo version DOI: `VERIFY_ON_GITHUB_OR_ZENODO`
-- GitHub release URL: `VERIFY_ON_GITHUB`
-- immutable paper-boundary tag: `paper-local-ode-v1.4` proposed; `VERIFY_ON_GITHUB`
-- repository commit: `VERIFY_ON_GITHUB`
+- Zenodo version DOI: `PENDING_UNTIL_RELEASE`
+- GitHub release URL: `PENDING_UNTIL_RELEASE`
+- immutable paper-boundary tag: `paper-local-ode-v1.4` proposed;
+  `PENDING_UNTIL_RELEASE`
+- repository commit: `PENDING_UNTIL_RELEASE`
 
 Do not fill these fields by inference. The version DOI must identify the exact
 archived files above. If the current Zenodo version contains an earlier PDF,
@@ -80,10 +117,10 @@ immutable paper-boundary tag.
 
 ## Reproduction record
 
-- structural-checks workflow URL: `VERIFY_AFTER_SUCCESS`
-- validated-ODE workflow URL: `VERIFY_AFTER_SUCCESS`
-- joint v0.7.4 + v0.9.3 workflow URL: `VERIFY_AFTER_SUCCESS`
-- exact workflow commit: `VERIFY_AFTER_SUCCESS`
+- structural-checks workflow URL: `PENDING_UNTIL_RELEASE`
+- validated-ODE workflow URL: `PENDING_UNTIL_RELEASE`
+- joint v0.7.4 + v0.9.3 workflow URL: `PENDING_UNTIL_RELEASE`
+- exact workflow commit: `PENDING_UNTIL_RELEASE`
 
 The URLs above must refer to successful runs on the exact immutable submission
 commit. An empty or unavailable status is not evidence of success.
