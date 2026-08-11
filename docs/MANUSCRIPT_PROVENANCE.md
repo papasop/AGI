@@ -58,6 +58,8 @@ above has been exported and hashed for the immutable archival release candidate.
   `docs/manuscript/geometric_flow_v1_2_9_source.zip`
 - source SHA-256:
   `6c6d842c8ca6a31631cee3f83e42f52d8accabe34950d8c8683ce457b35b713a`
+- textual clarifications and errata:
+  `docs/MANUSCRIPT_ERRATA_v1.2.9.md`
 - pages: 19, A4
 - last displayed equation: (37)
 - references: [1]-[18]
