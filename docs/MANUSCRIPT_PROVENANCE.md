@@ -38,6 +38,8 @@ repository state, theorem-bearing software boundary, and public archive.
   `18d11f4fdeef27bf053ab1924b04ec626a51526de9a0e934a84666532d96258a`
 
 The old v1.1 manuscript candidate files above are preserved for auditability.
+The current frozen manuscript is v1.2.9; see "v1.2.9 manuscript" below.
+The v1.1 records are retained for audit history.
 The v1.1.1 final PDF was checked for the corrected affine atlas-arclength
 notation in Theorem 2 and Corollary 2 and for closure of the subsequent
 manuscript-internal review findings. The matching final source archive listed
@@ -63,20 +65,35 @@ above has been exported and hashed for the immutable archival release candidate.
   unchanged v0.9.3 intrinsic ODE certificate.
 - Arb rerun: not performed for this manuscript freeze; the existing frozen
   theorem certificates remain the governing numerical evidence.
+- `GLOBAL_FLOW_CLAIMED`: false
 - repository release tag: `paper-local-ode-v1.5`
 - manuscript/tag mapping: `v1.2.9` manuscript ->
   `paper-local-ode-v1.5` repository release.
 - manuscript integration merge commit:
   `49f04aa61d796fa4da40f9b94a155a435f113f8d`
 - source PR: `https://github.com/papasop/Geometric-Flow/pull/32`
-- planned GitHub release URL:
+- GitHub release URL:
   `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5`
 
-Release identifiers for this revision are pending until publication:
+Release identifiers for this revision:
 
 - Zenodo version DOI: `PENDING_UNTIL_ZENODO_PUBLICATION`
-- final release commit: `PENDING_UNTIL_RELEASE`
-- workflow URLs: `PENDING_UNTIL_RELEASE`
+- final release commit:
+  `8742913c3ba992db98b90bc79cd691a31199d1e7`
+- exact tag: `paper-local-ode-v1.5`
+- annotated tag object:
+  `038ac83231af925725da8f9a2c9b10067053bcf6`
+- peeled commit:
+  `8742913c3ba992db98b90bc79cd691a31199d1e7`
+- workflow URLs:
+  - structural-checks:
+    `https://github.com/papasop/Geometric-Flow/actions/runs/31452933116`
+  - reproduce-validated-ode:
+    `https://github.com/papasop/Geometric-Flow/actions/runs/31452933117`
+  - reproduce-joint-geometric-flow:
+    `https://github.com/papasop/Geometric-Flow/actions/runs/31452933149`
+- exact workflow commit for all three successful tag-triggered runs:
+  `8742913c3ba992db98b90bc79cd691a31199d1e7`
 
 The final `paper-local-ode-v1.5` tag must point to the `main` commit produced
 after the release-metadata PR is merged. It must not point to PR #32's merge
@@ -100,10 +117,15 @@ frozen PDF above remains the archival manuscript.
 
 - Zenodo concept DOI: `10.5281/zenodo.21728432`
 - Zenodo version DOI: `PENDING_UNTIL_ZENODO_PUBLICATION`
-- planned GitHub release URL:
+- GitHub release URL:
   `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5`
 - immutable paper-boundary tag: `paper-local-ode-v1.5`
-- repository commit: `PENDING_UNTIL_RELEASE`
+- annotated tag object:
+  `038ac83231af925725da8f9a2c9b10067053bcf6`
+- peeled commit:
+  `8742913c3ba992db98b90bc79cd691a31199d1e7`
+- repository commit:
+  `8742913c3ba992db98b90bc79cd691a31199d1e7`
 
 Do not fill these fields by inference. The version DOI must identify the exact
 archived files above. If the current Zenodo version contains an earlier PDF,
@@ -117,9 +139,9 @@ the version DOI and public release fields can be completed.
 
 Observed GitHub tags during this update: `paper-local-ode-v1.0`,
 `paper-local-ode-v1.1`, `paper-local-ode-v1.2`, `paper-local-ode-v1.3`, and
-`paper-local-ode-v1.4` already exist. Do not move them. Re-verify that
-`paper-local-ode-v1.5` remains unused immediately before creating a new
-immutable paper-boundary tag.
+`paper-local-ode-v1.4` already exist. Do not move them. The annotated
+`paper-local-ode-v1.5` tag was created and verified at the object and
+peeled-commit identifiers recorded above; it must not be moved or reused.
 
 ## Theorem-bearing boundary
 
@@ -134,10 +156,14 @@ immutable paper-boundary tag.
 
 ## Reproduction record
 
-- structural-checks workflow URL: `PENDING_UNTIL_RELEASE`
-- validated-ODE workflow URL: `PENDING_UNTIL_RELEASE`
-- joint v0.7.4 + v0.9.3 workflow URL: `PENDING_UNTIL_RELEASE`
-- exact workflow commit: `PENDING_UNTIL_RELEASE`
+- structural-checks workflow URL:
+  `https://github.com/papasop/Geometric-Flow/actions/runs/31452933116`
+- validated-ODE workflow URL:
+  `https://github.com/papasop/Geometric-Flow/actions/runs/31452933117`
+- joint v0.7.4 + v0.9.3 workflow URL:
+  `https://github.com/papasop/Geometric-Flow/actions/runs/31452933149`
+- exact workflow commit:
+  `8742913c3ba992db98b90bc79cd691a31199d1e7`
 
 The URLs above must refer to successful runs on the exact immutable submission
 commit. An empty or unavailable status is not evidence of success.
@@ -145,6 +171,9 @@ commit. An empty or unavailable status is not evidence of success.
 ## Licensing
 
 - software licence: MIT
-- manuscript licence: `VERIFY_AGAINST_ZENODO_FOR_V1_1`
+- manuscript licence: Creative Commons Attribution 4.0 International
+  (CC BY 4.0)
 
-Do not assume that the software licence also governs the manuscript.
+CC BY 4.0 governs the v1.2.9 manuscript and manuscript source archive. MIT
+continues to govern the repository software. The two licences cover different
+artifact classes.
