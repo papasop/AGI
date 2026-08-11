@@ -201,6 +201,7 @@ Paper and claim boundary:
 - [Claim scope](docs/CLAIM_SCOPE.md)
 - [Published paper boundary](docs/PUBLISHED_PAPER_BOUNDARY.md)
 - [Paper wording](docs/PAPER_WORDING.md)
+- [Manuscript v1.2.9 clarifications and errata](docs/MANUSCRIPT_ERRATA_v1.2.9.md)
 - [Manuscript provenance](docs/MANUSCRIPT_PROVENANCE.md)
 - [Reviewer reproduction](docs/REVIEWER_REPRODUCTION.md)
 
