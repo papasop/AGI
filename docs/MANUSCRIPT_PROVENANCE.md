@@ -43,9 +43,9 @@ notation in Theorem 2 and Corollary 2 and for closure of the subsequent
 manuscript-internal review findings. The matching final source archive listed
 above has been exported and hashed for the immutable archival release candidate.
 
-## v1.2.9 freeze candidate
+## v1.2.9 manuscript
 
-- Revision: `v1.2.9`
+- Manuscript version: `v1.2.9`
 - Scope: manuscript freeze candidate with no Arb rerun and no change to the
   v0.7.4 or v0.9.3 theorem-bearing software boundary.
 - PDF:
@@ -63,14 +63,25 @@ above has been exported and hashed for the immutable archival release candidate.
   unchanged v0.9.3 intrinsic ODE certificate.
 - Arb rerun: not performed for this manuscript freeze; the existing frozen
   theorem certificates remain the governing numerical evidence.
+- repository release tag: `paper-local-ode-v1.4`
+- manuscript/tag mapping: `v1.2.9` manuscript ->
+  `paper-local-ode-v1.4` repository release.
+- manuscript integration merge commit:
+  `49f04aa61d796fa4da40f9b94a155a435f113f8d`
+- source PR: `https://github.com/papasop/Geometric-Flow/pull/32`
+- planned GitHub release URL:
+  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.4`
 
 Release identifiers for this revision are pending until publication:
 
-- Zenodo version DOI: `PENDING_UNTIL_RELEASE`
-- GitHub release URL: `PENDING_UNTIL_RELEASE`
-- immutable paper-boundary tag: `PENDING_UNTIL_RELEASE`
-- repository commit: `PENDING_UNTIL_RELEASE`
+- Zenodo version DOI: `PENDING_UNTIL_ZENODO_PUBLICATION`
+- final release commit: `PENDING_UNTIL_RELEASE`
 - workflow URLs: `PENDING_UNTIL_RELEASE`
+
+The final `paper-local-ode-v1.4` tag must point to the `main` commit produced
+after the release-metadata PR is merged. It must not point to PR #32's merge
+commit; `49f04aa61d796fa4da40f9b94a155a435f113f8d` records manuscript
+integration only.
 
 The v1.2.9 source archive contains its own `README_BUILD.md` and
 `SOURCE_MANIFEST.md`. The handoff review reports that its source-file manifest
@@ -82,10 +93,10 @@ frozen PDF above remains the archival manuscript.
 ## Public archive and repository binding
 
 - Zenodo concept DOI: `10.5281/zenodo.21728432`
-- Zenodo version DOI: `PENDING_UNTIL_RELEASE`
-- GitHub release URL: `PENDING_UNTIL_RELEASE`
-- immutable paper-boundary tag: `paper-local-ode-v1.4` proposed;
-  `PENDING_UNTIL_RELEASE`
+- Zenodo version DOI: `PENDING_UNTIL_ZENODO_PUBLICATION`
+- planned GitHub release URL:
+  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.4`
+- immutable paper-boundary tag: `paper-local-ode-v1.4`
 - repository commit: `PENDING_UNTIL_RELEASE`
 
 Do not fill these fields by inference. The version DOI must identify the exact
