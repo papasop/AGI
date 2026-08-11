@@ -25,6 +25,11 @@ before invoking the long versioned artifact.  A mismatch fails closed.
 
 ## Versioned Artifacts
 
+| Manuscript archive | Primary artifact | Stored reference result | Claim boundary |
+| --- | --- | --- | --- |
+| v1.2.12 | `docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`; `docs/manuscript/geometric_flow_v1_2_12_source.zip` | Recommended reading manuscript archive; release identifiers pending | Textual revision only; incorporates v1.2.9 errata; no theorem-bearing certificate, numerical gate, Arb rerun, or global-flow claim. |
+| v1.2.9 | `docs/manuscript/geometric_flow_v1_2_9_freeze_candidate.pdf`; `docs/MANUSCRIPT_ERRATA_v1.2.9.md` | Historical public Zenodo/GitHub release boundary | Immutable historical version DOI and erratum; theorem-bearing boundary remains v0.7.4 + v0.9.3. |
+
 | Milestone | Primary artifact | Stored reference result | Claim boundary |
 | --- | --- | --- | --- |
 | v0.9.3 | `src/response_fibre_intrinsic_picard_microstep_v0_9_3.py` | `results/v0_9_3_reference/` | Local existence, uniqueness, response preservation, and strict descent for one intrinsic microstep. |

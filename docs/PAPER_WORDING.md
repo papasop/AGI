@@ -2,6 +2,22 @@
 
 Use three layers when describing the repository.
 
+## Current Manuscript Wording
+
+Use v1.2.12 as the recommended reading version:
+
+> Manuscript v1.2.12 incorporates the recorded v1.2.9 errata and subsequent
+> textual clarifications into a self-contained recommended reading version. It
+> does not change the mathematical conclusions, theorem-bearing constants,
+> frozen certificates, or the v0.7.4 + v0.9.3 theorem boundary. No Arb rerun
+> was performed or required. The frozen v1.2.9 assets and their erratum remain
+> immutable historical records.
+
+Do not describe v1.2.12 as a new theorem, a certificate rerun, a global-flow
+result, or a replacement for theorem-bearing software assets. Its repository
+release tag, GitHub Release, and Zenodo version DOI remain pending until the
+corresponding publication gates are actually completed.
+
 ## Layer I: Unconditional Local Theorem
 
 Recommended strongest statement:

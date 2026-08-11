@@ -2,7 +2,6 @@
 
 [![Structural checks](https://github.com/papasop/Geometric-Flow/actions/workflows/structural-checks.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/structural-checks.yml)
 [![Validated ODE reproduction](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml/badge.svg)](https://github.com/papasop/Geometric-Flow/actions/workflows/reproduce-validated-ode.yml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21882158.svg)](https://doi.org/10.5281/zenodo.21882158)
 [![License: MIT](https://img.shields.io/badge/Software%20License-MIT-blue.svg)](LICENSE)
 
 A computer-assisted theorem showing that exact preservation of a declared
@@ -17,17 +16,25 @@ descent of an independent objective.
 
 The model has fourteen phase
 parameters for a driven-qubit detuning scan and is verified with
-192-bit Arb interval arithmetic. The archived v1.2.9 manuscript is
+192-bit Arb interval arithmetic. The archived v1.2.12 manuscript is
 *Computation as Geometric Flow: An Arb-Certified
-Local Intrinsic ODE on a Quantum-Control Response Fibre*. It establishes the
-Level-I local theorem. Later repository artifacts are continuing work and are
-outside the theorem boundary of the
+Local Intrinsic ODE on a Quantum-Control Response Fibre*. It incorporates the
+recorded v1.2.9 errata and subsequent textual clarifications into a
+self-contained recommended reading version and establishes the
+Level-I local theorem. It does not change the mathematical
+conclusions, theorem-bearing constants, frozen certificates, or the v0.7.4 +
+v0.9.3 theorem boundary. No Arb rerun was performed or required. Later
+repository artifacts are continuing work and are outside the theorem boundary of the
 published Zenodo version; see
 [published paper boundary](docs/PUBLISHED_PAPER_BOUNDARY.md). The historical
 version DOI
 [10.5281/zenodo.21728432](https://doi.org/10.5281/zenodo.21728432)
 identifies the earlier public manuscript boundary; it is not the preferred
-v1.2.9 citation.
+current-manuscript citation. The v1.2.9 DOI
+[10.5281/zenodo.21882158](https://doi.org/10.5281/zenodo.21882158) and
+[`paper-local-ode-v1.5`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5)
+remain immutable historical records. The v1.2.12 tag, GitHub Release, and
+Zenodo version DOI are pending.
 The historical raw record URL `https://zenodo.org/records/21728432` is not the
 current paper record.
 
@@ -35,8 +42,9 @@ current paper record.
 
 | Purpose | Link |
 | --- | --- |
-| Read the frozen v1.2.9 paper | [Zenodo DOI 10.5281/zenodo.21882158](https://doi.org/10.5281/zenodo.21882158) |
-| Download the frozen PDF and source ZIP | [GitHub Release `paper-local-ode-v1.5`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5) |
+| Read the recommended v1.2.12 manuscript | [`docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`](docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf) |
+| Inspect the matching v1.2.12 source ZIP | [`docs/manuscript/geometric_flow_v1_2_12_source.zip`](docs/manuscript/geometric_flow_v1_2_12_source.zip) |
+| Audit the historical v1.2.9 public release | [GitHub Release `paper-local-ode-v1.5`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5) |
 | Verify the published theorem boundary | [`python reproduce/published_paper.py`](reproduce/published_paper.py) |
 | Follow the proof and certificate map | [Proof navigation](docs/PROOF_NAVIGATION.md) |
 | View the wider research programme | [Y.Y.N. Li - Open and Current Research](https://zenodo.org/communities/yyn-li-open-research/about) |
@@ -175,15 +183,16 @@ Avoid adding another user-facing versioned script. Prefer the stable
 
 ## Roadmap
 
-The published v1.2.9 theorem remains frozen. Later finite-continuation,
+The v1.2.12 manuscript revision and the published v1.2.9 theorem boundary
+remain frozen in scope. Later finite-continuation,
 controlled-attraction, feedback, process-time, two-metric, certificate-DAG,
-and K=1 investigations do not enlarge the published theorem.
+and K=1 investigations do not enlarge the local theorem.
 
 The immediate continuation research direction is **Toward a global response-fibre flow**. The immediate
   open step is the fifth-frame backend; v0.10.15 is fail-closed scaffold work.
 The stored v0.10.6 reference records finite same-chart continuation evidence.
 The fifth-frame backend remains open, and later v0.10.x material is outside
-the v1.2.9 theorem boundary. K=1, physical time, and global flow are not
+the v1.2.12 theorem boundary. K=1, physical time, and global flow are not
 established. Neural response-fibre material is an independent analogue; see
 [neural network response fibres](docs/NEURAL_NETWORK_RESPONSE_FIBRES.md). It
 is not a theorem of the published paper.
@@ -233,7 +242,14 @@ Historical and archive material:
 
 ## Citation And Licences
 
-For the frozen v1.2.9 manuscript, cite:
+The recommended reading version is the frozen v1.2.12 manuscript archived in
+this repository. Its tag, GitHub Release, Zenodo version DOI, and release
+commit are pending until publication:
+
+- PDF: [`docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`](docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf)
+- source ZIP: [`docs/manuscript/geometric_flow_v1_2_12_source.zip`](docs/manuscript/geometric_flow_v1_2_12_source.zip)
+
+Historical v1.2.9 public archive:
 
 - DOI: [10.5281/zenodo.21882158](https://doi.org/10.5281/zenodo.21882158)
 - Record: [https://zenodo.org/records/21882158](https://zenodo.org/records/21882158)
@@ -241,14 +257,15 @@ For the frozen v1.2.9 manuscript, cite:
 The historical version DOI
 [10.5281/zenodo.21728432](https://doi.org/10.5281/zenodo.21728432)
 identifies the earlier public manuscript boundary; it is not the preferred
-v1.2.9 citation.
+current-manuscript citation.
 
-Suggested citation for the local theorem and published paper boundary: cite
-the v1.2.9 Zenodo version DOI above and identify the theorem-bearing software
+Suggested citation for the local theorem and published paper boundary: until
+the v1.2.12 Zenodo version DOI is created, cite the repository commit or
+Draft/PR archive for v1.2.12 and identify the theorem-bearing software
 boundary as v0.7.4 + v0.9.3.
 
-Software is released under the [MIT license](LICENSE). The v1.2.9 manuscript
-and manuscript source ZIP are released under Creative Commons Attribution 4.0
+Software is released under the [MIT license](LICENSE). The v1.2.12 manuscript
+and manuscript source ZIP are intended to be released under Creative Commons Attribution 4.0
 International (CC BY 4.0).
 
 ## 中文概览
@@ -256,7 +273,7 @@ International (CC BY 4.0).
 <details>
 <summary>展开摘要</summary>
 
-本仓库归档并复现 v1.2.9 冻结论文：在一个十四相位驱动量子比特模型中，
+本仓库归档并复现 v1.2.12 冻结文稿：在一个十四相位驱动量子比特模型中，
 严格证明声明响应 \(\mathcal R_3\) 可被精确保持，同时独立目标 \(L_6\)
 沿局部响应纤维 ODE 严格下降。
 
@@ -264,8 +281,9 @@ International (CC BY 4.0).
 微步；尚未证明第五框架、完整子域遍历、十图册延拓、任意端点连接、
 硬件/QPU 行为或全局几何流。
 
-v0.10.x、受控吸引、反馈、过程时间、双度量、证书 DAG 和 K=1 相关内容是
-发表后研究路线，不扩大 v1.2.9 冻结论文的定理边界。
+v1.2.12 吸收了 v1.2.9 勘误和后续文字澄清；它不改变定理常数、证书或
+v0.7.4 + v0.9.3 软件边界。v0.10.x、受控吸引、反馈、过程时间、双度量、
+证书 DAG 和 K=1 相关内容是发表后研究路线，不扩大本地定理边界。
 神经网络
 响应纤维只是独立类比方向，不属于本发表论文定理。
 

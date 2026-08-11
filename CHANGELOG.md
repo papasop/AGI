@@ -2,6 +2,11 @@
 
 ## Unreleased — root and README navigation cleanup
 
+- Archive the independently reviewed v1.2.12 textual manuscript revision and
+  source ZIP as a recommended reading version. This incorporates the recorded
+  v1.2.9 errata and subsequent textual clarifications, preserves all v1.2.9
+  assets and historical provenance, changes no theorem-bearing certificate or
+  numerical gate, requires no Arb rerun, and keeps `GLOBAL_FLOW_CLAIMED=false`.
 - Correct the v0.9.3 manuscript parameter label for the v0.7.4
   complete-parent-box descent certificate: the frozen constant
   `-0.6530784697700559` bounds `dL6/dell`, where `ell` is the affine atlas
