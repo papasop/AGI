@@ -77,7 +77,7 @@ above has been exported and hashed for the immutable archival release candidate.
 
 Release identifiers for this revision:
 
-- Zenodo version DOI: `PENDING_UNTIL_ZENODO_PUBLICATION`
+- Zenodo version DOI: `10.5281/zenodo.21882158`
 - final release commit:
   `8742913c3ba992db98b90bc79cd691a31199d1e7`
 - exact tag: `paper-local-ode-v1.5`
@@ -116,7 +116,8 @@ frozen PDF above remains the archival manuscript.
 ## Public archive and repository binding
 
 - Zenodo concept DOI: `10.5281/zenodo.21728432`
-- Zenodo version DOI: `PENDING_UNTIL_ZENODO_PUBLICATION`
+- Zenodo version DOI: `10.5281/zenodo.21882158`
+- Zenodo DOI URL: `https://doi.org/10.5281/zenodo.21882158`
 - GitHub release URL:
   `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5`
 - immutable paper-boundary tag: `paper-local-ode-v1.5`
