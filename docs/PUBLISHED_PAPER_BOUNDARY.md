@@ -7,8 +7,17 @@ separates it from later repository development milestones.
 
 - Title: *Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on
   a Quantum-Control Response Fibre*
-- Zenodo record: https://zenodo.org/records/21728432
-- DOI: https://doi.org/10.5281/zenodo.21728432
+- Manuscript version: `v1.2.9`
+- Zenodo record: https://zenodo.org/records/21882158
+- Version DOI: https://doi.org/10.5281/zenodo.21882158
+- GitHub Release:
+  https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5
+
+This manuscript/release boundary is `v1.2.9` /
+`paper-local-ode-v1.5`. The theorem-bearing software boundary remains the
+frozen v0.7.4 parent-box certificate plus the frozen v0.9.3 local intrinsic
+ODE certificate. No Arb rerun was performed for the manuscript freeze.
+`GLOBAL_FLOW_CLAIMED=false`.
 
 ## Included
 
@@ -44,9 +53,22 @@ certificate, protocol, report, numerical constant, or validation threshold.
   arbitrary endpoint connection, response-fibre connectedness, or any
   unconditional global flow.
 
+Later v0.10.x work remains excluded from the published v1.2.9 theorem
+boundary.
+
 ## Tag Boundary
 
-The immutable paper-boundary tag is `paper-local-ode-v1.0`. It is intended to
-bind the Zenodo DOI, the local-paper title above, the v0.7.4 and v0.9.3
-certificate boundary, the SHA-256 manifest, and the explicit exclusion of
-v0.10.x continuation work from the published-paper theorem claim.
+- Immutable paper-boundary tag: `paper-local-ode-v1.5`
+- Annotated tag object:
+  `038ac83231af925725da8f9a2c9b10067053bcf6`
+- Peeled commit:
+  `8742913c3ba992db98b90bc79cd691a31199d1e7`
+
+The tag binds the v1.2.9 Zenodo version DOI, the GitHub Release above, the
+local-paper title, the v0.7.4 + v0.9.3 theorem-bearing software boundary, the
+SHA-256 manifest, and the explicit exclusion of v0.10.x continuation work from
+the published-paper theorem claim. It must not be moved or reused.
+
+Historical note: `paper-local-ode-v1.0`, `10.5281/zenodo.21728432`, and
+`https://zenodo.org/records/21728432` belong to an earlier public boundary and
+are not the current v1.2.9 manuscript/release boundary.

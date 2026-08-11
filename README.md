@@ -23,9 +23,12 @@ Local Intrinsic ODE on a Quantum-Control Response Fibre*. It establishes the
 Level-I local theorem. Later repository artifacts are continuing work and are
 outside the theorem boundary of the
 published Zenodo version; see
-[published paper boundary](docs/PUBLISHED_PAPER_BOUNDARY.md). The older record
-`https://zenodo.org/records/21728432` is retained as a concept DOI and
-historical public boundary.
+[published paper boundary](docs/PUBLISHED_PAPER_BOUNDARY.md). The concept DOI
+[10.5281/zenodo.21728432](https://doi.org/10.5281/zenodo.21728432) is retained
+for the broader version chain and historical public boundary; it is not the
+preferred v1.2.9 citation.
+The historical raw record URL `https://zenodo.org/records/21728432` is not the
+current paper record.
 
 ## Start Here
 
@@ -234,8 +237,8 @@ For the frozen v1.2.9 manuscript, cite:
 - Record: [https://zenodo.org/records/21882158](https://zenodo.org/records/21882158)
 
 The concept DOI [10.5281/zenodo.21728432](https://doi.org/10.5281/zenodo.21728432)
-tracks the broader version chain and historical public boundary; it is not the
-preferred v1.2.9 version citation.
+is retained for the broader version chain and historical public boundary; it
+is not the preferred v1.2.9 citation.
 
 Suggested citation for the local theorem and published paper boundary: cite
 the v1.2.9 Zenodo version DOI above and identify the theorem-bearing software
