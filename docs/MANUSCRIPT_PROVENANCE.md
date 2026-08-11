@@ -60,6 +60,10 @@ above has been exported and hashed for the immutable archival release candidate.
   `6c6d842c8ca6a31631cee3f83e42f52d8accabe34950d8c8683ce457b35b713a`
 - textual clarifications and errata:
   `docs/MANUSCRIPT_ERRATA_v1.2.9.md`
+- clarification SHA-256:
+  `1469688fbdf85b2b5af5a8c184e298d0b1186d49030dd0d44b51ee3e1ee91ca2`
+- clarification boundary: repository-level textual clarification only;
+  the frozen PDF and source archive remain unchanged.
 - pages: 19, A4
 - last displayed equation: (37)
 - references: [1]-[18]

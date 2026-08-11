@@ -30,6 +30,16 @@ ODE certificate. No Arb rerun was performed for the manuscript freeze.
 
 ## Erratum
 
+The frozen v1.2.9 manuscript remains unchanged. Its official textual
+clarifications, including the certified initial condition, Picard tube,
+target-state convention, certificate-field mapping, and provenance, are
+recorded in
+[`MANUSCRIPT_ERRATA_v1.2.9.md`](MANUSCRIPT_ERRATA_v1.2.9.md).
+
+These clarifications do not alter the frozen PDF, source archive,
+theorem-bearing software boundary, numerical certificate, or claim scope,
+and they require no Arb rerun.
+
 The complete-parent-box loss derivative constant `-0.6530784697700559` is a
 bound on `dL6/dell`, where `ell` is the affine atlas arclength coordinate
 recorded by the serialized chart. It is not a bound on `dL6/ds` in the local
