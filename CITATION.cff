@@ -21,6 +21,6 @@ preferred-citation:
   year: 2026
   doi: "10.5281/zenodo.21882158"
   url: "https://zenodo.org/records/21882158"
-# Historical concept DOI retained for repository boundary checks:
+# Historical version DOI retained for repository boundary checks:
 # doi: "10.5281/zenodo.21728432"
 # url: "https://zenodo.org/records/21728432"
