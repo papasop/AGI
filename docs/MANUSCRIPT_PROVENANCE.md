@@ -63,14 +63,14 @@ above has been exported and hashed for the immutable archival release candidate.
   unchanged v0.9.3 intrinsic ODE certificate.
 - Arb rerun: not performed for this manuscript freeze; the existing frozen
   theorem certificates remain the governing numerical evidence.
-- repository release tag: `paper-local-ode-v1.4`
+- repository release tag: `paper-local-ode-v1.5`
 - manuscript/tag mapping: `v1.2.9` manuscript ->
-  `paper-local-ode-v1.4` repository release.
+  `paper-local-ode-v1.5` repository release.
 - manuscript integration merge commit:
   `49f04aa61d796fa4da40f9b94a155a435f113f8d`
 - source PR: `https://github.com/papasop/Geometric-Flow/pull/32`
 - planned GitHub release URL:
-  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.4`
+  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5`
 
 Release identifiers for this revision are pending until publication:
 
@@ -78,10 +78,16 @@ Release identifiers for this revision are pending until publication:
 - final release commit: `PENDING_UNTIL_RELEASE`
 - workflow URLs: `PENDING_UNTIL_RELEASE`
 
-The final `paper-local-ode-v1.4` tag must point to the `main` commit produced
+The final `paper-local-ode-v1.5` tag must point to the `main` commit produced
 after the release-metadata PR is merged. It must not point to PR #32's merge
 commit; `49f04aa61d796fa4da40f9b94a155a435f113f8d` records manuscript
 integration only.
+
+`paper-local-ode-v1.4` predates the v1.2.9 manuscript integration and is
+preserved unchanged. It must not be moved, deleted, or reused for v1.2.9. The
+historical `paper-local-ode-v1.4` annotated tag object is
+`b28425354835365b5a33d13a9e7abb006aaaf80e` and its peeled commit is
+`09c17df957159ae4c867ea8ab6090a108a3e5784`.
 
 The v1.2.9 source archive contains its own `README_BUILD.md` and
 `SOURCE_MANIFEST.md`. The handoff review reports that its source-file manifest
@@ -95,8 +101,8 @@ frozen PDF above remains the archival manuscript.
 - Zenodo concept DOI: `10.5281/zenodo.21728432`
 - Zenodo version DOI: `PENDING_UNTIL_ZENODO_PUBLICATION`
 - planned GitHub release URL:
-  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.4`
-- immutable paper-boundary tag: `paper-local-ode-v1.4`
+  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5`
+- immutable paper-boundary tag: `paper-local-ode-v1.5`
 - repository commit: `PENDING_UNTIL_RELEASE`
 
 Do not fill these fields by inference. The version DOI must identify the exact
@@ -110,9 +116,9 @@ Therefore the v1.1 manuscript candidate requires a new Zenodo version before
 the version DOI and public release fields can be completed.
 
 Observed GitHub tags during this update: `paper-local-ode-v1.0`,
-`paper-local-ode-v1.1`, `paper-local-ode-v1.2`, and
-`paper-local-ode-v1.3` already exist. Do not move them. Re-verify that
-`paper-local-ode-v1.4` remains unused immediately before creating a new
+`paper-local-ode-v1.1`, `paper-local-ode-v1.2`, `paper-local-ode-v1.3`, and
+`paper-local-ode-v1.4` already exist. Do not move them. Re-verify that
+`paper-local-ode-v1.5` remains unused immediately before creating a new
 immutable paper-boundary tag.
 
 ## Theorem-bearing boundary
