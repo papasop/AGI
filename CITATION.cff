@@ -19,8 +19,9 @@ preferred-citation:
       given-names: "Y. Y. N."
       orcid: "https://orcid.org/0009-0002-6471-139X"
   year: 2026
-  doi: "10.5281/zenodo.21882158"
-  url: "https://zenodo.org/records/21882158"
-# Historical version DOI retained for repository boundary checks:
+  doi: "10.5281/zenodo.21895917"
+  url: "https://zenodo.org/records/21895917"
+# All-versions Concept DOI: 10.5281/zenodo.15879392
+# Historical version DOIs are retained in docs/MANUSCRIPT_PROVENANCE.md.
 # doi: "10.5281/zenodo.21728432"
 # url: "https://zenodo.org/records/21728432"

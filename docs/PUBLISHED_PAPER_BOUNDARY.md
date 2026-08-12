@@ -18,9 +18,11 @@ separates it from later repository development milestones.
   `2a2e6f0135ee2b53f0d022eb506c87aff4885e94a592c4f4ec8e7bdceb4f5d5b`
 - source manifest SHA-256:
   `fac13564730834b3f00323f8924415097228454889534299fee5616de42611ce`
-- repository release tag: `PENDING_UNTIL_TAG`
-- GitHub Release: `PENDING_UNTIL_RELEASE`
-- Zenodo version DOI: `PENDING_UNTIL_ZENODO_PUBLICATION`
+- repository release tag: `paper-local-ode-v1.6`
+- GitHub Release:
+  https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6
+- Zenodo version DOI: https://doi.org/10.5281/zenodo.21895917
+- all-versions Concept DOI: https://doi.org/10.5281/zenodo.15879392
 
 Manuscript v1.2.12 incorporates the recorded v1.2.9 errata and subsequent
 textual clarifications into a self-contained recommended reading version. It
@@ -95,23 +97,21 @@ boundary.
 
 ## Tag Boundary
 
-- Immutable paper-boundary tag: `paper-local-ode-v1.5`
+- Immutable paper-boundary tag: `paper-local-ode-v1.6`
 - Annotated tag object:
-  `038ac83231af925725da8f9a2c9b10067053bcf6`
+  `e4da94c96f271d5eed63a1d18821476686de9aa3`
 - Peeled commit:
-  `8742913c3ba992db98b90bc79cd691a31199d1e7`
+  `9f00cef039a8b97598e06e87614f9b506a81cddc`
 
-The historical tag binds the v1.2.9 Zenodo version DOI, the GitHub Release
-above, the
-local-paper title, the v0.7.4 + v0.9.3 theorem-bearing software boundary, the
-SHA-256 manifest, and the explicit exclusion of v0.10.x continuation work from
-the published-paper theorem claim. It must not be moved or reused. The
-v1.2.12 repository release tag remains `PENDING_UNTIL_TAG` until it is
-created in a later Gate.
+The current tag binds the v1.2.12 Zenodo version DOI, the GitHub Release above,
+the local-paper title, the v0.7.4 + v0.9.3 theorem-bearing software boundary,
+the SHA-256 manifest, and the explicit exclusion of v0.10.x continuation work
+from the published-paper theorem claim. It must not be moved or reused. The
+historical `paper-local-ode-v1.5` tag remains immutable and continues to bind
+the v1.2.9 public release.
 
 Historical note: `paper-local-ode-v1.0`, the historical version DOI
 `10.5281/zenodo.21728432`, and `https://zenodo.org/records/21728432` belong to
-an earlier public manuscript boundary and are not the current v1.2.9
-manuscript/release boundary. The actual all-versions Concept DOI is not
-recorded here because it has not been independently verified from the
-authoritative Zenodo metadata.
+an earlier public manuscript boundary and are not the current v1.2.12
+manuscript/release boundary. Zenodo's authoritative record metadata identifies
+`10.5281/zenodo.15879392` as the all-versions Concept DOI.

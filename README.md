@@ -33,8 +33,9 @@ identifies the earlier public manuscript boundary; it is not the preferred
 current-manuscript citation. The v1.2.9 DOI
 [10.5281/zenodo.21882158](https://doi.org/10.5281/zenodo.21882158) and
 [`paper-local-ode-v1.5`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5)
-remain immutable historical records. The v1.2.12 tag, GitHub Release, and
-Zenodo version DOI are pending.
+remain immutable historical records. The recommended v1.2.12 release is
+archived at [10.5281/zenodo.21895917](https://doi.org/10.5281/zenodo.21895917)
+and [`paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6).
 The historical raw record URL `https://zenodo.org/records/21728432` is not the
 current paper record.
 
@@ -44,6 +45,8 @@ current paper record.
 | --- | --- |
 | Read the recommended v1.2.12 manuscript | [`docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`](docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf) |
 | Inspect the matching v1.2.12 source ZIP | [`docs/manuscript/geometric_flow_v1_2_12_source.zip`](docs/manuscript/geometric_flow_v1_2_12_source.zip) |
+| Cite the recommended v1.2.12 public version | [Zenodo DOI `10.5281/zenodo.21895917`](https://doi.org/10.5281/zenodo.21895917) |
+| Download the matching GitHub release | [GitHub Release `paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6) |
 | Audit the historical v1.2.9 public release | [GitHub Release `paper-local-ode-v1.5`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5) |
 | Verify the published theorem boundary | [`python reproduce/published_paper.py`](reproduce/published_paper.py) |
 | Follow the proof and certificate map | [Proof navigation](docs/PROOF_NAVIGATION.md) |
@@ -243,11 +246,12 @@ Historical and archive material:
 ## Citation And Licences
 
 The recommended reading version is the frozen v1.2.12 manuscript archived in
-this repository. Its tag, GitHub Release, Zenodo version DOI, and release
-commit are pending until publication:
+this repository and published through the following immutable release records:
 
 - PDF: [`docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`](docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf)
 - source ZIP: [`docs/manuscript/geometric_flow_v1_2_12_source.zip`](docs/manuscript/geometric_flow_v1_2_12_source.zip)
+- DOI: [10.5281/zenodo.21895917](https://doi.org/10.5281/zenodo.21895917)
+- GitHub Release: [`paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6)
 
 Historical v1.2.9 public archive:
 
@@ -259,13 +263,12 @@ The historical version DOI
 identifies the earlier public manuscript boundary; it is not the preferred
 current-manuscript citation.
 
-Suggested citation for the local theorem and published paper boundary: until
-the v1.2.12 Zenodo version DOI is created, cite the repository commit or
-Draft/PR archive for v1.2.12 and identify the theorem-bearing software
-boundary as v0.7.4 + v0.9.3.
+Suggested citation for the local theorem and published paper boundary: cite
+v1.2.12 using DOI `10.5281/zenodo.21895917` and identify the theorem-bearing
+software boundary as v0.7.4 + v0.9.3.
 
 Software is released under the [MIT license](LICENSE). The v1.2.12 manuscript
-and manuscript source ZIP are intended to be released under Creative Commons Attribution 4.0
+and manuscript source ZIP are released under Creative Commons Attribution 4.0
 International (CC BY 4.0).
 
 ## 中文概览

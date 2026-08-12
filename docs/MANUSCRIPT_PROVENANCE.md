@@ -8,7 +8,7 @@ repository state, theorem-bearing software boundary, and public archive.
 - Title: *Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE
   on a Quantum-Control Response Fibre*
 - Status: historical v1.1 candidate retained for audit history. The current
-  frozen manuscript is v1.2.9; see "v1.2.9 manuscript" below.
+  recommended reading manuscript is v1.2.12; see "v1.2.12 manuscript" below.
 - PDF: `docs/manuscript/geometric_flow_submission_candidate_v1.1.pdf`
 - PDF SHA-256:
   `86edef125808640fc7c59b2ceec39d3fd36954b4b395b20f5949de13d0364b96`
@@ -154,17 +154,32 @@ frozen PDF above remains the archival manuscript.
 - Arb rerun: not performed for this manuscript revision; the existing frozen
   theorem certificates remain the governing numerical evidence.
 - `GLOBAL_FLOW_CLAIMED`: false
-- repository release tag: `PENDING_UNTIL_TAG`
+- repository release tag: `paper-local-ode-v1.6`
 - manuscript/tag mapping: `v1.2.12` manuscript ->
-  `PENDING_UNTIL_TAG` repository release.
-- final release commit: `PENDING_UNTIL_RELEASE`
-- repository commit: `PENDING_UNTIL_RELEASE`
-- GitHub release URL: `PENDING_UNTIL_RELEASE`
-- Zenodo version DOI: `PENDING_UNTIL_ZENODO_PUBLICATION`
-- Zenodo DOI URL: `PENDING_UNTIL_ZENODO_PUBLICATION`
-- source PR: `PENDING_UNTIL_RELEASE`
+  `paper-local-ode-v1.6` repository release.
+- final release commit:
+  `9f00cef039a8b97598e06e87614f9b506a81cddc`
+- repository commit:
+  `9f00cef039a8b97598e06e87614f9b506a81cddc`
+- annotated tag object:
+  `e4da94c96f271d5eed63a1d18821476686de9aa3`
+- peeled commit:
+  `9f00cef039a8b97598e06e87614f9b506a81cddc`
+- GitHub release URL:
+  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6`
+- Zenodo version DOI: `10.5281/zenodo.21895917`
+- Zenodo DOI URL: `https://doi.org/10.5281/zenodo.21895917`
+- all-versions Concept DOI: `10.5281/zenodo.15879392`
+- source PR: `https://github.com/papasop/Geometric-Flow/pull/42`
 - workflow URLs:
-  `PENDING_UNTIL_RELEASE`
+  - structural-checks:
+    `https://github.com/papasop/Geometric-Flow/actions/runs/31549636860`
+  - reproduce-validated-ode:
+    `https://github.com/papasop/Geometric-Flow/actions/runs/31549636994`
+  - reproduce-joint-geometric-flow:
+    `https://github.com/papasop/Geometric-Flow/actions/runs/31549636914`
+- exact workflow commit for all three successful tag-triggered runs:
+  `9f00cef039a8b97598e06e87614f9b506a81cddc`
 
 The v1.2.12 source archive contains its own `README_BUILD.md` and
 `SOURCE_MANIFEST.md`. The archive manifest reports a clean three-pass
@@ -177,30 +192,33 @@ self-hash loop.
 ## Public archive and repository binding
 
 - Historical Zenodo version DOI: `10.5281/zenodo.21728432`
-- Zenodo version DOI: `10.5281/zenodo.21882158`
-- Zenodo DOI URL: `https://doi.org/10.5281/zenodo.21882158`
+- Previous Zenodo version DOI: `10.5281/zenodo.21882158`
+- Current Zenodo version DOI: `10.5281/zenodo.21895917`
+- current Zenodo DOI URL: `https://doi.org/10.5281/zenodo.21895917`
+- all-versions Concept DOI: `10.5281/zenodo.15879392`
 - GitHub release URL:
-  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5`
-- immutable paper-boundary tag: `paper-local-ode-v1.5`
+  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6`
+- immutable paper-boundary tag: `paper-local-ode-v1.6`
 - annotated tag object:
-  `038ac83231af925725da8f9a2c9b10067053bcf6`
+  `e4da94c96f271d5eed63a1d18821476686de9aa3`
 - peeled commit:
-  `8742913c3ba992db98b90bc79cd691a31199d1e7`
+  `9f00cef039a8b97598e06e87614f9b506a81cddc`
 - repository commit:
-  `8742913c3ba992db98b90bc79cd691a31199d1e7`
+  `9f00cef039a8b97598e06e87614f9b506a81cddc`
 
-The Zenodo version DOI `10.5281/zenodo.21882158` identifies the frozen v1.2.9
-manuscript. The historical Zenodo version DOI `10.5281/zenodo.21728432` and
-the public record `https://zenodo.org/records/21728432` identify an earlier
-public manuscript version and boundary. The actual all-versions Concept DOI is
-not recorded here because it has not been independently verified from the
-authoritative Zenodo metadata.
+The Zenodo version DOI `10.5281/zenodo.21895917` identifies the frozen v1.2.12
+recommended reading manuscript. The preceding version DOI
+`10.5281/zenodo.21882158` identifies v1.2.9, while the historical version DOI
+`10.5281/zenodo.21728432` identifies an earlier public manuscript boundary.
+Zenodo's authoritative record metadata identifies `10.5281/zenodo.15879392`
+as the all-versions Concept DOI.
 
 Observed GitHub tags during this update: `paper-local-ode-v1.0`,
 `paper-local-ode-v1.1`, `paper-local-ode-v1.2`, `paper-local-ode-v1.3`, and
 `paper-local-ode-v1.4` already exist. Do not move them. The annotated
-`paper-local-ode-v1.5` tag was created and verified at the object and
-peeled-commit identifiers recorded above; it must not be moved or reused.
+`paper-local-ode-v1.5` historical tag remains immutable. The annotated
+`paper-local-ode-v1.6` tag was verified at the object and peeled-commit
+identifiers recorded above; it must not be moved or reused.
 
 ## Theorem-bearing boundary
 
@@ -216,13 +234,13 @@ peeled-commit identifiers recorded above; it must not be moved or reused.
 ## Reproduction record
 
 - structural-checks workflow URL:
-  `https://github.com/papasop/Geometric-Flow/actions/runs/31452933116`
+  `https://github.com/papasop/Geometric-Flow/actions/runs/31549636860`
 - validated-ODE workflow URL:
-  `https://github.com/papasop/Geometric-Flow/actions/runs/31452933117`
+  `https://github.com/papasop/Geometric-Flow/actions/runs/31549636994`
 - joint v0.7.4 + v0.9.3 workflow URL:
-  `https://github.com/papasop/Geometric-Flow/actions/runs/31452933149`
+  `https://github.com/papasop/Geometric-Flow/actions/runs/31549636914`
 - exact workflow commit:
-  `8742913c3ba992db98b90bc79cd691a31199d1e7`
+  `9f00cef039a8b97598e06e87614f9b506a81cddc`
 
 The URLs above must refer to successful runs on the exact immutable submission
 commit. An empty or unavailable status is not evidence of success.
@@ -233,6 +251,6 @@ commit. An empty or unavailable status is not evidence of success.
 - manuscript licence: Creative Commons Attribution 4.0 International
   (CC BY 4.0)
 
-CC BY 4.0 governs the v1.2.9 manuscript and manuscript source archive. MIT
-continues to govern the repository software. The two licences cover different
-artifact classes.
+CC BY 4.0 governs the v1.2.12 and historical v1.2.9 manuscripts and their
+manuscript source archives. MIT continues to govern the repository software.
+The two licences cover different artifact classes.
