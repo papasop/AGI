@@ -1,6 +1,6 @@
 # v0.9.23 release notes
 
-## Pending manuscript archive: v1.2.12
+## Published manuscript archive: v1.2.12
 
 - Archive the independently reviewed v1.2.12 textual manuscript revision and
   self-contained LaTeX source package.
@@ -13,8 +13,8 @@
   gate changes.
 - Require no Arb rerun and keep `GLOBAL_FLOW_CLAIMED=false`.
 
-The v1.2.12 tag, GitHub Release, and Zenodo version DOI remain pending until
-their publication gates are completed.
+The v1.2.12 manuscript is published as Zenodo DOI
+`10.5281/zenodo.21895917` and GitHub Release `paper-local-ode-v1.6`.
 
 - Added the v0.9.20 induced-infinity-norm semantic correction.
 - Restored and independently cross-checked the 557-step scalar continuation.

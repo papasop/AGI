@@ -14,9 +14,9 @@ Use v1.2.12 as the recommended reading version:
 > immutable historical records.
 
 Do not describe v1.2.12 as a new theorem, a certificate rerun, a global-flow
-result, or a replacement for theorem-bearing software assets. Its repository
-release tag, GitHub Release, and Zenodo version DOI remain pending until the
-corresponding publication gates are actually completed.
+result, or a replacement for theorem-bearing software assets. Cite the
+published version as DOI `10.5281/zenodo.21895917`, bound to the immutable
+GitHub Release `paper-local-ode-v1.6`.
 
 ## Layer I: Unconditional Local Theorem
 

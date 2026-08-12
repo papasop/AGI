@@ -2,6 +2,10 @@
 
 ## Unreleased — root and README navigation cleanup
 
+- Close the v1.2.12 publication provenance with Zenodo version DOI
+  `10.5281/zenodo.21895917`, Concept DOI `10.5281/zenodo.15879392`, and the
+  immutable `paper-local-ode-v1.6` GitHub Release. This metadata-only closure
+  changes no manuscript or theorem-bearing asset.
 - Archive the independently reviewed v1.2.12 textual manuscript revision and
   source ZIP as a recommended reading version. This incorporates the recorded
   v1.2.9 errata and subsequent textual clarifications, preserves all v1.2.9
