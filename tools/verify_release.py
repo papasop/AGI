@@ -314,64 +314,42 @@ def main() -> int:
     checks["readme_exists"] = README.is_file()
     if README.is_file():
         text = README.read_text(encoding="utf-8")
-        checks["readme_introduces_research_question"] = (
-            "frozen sources, interval certificates, and\nreproduction entrypoints" in text
-            and "response invariance from dynamical stationarity" in text
-            and "invisible to the declared finite response" in text
-            and "strict\ndescent of an independent objective" in text
-            and "fourteen phase\nparameters for a driven-qubit detuning scan" in text
-            and "192-bit Arb interval arithmetic" in text
-            and "Computation as Geometric Flow: An Arb-Certified\nLocal Intrinsic ODE on a Quantum-Control Response Fibre" in text
-            and "establishes the\nLevel-I local theorem" in text
-            and "outside the theorem boundary of the\npublished Zenodo version" in text
-            and "https://zenodo.org/records/21728432" in text
-            and "docs/PUBLISHED_PAPER_BOUNDARY.md" in text
+        checks["readme_leads_with_v1213_reader_entry"] = (
+            "A computer-assisted local theorem" in text
+            and "The certified result is local" in text
+            and text.find("## Start Here") < text.find("## Published Result")
+            and text.find("## Quick Start") < text.find("## Published Result")
+            and "Read the recommended manuscript" in text
+            and "DOI `10.5281/zenodo.21947745`" in text
+            and "`paper-local-ode-v1.7`" in text
         )
-        checks["readme_has_what_is_proved"] = (
-            "## What Is Proved" in text
-            and "**Proved, Level I.**" in text
-            and "existence and uniqueness of a local solution" in text
-            and "initial-value problem over one validated microstep" in text
-            and "unique six-dimensional intrinsic ODE microstep" not in text
-            and "preserves the declared response map" in text
+        checks["readme_has_published_result_boundary"] = (
+            "## Published Result" in text
+            and "The recommended v1.2.13 manuscript is frozen in scope" in text
+            and "theorem-bearing\nsoftware boundary remains v0.7.4 + v0.9.3" in text
+            and "existence and uniqueness of a\nlocal initial-value problem" in text
+            and "preserves the declared finite response map" in text
             and "strictly decreases the independent objective" in text
             and "formally validated local response-fibre chart" in text
-            and '"Frozen" means the model parameters, atlas coefficients, code, and reference\nartifacts are hash-bound' in text
-            and "**Milestone, Level II.**" in text
-            and "v0.10.6 as the latest stored\nreference certificate" in text
-            and "**Conditional theorem, Level III.**" in text
-            and "A separate analytic\nconditional-continuation manuscript" in text
-            and "compactness, uniform rank, and uniform nonstationarity" in text
-            and "not yet certified on the complete response fibre" in text
-            and "outside the theorem boundary of the published Zenodo paper" in text
-            and "does not yet prove a fifth frame or a global flow" in text
+            and '"Frozen" means the model parameters, atlas coefficients, code, inputs, and\nreference artifacts are hash-bound' in text
+            and "exact finite jet recurrences" in text
+            and "preservation of this declared finite response only" in text
         )
         checks["readme_states_v074_diagnostic_boundary"] = (
-            "For v0.7.4, all 16 theorem-bearing rank, near-tangency, nonstationarity, and\ndescent boxes pass" in text
-            and "A separate KKT-alignment diagnostic misses its predeclared\nthreshold" in text
-            and "serialized parent-box atlas is not claimed to be\nan ODE trajectory" in text
+            "For v0.7.4, all sixteen theorem-bearing rank, near-tangency,\nnonstationarity, and descent boxes pass" in text
+            and "A separate KKT-alignment diagnostic\nmisses its predeclared threshold" in text
+            and "serialized parent-box atlas is not\nclaimed to be an ODE trajectory" in text
         )
-        checks["readme_has_theory_boundary_paragraph"] = (
-            "## Theory Boundary In One Paragraph" in text
-            and "fourteen phase\ncoordinates" in text
-            and r"\(\theta\in\mathbb R^{14}\)" in text
-            and "projective jet response" in text
-            and "exact\nfinite jet recurrences, not polynomial truncation" in text
-            and '"Exact preservation" means\nthis declared finite response map only' in text
-            and "not higher-order coefficients" in text
-            and "not" in text
-            and "hardware behaviour" in text
-            and r"objective \(L_6\)" in text
-            and "arbitrary endpoint\nconnection" in text
-            and "unconditional global flow" in text
-        )
-        checks["readme_has_three_layer_status"] = (
-            "## Three-Layer Status" in text
-            and "| Layer | Current Repository Status | Claim | Boundary |" in text
-            and r"| I. Local theorem | v0.9.3 intrinsic ODE microstep | Certified reference theorem | One Picard microstep, \(0\le t\le 10^{-14}\), near child 15 |" in text
-            and "| II. Frozen finite continuation | v0.10.6 fourth-chart Lohner support flowpipe | Latest stored repository reference certificate | Declared finite chain of recentered charts only; instance-specific |" in text
-            and "| III. Next-frame / global work | v0.10.13.1 source chain and v0.10.15 fail-closed harness | Implementation-open; not a fifth-frame or global-flow theorem | Holds only where compactness, uniform rank, and uniform nonstationarity are assumed; not certified on the complete fibre |" in text
-            and text.count("## Latest ") == 0
+        checks["readme_has_compact_claim_boundary"] = (
+            "## Claim Boundary" in text
+            and "| Proved in the published local theorem | Not proved here |" in text
+            and "v0.7.4 complete-parent-box regularity" in text
+            and "v0.9.3 local intrinsic ODE existence and uniqueness" in text
+            and "`GLOBAL_FLOW_CLAIMED=false`" in text
+            and "hardware/QPU validation or global flow" in text
+            and "## Theory Boundary In One Paragraph" not in text
+            and "## Three-Layer Status" not in text
+            and "Level I" not in text
         )
         checks["readme_defers_details_to_docs"] = (
             "docs/MATHEMATICS.md" in text
@@ -380,14 +358,12 @@ def main() -> int:
             and "dL_6/dt <= -0.6419529191591549 < 0" not in text
             and "maximum terminal support       1.3938448261845923e-11" not in text
         )
-        checks["readme_states_source_vs_reference_boundary"] = (
-            "v0.10.6 is the packaged reference certificate" in text
-            and "v0.10.13.1 records a stronger reindexed source chain" in text
-            and "reference-result packaging is still pending" in text
-            and "implementation-open" in text.lower()
-            and "v0.10.15" in text
-            and "fifth-frame" in text
-            and "fail-closed scaffold work" in text
+        checks["readme_separates_published_and_post_publication"] = (
+            text.find("## Published Result") < text.find("## Post-Publication Research")
+            and "Finite-continuation and fifth-frame commands are post-publication research\nentry points" in text
+            and "They are not part of the v1.2.13 published theorem boundary" in text
+            and "v1.2.13 is derived from v1.2.12" in text
+            and "It changes no theorem-bearing constants,\ncertificates, protocols, JSON records, atlas data, gate thresholds, or Arb\ncomputations" in text
         )
         checks["readme_has_quick_start"] = (
             "## Quick Start" in text
@@ -395,60 +371,64 @@ def main() -> int:
             and "python -m pip install -r requirements.txt" in text
             and "python scripts/verify_reference_results.py" in text
             and "python reproduce/published_paper.py" in text
-            and "checks frozen SHA-256 entries and stored reference\ncertificates" in text
-            and "checks frozen stored artifacts" in text
-            and "only\n`python reproduce/published_paper.py --run` recomputes" in text
+            and "python reproduce/published_paper.py --run" in text
+            and "only `--run`\nrecomputes the v0.7.4 + v0.9.3 theorem pair" in text
         )
-        checks["readme_has_reproduction_path_table"] = (
-            "## Choose A Reproduction Path" in text
+        checks["readme_has_reproduction_and_audit_table"] = (
+            "## Reproduction And Audit" in text
             and "| Goal | Command |" in text
-            and "| Verify the published Zenodo paper boundary | `python reproduce/published_paper.py` |" in text
+            and "| Verify stored certificate hashes | `python scripts/verify_reference_results.py` |" in text
+            and "| Verify the published theorem boundary | `python reproduce/published_paper.py` |" in text
             and "| Recompute the published v0.7.4 + v0.9.3 theorem pair | `python reproduce/published_paper.py --run` |" in text
-            and "| Verify stored certificates and hashes | `python scripts/verify_reference_results.py` |" in text
             and "| Recompute the v0.9.3 local ODE theorem only | `python reproduce/local_theorem.py` |" in text
             and "| Recompute the local ODE theorem | `python reproduce/local_theorem.py` |" not in text
-            and "| Reproduce the fourth-chart Lohner flowpipe | `python reproduce/finite_continuation.py` |" in text
+            and "| Reproduce stored finite-continuation evidence | `python reproduce/finite_continuation.py` |" in text
             and "| Audit the open fifth-frame target | `python reproduce/open_next_frame_audit.py` |" in text
-            and "not part of the published Zenodo\npaper theorem boundary" in text
+            and "not part of the v1.2.13 published theorem boundary" in text
             and "| Run the longer finite chain |" not in text
-        )
-        checks["readme_lists_compatibility_commands_outside_main_table"] = (
-            "Compatibility commands remain available under `scripts/`" in text
-            and "scripts/reproduce_finite_continuation.py" in text
-            and "scripts/reproduce_field_jacobian.py" in text
-            and "verify the relevant frozen SHA-256 entries" in text
         )
         checks["readme_states_visible_repository_shape"] = (
             "## Repository Shape" in text
             and "`src/`: core geometric code" in text
-            and "`reproduce/`: published-paper and research-line reproduction entry points" in text
+            and "`reproduce/`: stable published-paper and research-line reproduction entry" in text
             and "`archive/milestones/`: historical v0.9.x/v0.10.x milestone scripts" in text
             and "Avoid adding another user-facing versioned script" in text
         )
-        checks["readme_has_scoped_roadmap"] = (
-            "## Roadmap" in text
+        checks["readme_has_post_publication_research_scope"] = (
+            "## Post-Publication Research" in text
+            and "do not enlarge the local\npublished theorem" in text
+            and "v0.10.6 fourth-chart Lohner support\n  flowpipe" in text
+            and "v0.10.13.1 source chain and v0.10.15\n  fail-closed fifth-frame harness" in text
+            and "C4 controlled-attraction and C4-E2b research artifacts" in text
+            and "Neural-network response-fibre analogues" in text
             and "immediate continuation research direction" in text
-            and "**Toward a global response-fibre flow**" in text
-            and "The immediate\n  open step is the fifth-frame backend" in text
-            and "v0.10.15 is fail-closed scaffold work" in text
-            and "docs/NEURAL_NETWORK_RESPONSE_FIBRES.md" in text
-            and "not a theorem of the published paper" in text
-            and "**Neural-network parameter fibres**" not in text
+            and "remain\nopen" in text
+            and "The v1.2.12 manuscript revision and the published v1.2.9 theorem boundary" not in text
+            and "the v1.2.12 theorem boundary" not in text
         )
         checks["readme_has_collapsible_chinese_overview"] = (
             "## 中文概览" in text
             and "<details>" in text
             and "<summary>展开摘要</summary>" in text
-            and "当前已严格证明局部 ODE 微步" in text
-            and "神经网络\n响应纤维只是独立类比方向" in text
+            and "当前已严格证明 v0.7.4 父盒证书和 v0.9.3 局部 ODE 微步" in text
+            and "神经网络响应纤维只是独立类比方向" in text
             and "</details>" in text
         )
         checks["readme_has_citation_and_paper_navigation"] = (
             "docs/PAPER_WORDING.md" in text
             and "docs/PUBLISHED_PAPER_BOUNDARY.md" in text
-            and "10.5281/zenodo.21728432" in text
+            and "10.5281/zenodo.21947745" in text
+            and "10.5281/zenodo.15879392" in text
             and "Suggested citation for the local theorem and published paper boundary" in text
             and "[MIT license](LICENSE)" in text
+        )
+        checks["readme_moves_history_to_history_section"] = (
+            "## Historical Releases" in text
+            and text.find("10.5281/zenodo.21728432") > text.find("## Historical Releases")
+            and "historical version DOI `10.5281/zenodo.21728432`" in text
+            and "not the preferred v1.2.13 citation" in text
+            and "https://zenodo.org/records/21728432" in text
+            and "not the current paper\nrecord" in text
         )
         checks["readme_next_milestone_is_not_stale_v0946"] = (
             "implicit_fibre_root_solver(a_box)" not in text
