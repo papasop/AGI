@@ -12,6 +12,35 @@ To save a machine-readable report:
 python audit/audit_repo.py --strict --report audit_report.json
 ```
 
+## External AI Review Entry Point
+
+Read in this order:
+
+1. `AUDIT.md`
+2. `audit/claims_manifest.yaml`
+3. `audit/dependency_map.md`
+4. the selected protocol
+5. the producing script
+6. the original certificate
+
+Never infer:
+
+- missing certificates from console logs;
+- global validity from a local certificate;
+- scientific truth from audit success;
+- Arb enclosure from a binary64 computation;
+- a current result from a historical milestone.
+
+Required review output:
+
+- repository commit SHA;
+- files and hashes inspected;
+- claim under review;
+- complete dependency chain;
+- certified/diagnostic/development/open classification;
+- blocking issues;
+- unchecked assumptions.
+
 ## Current Scientific Line
 
 The strongest published theorem remains local: the v0.7.4 parent-box geometry
