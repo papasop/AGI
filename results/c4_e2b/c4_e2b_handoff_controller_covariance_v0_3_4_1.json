@@ -1,0 +1,187 @@
+{
+  "all_gates_pass": null,
+  "cases": {
+    "A_source_native": {
+      "box_maximum_radius": 2.320353432570429e-07,
+      "box_route": "source endpoint",
+      "controller": "source-centred Y0",
+      "dL_lower": -2.5615444199786146,
+      "dL_upper": -2.217716463156845,
+      "exact_response_identity_available": true,
+      "expanded_dV_upper_diagnostic": 7.293849951966427e-06,
+      "inverse_neumann_defect_below_one": true,
+      "inverse_neumann_defect_upper": 0.015749186635844126,
+      "inverse_neumann_tail_upper": 6.250672374492861e-08,
+      "label": "A",
+      "midpoint": {
+        "dL": -2.3896304416290883,
+        "dV": -3.2050971523981877e-07,
+        "field_norm": 1.546948791235957,
+        "inverse_condition": 1.0070051124851618,
+        "loss": 148.8505737619987
+      },
+      "objective_descent_certified": true,
+      "regular": true
+    },
+    "B_bridge_native": {
+      "box_maximum_radius": 2.0073013615729e-06,
+      "box_route": "source->bridge",
+      "controller": "bridge-centred Y0",
+      "dL_lower": -4.313565884531826,
+      "dL_upper": -0.4650796175015872,
+      "exact_response_identity_available": true,
+      "expanded_dV_upper_diagnostic": 0.00017869375127818664,
+      "inverse_neumann_defect_below_one": true,
+      "inverse_neumann_defect_upper": 0.02872226611498263,
+      "inverse_neumann_tail_upper": 7.006988001798105e-07,
+      "label": "B",
+      "midpoint": {
+        "dL": -2.389322751053339,
+        "dV": -3.20509715242255e-07,
+        "field_norm": 1.5467498606685262,
+        "inverse_condition": 1.0000000002301448,
+        "loss": 148.85057376199916
+      },
+      "objective_descent_certified": true,
+      "regular": true
+    },
+    "C_target_direct_native": {
+      "box_maximum_radius": 2.0072679696170334e-06,
+      "box_route": "direct source->target",
+      "controller": "target-centred Y0",
+      "dL_lower": -9.104512781857604,
+      "dL_upper": 4.326482593060379,
+      "exact_response_identity_available": true,
+      "expanded_dV_upper_diagnostic": 0.0006253596610270443,
+      "inverse_neumann_defect_below_one": true,
+      "inverse_neumann_defect_upper": 0.039198262778882054,
+      "inverse_neumann_tail_upper": 2.4571603598947622e-06,
+      "label": "C",
+      "midpoint": {
+        "dL": -2.389015094398706,
+        "dV": -3.205097152210441e-07,
+        "field_norm": 1.5465509588625674,
+        "inverse_condition": 1.0070046735426947,
+        "loss": 148.85057376199848
+      },
+      "objective_descent_certified": false,
+      "regular": true
+    },
+    "D_target_via_native": {
+      "box_maximum_radius": 1.7508095282892103e-05,
+      "box_route": "source->bridge->target",
+      "controller": "target-centred Y0",
+      "dL_lower": -16741.60514058268,
+      "dL_upper": 16736.827110393882,
+      "exact_response_identity_available": true,
+      "expanded_dV_upper_diagnostic": 8.713258109852033,
+      "inverse_neumann_defect_below_one": true,
+      "inverse_neumann_defect_upper": 0.2595768927167228,
+      "inverse_neumann_tail_upper": 0.006131745960620305,
+      "label": "D",
+      "midpoint": {
+        "dL": -2.3890150943519024,
+        "dV": -3.2050971516137987e-07,
+        "field_norm": 1.5465509588626476,
+        "inverse_condition": 1.007004673541602,
+        "loss": 148.85057376199825
+      },
+      "objective_descent_certified": false,
+      "regular": true
+    },
+    "E_bridge_source_controller": {
+      "box_maximum_radius": 2.0073013615729e-06,
+      "box_route": "source->bridge",
+      "controller": "transported source-centred Y0",
+      "dL_lower": -9.105177496573596,
+      "dL_upper": 4.325916613438458,
+      "exact_response_identity_available": true,
+      "expanded_dV_upper_diagnostic": 0.0006253684894921013,
+      "inverse_neumann_defect_below_one": true,
+      "inverse_neumann_defect_upper": 0.03919854622608909,
+      "inverse_neumann_tail_upper": 2.4572321576283587e-06,
+      "label": "E_bridge",
+      "midpoint": {
+        "dL": -2.389630441700539,
+        "dV": -3.205097151937331e-07,
+        "field_norm": 1.5469487912363586,
+        "inverse_condition": 1.007005112484843,
+        "loss": 148.85057376199916
+      },
+      "objective_descent_certified": false,
+      "regular": true
+    },
+    "E_target_direct_source_controller": {
+      "box_maximum_radius": 2.0072679696170334e-06,
+      "box_route": "direct source->target",
+      "controller": "transported source-centred Y0",
+      "dL_lower": -9.105206680497682,
+      "dL_upper": 4.325945797362768,
+      "exact_response_identity_available": true,
+      "expanded_dV_upper_diagnostic": 0.0006253721092810275,
+      "inverse_neumann_defect_below_one": true,
+      "inverse_neumann_defect_upper": 0.03919858816334454,
+      "inverse_neumann_tail_upper": 2.4572427805519658e-06,
+      "label": "E_target_direct",
+      "midpoint": {
+        "dL": -2.3896304415692704,
+        "dV": -3.2050971529581326e-07,
+        "field_norm": 1.5469487912362563,
+        "inverse_condition": 1.007005112485425,
+        "loss": 148.85057376199848
+      },
+      "objective_descent_certified": false,
+      "regular": true
+    },
+    "E_target_via_source_controller": {
+      "box_maximum_radius": 1.7508095282892103e-05,
+      "box_route": "source->bridge->target",
+      "controller": "transported source-centred Y0",
+      "dL_lower": -16739.89527619352,
+      "dL_upper": 16735.116015310385,
+      "exact_response_identity_available": true,
+      "expanded_dV_upper_diagnostic": 8.712464563413816,
+      "inverse_neumann_defect_below_one": true,
+      "inverse_neumann_defect_upper": 0.25957209794432856,
+      "inverse_neumann_tail_upper": 0.00613125321892045,
+      "label": "E_target_via",
+      "midpoint": {
+        "dL": -2.3896304414903624,
+        "dV": -3.2050971518053303e-07,
+        "field_norm": 1.5469487912366524,
+        "inverse_condition": 1.0070051124864468,
+        "loss": 148.85057376199825
+      },
+      "objective_descent_certified": false,
+      "regular": true
+    }
+  },
+  "claim_boundary": "Cause-separation diagnostic only; not a positive-time flowpipe or revised handoff certificate.",
+  "diagnostic_complete": true,
+  "protocol": {
+    "beta": 100.0,
+    "candidate_sha256": "10a11503d9a41b315e16fb9928bcec1a9b69c1900ec6bb6ed1585b65260e9d82",
+    "checkpoint_sha256": "be51fa5fc627289c47409e82b80e0a64fadda619d955987230d94dcc93137ae8",
+    "comparison": "native per-chart Y0 versus transported source-centred ambient Y0",
+    "level": 32,
+    "parent_script_sha256": "980d37e3d64679ac37c7e1b8dfe340ae29d325a460173974ad8e9fc8f8394c5e",
+    "precision_bits": 256,
+    "version": "0.3.4.1"
+  },
+  "protocol_sha256": "b2e1060af4202c6f467924cd4e5fc453d2115405a9cbd594e068d079c98998b5",
+  "report_sha256_without_self": "0e614e15a0b7b1a81a8af13c9272871bf1dd6e6ba2ae50c6515984437381bf13",
+  "required_next_step": "Preserve affine correlations or subdivide only the handoff box; the midpoint still descends.",
+  "scientific_status": "INTERVAL_DEPENDENCY_DOMINATES_DESCENT_TEST",
+  "summary": {
+    "all_case_inverse_defects_below_one": true,
+    "bridge_native_dL_upper": -0.4650796175015872,
+    "bridge_transported_Y0_dL_upper": 4.325916613438458,
+    "source_native_dL_upper": -2.217716463156845,
+    "target_direct_native_dL_upper": 4.326482593060379,
+    "target_direct_transported_Y0_dL_upper": 4.325945797362768,
+    "target_via_native_dL_upper": 16736.827110393882,
+    "via_to_direct_target_radius_ratio": 8.867215386276083
+  },
+  "title": "C4-E2b HANDOFF CONTROLLER-COVARIANCE DIAGNOSTIC",
+  "version": "0.3.4.1"
+}
