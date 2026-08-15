@@ -1,0 +1,83 @@
+{
+  "claims": {
+    "c4_e2b_v0_3_2_ladder": {
+      "certificate": "results/c4_e2b/c4_e2b_transition_12_arb_ladder_v0_3_2.json",
+      "description": "Transition 1->2 32-slab checkpoint remains inconclusive for complete endpoint box containment.",
+      "inputs": [],
+      "producer": "archive/milestones/c4_e2b_v0_3_4_1/C4_E2B_TRANSITION_12_ARB_LADDER_v0_3_2.py",
+      "protocol": "results/c4_e2b/c4_e2b_transition_12_arb_ladder_v0_3_2.json",
+      "required_certificate_fields": {
+        "all_gates_pass": false,
+        "scientific_status": "C4_E2B_TRANSITION_12_LADDER_INCONCLUSIVE"
+      },
+      "scope_boundary": "Diagnostic/inconclusive; not transition certification.",
+      "status": "diagnostic"
+    },
+    "c4_e2b_v0_3_4_1_controller_covariance": {
+      "certificate": "results/c4_e2b/c4_e2b_handoff_controller_covariance_v0_3_4_1.json",
+      "description": "Controller-covariance diagnostic separates interval dependency from midpoint descent.",
+      "inputs": [
+        "results/c4_e2b/c4_e2b_transition_12_arb_ladder_v0_3_2.json",
+        "results/c4_e2b/c4_e2b_local_bridge_candidate_v0_3_3.json"
+      ],
+      "producer": "archive/milestones/c4_e2b_v0_3_4_1/C4_E2B_HANDOFF_CONTROLLER_COVARIANCE_DIAGNOSTIC_v0_3_4_1.py",
+      "protocol": "results/c4_e2b/c4_e2b_handoff_controller_covariance_v0_3_4_1.json",
+      "required_certificate_fields": {
+        "diagnostic_complete": true,
+        "scientific_status": "INTERVAL_DEPENDENCY_DOMINATES_DESCENT_TEST"
+      },
+      "scope_boundary": "Cause-separation diagnostic only.",
+      "status": "diagnostic"
+    },
+    "c4_e2b_v0_3_5_zero_time_handoff": {
+      "certificate": "results/c4_e2b/c4_e2b_affine_correlated_handoff_v0_3_5.json",
+      "description": "Zero-time affine-correlated chart 1->2 handoff on the complete frozen level-32 endpoint enclosure.",
+      "inputs": [
+        "results/c4_e2b/c4_e2b_transition_12_arb_ladder_v0_3_2.json",
+        "results/c4_e2b/c4_e2b_local_bridge_candidate_v0_3_3.json",
+        "results/c4_e2b/c4_e2b_handoff_controller_covariance_v0_3_4_1.json"
+      ],
+      "producer": "archive/milestones/c4_e2b_v0_3_5/C4_E2B_AFFINE_CORRELATED_HANDOFF_SUBDIVISION_v0_3_5.py",
+      "protocol": "results/c4_e2b/c4_e2b_affine_correlated_handoff_v0_3_5.json",
+      "required_certificate_fields": {
+        "all_gates_pass": true,
+        "scientific_status": "C4_E2B_AFFINE_CORRELATED_HANDOFF_CERTIFIED",
+        "summary.accepted_leaves": 1,
+        "summary.blocked_leaves": 0,
+        "summary.evaluations": 1
+      },
+      "scope_boundary": "Zero-time handoff only; no positive-time slab, eight-chart continuation, hardware validation, or global flow.",
+      "status": "certified"
+    },
+    "c4_e2b_v0_3_6_positive_time_slab": {
+      "certificate": "",
+      "description": "Next research target: one rigorously enclosed positive-time Picard slab from the certified chart-2 initial enclosure.",
+      "inputs": [
+        "results/c4_e2b/c4_e2b_affine_correlated_handoff_v0_3_5.json"
+      ],
+      "producer": "",
+      "protocol": "",
+      "required_certificate_fields": {},
+      "scope_boundary": "Not certified in this repository state.",
+      "status": "open"
+    },
+    "published_local_ode_theorem": {
+      "certificate": "results/v0_9_3_reference/intrinsic_picard_microstep_certificate.json",
+      "description": "Published local theorem boundary: v0.7.4 parent-box certificate plus v0.9.3 intrinsic ODE microstep.",
+      "inputs": [
+        "inputs/response_fibre_v0_6_2_backend_inputs.zip",
+        "src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py"
+      ],
+      "producer": "src/response_fibre_intrinsic_picard_microstep_v0_9_3.py",
+      "protocol": "results/v0_9_3_reference/protocol.json",
+      "required_certificate_fields": {
+        "all_gates_pass": true,
+        "global_flow_claimed": false,
+        "scientific_status": "VALIDATED_INTRINSIC_RESPONSE_FIBRE_ODE_MICROSTEP_CERTIFIED"
+      },
+      "scope_boundary": "Local response-fibre ODE microstep only; no global flow.",
+      "status": "certified"
+    }
+  },
+  "schema_version": "1.0"
+}
