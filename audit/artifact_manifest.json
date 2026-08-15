@@ -199,9 +199,9 @@
       ],
       "path": "archive/milestones/c4_e2b_v0_3_5/C4_E2B_AFFINE_CORRELATED_HANDOFF_SUBDIVISION_v0_3_5.py",
       "producer": "post-publication research driver",
-      "scientific_scope": "affine-correlated zero-time chart 1->2 handoff certificate driver",
+      "scientific_scope": "affine-correlated zero-time chart 1->2 handoff driver with documented binary64 rounding residual",
       "sha256": "46de2c93e6c076121c09058a5045dda971881e54ee575a0ff1ae4fd40faedb03",
-      "status": "frozen",
+      "status": "certified_with_documented_binary64_rounding_residual",
       "type": "script"
     },
     {
@@ -213,9 +213,123 @@
       ],
       "path": "results/c4_e2b/c4_e2b_affine_correlated_handoff_v0_3_5.json",
       "producer": "c4_e2b_v0_3_5_script",
-      "scientific_scope": "zero-time affine-correlated chart 1->2 handoff only",
+      "scientific_scope": "zero-time affine-correlated chart 1->2 handoff only; retained with documented binary64 rounding residual pending v0.3.5.1 recertification",
       "sha256": "c8a83ffb4f1bc2e91ff33a651436a3bc3f8565cab6f8390eaa5fbf896f07f41a",
-      "status": "frozen",
+      "status": "certified_with_documented_binary64_rounding_residual",
+      "type": "certificate"
+    },
+    {
+      "absolute_runtime_path_rationale": "Colab-compatible recovery driver; absolute runtime paths are documented and not used by audit_repo.py.",
+      "allow_absolute_runtime_paths": true,
+      "id": "c4_e2b_v0_3_5_1_parent_script",
+      "inputs": [],
+      "path": "archive/milestones/c4_e2b_v0_3_5_1/C4_E2B_B_EIGHT_CHART_ARB_FLOWPIPE_RIGOROUS_v0_3_5_1.py",
+      "producer": "post-publication research driver",
+      "scientific_scope": "Arb-outward parent for the C4-E2b v0.3.5.1 repair chain",
+      "sha256": "64a8ebeac48a544f6af02cb75816cea812daea5008340592a6ee95d17b93660e",
+      "status": "pending_recertification",
+      "type": "script"
+    },
+    {
+      "absolute_runtime_path_rationale": "Colab-compatible recovery driver; absolute runtime paths are documented and not used by audit_repo.py.",
+      "allow_absolute_runtime_paths": true,
+      "id": "c4_e2b_v0_3_2_1_script",
+      "inputs": [
+        "c4_e2b_v0_3_5_1_parent_script"
+      ],
+      "path": "archive/milestones/c4_e2b_v0_3_5_1/C4_E2B_TRANSITION_12_ARB_LADDER_RIGOROUS_v0_3_2_1.py",
+      "producer": "post-publication research driver",
+      "scientific_scope": "v0.3.5.1 transition 1->2 ladder driver using the Arb-outward parent",
+      "sha256": "74c917d8e4d8434d0628f708e7477429c5db8fc4b8fffa107f3989a16eada298",
+      "status": "pending_recertification",
+      "type": "script"
+    },
+    {
+      "absolute_runtime_path_rationale": "Colab-compatible recovery driver; absolute runtime paths are documented and not used by audit_repo.py.",
+      "allow_absolute_runtime_paths": true,
+      "id": "c4_e2b_v0_3_3_1_script",
+      "inputs": [
+        "c4_e2b_v0_3_5_1_parent_script"
+      ],
+      "path": "archive/milestones/c4_e2b_v0_3_5_1/C4_E2B_LOCAL_RECENTER_AFFINE_HANDOFF_RIGOROUS_v0_3_3_1.py",
+      "producer": "post-publication research driver",
+      "scientific_scope": "v0.3.5.1 local recenter/affine handoff driver using the Arb-outward parent",
+      "sha256": "3ab875858fa56673e82717810369639417b6db8e5bfc12feaa543222701b0d8b",
+      "status": "pending_recertification",
+      "type": "script"
+    },
+    {
+      "absolute_runtime_path_rationale": "Colab-compatible recovery driver; absolute runtime paths are documented and not used by audit_repo.py.",
+      "allow_absolute_runtime_paths": true,
+      "id": "c4_e2b_v0_3_4_2_script",
+      "inputs": [
+        "c4_e2b_v0_3_5_1_parent_script"
+      ],
+      "path": "archive/milestones/c4_e2b_v0_3_5_1/C4_E2B_HANDOFF_CONTROLLER_COVARIANCE_RIGOROUS_v0_3_4_2.py",
+      "producer": "post-publication research driver",
+      "scientific_scope": "v0.3.5.1 controller-covariance diagnostic driver using the Arb-outward parent",
+      "sha256": "d4df74bffbb1825163bdcbd9bd9c63ec4ca0ad1715e6db029bce3bccf02327c8",
+      "status": "pending_recertification",
+      "type": "script"
+    },
+    {
+      "absolute_runtime_path_rationale": "Colab-compatible recovery driver; absolute runtime paths are documented and not used by audit_repo.py.",
+      "allow_absolute_runtime_paths": true,
+      "id": "c4_e2b_v0_3_5_1_script",
+      "inputs": [
+        "c4_e2b_v0_3_5_1_parent_script",
+        "c4_e2b_v0_3_2_checkpoint",
+        "c4_e2b_v0_3_3_candidate",
+        "c4_e2b_v0_3_4_1_diagnostic"
+      ],
+      "path": "archive/milestones/c4_e2b_v0_3_5_1/C4_E2B_AFFINE_CORRELATED_HANDOFF_RIGOROUS_v0_3_5_1.py",
+      "producer": "post-publication research driver",
+      "scientific_scope": "v0.3.5.1 affine-correlated zero-time handoff repair driver",
+      "sha256": "241daa72242168b216932d986ca158dc113519048abe534b789a0268e804e177",
+      "status": "pending_recertification",
+      "type": "script"
+    },
+    {
+      "absolute_runtime_path_rationale": "Colab-compatible recovery driver; absolute runtime paths are documented and not used by audit_repo.py.",
+      "allow_absolute_runtime_paths": true,
+      "id": "c4_e2b_v0_3_5_1_output_verifier",
+      "inputs": [
+        "c4_e2b_v0_3_5_1_script"
+      ],
+      "path": "archive/milestones/c4_e2b_v0_3_5_1/VERIFY_C4_E2B_v0_3_5_1_OUTPUTS.py",
+      "producer": "post-publication research driver",
+      "scientific_scope": "read-only verifier for freshly generated v0.3.5.1 Colab outputs",
+      "sha256": "7f2de75a9f28e5ae26bced269238f1a5aaf7a1c2bc67e9584d84bc9ed2ea6ebb",
+      "status": "pending_recertification",
+      "type": "script"
+    },
+    {
+      "id": "c4_e2b_v0_3_5_1_colab_bundle",
+      "inputs": [
+        "c4_e2b_v0_3_5_1_parent_script",
+        "c4_e2b_v0_3_2_1_script",
+        "c4_e2b_v0_3_3_1_script",
+        "c4_e2b_v0_3_4_2_script",
+        "c4_e2b_v0_3_5_1_script",
+        "c4_e2b_v0_3_5_1_output_verifier"
+      ],
+      "path": "archive/milestones/c4_e2b_v0_3_5_1/C4_E2B_v0_3_5_1_COLAB_RECERTIFICATION_BUNDLE.zip",
+      "producer": "repository packaging helper",
+      "scientific_scope": "Colab recertification bundle; contains no result JSON",
+      "sha256": "c4e39d2f703288c707d26ec2d26a7b220f728e735a45205cfc86ac9a6be01675",
+      "status": "pending_recertification",
+      "type": "recovery_bundle"
+    },
+    {
+      "id": "c4_e2b_v0_3_5_1_certificate",
+      "inputs": [
+        "c4_e2b_v0_3_5_1_script"
+      ],
+      "path": "results/c4_e2b/c4_e2b_affine_correlated_handoff_v0_3_5_1.json",
+      "producer": "c4_e2b_v0_3_5_1_script",
+      "scientific_scope": "fresh Arb-outward v0.3.5.1 handoff certificate; absent until Colab recertification is deposited",
+      "sha256": "",
+      "status": "missing",
       "type": "certificate"
     }
   ],

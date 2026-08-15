@@ -50,13 +50,16 @@ v0.3.5 artifact certifies a zero-time affine-correlated chart 1->2 handoff only.
 
 ## Certified, Diagnostic, Development, Open
 
-- Certified: v0.7.4 + v0.9.3 local theorem boundary; C4-E2b v0.3.5 zero-time
-  handoff as a post-publication control-geometry certificate.
+- Certified: v0.7.4 + v0.9.3 local theorem boundary.
+- Certified with documented residual: C4-E2b v0.3.5 zero-time handoff has a
+  numerically robust decision but a documented binary64 outward-rounding
+  residual in controller-inverse and quadratic-radius enclosures; it is pending
+  rigorous v0.3.5.1 recertification.
 - Diagnostic: C4-E2b v0.3.2 ladder and v0.3.4.1 controller-covariance report.
 - Development: local bridge/recenter candidates and implementation scaffolds.
-- Open: positive-time C4-E2b v0.3.6, transition 2->3, eight-chart
-  continuation, complete response-fibre coverage, hardware validation, and
-  global flow.
+- Open: rigorous C4-E2b v0.3.5.1 until fresh hash-bound JSON is supplied;
+  positive-time C4-E2b v0.3.6, transition 2->3, eight-chart continuation,
+  complete response-fibre coverage, hardware validation, and global flow.
 
 ## Hashes and Claims
 

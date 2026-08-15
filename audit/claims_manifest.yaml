@@ -31,7 +31,7 @@
     },
     "c4_e2b_v0_3_5_zero_time_handoff": {
       "certificate": "results/c4_e2b/c4_e2b_affine_correlated_handoff_v0_3_5.json",
-      "description": "Zero-time affine-correlated chart 1->2 handoff on the complete frozen level-32 endpoint enclosure.",
+      "description": "Historical zero-time affine-correlated chart 1->2 handoff with a documented binary64 outward-rounding residual in helper code.",
       "inputs": [
         "results/c4_e2b/c4_e2b_transition_12_arb_ladder_v0_3_2.json",
         "results/c4_e2b/c4_e2b_local_bridge_candidate_v0_3_3.json",
@@ -46,8 +46,22 @@
         "summary.blocked_leaves": 0,
         "summary.evaluations": 1
       },
-      "scope_boundary": "Zero-time handoff only; no positive-time slab, eight-chart continuation, hardware validation, or global flow.",
-      "status": "certified"
+      "scope_boundary": "Zero-time handoff only, retained for provenance with documented binary64 residual; pending rigorous outward-rounded recertification. No positive-time slab, eight-chart continuation, hardware validation, or global flow.",
+      "status": "certified_with_documented_binary64_rounding_residual"
+    },
+    "c4_e2b_v0_3_5_1_outward_recertification": {
+      "certificate": "",
+      "description": "Pending Arb-outward repair chain for the v0.3.5 affine-correlated handoff residual.",
+      "inputs": [
+        "results/c4_e2b/c4_e2b_transition_12_arb_ladder_v0_3_2.json",
+        "results/c4_e2b/c4_e2b_local_bridge_candidate_v0_3_3.json",
+        "results/c4_e2b/c4_e2b_handoff_controller_covariance_v0_3_4_1.json"
+      ],
+      "producer": "archive/milestones/c4_e2b_v0_3_5_1/C4_E2B_AFFINE_CORRELATED_HANDOFF_RIGOROUS_v0_3_5_1.py",
+      "protocol": "",
+      "required_certificate_fields": {},
+      "scope_boundary": "No new certificate JSON is present in this repository state; do not infer success from scripts, logs, or the historical v0.3.5 report.",
+      "status": "pending_recertification"
     },
     "c4_e2b_v0_3_6_positive_time_slab": {
       "certificate": "",

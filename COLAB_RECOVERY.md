@@ -9,9 +9,11 @@
 !python archive/milestones/c4_e2b_v0_3_5/C4_E2B_AFFINE_CORRELATED_HANDOFF_SUBDIVISION_v0_3_5.py --help
 ```
 
-The repository now stores the level-32 checkpoint and the v0.3.5
-affine-correlated handoff certificate. A fresh runtime should first verify the
-stored artifacts instead of rerunning the long ladder.
+The repository stores the level-32 checkpoint and the original v0.3.5
+affine-correlated handoff report. That report is retained for provenance but
+has a documented binary64 outward-rounding residual in the controller-inverse
+and quadratic-radius paths. A fresh runtime should verify stored artifacts
+before rerunning the long ladder.
 
 Run the ladder only if the committed checkpoint is absent or fails provenance
 checks:
@@ -36,7 +38,7 @@ Or run both downstream stages:
 !python -u reproduce/c4_e2b_resume.py continue --level 32
 ```
 
-## Verify the stored v0.3.5 certificate
+## Recompute the original v0.3.5 report
 
 ```python
 %cd /content/Geometric-Flow
@@ -51,6 +53,21 @@ Or run both downstream stages:
 This command recomputes the v0.3.5 report from the stored checkpoint,
 candidate, and diagnostic inputs. It is not a v0.3.6 positive-time Picard slab
 and must not be described as one.
+
+## Rigorous v0.3.5.1 recertification package
+
+The rigorous outward-rounded repair chain is staged separately under
+`archive/milestones/c4_e2b_v0_3_5_1/` and in the generated Colab recovery ZIP.
+Its expected order is:
+
+1. v0.3.2.1 ladder;
+2. v0.3.3.1 local affine handoff;
+3. v0.3.4.2 controller-covariance diagnostic;
+4. v0.3.5.1 affine-correlated handoff;
+5. `VERIFY_OUTPUTS.py`.
+
+Until those scripts are actually rerun and their JSON outputs are committed,
+v0.3.5.1 remains `pending_recertification`.
 
 Before ending Colab, download or commit the JSON files under
 `results/c4_e2b/`. Those files are the resumable state; the Colab filesystem is

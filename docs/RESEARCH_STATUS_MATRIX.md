@@ -29,7 +29,7 @@ claim-boundary review.
 | G | global flow | OPEN_THEOREM | No complete fibre or arbitrary-endpoint theorem |
 | C | C4-D1 finite product-tube residence | ARB_CERTIFIED_LOCAL | Fixed local product tube; no positive invariance or global continuation |
 | C | C4-E2a nine-chart overlap chain | ARB_CERTIFIED_LOCAL | Overlap-chain certificate; not validated-flowpipe continuation |
-| C | C4-E2b validated flowpipe transport | OPEN_THEOREM | Next control-geometry milestone |
+| C | C4-E2b validated flowpipe transport | PENDING_RECERTIFICATION | v0.3.5 retained with documented binary64 residual; v0.3.5.1 Arb-outward repair chain has no deposited certificate yet |
 | W | finite-shot/memory/delay controller | NOT_YET_ARCHIVED | Local/external outputs are not current repository evidence |
 | T | process-time definition | DESIGN_ONLY | Candidate definitions only |
 | M | pseudo-Riemannian layer | OPEN_THEOREM | No physical spacetime claim |

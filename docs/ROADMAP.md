@@ -101,7 +101,7 @@ $$
 | C3 | Refined numerical attraction-tube boundary | Superseded by C4-D1/C4-E2a local certificates |
 | C4-D1 | Nonzero finite product-tube residence | Arb-certified local |
 | C4-E2a | Nine-chart moving-atlas overlap chain | Arb-certified local |
-| C4-E2b | Validated flowpipe transport | Open theorem |
+| C4-E2b | Validated flowpipe transport | Pending recertification after documented v0.3.5 binary64 residual |
 | C5 | Controlled multi-chart continuation | Open |
 | C6 | Long-time normal attraction | Open |
 
@@ -109,6 +109,10 @@ The current C4 certificates are post-publication controlled-geometry evidence.
 They do not modify the published local ODE theorem, do not claim positive
 invariance, and do not establish Wiener-type observation-memory feedback.
 C4-E2a is an overlap-chain certificate, not a validated-flowpipe continuation.
+
+C4-E2b v0.3.5 is retained as audit history with a documented binary64
+outward-rounding residual. The v0.3.5.1 Arb-outward repair chain is present
+for recertification, but no fresh certificate JSON is deposited yet.
 
 C4-style closure milestones must strictly certify at least:
 
