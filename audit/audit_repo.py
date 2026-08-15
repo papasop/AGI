@@ -7,6 +7,7 @@ run Arb, Picard, Krawczyk, Lohner, or any other scientific computation.
 from __future__ import annotations
 
 import argparse
+import ast
 import datetime as _dt
 import hashlib
 import json
@@ -24,7 +25,16 @@ VERSION = "1.0"
 ROOT = Path(__file__).resolve().parents[1]
 STATUSES = ("PASS", "WARNING", "FAIL", "NOT CHECKED")
 ABSOLUTE_RUNTIME_RE = re.compile(r"(/Users/|/content(?:/|\b)|/private/tmp(?:/|\b)|/tmp(?:/|\b)|[A-Za-z]:\\\\)")
-ALLOW_COMMENT_RE = re.compile(r"audit:\s*allow", re.IGNORECASE)
+ALLOW_COMMENT_RE = re.compile(
+    r"audit:\s*allow\s+([a-z0-9_.-]+)\s*;\s*reason\s*=\s*\S",
+    re.IGNORECASE,
+)
+ALLOW_CATEGORIES = {
+    "hardcoded_result_screen",
+    "silent_fallback_screen",
+    "output_overwrite_screen",
+    "absolute_runtime_paths",
+}
 HARDCODE_PATTERNS = [
     ("hardcoded_all_gates_pass_true", re.compile(r"all_gates_pass\s*[=:]\s*True\b")),
     ("hardcoded_certified_status", re.compile(r"scientific_status\s*[=:].*CERTIFIED")),
@@ -92,6 +102,19 @@ def git_text(root: Path, args: list[str]) -> tuple[int, str]:
 def relpath_ok(path: str) -> bool:
     p = Path(path)
     return not p.is_absolute() and ".." not in p.parts and path not in ("", ".")
+
+
+def allow_categories_for_line(line: str) -> set[str]:
+    categories = set()
+    for match in ALLOW_COMMENT_RE.finditer(line):
+        category = match.group(1).lower()
+        if category in ALLOW_CATEGORIES:
+            categories.add(category)
+    return categories
+
+
+def line_allows(line: str, category: str) -> bool:
+    return category in allow_categories_for_line(line)
 
 
 def read_sha_manifest(path: Path) -> tuple[dict[str, str], list[str]]:
@@ -174,14 +197,56 @@ def check_artifact_files(root: Path, artifacts: list[dict[str, Any]]) -> list[Ch
             except Exception as exc:  # noqa: BLE001
                 checks.append(Check("artifact_json_parse", "FAIL", f"malformed JSON: {exc}", [rel]))
     id_or_path = ids | set(paths_seen)
+    graph: dict[str, list[str]] = {}
     for artifact in artifacts:
+        aid = str(artifact.get("id", ""))
         rel = str(artifact.get("path", ""))
+        node = aid or rel
+        graph.setdefault(node, [])
         for dep in artifact.get("inputs", []) or []:
             dep_text = str(dep)
             if dep_text not in id_or_path:
                 checks.append(Check("artifact_dependency_resolves", "FAIL", f"unresolved dependency {dep_text}", [rel]))
             else:
                 checks.append(Check("artifact_dependency_resolves", "PASS", f"dependency {dep_text} resolves", [rel]))
+                dep_node = dep_text if dep_text in ids else paths_seen.get(dep_text, dep_text)
+                graph[node].append(dep_node)
+    checks.extend(check_dependency_cycles(graph, "artifact_dependency_cycle"))
+    return checks
+
+
+def check_dependency_cycles(graph: dict[str, list[str]], check_name: str) -> list[Check]:
+    checks: list[Check] = []
+    visiting: set[str] = set()
+    visited: set[str] = set()
+    stack: list[str] = []
+    cycles: list[str] = []
+
+    def dfs(node: str) -> None:
+        if node in visiting:
+            try:
+                start = stack.index(node)
+                cycle = stack[start:] + [node]
+            except ValueError:
+                cycle = [node, node]
+            cycles.append(" -> ".join(cycle))
+            return
+        if node in visited:
+            return
+        visiting.add(node)
+        stack.append(node)
+        for dep in graph.get(node, []):
+            dfs(dep)
+        stack.pop()
+        visiting.remove(node)
+        visited.add(node)
+
+    for node in sorted(graph):
+        dfs(node)
+    if cycles:
+        checks.append(Check(check_name, "FAIL", "dependency graph contains a cycle", sorted(set(cycles))[:20]))
+    else:
+        checks.append(Check(check_name, "PASS", "dependency graph is acyclic"))
     return checks
 
 
@@ -226,7 +291,9 @@ def check_certificate_fields(root: Path, claims: dict[str, Any]) -> list[Check]:
 
 def check_claim_paths(root: Path, claims: dict[str, Any]) -> list[Check]:
     checks: list[Check] = []
+    graph: dict[str, list[str]] = {}
     for claim_id, claim in (claims.get("claims") or {}).items():
+        graph.setdefault(str(claim_id), [])
         for field_name in ("producer", "protocol", "certificate"):
             value = claim.get(field_name)
             if value:
@@ -240,10 +307,12 @@ def check_claim_paths(root: Path, claims: dict[str, Any]) -> list[Check]:
                 else:
                     checks.append(Check("claim_path_resolves", "PASS", f"{field_name} path exists", [claim_id, str(value)]))
         for input_path in claim.get("inputs", []) or []:
+            graph[str(claim_id)].append(str(input_path))
             if not relpath_ok(str(input_path)) or not (root / str(input_path)).is_file():
                 checks.append(Check("claim_input_resolves", "FAIL", "claim input missing or non-relative", [claim_id, str(input_path)]))
             else:
                 checks.append(Check("claim_input_resolves", "PASS", "claim input exists", [claim_id, str(input_path)]))
+    checks.extend(check_dependency_cycles(graph, "claim_dependency_cycle"))
     return checks
 
 
@@ -283,6 +352,50 @@ def source_files(root: Path) -> list[Path]:
     return out
 
 
+def constant_is_certified(value: ast.AST) -> bool:
+    return isinstance(value, ast.Constant) and str(value.value).upper() == "CERTIFIED"
+
+
+def constant_is_true(value: ast.AST) -> bool:
+    return isinstance(value, ast.Constant) and value.value is True
+
+
+def ast_hardcoded_findings(path: Path, rel: str) -> list[str]:
+    if path.suffix != ".py":
+        return []
+    try:
+        tree = ast.parse(path.read_text(encoding="utf-8", errors="replace"), filename=rel)
+    except SyntaxError:
+        return []
+    findings: list[str] = []
+
+    def add(kind: str, node: ast.AST) -> None:
+        lineno = getattr(node, "lineno", "?")
+        findings.append(f"{kind}:{rel}:{lineno}:AST")
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id == "all_gates_pass" and constant_is_true(node.value):
+                    add("hardcoded_all_gates_pass_true", node)
+                if isinstance(target, ast.Name) and target.id == "scientific_status" and constant_is_certified(node.value):
+                    add("hardcoded_certified_status", node)
+        elif isinstance(node, ast.AnnAssign):
+            target = node.target
+            value = node.value
+            if isinstance(target, ast.Name) and target.id == "all_gates_pass" and value is not None and constant_is_true(value):
+                add("hardcoded_all_gates_pass_true", node)
+            if isinstance(target, ast.Name) and target.id == "scientific_status" and value is not None and constant_is_certified(value):
+                add("hardcoded_certified_status", node)
+        elif isinstance(node, ast.Dict):
+            for key, value in zip(node.keys, node.values):
+                if isinstance(key, ast.Constant) and key.value == "all_gates_pass" and constant_is_true(value):
+                    add("hardcoded_all_gates_pass_true", node)
+                if isinstance(key, ast.Constant) and key.value == "scientific_status" and constant_is_certified(value):
+                    add("hardcoded_certified_status", node)
+    return findings
+
+
 def check_absolute_paths(root: Path, artifacts: list[dict[str, Any]]) -> list[Check]:
     checks: list[Check] = []
     for artifact in artifacts:
@@ -294,7 +407,7 @@ def check_absolute_paths(root: Path, artifacts: list[dict[str, Any]]) -> list[Ch
             continue
         hits: list[str] = []
         for lineno, line in enumerate(path.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
-            if ABSOLUTE_RUNTIME_RE.search(line) and not ALLOW_COMMENT_RE.search(line):
+            if ABSOLUTE_RUNTIME_RE.search(line):
                 hits.append(f"{rel}:{lineno}:{line.strip()[:160]}")
         if hits and artifact.get("allow_absolute_runtime_paths"):
             checks.append(Check("absolute_runtime_paths", "WARNING", "absolute runtime paths are documented legacy/Colab behaviour", hits[:10]))
@@ -314,16 +427,18 @@ def check_static_risks(root: Path) -> list[Check]:
         if rel.startswith("audit/") or rel.startswith("tests/audit/"):
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
+        findings.extend(ast_hardcoded_findings(path, rel))
         for lineno, line in enumerate(text.splitlines(), 1):
-            if ALLOW_COMMENT_RE.search(line):
-                continue
+            hardcoded_allowed = line_allows(line, "hardcoded_result_screen")
+            fallback_allowed = line_allows(line, "silent_fallback_screen")
+            overwrite_allowed = line_allows(line, "output_overwrite_screen")
             for name, pattern in HARDCODE_PATTERNS:
-                if pattern.search(line):
+                if pattern.search(line) and not hardcoded_allowed:
                     findings.append(f"{name}:{rel}:{lineno}:{line.strip()[:180]}")
                     break
-            if re.search(r"Path\(\"/(content|tmp)|glob\(|rglob\(|download|urlretrieve|locate\(", line):
+            if re.search(r"Path\(\"/(content|tmp)|glob\(|rglob\(|download|urlretrieve|locate\(", line) and not fallback_allowed:
                 fallback_findings.append(f"{rel}:{lineno}:{line.strip()[:180]}")
-            if re.search(r"add_argument\(\"--report\".*default=.*results/|write_text\(|open\(.+[\"']w", line):
+            if re.search(r"add_argument\(\"--report\".*default=.*results/|write_text\(|open\(.+[\"']w", line) and not overwrite_allowed:
                 overwrite_findings.append(f"{rel}:{lineno}:{line.strip()[:180]}")
     checks = [
         Check(
@@ -433,7 +548,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.report:
         Path(args.report).write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print_summary(report)
-    return 0 if report["all_audit_gates_pass"] else 1
+    if args.strict and not report["all_audit_gates_pass"]:
+        return 1
+    return 0
 
 
 if __name__ == "__main__":

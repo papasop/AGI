@@ -25,7 +25,7 @@ class AuditRepoTests(unittest.TestCase):
         tmp = tempfile.TemporaryDirectory()
         root = Path(tmp.name)
         write(root / "data" / "input.json", '{"all_gates_pass": true, "scientific_status": "OK"}\n')
-        write(root / "scripts" / "producer.py", "VALUE = 2.0  # audit: allow mathematical constant; source=test\n")
+        write(root / "scripts" / "producer.py", "VALUE = 2.0\n")
         artifact = {
             "schema_version": "1.0",
             "artifacts": [
@@ -80,9 +80,11 @@ class AuditRepoTests(unittest.TestCase):
         write(root / "SHA256SUMS.txt", "".join(f"{digest}  {rel}\n" for rel, digest in sorted(sums.items())))
         return tmp, root
 
-    def run_audit(self, root, report=True):
+    def run_audit(self, root, report=True, strict=True):
         report_path = root / "audit_report.json"
-        cmd = [sys.executable, str(AUDIT), "--strict", "--root", str(root)]
+        cmd = [sys.executable, str(AUDIT), "--root", str(root)]
+        if strict:
+            cmd.append("--strict")
         if report:
             cmd += ["--report", str(report_path)]
         proc = subprocess.run(cmd, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -103,6 +105,15 @@ class AuditRepoTests(unittest.TestCase):
             proc, payload = self.run_audit(root)
             self.assertNotEqual(proc.returncode, 0)
             self.assertFalse(payload["all_audit_gates_pass"])
+
+    def test_non_strict_reports_failures_without_failing_exit_code(self):
+        tmp, root = self.make_repo()
+        with tmp:
+            (root / "data" / "input.json").unlink()
+            proc, payload = self.run_audit(root, strict=False)
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            self.assertFalse(payload["all_audit_gates_pass"])
+            self.assertGreater(payload["summary"]["FAIL"], 0)
 
     def test_hash_mismatch_fails(self):
         tmp, root = self.make_repo()
@@ -151,6 +162,66 @@ class AuditRepoTests(unittest.TestCase):
             self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
             hardcoded = [c for c in payload["checks"] if c["name"] == "hardcoded_result_screen"][0]
             self.assertEqual(hardcoded["status"], "WARNING")
+
+    def test_multiline_hardcoded_all_gates_pass_is_flagged_by_ast(self):
+        tmp, root = self.make_repo()
+        with tmp:
+            write(root / "scripts" / "extra.py", "result = {\n    'all_gates_pass':\n        True,\n}\n")
+            proc, payload = self.run_audit(root)
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            hardcoded = [c for c in payload["checks"] if c["name"] == "hardcoded_result_screen"][0]
+            self.assertEqual(hardcoded["status"], "WARNING")
+            self.assertTrue(any("hardcoded_all_gates_pass_true" in item for item in hardcoded["evidence"]))
+
+    def test_generic_audit_allow_does_not_hide_static_risk(self):
+        tmp, root = self.make_repo()
+        with tmp:
+            write(root / "scripts" / "extra.py", "all_gates_pass = True  # audit: allow\n")
+            proc, payload = self.run_audit(root)
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            hardcoded = [c for c in payload["checks"] if c["name"] == "hardcoded_result_screen"][0]
+            self.assertEqual(hardcoded["status"], "WARNING")
+
+    def test_structured_audit_allow_hides_line_regex_static_risk(self):
+        tmp, root = self.make_repo()
+        with tmp:
+            write(
+                root / "docs" / "note.md",
+                "candidate margin is 1.25e-4  # audit: allow hardcoded_result_screen; reason=test fixture\n",
+            )
+            proc, payload = self.run_audit(root)
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            hardcoded = [c for c in payload["checks"] if c["name"] == "hardcoded_result_screen"][0]
+            self.assertEqual(hardcoded["status"], "PASS")
+
+    def test_artifact_dependency_self_cycle_fails(self):
+        tmp, root = self.make_repo()
+        with tmp:
+            manifest = json.loads((root / "audit" / "artifact_manifest.json").read_text())
+            manifest["artifacts"][0]["inputs"] = ["producer"]
+            write(root / "audit" / "artifact_manifest.json", json.dumps(manifest, indent=2) + "\n")
+            lines = []
+            for rel in ["audit/artifact_manifest.json", "audit/claims_manifest.yaml", "data/input.json", "scripts/producer.py"]:
+                lines.append(f"{sha(root / rel)}  {rel}\n")
+            write(root / "SHA256SUMS.txt", "".join(lines))
+            proc, payload = self.run_audit(root)
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("artifact_dependency_cycle", [c["name"] for c in payload["checks"] if c["status"] == "FAIL"])
+
+    def test_artifact_dependency_indirect_cycle_fails(self):
+        tmp, root = self.make_repo()
+        with tmp:
+            manifest = json.loads((root / "audit" / "artifact_manifest.json").read_text())
+            manifest["artifacts"][0]["inputs"] = ["cert"]
+            manifest["artifacts"][1]["inputs"] = ["producer"]
+            write(root / "audit" / "artifact_manifest.json", json.dumps(manifest, indent=2) + "\n")
+            lines = []
+            for rel in ["audit/artifact_manifest.json", "audit/claims_manifest.yaml", "data/input.json", "scripts/producer.py"]:
+                lines.append(f"{sha(root / rel)}  {rel}\n")
+            write(root / "SHA256SUMS.txt", "".join(lines))
+            proc, payload = self.run_audit(root)
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn("artifact_dependency_cycle", [c["name"] for c in payload["checks"] if c["status"] == "FAIL"])
 
     def test_claim_nonexistent_input_fails(self):
         tmp, root = self.make_repo()
