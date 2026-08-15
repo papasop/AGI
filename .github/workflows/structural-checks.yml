@@ -22,7 +22,9 @@ jobs:
         run: python reproduce/published_paper.py
       - name: Run external repository audit
         run: python audit/audit_repo.py --strict
-      - name: Test external repository audit
+      - name: Install audit test dependency
+        run: python -m pip install pytest==8.4.1
+      - name: Run audit tests
         run: python -m pytest tests/audit
       - name: Verify complete release manifest
         run: sha256sum -c SHA256SUMS.txt
