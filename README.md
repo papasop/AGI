@@ -16,11 +16,11 @@ descent of an independent objective.
 
 The model has fourteen phase
 parameters for a driven-qubit detuning scan and is verified with
-192-bit Arb interval arithmetic. The archived v1.2.12 manuscript is
+192-bit Arb interval arithmetic. The recommended v1.2.13 manuscript is
 *Computation as Geometric Flow: An Arb-Certified
-Local Intrinsic ODE on a Quantum-Control Response Fibre*. It incorporates the
-recorded v1.2.9 errata and subsequent textual clarifications into a
-self-contained recommended reading version and establishes the
+Local Intrinsic ODE on a Quantum-Control Response Fibre*. It is a disclosure
+and notation revision derived from v1.2.12, incorporates the recorded v1.2.9
+errata and subsequent textual clarifications, and establishes the
 Level-I local theorem. It does not change the mathematical
 conclusions, theorem-bearing constants, frozen certificates, or the v0.7.4 +
 v0.9.3 theorem boundary. No Arb rerun was performed or required. Later
@@ -33,26 +33,29 @@ identifies the earlier public manuscript boundary; it is not the preferred
 current-manuscript citation. The v1.2.9 DOI
 [10.5281/zenodo.21882158](https://doi.org/10.5281/zenodo.21882158) and
 [`paper-local-ode-v1.5`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5)
-remain immutable historical records. The recommended v1.2.12 release is
-archived at [10.5281/zenodo.21895917](https://doi.org/10.5281/zenodo.21895917)
-and [`paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6).
+remain immutable historical records. The recommended v1.2.13 release is
+archived at [10.5281/zenodo.21947745](https://doi.org/10.5281/zenodo.21947745),
+[Zenodo record 21947745](https://zenodo.org/records/21947745), and
+[`paper-local-ode-v1.7`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.7).
+The all-versions Concept DOI is
+[10.5281/zenodo.15879392](https://doi.org/10.5281/zenodo.15879392).
 The historical raw record URL `https://zenodo.org/records/21728432` is not the
 current paper record.
 
-A disclosure-revised manuscript archive candidate is also stored in this
-repository as v1.2.13. It resolves notation and disclosure gaps in the
-manuscript exposition only; no theorem-bearing source, certificate, numerical
-gate, or published release boundary is changed.
+The v1.2.12 release remains an immutable historical record at
+[10.5281/zenodo.21895917](https://doi.org/10.5281/zenodo.21895917) and
+[`paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6).
 
 ## Start Here
 
 | Purpose | Link |
 | --- | --- |
-| Read the recommended v1.2.12 manuscript | [`docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`](docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf) |
-| Inspect the matching v1.2.12 source ZIP | [`docs/manuscript/geometric_flow_v1_2_12_source.zip`](docs/manuscript/geometric_flow_v1_2_12_source.zip) |
-| Inspect the v1.2.13 disclosure-revision archive candidate | [`docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf`](docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf); [`source ZIP`](docs/manuscript/geometric_flow_v1_2_13_source.zip) |
-| Cite the recommended v1.2.12 public version | [Zenodo DOI `10.5281/zenodo.21895917`](https://doi.org/10.5281/zenodo.21895917) |
-| Download the matching GitHub release | [GitHub Release `paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6) |
+| Read the recommended v1.2.13 manuscript | [`docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf`](docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf) |
+| Inspect the matching v1.2.13 source ZIP | [`docs/manuscript/geometric_flow_v1_2_13_source.zip`](docs/manuscript/geometric_flow_v1_2_13_source.zip) |
+| Cite the recommended v1.2.13 public version | [Zenodo DOI `10.5281/zenodo.21947745`](https://doi.org/10.5281/zenodo.21947745) |
+| Download the matching GitHub release | [GitHub Release `paper-local-ode-v1.7`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.7) |
+| Inspect v1.2.13 release provenance | [`docs/manuscript/V1_2_13_RELEASE_PROVENANCE.md`](docs/manuscript/V1_2_13_RELEASE_PROVENANCE.md) |
+| Audit the historical v1.2.12 public release | [GitHub Release `paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6) |
 | Audit the historical v1.2.9 public release | [GitHub Release `paper-local-ode-v1.5`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5) |
 | Verify the published theorem boundary | [`python reproduce/published_paper.py`](reproduce/published_paper.py) |
 | Follow the proof and certificate map | [Proof navigation](docs/PROOF_NAVIGATION.md) |
@@ -254,11 +257,18 @@ Historical and archive material:
 
 ## Citation And Licences
 
-The recommended reading version is the frozen v1.2.12 manuscript archived in
+The recommended reading version is the frozen v1.2.13 manuscript archived in
 this repository and published through the following immutable release records:
 
-- PDF: [`docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`](docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf)
-- source ZIP: [`docs/manuscript/geometric_flow_v1_2_12_source.zip`](docs/manuscript/geometric_flow_v1_2_12_source.zip)
+- PDF: [`docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf`](docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf)
+- source ZIP: [`docs/manuscript/geometric_flow_v1_2_13_source.zip`](docs/manuscript/geometric_flow_v1_2_13_source.zip)
+- DOI: [10.5281/zenodo.21947745](https://doi.org/10.5281/zenodo.21947745)
+- Record: [https://zenodo.org/records/21947745](https://zenodo.org/records/21947745)
+- Concept DOI: [10.5281/zenodo.15879392](https://doi.org/10.5281/zenodo.15879392)
+- GitHub Release: [`paper-local-ode-v1.7`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.7)
+
+Historical v1.2.12 public archive:
+
 - DOI: [10.5281/zenodo.21895917](https://doi.org/10.5281/zenodo.21895917)
 - GitHub Release: [`paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6)
 
@@ -273,10 +283,10 @@ identifies the earlier public manuscript boundary; it is not the preferred
 current-manuscript citation.
 
 Suggested citation for the local theorem and published paper boundary: cite
-v1.2.12 using DOI `10.5281/zenodo.21895917` and identify the theorem-bearing
+v1.2.13 using DOI `10.5281/zenodo.21947745` and identify the theorem-bearing
 software boundary as v0.7.4 + v0.9.3.
 
-Software is released under the [MIT license](LICENSE). The v1.2.12 manuscript
+Software is released under the [MIT license](LICENSE). The v1.2.13 manuscript
 and manuscript source ZIP are released under Creative Commons Attribution 4.0
 International (CC BY 4.0).
 
@@ -285,7 +295,7 @@ International (CC BY 4.0).
 <details>
 <summary>展开摘要</summary>
 
-本仓库归档并复现 v1.2.12 冻结文稿：在一个十四相位驱动量子比特模型中，
+本仓库归档并复现 v1.2.13 冻结文稿：在一个十四相位驱动量子比特模型中，
 严格证明声明响应 \(\mathcal R_3\) 可被精确保持，同时独立目标 \(L_6\)
 沿局部响应纤维 ODE 严格下降。
 
@@ -293,8 +303,9 @@ International (CC BY 4.0).
 微步；尚未证明第五框架、完整子域遍历、十图册延拓、任意端点连接、
 硬件/QPU 行为或全局几何流。
 
-v1.2.12 吸收了 v1.2.9 勘误和后续文字澄清；它不改变定理常数、证书或
-v0.7.4 + v0.9.3 软件边界。v0.10.x、受控吸引、反馈、过程时间、双度量、
+v1.2.13 是从 v1.2.12 派生的 disclosure/notation 修订，吸收了 v1.2.9
+勘误和后续文字澄清；它不改变定理常数、证书或 v0.7.4 + v0.9.3 软件边界。
+v0.10.x、受控吸引、反馈、过程时间、双度量、
 证书 DAG 和 K=1 相关内容是发表后研究路线，不扩大本地定理边界。
 神经网络
 响应纤维只是独立类比方向，不属于本发表论文定理。
