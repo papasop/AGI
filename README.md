@@ -39,12 +39,18 @@ and [`paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/
 The historical raw record URL `https://zenodo.org/records/21728432` is not the
 current paper record.
 
+A disclosure-revised manuscript archive candidate is also stored in this
+repository as v1.2.13. It resolves notation and disclosure gaps in the
+manuscript exposition only; no theorem-bearing source, certificate, numerical
+gate, or published release boundary is changed.
+
 ## Start Here
 
 | Purpose | Link |
 | --- | --- |
 | Read the recommended v1.2.12 manuscript | [`docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`](docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf) |
 | Inspect the matching v1.2.12 source ZIP | [`docs/manuscript/geometric_flow_v1_2_12_source.zip`](docs/manuscript/geometric_flow_v1_2_12_source.zip) |
+| Inspect the v1.2.13 disclosure-revision archive candidate | [`docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf`](docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf); [`source ZIP`](docs/manuscript/geometric_flow_v1_2_13_source.zip) |
 | Cite the recommended v1.2.12 public version | [Zenodo DOI `10.5281/zenodo.21895917`](https://doi.org/10.5281/zenodo.21895917) |
 | Download the matching GitHub release | [GitHub Release `paper-local-ode-v1.6`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6) |
 | Audit the historical v1.2.9 public release | [GitHub Release `paper-local-ode-v1.5`](https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.5) |

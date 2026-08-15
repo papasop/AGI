@@ -189,6 +189,56 @@ three passes, and zero overfull or underfull boxes. The source manifest lists
 16 source-file hashes and excludes `SOURCE_MANIFEST.md` itself to avoid a
 self-hash loop.
 
+## v1.2.13 disclosure revision archive candidate
+
+- Manuscript version: `v1.2.13`
+- Scope: disclosure and notation revision only, derived from v1.2.12. The
+  revision resolves manuscript-exposition gaps concerning frame construction,
+  Krawczyk normal-box uniqueness, the segment-propagator factor convention,
+  reflected analytic extension, fixed zero-threshold child gates,
+  cross-environment reproducibility, and subdivision indexing. It does not
+  change theorem statements, mathematical conclusions, theorem-bearing
+  constants, interval endpoints, frozen certificates, validation gates, or the
+  v0.7.4 + v0.9.3 theorem boundary.
+- PDF:
+  `docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf`
+- PDF SHA-256:
+  `ac32035f2d0ead1db713e8724ad8838241a86dd61514712348955117207f92fa`
+- source archive:
+  `docs/manuscript/geometric_flow_v1_2_13_source.zip`
+- source SHA-256:
+  `0be1613be102d878f9b5362fa1d61792d4e3a6496dc5cb3a97f139b6ac64db06`
+- source manifest inside archive:
+  `geometric-flow-latex/SOURCE_MANIFEST.md`
+- source manifest SHA-256:
+  `29d08de1a9f14f20aa668a0b257d4827f6a3f684208bb2c804cc9105b28feb07`
+- pages: 21, A4
+- last displayed equation: (37)
+- references: [1]-[18]
+- deterministic build metadata:
+  `SOURCE_DATE_EPOCH=1786789922`, `FORCE_SOURCE_DATE=1`
+- declared build engine:
+  `pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)`
+- declared build command: three passes of
+  `pdflatex -interaction=nonstopmode -halt-on-error main.tex`
+- theorem software boundary: unchanged v0.7.4 parent-box certificate and
+  unchanged v0.9.3 intrinsic ODE certificate.
+- Arb rerun: not performed for this manuscript revision; the existing frozen
+  theorem certificates remain the governing numerical evidence.
+- C4-E2b dependency: none.
+- `GLOBAL_FLOW_CLAIMED`: false
+- repository release tag: not created in this PR.
+- GitHub Release: not created in this PR.
+- Zenodo version DOI: not created in this PR.
+
+The supplied source archive is the source bundle for the 21-page disclosure
+revision PDF. Its internal `SOURCE_MANIFEST.md` verifies 16/16 source-file
+hashes. The archive excludes build products such as `main.aux`, `main.log`,
+`main.out`, `main.toc`, and `main.pdf`. Local byte-identical rebuilding was not
+claimed during this repository deposit unless the declared pdfTeX engine is
+available; the package records deterministic byte identity under the build
+environment and epoch listed above.
+
 ## Public archive and repository binding
 
 - Historical Zenodo version DOI: `10.5281/zenodo.21728432`

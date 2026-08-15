@@ -37,6 +37,24 @@ frozen v0.7.4 parent-box certificate plus the frozen v0.9.3 local intrinsic
 ODE certificate. No Arb rerun was performed for the manuscript freeze.
 `GLOBAL_FLOW_CLAIMED=false`.
 
+## Disclosure Revision Archive Candidate
+
+- Manuscript version: `v1.2.13`
+- PDF:
+  `docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf`
+- PDF SHA-256:
+  `ac32035f2d0ead1db713e8724ad8838241a86dd61514712348955117207f92fa`
+- source archive:
+  `docs/manuscript/geometric_flow_v1_2_13_source.zip`
+- source SHA-256:
+  `0be1613be102d878f9b5362fa1d61792d4e3a6496dc5cb3a97f139b6ac64db06`
+
+The v1.2.13 archive candidate is a disclosure and notation revision derived
+from v1.2.12. It resolves manuscript-exposition gaps only and does not change
+the published v1.2.12 release tag, Zenodo DOI, theorem-bearing software
+boundary, numerical certificate, validation gate, or claim scope. No Arb rerun
+was performed or required, and `GLOBAL_FLOW_CLAIMED=false`.
+
 ## Historical Public Release
 
 - Manuscript version: `v1.2.9`

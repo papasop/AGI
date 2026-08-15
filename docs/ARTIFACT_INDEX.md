@@ -27,6 +27,7 @@ before invoking the long versioned artifact.  A mismatch fails closed.
 
 | Manuscript archive | Primary artifact | Stored reference result | Claim boundary |
 | --- | --- | --- | --- |
+| v1.2.13 | `docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf`; `docs/manuscript/geometric_flow_v1_2_13_source.zip` | Repository archive candidate; no GitHub Release or Zenodo DOI in this PR | Disclosure and notation revision only; no theorem-bearing certificate, numerical gate, Arb rerun, C4-E2b dependency, or global-flow claim. |
 | v1.2.12 | `docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`; `docs/manuscript/geometric_flow_v1_2_12_source.zip` | Recommended public version: DOI `10.5281/zenodo.21895917`; GitHub Release `paper-local-ode-v1.6` | Textual revision only; incorporates v1.2.9 errata; no theorem-bearing certificate, numerical gate, Arb rerun, or global-flow claim. |
 | v1.2.9 | `docs/manuscript/geometric_flow_v1_2_9_freeze_candidate.pdf`; `docs/MANUSCRIPT_ERRATA_v1.2.9.md` | Historical public Zenodo/GitHub release boundary | Immutable historical version DOI and erratum; theorem-bearing boundary remains v0.7.4 + v0.9.3. |
 

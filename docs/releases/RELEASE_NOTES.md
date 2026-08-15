@@ -1,5 +1,22 @@
 # v0.9.23 release notes
 
+## Repository archive candidate: v1.2.13 disclosure revision
+
+- Archive the audited disclosure-revision PDF and its self-contained LaTeX
+  source bundle in `docs/manuscript/`.
+- Resolve manuscript-exposition gaps concerning frame construction, Krawczyk
+  normal-box uniqueness, segment-propagator factor convention, reflected
+  analytic extension, fixed zero-threshold child gates, cross-environment
+  reproducibility, and subdivision indexing.
+- Preserve the v1.2.12 public release, DOI, tag, and source archive as
+  immutable historical records until a separate release gate is authorized.
+- Retain the v0.7.4 + v0.9.3 theorem-bearing software boundary.
+- Make no theorem-bearing, certificate, protocol, JSON, atlas, C4-E2b, or
+  numerical gate changes.
+- Require no Arb rerun and keep `GLOBAL_FLOW_CLAIMED=false`.
+
+The v1.2.13 archive candidate has no GitHub Release or Zenodo DOI in this PR.
+
 ## Published manuscript archive: v1.2.12
 
 - Archive the independently reviewed v1.2.12 textual manuscript revision and
