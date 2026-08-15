@@ -20,5 +20,9 @@ jobs:
         run: python scripts/verify_reference_results.py
       - name: Test published paper entrypoint
         run: python reproduce/published_paper.py
+      - name: Run external repository audit
+        run: python audit/audit_repo.py --strict
+      - name: Test external repository audit
+        run: python -m pytest tests/audit
       - name: Verify complete release manifest
         run: sha256sum -c SHA256SUMS.txt
