@@ -80,6 +80,12 @@ python scripts/verify_reference_results.py
 python reproduce/published_paper.py
 ```
 
+`python reproduce/published_paper.py` is a stored-artifact structural boundary
+check in its default mode. It verifies the recorded v0.7.4/v0.9.3 release
+boundary and `GLOBAL_FLOW_CLAIMED=false` from existing repository artifacts; it
+does not rerun Arb or rebuild the theorem certificates unless invoked with its
+separate `--run` option.
+
 The full scientific reproducers are documented separately in
 `docs/REVIEWER_REPRODUCTION.md` and `docs/REPRODUCIBILITY.md`.
 
