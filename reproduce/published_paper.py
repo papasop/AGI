@@ -85,6 +85,9 @@ def verify_stored_boundary() -> int:
     code = run([sys.executable, "scripts/verify_reference_results.py"])
     if code:
         return code
+    code = run([sys.executable, "tools/verify_certificate_semantics.py"])
+    if code:
+        return code
     stage_a = load_json(ROOT / "results" / "reference_run_summary.json")
     stage_b = load_json(ROOT / "results" / "v0_9_3_reference" / "report.json")
     result = joint_gate(stage_a, stage_b)

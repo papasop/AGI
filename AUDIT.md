@@ -70,6 +70,12 @@ v0.3.5 artifact certifies a zero-time affine-correlated chart 1->2 handoff only.
   certificates, required certificate fields, and boundaries.
 - `audit/dependency_map.md` gives a readable dependency summary.
 
+The repository distinguishes artifact-identity verification from
+single-instance semantic gate verification. The semantic verifier recomputes
+declared gate predicates from frozen protocol thresholds and recorded
+certificate values; it does not rerun Arb interval computations or
+independently prove the recorded enclosures.
+
 Do not reconstruct a missing certificate from logs or prose. If an artifact is
 missing, the audit must fail closed or mark the claim as missing/open. A log
 summary is not a certificate.

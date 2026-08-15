@@ -23,6 +23,12 @@ declared files, hashes, provenance links, and static audit gates passed. The
 field `all_audit_gates_pass` must not be confused with any scientific
 certificate field named `all_gates_pass`.
 
+The repository distinguishes artifact-identity verification from
+single-instance semantic gate verification. The semantic verifier recomputes
+declared gate predicates from frozen protocol thresholds and recorded
+certificate values; it does not rerun Arb interval computations or
+independently prove the recorded enclosures.
+
 Machine-readable output is available:
 
 ```bash

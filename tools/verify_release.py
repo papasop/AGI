@@ -6,6 +6,7 @@ from __future__ import annotations
 import ast
 import hashlib
 import json
+import subprocess
 import sys
 import zipfile
 from pathlib import Path
@@ -280,6 +281,17 @@ def main() -> int:
             is True
             and report.get("uniform_dL6_dt_upper", 0.0) < -0.55
         )
+        semantic = subprocess.run(
+            [sys.executable, "tools/verify_certificate_semantics.py"],
+            cwd=ROOT,
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+        )
+        checks["semantic_certificate_gates"] = semantic.returncode == 0
+        if semantic.returncode != 0:
+            print(semantic.stdout)
 
     checks["sha256sums_exists"] = SHA256SUMS.is_file()
     if SHA256SUMS.is_file():

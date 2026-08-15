@@ -342,6 +342,79 @@ def check_sha256sums(root: Path) -> list[Check]:
     return checks
 
 
+def check_semantic_certificate_gates(root: Path) -> list[Check]:
+    required = [
+        root / "results" / "reference" / "protocol.json",
+        root / "results" / "reference" / "certificate.json",
+        root / "results" / "reference" / "report.json",
+        root / "results" / "reference_run_summary.json",
+        root / "results" / "v0_9_3_reference" / "protocol.json",
+        root / "results" / "v0_9_3_reference" / "intrinsic_picard_microstep_certificate.json",
+        root / "results" / "v0_9_3_reference" / "report.json",
+    ]
+    if not all(path.is_file() for path in required):
+        return [
+            Check(
+                "semantic_certificate_gates",
+                "NOT CHECKED",
+                "published theorem certificate set not present in this audit root",
+            )
+        ]
+    verifier = ROOT / "tools" / "verify_certificate_semantics.py"
+    if not verifier.is_file():
+        return [Check("semantic_certificate_gates", "FAIL", "semantic verifier is missing")]
+    completed = subprocess.run(
+        [sys.executable, str(verifier), "--root", str(root)],
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    status = "PASS" if completed.returncode == 0 else "FAIL"
+    return [
+        Check(
+            "semantic_certificate_gates",
+            status,
+            "single-instance semantic certificate verifier "
+            + ("passed" if completed.returncode == 0 else "failed"),
+            completed.stdout.splitlines()[-20:],
+        )
+    ]
+
+
+def check_protected_result_closure(root: Path) -> list[Check]:
+    manifest = root / "SHA256SUMS.txt"
+    if not manifest.is_file():
+        return [Check("protected_result_closure", "FAIL", "SHA256SUMS.txt is missing")]
+    entries, errors = read_sha_manifest(manifest)
+    if errors:
+        return [Check("protected_result_closure", "FAIL", "cannot read SHA256SUMS.txt", errors)]
+    protected_roots = [root / "results"]
+    unexpected: list[str] = []
+    symlinks: list[str] = []
+    for protected in protected_roots:
+        if not protected.exists():
+            continue
+        for path in protected.rglob("*"):
+            rel = str(path.relative_to(root))
+            if path.is_symlink():
+                symlinks.append(rel)
+                continue
+            if path.is_file() and rel not in entries:
+                unexpected.append(rel)
+    evidence = symlinks[:20] + unexpected[:20]
+    if symlinks or unexpected:
+        return [
+            Check(
+                "protected_result_closure",
+                "FAIL",
+                "protected result directories contain symlinks or unregistered files",
+                evidence,
+            )
+        ]
+    return [Check("protected_result_closure", "PASS", "all protected result files are registered")]
+
+
 def source_files(root: Path) -> list[Path]:
     excluded = {".git"}
     out: list[Path] = []
@@ -503,6 +576,9 @@ def run_audit(root: Path, strict: bool) -> dict[str, Any]:
     else:
         checks.append(Check("claims_manifest_exists", "FAIL", "audit/claims_manifest.yaml is missing"))
     checks.extend(check_sha256sums(root))
+    checks.extend(check_semantic_certificate_gates(root))
+    if strict:
+        checks.extend(check_protected_result_closure(root))
     checks.extend(check_absolute_paths(root, artifacts))
     checks.extend(check_static_risks(root))
 
