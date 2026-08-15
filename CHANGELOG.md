@@ -2,6 +2,10 @@
 
 ## Unreleased — root and README navigation cleanup
 
+- Archive the v1.2.13 disclosure-revision manuscript candidate and matching
+  LaTeX source ZIP. This is a manuscript-exposition repair only: no theorem
+  statement, numerical constant, frozen certificate, validation gate, Arb
+  computation, C4-E2b dependency, or global-flow claim is changed.
 - Close the v1.2.12 publication provenance with Zenodo version DOI
   `10.5281/zenodo.21895917`, Concept DOI `10.5281/zenodo.15879392`, and the
   immutable `paper-local-ode-v1.6` GitHub Release. This metadata-only closure

@@ -18,6 +18,13 @@ result, or a replacement for theorem-bearing software assets. Cite the
 published version as DOI `10.5281/zenodo.21895917`, bound to the immutable
 GitHub Release `paper-local-ode-v1.6`.
 
+The v1.2.13 disclosure revision archive candidate may be described as a
+manuscript-exposition repair derived from v1.2.12. It resolves notation and
+disclosure gaps only. Do not describe it as a new theorem, a certificate rerun,
+a C4-E2b-dependent result, a global-flow claim, or a public release until a
+separate release gate creates the corresponding tag, GitHub Release, and
+Zenodo record.
+
 ## Layer I: Unconditional Local Theorem
 
 Recommended strongest statement:
