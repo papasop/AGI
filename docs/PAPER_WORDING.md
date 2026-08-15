@@ -4,26 +4,23 @@ Use three layers when describing the repository.
 
 ## Current Manuscript Wording
 
-Use v1.2.12 as the recommended reading version:
+Use v1.2.13 as the recommended reading version:
 
-> Manuscript v1.2.12 incorporates the recorded v1.2.9 errata and subsequent
-> textual clarifications into a self-contained recommended reading version. It
-> does not change the mathematical conclusions, theorem-bearing constants,
-> frozen certificates, or the v0.7.4 + v0.9.3 theorem boundary. No Arb rerun
-> was performed or required. The frozen v1.2.9 assets and their erratum remain
-> immutable historical records.
+> Manuscript v1.2.13 is a disclosure and notation revision derived from
+> v1.2.12. It incorporates the recorded v1.2.9 errata and subsequent textual
+> clarifications into a self-contained recommended reading version. It does
+> not change the mathematical conclusions, theorem-bearing constants, frozen
+> certificates, or the v0.7.4 + v0.9.3 theorem boundary. No Arb rerun was
+> performed or required. The frozen v1.2.12 and v1.2.9 assets remain immutable
+> historical records.
 
-Do not describe v1.2.12 as a new theorem, a certificate rerun, a global-flow
+Do not describe v1.2.13 as a new theorem, a certificate rerun, a global-flow
 result, or a replacement for theorem-bearing software assets. Cite the
-published version as DOI `10.5281/zenodo.21895917`, bound to the immutable
-GitHub Release `paper-local-ode-v1.6`.
+published version as DOI `10.5281/zenodo.21947745`, bound to the immutable
+GitHub Release `paper-local-ode-v1.7`.
 
-The v1.2.13 disclosure revision archive candidate may be described as a
-manuscript-exposition repair derived from v1.2.12. It resolves notation and
-disclosure gaps only. Do not describe it as a new theorem, a certificate rerun,
-a C4-E2b-dependent result, a global-flow claim, or a public release until a
-separate release gate creates the corresponding tag, GitHub Release, and
-Zenodo record.
+The v1.2.12 public release remains an immutable historical version at DOI
+`10.5281/zenodo.21895917` and GitHub Release `paper-local-ode-v1.6`.
 
 ## Layer I: Unconditional Local Theorem
 

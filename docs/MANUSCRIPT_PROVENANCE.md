@@ -8,7 +8,7 @@ repository state, theorem-bearing software boundary, and public archive.
 - Title: *Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE
   on a Quantum-Control Response Fibre*
 - Status: historical v1.1 candidate retained for audit history. The current
-  recommended reading manuscript is v1.2.12; see "v1.2.12 manuscript" below.
+  recommended reading manuscript is v1.2.13; see "v1.2.13 manuscript" below.
 - PDF: `docs/manuscript/geometric_flow_submission_candidate_v1.1.pdf`
 - PDF SHA-256:
   `86edef125808640fc7c59b2ceec39d3fd36954b4b395b20f5949de13d0364b96`
@@ -38,7 +38,7 @@ repository state, theorem-bearing software boundary, and public archive.
   `18d11f4fdeef27bf053ab1924b04ec626a51526de9a0e934a84666532d96258a`
 
 The old v1.1 manuscript candidate files above are preserved for auditability.
-The recommended reading manuscript is v1.2.12; see "v1.2.12 manuscript" below.
+The recommended reading manuscript is v1.2.13; see "v1.2.13 manuscript" below.
 The v1.2.9 manuscript remains the previous public archive and historical DOI
 boundary.
 The v1.1 records are retained for audit history.
@@ -189,7 +189,7 @@ three passes, and zero overfull or underfull boxes. The source manifest lists
 16 source-file hashes and excludes `SOURCE_MANIFEST.md` itself to avoid a
 self-hash loop.
 
-## v1.2.13 disclosure revision archive candidate
+## v1.2.13 manuscript
 
 - Manuscript version: `v1.2.13`
 - Scope: disclosure and notation revision only, derived from v1.2.12. The
@@ -215,6 +215,34 @@ self-hash loop.
 - pages: 21, A4
 - last displayed equation: (37)
 - references: [1]-[18]
+- GitHub asset sizes:
+  - `geometric_flow_v1_2_13_disclosure_revision.pdf`: 397423 bytes
+  - `geometric_flow_v1_2_13_source.zip`: 39434 bytes
+- GitHub asset SHA-256:
+  - `geometric_flow_v1_2_13_disclosure_revision.pdf`:
+    `ac32035f2d0ead1db713e8724ad8838241a86dd61514712348955117207f92fa`
+  - `geometric_flow_v1_2_13_source.zip`:
+    `0be1613be102d878f9b5362fa1d61792d4e3a6496dc5cb3a97f139b6ac64db06`
+- Zenodo asset sizes:
+  - `geometric_flow_v1_2_13_disclosure_revision.pdf`: 397423 bytes
+  - `geometric_flow_v1_2_13_source.zip`: 39434 bytes
+- Zenodo MD5:
+  - `geometric_flow_v1_2_13_disclosure_revision.pdf`:
+    `63620c0e46b3568fd8fbc4cb11cbd5ae`
+  - `geometric_flow_v1_2_13_source.zip`:
+    `a37b76f21d90f36820944bb7c9adfe6a`
+- Independent public-download SHA-256:
+  - GitHub PDF:
+    `ac32035f2d0ead1db713e8724ad8838241a86dd61514712348955117207f92fa`
+  - GitHub source ZIP:
+    `0be1613be102d878f9b5362fa1d61792d4e3a6496dc5cb3a97f139b6ac64db06`
+  - Zenodo PDF:
+    `ac32035f2d0ead1db713e8724ad8838241a86dd61514712348955117207f92fa`
+  - Zenodo source ZIP:
+    `0be1613be102d878f9b5362fa1d61792d4e3a6496dc5cb3a97f139b6ac64db06`
+- GitHub/Zenodo asset consistency:
+  - PDF: byte-identical public downloads.
+  - source ZIP: byte-identical public downloads.
 - deterministic build metadata:
   `SOURCE_DATE_EPOCH=1786789922`, `FORCE_SOURCE_DATE=1`
 - declared build engine:
@@ -227,39 +255,77 @@ self-hash loop.
   theorem certificates remain the governing numerical evidence.
 - C4-E2b dependency: none.
 - `GLOBAL_FLOW_CLAIMED`: false
-- repository release tag: not created in this PR.
-- GitHub Release: not created in this PR.
-- Zenodo version DOI: not created in this PR.
+- repository release tag: `paper-local-ode-v1.7`
+- manuscript/tag mapping: `v1.2.13` manuscript ->
+  `paper-local-ode-v1.7` repository release.
+- final release commit:
+  `f470b702b4dc87ef0df8ef28c19112174932c134`
+- repository commit:
+  `f470b702b4dc87ef0df8ef28c19112174932c134`
+- annotated tag object:
+  `f9e28082345d86ef47a8786865d5f90d4d9b6257`
+- peeled commit:
+  `f470b702b4dc87ef0df8ef28c19112174932c134`
+- GitHub release URL:
+  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.7`
+- GitHub Release ID: `371035428`
+- GitHub asset IDs:
+  - `geometric_flow_v1_2_13_disclosure_revision.pdf`: `515640471`
+  - `geometric_flow_v1_2_13_source.zip`: `515640493`
+- Zenodo record URL: `https://zenodo.org/records/21947745`
+- Zenodo version DOI: `10.5281/zenodo.21947745`
+- Zenodo DOI URL: `https://doi.org/10.5281/zenodo.21947745`
+- all-versions Concept DOI: `10.5281/zenodo.15879392`
+- Zenodo resource type: Preprint
+- Zenodo access: open
+- Zenodo license: Creative Commons Attribution 4.0 International (CC BY 4.0)
+- publication date: `2026-08-15`
+- source PR: `https://github.com/papasop/Geometric-Flow/pull/49`
+- release provenance:
+  `docs/manuscript/V1_2_13_RELEASE_PROVENANCE.md`
+- workflow URLs:
+  - structural-checks:
+    `https://github.com/papasop/Geometric-Flow/actions/runs/31882336563`
+  - reproduce-validated-ode:
+    `https://github.com/papasop/Geometric-Flow/actions/runs/31882336589`
+  - reproduce-joint-geometric-flow:
+    `https://github.com/papasop/Geometric-Flow/actions/runs/31882336569`
+- exact workflow commit for all three successful tag-triggered runs:
+  `f470b702b4dc87ef0df8ef28c19112174932c134`
+- private L3 audit package: not included in the public GitHub Release or
+  Zenodo record.
 
 The supplied source archive is the source bundle for the 21-page disclosure
 revision PDF. Its internal `SOURCE_MANIFEST.md` verifies 16/16 source-file
 hashes. The archive excludes build products such as `main.aux`, `main.log`,
-`main.out`, `main.toc`, and `main.pdf`. Local byte-identical rebuilding was not
-claimed during this repository deposit unless the declared pdfTeX engine is
-available; the package records deterministic byte identity under the build
-environment and epoch listed above.
+`main.out`, `main.toc`, and `main.pdf`. The deterministic build was attested
+with pdfTeX 1.40.25, TeX Live 2023/Debian, `SOURCE_DATE_EPOCH=1786789922`,
+`FORCE_SOURCE_DATE=1`, and three `pdflatex` passes; the rebuilt PDF was
+byte-identical to the archived repository PDF.
 
 ## Public archive and repository binding
 
 - Historical Zenodo version DOI: `10.5281/zenodo.21728432`
 - Previous Zenodo version DOI: `10.5281/zenodo.21882158`
-- Current Zenodo version DOI: `10.5281/zenodo.21895917`
-- current Zenodo DOI URL: `https://doi.org/10.5281/zenodo.21895917`
+- Previous Zenodo version DOI: `10.5281/zenodo.21895917`
+- Current Zenodo version DOI: `10.5281/zenodo.21947745`
+- current Zenodo DOI URL: `https://doi.org/10.5281/zenodo.21947745`
 - all-versions Concept DOI: `10.5281/zenodo.15879392`
 - GitHub release URL:
-  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6`
-- immutable paper-boundary tag: `paper-local-ode-v1.6`
+  `https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.7`
+- immutable paper-boundary tag: `paper-local-ode-v1.7`
 - annotated tag object:
-  `e4da94c96f271d5eed63a1d18821476686de9aa3`
+  `f9e28082345d86ef47a8786865d5f90d4d9b6257`
 - peeled commit:
-  `9f00cef039a8b97598e06e87614f9b506a81cddc`
+  `f470b702b4dc87ef0df8ef28c19112174932c134`
 - repository commit:
-  `9f00cef039a8b97598e06e87614f9b506a81cddc`
+  `f470b702b4dc87ef0df8ef28c19112174932c134`
 
-The Zenodo version DOI `10.5281/zenodo.21895917` identifies the frozen v1.2.12
+The Zenodo version DOI `10.5281/zenodo.21947745` identifies the frozen v1.2.13
 recommended reading manuscript. The preceding version DOI
-`10.5281/zenodo.21882158` identifies v1.2.9, while the historical version DOI
-`10.5281/zenodo.21728432` identifies an earlier public manuscript boundary.
+`10.5281/zenodo.21895917` identifies v1.2.12, `10.5281/zenodo.21882158`
+identifies v1.2.9, and the historical version DOI `10.5281/zenodo.21728432`
+identifies an earlier public manuscript boundary.
 Zenodo's authoritative record metadata identifies `10.5281/zenodo.15879392`
 as the all-versions Concept DOI.
 
@@ -267,7 +333,8 @@ Observed GitHub tags during this update: `paper-local-ode-v1.0`,
 `paper-local-ode-v1.1`, `paper-local-ode-v1.2`, `paper-local-ode-v1.3`, and
 `paper-local-ode-v1.4` already exist. Do not move them. The annotated
 `paper-local-ode-v1.5` historical tag remains immutable. The annotated
-`paper-local-ode-v1.6` tag was verified at the object and peeled-commit
+`paper-local-ode-v1.6` historical tag remains immutable. The annotated
+`paper-local-ode-v1.7` tag was verified at the object and peeled-commit
 identifiers recorded above; it must not be moved or reused.
 
 ## Theorem-bearing boundary
@@ -301,6 +368,6 @@ commit. An empty or unavailable status is not evidence of success.
 - manuscript licence: Creative Commons Attribution 4.0 International
   (CC BY 4.0)
 
-CC BY 4.0 governs the v1.2.12 and historical v1.2.9 manuscripts and their
-manuscript source archives. MIT continues to govern the repository software.
-The two licences cover different artifact classes.
+CC BY 4.0 governs the v1.2.13, v1.2.12, and historical v1.2.9 manuscripts and
+their manuscript source archives. MIT continues to govern the repository
+software. The two licences cover different artifact classes.

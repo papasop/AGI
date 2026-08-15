@@ -7,38 +7,6 @@ separates it from later repository development milestones.
 
 - Title: *Computation as Geometric Flow: An Arb-Certified Local Intrinsic ODE on
   a Quantum-Control Response Fibre*
-- Manuscript version: `v1.2.12`
-- PDF:
-  `docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`
-- PDF SHA-256:
-  `8f431f83aba4714b9895c3e94e10b24152dc6154e2d65792687ef4b6ced87768`
-- source archive:
-  `docs/manuscript/geometric_flow_v1_2_12_source.zip`
-- source SHA-256:
-  `2a2e6f0135ee2b53f0d022eb506c87aff4885e94a592c4f4ec8e7bdceb4f5d5b`
-- source manifest SHA-256:
-  `fac13564730834b3f00323f8924415097228454889534299fee5616de42611ce`
-- repository release tag: `paper-local-ode-v1.6`
-- GitHub Release:
-  https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6
-- Zenodo version DOI: https://doi.org/10.5281/zenodo.21895917
-- all-versions Concept DOI: https://doi.org/10.5281/zenodo.15879392
-
-Manuscript v1.2.12 incorporates the recorded v1.2.9 errata and subsequent
-textual clarifications into a self-contained recommended reading version. It
-does not change the mathematical conclusions, theorem-bearing constants,
-frozen certificates, or the v0.7.4 + v0.9.3 theorem boundary. No Arb rerun was
-performed or required. The frozen v1.2.9 assets and their erratum remain
-immutable historical records.
-
-This manuscript boundary is `v1.2.12`. The theorem-bearing software boundary
-remains the
-frozen v0.7.4 parent-box certificate plus the frozen v0.9.3 local intrinsic
-ODE certificate. No Arb rerun was performed for the manuscript freeze.
-`GLOBAL_FLOW_CLAIMED=false`.
-
-## Disclosure Revision Archive Candidate
-
 - Manuscript version: `v1.2.13`
 - PDF:
   `docs/manuscript/geometric_flow_v1_2_13_disclosure_revision.pdf`
@@ -48,14 +16,46 @@ ODE certificate. No Arb rerun was performed for the manuscript freeze.
   `docs/manuscript/geometric_flow_v1_2_13_source.zip`
 - source SHA-256:
   `0be1613be102d878f9b5362fa1d61792d4e3a6496dc5cb3a97f139b6ac64db06`
+- source manifest SHA-256:
+  `29d08de1a9f14f20aa668a0b257d4827f6a3f684208bb2c804cc9105b28feb07`
+- repository release tag: `paper-local-ode-v1.7`
+- GitHub Release:
+  https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.7
+- Zenodo version DOI: https://doi.org/10.5281/zenodo.21947745
+- all-versions Concept DOI: https://doi.org/10.5281/zenodo.15879392
 
-The v1.2.13 archive candidate is a disclosure and notation revision derived
-from v1.2.12. It resolves manuscript-exposition gaps only and does not change
-the published v1.2.12 release tag, Zenodo DOI, theorem-bearing software
-boundary, numerical certificate, validation gate, or claim scope. No Arb rerun
-was performed or required, and `GLOBAL_FLOW_CLAIMED=false`.
+Manuscript v1.2.13 is a disclosure and notation revision derived from v1.2.12.
+It incorporates the recorded v1.2.9 errata and subsequent textual
+clarifications into the recommended reading version. It does not change the
+mathematical conclusions, theorem-bearing constants, frozen certificates, or
+the v0.7.4 + v0.9.3 theorem boundary. No Arb rerun was performed or required.
+The frozen v1.2.12 and v1.2.9 assets remain immutable historical records.
+
+This manuscript boundary is `v1.2.13`. The theorem-bearing software boundary
+remains the
+frozen v0.7.4 parent-box certificate plus the frozen v0.9.3 local intrinsic
+ODE certificate. No Arb rerun was performed for the manuscript freeze.
+`GLOBAL_FLOW_CLAIMED=false`.
 
 ## Historical Public Release
+
+- Manuscript version: `v1.2.12`
+- PDF:
+  `docs/manuscript/geometric_flow_v1_2_12_freeze_candidate.pdf`
+- PDF SHA-256:
+  `8f431f83aba4714b9895c3e94e10b24152dc6154e2d65792687ef4b6ced87768`
+- source archive:
+  `docs/manuscript/geometric_flow_v1_2_12_source.zip`
+- source SHA-256:
+  `2a2e6f0135ee2b53f0d022eb506c87aff4885e94a592c4f4ec8e7bdceb4f5d5b`
+- GitHub Release:
+  https://github.com/papasop/Geometric-Flow/releases/tag/paper-local-ode-v1.6
+- Zenodo version DOI: https://doi.org/10.5281/zenodo.21895917
+
+The v1.2.12 release is preserved as a historical public version. It is not
+overwritten by the v1.2.13 disclosure/notation revision.
+
+## Earlier Historical Public Release
 
 - Manuscript version: `v1.2.9`
 - Zenodo record: https://zenodo.org/records/21882158
@@ -110,26 +110,26 @@ certificate, protocol, report, numerical constant, or validation threshold.
   arbitrary endpoint connection, response-fibre connectedness, or any
   unconditional global flow.
 
-Later v0.10.x work remains excluded from the v1.2.12 local-theorem
+Later v0.10.x work remains excluded from the v1.2.13 local-theorem
 boundary.
 
 ## Tag Boundary
 
-- Immutable paper-boundary tag: `paper-local-ode-v1.6`
+- Immutable paper-boundary tag: `paper-local-ode-v1.7`
 - Annotated tag object:
-  `e4da94c96f271d5eed63a1d18821476686de9aa3`
+  `f9e28082345d86ef47a8786865d5f90d4d9b6257`
 - Peeled commit:
-  `9f00cef039a8b97598e06e87614f9b506a81cddc`
+  `f470b702b4dc87ef0df8ef28c19112174932c134`
 
-The current tag binds the v1.2.12 Zenodo version DOI, the GitHub Release above,
+The current tag binds the v1.2.13 Zenodo version DOI, the GitHub Release above,
 the local-paper title, the v0.7.4 + v0.9.3 theorem-bearing software boundary,
 the SHA-256 manifest, and the explicit exclusion of v0.10.x continuation work
 from the published-paper theorem claim. It must not be moved or reused. The
-historical `paper-local-ode-v1.5` tag remains immutable and continues to bind
-the v1.2.9 public release.
+historical `paper-local-ode-v1.6` and `paper-local-ode-v1.5` tags remain
+immutable and continue to bind the v1.2.12 and v1.2.9 public releases.
 
 Historical note: `paper-local-ode-v1.0`, the historical version DOI
 `10.5281/zenodo.21728432`, and `https://zenodo.org/records/21728432` belong to
 an earlier public manuscript boundary and are not the current v1.2.12
-manuscript/release boundary. Zenodo's authoritative record metadata identifies
+or v1.2.13 manuscript/release boundary. Zenodo's authoritative record metadata identifies
 `10.5281/zenodo.15879392` as the all-versions Concept DOI.
