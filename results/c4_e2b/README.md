@@ -30,9 +30,9 @@ only the handoff box. This directory does not claim validated-flowpipe
 continuation, complete transition 1->2 certification, hardware validation, or
 global flow.
 
-## v0.3.5 affine-correlated zero-time handoff
+## v0.3.5 affine-correlated zero-time handoff residual
 
-This checkout also preserves the completed v0.3.5 certificate:
+This checkout preserves the original v0.3.5 report unchanged for provenance:
 
 - `c4_e2b_affine_correlated_handoff_v0_3_5.json` records
   `C4_E2B_AFFINE_CORRELATED_HANDOFF_CERTIFIED`.
@@ -45,13 +45,19 @@ This checkout also preserves the completed v0.3.5 certificate:
 - The target-domain containment use remains below one with
   `maximum_accepted_target_domain_use = 0.00237998237338449`.
 
-This certifies a zero-time chart 1->2 handoff for the complete frozen level-32
-endpoint enclosure, with target-domain containment, corrected-controller
-regularity, exact response identity, and strict objective descent on the
-complete enclosure.
+External audit identified a binary64 outward-rounding residual in the original
+controller-inverse Neumann norm/tail calculation and in quadratic-enclosure
+radius helpers. The zero-time handoff decision is numerically robust under the
+recorded margins, but the original controller-inverse and quadratic enclosure
+radii contain round-to-nearest binary64 norm and tail calculations. The
+original artifact is retained for provenance and is pending rigorous
+outward-rounded recertification.
 
-It does not certify a positive-time target-chart Picard slab, transition 2->3,
-an eight-chart continuation, a fifth frame, a complete response fibre, hardware
-validation, or global flow. The next research step is v0.3.6: one rigorously
-enclosed positive-time Picard slab starting from the certified chart-2 initial
-enclosure.
+The v0.3.5.1 repair chain is therefore `pending_recertification` until a fresh
+Colab run produces new hash-bound JSON. This directory must not infer the new
+certificate from the old report or from console logs.
+
+Neither v0.3.5 nor v0.3.5.1 certifies a positive-time target-chart Picard slab,
+transition 2->3, an eight-chart continuation, a fifth frame, a complete
+response fibre, hardware validation, or global flow. The v0.3.6 name remains
+reserved for the first rigorously enclosed positive-time Picard slab.

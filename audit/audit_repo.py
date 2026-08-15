@@ -24,6 +24,7 @@ from typing import Any
 VERSION = "1.0"
 ROOT = Path(__file__).resolve().parents[1]
 STATUSES = ("PASS", "WARNING", "FAIL", "NOT CHECKED")
+OPTIONAL_CERTIFICATE_STATUSES = {"open", "pending_recertification"}
 ABSOLUTE_RUNTIME_RE = re.compile(r"(/Users/|/content(?:/|\b)|/private/tmp(?:/|\b)|/tmp(?:/|\b)|[A-Za-z]:\\\\)")
 ALLOW_COMMENT_RE = re.compile(
     r"audit:\s*allow\s+([a-z0-9_.-]+)\s*;\s*reason\s*=\s*\S",
@@ -255,8 +256,8 @@ def check_certificate_fields(root: Path, claims: dict[str, Any]) -> list[Check]:
     for claim_id, claim in (claims.get("claims") or {}).items():
         certificate = claim.get("certificate")
         if not certificate:
-            if claim.get("status") == "open":
-                checks.append(Check("claim_certificate_optional", "PASS", "open claim has no certificate", [claim_id]))
+            if claim.get("status") in OPTIONAL_CERTIFICATE_STATUSES:
+                checks.append(Check("claim_certificate_optional", "PASS", "claim status permits absent certificate", [claim_id]))
             else:
                 checks.append(Check("claim_certificate_present", "FAIL", "non-open claim lacks certificate", [claim_id]))
             continue
@@ -300,8 +301,8 @@ def check_claim_paths(root: Path, claims: dict[str, Any]) -> list[Check]:
                 if not relpath_ok(str(value)):
                     checks.append(Check("claim_path_is_repository_relative", "FAIL", f"{field_name} is not repository-relative", [claim_id, str(value)]))
                 elif not (root / str(value)).is_file():
-                    if claim.get("status") == "open" and field_name == "certificate":
-                        checks.append(Check("claim_path_resolves", "PASS", "open claim certificate intentionally absent", [claim_id]))
+                    if claim.get("status") in OPTIONAL_CERTIFICATE_STATUSES and field_name == "certificate":
+                        checks.append(Check("claim_path_resolves", "PASS", "claim certificate intentionally absent for this status", [claim_id]))
                     else:
                         checks.append(Check("claim_path_resolves", "FAIL", f"{field_name} path missing", [claim_id, str(value)]))
                 else:

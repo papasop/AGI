@@ -154,6 +154,27 @@ class AuditRepoTests(unittest.TestCase):
             self.assertNotEqual(proc.returncode, 0)
             self.assertIn("claim_certificate_exists", [c["name"] for c in payload["checks"] if c["status"] == "FAIL"])
 
+    def test_pending_recertification_certificate_is_explicitly_optional(self):
+        tmp, root = self.make_repo()
+        with tmp:
+            claims = json.loads((root / "audit" / "claims_manifest.yaml").read_text())
+            claims["claims"]["test_claim"]["status"] = "pending_recertification"
+            claims["claims"]["test_claim"]["certificate"] = ""
+            claims["claims"]["test_claim"]["protocol"] = ""
+            claims["claims"]["test_claim"]["required_certificate_fields"] = {}
+            write(root / "audit" / "claims_manifest.yaml", json.dumps(claims, indent=2) + "\n")
+            lines = []
+            for rel in ["audit/artifact_manifest.json", "audit/claims_manifest.yaml", "data/input.json", "scripts/producer.py"]:
+                lines.append(f"{sha(root / rel)}  {rel}\n")
+            write(root / "SHA256SUMS.txt", "".join(lines))
+            proc, payload = self.run_audit(root)
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            optional = [
+                c for c in payload["checks"]
+                if c["name"] == "claim_certificate_optional"
+            ]
+            self.assertTrue(optional)
+
     def test_hardcoded_all_gates_pass_is_flagged(self):
         tmp, root = self.make_repo()
         with tmp:

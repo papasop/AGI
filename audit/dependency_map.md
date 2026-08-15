@@ -47,7 +47,15 @@ C4-E2b v0.3.4.1 controller-covariance diagnostic
 C4-E2b v0.3.5 affine-correlated zero-time handoff
   script: archive/milestones/c4_e2b_v0_3_5/C4_E2B_AFFINE_CORRELATED_HANDOFF_SUBDIVISION_v0_3_5.py
   certificate: results/c4_e2b/c4_e2b_affine_correlated_handoff_v0_3_5.json
-  status: certified zero-time chart 1->2 handoff only
+  status: certified_with_documented_binary64_rounding_residual;
+          pending rigorous outward-rounded recertification
+
+    ↓
+
+Rigorous C4-E2b v0.3.5.1 repair chain
+  scripts: archive/milestones/c4_e2b_v0_3_5_1/
+  certificate: not committed yet
+  status: pending_recertification
 
     ↓
 

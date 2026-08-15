@@ -196,7 +196,10 @@ The immediate continuation research direction is **Toward a global response-fibr
 The stored v0.10.6 reference records finite same-chart continuation evidence.
 The fifth-frame backend remains open, and later v0.10.x material is outside
 the v1.2.12 theorem boundary. K=1, physical time, and global flow are not
-established. Neural response-fibre material is an independent analogue; see
+established. C4-E2b v0.3.5 is retained with a documented binary64
+outward-rounding residual; the v0.3.5.1 Arb-outward repair chain is pending
+fresh recertification and is not a deposited certificate. Neural
+response-fibre material is an independent analogue; see
 [neural network response fibres](docs/NEURAL_NETWORK_RESPONSE_FIBRES.md). It
 is not a theorem of the published paper.
 
