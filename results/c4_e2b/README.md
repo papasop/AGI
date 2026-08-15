@@ -29,3 +29,29 @@ test. The recorded next step is to preserve affine correlations or subdivide
 only the handoff box. This directory does not claim validated-flowpipe
 continuation, complete transition 1->2 certification, hardware validation, or
 global flow.
+
+## v0.3.5 affine-correlated zero-time handoff
+
+This checkout also preserves the completed v0.3.5 certificate:
+
+- `c4_e2b_affine_correlated_handoff_v0_3_5.json` records
+  `C4_E2B_AFFINE_CORRELATED_HANDOFF_CERTIFIED`.
+- The complete frozen level-32 endpoint enclosure is accepted in one leaf,
+  without subdivision, when the source-chart affine generators are retained.
+- The accepted leaf has strict objective descent with
+  `maximum_accepted_dL_upper = -2.2171423824770025`.
+- The corrected-controller inverse Neumann defect remains below one with
+  `maximum_accepted_inverse_neumann_defect = 0.015748151846082692`.
+- The target-domain containment use remains below one with
+  `maximum_accepted_target_domain_use = 0.00237998237338449`.
+
+This certifies a zero-time chart 1->2 handoff for the complete frozen level-32
+endpoint enclosure, with target-domain containment, corrected-controller
+regularity, exact response identity, and strict objective descent on the
+complete enclosure.
+
+It does not certify a positive-time target-chart Picard slab, transition 2->3,
+an eight-chart continuation, a fifth frame, a complete response fibre, hardware
+validation, or global flow. The next research step is v0.3.6: one rigorously
+enclosed positive-time Picard slab starting from the certified chart-2 initial
+enclosure.
