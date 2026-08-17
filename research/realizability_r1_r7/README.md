@@ -33,11 +33,15 @@ certify_r7_positive_control.py
 verify_r7_certificate.py
 R5_FEASIBILITY_AUDIT.md
 R5_FULL_TUBE_PROTOCOL_BOUNDARY.md
+R5_STATIC_ARB_GATES_BOUNDARY.md
 r5_full_tube_protocol_v1_0.json
 prepare_r5_full_tube_auxiliary.py
 verify_r5_full_tube_auxiliary.py
 data/r5_full_tube_auxiliary_v1_0.json
 verify_r5_full_tube_protocol.py
+certify_r5_static_arb_gates.py
+verify_r5_static_arb_gates.py
+certificates/r5_static_arb_gates_v1_0.json
 certificates/r7_positive_control_v1_0.json  # superseded
 certificates/r7_positive_control_v1_1.json  # current R7 positive control
 ```
@@ -52,6 +56,7 @@ python research/realizability_r1_r7/verify_r7_certificate.py --mutation-tests
 python research/realizability_r1_r7/prepare_r5_full_tube_auxiliary.py --verify-frozen
 python research/realizability_r1_r7/verify_r5_full_tube_auxiliary.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_full_tube_protocol.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_static_arb_gates.py --mutation-tests
 ```
 
 The verifier checks schema, required fields, declared file hashes, R1--R5/R7
@@ -84,6 +89,13 @@ candidate objects by independent Arb validation of frame rank, transversality,
 `B` invertibility, preconditioner defect, and full-tube graph gates before any
 R5 certificate can exist. The protocol does not run R5 or R6 and does not
 relabel v0.9.2/v0.9.3 as R5 or R6 evidence.
+
+`certificates/r5_static_arb_gates_v1_0.json` records the R5-B0 static Arb
+gate result for the frozen candidate objects only. Its status is
+`R5_STATIC_ARB_GATES_CERTIFIED`. It certifies static rank, transversality,
+`B` invertibility, and preconditioner-defect gates, but it is not an R5
+full-tube certificate and does not certify graph existence, exact response
+preservation, zero total cost, nonconstancy, R6, or normal K=1 recovery.
 
 ## Scope
 
