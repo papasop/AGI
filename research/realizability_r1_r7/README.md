@@ -37,6 +37,7 @@ R5_STATIC_ARB_GATES_BOUNDARY.md
 R5_FIRST_LEAF_PREFLIGHT_BOUNDARY.md
 R5_FIRST_LEAF_CENTER_DIAGNOSTIC.md
 R5_FIRST_LEAF_AFFINE_DIAGNOSTIC.md
+R5_SECOND_ORDER_REMAINDER_DIAGNOSTIC.md
 r5_full_tube_protocol_v1_0.json
 prepare_r5_full_tube_auxiliary.py
 verify_r5_full_tube_auxiliary.py
@@ -54,6 +55,9 @@ diagnostics/r5_first_leaf_center_diagnostic_v1_0.json
 diagnose_r5_first_leaf_affine.py
 verify_r5_first_leaf_affine_diagnostic.py
 diagnostics/r5_first_leaf_affine_diagnostic_v1_0.json
+diagnose_r5_second_order_remainder.py
+verify_r5_second_order_remainder_diagnostic.py
+diagnostics/r5_second_order_remainder_diagnostic_v1_0.json
 certificates/r7_positive_control_v1_0.json  # superseded
 certificates/r7_positive_control_v1_1.json  # current R7 positive control
 ```
@@ -72,6 +76,7 @@ python research/realizability_r1_r7/verify_r5_static_arb_gates.py --mutation-tes
 python research/realizability_r1_r7/verify_r5_first_leaf_preflight.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_first_leaf_center_diagnostic.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_first_leaf_affine_diagnostic.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_second_order_remainder_diagnostic.py --mutation-tests
 ```
 
 The verifier checks schema, required fields, declared file hashes, R1--R5/R7
@@ -137,6 +142,15 @@ reduces the point residual, and the diagnostic preserves a single `alpha` in
 still too wide for every predeclared candidate `eta` radius. This is not an R5
 certificate, does not change the frozen `1e-23` normal box, and does not run
 R6 or normal K=1 recovery.
+
+`diagnostics/r5_second_order_remainder_diagnostic_v1_0.json` records the
+R5-B1d provenance audit of the B1c pure-alpha second-order remainder. Its
+status is `B1C_REMAINDER_DEPENDENCY_ARTIFACT`: B1c formed its remainder by
+subtracting center and first-order intervals after natural interval evaluation,
+whereas an independent analytic directional-Hessian bound gives a true
+Lagrange remainder near `2.20e-28`. This is diagnostic-only and does not revise
+the B1c result, certify the first leaf, change the frozen protocol, inspect
+other leaves, run R6, or perform normal K=1 recovery.
 
 ## Scope
 

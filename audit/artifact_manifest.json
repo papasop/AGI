@@ -340,7 +340,7 @@
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
       "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "639398b525916846de0dd4d945ef4b079e275b8372e817eaa3a4d383f0646308",
+      "sha256": "d8dfeea4d71716988107b477710dd893ed095b82d12ae9763ad82ca79717b469",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -798,6 +798,69 @@
       "scientific_scope": "read-only verifier and mutation tests for the affine diagnostic record; rejects forged certificate/R5/R6/normal K=1 claims, hidden radius failures, lost alpha correlation, and arithmetic/hash tampering",
       "sha256": "e680b05d02bd0a551a4d2bac2f663bcad8d07674a0657ba5faa06f316a279746",
       "status": "prospective_r5_b1c_affine_diagnostic_remainder_too_wide",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_second_order_remainder_diagnostic_boundary",
+      "inputs": [
+        "principle_r_r5_first_leaf_affine_diagnostic_record",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/R5_SECOND_ORDER_REMAINDER_DIAGNOSTIC.md",
+      "producer": "prospective R5-B1d second-order remainder provenance diagnostic scaffold",
+      "scientific_scope": "diagnostic-only boundary for auditing the B1c pure-alpha remainder provenance; not a certificate, not R5, not R6, and not normal K=1 recovery",
+      "sha256": "67570c25b63ceb36da91137406ec56fabf3393f353f21e41c787d47cf2215736",
+      "status": "prospective_r5_b1d_remainder_dependency_artifact",
+      "type": "documentation"
+    },
+    {
+      "allow_absolute_runtime_paths": true,
+      "id": "principle_r_r5_second_order_remainder_diagnostic_script",
+      "inputs": [
+        "v0_7_4_parent_box_script",
+        "principle_r_r5_first_leaf_affine_diagnostic_record",
+        "principle_r_r5_first_leaf_center_diagnostic_record",
+        "principle_r_r5_first_leaf_preflight_certificate",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/diagnose_r5_second_order_remainder.py",
+      "producer": "prospective R5-B1d second-order remainder provenance diagnostic driver",
+      "scientific_scope": "uses an analytic two-variable Arb jet to compare B1c interval-subtracted remainder against a directional-Hessian Lagrange bound; diagnostic only",
+      "sha256": "690571010deab7f2423bb67905e79190b12b229446d94631d771bbe3c5a813be",
+      "status": "prospective_r5_b1d_remainder_dependency_artifact",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_second_order_remainder_diagnostic_record",
+      "inputs": [
+        "principle_r_r5_second_order_remainder_diagnostic_script",
+        "principle_r_r5_first_leaf_affine_diagnostic_record",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/diagnostics/r5_second_order_remainder_diagnostic_v1_0.json",
+      "producer": "principle_r_r5_second_order_remainder_diagnostic_script",
+      "scientific_scope": "diagnostic-only record; classification B1C_REMAINDER_DEPENDENCY_ARTIFACT after the explicit directional-Hessian bound is far below the B1c interval-subtracted remainder",
+      "sha256": "a678e21f9dae384bf3d1697d01f3beb42771d569f573e0a743824eec8dff1172",
+      "status": "prospective_r5_b1d_remainder_dependency_artifact",
+      "type": "diagnostic"
+    },
+    {
+      "id": "principle_r_r5_second_order_remainder_diagnostic_verifier",
+      "inputs": [
+        "principle_r_r5_second_order_remainder_diagnostic_record",
+        "principle_r_r5_first_leaf_affine_diagnostic_record",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_second_order_remainder_diagnostic.py",
+      "producer": "prospective R5-B1d second-order remainder diagnostic verifier",
+      "scientific_scope": "read-only verifier and mutation tests for the second-order provenance diagnostic; rejects interval-subtraction-as-Taylor, missing Hessian terms, finite-difference strict bounds, forged certificate/R5/R6/normal K=1 claims, and arithmetic/hash tampering",
+      "sha256": "849b90e496243f14f648dcef591c7541c4c7a08304a1126c46a730f76f83b8ee",
+      "status": "prospective_r5_b1d_remainder_dependency_artifact",
       "type": "script"
     },
     {
