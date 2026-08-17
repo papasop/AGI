@@ -32,6 +32,12 @@ R7_CERTIFICATE_BOUNDARY.md
 certify_r7_positive_control.py
 verify_r7_certificate.py
 R5_FEASIBILITY_AUDIT.md
+R5_FULL_TUBE_PROTOCOL_BOUNDARY.md
+r5_full_tube_protocol_v1_0.json
+prepare_r5_full_tube_auxiliary.py
+verify_r5_full_tube_auxiliary.py
+data/r5_full_tube_auxiliary_v1_0.json
+verify_r5_full_tube_protocol.py
 certificates/r7_positive_control_v1_0.json  # superseded
 certificates/r7_positive_control_v1_1.json  # current R7 positive control
 ```
@@ -43,6 +49,9 @@ Run:
 ```bash
 python research/realizability_r1_r7/verify_frozen_protocol.py
 python research/realizability_r1_r7/verify_r7_certificate.py --mutation-tests
+python research/realizability_r1_r7/prepare_r5_full_tube_auxiliary.py --verify-frozen
+python research/realizability_r1_r7/verify_r5_full_tube_auxiliary.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_full_tube_protocol.py --mutation-tests
 ```
 
 The verifier checks schema, required fields, declared file hashes, R1--R5/R7
@@ -60,6 +69,21 @@ does not yet contain an R5-specific complete-loop implicit-graph certificate or
 the auxiliary frozen intrinsic-chart data needed to verify one fail-closed. It
 is not an R5 certificate, does not report a failed R5 search, and does not run
 R6.
+
+`r5_full_tube_protocol_v1_0.json` freezes a subordinate R5-A protocol for a
+future full-tube graph certificate on the one-dimensional segment
+`a=t*v, |t|<=1e-12`. Its status is
+`R5_FULL_TUBE_PROTOCOL_FROZEN_NO_CERTIFICATE_RUN`.
+`data/r5_full_tube_auxiliary_v1_0.json` is the committed candidate auxiliary
+artifact for `theta_0`, `T`, `N`, graph-equation response-coordinate map `B`,
+target `c`, and numerical candidate preconditioner `P`. Its byte content is
+frozen and hash-bound. Its binary64 SVD construction is platform-sensitive and
+is not a cross-platform reproducibility or theorem-bearing gate. Local
+regeneration is a diagnostic only; future R5-B work must certify the committed
+candidate objects by independent Arb validation of frame rank, transversality,
+`B` invertibility, preconditioner defect, and full-tube graph gates before any
+R5 certificate can exist. The protocol does not run R5 or R6 and does not
+relabel v0.9.2/v0.9.3 as R5 or R6 evidence.
 
 ## Scope
 
