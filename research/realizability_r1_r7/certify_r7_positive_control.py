@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 PROTOCOL_PATH = HERE / "frozen_protocol_v1_0.json"
 CERT_DIR = HERE / "certificates"
-CERT_PATH = CERT_DIR / "r7_positive_control_v1_0.json"
+CERT_PATH = CERT_DIR / "r7_positive_control_v1_1.json"
 
 REQUIRED_MAIN_BASELINE_COMMIT = "b9796c9ffb203bfbf3d0e230fe624ca85c0e75b9"
 EXPECTED_STATUS = "PROTOCOL_FROZEN_NO_R6_SEARCH_PERFORMED"
@@ -381,10 +381,6 @@ def upper_str(value: arb) -> str:
     return value.upper().str(40, radius=False, more=True)
 
 
-def lower_float(value: arb) -> float:
-    return float(value.lower())
-
-
 def protocol_identity(protocol: dict[str, Any]) -> dict[str, bool]:
     identity_8 = [[1 if i == j else 0 for j in range(8)] for i in range(8)]
     r7 = protocol.get("R7", {})
@@ -446,16 +442,19 @@ def certify_delta(delta_text: str, theta0: list[arb], chart_radius: arb) -> dict
     delta = ap(delta_text)
     s_interval = "[0,1]"
     half = delta / 2
-    phase_interval = theta0[0] + arb(0, half)
+    displacement_interval = arb(half, half)
+    phase_interval = theta0[0] + displacement_interval
     phases = [phase_interval] + theta0[1:]
+    endpoint_theta0_contained = phase_interval.contains(theta0[0])
+    endpoint_theta0_plus_delta_contained = phase_interval.contains(theta0[0] + delta)
 
     # The frozen chart uses fixed real representatives of torus phases. It is
     # not a principal-branch chart: one representative is already slightly
     # above pi. R7 therefore certifies local residence by keeping the ambient
     # perturbation inside the declared child-neighborhood scale and by never
     # applying a modulo representative change.
-    chart_gate = bool(delta <= chart_radius)
-    no_wrap_gate = bool(delta < 2 * arb.pi())
+    chart_gate = bool(-chart_radius <= displacement_interval and displacement_interval <= chart_radius)
+    no_wrap_gate = bool(-2 * arb.pi() < displacement_interval and displacement_interval < 2 * arb.pi())
     nonconstant_gate = delta > 0
 
     try:
@@ -473,6 +472,11 @@ def certify_delta(delta_text: str, theta0: list[arb], chart_radius: arb) -> dict
             "status": "R7_INCONCLUSIVE",
             "failure": f"analytic response enclosure failed: {exc}",
             "positive_measure_interval": s_interval,
+            "path_enclosure": "theta0[0] + arb(delta/2, delta/2), enclosing s*delta for s in [0,1]",
+            "displacement_interval_lower": lower_str(displacement_interval),
+            "displacement_interval_upper": upper_str(displacement_interval),
+            "endpoint_theta0_contained_gate": bool(endpoint_theta0_contained),
+            "endpoint_theta0_plus_delta_contained_gate": bool(endpoint_theta0_plus_delta_contained),
             "chart_residence_gate": bool(chart_gate),
             "chart_radius_lower": lower_str(chart_radius),
             "ambient_displacement_upper": upper_str(delta),
@@ -488,6 +492,8 @@ def certify_delta(delta_text: str, theta0: list[arb], chart_radius: arb) -> dict
         chart_gate
         and no_wrap_gate
         and nonconstant_gate
+        and endpoint_theta0_contained
+        and endpoint_theta0_plus_delta_contained
         and analytic_domain_gate
         and strict_positive_pointwise
         and total_cost_lower > 0
@@ -497,6 +503,11 @@ def certify_delta(delta_text: str, theta0: list[arb], chart_radius: arb) -> dict
         "status": "R7_DELTA_CERTIFIED" if all_gates else "R7_DELTA_INCONCLUSIVE",
         "positive_measure_interval": s_interval,
         "positive_measure_interval_length": "1",
+        "path_enclosure": "theta0[0] + arb(delta/2, delta/2), enclosing s*delta for s in [0,1]",
+        "displacement_interval_lower": lower_str(displacement_interval),
+        "displacement_interval_upper": upper_str(displacement_interval),
+        "endpoint_theta0_contained_gate": bool(endpoint_theta0_contained),
+        "endpoint_theta0_plus_delta_contained_gate": bool(endpoint_theta0_plus_delta_contained),
         "chart_residence_gate": bool(chart_gate),
         "chart_radius_lower": lower_str(chart_radius),
         "ambient_displacement_upper": upper_str(delta),
@@ -526,7 +537,14 @@ def build_certificate() -> dict[str, Any]:
 
     result: dict[str, Any] = {
         "schema_version": "1.0",
-        "certificate_id": "principle_r_r7_positive_control_v1_0",
+        "certificate_id": "principle_r_r7_positive_control_v1_1",
+        "corrects_certificate_id": "principle_r_r7_positive_control_v1_0",
+        "supersession_note": (
+            "This v1.1 certificate supersedes the PR #53 v1.0 certificate. "
+            "The v1.0 certificate used an incomplete centered enclosure of "
+            "the declared eta_delta(s)=theta0+s*delta*n path; v1.1 encloses "
+            "the full displacement interval [0, delta]."
+        ),
         "scientific_scope": "prospective_r7_certificate",
         "protocol_status": protocol.get("status"),
         "protocol_sha256": sha256_file(PROTOCOL_PATH),
@@ -592,6 +610,11 @@ def build_certificate() -> dict[str, Any]:
         "all_delta_chart_residence": all(r.get("chart_residence_gate") for r in delta_records),
         "all_delta_no_phase_wrap": all(r.get("no_phase_wrap_gate") for r in delta_records),
         "all_delta_nonconstant": all(r.get("nonconstant_gate") for r in delta_records),
+        "all_delta_path_endpoints_contained": all(
+            r.get("endpoint_theta0_contained_gate")
+            and r.get("endpoint_theta0_plus_delta_contained_gate")
+            for r in delta_records
+        ),
         "all_delta_strict_positive_pointwise_response": all(
             r.get("strict_positive_pointwise_response_gate") for r in delta_records
         ),

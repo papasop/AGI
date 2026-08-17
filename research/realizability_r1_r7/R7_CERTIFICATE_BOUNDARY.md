@@ -3,6 +3,12 @@
 This document scopes the R7 positive-control certificate for the prospective
 model-level Principle R protocol in this directory.
 
+The current certificate is `certificates/r7_positive_control_v1_1.json`.
+It supersedes the PR #53 v1.0 certificate, which used an incomplete centered
+enclosure of the declared path. Version v1.1 encloses the full displacement
+interval `[0, delta]` with `theta_0[0] + arb(delta/2, delta/2)` and records
+endpoint containment for both `theta_0` and `theta_0+delta`.
+
 R7 has one purpose: exclude the trivial possibility that the protocol-relative
 response-cost meter is identically zero. It does this only for the frozen
 ambient normal control
@@ -35,9 +41,10 @@ Acceptance is fail-closed:
 R7_CERTIFIED
 ```
 
-is allowed only when every frozen delta passes protocol identity, chart
-residence, nonconstancy, same-meter, strict positive pointwise response, and
-strict positive total-cost gates using Arb interval arithmetic.
+is allowed only when every frozen delta passes protocol identity, full-path
+endpoint containment, chart residence, nonconstancy, same-meter, strict
+positive pointwise response, and strict positive total-cost gates using Arb
+interval arithmetic.
 
 If a strict lower bound contains zero, a chart/domain gate fails, or a required
 dependency is incomplete, the correct outcome is
