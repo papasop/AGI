@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "principle_r_realizability_r1_r7_v1_0",
+  "title": "Prospective model-level Principle R realizability test scaffold",
+  "status": "PROTOCOL_FROZEN_NO_R6_SEARCH_PERFORMED",
+  "boundary": {
+    "kind": "prospective_protocol_only",
+    "published_theorem_modified": false,
+    "r6_search_performed": false,
+    "r6_certificate_present": false,
+    "empirical_physical_validation_claimed": false,
+    "physical_time_energy_or_action_claimed": false,
+    "lorentzian_spacetime_or_gr_claimed": false,
+    "global_flow_claimed": false,
+    "v0_9_3_used_as_new_r6_result": false
+  },
+  "dependencies": {
+    "python": "3.12",
+    "python_flint": "0.8.0",
+    "arb_precision_bits": 192,
+    "declared_metric_convention": "Euclidean fourteen-phase coordinates unless explicitly pulled back in a chart"
+  },
+  "input_files": [
+    {
+      "path": "inputs/response_fibre_v0_6_2_backend_inputs.zip",
+      "sha256": "2efd863f5ff26da1067594f068bfe265678e6ebac480574ff0574ccc55f98666",
+      "role": "hash-bound backend input package containing the corrected atlas and earlier support artifacts"
+    },
+    {
+      "path": "src/response_fibre_arb_kkt_witness_alignment_v0_7_4.py",
+      "sha256": "1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8",
+      "role": "published parent-box geometry reference driver; design reference only for this protocol"
+    },
+    {
+      "path": "src/response_fibre_intrinsic_picard_microstep_v0_9_3.py",
+      "sha256": "3be3e07146ff0e505f08bae7bd0ec7f2895955f2540647fea3278fdba51db79c",
+      "role": "published local intrinsic ODE reference driver; design reference only for this protocol"
+    }
+  ],
+  "R1": {
+    "declared": true,
+    "state_space": "fourteen-phase driven-qubit control space",
+    "phase_periodicity": "phases are interpreted modulo 2*pi",
+    "local_chart": {
+      "chart_id": "published_reference_chart_9_subdivision_32_child_15_neighborhood",
+      "coordinate_type": "local chart in the fourteen-phase torus with fixed representative phases",
+      "periodic_wrap_policy": "no wrap is permitted inside the declared local chart residence gate"
+    },
+    "physical_sector": {
+      "model": "driven qubit with common quasi-static detuning",
+      "sector": "fixed projective-response sector inherited from the declared R3 response",
+      "allowed_domain": "declared local chart box and subordinate intrinsic chart domain only"
+    }
+  },
+  "R2": {
+    "declared": true,
+    "pulse_preparation": "fourteen constant phase segments with the frozen duration convention used by the published response drivers",
+    "analytic_propagation": "exact analytic two-level segment propagation with Arb enclosures in theorem-bearing references",
+    "declared_response": "R_3(theta)=(Re a0, Re a1, Re a2, Re a3, Im a0, Im a1, Im a2, Im a3)",
+    "readout_protocol": "projective jet coefficients a0 through a3 are read in the fixed order declared above",
+    "input_files_bound_by_sha256": true,
+    "arb_precision_bits": 192,
+    "python_flint_version": "0.8.0"
+  },
+  "R3": {
+    "declared": true,
+    "response_cost_formula": "F_Pi(theta,v)=sqrt((D R_3(theta)v)^T W_Pi (D R_3(theta)v))",
+    "W_Pi": {
+      "frozen": true,
+      "matrix": "identity_8x8",
+      "sha256_of_canonical_json": "0111dea7a4444ff1449da5ffcc98beb2eae423e7e8e3a290626d377896aa82dc"
+    },
+    "interpretation": "protocol-relative response cost",
+    "not_interpreted_as": [
+      "physical time",
+      "physical energy",
+      "physical action"
+    ],
+    "zero_cost_criterion": "F_Pi(theta(s), theta_dot(s)) is identically zero under the certified response-preservation identity",
+    "positive_control_criterion": "F_Pi(theta(s), theta_dot(s)) has a strictly positive protocol-lower-bound on a positive-measure segment"
+  },
+  "R4": {
+    "declared": true,
+    "curve_class": "absolutely continuous nonconstant curves inside the declared local chart",
+    "time_interval": [
+      0.0,
+      1.0
+    ],
+    "chart_residence_gate": "the curve remains inside the declared local chart and allowed domain for all s in [0,1]",
+    "regularity_gate": "R_3 is differentiable on the chart and D R_3 has the required rank on the certified domain",
+    "nonconstant_gate": {
+      "kind": "positive-measure-speed-or-displacement",
+      "predeclared_threshold": "to be certified in future R6/R7 certificates, not evaluated in this scaffold"
+    }
+  },
+  "R5": {
+    "declared": true,
+    "intrinsic_chart": "theta(a)=theta_0+T a+N psi(a)",
+    "fixed_v": {
+      "dimension": 6,
+      "components": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "normalization": "Euclidean unit vector in the frozen intrinsic coordinate basis"
+    },
+    "candidate_family": "a_epsilon(s)=epsilon*sin(2*pi*s)*v",
+    "epsilon_sequence": [
+      "1e-14",
+      "3e-14",
+      "1e-13",
+      "3e-13",
+      "1e-12"
+    ],
+    "domain_gate": "theta(a_epsilon(s)) remains inside the intrinsic chart domain for all s",
+    "contraction_gate": "future Krawczyk/Picard graph contraction closes on the full loop tube",
+    "zero_cost_gate": "future certificate proves F_Pi(theta(s),theta_dot(s)) integrates to zero by exact response preservation",
+    "certificate_run": false
+  },
+  "R6": {
+    "declared": true,
+    "future_gates_only": [
+      "existence",
+      "uniqueness",
+      "chart_residence",
+      "exact_response_preservation",
+      "zero_total_cost",
+      "positive_measure_nonconstancy",
+      "strict_independent_L6_change"
+    ],
+    "search_allowed_in_this_repository_state": false,
+    "certificate_run": false
+  },
+  "R7": {
+    "declared": true,
+    "fixed_normal_control_n": {
+      "dimension": 14,
+      "basis": "frozen local fourteen-phase coordinate basis",
+      "components": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "normalization": "Euclidean unit vector in the frozen ambient coordinate basis"
+    },
+    "control_family": "eta_delta(s)=theta_0+s*delta*n",
+    "uses_same_response_cost_as_R3": true,
+    "delta_sequence": [
+      "1e-14",
+      "3e-14",
+      "1e-13",
+      "3e-13",
+      "1e-12"
+    ],
+    "strict_positive_cost_lower_bound_gate": "future certificate must prove a strictly positive protocol-relative response-cost lower bound",
+    "certificate_run": false
+  }
+}
