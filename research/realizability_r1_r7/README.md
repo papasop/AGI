@@ -34,6 +34,8 @@ verify_r7_certificate.py
 R5_FEASIBILITY_AUDIT.md
 R5_FULL_TUBE_PROTOCOL_BOUNDARY.md
 R5_STATIC_ARB_GATES_BOUNDARY.md
+R5_FIRST_LEAF_PREFLIGHT_BOUNDARY.md
+R5_FIRST_LEAF_CENTER_DIAGNOSTIC.md
 r5_full_tube_protocol_v1_0.json
 prepare_r5_full_tube_auxiliary.py
 verify_r5_full_tube_auxiliary.py
@@ -42,6 +44,12 @@ verify_r5_full_tube_protocol.py
 certify_r5_static_arb_gates.py
 verify_r5_static_arb_gates.py
 certificates/r5_static_arb_gates_v1_0.json
+certify_r5_first_leaf_preflight.py
+verify_r5_first_leaf_preflight.py
+certificates/r5_first_leaf_preflight_v1_0.json
+diagnose_r5_first_leaf_center.py
+verify_r5_first_leaf_center_diagnostic.py
+diagnostics/r5_first_leaf_center_diagnostic_v1_0.json
 certificates/r7_positive_control_v1_0.json  # superseded
 certificates/r7_positive_control_v1_1.json  # current R7 positive control
 ```
@@ -57,6 +65,8 @@ python research/realizability_r1_r7/prepare_r5_full_tube_auxiliary.py --verify-f
 python research/realizability_r1_r7/verify_r5_full_tube_auxiliary.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_full_tube_protocol.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_static_arb_gates.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_first_leaf_preflight.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_first_leaf_center_diagnostic.py --mutation-tests
 ```
 
 The verifier checks schema, required fields, declared file hashes, R1--R5/R7
@@ -96,6 +106,23 @@ gate result for the frozen candidate objects only. Its status is
 `B` invertibility, and preconditioner-defect gates, but it is not an R5
 full-tube certificate and does not certify graph existence, exact response
 preservation, zero total cost, nonconstancy, R6, or normal K=1 recovery.
+
+`certificates/r5_first_leaf_preflight_v1_0.json` records the R5-B1a
+first-leaf Krawczyk preflight for leaf index 0 of the frozen 16-leaf
+decomposition. Its status is
+`R5_FIRST_LEAF_PREFLIGHT_INCONCLUSIVE`: chart residence, no-wrap, `B`
+invertibility, normal-Jacobian invertibility, and contraction are strictly
+verified, but the Krawczyk self-map is not strictly contained in the fixed
+candidate normal box. This is not an R5 failure, not a full-tube result, and
+not R6.
+
+`diagnostics/r5_first_leaf_center_diagnostic_v1_0.json` records the R5-B1b
+center/forcing diagnostic for the same first leaf. Its status is
+`R5_FIRST_LEAF_CENTER_DIAGNOSIS_COMPLETE` with classification
+`MULTIPLE_CAUSES`: the interval forcing term dominates the reported self-map
+bound, while the pointwise Newton correction also exceeds the frozen normal-box
+radius. It is diagnostic-only and does not recenter, resize, certify, or freeze
+a new candidate.
 
 ## Scope
 
