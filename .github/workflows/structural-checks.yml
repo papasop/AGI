@@ -26,6 +26,8 @@ jobs:
         run: python research/realizability_r1_r7/verify_r5_full_tube_auxiliary.py --mutation-tests
       - name: Verify prospective R5 full-tube protocol
         run: python research/realizability_r1_r7/verify_r5_full_tube_protocol.py --mutation-tests
+      - name: Verify prospective R5 static Arb gates
+        run: python research/realizability_r1_r7/verify_r5_static_arb_gates.py --mutation-tests
       - name: Test public verification entrypoint
         run: python scripts/verify_reference_results.py
       - name: Test published paper entrypoint

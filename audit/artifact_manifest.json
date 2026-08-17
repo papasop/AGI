@@ -340,7 +340,7 @@
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
       "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "c187ab38c2c5b43a3f8dd9eaeb77e79fc578ae657b40b8c8899babdebd48b142",
+      "sha256": "99131c21bc320f7c9c2476a66a365aaabaefa63d765c2a89a7e7689e7b33357e",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -552,6 +552,60 @@
       "scientific_scope": "read-only verifier and mutation tests for the byte-frozen auxiliary candidate artifact; does not rerun platform-sensitive SVD and does not run R5/R6",
       "sha256": "3d96f8701f57382c25e1335398f0f5da3122cb3303d914134d6a07517d41371a",
       "status": "r5_auxiliary_candidate_data_frozen_pending_arb_validation",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_static_arb_gates_boundary",
+      "inputs": [
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/R5_STATIC_ARB_GATES_BOUNDARY.md",
+      "producer": "prospective R5-B0 static Arb gate scaffold",
+      "scientific_scope": "boundary for static candidate-object Arb gates only; not an R5 full-tube certificate and not R6",
+      "sha256": "e9bb32403bd25bbce655d40a4e81a11a538c4b472b3039617334076a66b156db",
+      "status": "prospective_r5_b0_static_arb_gates",
+      "type": "documentation"
+    },
+    {
+      "id": "principle_r_r5_static_arb_gates_script",
+      "inputs": [
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certify_r5_static_arb_gates.py",
+      "producer": "prospective R5-B0 static Arb gate verifier",
+      "scientific_scope": "certifies static rank, transversality, B invertibility and preconditioner-defect gates for frozen candidate objects only; does not generate an R5 full-tube certificate or run R6",
+      "sha256": "4f848186ee26b898b6135c5702616edee87244e5ddc031cceb925d9d9161dc06",
+      "status": "prospective_r5_b0_static_arb_gates",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_static_arb_gates_certificate",
+      "inputs": [
+        "principle_r_r5_static_arb_gates_script",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r5_static_arb_gates_v1_0.json",
+      "producer": "principle_r_r5_static_arb_gates_script",
+      "scientific_scope": "R5-B0 static Arb gate record only; not graph existence, exact response preservation, zero-cost, full-tube R5, R6, or normal K=1 recovery evidence",
+      "sha256": "b3d28cb01a44c4773136e34a4bb206becb3c6f6c7160ca865576f03af5145994",
+      "status": "prospective_r5_b0_static_arb_gates",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r5_static_arb_gates_verifier",
+      "inputs": [
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_static_arb_gates.py",
+      "producer": "prospective R5-B0 static Arb gate certificate verifier",
+      "scientific_scope": "read-only verifier and mutation tests for the R5-B0 static gate record; does not run R5 full-tube certification or R6",
+      "sha256": "dc8a1706b1d9be149500d8c2126e853e034711a5c3e0b1d01125c364614b13b9",
+      "status": "prospective_r5_b0_static_arb_gates",
       "type": "script"
     },
     {
