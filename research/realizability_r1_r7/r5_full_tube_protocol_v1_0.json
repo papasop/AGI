@@ -1,0 +1,229 @@
+{
+  "schema_version": "1.0",
+  "protocol_id": "principle_r_r5_full_tube_graph_protocol_v1_0",
+  "title": "Subordinate R5-A full-tube implicit graph protocol",
+  "status": "R5_FULL_TUBE_PROTOCOL_FROZEN_NO_CERTIFICATE_RUN",
+  "parent_protocol": {
+    "path": "research/realizability_r1_r7/frozen_protocol_v1_0.json",
+    "sha256": "e8519a644ab50a9989eb40bc34499055f83760563167d88da21d17b3c7539e1c",
+    "status": "PROTOCOL_FROZEN_NO_R6_SEARCH_PERFORMED"
+  },
+  "boundary": {
+    "kind": "subordinate_protocol_only",
+    "R5_certificate_generated": false,
+    "R5_search_performed": false,
+    "R6_search_performed": false,
+    "R6_certificate_present": false,
+    "normal_K1_residual_recovery_performed": false,
+    "published_theorem_modified": false,
+    "empirical_physical_validation_claimed": false,
+    "physical_time_energy_or_action_claimed": false,
+    "lorentzian_spacetime_or_gr_claimed": false,
+    "global_flow_claimed": false,
+    "v0_9_2_or_v0_9_3_relabelled_as_R5_or_R6": false
+  },
+  "source_references": {
+    "R5_feasibility_audit": {
+      "path": "research/realizability_r1_r7/R5_FEASIBILITY_AUDIT.md",
+      "sha256": "5da60edc7271db0d2f518cc3a934acf8e60eda52df7f8bd5c4ff2428dba7c4f3",
+      "status": "R5_INCONCLUSIVE_MISSING_FULL_LOOP_GRAPH_CERTIFICATE"
+    },
+    "corrected_atlas": {
+      "container_path": "inputs/response_fibre_v0_6_2_backend_inputs.zip",
+      "container_sha256": "2efd863f5ff26da1067594f068bfe265678e6ebac480574ff0574ccc55f98666",
+      "member": "corrected_atlas.json",
+      "member_sha256": "e1c816b9c69b6e4ca9e7018b9857ce04a7b6d12c639e51e6792376dbd28d7ec9",
+      "role": "source of the chart-9 subdivision-32 child-15 center and theta0 representative"
+    },
+    "theta0": {
+      "source": "chart 9, subdivision 32, child 15 reference center from corrected_atlas.json via the frozen response drivers",
+      "source_hash": "e1c816b9c69b6e4ca9e7018b9857ce04a7b6d12c639e51e6792376dbd28d7ec9",
+      "serialization_required_before_certificate": true
+    },
+    "v0_9_2_design_reference": {
+      "path": "src/response_fibre_centered_mean_value_krawczyk_v0_9_2.py",
+      "sha256": "844e62e63d97d6845ed62c0c66597e246fd021b21aed31e22609cdaaec5a269d",
+      "role": "design reference only; not an R5 or R6 certificate"
+    },
+    "v0_9_3_design_reference": {
+      "path": "src/response_fibre_intrinsic_picard_microstep_v0_9_3.py",
+      "sha256": "3be3e07146ff0e505f08bae7bd0ec7f2895955f2540647fea3278fdba51db79c",
+      "role": "design reference only; not an R5 or R6 certificate"
+    }
+  },
+  "required_frozen_data_before_certificate": [
+    {
+      "name": "theta0_vector",
+      "path": "research/realizability_r1_r7/data/r5_full_tube_auxiliary_v1_0.json",
+      "sha256": "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037",
+      "object_key": "theta_0",
+      "object_sha256": "077a169644e33145b4f14c5aa29d4ac86cd2e69572c6f35ddab8af92f41d918a",
+      "required_sha256_state": "BOUND_TO_AUXILIARY_CANDIDATE_DATA",
+      "role": "exact fourteen-phase representative for the full-tube graph"
+    },
+    {
+      "name": "T_matrix",
+      "path": "research/realizability_r1_r7/data/r5_full_tube_auxiliary_v1_0.json",
+      "sha256": "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037",
+      "object_key": "T",
+      "object_sha256": "aa1814d7257f84de3f4eeff3d3feb01fcaa7dfc5db4030d82cabfe06046dda2c",
+      "required_sha256_state": "BOUND_TO_AUXILIARY_CANDIDATE_DATA",
+      "shape": [
+        14,
+        6
+      ],
+      "role": "fixed intrinsic tangent frame"
+    },
+    {
+      "name": "N_matrix",
+      "path": "research/realizability_r1_r7/data/r5_full_tube_auxiliary_v1_0.json",
+      "sha256": "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037",
+      "object_key": "N",
+      "object_sha256": "d24a90e45ebea1ea46b0d049757809dc5c42371a740a40ca6412fc5f64e81ba8",
+      "required_sha256_state": "BOUND_TO_AUXILIARY_CANDIDATE_DATA",
+      "shape": [
+        14,
+        8
+      ],
+      "role": "fixed normal frame for the implicit graph solve"
+    },
+    {
+      "name": "B_matrix",
+      "path": "research/realizability_r1_r7/data/r5_full_tube_auxiliary_v1_0.json",
+      "sha256": "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037",
+      "object_key": "B",
+      "object_sha256": "f1f9c0d26df1c8366a96fdeafd269660bc06f7e2dfdc4391948d15f13edda170",
+      "required_sha256_state": "BOUND_TO_AUXILIARY_CANDIDATE_DATA",
+      "shape": [
+        8,
+        8
+      ],
+      "role": "fixed response-coordinate map whose invertibility must be Arb-certified"
+    },
+    {
+      "name": "c_vector",
+      "path": "research/realizability_r1_r7/data/r5_full_tube_auxiliary_v1_0.json",
+      "sha256": "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037",
+      "object_key": "c",
+      "object_sha256": "151762ada396ef62608698fb18090e0a443fef869f3f4d91543ad4dfc8e9312a",
+      "required_sha256_state": "BOUND_TO_AUXILIARY_CANDIDATE_DATA",
+      "shape": [
+        8
+      ],
+      "role": "fixed graph-equation target c=R3(theta_0)"
+    },
+    {
+      "name": "normal_preconditioners",
+      "path": "research/realizability_r1_r7/data/r5_full_tube_auxiliary_v1_0.json",
+      "sha256": "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037",
+      "object_key": "P",
+      "object_sha256": "ae09f2d3343301b12e2b661fa7d50d2b004cd4d72333cbca1703c20890a2d82e",
+      "required_sha256_state": "BOUND_TO_AUXILIARY_CANDIDATE_DATA",
+      "role": "fixed interval-Newton/Krawczyk preconditioners for all sub-tubes"
+    }
+  ],
+  "R5_full_tube_object": {
+    "intrinsic_graph": "theta(t)=theta_0+T*(t*v)+N*psi(t*v)",
+    "fixed_v": {
+      "dimension": 6,
+      "components": [
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    "tube_parameter": {
+      "name": "t",
+      "interval": [
+        "-1e-12",
+        "1e-12"
+      ],
+      "contains_all_frozen_R5_loops": true
+    },
+    "frozen_R5_epsilons": [
+      "1e-14",
+      "3e-14",
+      "1e-13",
+      "3e-13",
+      "1e-12"
+    ],
+    "subset_inference_only_after_full_tube_certification": true
+  },
+  "subdivision_strategy": {
+    "kind": "fixed_bisection_of_t_interval",
+    "initial_interval": [
+      "-1e-12",
+      "1e-12"
+    ],
+    "initial_subinterval_count": 16,
+    "maximum_refinement_depth": 8,
+    "result_adaptive_changes_allowed": false,
+    "certificate_must_record_every_leaf": true
+  },
+  "arithmetic": {
+    "python_flint_version": "0.8.0",
+    "arb_precision_bits": 192,
+    "outward_interval_arithmetic_required": true,
+    "binary64_candidate_discovery_allowed": true,
+    "binary64_theorem_decision_allowed": false
+  },
+  "future_acceptance_gates": {
+    "protocol_identity": "parent protocol, corrected atlas, theta0, T, N, B, preconditioners, v, t interval, subdivision strategy, and precision match exactly",
+    "frame_rank": "Arb certificate proves the response frame rank needed for the implicit graph setup",
+    "T_N_dimensions_and_transversality": "Arb certificate proves T is 14x6, N is 14x8, and the chosen splitting is transverse on the full tube",
+    "B_strict_invertibility": "fixed B has an Arb/Neumann inverse certificate with defect strictly less than one",
+    "preconditioner_defect": "each fixed sub-tube preconditioner has an Arb defect strictly less than one",
+    "krawczyk_self_mapping": "each sub-tube Krawczyk image is strictly contained in its declared normal box",
+    "krawczyk_contraction": "each sub-tube interval Newton/Krawczyk contraction margin is strictly below the frozen threshold",
+    "graph_existence": "strict implicit-function/Krawczyk theorem gives a graph branch on every leaf",
+    "graph_uniqueness": "strict uniqueness holds on every leaf normal box",
+    "overlap_consistency": "adjacent leaf graph branches overlap consistently on shared t intervals",
+    "full_tube_coverage": "leaf intervals cover [-1e-12,1e-12] without gaps",
+    "chart_residence": "theta(t) stays in the declared local chart and model domain",
+    "no_phase_wrap": "no phase representative crosses a periodic wrap boundary",
+    "exact_response_identity_logic": "H(t,psi(t))=0 plus strict B invertibility implies R_3(theta(t))=R_3(theta_0)",
+    "same_R3_cost_meter": "future R5 uses exactly the parent R3/W_Pi protocol-relative response cost",
+    "zero_total_response_cost": "zero cost follows only from the exact response identity, not from residual tolerance",
+    "nonconstant_positive_measure": "on I=[0,1/12], prove cos(2*pi*s)>0, nonzero intrinsic speed, and environment speed lower bound",
+    "epsilon_shrinking_family": "the five frozen epsilons are positive, ordered, and converge toward zero at the declared scale"
+  },
+  "future_rejection_statuses": {
+    "protocol_or_hash_mismatch": "R5_FULL_TUBE_PROTOCOL_REJECTED_PROTOCOL_MISMATCH",
+    "missing_required_frozen_data": "R5_FULL_TUBE_PROTOCOL_INCONCLUSIVE_MISSING_FROZEN_DATA",
+    "failed_strict_gate": "R5_FULL_TUBE_PROTOCOL_INCONCLUSIVE",
+    "forbidden_R5_or_R6_result_present": "R5_FULL_TUBE_PROTOCOL_REJECTED_FORBIDDEN_RESULT"
+  },
+  "nonconstancy_design": {
+    "s_interval": [
+      "0",
+      "1/12"
+    ],
+    "required_cosine_bound": "future certificate must prove cos(2*pi*s) >= 1/2 on I=[0,1/12]",
+    "intrinsic_speed": "a_dot(s)=epsilon*2*pi*cos(2*pi*s)*v",
+    "environment_speed_gate": "future certificate must lower-bound the graph embedding speed using a certified singular value or coordinate projection"
+  },
+  "exact_response_identity_design": {
+    "forbidden_substitute": "residual interval contains zero",
+    "required_logic": [
+      "strict implicit graph existence and uniqueness on full tube",
+      "H(t,psi(t))=0 holds exactly by the implicit function theorem",
+      "fixed B is strictly invertible",
+      "B(R_3(theta(t))-R_3(theta_0))=0 implies R_3(theta(t))-R_3(theta_0)=0",
+      "F_Pi is zero along the certified curve because D R_3(theta(t))*theta_dot(t)=0"
+    ]
+  },
+  "forbidden_fields": [
+    "R5_CERTIFIED",
+    "R5_certificate",
+    "R5_certificate_sha256",
+    "R5_result",
+    "R6_CERTIFIED",
+    "R6_search_result",
+    "R6_certificate",
+    "normal_K1_recovery_result",
+    "all_gates_pass"
+  ]
+}

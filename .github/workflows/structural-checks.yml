@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install frozen dependencies
+        run: python -m pip install -r requirements.txt
       - name: Compile frozen source
         run: python -m compileall -q src tools scripts reproduce research
       - name: Verify frozen release hashes and metadata
@@ -20,6 +22,12 @@ jobs:
         run: python research/realizability_r1_r7/verify_frozen_protocol.py
       - name: Verify prospective Principle R R7 certificate
         run: python research/realizability_r1_r7/verify_r7_certificate.py --mutation-tests
+      - name: Rebuild prospective R5 auxiliary candidate data
+        run: python research/realizability_r1_r7/prepare_r5_full_tube_auxiliary.py --check
+      - name: Verify prospective R5 auxiliary candidate data
+        run: python research/realizability_r1_r7/verify_r5_full_tube_auxiliary.py --mutation-tests
+      - name: Verify prospective R5 full-tube protocol
+        run: python research/realizability_r1_r7/verify_r5_full_tube_protocol.py --mutation-tests
       - name: Test public verification entrypoint
         run: python scripts/verify_reference_results.py
       - name: Test published paper entrypoint
