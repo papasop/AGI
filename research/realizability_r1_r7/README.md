@@ -31,6 +31,7 @@ requirements.txt
 R7_CERTIFICATE_BOUNDARY.md
 certify_r7_positive_control.py
 verify_r7_certificate.py
+R5_FEASIBILITY_AUDIT.md
 certificates/r7_positive_control_v1_0.json  # superseded
 certificates/r7_positive_control_v1_1.json  # current R7 positive control
 ```
@@ -51,6 +52,14 @@ It does not run Arb, Krawczyk, Picard, Lohner, or any R6 search.
 The R7 verifier checks the stored v1.1 certificate, including full
 `eta_delta(s)=theta_0+s*delta*n` path endpoint containment for every frozen
 delta. It does not run R5 or R6.
+
+`R5_FEASIBILITY_AUDIT.md` records a first-stage, read-only R5 feasibility
+audit. Its final status is
+`R5_INCONCLUSIVE_MISSING_FULL_LOOP_GRAPH_CERTIFICATE` because the repository
+does not yet contain an R5-specific complete-loop implicit-graph certificate or
+the auxiliary frozen intrinsic-chart data needed to verify one fail-closed. It
+is not an R5 certificate, does not report a failed R5 search, and does not run
+R6.
 
 ## Scope
 
