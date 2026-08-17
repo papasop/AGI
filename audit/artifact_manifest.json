@@ -340,7 +340,7 @@
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
       "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "d387cf4a77e04a254ff622e3cdd331ada3e8f3fe2f7b9d6b242e6380330ebc0b",
+      "sha256": "a9f6501d09345d9def5cca45528df7d5be5a44b422853eddb7906a2c208dd39f",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -391,6 +391,20 @@
       "sha256": "50e58648439e6a33e801bffeb203e7080fa1cd39850519cf78caac88eaf199bc",
       "status": "prospective_protocol",
       "type": "script"
+    },
+    {
+      "id": "principle_r_r5_feasibility_audit",
+      "inputs": [
+        "principle_r_r1_r7_protocol",
+        "v0_7_4_parent_box_script",
+        "v0_9_3_local_ode_script"
+      ],
+      "path": "research/realizability_r1_r7/R5_FEASIBILITY_AUDIT.md",
+      "producer": "prospective R5 feasibility audit",
+      "scientific_scope": "read-only R5 feasibility gap report; records R5_INCONCLUSIVE_MISSING_FULL_LOOP_GRAPH_CERTIFICATE and does not certify R5 or run R6",
+      "sha256": "5da60edc7271db0d2f518cc3a934acf8e60eda52df7f8bd5c4ff2428dba7c4f3",
+      "status": "r5_inconclusive_missing_full_loop_graph_certificate",
+      "type": "documentation"
     },
     {
       "id": "principle_r_r7_certificate_boundary",
