@@ -13,9 +13,11 @@ jobs:
         with:
           python-version: "3.12"
       - name: Compile frozen source
-        run: python -m compileall -q src tools scripts reproduce
+        run: python -m compileall -q src tools scripts reproduce research
       - name: Verify frozen release hashes and metadata
         run: python tools/verify_release.py
+      - name: Verify frozen prospective Principle R protocol
+        run: python research/realizability_r1_r7/verify_frozen_protocol.py
       - name: Test public verification entrypoint
         run: python scripts/verify_reference_results.py
       - name: Test published paper entrypoint
