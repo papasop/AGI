@@ -225,5 +225,20 @@
     "R6_certificate",
     "normal_K1_recovery_result",
     "all_gates_pass"
-  ]
+  ],
+  "auxiliary_artifact_policy": {
+    "artifact_path": "research/realizability_r1_r7/data/r5_full_tube_auxiliary_v1_0.json",
+    "artifact_sha256": "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037",
+    "candidate_artifact_byte_frozen": true,
+    "cross_platform_regeneration_required": false,
+    "binary64_svd_construction_platform_sensitive": true,
+    "regeneration_diagnostic_only": true,
+    "accepted_artifact_hashes": [
+      "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037"
+    ],
+    "known_nonaccepted_platform_variant_sha256": "88e814702916e74a9963256f21a6fe7acdce5d806a88d25eebb5fb84a0f026fe",
+    "platform_variant_is_not_r5_failure": true,
+    "future_R5_B_certifies_frozen_candidate_objects_only": true,
+    "theorem_certified": false
+  }
 }

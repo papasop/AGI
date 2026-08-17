@@ -340,7 +340,7 @@
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
       "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "c1e71cd0de77cce28c2bfdc1dd109a634535abb1e73b058baf89895d6d75e468",
+      "sha256": "c187ab38c2c5b43a3f8dd9eaeb77e79fc578ae657b40b8c8899babdebd48b142",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -415,7 +415,7 @@
       "path": "research/realizability_r1_r7/R5_FULL_TUBE_PROTOCOL_BOUNDARY.md",
       "producer": "prospective R5-A full-tube protocol scaffold",
       "scientific_scope": "boundary for the subordinate R5-A full-tube protocol; no R5/R6 certificate, no normal K=1 recovery, no published-theorem change",
-      "sha256": "b810598e8e484416aa619a260072d76d196481baf6e8ca0b04f32578bb68bfed",
+      "sha256": "f7f67a5a2363013ad3c9b514f4e61290b5c7c7dc006264142fdb635d1496615b",
       "status": "r5_full_tube_protocol_frozen_no_certificate_run",
       "type": "documentation"
     },
@@ -430,7 +430,7 @@
       "path": "research/realizability_r1_r7/r5_full_tube_protocol_v1_0.json",
       "producer": "prospective R5-A full-tube protocol scaffold",
       "scientific_scope": "subordinate protocol freezing future full-tube graph gates and missing-data requirements; not an R5 certificate and not R6",
-      "sha256": "cc134ed34915817cf43e4a1d7fd75f19ecfce87e77c79a9d45fd548a64e303c1",
+      "sha256": "1e757ff86759fd793f6743560e1f50040362f892e342db723c47a658a3078cd3",
       "status": "r5_full_tube_protocol_frozen_no_certificate_run",
       "type": "protocol"
     },
@@ -442,7 +442,7 @@
       "path": "research/realizability_r1_r7/verify_r5_full_tube_protocol.py",
       "producer": "prospective R5-A full-tube protocol verifier",
       "scientific_scope": "read-only verifier and mutation tests for the subordinate R5-A protocol; does not run R5/R6",
-      "sha256": "25c7277a9bb5586ad4545927c76854407362069ac234ca4aa07b9ba4b5a37db1",
+      "sha256": "3d51718861a9f1c9e0fbd623e2dfa665b33ea26992a8a883e8cb8a62d6f995ea",
       "status": "r5_full_tube_protocol_frozen_no_certificate_run",
       "type": "script"
     },
@@ -523,9 +523,9 @@
         "v0_9_3_local_ode_script"
       ],
       "path": "research/realizability_r1_r7/prepare_r5_full_tube_auxiliary.py",
-      "producer": "deterministic R5-A auxiliary candidate-data serializer",
-      "scientific_scope": "serializes candidate theta_0/T/N/B/c/P data only; no R5 certificate, R6 search, normal K=1 recovery, or theorem-bearing Arb decision",
-      "sha256": "0b2a3ba5c17a9b04ff942f7e32587e91f0a5157f761ee499ee7ab2188d4c523c",
+      "producer": "R5-A auxiliary candidate-data serializer and local regeneration diagnostic",
+      "scientific_scope": "serializes candidate theta_0/T/N/B/c/P data only; committed artifact identity, not cross-platform binary64 SVD regeneration, is the verification gate; no R5 certificate, R6 search, normal K=1 recovery, or theorem-bearing Arb decision",
+      "sha256": "8756dbb04baede155c9abf9ffd08f2fcc429ab40cb24ce6a53601ba962635e7e",
       "status": "r5_auxiliary_candidate_data_frozen_pending_arb_validation",
       "type": "script"
     },
@@ -535,8 +535,8 @@
         "principle_r_r5_full_tube_auxiliary_preparer"
       ],
       "path": "research/realizability_r1_r7/data/r5_full_tube_auxiliary_v1_0.json",
-      "producer": "deterministic replay of v0.9.3 midpoint SVD candidate construction",
-      "scientific_scope": "candidate auxiliary data for future R5-A full-tube graph certificate; pending independent Arb validation and not theorem-bearing",
+      "producer": "byte-frozen candidate artifact from v0.9.3 midpoint SVD candidate construction",
+      "scientific_scope": "candidate auxiliary data for future R5-A full-tube graph certificate; artifact bytes are hash-bound while binary64 SVD regeneration is platform-sensitive and diagnostic only; pending independent Arb validation and not theorem-bearing",
       "sha256": "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037",
       "status": "r5_auxiliary_candidate_data_frozen_pending_arb_validation",
       "type": "candidate_data"
@@ -549,8 +549,8 @@
       ],
       "path": "research/realizability_r1_r7/verify_r5_full_tube_auxiliary.py",
       "producer": "prospective R5-A auxiliary candidate-data verifier",
-      "scientific_scope": "read-only verifier and mutation tests for deterministic auxiliary candidate data; does not run R5/R6",
-      "sha256": "c4902a9ab2c81050b08197d4117220c7247605de5d8771e950b21413231e9232",
+      "scientific_scope": "read-only verifier and mutation tests for the byte-frozen auxiliary candidate artifact; does not rerun platform-sensitive SVD and does not run R5/R6",
+      "sha256": "3d96f8701f57382c25e1335398f0f5da3122cb3303d914134d6a07517d41371a",
       "status": "r5_auxiliary_candidate_data_frozen_pending_arb_validation",
       "type": "script"
     },

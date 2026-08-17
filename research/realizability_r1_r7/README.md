@@ -49,7 +49,7 @@ Run:
 ```bash
 python research/realizability_r1_r7/verify_frozen_protocol.py
 python research/realizability_r1_r7/verify_r7_certificate.py --mutation-tests
-python research/realizability_r1_r7/prepare_r5_full_tube_auxiliary.py
+python research/realizability_r1_r7/prepare_r5_full_tube_auxiliary.py --verify-frozen
 python research/realizability_r1_r7/verify_r5_full_tube_auxiliary.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_full_tube_protocol.py --mutation-tests
 ```
@@ -74,11 +74,13 @@ R6.
 future full-tube graph certificate on the one-dimensional segment
 `a=t*v, |t|<=1e-12`. Its status is
 `R5_FULL_TUBE_PROTOCOL_FROZEN_NO_CERTIFICATE_RUN`.
-`data/r5_full_tube_auxiliary_v1_0.json` deterministically serializes the
-candidate `theta_0`, `T`, `N`, graph-equation response-coordinate map `B`,
-target `c`, and numerical candidate preconditioner `P`. These are candidate
-data only, produced by replaying the existing v0.9.3 midpoint SVD construction.
-They still require independent Arb validation of frame rank, transversality,
+`data/r5_full_tube_auxiliary_v1_0.json` is the committed candidate auxiliary
+artifact for `theta_0`, `T`, `N`, graph-equation response-coordinate map `B`,
+target `c`, and numerical candidate preconditioner `P`. Its byte content is
+frozen and hash-bound. Its binary64 SVD construction is platform-sensitive and
+is not a cross-platform reproducibility or theorem-bearing gate. Local
+regeneration is a diagnostic only; future R5-B work must certify the committed
+candidate objects by independent Arb validation of frame rank, transversality,
 `B` invertibility, preconditioner defect, and full-tube graph gates before any
 R5 certificate can exist. The protocol does not run R5 or R6 and does not
 relabel v0.9.2/v0.9.3 as R5 or R6 evidence.

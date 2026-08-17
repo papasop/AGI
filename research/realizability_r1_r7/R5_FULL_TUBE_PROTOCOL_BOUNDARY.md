@@ -11,12 +11,14 @@ Principle R R5 shrinking-family problem. It is a protocol freeze only. It does
 not certify R5, run R5, run R6, search for candidates, perform normal K=1
 residual recovery, or modify the published Geometric-Flow theorem boundary.
 
-The protocol is bound to deterministic candidate auxiliary data in
-`data/r5_full_tube_auxiliary_v1_0.json`. That file freezes `theta_0`, `T`,
-`N`, the graph-equation response-coordinate map `B`, target `c`, and numerical
-candidate preconditioner `P`. The data are produced by replaying the existing
-v0.9.3 midpoint SVD construction and are explicitly pending independent Arb
-validation. They are not theorem-bearing evidence.
+The protocol is bound to the committed candidate auxiliary artifact in
+`data/r5_full_tube_auxiliary_v1_0.json`, whose byte content is frozen by
+SHA-256. That file freezes `theta_0`, `T`, `N`, the graph-equation
+response-coordinate map `B`, target `c`, and numerical candidate
+preconditioner `P`. Its binary64 NumPy SVD construction is platform-sensitive
+and is not a cross-platform reproducibility or theorem-bearing gate. Future
+R5-B work may certify only the committed frozen candidate objects by
+independent Arb validation. They are not theorem-bearing evidence here.
 
 The frozen R5 loops all lie in the single intrinsic line segment
 `a=t*v, |t|<=1e-12`. The subordinate protocol therefore freezes the future
@@ -55,6 +57,12 @@ preconditioner data must be serialized and checked by independent Arb
 post-hoc gates: frame rank, dimensions, transversality, strict invertibility
 of `B`, preconditioner defect, Krawczyk self-map, Krawczyk contraction, and
 sub-tube overlap consistency.
+
+The committed candidate artifact is byte-frozen and hash-bound. Its binary64
+SVD construction is platform-sensitive and is not a cross-platform
+reproducibility or theorem-bearing gate. A platform-variant regeneration is a
+diagnostic observation only, not an R5 failure, not an R6 result, and not a
+reason to replace the frozen artifact or accept multiple hashes.
 
 The names are deliberately separated:
 

@@ -22,8 +22,6 @@ jobs:
         run: python research/realizability_r1_r7/verify_frozen_protocol.py
       - name: Verify prospective Principle R R7 certificate
         run: python research/realizability_r1_r7/verify_r7_certificate.py --mutation-tests
-      - name: Rebuild prospective R5 auxiliary candidate data
-        run: python research/realizability_r1_r7/prepare_r5_full_tube_auxiliary.py --check
       - name: Verify prospective R5 auxiliary candidate data
         run: python research/realizability_r1_r7/verify_r5_full_tube_auxiliary.py --mutation-tests
       - name: Verify prospective R5 full-tube protocol

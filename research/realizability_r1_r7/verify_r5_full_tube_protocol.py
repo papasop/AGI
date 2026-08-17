@@ -27,6 +27,7 @@ EXPECTED_V092_SHA256 = "844e62e63d97d6845ed62c0c66597e246fd021b21aed31e22609cdaa
 EXPECTED_V093_SHA256 = "3be3e07146ff0e505f08bae7bd0ec7f2895955f2540647fea3278fdba51db79c"
 EXPECTED_AUXILIARY_PATH = "research/realizability_r1_r7/data/r5_full_tube_auxiliary_v1_0.json"
 EXPECTED_AUXILIARY_SHA256 = "434b8d58793b39462fc3dcf4e04f716b56e65de790e87daaecedf2e103e29037"
+KNOWN_PLATFORM_VARIANT_SHA256 = "88e814702916e74a9963256f21a6fe7acdce5d806a88d25eebb5fb84a0f026fe"
 EXPECTED_V = ["1", "0", "0", "0", "0", "0"]
 EXPECTED_EPSILONS = ["1e-14", "3e-14", "1e-13", "3e-13", "1e-12"]
 
@@ -86,6 +87,7 @@ REQUIRED_TOP_LEVEL = {
     "nonconstancy_design",
     "exact_response_identity_design",
     "forbidden_fields",
+    "auxiliary_artifact_policy",
 }
 
 
@@ -155,6 +157,7 @@ def verify(protocol: dict[str, Any]) -> dict[str, bool]:
     tube_parameter = tube.get("tube_parameter", {})
     subdivision = protocol.get("subdivision_strategy", {})
     arithmetic = protocol.get("arithmetic", {})
+    auxiliary_policy = protocol.get("auxiliary_artifact_policy", {})
     gates = protocol.get("future_acceptance_gates", {})
     rejections = protocol.get("future_rejection_statuses", {})
     nonconstancy = protocol.get("nonconstancy_design", {})
@@ -245,6 +248,20 @@ def verify(protocol: dict[str, Any]) -> dict[str, bool]:
         and arithmetic.get("binary64_candidate_discovery_allowed") is True
         and arithmetic.get("binary64_theorem_decision_allowed") is False
     )
+    checks["auxiliary_artifact_policy"] = (
+        auxiliary_policy.get("artifact_path") == EXPECTED_AUXILIARY_PATH
+        and auxiliary_policy.get("artifact_sha256") == EXPECTED_AUXILIARY_SHA256
+        and auxiliary_policy.get("candidate_artifact_byte_frozen") is True
+        and auxiliary_policy.get("cross_platform_regeneration_required") is False
+        and auxiliary_policy.get("binary64_svd_construction_platform_sensitive") is True
+        and auxiliary_policy.get("regeneration_diagnostic_only") is True
+        and auxiliary_policy.get("accepted_artifact_hashes") == [EXPECTED_AUXILIARY_SHA256]
+        and auxiliary_policy.get("known_nonaccepted_platform_variant_sha256")
+        == KNOWN_PLATFORM_VARIANT_SHA256
+        and auxiliary_policy.get("platform_variant_is_not_r5_failure") is True
+        and auxiliary_policy.get("future_R5_B_certifies_frozen_candidate_objects_only") is True
+        and auxiliary_policy.get("theorem_certified") is False
+    )
     checks["future_acceptance_gates_complete"] = set(gates) == REQUIRED_GATES
     checks["rejection_statuses_declared"] = set(rejections) == {
         "protocol_or_hash_mismatch",
@@ -331,6 +348,29 @@ def run_mutation_tests(protocol: dict[str, Any]) -> dict[str, bool]:
     mutated = copy.deepcopy(protocol)
     mutated["required_frozen_data_before_certificate"][1]["object_sha256"] = "0" * 64
     cases["partial_auxiliary_object_hash_fails"] = mutated
+
+    mutated = copy.deepcopy(protocol)
+    mutated["auxiliary_artifact_policy"]["artifact_sha256"] = KNOWN_PLATFORM_VARIANT_SHA256
+    cases["frozen_artifact_sha_change_fails"] = mutated
+
+    mutated = copy.deepcopy(protocol)
+    mutated["auxiliary_artifact_policy"]["cross_platform_regeneration_required"] = True
+    cases["cross_platform_regeneration_required_true_fails"] = mutated
+
+    mutated = copy.deepcopy(protocol)
+    mutated["auxiliary_artifact_policy"]["candidate_artifact_byte_frozen"] = False
+    cases["candidate_artifact_byte_frozen_false_fails"] = mutated
+
+    mutated = copy.deepcopy(protocol)
+    mutated["auxiliary_artifact_policy"]["platform_variant_is_not_r5_failure"] = False
+    cases["platform_variant_as_r5_failure_fails"] = mutated
+
+    mutated = copy.deepcopy(protocol)
+    mutated["auxiliary_artifact_policy"]["accepted_artifact_hashes"] = [
+        EXPECTED_AUXILIARY_SHA256,
+        KNOWN_PLATFORM_VARIANT_SHA256,
+    ]
+    cases["two_platform_hashes_accepted_fails"] = mutated
 
     return {name: not all(verify(case).values()) for name, case in cases.items()}
 

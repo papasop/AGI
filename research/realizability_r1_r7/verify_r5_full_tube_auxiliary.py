@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Verify R5 full-tube auxiliary candidate data.
 
-This verifier is fail-closed and structural. It validates deterministic
-candidate serialization for a future R5-A Arb graph certificate; it does not
-run that certificate or infer theorem-bearing gates from the candidate data.
+This verifier is fail-closed and structural. It validates byte-frozen
+candidate artifact identity for a future R5-A Arb graph certificate; it does
+not rerun the platform-sensitive binary64 SVD constructor, run that
+certificate, or infer theorem-bearing gates from the candidate data.
 """
 
 from __future__ import annotations
@@ -31,6 +32,7 @@ EXPECTED_ATLAS_SHA256 = "e1c816b9c69b6e4ca9e7018b9857ce04a7b6d12c639e51e6792376d
 EXPECTED_V074_SHA256 = "1f71c4918d1cd1d6c45dc0da4a7358e176baac9116c8f71f4a949a6d657520f8"
 EXPECTED_V092_SHA256 = "844e62e63d97d6845ed62c0c66597e246fd021b21aed31e22609cdaaec5a269d"
 EXPECTED_V093_SHA256 = "3be3e07146ff0e505f08bae7bd0ec7f2895955f2540647fea3278fdba51db79c"
+KNOWN_PLATFORM_VARIANT_SHA256 = "88e814702916e74a9963256f21a6fe7acdce5d806a88d25eebb5fb84a0f026fe"
 
 EXPECTED_OBJECT_SHA256 = {
     "theta_0": "077a169644e33145b4f14c5aa29d4ac86cd2e69572c6f35ddab8af92f41d918a",
@@ -67,6 +69,11 @@ FORBIDDEN_FIELDS = {
     "R6_certificate",
     "normal_K1_recovery_result",
     "all_gates_pass",
+    "accepted_auxiliary_sha256",
+    "accepted_platform_hashes",
+    "accepted_regeneration_hashes",
+    "regeneration_overwrote_frozen_artifact",
+    "R5_AUXILIARY_REGENERATION_PLATFORM_VARIANT_AS_FAILURE",
 }
 
 
@@ -181,6 +188,27 @@ def verify(data: dict[str, Any], *, check_file_hash: bool = True) -> dict[str, b
             and data.get("theorem_certified") is False
         ),
         "binary64_candidate_only": data.get("binary64_candidate_construction_used") is True,
+        "candidate_artifact_byte_frozen": (
+            sha256_file(AUX_PATH) == EXPECTED_AUXILIARY_SHA256
+            and data.get("candidate_artifact_byte_frozen", True) is not False
+        ),
+        "cross_platform_regeneration_not_required": (
+            data.get("cross_platform_regeneration_required", False) is False
+        ),
+        "platform_variant_not_r5_failure": (
+            data.get("platform_variant_regeneration_status") not in {
+                "R5_CERTIFIED",
+                "R5_INCONCLUSIVE",
+                "R5_REJECTED_PROTOCOL_MISMATCH",
+                "R6_CERTIFIED",
+            }
+        ),
+        "single_frozen_artifact_hash_only": (
+            data.get("accepted_auxiliary_sha256") is None
+            and data.get("accepted_platform_hashes") is None
+            and data.get("accepted_regeneration_hashes") is None
+            and KNOWN_PLATFORM_VARIANT_SHA256 != EXPECTED_AUXILIARY_SHA256
+        ),
         "forbidden_result_fields_absent": not find_forbidden_keys(data),
         "source_hashes": (
             refs.get("v0_7_4_source", {}).get("path")
@@ -289,6 +317,10 @@ def mutation_cases(data: dict[str, Any]) -> dict[str, dict[str, Any]]:
     cases["matrix_element_change_fails"] = mutated
 
     mutated = copy.deepcopy(data)
+    mutated["object_sha256"]["T"] = "0" * 64
+    cases["object_sha_change_fails"] = mutated
+
+    mutated = copy.deepcopy(data)
     mutated["objects"]["theta_0"][0] = 0.0
     cases["json_number_element_fails"] = mutated
 
@@ -326,6 +358,29 @@ def mutation_cases(data: dict[str, Any]) -> dict[str, dict[str, Any]]:
     mutated = copy.deepcopy(data)
     mutated["theorem_certified"] = True
     cases["theorem_certified_fails"] = mutated
+
+    mutated = copy.deepcopy(data)
+    mutated["cross_platform_regeneration_required"] = True
+    cases["cross_platform_regeneration_required_true_fails"] = mutated
+
+    mutated = copy.deepcopy(data)
+    mutated["candidate_artifact_byte_frozen"] = False
+    cases["candidate_artifact_byte_frozen_false_fails"] = mutated
+
+    mutated = copy.deepcopy(data)
+    mutated["platform_variant_regeneration_status"] = "R5_INCONCLUSIVE"
+    cases["platform_variant_as_r5_failure_fails"] = mutated
+
+    mutated = copy.deepcopy(data)
+    mutated["accepted_auxiliary_sha256"] = [
+        EXPECTED_AUXILIARY_SHA256,
+        KNOWN_PLATFORM_VARIANT_SHA256,
+    ]
+    cases["two_platform_hashes_accepted_fails"] = mutated
+
+    mutated = copy.deepcopy(data)
+    mutated["regeneration_overwrote_frozen_artifact"] = True
+    cases["auto_overwrite_field_fails"] = mutated
 
     mutated = copy.deepcopy(data)
     mutated["object_sha256"]["T"] = None
