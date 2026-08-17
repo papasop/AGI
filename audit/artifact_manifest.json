@@ -340,7 +340,7 @@
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
       "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "99131c21bc320f7c9c2476a66a365aaabaefa63d765c2a89a7e7689e7b33357e",
+      "sha256": "d069f4a4818172f4648f300e4173c106b0e1d466f2d428926450c44d59a0a344",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -606,6 +606,130 @@
       "scientific_scope": "read-only verifier and mutation tests for the R5-B0 static gate record; does not run R5 full-tube certification or R6",
       "sha256": "dc8a1706b1d9be149500d8c2126e853e034711a5c3e0b1d01125c364614b13b9",
       "status": "prospective_r5_b0_static_arb_gates",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_first_leaf_preflight_boundary",
+      "inputs": [
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/R5_FIRST_LEAF_PREFLIGHT_BOUNDARY.md",
+      "producer": "prospective R5-B1a first-leaf preflight scaffold",
+      "scientific_scope": "boundary for the first frozen R5 full-tube leaf only; fail-closed inconclusive, not an R5 full-tube certificate and not R6",
+      "sha256": "3c4d315035503489935e3f598b9c9a5a0d4029420cfce1d615a389d1d8438b38",
+      "status": "prospective_r5_b1a_first_leaf_preflight_inconclusive",
+      "type": "documentation"
+    },
+    {
+      "allow_absolute_runtime_paths": true,
+      "id": "principle_r_r5_first_leaf_preflight_script",
+      "inputs": [
+        "v0_7_4_parent_box_script",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certify_r5_first_leaf_preflight.py",
+      "producer": "prospective R5-B1a first-leaf preflight driver",
+      "scientific_scope": "runs one fixed first-leaf Arb Krawczyk preflight using frozen R5-B0 objects only; no full-tube R5 certificate, no R6, no normal K=1 recovery",
+      "sha256": "4b181d16ad1945f967a266e411acc184caad716a2820f623823be5b64dfe6de8",
+      "status": "prospective_r5_b1a_first_leaf_preflight_inconclusive",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_first_leaf_preflight_certificate",
+      "inputs": [
+        "principle_r_r5_first_leaf_preflight_script",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r5_first_leaf_preflight_v1_0.json",
+      "producer": "principle_r_r5_first_leaf_preflight_script",
+      "scientific_scope": "R5-B1a first-leaf preflight record; Krawczyk self-map fails strict containment for the attempted fixed box, so it is inconclusive and not R5/R6 evidence",
+      "sha256": "5fcb7602bf6be5ff501329ae68373d8da88acd7abce0c4842ff808d86b21d1b6",
+      "status": "prospective_r5_b1a_first_leaf_preflight_inconclusive",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r5_first_leaf_preflight_verifier",
+      "inputs": [
+        "principle_r_r5_first_leaf_preflight_certificate",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_first_leaf_preflight.py",
+      "producer": "prospective R5-B1a first-leaf preflight verifier",
+      "scientific_scope": "read-only verifier and mutation tests for the first-leaf preflight record; accepts fail-closed inconclusive and rejects forged R5 full-tube/R6 claims",
+      "sha256": "e2be1a1aedbe48d6e81bb3aa57c2d3583343f20db774e12d4bb9381e04dea045",
+      "status": "prospective_r5_b1a_first_leaf_preflight_inconclusive",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_first_leaf_center_diagnostic_boundary",
+      "inputs": [
+        "principle_r_r5_first_leaf_preflight_certificate",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/R5_FIRST_LEAF_CENTER_DIAGNOSTIC.md",
+      "producer": "prospective R5-B1b first-leaf center/forcing diagnostic scaffold",
+      "scientific_scope": "diagnostic-only boundary for explaining the first-leaf Krawczyk self-map failure; not a certificate, not R5, not R6, and not normal K=1 recovery",
+      "sha256": "c4f651d9e5d517e75d3fc083a7c8c4c10b2173f5fdc31baab256079985652b9f",
+      "status": "prospective_r5_b1b_center_diagnostic_complete",
+      "type": "documentation"
+    },
+    {
+      "allow_absolute_runtime_paths": true,
+      "id": "principle_r_r5_first_leaf_center_diagnostic_script",
+      "inputs": [
+        "v0_7_4_parent_box_script",
+        "principle_r_r5_first_leaf_preflight_certificate",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/diagnose_r5_first_leaf_center.py",
+      "producer": "prospective R5-B1b first-leaf center/forcing diagnostic driver",
+      "scientific_scope": "separates Krawczyk forcing, interval-width, tangent-defect and bookkeeping terms for the first frozen leaf only; does not recenter, certify, run R6, or perform normal K=1 recovery",
+      "sha256": "7ca7c1b63d1a669823d25ba287626bca9e0bae39c654a6d8cd9b2764931642a0",
+      "status": "prospective_r5_b1b_center_diagnostic_complete",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_first_leaf_center_diagnostic_record",
+      "inputs": [
+        "principle_r_r5_first_leaf_center_diagnostic_script",
+        "principle_r_r5_first_leaf_preflight_certificate",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/diagnostics/r5_first_leaf_center_diagnostic_v1_0.json",
+      "producer": "principle_r_r5_first_leaf_center_diagnostic_script",
+      "scientific_scope": "diagnostic-only record; classification MULTIPLE_CAUSES with interval forcing dominating the reported bound and pointwise center offset exceeding the frozen radius; not R5/R6 evidence",
+      "sha256": "cb53d8169762b5bbc6b0f1bfbd1b0a075ee427b7111584038dbfa46e81f49faf",
+      "status": "prospective_r5_b1b_center_diagnostic_complete",
+      "type": "diagnostic"
+    },
+    {
+      "id": "principle_r_r5_first_leaf_center_diagnostic_verifier",
+      "inputs": [
+        "principle_r_r5_first_leaf_center_diagnostic_record",
+        "principle_r_r5_first_leaf_preflight_certificate",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_first_leaf_center_diagnostic.py",
+      "producer": "prospective R5-B1b first-leaf center/forcing diagnostic verifier",
+      "scientific_scope": "read-only verifier and mutation tests for the diagnostic record; rejects forged certificate/R5/R6/normal K=1 claims and arithmetic/hash tampering",
+      "sha256": "738b43fc231e5c4a5e9a02d40ccf18b359f58f6b58fe7ecc1db56f8e45866d13",
+      "status": "prospective_r5_b1b_center_diagnostic_complete",
       "type": "script"
     },
     {
