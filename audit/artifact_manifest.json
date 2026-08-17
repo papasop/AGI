@@ -391,6 +391,59 @@
       "sha256": "50e58648439e6a33e801bffeb203e7080fa1cd39850519cf78caac88eaf199bc",
       "status": "prospective_protocol",
       "type": "script"
+    },
+    {
+      "id": "principle_r_r7_certificate_boundary",
+      "inputs": [
+        "principle_r_r1_r7_protocol"
+      ],
+      "path": "research/realizability_r1_r7/R7_CERTIFICATE_BOUNDARY.md",
+      "producer": "prospective R7 certificate scaffold",
+      "scientific_scope": "claim boundary for the isolated R7 positive-control certificate; excludes R5, R6, physical, GR, global-flow and published-theorem claims",
+      "sha256": "b794203d256d0bb10c991d96fe8c7972a51445185b51705f289b8e5b364747db",
+      "status": "prospective_r7_certificate",
+      "type": "documentation"
+    },
+    {
+      "id": "principle_r_r7_positive_control_script",
+      "inputs": [
+        "principle_r_r1_r7_protocol",
+        "v0_6_2_inputs_zip",
+        "v0_7_4_parent_box_script",
+        "v0_9_3_local_ode_script"
+      ],
+      "path": "research/realizability_r1_r7/certify_r7_positive_control.py",
+      "producer": "prospective R7 positive-control certification driver",
+      "scientific_scope": "Arb positive-control verifier for the frozen R7 ambient normal ray only; does not run R5/R6 search",
+      "sha256": "c4924b506d9346ea2b393019647cdf11b45399d8c102c922e261b4a046c3d271",
+      "status": "prospective_r7_certificate",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r7_positive_control_certificate",
+      "inputs": [
+        "principle_r_r7_positive_control_script",
+        "principle_r_r1_r7_protocol"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r7_positive_control_v1_0.json",
+      "producer": "principle_r_r7_positive_control_script",
+      "scientific_scope": "prospective R7 positive-control certificate only; not R5/R6, not physical time, not global flow, not part of the published v1.2.13 theorem boundary",
+      "sha256": "7fcd7377fe4e079242c155d148690db2fc452f967db20c44efaa9aa526d2c49e",
+      "status": "prospective_r7_certificate",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r7_certificate_verifier",
+      "inputs": [
+        "principle_r_r7_positive_control_certificate",
+        "principle_r_r1_r7_protocol"
+      ],
+      "path": "research/realizability_r1_r7/verify_r7_certificate.py",
+      "producer": "prospective R7 certificate verifier",
+      "scientific_scope": "read-only verifier and mutation tests for the isolated R7 certificate; does not recompute or run R5/R6",
+      "sha256": "1b5234d17056d945c88025c16a2ce74832995d516b1d1a6c4d86840728ff5e67",
+      "status": "prospective_r7_certificate",
+      "type": "script"
     }
   ],
   "schema_version": "1.0"
