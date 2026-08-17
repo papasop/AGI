@@ -340,7 +340,7 @@
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
       "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "c1c465649af926feacbe1f5a87cdebeb4f9bfd0bb61a00337985d47ef9bcd7ce",
+      "sha256": "d387cf4a77e04a254ff622e3cdd331ada3e8f3fe2f7b9d6b242e6380330ebc0b",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -400,7 +400,7 @@
       "path": "research/realizability_r1_r7/R7_CERTIFICATE_BOUNDARY.md",
       "producer": "prospective R7 certificate scaffold",
       "scientific_scope": "claim boundary for the isolated R7 positive-control certificate; excludes R5, R6, physical, GR, global-flow and published-theorem claims",
-      "sha256": "b794203d256d0bb10c991d96fe8c7972a51445185b51705f289b8e5b364747db",
+      "sha256": "dbfd554145dfd50a76cceaa1d1874202d6e589a129fb5bf788e69709c6fc5cc8",
       "status": "prospective_r7_certificate",
       "type": "documentation"
     },
@@ -415,33 +415,47 @@
       "path": "research/realizability_r1_r7/certify_r7_positive_control.py",
       "producer": "prospective R7 positive-control certification driver",
       "scientific_scope": "Arb positive-control verifier for the frozen R7 ambient normal ray only; does not run R5/R6 search",
-      "sha256": "b3fa2551928e22a77aefeff5fc5f5628414ee764bcb6c8ae11e27e47e7fe5980",
+      "sha256": "941be30c62cc9b89857f76fcaea18c5235f6ab72e6b6781ab4be15a610745d13",
       "status": "prospective_r7_certificate",
       "type": "script"
     },
     {
-      "id": "principle_r_r7_positive_control_certificate",
+      "id": "principle_r_r7_positive_control_certificate_v1_0_superseded",
       "inputs": [
         "principle_r_r7_positive_control_script",
         "principle_r_r1_r7_protocol"
       ],
       "path": "research/realizability_r1_r7/certificates/r7_positive_control_v1_0.json",
       "producer": "principle_r_r7_positive_control_script",
-      "scientific_scope": "prospective R7 positive-control certificate only; not R5/R6, not physical time, not global flow, not part of the published v1.2.13 theorem boundary",
-      "sha256": "176118cdb0da20b439bfdca42999a4216907613a0042836b6a3dbb3669770248",
+      "scientific_scope": "superseded PR #53 R7 certificate record; incomplete centered path enclosure, not an active certificate",
+      "sha256": "25c97919c6098b2800e37ae7387701b873db25cbbfa0959624b137628de8013c",
+      "status": "superseded_by_r7_positive_control_v1_1",
+      "superseded_by": "principle_r_r7_positive_control_certificate_v1_1",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r7_positive_control_certificate_v1_1",
+      "inputs": [
+        "principle_r_r7_positive_control_script",
+        "principle_r_r1_r7_protocol"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r7_positive_control_v1_1.json",
+      "producer": "principle_r_r7_positive_control_script",
+      "scientific_scope": "prospective R7 positive-control certificate only; full eta_delta path enclosure; not R5/R6, not physical time, not global flow, not part of the published v1.2.13 theorem boundary",
+      "sha256": "cb8b142bad3d1f9c02829a5dd39b7164ed4bc3f765a2437f46e81dbf996948e4",
       "status": "prospective_r7_certificate",
       "type": "certificate"
     },
     {
       "id": "principle_r_r7_certificate_verifier",
       "inputs": [
-        "principle_r_r7_positive_control_certificate",
+        "principle_r_r7_positive_control_certificate_v1_1",
         "principle_r_r1_r7_protocol"
       ],
       "path": "research/realizability_r1_r7/verify_r7_certificate.py",
       "producer": "prospective R7 certificate verifier",
       "scientific_scope": "read-only verifier and mutation tests for the isolated R7 certificate; does not recompute or run R5/R6",
-      "sha256": "dcd634b99ffe64ffbb1b7549a805ee5d32f4733c8b2ea26cc810f24ec8e9d1fa",
+      "sha256": "5a5e9f6d751f98aa18b12c4e7d847dac35aa8f753610467f731aaf31b2f8796a",
       "status": "prospective_r7_certificate",
       "type": "script"
     }

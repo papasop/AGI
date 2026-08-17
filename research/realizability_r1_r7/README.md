@@ -14,6 +14,12 @@ This scaffold freezes a future protocol only. It does not execute an R6
 search, does not produce a certificate, and does not change any frozen source,
 certificate, tag, Release, manuscript, or Zenodo asset.
 
+The isolated R7 positive-control certificate is post-protocol prospective
+evidence only. The current certificate is
+`certificates/r7_positive_control_v1_1.json`; the PR #53 v1.0 certificate is
+superseded because it used an incomplete centered enclosure of the declared
+path.
+
 ## Files
 
 ```text
@@ -22,6 +28,11 @@ CLAIM_BOUNDARY.md
 frozen_protocol_v1_0.json
 verify_frozen_protocol.py
 requirements.txt
+R7_CERTIFICATE_BOUNDARY.md
+certify_r7_positive_control.py
+verify_r7_certificate.py
+certificates/r7_positive_control_v1_0.json  # superseded
+certificates/r7_positive_control_v1_1.json  # current R7 positive control
 ```
 
 ## Verification
@@ -30,11 +41,16 @@ Run:
 
 ```bash
 python research/realizability_r1_r7/verify_frozen_protocol.py
+python research/realizability_r1_r7/verify_r7_certificate.py --mutation-tests
 ```
 
 The verifier checks schema, required fields, declared file hashes, R1--R5/R7
 declarations, absence of R6 result fields, and the exact frozen status string.
 It does not run Arb, Krawczyk, Picard, Lohner, or any R6 search.
+
+The R7 verifier checks the stored v1.1 certificate, including full
+`eta_delta(s)=theta_0+s*delta*n` path endpoint containment for every frozen
+delta. It does not run R5 or R6.
 
 ## Scope
 

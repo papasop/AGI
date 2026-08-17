@@ -16,10 +16,12 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 PROTOCOL_PATH = HERE / "frozen_protocol_v1_0.json"
-CERT_PATH = HERE / "certificates" / "r7_positive_control_v1_0.json"
+CERT_PATH = HERE / "certificates" / "r7_positive_control_v1_1.json"
 
 EXPECTED_STATUS = "R7_CERTIFIED"
 EXPECTED_SCOPE = "prospective_r7_certificate"
+EXPECTED_CERTIFICATE_ID = "principle_r_r7_positive_control_v1_1"
+SUPERSEDED_CERTIFICATE_ID = "principle_r_r7_positive_control_v1_0"
 EXPECTED_PROTOCOL_STATUS = "PROTOCOL_FROZEN_NO_R6_SEARCH_PERFORMED"
 EXPECTED_BASELINE = "b9796c9ffb203bfbf3d0e230fe624ca85c0e75b9"
 EXPECTED_PROTOCOL_SHA256 = "e8519a644ab50a9989eb40bc34499055f83760563167d88da21d17b3c7539e1c"
@@ -41,9 +43,12 @@ def read_json(path: Path) -> Any:
 
 
 def positive_decimal_string(value: Any) -> bool:
+    if not isinstance(value, str):
+        return False
     try:
-        return isinstance(value, str) and Decimal(value) > 0
-    except (InvalidOperation, ValueError):
+        parsed = Decimal(value)
+        return parsed.is_finite() and parsed > 0
+    except (InvalidOperation, ValueError, OverflowError):
         return False
 
 
@@ -59,6 +64,12 @@ def verify(certificate: dict[str, Any]) -> dict[str, bool]:
     n = certificate.get("R7_fixed_normal_control_n", {}).get("components")
 
     checks = {
+        "certificate_id": certificate.get("certificate_id") == EXPECTED_CERTIFICATE_ID,
+        "supersedes_v1_0": (
+            certificate.get("corrects_certificate_id") == SUPERSEDED_CERTIFICATE_ID
+            and "PR #53" in certificate.get("supersession_note", "")
+            and "[0, delta]" in certificate.get("supersession_note", "")
+        ),
         "certificate_file_scope": certificate.get("scientific_scope") == EXPECTED_SCOPE,
         "scientific_status": certificate.get("scientific_status") == EXPECTED_STATUS,
         "all_gates_pass": certificate.get("all_gates_pass") is True,
@@ -102,6 +113,13 @@ def verify(certificate: dict[str, Any]) -> dict[str, bool]:
         checks[f"{prefix}_no_wrap"] = record.get("no_phase_wrap_gate") is True
         checks[f"{prefix}_nonconstant"] = record.get("nonconstant_gate") is True
         checks[f"{prefix}_same_meter"] = record.get("same_meter_gate") is True
+        checks[f"{prefix}_full_path_enclosure"] = (
+            record.get("path_enclosure")
+            == "theta0[0] + arb(delta/2, delta/2), enclosing s*delta for s in [0,1]"
+            and record.get("endpoint_theta0_contained_gate") is True
+            and record.get("endpoint_theta0_plus_delta_contained_gate") is True
+            and positive_decimal_string(record.get("displacement_interval_upper"))
+        )
         checks[f"{prefix}_pointwise_positive"] = (
             record.get("strict_positive_pointwise_response_gate") is True
             and positive_decimal_string(record.get("pointwise_cost_lower"))
@@ -121,6 +139,25 @@ def run_mutation_tests(certificate: dict[str, Any]) -> dict[str, bool]:
     mutated = copy.deepcopy(certificate)
     mutated["delta_records"][0]["pointwise_cost_lower"] = "0"
     cases["zero_positive_lower_bound_fails"] = mutated
+
+    malformed_values = {
+        "negative_positive_lower_bound_fails": "-1e-30",
+        "nan_positive_lower_bound_fails": "NaN",
+        "snan_positive_lower_bound_fails": "sNaN",
+        "infinity_positive_lower_bound_fails": "Infinity",
+        "plus_infinity_positive_lower_bound_fails": "+Infinity",
+        "minus_infinity_positive_lower_bound_fails": "-Infinity",
+        "malformed_positive_lower_bound_fails": "not-a-decimal",
+        "non_string_positive_lower_bound_fails": 1,
+    }
+    for name, value in malformed_values.items():
+        mutated = copy.deepcopy(certificate)
+        mutated["delta_records"][0]["pointwise_cost_lower"] = value
+        cases[name] = mutated
+
+    mutated = copy.deepcopy(certificate)
+    mutated["delta_records"][0]["endpoint_theta0_plus_delta_contained_gate"] = False
+    cases["missing_path_endpoint_fails"] = mutated
 
     mutated = copy.deepcopy(certificate)
     mutated["R7_fixed_normal_control_n"]["components"][0] = 0.0
