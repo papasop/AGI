@@ -43,13 +43,34 @@ def read_json(path: Path) -> Any:
 
 
 def positive_decimal_string(value: Any) -> bool:
+    parsed = parse_finite_decimal(value)
+    return parsed is not None and parsed > 0
+
+
+def parse_finite_decimal(value: Any) -> Decimal | None:
     if not isinstance(value, str):
-        return False
+        return None
     try:
         parsed = Decimal(value)
-        return parsed.is_finite() and parsed > 0
+        if not parsed.is_finite():
+            return None
+        return parsed
     except (InvalidOperation, ValueError, OverflowError):
+        return None
+
+
+def full_path_enclosure(record: dict[str, Any]) -> bool:
+    delta = parse_finite_decimal(record.get("delta"))
+    lower = parse_finite_decimal(record.get("displacement_interval_lower"))
+    upper = parse_finite_decimal(record.get("displacement_interval_upper"))
+    if delta is None or lower is None or upper is None:
         return False
+    return (
+        delta > 0
+        and lower <= 0
+        and upper >= delta
+        and lower <= upper
+    )
 
 
 def verify(certificate: dict[str, Any]) -> dict[str, bool]:
@@ -118,7 +139,7 @@ def verify(certificate: dict[str, Any]) -> dict[str, bool]:
             == "theta0[0] + arb(delta/2, delta/2), enclosing s*delta for s in [0,1]"
             and record.get("endpoint_theta0_contained_gate") is True
             and record.get("endpoint_theta0_plus_delta_contained_gate") is True
-            and positive_decimal_string(record.get("displacement_interval_upper"))
+            and full_path_enclosure(record)
         )
         checks[f"{prefix}_pointwise_positive"] = (
             record.get("strict_positive_pointwise_response_gate") is True
@@ -157,7 +178,35 @@ def run_mutation_tests(certificate: dict[str, Any]) -> dict[str, bool]:
 
     mutated = copy.deepcopy(certificate)
     mutated["delta_records"][0]["endpoint_theta0_plus_delta_contained_gate"] = False
-    cases["missing_path_endpoint_fails"] = mutated
+    cases["theta0_plus_delta_endpoint_gate_false_fails"] = mutated
+
+    mutated = copy.deepcopy(certificate)
+    mutated["delta_records"][0]["endpoint_theta0_contained_gate"] = False
+    cases["theta0_endpoint_gate_false_fails"] = mutated
+
+    mutated = copy.deepcopy(certificate)
+    mutated["delta_records"][0]["displacement_interval_lower"] = "1e-30"
+    cases["positive_displacement_lower_fails"] = mutated
+
+    mutated = copy.deepcopy(certificate)
+    mutated["delta_records"][0]["displacement_interval_upper"] = "1e-30"
+    cases["displacement_upper_smaller_than_delta_fails"] = mutated
+
+    mutated = copy.deepcopy(certificate)
+    mutated["delta_records"][0]["displacement_interval_lower"] = "2"
+    mutated["delta_records"][0]["displacement_interval_upper"] = "1"
+    cases["displacement_lower_greater_than_upper_fails"] = mutated
+
+    endpoint_bad_values = {
+        "displacement_lower_nan_fails": ("displacement_interval_lower", "NaN"),
+        "displacement_lower_infinity_fails": ("displacement_interval_lower", "Infinity"),
+        "displacement_upper_nan_fails": ("displacement_interval_upper", "NaN"),
+        "displacement_upper_infinity_fails": ("displacement_interval_upper", "Infinity"),
+    }
+    for name, (field, value) in endpoint_bad_values.items():
+        mutated = copy.deepcopy(certificate)
+        mutated["delta_records"][0][field] = value
+        cases[name] = mutated
 
     mutated = copy.deepcopy(certificate)
     mutated["R7_fixed_normal_control_n"]["components"][0] = 0.0

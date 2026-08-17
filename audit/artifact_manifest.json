@@ -455,7 +455,7 @@
       "path": "research/realizability_r1_r7/verify_r7_certificate.py",
       "producer": "prospective R7 certificate verifier",
       "scientific_scope": "read-only verifier and mutation tests for the isolated R7 certificate; does not recompute or run R5/R6",
-      "sha256": "5a5e9f6d751f98aa18b12c4e7d847dac35aa8f753610467f731aaf31b2f8796a",
+      "sha256": "30bf5d2095bb56dd59a5828f765450ad94cbdf0883293ca2dd7b983d9e878178",
       "status": "prospective_r7_certificate",
       "type": "script"
     }
