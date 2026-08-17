@@ -43,7 +43,7 @@
   "chart": 9,
   "child_index": 15,
   "corrected_atlas_sha256": "c02acc1c76e0b670793340150d1a875fdc373e0ac7c46d3360a7824b66a3a5ef",
-  "current_git_commit": "b9796c9ffb203bfbf3d0e230fe624ca85c0e75b9",
+  "current_git_commit": "23ed8142047fac2ad13139f1af87da87b8d26a5a",
   "delta_records": [
     {
       "accepted_bound_statement": "|D R_3(eta_delta(s)) delta n|_2 >= pointwise_cost_lower > 0 for all s in [0,1]",

@@ -415,7 +415,7 @@
       "path": "research/realizability_r1_r7/certify_r7_positive_control.py",
       "producer": "prospective R7 positive-control certification driver",
       "scientific_scope": "Arb positive-control verifier for the frozen R7 ambient normal ray only; does not run R5/R6 search",
-      "sha256": "c4924b506d9346ea2b393019647cdf11b45399d8c102c922e261b4a046c3d271",
+      "sha256": "b3fa2551928e22a77aefeff5fc5f5628414ee764bcb6c8ae11e27e47e7fe5980",
       "status": "prospective_r7_certificate",
       "type": "script"
     },
@@ -428,7 +428,7 @@
       "path": "research/realizability_r1_r7/certificates/r7_positive_control_v1_0.json",
       "producer": "principle_r_r7_positive_control_script",
       "scientific_scope": "prospective R7 positive-control certificate only; not R5/R6, not physical time, not global flow, not part of the published v1.2.13 theorem boundary",
-      "sha256": "7fcd7377fe4e079242c155d148690db2fc452f967db20c44efaa9aa526d2c49e",
+      "sha256": "176118cdb0da20b439bfdca42999a4216907613a0042836b6a3dbb3669770248",
       "status": "prospective_r7_certificate",
       "type": "certificate"
     },
@@ -441,7 +441,7 @@
       "path": "research/realizability_r1_r7/verify_r7_certificate.py",
       "producer": "prospective R7 certificate verifier",
       "scientific_scope": "read-only verifier and mutation tests for the isolated R7 certificate; does not recompute or run R5/R6",
-      "sha256": "1b5234d17056d945c88025c16a2ce74832995d516b1d1a6c4d86840728ff5e67",
+      "sha256": "dcd634b99ffe64ffbb1b7549a805ee5d32f4733c8b2ea26cc810f24ec8e9d1fa",
       "status": "prospective_r7_certificate",
       "type": "script"
     }

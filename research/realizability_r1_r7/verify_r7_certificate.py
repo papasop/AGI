@@ -8,6 +8,7 @@ import copy
 import hashlib
 import json
 import sys
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any
 
@@ -41,8 +42,8 @@ def read_json(path: Path) -> Any:
 
 def positive_decimal_string(value: Any) -> bool:
     try:
-        return isinstance(value, str) and float(value) > 0.0
-    except ValueError:
+        return isinstance(value, str) and Decimal(value) > 0
+    except (InvalidOperation, ValueError):
         return False
 
 

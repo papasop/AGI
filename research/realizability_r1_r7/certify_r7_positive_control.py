@@ -14,7 +14,6 @@ from __future__ import annotations
 import hashlib
 import json
 import math
-import os
 import platform
 import subprocess
 import sys
@@ -70,14 +69,12 @@ def ensure_flint_runtime() -> None:
     try:
         import flint  # noqa: F401
         return
-    except ImportError:
-        bundled = Path.home() / (
-            ".cache/codex-runtimes/codex-primary-runtime/dependencies/"
-            "python/bin/python3"
-        )
-        if bundled.exists() and Path(sys.executable).resolve() != bundled.resolve():
-            os.execv(str(bundled), [str(bundled), *sys.argv])
-        raise
+    except ImportError as exc:
+        raise SystemExit(
+            "R7 certification requires python-flint==0.8.0. "
+            "Install the frozen requirements or run with an environment that "
+            "already provides python-flint; no runtime fallback is allowed."
+        ) from exc
 
 
 ensure_flint_runtime()
