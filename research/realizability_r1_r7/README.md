@@ -36,6 +36,7 @@ R5_FULL_TUBE_PROTOCOL_BOUNDARY.md
 R5_STATIC_ARB_GATES_BOUNDARY.md
 R5_FIRST_LEAF_PREFLIGHT_BOUNDARY.md
 R5_FIRST_LEAF_CENTER_DIAGNOSTIC.md
+R5_FIRST_LEAF_AFFINE_DIAGNOSTIC.md
 r5_full_tube_protocol_v1_0.json
 prepare_r5_full_tube_auxiliary.py
 verify_r5_full_tube_auxiliary.py
@@ -50,6 +51,9 @@ certificates/r5_first_leaf_preflight_v1_0.json
 diagnose_r5_first_leaf_center.py
 verify_r5_first_leaf_center_diagnostic.py
 diagnostics/r5_first_leaf_center_diagnostic_v1_0.json
+diagnose_r5_first_leaf_affine.py
+verify_r5_first_leaf_affine_diagnostic.py
+diagnostics/r5_first_leaf_affine_diagnostic_v1_0.json
 certificates/r7_positive_control_v1_0.json  # superseded
 certificates/r7_positive_control_v1_1.json  # current R7 positive control
 ```
@@ -67,6 +71,7 @@ python research/realizability_r1_r7/verify_r5_full_tube_protocol.py --mutation-t
 python research/realizability_r1_r7/verify_r5_static_arb_gates.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_first_leaf_preflight.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_first_leaf_center_diagnostic.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_first_leaf_affine_diagnostic.py --mutation-tests
 ```
 
 The verifier checks schema, required fields, declared file hashes, R1--R5/R7
@@ -123,6 +128,15 @@ center/forcing diagnostic for the same first leaf. Its status is
 bound, while the pointwise Newton correction also exceeds the frozen normal-box
 radius. It is diagnostic-only and does not recenter, resize, certify, or freeze
 a new candidate.
+
+`diagnostics/r5_first_leaf_affine_diagnostic_v1_0.json` records the R5-B1c
+leaf-centered affine-correlated feasibility diagnostic for the same first leaf.
+Its status is `AFFINE_CORRELATED_REMAINDER_TOO_WIDE`: the candidate center
+reduces the point residual, and the diagnostic preserves a single `alpha` in
+`theta_C+(T*v+N*S)alpha+N eta`, but the current strict remainder enclosure is
+still too wide for every predeclared candidate `eta` radius. This is not an R5
+certificate, does not change the frozen `1e-23` normal box, and does not run
+R6 or normal K=1 recovery.
 
 ## Scope
 
