@@ -138,20 +138,20 @@ frontier. It has been operationally superseded by the later R5-A/B0--B6 chain,
 which culminates in `R5_FULL_SHRINKING_FAMILY_CERTIFIED`. It is not an R5
 certificate, does not report a failed R5 search, and does not run R6.
 
-`r5_full_tube_protocol_v1_0.json` freezes a subordinate R5-A protocol for a
-future full-tube graph certificate on the one-dimensional segment
-`a=t*v, |t|<=1e-12`. Its status is
-`R5_FULL_TUBE_PROTOCOL_FROZEN_NO_CERTIFICATE_RUN`.
+`r5_full_tube_protocol_v1_0.json` is the prospectively frozen subordinate
+R5-A protocol for the full-tube graph certificate on the one-dimensional
+segment `a=t*v, |t|<=1e-12`. Its immutable protocol status is
+`R5_FULL_TUBE_PROTOCOL_FROZEN_NO_CERTIFICATE_RUN`; this records the state at
+protocol freeze and is retained as provenance. The subsequent R5-A/B0--B6
+chain certifies the committed candidate objects without altering that frozen
+protocol.
 `data/r5_full_tube_auxiliary_v1_0.json` is the committed candidate auxiliary
 artifact for `theta_0`, `T`, `N`, graph-equation response-coordinate map `B`,
 target `c`, and numerical candidate preconditioner `P`. Its byte content is
 frozen and hash-bound. Its binary64 SVD construction is platform-sensitive and
 is not a cross-platform reproducibility or theorem-bearing gate. Local
-regeneration is a diagnostic only; future R5-B work must certify the committed
-candidate objects by independent Arb validation of frame rank, transversality,
-`B` invertibility, preconditioner defect, and full-tube graph gates before any
-R5 certificate can exist. The protocol does not run R5 or R6 and does not
-relabel v0.9.2/v0.9.3 as R5 or R6 evidence.
+regeneration is a diagnostic only. The protocol itself does not run R5 or R6
+and does not relabel v0.9.2/v0.9.3 as R5 or R6 evidence.
 
 `certificates/r5_static_arb_gates_v1_0.json` records the R5-B0 static Arb
 gate result for the frozen candidate objects only. Its status is
