@@ -340,7 +340,7 @@
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
       "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "63a622bd1ec185446b5c31c6cdf643a2a5ed93956b8897383181f81fab3c4627",
+      "sha256": "2e2bb5eb2bbfbaa4b3399a317d2ed9d7cb20f735ac9edd6273116ca73db4532e",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -928,6 +928,94 @@
       "scientific_scope": "read-only verifier and mutation tests for the first-leaf-only B1e record; rejects full-R5/R6/normal K=1 claim inflation and arithmetic/hash tampering",
       "sha256": "b043eed45c696c8e3e344e60feb41449da5a3652e23617c0ce00b0399251708c",
       "status": "prospective_r5_b1e_first_leaf_certified_only",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_gf_pr_stage_naming_boundary",
+      "inputs": [
+        "principle_r_r1_r7_protocol",
+        "principle_r_r5_full_tube_protocol"
+      ],
+      "path": "research/realizability_r1_r7/GF_PR_STAGE_NAMING_BOUNDARY.md",
+      "producer": "prospective R5-B2 stage boundary documentation",
+      "scientific_scope": "naming boundary that separates Principle R interface labels from Geometric-Flow engineering certification stages",
+      "sha256": "2a63ae542bac5e06e242d7f5fe037b3ea672d96f3a4eac961cedfac5e8540d7d",
+      "status": "prospective_protocol",
+      "type": "documentation"
+    },
+    {
+      "id": "principle_r_compliance_matrix",
+      "inputs": [
+        "principle_r_r1_r7_protocol",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r7_positive_control_certificate_v1_1"
+      ],
+      "path": "research/realizability_r1_r7/PRINCIPLE_R_COMPLIANCE_MATRIX.md",
+      "producer": "prospective Principle R compliance documentation",
+      "scientific_scope": "evidence matrix for the prospective model-level Principle R interface; does not change the published theorem boundary",
+      "sha256": "5e10edb2e980fcfb97872efbc252599894f540980c89e5f925b25c4c317743e5",
+      "status": "prospective_protocol",
+      "type": "documentation"
+    },
+    {
+      "id": "principle_r_r5_all_leaves_hessian_krawczyk_boundary",
+      "inputs": [
+        "principle_r_r5_first_leaf_hessian_krawczyk_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/R5_ALL_LEAVES_HESSIAN_KRAWCZYK_BOUNDARY.md",
+      "producer": "prospective R5-B2 all-leaves Hessian Krawczyk boundary",
+      "scientific_scope": "16 frozen local leaves only; not gluing, not full R5, not PR-R6, and not normal K=1 recovery",
+      "sha256": "2ac0bd1f3d98a5adee86681590e5815cc7d31577f4a3f8de664371ad8aa8a819",
+      "status": "prospective_r5_b2_all_leaves_local_only",
+      "type": "documentation"
+    },
+    {
+      "allow_absolute_runtime_paths": true,
+      "id": "principle_r_r5_all_leaves_hessian_krawczyk_script",
+      "inputs": [
+        "v0_7_4_parent_box_script",
+        "principle_r_r5_first_leaf_hessian_krawczyk_certificate",
+        "principle_r_r5_first_leaf_affine_diagnostic_record",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certify_r5_all_leaves_hessian_krawczyk.py",
+      "producer": "prospective R5-B2 all-leaves affine-Hessian Krawczyk driver",
+      "scientific_scope": "checks each of the 16 frozen leaves independently using the same frozen affine-Hessian Krawczyk construction",
+      "sha256": "9720418cb10e31b94aa916ece0ccb864da1aa512dd7944bd02a759838c1476c3",
+      "status": "prospective_r5_b2_all_leaves_local_only",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_all_leaves_hessian_krawczyk_certificate",
+      "inputs": [
+        "principle_r_r5_all_leaves_hessian_krawczyk_script",
+        "principle_r_r5_first_leaf_hessian_krawczyk_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r5_all_leaves_hessian_krawczyk_v1_0.json",
+      "producer": "principle_r_r5_all_leaves_hessian_krawczyk_script",
+      "scientific_scope": "all 16 frozen leaves locally certified for normal-root existence/uniqueness; not adjacent-leaf gluing, not full-path continuity, not full R5, not PR-R6, and not normal K=1 recovery",
+      "sha256": "a2d28d9256b6c871630a8e27695a12ca194582a633b74ddda1816d356173629b",
+      "status": "prospective_r5_b2_all_leaves_local_only",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r5_all_leaves_hessian_krawczyk_verifier",
+      "inputs": [
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_all_leaves_hessian_krawczyk.py",
+      "producer": "prospective R5-B2 all-leaves Hessian Krawczyk verifier",
+      "scientific_scope": "read-only verifier and mutation tests for the all-leaves local-only B2 record; rejects R5/PR-R6/global-flow claim inflation and arithmetic/hash tampering",
+      "sha256": "494cce78d9331b87ae4ca7dbf5a399cf7c2b8323cb76a7ae9ce8438afd0b9de0",
+      "status": "prospective_r5_b2_all_leaves_local_only",
       "type": "script"
     },
     {
