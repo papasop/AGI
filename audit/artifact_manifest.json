@@ -339,8 +339,8 @@
       ],
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
-      "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "49b7eeeae6d5a202bb21711bbac0b61cd5a9f47f4d3b016bcfd25c4b5d0503ac",
+      "scientific_scope": "documentation for an isolated model-level Principle R test protocol with subordinate GF-R5 B0-B6 certificates; no R6 search or result",
+      "sha256": "edde49126f22cb7617d02500f884f5eea97b5f348d9a1825308b329287769d64",
       "status": "prospective_protocol",
       "type": "documentation"
     },

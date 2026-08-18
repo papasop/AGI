@@ -10,9 +10,11 @@ Status:
 PROTOCOL_FROZEN_NO_R6_SEARCH_PERFORMED
 ```
 
-This scaffold freezes a future protocol only. It does not execute an R6
-search, does not produce a certificate, and does not change any frozen source,
-certificate, tag, Release, manuscript, or Zenodo asset.
+The frozen protocol still contains no R6 search and no R6 result. This
+directory now also contains subordinate Geometric-Flow R5 certificates,
+culminating in `R5_FULL_SHRINKING_FAMILY_CERTIFIED`, for the frozen model
+domain. These certificates do not change the frozen protocol, published
+theorem boundary, source, tag, Release, manuscript, or Zenodo asset.
 
 The isolated R7 positive-control certificate is post-protocol prospective
 evidence only. The current certificate is
@@ -42,6 +44,11 @@ R5_FIRST_LEAF_HESSIAN_KRAWCZYK_BOUNDARY.md
 GF_PR_STAGE_NAMING_BOUNDARY.md
 R5_ALL_LEAVES_HESSIAN_KRAWCZYK_BOUNDARY.md
 PRINCIPLE_R_COMPLIANCE_MATRIX.md
+R5_ADJACENT_LEAF_GLUING_BOUNDARY.md
+R5_SEAM_RESIDUAL_NORMALIZATION_DIAGNOSTIC.md
+R5_GLOBAL_IMPLICIT_BRANCH_C1_BOUNDARY.md
+R5_POSITIVE_MEASURE_NONCONSTANCY_BOUNDARY.md
+R5_FULL_SHRINKING_FAMILY_BOUNDARY.md
 r5_full_tube_protocol_v1_0.json
 prepare_r5_full_tube_auxiliary.py
 verify_r5_full_tube_auxiliary.py
@@ -68,6 +75,23 @@ certificates/r5_first_leaf_hessian_krawczyk_v1_0.json
 certify_r5_all_leaves_hessian_krawczyk.py
 verify_r5_all_leaves_hessian_krawczyk.py
 certificates/r5_all_leaves_hessian_krawczyk_v1_0.json
+certify_r5_adjacent_leaf_gluing.py
+verify_r5_adjacent_leaf_gluing.py
+diagnose_r5_seam_residual_normalization.py
+verify_r5_seam_residual_normalization.py
+diagnostics/r5_adjacent_leaf_gluing_v1_0.json  # superseded B3 diagnostic
+diagnostics/r5_adjacent_leaf_gluing_v1_1.json
+diagnostics/r5_seam_residual_normalization_diagnostic_v1_0.json
+certificates/r5_adjacent_leaf_gluing_v1_1.json
+certify_r5_global_implicit_branch_c1.py
+verify_r5_global_implicit_branch_c1.py
+certificates/r5_global_implicit_branch_c1_v1_0.json
+certify_r5_positive_measure_nonconstancy.py
+verify_r5_positive_measure_nonconstancy.py
+certificates/r5_positive_measure_nonconstancy_v1_0.json
+certify_r5_full_shrinking_family.py
+verify_r5_full_shrinking_family.py
+certificates/r5_full_shrinking_family_v1_0.json
 certificates/r7_positive_control_v1_0.json  # superseded
 certificates/r7_positive_control_v1_1.json  # current R7 positive control
 ```
@@ -89,6 +113,11 @@ python research/realizability_r1_r7/verify_r5_first_leaf_affine_diagnostic.py --
 python research/realizability_r1_r7/verify_r5_second_order_remainder_diagnostic.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_first_leaf_hessian_krawczyk.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_all_leaves_hessian_krawczyk.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_seam_residual_normalization.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_adjacent_leaf_gluing.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_global_implicit_branch_c1.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_positive_measure_nonconstancy.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_full_shrinking_family.py --mutation-tests
 ```
 
 The verifier checks schema, required fields, declared file hashes, R1--R5/R7
@@ -99,13 +128,15 @@ The R7 verifier checks the stored v1.1 certificate, including full
 `eta_delta(s)=theta_0+s*delta*n` path endpoint containment for every frozen
 delta. It does not run R5 or R6.
 
-`R5_FEASIBILITY_AUDIT.md` records a first-stage, read-only R5 feasibility
-audit. Its final status is
-`R5_INCONCLUSIVE_MISSING_FULL_LOOP_GRAPH_CERTIFICATE` because the repository
-does not yet contain an R5-specific complete-loop implicit-graph certificate or
-the auxiliary frozen intrinsic-chart data needed to verify one fail-closed. It
-is not an R5 certificate, does not report a failed R5 search, and does not run
-R6.
+`R5_FEASIBILITY_AUDIT.md` records the first-stage, read-only R5 feasibility
+audit. Its historical final status is
+`R5_INCONCLUSIVE_MISSING_FULL_LOOP_GRAPH_CERTIFICATE`: at that time the
+repository did not yet contain an R5-specific complete-loop implicit-graph
+certificate or the auxiliary frozen intrinsic-chart data needed to verify one
+fail-closed. The report is retained as provenance, not as the current R5
+frontier. It has been operationally superseded by the later R5-A/B0--B6 chain,
+which culminates in `R5_FULL_SHRINKING_FAMILY_CERTIFIED`. It is not an R5
+certificate, does not report a failed R5 search, and does not run R6.
 
 `r5_full_tube_protocol_v1_0.json` freezes a subordinate R5-A protocol for a
 future full-tube graph certificate on the one-dimensional segment
