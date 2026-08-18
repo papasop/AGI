@@ -183,6 +183,69 @@ leaf gluing, full-path continuity, exact response preservation, zero total
 cost, positive-measure nonconstancy, PR-R6, full R5, a global ODE flow, or
 normal K=1 recovery.
 
+`diagnostics/r5_adjacent_leaf_gluing_v1_0.json` records the R5-B3
+adjacent-leaf common-root and C0 gluing diagnostic for the 15 internal seams.
+Its status is `R5_ADJACENT_LEAF_C0_GLUING_NOT_CERTIFIED`: all seam
+intersection boxes are nonempty with strict interior and the left/right
+physical equations match, but the common endpoint Krawczyk self-map fails at
+the frozen formal radius. This does not refute existence of a glued branch; it
+only means the original B3 common-root gate did not certify it. The record is
+kept as a superseded negative diagnostic because B3a later identified its
+center/radius bookkeeping defect. It does not certify C0 or C1 gluing,
+full-path response identity, zero total cost, positive-measure nonconstancy,
+PR-R5, PR-R6, full GF-R5, global ODE flow, R6 search, or normal K=1 recovery.
+
+`diagnostics/r5_seam_residual_normalization_diagnostic_v1_0.json` records the
+R5-B3a seam residual normalization and coordinate-equivalence audit. Its status
+is `R5_SEAM_RESIDUAL_NORMALIZATION_DIAGNOSIS_COMPLETE` with classification
+`KRAWCZYK_BOOKKEEPING_DEFECT`: the previously reported B3 common forcing scale
+near `2.72e-18` comes from evaluating the common residual at an interval-valued
+box center and then separately applying the Krawczyk `Z*r` term. Recomputing at
+the point midpoint gives seam residuals near `1e-27`, consistent with B2. This
+is diagnostic-only and does not certify B3, start B4, modify the frozen
+protocol, run R6, or perform normal K=1 recovery.
+
+`certificates/r5_adjacent_leaf_gluing_v1_1.json` records the corrected R5-B3b
+point-center Krawczyk common-root certification. Its status is
+`R5_ADJACENT_LEAF_C0_GLUING_CERTIFIED`: all 15 internal seams certify a common
+endpoint root for the same physical equation, attach to the left and right B2
+unique-root tubes, and therefore give a single C0 branch across the 16 local
+leaves. This remains a gluing certificate only. It does not certify C1 gluing,
+full-path response identity, absolute continuity, zero total cost,
+positive-measure nonconstancy, PR-R5, PR-R6, full GF-R5, global ODE flow, R6
+search, or normal K=1 recovery.
+
+`certificates/r5_global_implicit_branch_c1_v1_0.json` records the R5-B4
+global implicit branch regularity certificate. Its status is
+`R5_GLOBAL_IMPLICIT_BRANCH_C1_CERTIFIED`: using the B2 leaf root tubes and the
+B3b common endpoint roots, all 16 leaves certify invertible `D_bF`, Arb
+implicit-derivative enclosures, chart residence, and no-wrap margins, and all
+15 seams attach their left and right derivatives to the same common physical
+implicit derivative. The frozen protocol has no independent B4 ODE field, so
+ODE consistency remains explicitly unclaimed. This is still not positive-
+measure nonconstancy, full-path zero cost, PR-R5, PR-R6, full GF-R5, a global
+ODE flow, R6 search, or normal K=1 recovery.
+
+`certificates/r5_positive_measure_nonconstancy_v1_0.json` records the R5-B5
+positive-measure nonconstancy certificate. Its status is
+`R5_POSITIVE_MEASURE_NONCONSTANCY_CERTIFIED`: using the frozen interval
+`I=[0,1/12]`, the frozen epsilon sequence, the frozen direction `v=e_1`, and
+the B4 C1 derivative bound, all five declared loops have a strictly positive
+environment-coordinate speed lower bound on a positive-measure set. This stage
+does not check full-path zero response cost, generate a full R5 certificate,
+certify PR-R5 or PR-R6, run R6, or perform normal K=1 recovery.
+
+`certificates/r5_full_shrinking_family_v1_0.json` records the R5-B6 full
+shrinking-family certificate for the frozen Geometric-Flow R5 model. Its status
+is `R5_FULL_SHRINKING_FAMILY_CERTIFIED`: B4 supplies the single C1 implicit
+branch and exact response-identity logic, B5 supplies positive-measure
+nonconstancy, and all five frozen epsilon loops stay inside the certified full
+tube. The protocol-relative response cost is certified to be exactly zero by
+the invertible `B` implication, not by residual tolerance or sampling. This is
+the full GF-R5 shrinking-family certificate only; it does not supply PR-R6,
+run R6, perform normal K=1 recovery, certify a global ODE flow, or alter the
+published theorem boundary.
+
 ## Scope
 
 The published Geometric-Flow theorem remains the v1.2.13 local quantum-control
