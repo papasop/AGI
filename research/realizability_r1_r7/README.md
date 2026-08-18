@@ -38,6 +38,7 @@ R5_FIRST_LEAF_PREFLIGHT_BOUNDARY.md
 R5_FIRST_LEAF_CENTER_DIAGNOSTIC.md
 R5_FIRST_LEAF_AFFINE_DIAGNOSTIC.md
 R5_SECOND_ORDER_REMAINDER_DIAGNOSTIC.md
+R5_FIRST_LEAF_HESSIAN_KRAWCZYK_BOUNDARY.md
 r5_full_tube_protocol_v1_0.json
 prepare_r5_full_tube_auxiliary.py
 verify_r5_full_tube_auxiliary.py
@@ -58,6 +59,9 @@ diagnostics/r5_first_leaf_affine_diagnostic_v1_0.json
 diagnose_r5_second_order_remainder.py
 verify_r5_second_order_remainder_diagnostic.py
 diagnostics/r5_second_order_remainder_diagnostic_v1_0.json
+certify_r5_first_leaf_hessian_krawczyk.py
+verify_r5_first_leaf_hessian_krawczyk.py
+certificates/r5_first_leaf_hessian_krawczyk_v1_0.json
 certificates/r7_positive_control_v1_0.json  # superseded
 certificates/r7_positive_control_v1_1.json  # current R7 positive control
 ```
@@ -77,6 +81,7 @@ python research/realizability_r1_r7/verify_r5_first_leaf_preflight.py --mutation
 python research/realizability_r1_r7/verify_r5_first_leaf_center_diagnostic.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_first_leaf_affine_diagnostic.py --mutation-tests
 python research/realizability_r1_r7/verify_r5_second_order_remainder_diagnostic.py --mutation-tests
+python research/realizability_r1_r7/verify_r5_first_leaf_hessian_krawczyk.py --mutation-tests
 ```
 
 The verifier checks schema, required fields, declared file hashes, R1--R5/R7
@@ -151,6 +156,15 @@ whereas an independent analytic directional-Hessian bound gives a true
 Lagrange remainder near `2.20e-28`. This is diagnostic-only and does not revise
 the B1c result, certify the first leaf, change the frozen protocol, inspect
 other leaves, run R6, or perform normal K=1 recovery.
+
+`certificates/r5_first_leaf_hessian_krawczyk_v1_0.json` records the R5-B1e
+first-leaf affine-Hessian Krawczyk result for leaf index 0 only. Its status is
+`R5_FIRST_LEAF_HESSIAN_KRAWCZYK_CERTIFIED`: using the B1c affine center/slope
+and the B1d explicit directional-Hessian Lagrange remainder, the predeclared
+eta radii `1e-26`, `1e-24`, `1e-23`, `1e-22`, and `1e-20` have strict
+self-map margins. This certifies only first-leaf graph root
+existence/uniqueness; it is not a full R5 tube certificate, not R6, and not
+normal K=1 recovery.
 
 ## Scope
 

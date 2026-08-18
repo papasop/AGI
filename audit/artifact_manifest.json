@@ -340,7 +340,7 @@
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
       "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "d8dfeea4d71716988107b477710dd893ed095b82d12ae9763ad82ca79717b469",
+      "sha256": "63a622bd1ec185446b5c31c6cdf643a2a5ed93956b8897383181f81fab3c4627",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -861,6 +861,73 @@
       "scientific_scope": "read-only verifier and mutation tests for the second-order provenance diagnostic; rejects interval-subtraction-as-Taylor, missing Hessian terms, finite-difference strict bounds, forged certificate/R5/R6/normal K=1 claims, and arithmetic/hash tampering",
       "sha256": "849b90e496243f14f648dcef591c7541c4c7a08304a1126c46a730f76f83b8ee",
       "status": "prospective_r5_b1d_remainder_dependency_artifact",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_first_leaf_hessian_krawczyk_boundary",
+      "inputs": [
+        "principle_r_r5_second_order_remainder_diagnostic_record",
+        "principle_r_r5_first_leaf_affine_diagnostic_record",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/R5_FIRST_LEAF_HESSIAN_KRAWCZYK_BOUNDARY.md",
+      "producer": "prospective R5-B1e first-leaf affine-Hessian Krawczyk boundary",
+      "scientific_scope": "first frozen leaf only; not a full R5 tube certificate, not R6, and not normal K=1 recovery",
+      "sha256": "d0ae208d8f5555f8214214fe332fb1ba90e1eafd8117f2b9ab7fe09d340f1ec8",
+      "status": "prospective_r5_b1e_first_leaf_certified_only",
+      "type": "documentation"
+    },
+    {
+      "allow_absolute_runtime_paths": true,
+      "id": "principle_r_r5_first_leaf_hessian_krawczyk_script",
+      "inputs": [
+        "v0_7_4_parent_box_script",
+        "principle_r_r5_second_order_remainder_diagnostic_record",
+        "principle_r_r5_first_leaf_affine_diagnostic_record",
+        "principle_r_r5_first_leaf_center_diagnostic_record",
+        "principle_r_r5_first_leaf_preflight_certificate",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certify_r5_first_leaf_hessian_krawczyk.py",
+      "producer": "prospective R5-B1e first-leaf affine-Hessian Krawczyk driver",
+      "scientific_scope": "checks only the first frozen leaf using B1c affine center/slope and B1d directional-Hessian Lagrange remainder",
+      "sha256": "5bb3035cbfb1962ac17904dbdc0f047ea471c6c5725990fa234cc587670a8c7b",
+      "status": "prospective_r5_b1e_first_leaf_certified_only",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_first_leaf_hessian_krawczyk_certificate",
+      "inputs": [
+        "principle_r_r5_first_leaf_hessian_krawczyk_script",
+        "principle_r_r5_second_order_remainder_diagnostic_record",
+        "principle_r_r5_first_leaf_affine_diagnostic_record",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r5_first_leaf_hessian_krawczyk_v1_0.json",
+      "producer": "principle_r_r5_first_leaf_hessian_krawczyk_script",
+      "scientific_scope": "first-leaf-only affine-Hessian Krawczyk certificate; not full R5, not R6, and not normal K=1 recovery",
+      "sha256": "e1ff18f9891c60fdfae51726b0d16cc713ffbaa241d518e9741f60e514078ccd",
+      "status": "prospective_r5_b1e_first_leaf_certified_only",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r5_first_leaf_hessian_krawczyk_verifier",
+      "inputs": [
+        "principle_r_r5_first_leaf_hessian_krawczyk_certificate",
+        "principle_r_r5_second_order_remainder_diagnostic_record",
+        "principle_r_r5_first_leaf_affine_diagnostic_record",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_first_leaf_hessian_krawczyk.py",
+      "producer": "prospective R5-B1e first-leaf affine-Hessian Krawczyk verifier",
+      "scientific_scope": "read-only verifier and mutation tests for the first-leaf-only B1e record; rejects full-R5/R6/normal K=1 claim inflation and arithmetic/hash tampering",
+      "sha256": "b043eed45c696c8e3e344e60feb41449da5a3652e23617c0ce00b0399251708c",
+      "status": "prospective_r5_b1e_first_leaf_certified_only",
       "type": "script"
     },
     {
