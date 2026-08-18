@@ -340,7 +340,7 @@
       "path": "research/realizability_r1_r7/README.md",
       "producer": "prospective protocol scaffold",
       "scientific_scope": "documentation for an isolated model-level Principle R test protocol; no R6 search or result",
-      "sha256": "2e2bb5eb2bbfbaa4b3399a317d2ed9d7cb20f735ac9edd6273116ca73db4532e",
+      "sha256": "49b7eeeae6d5a202bb21711bbac0b61cd5a9f47f4d3b016bcfd25c4b5d0503ac",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -953,7 +953,7 @@
       "path": "research/realizability_r1_r7/PRINCIPLE_R_COMPLIANCE_MATRIX.md",
       "producer": "prospective Principle R compliance documentation",
       "scientific_scope": "evidence matrix for the prospective model-level Principle R interface; does not change the published theorem boundary",
-      "sha256": "5e10edb2e980fcfb97872efbc252599894f540980c89e5f925b25c4c317743e5",
+      "sha256": "0efbdb230d700cadd4c7e72a34530f34d7c13374f8d7f97e39991e1a53b6ed20",
       "status": "prospective_protocol",
       "type": "documentation"
     },
@@ -1016,6 +1016,302 @@
       "scientific_scope": "read-only verifier and mutation tests for the all-leaves local-only B2 record; rejects R5/PR-R6/global-flow claim inflation and arithmetic/hash tampering",
       "sha256": "494cce78d9331b87ae4ca7dbf5a399cf7c2b8323cb76a7ae9ce8438afd0b9de0",
       "status": "prospective_r5_b2_all_leaves_local_only",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_adjacent_leaf_gluing_boundary",
+      "inputs": [
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/R5_ADJACENT_LEAF_GLUING_BOUNDARY.md",
+      "producer": "prospective R5-B3 adjacent-leaf gluing boundary",
+      "scientific_scope": "15 internal seams only; common-root C0 gluing diagnostic boundary; not C1, not full-path zero cost, not PR-R6, not full GF-R5, and not normal K=1 recovery",
+      "sha256": "1c0daf89e414ff736b0915bc5c7e22afd6ab517057b4e41fb54dffdf7c440eca",
+      "status": "prospective_r5_b3_gluing_not_certified",
+      "type": "documentation"
+    },
+    {
+      "allow_absolute_runtime_paths": true,
+      "id": "principle_r_r5_adjacent_leaf_gluing_script",
+      "inputs": [
+        "v0_7_4_parent_box_script",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate",
+        "principle_r_r5_first_leaf_hessian_krawczyk_certificate",
+        "principle_r_r5_static_arb_gates_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certify_r5_adjacent_leaf_gluing.py",
+      "producer": "prospective R5-B3 adjacent-leaf common-root Krawczyk driver",
+      "scientific_scope": "checks the 15 internal seams with a corrected point-center common physical endpoint equation and intersection-box Krawczyk gate; not C1, not full-path zero cost, not PR-R6, and not normal K=1 recovery",
+      "sha256": "64e09873437f080ceeb349b32bf3717b830796fc5c94bf4ea8cd8c008a6a2f4a",
+      "status": "prospective_r5_b3b_c0_gluing_certified",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_adjacent_leaf_gluing_diagnostic",
+      "inputs": [
+        "principle_r_r5_adjacent_leaf_gluing_script",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate"
+      ],
+      "path": "research/realizability_r1_r7/diagnostics/r5_adjacent_leaf_gluing_v1_0.json",
+      "producer": "principle_r_r5_adjacent_leaf_gluing_script",
+      "scientific_scope": "superseded B3 negative diagnostic: seam boxes intersect strictly and equations match, but interval-valued center bookkeeping made common self-map fail; not a C0 gluing certificate and not full R5 or PR-R6",
+      "sha256": "6b04149afbe39a58295bd4c8b6172e150c9244e6375a9c7b39ec9ac9813dd442",
+      "status": "superseded_by_prospective_r5_b3b_point_center_certificate",
+      "type": "diagnostic"
+    },
+    {
+      "id": "principle_r_r5_adjacent_leaf_gluing_certificate",
+      "inputs": [
+        "principle_r_r5_adjacent_leaf_gluing_script",
+        "principle_r_r5_seam_residual_normalization_diagnostic",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r5_adjacent_leaf_gluing_v1_1.json",
+      "producer": "principle_r_r5_adjacent_leaf_gluing_script",
+      "scientific_scope": "B3b corrected point-center common-root certificate: 15 internal seams glued to a single C0 root branch; not C1, not full-path response identity, not zero cost, not full R5, not PR-R6, and not normal K=1 recovery",
+      "sha256": "5b7891ff1179639f6e700a6870950f8db196dac8cb33b1183c359bb702a4354f",
+      "status": "prospective_r5_b3b_c0_gluing_certified",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r5_adjacent_leaf_gluing_verifier",
+      "inputs": [
+        "principle_r_r5_adjacent_leaf_gluing_certificate",
+        "principle_r_r5_adjacent_leaf_gluing_diagnostic",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate",
+        "principle_r_r5_full_tube_protocol",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_adjacent_leaf_gluing.py",
+      "producer": "prospective R5-B3 adjacent-leaf gluing verifier",
+      "scientific_scope": "read-only verifier and mutation tests for the corrected B3b common-root certificate; rejects interval-center reuse, overlap-only equality, and C1/R5/PR-R6/global-flow claim inflation",
+      "sha256": "38c6311a37a18db27f1250f307e529c061614a95412e572bcd8c2c0bf62df7ef",
+      "status": "prospective_r5_b3b_c0_gluing_certified",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_seam_residual_normalization_boundary",
+      "inputs": [
+        "principle_r_r5_adjacent_leaf_gluing_diagnostic",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate"
+      ],
+      "path": "research/realizability_r1_r7/R5_SEAM_RESIDUAL_NORMALIZATION_DIAGNOSTIC.md",
+      "producer": "prospective R5-B3a seam residual normalization diagnostic boundary",
+      "scientific_scope": "diagnostic boundary explaining B3 interval-center forcing inflation; not B3 certification, not B4, not full R5, not PR-R6, and not normal K=1 recovery",
+      "sha256": "9b1e531ca1680c14fe6f7e533c3de58d27f44ae33a458a05b127f735715e531c",
+      "status": "prospective_r5_b3a_diagnostic_only",
+      "type": "documentation"
+    },
+    {
+      "allow_absolute_runtime_paths": true,
+      "id": "principle_r_r5_seam_residual_normalization_script",
+      "inputs": [
+        "v0_7_4_parent_box_script",
+        "principle_r_r5_adjacent_leaf_gluing_diagnostic",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/diagnose_r5_seam_residual_normalization.py",
+      "producer": "prospective R5-B3a seam residual normalization diagnostic driver",
+      "scientific_scope": "checks whether B3 common forcing inflation is due to normalization, coordinate transformation, or center-radius bookkeeping; diagnostic only",
+      "sha256": "9ab7727be9e19794f890481d18c3b640fa8bed51c534e1cbc01ed9ec4f24cb98",
+      "status": "prospective_r5_b3a_diagnostic_only",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_seam_residual_normalization_diagnostic",
+      "inputs": [
+        "principle_r_r5_seam_residual_normalization_script",
+        "principle_r_r5_adjacent_leaf_gluing_diagnostic",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate"
+      ],
+      "path": "research/realizability_r1_r7/diagnostics/r5_seam_residual_normalization_diagnostic_v1_0.json",
+      "producer": "principle_r_r5_seam_residual_normalization_script",
+      "scientific_scope": "B3a diagnostic: the 2.72e-18 common forcing comes from interval-valued Krawczyk center bookkeeping; point-midpoint residuals are near the B2 1e-27 scale",
+      "sha256": "45e1b9df84edda65ae666e21df36137ece87fa024fbbc66ae1f7d5eee425a3d4",
+      "status": "prospective_r5_b3a_diagnostic_only",
+      "type": "diagnostic"
+    },
+    {
+      "id": "principle_r_r5_seam_residual_normalization_verifier",
+      "inputs": [
+        "principle_r_r5_seam_residual_normalization_diagnostic",
+        "principle_r_r5_adjacent_leaf_gluing_diagnostic",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_seam_residual_normalization.py",
+      "producer": "prospective R5-B3a seam residual normalization verifier",
+      "scientific_scope": "read-only verifier and mutation tests for B3a; rejects normalization-gap, theorem-certificate, B3/B4/R6, and bookkeeping-forgery claims",
+      "sha256": "fdced46a594d1b9a3a729be1e6c385f97164f5732a135756da307fd79af30b7c",
+      "status": "prospective_r5_b3a_diagnostic_only",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_global_implicit_branch_c1_boundary",
+      "inputs": [
+        "principle_r_r5_adjacent_leaf_gluing_certificate",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate"
+      ],
+      "path": "research/realizability_r1_r7/R5_GLOBAL_IMPLICIT_BRANCH_C1_BOUNDARY.md",
+      "producer": "prospective R5-B4 global implicit branch C1 boundary",
+      "scientific_scope": "B4 boundary for C1 implicit branch regularity only; not zero cost, not positive-measure nonconstancy, not PR-R5, not PR-R6, not global flow, and not normal K=1 recovery",
+      "sha256": "5c5e82654582ac161bd0d787340a6b5fba78f6e77b1e69391dcc4ac3403ac45d",
+      "status": "prospective_r5_b4_c1_branch_certified",
+      "type": "documentation"
+    },
+    {
+      "absolute_runtime_path_rationale": "Patches the frozen Colab-compatible v0.7.4 driver in a temporary directory and does not use absolute paths as theorem inputs.",
+      "allow_absolute_runtime_paths": true,
+      "id": "principle_r_r5_global_implicit_branch_c1_script",
+      "inputs": [
+        "v0_7_4_parent_box_script",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate",
+        "principle_r_r5_adjacent_leaf_gluing_certificate",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certify_r5_global_implicit_branch_c1.py",
+      "producer": "prospective R5-B4 global implicit branch C1 driver",
+      "scientific_scope": "certifies invertible D_bF, implicit derivative enclosures, seam derivative attachment, and C1 regularity for the glued implicit branch; does not certify zero cost, nonconstancy, PR-R6, R6 search, or normal K=1 recovery",
+      "sha256": "e535a0ff5c17fa10b60af1a1431cecdf9e003f499aa580c144ee3fc378d4e7a8",
+      "status": "prospective_r5_b4_c1_branch_certified",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_global_implicit_branch_c1_certificate",
+      "inputs": [
+        "principle_r_r5_global_implicit_branch_c1_script",
+        "principle_r_r5_adjacent_leaf_gluing_certificate",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r5_global_implicit_branch_c1_v1_0.json",
+      "producer": "principle_r_r5_global_implicit_branch_c1_script",
+      "scientific_scope": "R5-B4 certificate for a single C1 implicit branch over the 16-leaf tube; not full R5, not zero-cost/nonconstant path, not PR-R6, not global ODE flow, and not normal K=1 recovery",
+      "sha256": "f258be6e08cab82250d6b5eb5d44896f532166bc0bc64f378028fa99f290962f",
+      "status": "prospective_r5_b4_c1_branch_certified",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r5_global_implicit_branch_c1_verifier",
+      "inputs": [
+        "principle_r_r5_global_implicit_branch_c1_certificate",
+        "principle_r_r5_adjacent_leaf_gluing_certificate",
+        "principle_r_r5_all_leaves_hessian_krawczyk_certificate"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_global_implicit_branch_c1.py",
+      "producer": "prospective R5-B4 global implicit branch C1 verifier",
+      "scientific_scope": "read-only verifier and mutation tests for B4; rejects derivative-overlap-only, eta/physical-coordinate confusion, C1/R5/PR-R6/global-flow claim inflation, and R6/K=1 flags",
+      "sha256": "d3b3df746fa635d5a0096d27b42ad9d072454d4276b55fd0fc3644d38a0d4603",
+      "status": "prospective_r5_b4_c1_branch_certified",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_positive_measure_nonconstancy_boundary",
+      "inputs": [
+        "principle_r_r5_global_implicit_branch_c1_certificate"
+      ],
+      "path": "research/realizability_r1_r7/R5_POSITIVE_MEASURE_NONCONSTANCY_BOUNDARY.md",
+      "producer": "prospective R5-B5 positive-measure nonconstancy boundary",
+      "scientific_scope": "B5 boundary for positive-measure nonconstancy only; not zero cost, not full R5, not PR-R5, not PR-R6, not R6 search, and not normal K=1 recovery",
+      "sha256": "cadc4c9e7213e55956941d7f193aa099ec780f43790393c1c877d44140a6e869",
+      "status": "prospective_r5_b5_positive_measure_nonconstancy_certified",
+      "type": "documentation"
+    },
+    {
+      "id": "principle_r_r5_positive_measure_nonconstancy_script",
+      "inputs": [
+        "principle_r_r5_global_implicit_branch_c1_certificate",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certify_r5_positive_measure_nonconstancy.py",
+      "producer": "prospective R5-B5 positive-measure nonconstancy driver",
+      "scientific_scope": "certifies positive-measure nonconstancy for the frozen shrinking loops using B4 derivative bounds; does not certify zero cost, PR-R6, R6 search, or normal K=1 recovery",
+      "sha256": "2f938628628a3c5c012df615944a3c525d8d4e9da8d8badb1ee2382e3c0b6309",
+      "status": "prospective_r5_b5_positive_measure_nonconstancy_certified",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_positive_measure_nonconstancy_certificate",
+      "inputs": [
+        "principle_r_r5_positive_measure_nonconstancy_script",
+        "principle_r_r5_global_implicit_branch_c1_certificate"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r5_positive_measure_nonconstancy_v1_0.json",
+      "producer": "principle_r_r5_positive_measure_nonconstancy_script",
+      "scientific_scope": "R5-B5 certificate for positive-measure nonconstancy of all five frozen shrinking loops; not full R5, not zero response cost, not PR-R6, not global ODE flow, and not normal K=1 recovery",
+      "sha256": "ca51c5fa24fa29817b80230ccb2d5c2d78efbccb0c598e5ca00295efc9c84e95",
+      "status": "prospective_r5_b5_positive_measure_nonconstancy_certified",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r5_positive_measure_nonconstancy_verifier",
+      "inputs": [
+        "principle_r_r5_positive_measure_nonconstancy_certificate",
+        "principle_r_r5_global_implicit_branch_c1_certificate"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_positive_measure_nonconstancy.py",
+      "producer": "prospective R5-B5 positive-measure nonconstancy verifier",
+      "scientific_scope": "read-only verifier and mutation tests for B5; rejects endpoint-only, sampling, new-observable, zero-cost, R5/PR-R5/PR-R6, R6, and normal K=1 claim inflation",
+      "sha256": "78b75a1af9097d955b73891d13f529f855ee0fb9ebdb64236db69b86157d2639",
+      "status": "prospective_r5_b5_positive_measure_nonconstancy_certified",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_full_shrinking_family_boundary",
+      "inputs": [
+        "principle_r_r5_global_implicit_branch_c1_certificate",
+        "principle_r_r5_positive_measure_nonconstancy_certificate"
+      ],
+      "path": "research/realizability_r1_r7/R5_FULL_SHRINKING_FAMILY_BOUNDARY.md",
+      "producer": "prospective R5-B6 full shrinking-family boundary",
+      "scientific_scope": "B6 boundary for the frozen GF-R5 shrinking-family certificate; not PR-R6, not R6 search, not normal K=1 recovery, and not global ODE flow",
+      "sha256": "59c92b032169a8bd565e98048bfdb96573040f59b3d1fb271487296f1a38b554",
+      "status": "prospective_gf_r5_full_shrinking_family_certified",
+      "type": "documentation"
+    },
+    {
+      "id": "principle_r_r5_full_shrinking_family_script",
+      "inputs": [
+        "principle_r_r5_global_implicit_branch_c1_certificate",
+        "principle_r_r5_positive_measure_nonconstancy_certificate",
+        "principle_r_r5_full_tube_auxiliary_data"
+      ],
+      "path": "research/realizability_r1_r7/certify_r5_full_shrinking_family.py",
+      "producer": "prospective R5-B6 full shrinking-family driver",
+      "scientific_scope": "aggregates B4 exact response-identity logic and B5 nonconstancy to certify zero protocol-relative response cost for the frozen shrinking family; does not run R6 or normal K=1 recovery",
+      "sha256": "daaa20cd7562e53b12a6ade12fb58ace9ddf34eff52c0e22e94a373246bf7a84",
+      "status": "prospective_gf_r5_full_shrinking_family_certified",
+      "type": "script"
+    },
+    {
+      "id": "principle_r_r5_full_shrinking_family_certificate",
+      "inputs": [
+        "principle_r_r5_full_shrinking_family_script",
+        "principle_r_r5_global_implicit_branch_c1_certificate",
+        "principle_r_r5_positive_measure_nonconstancy_certificate"
+      ],
+      "path": "research/realizability_r1_r7/certificates/r5_full_shrinking_family_v1_0.json",
+      "producer": "principle_r_r5_full_shrinking_family_script",
+      "scientific_scope": "R5-B6 certificate for the frozen model-level GF-R5 shrinking family: exact response identity, zero protocol-relative response cost, and positive-measure nonconstancy; not PR-R6 or global flow",
+      "sha256": "6bd8997f4f831611245c0549b802dae14f91bf96495dbe8d8bf1dc89e54bcb61",
+      "status": "prospective_gf_r5_full_shrinking_family_certified",
+      "type": "certificate"
+    },
+    {
+      "id": "principle_r_r5_full_shrinking_family_verifier",
+      "inputs": [
+        "principle_r_r5_full_shrinking_family_certificate",
+        "principle_r_r5_global_implicit_branch_c1_certificate",
+        "principle_r_r5_positive_measure_nonconstancy_certificate"
+      ],
+      "path": "research/realizability_r1_r7/verify_r5_full_shrinking_family.py",
+      "producer": "prospective R5-B6 full shrinking-family verifier",
+      "scientific_scope": "read-only verifier and mutation tests for B6; rejects residual-tolerance zero cost, sampled residuals, B4/B5 SHA drift, PR-R5/PR-R6, R6, normal K=1, global-flow, and published-boundary claim inflation",
+      "sha256": "af8ab9c10ac0e75ee886599a6d1fed8e5da7a24f00d4327165d257be2e9746dc",
+      "status": "prospective_gf_r5_full_shrinking_family_certified",
       "type": "script"
     },
     {
